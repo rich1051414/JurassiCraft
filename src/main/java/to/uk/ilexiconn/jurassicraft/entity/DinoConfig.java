@@ -10,7 +10,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/dinos", ".json");
+            File tempFile = File.createTempFile("dinos", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/dinos.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -27,7 +27,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/reptiles", ".json");
+            File tempFile = File.createTempFile("reptiles", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/reptiles.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -44,7 +44,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/mammals", ".json");
+            File tempFile = File.createTempFile("mammals", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/mammals.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -62,7 +62,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/birds", ".json");
+            File tempFile = File.createTempFile("birds", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/birds.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -80,7 +80,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/fish", ".json");
+            File tempFile = File.createTempFile("fish", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/fish.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -97,7 +97,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/cephalopods", ".json");
+            File tempFile = File.createTempFile("cephalopods", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/cephalopods.json");
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -114,7 +114,7 @@ public class DinoConfig
     {
         try
         {
-            File tempFile = File.createTempFile("json/arthropods", ".json");
+            File tempFile = File.createTempFile("arthropods", ".json", new File("json"));
             tempFile.deleteOnExit();
             InputStream in = DinoConfig.class.getResourceAsStream("/json/arthropods.json");
             FileOutputStream out = new FileOutputStream(tempFile);
