@@ -24,7 +24,7 @@ archivesBaseName = "JurassiCraft"
 repositories {
 	maven {
 		name = "ilexiconn"
-		url = "http://ilexiconn.uk.to/maven/"
+		url = "http://ilexiconn.net/maven/"
 	}
 }
 
