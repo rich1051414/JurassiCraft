@@ -441,7 +441,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
     {
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
-        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
+//        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
 
         animator.setAnim(1);
         animator.startPhase(15);

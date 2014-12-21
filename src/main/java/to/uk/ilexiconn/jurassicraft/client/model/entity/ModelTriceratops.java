@@ -8,12 +8,16 @@
 package to.uk.ilexiconn.jurassicraft.client.model.entity;
 
 import net.minecraft.entity.Entity;
+import thehippomaster.AnimationAPI.IAnimatedEntity;
+import thehippomaster.AnimationAPI.client.Animator;
 import to.uk.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
 import to.uk.ilexiconn.llib.client.model.MowzieModelRenderer;
 
 public class ModelTriceratops extends MowzieModelBase
 {
+	private Animator animator;
+	
 	public MowzieModelRenderer BackCalfLeft;
     public MowzieModelRenderer BackCalfRight;
     public MowzieModelRenderer BackThighLeft;
@@ -57,6 +61,8 @@ public class ModelTriceratops extends MowzieModelBase
     public ModelTriceratops() {
         this.textureWidth = 256;
         this.textureHeight = 256;
+    	animator = new Animator(this);
+    	
         this.Tail3 = new MowzieModelRenderer(this, 37, 141);
         this.Tail3.setRotationPoint(0.0F, 2.5F, 28.0F);
         this.Tail3.addBox(-4.0F, -3.0F, 0.0F, 8, 9, 7);
@@ -330,7 +336,7 @@ public class ModelTriceratops extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
  //       BackCalfLeft.render(f5);
  //       BackCalfRight.render(f5);
         BackThighLeft.render(f5);
@@ -435,8 +441,7 @@ public class ModelTriceratops extends MowzieModelBase
  //       f1 = 1.5F;*/
         
         //Sprinting functionality parameters
-        float sprintModifier = (float) (1/(1+Math.exp(30*(-f1+0.8))));
-//        System.out.println(f1);
+        float sprintModifier = (float) (1/(1+Math.exp(30*(-f1+0.9))));
         float legOffsetModifier = 2.5F;
         float bobBase = 2F; if(sprintModifier >= 0.9)bobBase = 1F;
                 
@@ -492,5 +497,88 @@ public class ModelTriceratops extends MowzieModelBase
 
         tailSwing(tailParts, 0.1F, 0.05F, 2, tric.frame);
         chainWave(tailParts, 0.1F, -0.05F, 1, tric.frame, 1F);
+        
+        //Specialized animations
+        Head.rotateAngleZ += Math.cos(tric.frame) * tric.flailDegree.value / 3;
+        FrontThighRight.rotateAngleX += Math.cos(tric.frame/3) * tric.flailDegree.value * 0.3;
+        FrontCalfRight.rotateAngleX += Math.cos((tric.frame + 1.5)/3) * tric.flailDegree.value * 0.4;
+        RightFrontFoot.rotateAngleX += Math.cos((-tric.frame + 3)/3) * tric.flailDegree.value * 0.3;
+        FrontThighLeft.rotateAngleX += Math.cos(tric.frame/3) * tric.flailDegree.value * -0.3;
+        FrontCalfLeft.rotateAngleX += Math.cos((tric.frame + 1.5)/3) * tric.flailDegree.value * -0.4;
+        LeftFrontFoot.rotateAngleX += Math.cos((tric.frame - 3)/3) * tric.flailDegree.value * -0.3;
+    }
+    
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        animator.update(entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
+        
+        animator.setAnim(1);
+        animator.startPhase(4);
+        animator.rotate(Waist, 0.25F, 0, 0);
+        animator.rotate(FrontThighLeft, 0.125F, 0, 0);
+        animator.rotate(FrontThighRight, 0.125F, 0, 0);
+        animator.rotate(FrontCalfLeft, -0.55F, 0, 0);
+        animator.rotate(FrontCalfRight, -0.55F, 0, 0);
+        animator.rotate(LeftFrontFoot, 0.25F, 0, 0);
+        animator.rotate(RightFrontFoot, 0.25F, 0, 0);
+        animator.rotate(Tail1, -0.2F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(2);
+        animator.startPhase(8);
+        animator.rotate(Waist, -0.4F, 0, 0);
+        animator.rotate(Chest, 0.2F, 0, 0);
+        animator.rotate(Head, 0.2F, 0, 0);
+        animator.rotate(Tail1, 0.3F, 0, 0);
+        animator.rotate(FrontThighLeft, 0.1F, 0, 0);
+        animator.rotate(FrontThighRight, 0.1F, 0, 0);
+        animator.rotate(FrontCalfLeft, -0.4F, 0, 0);
+        animator.rotate(FrontCalfRight, -0.4F, 0, 0);
+        animator.rotate(LeftFrontFoot, 0.1F, 0, 0);
+        animator.rotate(RightFrontFoot, 0.1F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(3);
+        animator.startPhase(6);
+        animator.rotate(Waist, 0.25F, 0, 0);
+        animator.rotate(FrontThighLeft, -0.4F, 0, 0);
+        animator.rotate(FrontThighRight, -0.4F, 0, 0);
+        animator.rotate(FrontCalfLeft, -0.49F, 0, 0);
+        animator.rotate(FrontCalfRight, -0.49F, 0, 0);
+        animator.rotate(LeftFrontFoot, 0.6F, 0, 0);
+        animator.rotate(RightFrontFoot, 0.6F, 0, 0);
+        animator.rotate(Head, 0.2F, 0, 0);
+        animator.rotate(Tail1, -0.2F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(2);
+        animator.startPhase(3);
+        animator.rotate(Waist, 0.25F, 0, 0);
+        animator.rotate(FrontThighLeft, -0.4F, 0, 0);
+        animator.rotate(FrontThighRight, -0.4F, 0, 0);
+        animator.rotate(FrontCalfLeft, -0.49F, 0, 0);
+        animator.rotate(FrontCalfRight, -0.49F, 0, 0);
+        animator.rotate(LeftFrontFoot, 0.6F, 0, 0);
+        animator.rotate(RightFrontFoot, 0.6F, 0, 0);
+        animator.rotate(Head, 0.2F, 0.3F, 0);
+        animator.rotate(Tail1, -0.2F, 0, 0);
+        animator.rotate(Chest, 0, -0.3F, 0);
+        animator.rotate(FrontThighLeft, 0.7F, 0, 0);
+        animator.rotate(FrontCalfLeft, 0.3F, 0, 0);
+        animator.rotate(FrontThighRight, 0F, 0.5F, 0.0F);
+        animator.endPhase();
+        animator.setStationaryPhase(1);
+        animator.startPhase(10);
+        animator.rotate(Waist, 0.25F, 0, 0);
+        animator.rotate(FrontThighLeft, -0.4F, 0, 0);
+        animator.rotate(FrontThighRight, -0.4F, 0, 0);
+        animator.rotate(FrontCalfLeft, -0.49F, 0, 0);
+        animator.rotate(FrontCalfRight, -0.49F, 0, 0);
+        animator.rotate(LeftFrontFoot, 0.6F, 0, 0);
+        animator.rotate(RightFrontFoot, 0.6F, 0, 0);
+        animator.rotate(Head, 0.2F, 0, 0);
+        animator.rotate(Tail1, -0.2F, 0, 0);
+        animator.endPhase();
+        animator.resetPhase(10);
+        //49 frames
+        animator.setStationaryPhase(51);
     }
 }
