@@ -47,12 +47,12 @@ public class EntityCoelacanth extends EntitySwimming
     @Override
     public Item getDropItem()
     {
-        return Util.getMeat(this.getCreatureID());
+        return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
     }
 
 	@Override
 	protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus) 
 	{
-		// this.dropItem(Util.getMeat(this.getCreatureID()), 1);
+		 this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), 1);
 	}
 }

@@ -40,7 +40,7 @@ public class Util
 
     private static Map<Entities, Class<?>> creatures = new HashMap<Entities, Class<?>>();
 
-    private static ArrayList<ItemMeat> meat = new ArrayList<ItemMeat>();
+    private static Map<Entities, ItemMeat> meat = new HashMap<Entities, ItemMeat>();
 
     public static byte creatureId = 0;
 
@@ -95,14 +95,14 @@ public class Util
         return creatures;
     }
 
-    public static ArrayList<ItemMeat> getDinoMeats()
+    public static Map<Entities, ItemMeat> getDinoMeats()
     {
         return meat;
     }
 
-    public static Item getMeat(int id)
+    public static Item getMeat(Entities creature)
     {
-        return meat.get(id);
+        return meat.get(creature);
     }
 
     /**
@@ -122,10 +122,10 @@ public class Util
         GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
 
-    public void addMeat(String dinoName)
+    public void addMeat(Entities creature)
     {
-        ItemMeat item = new ItemMeat(dinoName);
-        meat.add(item);
+        ItemMeat item = new ItemMeat(creature.creatureName);
+        meat.put(creature, item);
         addItem(-1, item);
     }
 

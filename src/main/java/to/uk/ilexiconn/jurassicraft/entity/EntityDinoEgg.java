@@ -172,7 +172,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
                 List<EggEnviroment> enviroments = EggEnviroment.getEnviroments(this);
 
-                Entities dinosaur = Util.getCreatureFromId(Util.getCreatureFromName(dino));
+                Entities dinosaur = Util.getCreatureFromId(Util.getCreatureIdFromName(dino));
 
                 boolean wet = enviroments.contains(EggEnviroment.WET);
                 
@@ -363,7 +363,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(Util.getCreatureFromName(dino));
+        buffer.writeInt(Util.getCreatureIdFromName(dino));
     }
 
     @Override

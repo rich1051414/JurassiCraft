@@ -187,7 +187,7 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
 
     @Override
     public Item getDropItem() {
-        return Util.getMeat(this.getCreatureID());
+        return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
     }
 
     @Override
@@ -198,7 +198,7 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
         if (this.isBurning()) {
             this.dropItem(ModItems.dinoSteak, count);
         } else {
-            this.dropItem(Util.getMeat(this.getCreatureID()), count);
+            this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), count);
         }
     }
 

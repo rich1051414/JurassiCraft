@@ -32,7 +32,7 @@ public class JsonEntityParser extends Util
             if (dino.addSyringe)
                 addSyringe(dino.creatureName);
             if (dino.addMeat)
-                addMeat(dino.creatureName);
+                addMeat(dino);
             if (dino.addDNA)
                 addDNA(dino.creatureName);
 		}
@@ -46,7 +46,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -60,7 +60,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -74,7 +74,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -88,7 +88,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -102,7 +102,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -116,7 +116,7 @@ public class JsonEntityParser extends Util
             if (creature.addSyringe)
                 addSyringe(creature.creatureName);
             if (creature.addMeat)
-                addMeat(creature.creatureName);
+                addMeat(creature);
             if (creature.addDNA)
                 addDNA(creature.creatureName);
         }
@@ -164,7 +164,7 @@ public class JsonEntityParser extends Util
         loadConfig(DinoConfig.loadArthropodConfig());
         for (Entities creature : arthropods)
         {
-            addBirdEntityRenderer(creature);
+            addArthropodEntityRenderer(creature);
         }
     }
 

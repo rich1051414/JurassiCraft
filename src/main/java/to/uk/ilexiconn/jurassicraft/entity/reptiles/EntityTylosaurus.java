@@ -39,7 +39,7 @@ public class EntityTylosaurus extends NewEntitySwimming {
     @Override
     public Item getDropItem()
     {
-        return Util.getMeat(this.getCreatureID());
+        return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
     }
 
 	@Override
@@ -53,7 +53,7 @@ public class EntityTylosaurus extends NewEntitySwimming {
 		} 
 		else 
 		{
-			this.dropItem(Util.getMeat(this.getCreatureID()), count);
+			this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), count);
 		}
 	}
 }
