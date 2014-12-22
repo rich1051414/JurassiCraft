@@ -354,7 +354,7 @@ public class Util
     {
         try
         {
-            RenderLiving renderer = (RenderLiving) Class.forName("to.uk.ilexiconn.jurassicraft.entity.render.birds.Render" + bird.creatureName).getDeclaredConstructor(Entities.class).newInstance();
+            RenderLiving renderer = (RenderLiving) Class.forName("to.uk.ilexiconn.jurassicraft.entity.render.birds.Render" + bird.creatureName).getDeclaredConstructor(Entities.class).newInstance(bird);
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.birds.Entity" + bird.creatureName);
             proxy.renderEntity(entity, renderer);
         }
