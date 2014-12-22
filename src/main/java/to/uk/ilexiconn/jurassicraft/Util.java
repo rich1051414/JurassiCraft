@@ -70,12 +70,12 @@ public class Util
         return dnas;
     }
 
-    public static Map<Entities, ItemDinoEgg> getEggArray()
+    public static Map<Entities, ItemDinoEgg> getEggMap()
     {
         return eggs;
     }
 
-    public static Map<Entities, ItemMammalSyringe> getSyringeArray()
+    public static Map<Entities, ItemMammalSyringe> getSyringeMap()
     {
         return syringes;
     }

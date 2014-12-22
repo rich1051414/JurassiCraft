@@ -9,6 +9,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import to.uk.ilexiconn.jurassicraft.ModCreativeTabs;
 import to.uk.ilexiconn.jurassicraft.Util;
+import to.uk.ilexiconn.jurassicraft.entity.Entities;
 
 import java.util.List;
 
@@ -26,10 +27,11 @@ public class ItemDNA extends Item implements IDNASample
     public Item getCorrespondingEggOrSyringe()
     {
         int id = Util.getCreatureIDFromDNA(this);
-        if (Util.getCreatureFromId(id).addEgg)
-            return Util.getEggArray().get(id);
-        if (Util.getCreatureFromId(id).addSyringe)
-            return Util.getSyringeArray().get(id);
+        Entities creatureFromId = Util.getCreatureFromId(id);
+		if (creatureFromId.addEgg)
+            return Util.getEggMap().get(creatureFromId);
+        if (creatureFromId.addSyringe)
+            return Util.getSyringeMap().get(creatureFromId);
         else return null;
     }
 
