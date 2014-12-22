@@ -24,20 +24,13 @@ public class JsonEntityParser extends Util
     public void parseServerEntities()
     {
         loadConfig(DinoConfig.loadDinoConfig());
-        for (Entities creature : dinos)
-        {
-            addDinoEntity(creature);
-            if (creature.addEgg)
-                addEgg(creature.creatureName);
-            if (creature.addSyringe)
-                addSyringe(creature.creatureName);
-            if (creature.addMeat)
-                addMeat(creature.creatureName);
-            if (creature.addDNA)
-                addDNA(creature.creatureName);
-        }
-
+        loadConfig(DinoConfig.loadArthropodConfig());
+        loadConfig(DinoConfig.loadBirdConfig());
+        loadConfig(DinoConfig.loadCephalopodConfig());
+        loadConfig(DinoConfig.loadFishConfig());
+        loadConfig(DinoConfig.loadMammalConfig());
         loadConfig(DinoConfig.loadReptileConfig());
+
         for (Entities creature : reptiles)
         {
             addReptileEntity(creature);
