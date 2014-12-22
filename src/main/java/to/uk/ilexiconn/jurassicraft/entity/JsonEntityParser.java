@@ -28,13 +28,13 @@ public class JsonEntityParser extends Util
         {
             addDinoEntity(dino);
             if (dino.addEgg)
-                addEgg(dino.creatureName);
+                addEgg(dino);
             if (dino.addSyringe)
-                addSyringe(dino.creatureName);
+                addSyringe(dino);
             if (dino.addMeat)
                 addMeat(dino);
             if (dino.addDNA)
-                addDNA(dino.creatureName);
+                addDNA(dino);
 		}
         
         loadConfig(DinoConfig.loadReptileConfig());
@@ -42,13 +42,13 @@ public class JsonEntityParser extends Util
         {
             addReptileEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
 
         loadConfig(DinoConfig.loadMammalConfig());
@@ -56,13 +56,13 @@ public class JsonEntityParser extends Util
         {
             addMammalEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
 
         loadConfig(DinoConfig.loadBirdConfig());
@@ -70,13 +70,13 @@ public class JsonEntityParser extends Util
         {
             addBirdEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
 
         loadConfig(DinoConfig.loadFishConfig());
@@ -84,13 +84,13 @@ public class JsonEntityParser extends Util
         {
             addFishEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
 
         loadConfig(DinoConfig.loadCephalopodConfig());
@@ -98,13 +98,13 @@ public class JsonEntityParser extends Util
         {
             addCephalopodaEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
 
         loadConfig(DinoConfig.loadArthropodConfig());
@@ -112,13 +112,13 @@ public class JsonEntityParser extends Util
         {
             addArthropodEntity(creature);
             if (creature.addEgg)
-                addEgg(creature.creatureName);
+                addEgg(creature);
             if (creature.addSyringe)
-                addSyringe(creature.creatureName);
+                addSyringe(creature);
             if (creature.addMeat)
                 addMeat(creature);
             if (creature.addDNA)
-                addDNA(creature.creatureName);
+                addDNA(creature);
         }
     }
 

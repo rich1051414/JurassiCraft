@@ -33,17 +33,16 @@ public class Util
     private static final JsonEntityParser entityParser = new JsonEntityParser();
     @SidedProxy(clientSide = "to.uk.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "to.uk.ilexiconn.jurassicraft.proxy.ServerProxy")
     public static ServerProxy proxy;
+    
     private static Item[] items = new Item[512];
-    private static ArrayList<ItemDNA> dnas = new ArrayList<ItemDNA>();
-    private static ArrayList<ItemDinoEgg> eggs = new ArrayList<ItemDinoEgg>();
-    private static ArrayList<ItemMammalSyringe> syringes = new ArrayList<ItemMammalSyringe>();
 
     private static Map<Entities, Class<?>> creatures = new HashMap<Entities, Class<?>>();
 
     private static Map<Entities, ItemMeat> meat = new HashMap<Entities, ItemMeat>();
-
-    public static byte creatureId = 0;
-
+    private static Map<Entities, ItemMammalSyringe> syringes = new HashMap<Entities, ItemMammalSyringe>();
+    private static Map<Entities, ItemDinoEgg> eggs = new HashMap<Entities, ItemDinoEgg>();
+    private static Map<Entities, ItemDNA> dnas = new HashMap<Entities, ItemDNA>();
+    
     /**
      * Getters
      */
@@ -66,17 +65,17 @@ public class Util
         return items[id];
     }
 
-    public static ArrayList<ItemDNA> getDNAArray()
+    public static Map<Entities, ItemDNA> getDNAS()
     {
         return dnas;
     }
 
-    public static ArrayList<ItemDinoEgg> getEggArray()
+    public static Map<Entities, ItemDinoEgg> getEggArray()
     {
         return eggs;
     }
 
-    public static ArrayList<ItemMammalSyringe> getSyringeArray()
+    public static Map<Entities, ItemMammalSyringe> getSyringeArray()
     {
         return syringes;
     }
@@ -115,10 +114,10 @@ public class Util
         GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
 
-    public void addDNA(String dinoName)
+    public void addDNA(Entities creature)
     {
-        ItemDNA item = new ItemDNA(dinoName);
-        dnas.add(item);
+        ItemDNA item = new ItemDNA(creature.creatureName);
+        dnas.put(creature, item);
         GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
 
@@ -145,11 +144,11 @@ public class Util
         }
     }
 
-    public void addEgg(final String dinoName)
+    public void addEgg(Entities creature)
     {
-        ItemDinoEgg egg = new ItemDinoEgg(dinoName);
+        ItemDinoEgg egg = new ItemDinoEgg(creature.creatureName);
 
-        eggs.add(egg);
+        eggs.put(creature, egg);
 
         addItem(-1, egg);
     }
@@ -250,11 +249,11 @@ public class Util
         }
     }
 
-    public void addSyringe(final String mammalName)
+    public void addSyringe(Entities creature)
     {
-    	ItemMammalSyringe syringe = new ItemMammalSyringe(mammalName);
+    	ItemMammalSyringe syringe = new ItemMammalSyringe(creature.creatureName);
 
-    	syringes.add(syringe);
+    	syringes.put(creature, syringe);
 
         addItem(-1, syringe);
     }
@@ -416,4 +415,19 @@ public class Util
 
         return -1;
     }
+
+	public static int getCreatureIDFromDNA(ItemDNA itemDNA)
+	{
+		int creatureID = 0;
+		
+        for (Entry<Entities, ItemDNA> dna : Util.getDNAS().entrySet())
+        {
+			if(dna.getValue().equals(itemDNA))
+			{
+				creatureID = dna.getKey().creatureID;
+			}
+		}
+        
+		return creatureID;
+	}
 }

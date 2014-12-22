@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class Entities
 {
-    public byte creatureID = Util.creatureId++;
+    private static byte currentCreatureID = 0;
+	
+    public byte creatureID = currentCreatureID++;
 
     public String creatureName;
     public String livingSound1;

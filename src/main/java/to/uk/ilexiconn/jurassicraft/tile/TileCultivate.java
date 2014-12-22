@@ -12,11 +12,13 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import to.uk.ilexiconn.jurassicraft.Util;
+import to.uk.ilexiconn.jurassicraft.entity.Entities;
 import to.uk.ilexiconn.jurassicraft.enums.JurassiCraftFoodNutrients;
 import to.uk.ilexiconn.jurassicraft.item.ItemDNA;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 public class TileCultivate extends TileEntity implements ISidedInventory
@@ -442,7 +444,8 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 {
                     if (this.slots[2].getTagCompound().getInteger("Quality") >= 50)
                     {
-                        this.creatureID = (byte) Util.getDNAArray().lastIndexOf(this.slots[2].getItem());
+                    	this.creatureID = (byte) Util.getCreatureIDFromDNA((ItemDNA) this.slots[2].getItem());
+                        
                         if (this.getProximateValue() < Util.getCreatureFromId(this.getEmbryoID()).minProximate || this.getMineralValue() < Util.getCreatureFromId(this.getEmbryoID()).minMinerals || this.getVitaminValue() < Util.getCreatureFromId(this.getEmbryoID()).minVitamins || this.getLipidValue() < Util.getCreatureFromId(this.getEmbryoID()).minLipids)
                         {
                             return false;

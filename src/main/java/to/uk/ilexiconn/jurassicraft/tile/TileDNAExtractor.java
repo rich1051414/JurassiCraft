@@ -13,26 +13,31 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import to.uk.ilexiconn.jurassicraft.Util;
+import to.uk.ilexiconn.jurassicraft.entity.Entities;
 import to.uk.ilexiconn.jurassicraft.item.IDNASource;
 import to.uk.ilexiconn.jurassicraft.item.ItemAmber;
 import to.uk.ilexiconn.jurassicraft.item.ItemDNA;
 import to.uk.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.Random;
 
 public class TileDNAExtractor extends TileEntity implements ISidedInventory
 {
-
     private ItemStack[] slots = new ItemStack[8];
     private static final short extractionSpeed = 100;
     private short extractionTime;
-    public static ArrayList<ItemDNA> dnas = new ArrayList<ItemDNA>();
+    private ArrayList<ItemDNA> dnas = new ArrayList<ItemDNA>();
 
     public TileDNAExtractor()
     {
         this.extractionTime = 0;
-        this.dnas = Util.getDNAArray();
+
+        for (Entry<Entities, ItemDNA> dna : Util.getDNAS().entrySet())
+        {
+			dnas.add(dna.getValue());
+		}
     }
 
     public short getExtractionTime()

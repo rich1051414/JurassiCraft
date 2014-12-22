@@ -25,7 +25,7 @@ public class ItemDNA extends Item implements IDNASample
 
     public Item getCorrespondingEggOrSyringe()
     {
-        int id = Util.getDNAArray().lastIndexOf(this);
+        int id = Util.getCreatureIDFromDNA(this);
         if (Util.getCreatureFromId(id).addEgg)
             return Util.getEggArray().get(id);
         if (Util.getCreatureFromId(id).addSyringe)
