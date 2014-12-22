@@ -436,17 +436,21 @@ public class TileCultivate extends TileEntity implements ISidedInventory
      */
     private boolean canCultivate()
     {
-        if (this.slots[2] != null)
+        ItemStack dnaSlot = getDNASlot();
+        
+		if (dnaSlot != null)
         {
-            if (this.slots[2].hasTagCompound())
+            if (dnaSlot.hasTagCompound())
             {
-                if (this.slots[2].getTagCompound().hasKey("Quality") && this.slots[2].getTagCompound().hasKey("DNA"))
+                if (dnaSlot.getTagCompound().hasKey("Quality") && dnaSlot.getTagCompound().hasKey("DNA"))
                 {
-                    if (this.slots[2].getTagCompound().getInteger("Quality") >= 50)
+                    if (dnaSlot.getTagCompound().getInteger("Quality") >= 50)
                     {
-                    	this.creatureID = (byte) Util.getCreatureIDFromDNA((ItemDNA) this.slots[2].getItem());
+                    	this.creatureID = (byte) Util.getCreatureIDFromDNA((ItemDNA) dnaSlot.getItem());
                         
-                        if (this.getProximateValue() < Util.getCreatureFromId(this.getEmbryoID()).minProximate || this.getMineralValue() < Util.getCreatureFromId(this.getEmbryoID()).minMinerals || this.getVitaminValue() < Util.getCreatureFromId(this.getEmbryoID()).minVitamins || this.getLipidValue() < Util.getCreatureFromId(this.getEmbryoID()).minLipids)
+                        Entities creatureFromId = Util.getCreatureFromId(this.getEmbryoID());
+						
+                        if (this.getProximateValue() < creatureFromId.minProximate || this.getMineralValue() < creatureFromId.minMinerals || this.getVitaminValue() < creatureFromId.minVitamins || this.getLipidValue() < creatureFromId.minLipids)
                         {
                             return false;
                         }
@@ -473,24 +477,35 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         else
         {
             NBTTagCompound compound = new NBTTagCompound();
-            ItemStack cultivateResult = new ItemStack(((ItemDNA) this.slots[2].getItem()).getCorrespondingEggOrSyringe(), 1, 0);
-            if (Util.getCreatureFromId(this.creatureID).addEgg)
-                compound.setInteger("EggQuality", this.slots[2].getTagCompound().getInteger("Quality"));
-                compound.setString("EggDNA", this.slots[2].getTagCompound().getString("DNA"));
-            if (Util.getCreatureFromId(this.creatureID).addSyringe)
-                compound.setInteger("SyringeQuality", this.slots[2].getTagCompound().getInteger("Quality"));
-                compound.setString("SyringeDNA", this.slots[2].getTagCompound().getString("DNA"));
+            
+            ItemStack cultivateResult = new ItemStack(((ItemDNA) getDNASlot().getItem()).getCorrespondingEggOrSyringe(), 1, 0);
+            
+            Entities creatureFromId = Util.getCreatureFromId(this.creatureID);
+			
+            if (creatureFromId.addEgg)
+                compound.setInteger("EggQuality", getDNASlot().getTagCompound().getInteger("Quality"));
+                compound.setString("EggDNA", getDNASlot().getTagCompound().getString("DNA"));
+            if (creatureFromId.addSyringe)
+                compound.setInteger("SyringeQuality", getDNASlot().getTagCompound().getInteger("Quality"));
+                compound.setString("SyringeDNA", getDNASlot().getTagCompound().getString("DNA"));
+                
             cultivateResult.setTagCompound(compound);
             this.slots[2] = (ItemStack) null;
             this.slots[2] = cultivateResult;
             this.setCultivateTime((short) 0);
             this.setWaterStored((byte) 0);
-            this.proximateValue = (short) (proximateValue - Util.getCreatureFromId(this.getEmbryoID()).minProximate);
-            this.mineralValue = (short) (mineralValue - Util.getCreatureFromId(this.getEmbryoID()).minMinerals);
-            this.vitaminValue = (short) (vitaminValue - Util.getCreatureFromId(this.getEmbryoID()).minVitamins);
-            this.lipidValue = (short) (lipidValue - Util.getCreatureFromId(this.getEmbryoID()).minLipids);
+            
+			this.proximateValue = (short) (proximateValue - creatureFromId.minProximate);
+            this.mineralValue = (short) (mineralValue - creatureFromId.minMinerals);
+            this.vitaminValue = (short) (vitaminValue - creatureFromId.minVitamins);
+            this.lipidValue = (short) (lipidValue - creatureFromId.minLipids);
         }
     }
+
+	private ItemStack getDNASlot() 
+	{
+		return this.slots[2];
+	}
 
     /**
      * Resets a list of values to update the size of the creature for rendering.
@@ -531,7 +546,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
      */
     public boolean hasItems()
     {
-        if (this.slots[0] != null || this.slots[1] != null || this.slots[2] != null || this.slots[3] != null)
+        if (this.slots[0] != null || this.slots[1] != null || getDNASlot() != null || this.slots[3] != null)
         {
             return true;
         }
@@ -546,7 +561,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
      */
     private boolean hasEmptyDNASlot()
     {
-        return (this.slots[2] == (ItemStack) null) ? true : false;
+        return (getDNASlot() == (ItemStack) null) ? true : false;
     }
 
     @Override
