@@ -82,7 +82,7 @@ public class JurassiCraft extends Util
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
-        EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 3, 5, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean, BiomeGenBase.river);
+        EntityRegistry.addSpawn(EntityCoelacanth.class, 3, 3, 5, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean, BiomeGenBase.river);
         
         /** Not working yet! */
         MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
