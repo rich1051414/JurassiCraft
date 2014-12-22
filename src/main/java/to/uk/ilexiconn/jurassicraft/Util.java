@@ -1,5 +1,6 @@
 package to.uk.ilexiconn.jurassicraft;
 
+import akka.dispatch.sysmsg.Create;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -37,19 +38,9 @@ public class Util
     private static ArrayList<ItemDinoEgg> eggs = new ArrayList<ItemDinoEgg>();
     private static ArrayList<ItemMammalSyringe> syringes = new ArrayList<ItemMammalSyringe>();
 
-    private static Map<Entities, Class<?>> dinos = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> mammals = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> cephalopods = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> arthropods = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> Fish = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> reptiles = new HashMap<Entities, Class<?>>();
-    private static Map<Entities, Class<?>> birds = new HashMap<Entities, Class<?>>();
-
     private static Map<Entities, Class<?>> creatures = new HashMap<Entities, Class<?>>();
 
     private static ArrayList<ItemMeat> meat = new ArrayList<ItemMeat>();
-
-    public static int entityId;
 
     public static byte creatureId = 0;
 
@@ -58,150 +49,17 @@ public class Util
      */
     public static Class<?> getCreatureClass(String name)
     {
-        for (Map.Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getKey().creatureName.equals(name))
-            {
-                return dino.getValue();
-            }
-        }
-
-        for (Map.Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getKey().creatureName.equals(name))
-            {
-                return mammal.getValue();
-            }
-        }
-        for (Map.Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getKey().creatureName.equals(name))
-            {
-                return cephalopod.getValue();
-            }
-        }
-        for (Map.Entry<Entities, Class<?>> arthropod : arthropods.entrySet())
-        {
-            if (arthropod.getKey().creatureName.equals(name))
-            {
-                return arthropod.getValue();
-            }
-        }
-        for (Map.Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getKey().creatureName.equals(name))
-            {
-                return fish.getValue();
-            }
-        }
-        for (Map.Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getKey().creatureName.equals(name))
-            {
-                return reptile.getValue();
-            }
-        }
-        for (Map.Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getKey().creatureName.equals(name))
-            {
-                return bird.getValue();
-            }
-        }
+    	for (Entry<Entities, Class<?>> creature : creatures.entrySet())
+    	{
+			if(creature.getKey().creatureName.equalsIgnoreCase(name))
+			{
+				return creature.getValue();
+			}
+		}
 
         return null;
     }
 
-    private static Class<?> getDinoClass(String dinoName)
-    {
-        for (Map.Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getKey().creatureName.equals(dinoName))
-            {
-                return dino.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getMammalClass(String mammalName)
-    {
-        for (Map.Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getKey().creatureName.equals(mammalName))
-            {
-                return mammal.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getCephalopodClass(String cephalopodName)
-    {
-        for (Map.Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getKey().creatureName.equals(cephalopodName))
-            {
-                return cephalopod.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getArthropodClass(String arthropodName)
-    {
-        for (Map.Entry<Entities, Class<?>> arthropod : arthropods.entrySet())
-        {
-            if (arthropod.getKey().creatureName.equals(arthropodName))
-            {
-                return arthropod.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getFishClass(String fishName)
-    {
-        for (Map.Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getKey().creatureName.equals(fishName))
-            {
-                return fish.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getReptileClass(String reptileName)
-    {
-        for (Map.Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getKey().creatureName.equals(reptileName))
-            {
-                return reptile.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class<?> getBirdClass(String birdName)
-    {
-        for (Map.Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getKey().creatureName.equals(birdName))
-            {
-                return bird.getValue();
-            }
-        }
-
-        return null;
-    }
 
     public static Item getItem(int id)
     {
@@ -235,36 +93,6 @@ public class Util
 
     public static Map<Entities, Class<?>> getCreatures() {
         return creatures;
-    }
-
-    private static Map<Entities, Class<?>> getDinos()
-    {
-        return dinos;
-    }
-
-    private static Map<Entities, Class<?>> getMammals()
-    {
-        return mammals;
-    }
-
-    public static Map<Entities, Class<?>> getCephalopod() {
-        return cephalopods;
-    }
-
-    public static Map<Entities, Class<?>> getArthropod() {
-        return arthropods;
-    }
-
-    private static Map<Entities, Class<?>> getFish() {
-        return Fish;
-    }
-
-    public static Map<Entities, Class<?>> getReptile() {
-        return reptiles;
-    }
-
-    public static Map<Entities, Class<?>> getBird() {
-        return birds;
     }
 
     public static ArrayList<ItemMeat> getDinoMeats()
@@ -306,9 +134,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.dinosaurs.Entity" + dino.creatureName);
-            dinos.put(dino, entity);
             creatures.put(dino, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, dino.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, dino.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -332,9 +159,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.mammals.Entity" + mammal.creatureName);
-            mammals.put(mammal, entity);
             creatures.put(mammal, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, mammal.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, mammal.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -349,9 +175,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.cephalopods.Entity" + cephalopoda.creatureName);
-            cephalopods.put(cephalopoda, entity);
             creatures.put(cephalopoda, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, cephalopoda.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, cephalopoda.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -366,9 +191,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.arthropods.Entity" + arthropod.creatureName);
-            arthropods.put(arthropod, entity);
             creatures.put(arthropod, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, arthropod.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, arthropod.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -383,9 +207,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.fish.Entity" + fish.creatureName);
-            Fish.put(fish, entity);
             creatures.put(fish, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, fish.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, fish.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -400,9 +223,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.reptiles.Entity" + reptile.creatureName);
-            reptiles.put(reptile, entity);
             creatures.put(reptile, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, reptile.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, reptile.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -417,9 +239,8 @@ public class Util
         try
         {
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.birds.Entity" + bird.creatureName);
-            birds.put(bird, entity);
             creatures.put(bird, entity);
-            entityId = EntityRegistry.findGlobalUniqueEntityId();
+            int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, bird.creatureName, entityId, 0, 0);
             EntityRegistry.registerModEntity(entity, bird.creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
@@ -533,7 +354,7 @@ public class Util
     {
         try
         {
-            RenderLiving renderer = (RenderLiving) Class.forName("to.uk.ilexiconn.jurassicraft.entity.render.birds.Render" + bird.creatureName).getDeclaredConstructor(Entities.class).newInstance(birds);
+            RenderLiving renderer = (RenderLiving) Class.forName("to.uk.ilexiconn.jurassicraft.entity.render.birds.Render" + bird.creatureName).getDeclaredConstructor(Entities.class).newInstance();
             Class entity = Class.forName("to.uk.ilexiconn.jurassicraft.entity.birds.Entity" + bird.creatureName);
             proxy.renderEntity(entity, renderer);
         }
@@ -542,188 +363,7 @@ public class Util
 
         }
     }
-
-    private static Entities getDinoByID(int id)
-    {
-        for (Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getKey().creatureID == id)
-            {
-                return dino.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getMammalByID(int id)
-    {
-        for (Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getKey().creatureID == id)
-            {
-                return mammal.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getCephalopodById(int id)
-    {
-        for (Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getKey().creatureID == id)
-            {
-                return cephalopod.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getArthropodById(int id)
-    {
-        for (Entry<Entities, Class<?>> arthorpod : arthropods.entrySet())
-        {
-            if (arthorpod.getKey().creatureID == id)
-            {
-                return arthorpod.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getFishById(int id)
-    {
-        for (Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getKey().creatureID == id)
-            {
-                return fish.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getReptileById(int id)
-    {
-        for (Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getKey().creatureID == id)
-            {
-                return reptile.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static Entities getBirdById(int id)
-    {
-        for (Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getKey().creatureID == id)
-            {
-                return bird.getKey();
-            }
-        }
-
-        return null;
-    }
-
-    public static int getDinoIDByName(String name)
-    {
-        for (Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getKey().creatureName.equals(name))
-            {
-                return dino.getKey().creatureID;
-            }
-        }
-        return -1;
-    }
-
-    public static int getMammalIDByName(String name)
-    {
-        for (Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getKey().creatureName.equals(name))
-            {
-                return mammal.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
-    public static int getCephalopodIdByName(String name)
-    {
-        for (Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getKey().creatureName.equals(name))
-            {
-                return cephalopod.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
-    public static int getArthropodIdByName(String name)
-    {
-        for (Entry<Entities, Class<?>> arthropod : arthropods.entrySet())
-        {
-            if (arthropod.getKey().creatureName.equals(name))
-            {
-                return arthropod.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
-    public static int getFishIdByName(String name)
-    {
-        for (Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getKey().creatureName.equals(name))
-            {
-                return fish.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
-    public static int getReptileIdByName(String name)
-    {
-        for (Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getKey().creatureName.equals(name))
-            {
-                return reptile.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
-    public static int getBirdIdByName(String name)
-    {
-        for (Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getKey().creatureName.equals(name))
-            {
-                return bird.getKey().creatureID;
-            }
-        }
-
-        return -1;
-    }
-
+ 
     public static boolean isFavoriteFood(int id, Item heldItem)
     {
     	ArrayList itemList = getCreatureFromId(id).favoriteFoodList;
@@ -738,129 +378,41 @@ public class Util
 
     public static Entities getCreatureFromId(int id)
     {
-        if (id < dinos.size() && dinos.size() != 0)
-            return getDinoByID(id);
-        if (id < dinos.size() + reptiles.size() && reptiles.size() != 0)
-            return getReptileById(id);
-        if (id < dinos.size() + reptiles.size() + mammals.size() && mammals.size() != 0)
-            return getMammalByID(id);
-        if (id < dinos.size() + reptiles.size() + mammals.size() + birds.size() && birds.size() != 0)
-            return getBirdById(id);
-        if (id < dinos.size() + reptiles.size() + mammals.size() + birds.size() + Fish.size() && Fish.size() != 0)
-            return getFishById(id);
-        if (id < dinos.size() + reptiles.size() + mammals.size() + birds.size() + Fish.size() + cephalopods.size() && cephalopods.size() != 0)
-            return getCephalopodById(id);
-        if (id < dinos.size() + reptiles.size() + mammals.size() + birds.size() + Fish.size() + cephalopods.size() + arthropods.size() && arthropods.size() != 0)
-            return getArthropodById(id);
-        else return null;
+    	for (Entry<Entities, Class<?>> creature : creatures.entrySet())
+    	{
+			if(creature.getKey().creatureID == id)
+			{
+				return creature.getKey();
+			}
+		}
+    	
+    	return null;
     }
 
-    public static int getCreatureFromName(String name)
+    public static int getCreatureIdFromName(String name)
     {
-        for (Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getKey().creatureName.equals(name))
-            {
-                return dino.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getKey().creatureName.equals(name))
-            {
-                return mammal.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getKey().creatureName.equals(name))
-            {
-                return cephalopod.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> arthropod : arthropods.entrySet())
-        {
-            if (arthropod.getKey().creatureName.equals(name))
-            {
-                return arthropod.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getKey().creatureName.equals(name))
-            {
-                return fish.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getKey().creatureName.equals(name))
-            {
-                return reptile.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getKey().creatureName.equals(name))
-            {
-                return bird.getKey().creatureID;
-            }
-        }
+    	for (Entry<Entities, Class<?>> creature : creatures.entrySet())
+    	{
+			if(creature.getKey().creatureName.equalsIgnoreCase(name))
+			{
+				return creature.getKey().creatureID;
+			}
+		}
 
+     
         return -1;
     }
 
     public static int classToId(Class class1)
     {
-        for (Entry<Entities, Class<?>> dino : dinos.entrySet())
-        {
-            if (dino.getValue() == class1)
-            {
-                return dino.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> mammal : mammals.entrySet())
-        {
-            if (mammal.getValue() == class1)
-            {
-                return mammal.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> cephalopod : cephalopods.entrySet())
-        {
-            if (cephalopod.getValue() == class1)
-            {
-                return cephalopod.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> arthropod : arthropods.entrySet())
-        {
-            if (arthropod.getValue() == class1)
-            {
-                return arthropod.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> fish : Fish.entrySet())
-        {
-            if (fish.getValue() == class1)
-            {
-                return fish.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> reptile : reptiles.entrySet())
-        {
-            if (reptile.getValue() == class1)
-            {
-                return reptile.getKey().creatureID;
-            }
-        }
-        for (Entry<Entities, Class<?>> bird : birds.entrySet())
-        {
-            if (bird.getValue() == class1)
-            {
-                return bird.getKey().creatureID;
-            }
-        }
+    	for (Entry<Entities, Class<?>> creature : creatures.entrySet())
+    	{
+			if(creature.getValue().equals(class1))
+			{
+				return creature.getKey().creatureID;
+			}
+		}
+
 
         return -1;
     }
