@@ -90,7 +90,8 @@ public class Util
         return entityParser;
     }
 
-    public static Map<Entities, Class<?>> getCreatures() {
+    public static Map<Entities, Class<?>> getCreatures() 
+    {
         return creatures;
     }
 
