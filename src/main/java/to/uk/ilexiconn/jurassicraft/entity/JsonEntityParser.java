@@ -13,24 +13,17 @@ import java.util.Collection;
 
 public class JsonEntityParser extends Util
 {
-    public Collection<Entities> dinos;
+    private Collection<Entities> dinos;
     private Collection<Entities> mammals;
     private Collection<Entities> cephalopods;
     private Collection<Entities> arthropods;
-    private Collection<Entities> Fish;
+    private Collection<Entities> fish;
     private Collection<Entities> reptiles;
     private Collection<Entities> birds;
 
     public void parseServerEntities()
     {
         loadConfig(DinoConfig.loadDinoConfig());
-        loadConfig(DinoConfig.loadArthropodConfig());
-        loadConfig(DinoConfig.loadBirdConfig());
-        loadConfig(DinoConfig.loadCephalopodConfig());
-        loadConfig(DinoConfig.loadFishConfig());
-        loadConfig(DinoConfig.loadMammalConfig());
-        loadConfig(DinoConfig.loadReptileConfig());
-
         for (Entities dino : dinos)
         {
             addDinoEntity(dino);
@@ -44,6 +37,7 @@ public class JsonEntityParser extends Util
                 addDNA(dino.creatureName);
 		}
         
+        loadConfig(DinoConfig.loadReptileConfig());
         for (Entities creature : reptiles)
         {
             addReptileEntity(creature);
@@ -86,7 +80,7 @@ public class JsonEntityParser extends Util
         }
 
         loadConfig(DinoConfig.loadFishConfig());
-        for (Entities creature : Fish)
+        for (Entities creature : fish)
         {
             addFishEntity(creature);
             if (creature.addEgg)
@@ -156,7 +150,7 @@ public class JsonEntityParser extends Util
         }
 
         loadConfig(DinoConfig.loadFishConfig());
-        for (Entities creature : Fish)
+        for (Entities creature : fish)
         {
             addFishEntityRenderer(creature);
         }
@@ -220,7 +214,7 @@ public class JsonEntityParser extends Util
                 {
                 }.getType();
 
-                Fish = new Gson().fromJson(new FileReader(config), collectionType);
+                fish = new Gson().fromJson(new FileReader(config), collectionType);
             }
 
             if (config.toString().contains("cephalopod"))
