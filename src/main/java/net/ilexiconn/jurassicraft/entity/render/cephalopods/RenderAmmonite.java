@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelAmmonite;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.cephalopods.EntityAmmonite;
 import net.ilexiconn.jurassicraft.entity.render.RenderCephalopod;
 
 @SideOnly(Side.CLIENT)
 public class RenderAmmonite extends RenderCephalopod
 {
-    public RenderAmmonite(Entities cephalopod)
+    public RenderAmmonite(JsonCreatureDefinition cephalopod)
     {
         super(new ModelAmmonite(), cephalopod, 0.5F);
     }

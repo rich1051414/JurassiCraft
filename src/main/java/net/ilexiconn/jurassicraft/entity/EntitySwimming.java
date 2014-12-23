@@ -13,9 +13,6 @@ import net.ilexiconn.jurassicraft.Util;
 
 public abstract class EntitySwimming extends EntityJurassiCraftRidable
 {
-
-    public byte creatureID;
-
     private double swimTargetX;
     private double swimTargetY;
     private double swimTargetZ;
@@ -33,17 +30,9 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
     protected float swimSpeed = 0.5F;
     protected boolean jumpOnLand = true;
 
-    public EntitySwimming(World world, byte id)
+    public EntitySwimming(World world, Creature creature)
     {
-        super(world, id);
-        if (id >= 0 && id < Util.getCreatures().size())
-        {
-            this.creatureID = id;
-        }
-        else
-        {
-            this.creatureID = -1;
-        }
+        super(world, creature);
     }
 
     @Override

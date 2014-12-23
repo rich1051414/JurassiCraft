@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.entity.cephalopods;
 
+import net.ilexiconn.jurassicraft.ModItems;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityWaterCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.EntityWaterCreature;
 
 public class EntityBrachiopod extends EntityWaterCreature
 {
@@ -15,7 +15,7 @@ public class EntityBrachiopod extends EntityWaterCreature
 
     public EntityBrachiopod(World world)
     {
-        super(world, (byte) Util.classToId(EntityBrachiopod.class));
+        super(world, CreatureManager.classToCreature(EntityBrachiopod.class));
     }
 
     protected void applyEntityAttributes()

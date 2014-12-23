@@ -1,24 +1,24 @@
 package net.ilexiconn.jurassicraft.entity.birds;
 
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
+import net.ilexiconn.jurassicraft.entity.IDinosaur;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
 
 public class EntityTitanis extends EntityJurassiCraftLandAggressive implements IDinosaur
 {
 
     public EntityTitanis(World par1World)
     {
-        super(par1World, (byte) Util.classToId(EntityTitanis.class));
+        super(par1World, CreatureManager.classToCreature(EntityTitanis.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftEntityAIWander(this, 0.7D * this.getCreatureSpeed()));
@@ -41,25 +41,18 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
     @Override
     public String getLivingSound()
     {
-        if (this.rand.nextInt(2) == 0)
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound1;
-        }
-        else
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound2;
-        }
+    	return this.getCreature().pickLivingSound();
     }
 
     @Override
     public String getHurtSound()
     {
-        return Util.getCreatureFromId(this.getCreatureID()).hurtSound;
+        return this.getCreature().getHurtSound();
     }
 
     @Override
     public String getDeathSound()
     {
-        return Util.getCreatureFromId(this.getCreatureID()).deathSound;
+        return this.getCreature().getDeathSound();
     }
 }

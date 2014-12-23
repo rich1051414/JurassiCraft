@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
 import net.minecraft.entity.Entity;
@@ -71,7 +72,7 @@ public class EntitySanta extends EntityJurassiCraftLandCoward implements IDinosa
 
     public EntitySanta(World world)
     {
-        super(world, (byte) Util.classToId(EntitySanta.class));
+        super(world, CreatureManager.classToCreature(EntitySanta.class));
         this.getNavigator().setAvoidsWater(true);
         this.isImmuneToFire = false;
         this.tasks.addTask(8, this.aiControlledByPlayer = new EntityAIControlledByPlayer(this, 16.0F));
@@ -171,43 +172,6 @@ public class EntitySanta extends EntityJurassiCraftLandCoward implements IDinosa
         return 350;
     }
 
-    @Override
-    public String getLivingSound()
-    {
-        if (this.rand.nextInt(2) == 0)
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound1;
-        }
-        else
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound2;
-        }
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        return Util.getCreatureFromId(this.getCreatureID()).hurtSound;
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        return Util.getCreatureFromId(this.getCreatureID()).deathSound;
-    }
-
-    @Override
-    public Item getDropItem()
-    {
-        return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
-    }
-
-	@Override
-	protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus) 
-	{
-		
-	}
-	
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */

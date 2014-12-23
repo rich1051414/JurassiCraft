@@ -1,5 +1,11 @@
 package net.ilexiconn.jurassicraft.item;
 
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -7,11 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.Entities;
-
-import java.util.List;
 
 public class ItemDNA extends Item implements IDNASample
 {
@@ -26,13 +27,19 @@ public class ItemDNA extends Item implements IDNASample
 
     public Item getCorrespondingEggOrSyringe()
     {
-        int id = Util.getCreatureIDFromDNA(this);
-        Entities creatureFromId = Util.getCreatureFromId(id);
-		if (creatureFromId.addEgg)
-            return Util.getEggMap().get(creatureFromId);
-        if (creatureFromId.addSyringe)
-            return Util.getSyringeMap().get(creatureFromId);
-        else return null;
+        Creature creature = CreatureManager.getCreatureFromDNA(this);
+        if(creature.getEgg() != null)
+        {
+        	return creature.getEgg();
+        }
+        else if(creature.getMammalSyringe() != null)
+        {
+        	return creature.getMammalSyringe();
+        }
+        else
+        {
+        	return null;
+        }
     }
 
     @Override

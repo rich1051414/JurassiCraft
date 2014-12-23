@@ -4,11 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
 import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelCoelacanthEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelMeganeuraEgg;
-import net.ilexiconn.jurassicraft.entity.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 
 public class RenderDinoEgg extends Render
 {
@@ -26,11 +28,11 @@ public class RenderDinoEgg extends Render
     {
         ModelBase eggModel = new ModelEgg();
 
-        if (entity.dino.toLowerCase().contains("meganeura"))
+        if (entity.creature.getCreatureName().toLowerCase().contains("meganeura"))
         {
             eggModel = new ModelMeganeuraEgg();
         }
-        else if (entity.dino.toLowerCase().contains("coelacanth"))
+        else if (entity.creature.getCreatureName().toLowerCase().contains("coelacanth"))
         {
             eggModel = new ModelCoelacanthEgg();
         }

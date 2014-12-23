@@ -1,26 +1,22 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
-public class EntityAnkylosaur extends EntityJurassiCraftLandProtective
-		implements IDinosaur {
-
-	public EntityAnkylosaur(World world) {
-		super(world, (byte) Util.classToId(EntityAnkylosaur.class), 1);
+public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implements IDinosaur 
+{
+	public EntityAnkylosaur(World world) 
+	{
+		super(world, CreatureManager.classToCreature(EntityAnkylosaur.class), 1);
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, this.aiSit);
@@ -36,50 +32,14 @@ public class EntityAnkylosaur extends EntityJurassiCraftLandProtective
 	}
 	
 	@Override
-	public double getMountedYOffset() {
+	public double getMountedYOffset()
+	{
 		return (double) this.getYBouningBox() * 1.05D;
 	}
 
 	@Override
-	public int getTalkInterval() {
+	public int getTalkInterval()
+	{
 		return 350;
 	}
-
-	@Override
-	public String getLivingSound() {
-		if (this.rand.nextInt(2) == 0) {
-			return Util.getCreatureFromId(this.getCreatureID()).livingSound1;
-		} else {
-			return Util.getCreatureFromId(this.getCreatureID()).livingSound2;
-		}
-	}
-
-	@Override
-	public String getHurtSound() {
-		return Util.getCreatureFromId(this.getCreatureID()).hurtSound;
-	}
-
-	@Override
-	public String getDeathSound() {
-		return Util.getCreatureFromId(this.getCreatureID()).deathSound;
-	}
-
-	@Override
-	public Item getDropItem() {
-		return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
-	}
-
-	@Override
-	protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus) {
-		float developmentFraction = this.getGrowthStage() / 120.0F;
-		int count = Math.round(1 + (3.0F * developmentFraction)
-				+ this.rand.nextInt(2 + (int) (3.0F * developmentFraction))
-				+ this.rand.nextInt(1 + enchantBonus));
-		if (this.isBurning()) {
-			this.dropItem(ModItems.dinoSteak, count);
-		} else {
-			this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), count);
-		}
-	}
-	
 }

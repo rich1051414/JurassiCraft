@@ -5,11 +5,12 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 
 public class EntityMeganeura extends EntityJurassiCraftRidable
 {
-
     public int courseChangeCooldown = 0;
     public double waypointX;
     public double waypointY;
@@ -18,7 +19,7 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
 
     public EntityMeganeura(World world)
     {
-        super(world, (byte) Util.classToId(EntityMeganeura.class));
+        super(world, CreatureManager.classToCreature(EntityMeganeura.class));
         this.setCreatureExperiencePoints(20);
     }
 

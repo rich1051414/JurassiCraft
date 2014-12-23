@@ -3,17 +3,19 @@ package net.ilexiconn.jurassicraft.entity.render;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
+
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.entity.Entities;
+
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public abstract class RenderMammal extends RenderLiving
 {
 
-    private Entities mammal;
+    private JsonCreatureDefinition mammal;
     private float resizableShadow;
 
-    public RenderMammal(ModelBase model, Entities mammal, float shadow)
+    public RenderMammal(ModelBase model, JsonCreatureDefinition mammal, float shadow)
     {
         super(model, 1.0F);
         this.setMammal(mammal);
@@ -30,12 +32,12 @@ public abstract class RenderMammal extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setMammal(Entities mammal)
+    public void setMammal(JsonCreatureDefinition mammal)
     {
         this.mammal = mammal;
     }
 
-    public Entities getMammal()
+    public JsonCreatureDefinition getMammal()
     {
         return this.mammal;
     }

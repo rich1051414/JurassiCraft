@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelLeptictidium;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
 
 @SideOnly(Side.CLIENT)
 public class RenderLeptictidium extends RenderMammal
 {
-    public RenderLeptictidium(Entities mammal)
+    public RenderLeptictidium(JsonCreatureDefinition mammal)
     {
         super(new ModelLeptictidium(), mammal, 0.5F);
     }

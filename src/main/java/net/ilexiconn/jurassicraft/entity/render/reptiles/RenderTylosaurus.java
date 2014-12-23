@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render.reptiles;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelTylosaurus;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.render.RenderSwimming;
 import net.ilexiconn.jurassicraft.entity.reptiles.EntityTylosaurus;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderTylosaurus extends RenderSwimming
 {
-    public RenderTylosaurus(Entities dino)
+    public RenderTylosaurus(Creature dino)
     {
         super(new ModelTylosaurus(), dino, 0.5F);
     }

@@ -47,7 +47,7 @@ public class JurassiCraftEntityAIFollowFoodCoward extends EntityAIBase
             else
             {
                 ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
-                return itemstack == null ? false : (Util.isFavoriteFood(this.temptedEntity.getCreatureID(), itemstack.getItem()) && this.temptedEntity.getAttackTarget() == null);
+                return itemstack == null ? false : (this.temptedEntity.getCreature().isFavoriteFood(itemstack.getItem())) && this.temptedEntity.getAttackTarget() == null;
             }
         }
     }

@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelSarcosuchus;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.render.RenderReptile;
 import net.ilexiconn.jurassicraft.entity.reptiles.EntitySarcosuchus;
 
 @SideOnly(Side.CLIENT)
 public class RenderSarcosuchus extends RenderReptile
 {
-    public RenderSarcosuchus(Entities reptile)
+    public RenderSarcosuchus(JsonCreatureDefinition reptile)
     {
         super(new ModelSarcosuchus(), reptile, 0.5F);
     }

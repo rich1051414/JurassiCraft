@@ -8,6 +8,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -78,7 +80,7 @@ public class TileEgg extends TileEntity
         {
             if (hatchTime >= totalHatchTime)
             {
-                Class dinoToSpawnClass = Util.getCreatureClass(dinoName);
+                Class dinoToSpawnClass = CreatureManager.getCreatureClass(dinoName);
                 try
                 {
                     Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(worldObj);

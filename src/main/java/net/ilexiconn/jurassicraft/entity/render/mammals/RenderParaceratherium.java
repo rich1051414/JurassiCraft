@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelParaceratherium;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityParaceratherium;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
 
 @SideOnly(Side.CLIENT)
 public class RenderParaceratherium extends RenderMammal
 {
-    public RenderParaceratherium(Entities mammal)
+    public RenderParaceratherium(JsonCreatureDefinition mammal)
     {
         super(new ModelParaceratherium(), mammal, 1.6F);
     }
