@@ -1,7 +1,17 @@
-package net.ilexiconn.jurassicraft.entity;
+package net.ilexiconn.jurassicraft.entity.egg;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Random;
+
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -13,16 +23,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.Util;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 {
-    public String dino;
+    public Creature creature;
     public int spawnTime;
     public int currentSpawnTime;
     public boolean froze;
@@ -39,16 +44,16 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.stepHeight = 1F;
     }
 
-    public EntityDinoEgg(World world, String dino, int spawnTime)
+    public EntityDinoEgg(World world, Creature creature, int spawnTime)
     {
         this(world);
-        this.dino = dino;
+        this.creature = creature;
         this.spawnTime = spawnTime;
     }
 
-    public EntityDinoEgg(World world, String dino, int quality, String dna, int spawnTime, double x, double y, double z)
+    public EntityDinoEgg(World world, Creature creature, int quality, String dna, int spawnTime, double x, double y, double z)
     {
-        this(world, dino, spawnTime);
+        this(world, creature, spawnTime);
         this.setPosition(x + 0.5F, y, z + 0.5F);
         this.quality = quality;
         this.dnaSequence = dna;
@@ -172,8 +177,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
                 List<EggEnviroment> enviroments = EggEnviroment.getEnviroments(this);
 
-                Entities dinosaur = Util.getCreatureFromId(Util.getCreatureIdFromName(dino));
-
                 boolean wet = enviroments.contains(EggEnviroment.WET);
                 
                 boolean warm = enviroments.contains(EggEnviroment.WARM);
@@ -182,7 +185,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 
                 boolean cold = enviroments.contains(EggEnviroment.COLD);
                 
-				if (dinosaur.waterCreature)
+				if (creature.isWaterCreature())
                 {
                     if (!wet)
                     {
@@ -223,7 +226,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
                 if (currentSpawnTime < -500)
                 {
-                    if (dinosaur.waterCreature)
+                    if (creature.isWaterCreature())
                     {
                         dried = true;
                     }
@@ -235,7 +238,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
                 if (currentSpawnTime >= spawnTime)
                 {
-                    Class dinoToSpawnClass = Util.getCreatureClass(dino);
+                    Class dinoToSpawnClass = CreatureManager.getCreatureClass(creature.getCreatureID());
 
                     try
                     {
@@ -336,7 +339,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         this.spawnTime = nbt.getInteger("SpawnTime");
         this.currentSpawnTime = nbt.getInteger("CurrentSpawnTime");
-        this.dino = nbt.getString("Dino");
+        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
         this.froze = nbt.getBoolean("Froze");
         this.dried = nbt.getBoolean("Dried");
         this.quality = nbt.getInteger("Quality");
@@ -348,7 +351,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         nbt.setInteger("SpawnTime", spawnTime);
         nbt.setInteger("CurrentSpawnTime", currentSpawnTime);
-        nbt.setString("Dino", dino);
+        nbt.setInteger("CreatureID", creature.getCreatureID());
         nbt.setBoolean("Froze", froze);
         nbt.setBoolean("Dried", dried);
         nbt.setInteger("Quality", quality);
@@ -357,18 +360,18 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
     public ResourceLocation getTexture()
     {
-        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + dino + ".png");
+        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + creature + ".png");
     }
 
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(Util.getCreatureIdFromName(dino));
+        buffer.writeInt(creature.getCreatureID());
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
-        dino = Util.getCreatureFromId(additionalData.readInt()).creatureName;
+        creature = CreatureManager.getCreatureFromId(additionalData.readInt());
     }
 }

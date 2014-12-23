@@ -1,24 +1,25 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur
 {
@@ -30,7 +31,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
 
     public EntityTyrannosaurus(World world)
     {
-        super(world, (byte) Util.classToId(EntityTyrannosaurus.class));
+        super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
@@ -111,25 +112,4 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         stepCount -= this.moveForward*10;
     }
-
-    @Override
-    public Item getDropItem()
-    {
-        return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
-    }
-
-	@Override
-	protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus) 
-	{
-		float developmentFraction = this.getGrowthStage() / 120.0F;
-		int count = Math.round(1 + (4.0F * developmentFraction) + this.rand.nextInt(2 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-		if (this.isBurning()) 
-		{
-			this.dropItem(ModItems.dinoSteak, count);
-		} 
-		else 
-		{
-			this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), count);
-		}
-	}
 }

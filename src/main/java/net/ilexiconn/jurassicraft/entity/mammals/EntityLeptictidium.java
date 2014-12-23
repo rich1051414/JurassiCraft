@@ -1,24 +1,23 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.ilexiconn.jurassicraft.entity.IMammal;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements IMammal
 {
     public EntityLeptictidium(World world)
     {
-        super(world, (byte) Util.classToId(EntityLeptictidium.class));
+        super(world, CreatureManager.classToCreature(EntityLeptictidium.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
@@ -43,30 +42,4 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
     {
         return 400;
     }
-
-    @Override
-    public String getLivingSound()
-    {
-        if (this.rand.nextInt(2) == 0)
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound1;
-        }
-        else
-        {
-            return Util.getCreatureFromId(this.getCreatureID()).livingSound2;
-        }
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        return Util.getCreatureFromId(this.getCreatureID()).hurtSound;
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        return Util.getCreatureFromId(this.getCreatureID()).deathSound;
-    }
-    
 }

@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
-import net.ilexiconn.jurassicraft.entity.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 
 public class ModEntities implements IContentHandler
 {

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.entity;
+package net.ilexiconn.jurassicraft.entity.egg;
 
 import net.minecraft.entity.Entity;
 

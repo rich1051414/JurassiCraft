@@ -16,13 +16,12 @@ import java.util.List;
 
 public class EntityJurassiCraftLandCoward extends EntityJurassiCraftRidable
 {
-
     private short angerLevel;
     private int numberOfAllies;
 
-    public EntityJurassiCraftLandCoward(World world, byte id)
+    public EntityJurassiCraftLandCoward(World world, Creature creature)
     {
-        super(world, id);
+        super(world, creature);
         this.tasks.addTask(1, new JurassiCraftLandEntityAIPanicCoward(this, 1.25D * this.getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftEntityAIPanicWhenOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftEntityAIOwnerHurtTarget(this));

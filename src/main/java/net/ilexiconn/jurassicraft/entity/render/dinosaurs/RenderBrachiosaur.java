@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiosaur;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderBrachiosaur extends RenderDinosaur
 {
-    public RenderBrachiosaur(Entities dino)
+    public RenderBrachiosaur(Creature dino)
     {
         super(new ModelBrachiosaur(), dino, 1.6F);
     }

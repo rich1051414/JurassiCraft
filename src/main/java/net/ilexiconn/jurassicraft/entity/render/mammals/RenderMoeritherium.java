@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelMoeritherium;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
 
 @SideOnly(Side.CLIENT)
 public class RenderMoeritherium extends RenderMammal
 {
-    public RenderMoeritherium(Entities mammal)
+    public RenderMoeritherium(JsonCreatureDefinition mammal)
     {
         super(new ModelMoeritherium(), mammal, 0.5F);
     }

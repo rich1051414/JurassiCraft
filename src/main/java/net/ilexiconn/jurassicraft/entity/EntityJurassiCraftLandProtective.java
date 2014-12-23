@@ -20,13 +20,12 @@ import java.util.List;
 
 public class EntityJurassiCraftLandProtective extends EntityJurassiCraftRidable
 {
-
     private short angerLevel;
     private int numberOfAllies;
 
-    public EntityJurassiCraftLandProtective(World world, byte id, int alliesToAttack)
+    public EntityJurassiCraftLandProtective(World world, Creature creature, int alliesToAttack)
     {
-        super(world, id);
+        super(world, creature);
         this.numberOfAllies = alliesToAttack;
         this.tasks.addTask(1, new JurassiCraftLandEntityAIPanicIfNotAnger(this, 1.25D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));

@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelMammoth;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMammoth;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
 
 @SideOnly(Side.CLIENT)
 public class RenderMammoth extends RenderMammal
 {
-    public RenderMammoth(Entities mammal)
+    public RenderMammoth(JsonCreatureDefinition mammal)
     {
         super(new ModelMammoth(), mammal, 1.4F);
     }

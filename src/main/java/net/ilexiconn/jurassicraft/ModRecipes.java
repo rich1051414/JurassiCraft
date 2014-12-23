@@ -7,8 +7,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.ItemMeat;
 
 public class ModRecipes implements IContentHandler
@@ -23,10 +25,14 @@ public class ModRecipes implements IContentHandler
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GDG", "GWG", "III", 'I', Items.iron_ingot, 'G', Blocks.glass, 'D', new ItemStack(Items.dye, 1, i), 'W', Items.water_bucket);
 		}
 
-		for (Entry<Entities, ItemMeat> meat : Util.getDinoMeats().entrySet())
+		for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
 		{
-			GameRegistry.addSmelting(meat.getValue(), new ItemStack(ModItems.dinoSteak, 1), 5);
-			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 15), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat.getValue(), 1));
+			ItemMeat meat = creature.getValue().getMeat();
+			if(meat != null)
+			{
+				GameRegistry.addSmelting(meat, new ItemStack(ModItems.dinoSteak, 1), 5);
+				GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 15), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));
+			}
 		}
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.dnaCombinator, 1), "III", "IRI", "III", 'I', Items.iron_ingot, 'R', Items.redstone);

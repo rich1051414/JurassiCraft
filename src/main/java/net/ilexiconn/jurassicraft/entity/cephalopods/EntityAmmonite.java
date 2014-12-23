@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.cephalopods;
 
-import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
+import net.minecraft.world.World;
 
 public class EntityAmmonite extends NewEntitySwimming
 {
@@ -10,7 +10,7 @@ public class EntityAmmonite extends NewEntitySwimming
 
     public EntityAmmonite(World world)
     {
-        super(world, (byte) Util.classToId(EntityAmmonite.class));
+        super(world, CreatureManager.classToCreature(EntityAmmonite.class));
         this.swimRadius = 16.0F;
         this.swimRadiusHeight = 10.0F;
         this.swimSpeed = 0.6F;

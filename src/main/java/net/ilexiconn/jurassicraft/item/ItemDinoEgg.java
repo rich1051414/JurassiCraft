@@ -9,7 +9,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 
 import java.util.List;
 
@@ -35,7 +36,9 @@ public class ItemDinoEgg extends Item
                 return egg.getTagCompound().getString("EggDNA");
             }
         }
+        
         System.out.println("ERROR! DNA sequence was not determined yet!");
+        
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
 
@@ -127,18 +130,20 @@ public class ItemDinoEgg extends Item
     {
         if (!world.isRemote && !player.capabilities.isCreativeMode)
         {
-            world.spawnEntityInWorld(new EntityDinoEgg(world, dinoName, this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
         }
         else if (!world.isRemote && !player.isSneaking())
         {
-            world.spawnEntityInWorld(new EntityDinoEgg(world, dinoName, this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
         }
         else
         {
             this.onItemRightClick(egg, world, player);
         }
+        
         egg.stackSize--;
-        if (egg.stackSize <= 0) {
+        if (egg.stackSize <= 0) 
+        {
         	egg = (ItemStack) null;
         }
         return true;

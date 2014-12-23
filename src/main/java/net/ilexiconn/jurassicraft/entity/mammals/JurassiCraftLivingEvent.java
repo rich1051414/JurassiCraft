@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.ilexiconn.jurassicraft.Util;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 
@@ -129,7 +130,7 @@ public class JurassiCraftLivingEvent
 
 	public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event) 
 	{
-		Class mammalToSpawnClass = Util.getCreatureClass(mammalName);
+		Class mammalToSpawnClass = CreatureManager.getCreatureClass(mammalName);
 		try 
 		{
 			Entity mammalToSpawn = (Entity) mammalToSpawnClass.getConstructor(World.class).newInstance(event.entityLiving.worldObj);

@@ -1,18 +1,17 @@
-package net.ilexiconn.jurassicraft.entity;
+package net.ilexiconn.jurassicraft.config;
 
 import net.ilexiconn.jurassicraft.Util;
 
 import java.util.ArrayList;
 
-public class Entities
+public class JsonCreatureDefinition
 {
     private static byte currentCreatureID = 0;
 	
     public byte creatureID = currentCreatureID++;
 
     public String creatureName;
-    public String livingSound1;
-    public String livingSound2;
+    public ArrayList<String> livingSounds;
     public String hurtSound;
     public String deathSound;
 

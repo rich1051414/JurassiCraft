@@ -45,9 +45,12 @@ public class GuiDinoPad extends GuiScreen {
 	{
 		this.buttonList.clear();
 		this.dinoInfo.clear();
-		for (int numberOfPages = 1; numberOfPages <= Util.getCreatureFromId(this.creature.getCreatureID()).numberOfInfoPages; numberOfPages++) {
+		
+		for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
+		{
 			this.dinoInfo.put(numberOfPages, this.getCreatureInformation(numberOfPages));
 		}
+		
 		this.renderRotation = 0.0F;
 		this.pageNumber = 0;
 		this.guiLeft = (int) ((this.width - this.xSize) / 2);
@@ -100,14 +103,17 @@ public class GuiDinoPad extends GuiScreen {
     		if (this.pageNumber > 0) {
     			this.pageNumber--;
     		} else {
-    			this.pageNumber = Util.getCreatureFromId(this.creature.getCreatureID()).numberOfInfoPages;
+    			this.pageNumber = this.creature.getCreature().getInfoPageCount();
     		}
         }
     	if (button.id == 2)
         {
-    		if (this.pageNumber < Util.getCreatureFromId(this.creature.getCreatureID()).numberOfInfoPages) {
+    		if (this.pageNumber < this.creature.getCreature().getInfoPageCount())
+    		{
     			this.pageNumber++;
-    		} else {
+    		} 
+    		else 
+    		{
     			this.pageNumber = 0;
     		}
         }
@@ -119,15 +125,19 @@ public class GuiDinoPad extends GuiScreen {
 		drawDefaultBackground();
 		mc.renderEngine.bindTexture(new ResourceLocation(Util.getModId() + "textures/gui/guiDinoPad.png"));
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		switch (this.pageNumber) {
+		switch (this.pageNumber)
+		{
 			case 0:
 				this.renderEmptyBars();
 				this.renderStatusBars();
 
-				if (this.creature.getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight()) {
-					this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / Util.getCreatureFromId(this.creature.getCreatureID()).maxLength)));
-				} else {
-					this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / Util.getCreatureFromId(this.creature.getCreatureID()).maxHeight)));
+				if (this.creature.getCreature().getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight())
+				{
+					this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength()))));
+				}
+				else
+				{
+					this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight())));
 				}
 
 				this.renderNameGenderStrings();
@@ -139,6 +149,7 @@ public class GuiDinoPad extends GuiScreen {
 				this.renderCreatureInformation(this.pageNumber);
 				break;
 		}
+		
 		super.drawScreen(x, y, f);
 	}
 
@@ -175,7 +186,7 @@ public class GuiDinoPad extends GuiScreen {
 	{
 		if (creature.isTamed()) 
 		{
-			if (Util.getCreatureFromId(creature.getCreatureID()).isRidable && this.creature.isCreatureAdult())
+			if (creature.getCreature().isRidable() && this.creature.isCreatureAdult())
 			{
 				this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftTameable) creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
 				this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.ridable"), this.guiLeft + 67 - this.fontRendererObj.getStringWidth("Ridable") / 2, this.guiTop + 122, 14737632);
@@ -193,33 +204,44 @@ public class GuiDinoPad extends GuiScreen {
 
 	private String[] getCreatureInformation(int page) 
 	{
-		String info = StatCollector.translateToLocal("container.pad.info" + Util.getCreatureFromId(this.creature.getCreatureID()).creatureName + ".page" + page);
+		String info = StatCollector.translateToLocal("container.pad.info" + this.creature.getCreature().getCreatureName() + ".page" + page);
 		String[] pageInfo = new String[8];
-		if (info != null && info != "") {
+		if (info != null && info != "") 
+		{
 			int line = 0;
 			int index = 0;
-			for (int infoSize = info.length(); infoSize >= 43; line++) {
+			
+			for (int infoSize = info.length(); infoSize >= 43; line++) 
+			{
 				index = 43;
-				while (!String.valueOf(info.substring(0, index).charAt(index - 1)).equals(" ")) {
+				
+				while (!String.valueOf(info.substring(0, index).charAt(index - 1)).equals(" "))
+				{
 					index--;
 				}
+				
 				pageInfo[line] = info.substring(0, index - 1);
 				info = info.substring(index, infoSize);
 				infoSize = info.length();
 			}
+			
 			pageInfo[line] = info;
 		}
+		
 		return pageInfo;
 	}
 	
 	private void renderCreatureInformation(int page) 
 	{
-		if (this.dinoInfo.containsKey(page)) {
+		if (this.dinoInfo.containsKey(page)) 
+		{
 			for (int line = 0; line < this.dinoInfo.get(page).length; line++) 
 			{
 				this.fontRendererObj.drawString(this.dinoInfo.get(page)[line], this.guiLeft + 128 - this.fontRendererObj.getStringWidth(this.dinoInfo.get(page)[line]) / 2, this.guiTop + 45 + 12 * line, 14737632);
 			}
-		} else {
+		} 
+		else
+		{
 			this.fontRendererObj.drawString("Page missing! This is a bug!", this.guiLeft + 128 - this.fontRendererObj.getStringWidth("Page missing! This is a bug!") / 2, this.guiTop + 45, 14737632);
 		}
 	}

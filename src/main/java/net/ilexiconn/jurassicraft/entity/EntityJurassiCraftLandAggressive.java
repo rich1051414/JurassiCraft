@@ -18,10 +18,9 @@ import java.util.List;
 
 public class EntityJurassiCraftLandAggressive extends EntityJurassiCraftRidable
 {
-
-    public EntityJurassiCraftLandAggressive(World world, byte id)
+    public EntityJurassiCraftLandAggressive(World world, Creature creature)
     {
-        super(world, id);
+        super(world, creature);
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.25F * this.getCreatureSpeed(), false));
         this.targetTasks.addTask(1, new JurassiCraftEntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftEntityAIOwnerHurtTarget(this));

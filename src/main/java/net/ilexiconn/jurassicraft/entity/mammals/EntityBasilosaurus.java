@@ -1,18 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
 
-public class EntityBasilosaurus extends NewEntitySwimming {
+public class EntityBasilosaurus extends NewEntitySwimming 
+{
 
     public EntityBasilosaurus(World world)
     {
-        super(world, (byte) Util.classToId(EntityBasilosaurus.class));
+        super(world, CreatureManager.classToCreature(EntityBasilosaurus.class));
         this.swimRadius = 16.0F;
         this.swimRadiusHeight = 10.0F;
         this.swimSpeed = (float) this.getCreatureSpeed();

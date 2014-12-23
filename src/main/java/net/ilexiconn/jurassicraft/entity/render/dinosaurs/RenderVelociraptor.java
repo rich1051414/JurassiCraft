@@ -1,16 +1,16 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelVelociraptor;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderVelociraptor extends RenderDinosaur
 {
-    public RenderVelociraptor(Entities dino)
+    public RenderVelociraptor(Creature dino)
     {
         super(new ModelVelociraptor(), dino, 0.65F);
     }

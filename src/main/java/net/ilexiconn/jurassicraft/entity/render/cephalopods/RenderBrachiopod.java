@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiopod;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.cephalopods.EntityBrachiopod;
 import net.ilexiconn.jurassicraft.entity.render.RenderCephalopod;
 
 @SideOnly(Side.CLIENT)
 public class RenderBrachiopod extends RenderCephalopod
 {
-    public RenderBrachiopod(Entities cephalopod)
+    public RenderBrachiopod(JsonCreatureDefinition cephalopod)
     {
         super(new ModelBrachiopod(), cephalopod, 0.5F);
     }

@@ -13,7 +13,9 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.Entities;
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemAmber;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
@@ -34,9 +36,13 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
     {
         this.extractionTime = 0;
 
-        for (Entry<Entities, ItemDNA> dna : Util.getDNAS().entrySet())
+        for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
         {
-			dnas.add(dna.getValue());
+			ItemDNA dna = creature.getValue().getDNA();
+			if(dna != null)
+			{
+				dnas.add(dna);
+			}
 		}
     }
 

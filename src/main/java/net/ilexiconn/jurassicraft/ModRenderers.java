@@ -12,7 +12,7 @@ import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDinoPadRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.*;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
-import net.ilexiconn.jurassicraft.entity.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinoEgg;
 import net.ilexiconn.jurassicraft.tile.*;
 

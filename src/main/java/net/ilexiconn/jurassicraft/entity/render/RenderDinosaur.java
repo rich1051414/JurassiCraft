@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
+
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.entity.Entities;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public abstract class RenderDinosaur extends RenderLiving
 {
-
-    private Entities dino;
+    private Creature dino;
     private float resizableShadow;
 
-    public RenderDinosaur(ModelBase model, Entities dino, float shadow)
+    public RenderDinosaur(ModelBase model, Creature dino, float shadow)
     {
         super(model, 1.0F);
         this.setDino(dino);
@@ -30,12 +30,12 @@ public abstract class RenderDinosaur extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setDino(Entities dino)
+    public void setDino(Creature dino)
     {
         this.dino = dino;
     }
 
-    public Entities getDino()
+    public Creature getDino()
     {
         return this.dino;
     }

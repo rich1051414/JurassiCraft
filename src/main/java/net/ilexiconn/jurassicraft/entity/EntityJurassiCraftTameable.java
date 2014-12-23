@@ -24,9 +24,9 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
     protected JurassiCraftEntityAISit aiSit = new JurassiCraftEntityAISit(this);
     //DataWatchers: Owner = 14, Tamed Related = 15;
 
-    public EntityJurassiCraftTameable(World world, byte id)
+    public EntityJurassiCraftTameable(World world, Creature creature)
     {
-        super(world, id);
+        super(world, creature);
         this.setTamed(false);
     }
 
@@ -50,7 +50,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
         ItemStack heldItemStack = player.inventory.getCurrentItem();
         if (heldItemStack != null && !(heldItemStack.getItem() instanceof ItemGrowthSerum) && !(heldItemStack.getItem() instanceof ItemDinoPad) && !(heldItemStack.getItem() instanceof ItemOnAStick))
         {
-            if (Util.isFavoriteFood(this.getCreatureID(), heldItemStack.getItem()))
+            if (this.getCreature().isFavoriteFood(heldItemStack.getItem()))
             {
             	if ((double) (this.getHealth() + 3.0F) <= this.getCreatureHealth()) {
                     if (!player.capabilities.isCreativeMode)
@@ -85,7 +85,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                             this.playTameEffect(true);
                             this.worldObj.setEntityState(this, (byte) 7);
                             player.addChatMessage(new ChatComponentText("You tamed this creature!"));
-                            player.addChatMessage(new ChatComponentText(Util.getCreatureFromId(this.getCreatureID()).creatureName + " is sitting."));
+                            player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
                         }
                         else
                         {
@@ -105,13 +105,13 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                     this.setAttackTarget((EntityLivingBase) null);
                     this.aiSit.setSitting(true);
                     this.setSitting(true);
-                    player.addChatMessage(new ChatComponentText(Util.getCreatureFromId(this.getCreatureID()).creatureName + " is sitting."));
+                    player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
                 }
                 else
                 {
                     this.aiSit.setSitting(false);
                     this.setSitting(false);
-                    player.addChatMessage(new ChatComponentText(Util.getCreatureFromId(this.getCreatureID()).creatureName + " is not sitting anymore."));
+                    player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is not sitting anymore."));
                 }
             }
             return super.interact(player);
@@ -126,13 +126,13 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                 this.setAttackTarget((EntityLivingBase) null);
                 this.aiSit.setSitting(true);
                 this.setSitting(true);
-                player.addChatMessage(new ChatComponentText(Util.getCreatureFromId(this.getCreatureID()).creatureName + " is sitting."));
+                player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
             }
             else
             {
                 this.aiSit.setSitting(false);
                 this.setSitting(false);
-                player.addChatMessage(new ChatComponentText(Util.getCreatureFromId(this.getCreatureID()).creatureName + " is not sitting anymore."));
+                player.addChatMessage(new ChatComponentText((this.getCreature().getCreatureName() + " is not sitting anymore.")));
             }
         }
         return super.interact(player);
@@ -174,7 +174,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
 
     public boolean canBeTamedUponSpawning()
     {
-        return Util.getCreatureFromId(this.getCreatureID()).canBeTamedUponSpawning;
+        return this.getCreature().canBeTamedUponSpawning();
     }
     
     public boolean isTamed()

@@ -1,21 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -23,8 +7,21 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur
 {
@@ -34,7 +31,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
 	public EntityVelociraptor(World world)
 	{
-		super(world, (byte) Util.classToId(EntityVelociraptor.class));
+		super(world, CreatureManager.classToCreature(EntityVelociraptor.class));
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
@@ -100,38 +97,11 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 			return "jurassicraft:RapBark03";
 	}
 
-	public String getHurtSound()
-	{
-		// if(animID == 0)AnimationAPI.sendAnimPacket(this, 2);
-		return Util.getCreatureFromId(this.getCreatureID()).hurtSound;
-	}
-
 	public String getDeathSound()
 	{
 		if (animID == 0)
 			AnimationAPI.sendAnimPacket(this, 2);
 
-		return Util.getCreatureFromId(this.getCreatureID()).deathSound;
-	}
-
-	@Override
-	public Item getDropItem()
-	{
-		return Util.getMeat(Util.getCreatureFromId(this.getCreatureID()));
-	}
-
-	@Override
-	protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus) 
-	{
-		float developmentFraction = this.getGrowthStage() / 120.0F;
-		int count = Math.round(1 + (2.0F * developmentFraction) + this.rand.nextInt(2 + (int) (1.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-		if (this.isBurning()) 
-		{
-			this.dropItem(ModItems.dinoSteak, count);
-		} 
-		else 
-		{
-			this.dropItem(Util.getMeat(Util.getCreatureFromId(this.getCreatureID())), count);
-		}
+		return super.getDeathSound();
 	}
 }

@@ -3,17 +3,19 @@ package net.ilexiconn.jurassicraft.entity.render;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
+
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.entity.Entities;
+
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public abstract class RenderCephalopod extends RenderLiving
 {
 
-    private Entities cephalopod;
+    private JsonCreatureDefinition cephalopod;
     private float resizableShadow;
 
-    public RenderCephalopod(ModelBase model, Entities cephalopod, float shadow)
+    public RenderCephalopod(ModelBase model, JsonCreatureDefinition cephalopod, float shadow)
     {
         super(model, 1.0F);
         this.setCephalopod(cephalopod);
@@ -30,12 +32,12 @@ public abstract class RenderCephalopod extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setCephalopod(Entities cephalopod)
+    public void setCephalopod(JsonCreatureDefinition cephalopod)
     {
         this.cephalopod = cephalopod;
     }
 
-    public Entities getCephalopod()
+    public JsonCreatureDefinition getCephalopod()
     {
         return this.cephalopod;
     }

@@ -16,19 +16,18 @@ import net.ilexiconn.jurassicraft.Util;
 
 public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
 {
-
     protected float prevRearingAmount;
     private float mountingSpeed;
 
-    public EntityJurassiCraftRidable(World world, byte id)
+    public EntityJurassiCraftRidable(World world, Creature creature)
     {
-        super(world, id);
+        super(world, creature);
         this.setMountingSpeed((float) (1.2D * this.getCreatureSpeed()));
     }
 
     public boolean isCreatureRidable()
     {
-        return Util.getCreatureFromId(this.getCreatureID()).isRidable;
+        return this.getCreature().isRidable();
     }
 
     @Override
@@ -41,7 +40,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     public boolean interact(EntityPlayer player)
     {
         ItemStack playerItemStack = player.inventory.getCurrentItem();
-        if (!this.worldObj.isRemote && playerItemStack != (ItemStack) null && Util.isRidingItem(this.getCreatureID(), playerItemStack.getItem()))
+        if (!this.worldObj.isRemote && playerItemStack != (ItemStack) null && this.getCreature().isRidingItem(playerItemStack.getItem()))
         {
             if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
             {
@@ -188,9 +187,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     @Override
     public void moveEntityWithHeading(float movementStrafing, float movementForward)
     {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && Util.isRidingItem(this.getCreatureID(), ((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
+        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
         {
-            switch (Util.getCreatureFromId(this.getCreatureID()).ridingStyle)
+            switch (this.getCreature().getRidingStyle())
             {
                 case 0:
                     this.handleMouseControlledRiding();
