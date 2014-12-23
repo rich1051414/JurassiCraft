@@ -16,53 +16,53 @@ import java.util.Collection;
 
 public class JsonEntityParser extends Util
 {
-    private Collection<JsonCreatureDefinition> dinos;
-    private Collection<JsonCreatureDefinition> mammals;
-    private Collection<JsonCreatureDefinition> cephalopods;
-    private Collection<JsonCreatureDefinition> arthropods;
-    private Collection<JsonCreatureDefinition> fish;
-    private Collection<JsonCreatureDefinition> reptiles;
-    private Collection<JsonCreatureDefinition> birds;
+	public Collection<JsonCreatureDefinition> dinos;
+	public Collection<JsonCreatureDefinition> mammals;
+	public Collection<JsonCreatureDefinition> cephalopods;
+	public Collection<JsonCreatureDefinition> arthropods;
+	public Collection<JsonCreatureDefinition> fish;
+	public Collection<JsonCreatureDefinition> reptiles;
+	public Collection<JsonCreatureDefinition> birds;
 
     public void parseServerEntities()
     {
-        loadConfig(DinoConfig.loadDinoConfig());
+        DinoConfig.loadDinoConfig(this);
         for (JsonCreatureDefinition dino : dinos)
         {
         	CreatureManager.addCreature(dino, "dinosaurs");
 		}
         
-        loadConfig(DinoConfig.loadReptileConfig());
+        DinoConfig.loadReptileConfig(this);
         for (JsonCreatureDefinition creature : reptiles)
         {
         	CreatureManager.addCreature(creature, "reptiles");
         }
 
-        loadConfig(DinoConfig.loadMammalConfig());
+        DinoConfig.loadMammalConfig(this);
         for (JsonCreatureDefinition creature : mammals)
         {
         	CreatureManager.addCreature(creature, "mammals");
         }
 
-        loadConfig(DinoConfig.loadBirdConfig());
+        DinoConfig.loadBirdConfig(this);
         for (JsonCreatureDefinition creature : birds)
         {
         	CreatureManager.addCreature(creature, "birds");
         }
 
-        loadConfig(DinoConfig.loadFishConfig());
+        DinoConfig.loadFishConfig(this);
         for (JsonCreatureDefinition creature : fish)
         {
         	CreatureManager.addCreature(creature, "fish");
         }
 
-        loadConfig(DinoConfig.loadCephalopodConfig());
+        DinoConfig.loadCephalopodConfig(this);
         for (JsonCreatureDefinition creature : cephalopods)
         {
         	CreatureManager.addCreature(creature, "cephalopods");
         }
 
-        loadConfig(DinoConfig.loadArthropodConfig());
+        DinoConfig.loadArthropodConfig(this);
         for (JsonCreatureDefinition creature : arthropods)
         {
         	CreatureManager.addCreature(creature, "arthropods");
@@ -72,119 +72,46 @@ public class JsonEntityParser extends Util
 	@SideOnly(Side.CLIENT)
     public void parseClientEntities()
     {
-        loadConfig(DinoConfig.loadDinoConfig());
+        DinoConfig.loadDinoConfig(this);
         for (JsonCreatureDefinition creature : dinos)
         {
         	CreatureManager.addCreatureRenderer(creature, "dinosaurs");
         }
 
-        loadConfig(DinoConfig.loadReptileConfig());
+        DinoConfig.loadReptileConfig(this);
         for (JsonCreatureDefinition creature : reptiles)
         {
         	CreatureManager.addCreatureRenderer(creature, "reptiles");
         }
 
-        loadConfig(DinoConfig.loadMammalConfig());
+        DinoConfig.loadMammalConfig(this);
         for (JsonCreatureDefinition creature : mammals)
         {
         	CreatureManager.addCreatureRenderer(creature, "mammals");
         }
 
-        loadConfig(DinoConfig.loadBirdConfig());
+        DinoConfig.loadBirdConfig(this);
         for (JsonCreatureDefinition creature : birds)
         {
         	CreatureManager.addCreatureRenderer(creature, "birds");
         }
 
-        loadConfig(DinoConfig.loadFishConfig());
+        DinoConfig.loadFishConfig(this);
         for (JsonCreatureDefinition creature : fish)
         {
         	CreatureManager.addCreatureRenderer(creature, "fish");
         }
 
-        loadConfig(DinoConfig.loadCephalopodConfig());
+        DinoConfig.loadCephalopodConfig(this);
         for (JsonCreatureDefinition creature : cephalopods)
         {
         	CreatureManager.addCreatureRenderer(creature, "cephalopods");
         }
 
-        loadConfig(DinoConfig.loadArthropodConfig());
+        DinoConfig.loadArthropodConfig(this);
         for (JsonCreatureDefinition creature : arthropods)
         {
         	CreatureManager.addCreatureRenderer(creature, "arthropods");
-        }
-    }
-
-    private void loadConfig(File config)
-    {
-        try
-        {
-            if (config.toString().contains("dino"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                dinos = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("reptile"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                reptiles = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("mammal"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                mammals = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("bird"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                birds = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("fish"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                fish = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("cephalopod"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                cephalopods = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-
-            if (config.toString().contains("arthropod"))
-            {
-                Type collectionType = new TypeToken<Collection<JsonCreatureDefinition>>()
-                {
-                }.getType();
-
-                arthropods = new Gson().fromJson(new FileReader(config), collectionType);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
         }
     }
 }

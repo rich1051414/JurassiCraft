@@ -47,5 +47,7 @@
        "ovi3": {"category": "master","sounds": [{"name": "ovi3","stream": false}]},
        "ParaCall03": {"category": "master","sounds": [{"name": "ParaCall03","stream": false}]},
        "ParaCall04": {"category": "master","sounds": [{"name": "ParaCall04","stream": false}]},
-       "ParaCall05": {"category": "master","sounds": [{"name": "ParaCall05","stream": false}]}
+       "ParaCall05": {"category": "master","sounds": [{"name": "ParaCall05","stream": false}]},
+       "bells": {"category": "master","sounds": [{"name": "bells","stream": false}]}
+       
 }
