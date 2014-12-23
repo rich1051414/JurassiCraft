@@ -137,7 +137,14 @@ public class Creature
 	{
 		Random rand = new Random();
 		
-		return livingSounds.get(rand.nextInt(livingSounds.size()));
+		String randSound = livingSounds.get(rand.nextInt(livingSounds.size()));
+		
+		if(randSound == "")
+		{
+			return null;
+		}
+		
+		return randSound;
 	}
 	
 	public String getDeathSound()
@@ -197,7 +204,12 @@ public class Creature
 
 	public boolean isFavoriteFood(Item item)
 	{
-		return favoriteFoodList.contains(item);
+		if(favoriteFoodList != null)
+		{
+			return favoriteFoodList.contains(item);
+		}
+		
+		return false;
 	}
 
 	public boolean canBeTamedUponSpawning() 
@@ -252,7 +264,7 @@ public class Creature
 
 	public double getMaxSpeed()
 	{
-		return maxHealth;
+		return maxSpeed;
 	}
 	
 	public double getMinSpeed()

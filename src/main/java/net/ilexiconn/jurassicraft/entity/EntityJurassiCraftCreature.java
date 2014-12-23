@@ -52,6 +52,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
         super(world);
         
         this.creature = creature;
+        this.spawnedFromEgg = false;
         
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
@@ -170,7 +171,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue((float) (this.getGeneticQuality() * (ticks * (creature.getMaxStrength() - creature.getMinStrength()) / ticksToAdulthood + creature.getMinStrength())));
 		
 		double minSpeed = creature.getMinSpeed();
-		
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue((float) (ticks * (creature.getMaxSpeed() - minSpeed) / ticksToAdulthood + minSpeed));
 		
 		double minKnockback = creature.getMinKnockback();
@@ -221,7 +221,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
      * Sets the creature xz and y hit box using genetic quality and growth
      * stage.
      */
-    public void setBouningBox()
+    public void setBoundingBox()
     {
         this.bBoxXZ = (float) (this.getGeneticQuality() * (creature.getXzBoxMin() + creature.getXzBoxDelta() * (((float) this.getGrowthStage()) / 120)));
         this.bBoxY = (float) (this.getGeneticQuality() * (creature.getYBoxMin() + creature.getYBoxDelta() * (((float) this.getGrowthStage()) / 120)));
@@ -232,8 +232,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
      */
     protected final void setCreatureSize()
     {
-        this.setBouningBox();
-        super.setSize(this.getXZBouningBox(), this.getYBouningBox());
+        this.setBoundingBox();
+        super.setSize(this.getXZBoundingBox(), this.getYBouningBox());
     }
 
     /**
@@ -242,8 +242,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
      */
     protected final void setHalfOfTheCreatureSize()
     {
-        this.setBouningBox();
-        super.setSize(this.getXZBouningBox() / 2.0F, this.getYBouningBox() / 2.0F);
+        this.setBoundingBox();
+        super.setSize(this.getXZBoundingBox() / 2.0F, this.getYBouningBox() / 2.0F);
     }
 
     /**
@@ -300,7 +300,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
                 this.setGrowthStage((byte) (this.getGrowthStage() + 1));
             }
             
-            this.setBouningBox();
+            this.setBoundingBox();
             
             if (!this.worldObj.isRemote)
             {
@@ -530,7 +530,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IAnima
     /**
      * Returns the creature hit box.
      */
-    public float getXZBouningBox()
+    public float getXZBoundingBox()
     {
         return (float) this.bBoxXZ;
     }
