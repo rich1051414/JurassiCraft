@@ -1,21 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
 
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-
 public abstract class RenderMammal extends RenderLiving
 {
-
-    private JsonCreatureDefinition mammal;
+    private Creature mammal;
     private float resizableShadow;
 
-    public RenderMammal(ModelBase model, JsonCreatureDefinition mammal, float shadow)
+    public RenderMammal(ModelBase model, Creature mammal, float shadow)
     {
         super(model, 1.0F);
         this.setMammal(mammal);
@@ -32,12 +30,12 @@ public abstract class RenderMammal extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setMammal(JsonCreatureDefinition mammal)
+    public void setMammal(Creature mammal)
     {
         this.mammal = mammal;
     }
 
-    public JsonCreatureDefinition getMammal()
+    public Creature getMammal()
     {
         return this.mammal;
     }

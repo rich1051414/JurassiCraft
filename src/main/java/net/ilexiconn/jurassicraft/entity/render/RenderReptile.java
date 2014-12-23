@@ -7,15 +7,15 @@ import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
 import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public abstract class RenderReptile extends RenderLiving
 {
-
-    private JsonCreatureDefinition reptile;
+    private Creature reptile;
     private float resizableShadow;
 
-    public RenderReptile(ModelBase model, JsonCreatureDefinition reptile, float shadow)
+    public RenderReptile(ModelBase model, Creature reptile, float shadow)
     {
         super(model, 1.0F);
         this.setReptile(reptile);
@@ -32,12 +32,12 @@ public abstract class RenderReptile extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setReptile(JsonCreatureDefinition reptile)
+    public void setReptile(Creature reptile)
     {
         this.reptile = reptile;
     }
 
-    public JsonCreatureDefinition getReptile()
+    public Creature getReptile()
     {
         return this.reptile;
     }

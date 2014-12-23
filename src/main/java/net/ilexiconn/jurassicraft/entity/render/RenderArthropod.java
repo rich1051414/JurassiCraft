@@ -1,21 +1,20 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
 
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-
 public abstract class RenderArthropod extends RenderLiving
 {
 
-    private JsonCreatureDefinition arthropod;
+    private Creature arthropod;
     private float resizableShadow;
 
-    public RenderArthropod(ModelBase model, JsonCreatureDefinition arthropod, float shadow)
+    public RenderArthropod(ModelBase model, Creature arthropod, float shadow)
     {
         super(model, 1.0F);
         this.setArthropod(arthropod);
@@ -32,12 +31,12 @@ public abstract class RenderArthropod extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setArthropod(JsonCreatureDefinition arthropod)
+    public void setArthropod(Creature arthropod)
     {
         this.arthropod = arthropod;
     }
 
-    public JsonCreatureDefinition getArthropod()
+    public Creature getArthropod()
     {
         return this.arthropod;
     }

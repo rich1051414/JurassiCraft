@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render.mammals;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelParaceratherium;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityParaceratherium;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderParaceratherium extends RenderMammal
 {
-    public RenderParaceratherium(JsonCreatureDefinition mammal)
+    public RenderParaceratherium(Creature mammal)
     {
         super(new ModelParaceratherium(), mammal, 1.6F);
     }

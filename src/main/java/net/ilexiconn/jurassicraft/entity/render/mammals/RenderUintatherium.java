@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render.mammals;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelUintatherium;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityUintatherium;
 import net.ilexiconn.jurassicraft.entity.render.RenderMammal;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderUintatherium extends RenderMammal
 {
-    public RenderUintatherium(JsonCreatureDefinition mammal)
+    public RenderUintatherium(Creature mammal)
     {
         super(new ModelUintatherium(), mammal, 0.8F);
     }

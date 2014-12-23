@@ -1,21 +1,20 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
 
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-
 public abstract class RenderFish extends RenderLiving
 {
 
-    private JsonCreatureDefinition fish;
+    private Creature fish;
     private float resizableShadow;
 
-    public RenderFish(ModelBase model, JsonCreatureDefinition fish, float shadow)
+    public RenderFish(ModelBase model, Creature fish, float shadow)
     {
         super(model, 1.0F);
         this.setFish(fish);
@@ -32,12 +31,12 @@ public abstract class RenderFish extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setFish(JsonCreatureDefinition fish)
+    public void setFish(Creature fish)
     {
         this.fish = fish;
     }
 
-    public JsonCreatureDefinition getFish()
+    public Creature getFish()
     {
         return this.fish;
     }
