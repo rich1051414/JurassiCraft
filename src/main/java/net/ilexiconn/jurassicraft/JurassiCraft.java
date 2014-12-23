@@ -103,7 +103,7 @@ public class JurassiCraft extends Util
         
         if(isChristmas)
         {
-        EntityRegistry.addSpawn(EntitySanta.class, 26, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] {
+        EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] {
        	 BiomeGenBase.beach,
        	 BiomeGenBase.forest,
        	 BiomeGenBase.forestHills,
