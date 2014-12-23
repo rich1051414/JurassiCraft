@@ -129,13 +129,13 @@ public class CreatureManager
     {
         try
         {
-            RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.entity.render." + category + ".Render" + dino.creatureName).getDeclaredConstructor(JsonCreatureDefinition.class).newInstance(dino);
+            RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.entity.render." + category + ".Render" + dino.creatureName).getDeclaredConstructor(Creature.class).newInstance(getCreatureFromName(dino.creatureName));
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + dino.creatureName);
             Util.proxy.renderEntity(entity, renderer);
         }
         catch (Exception e)
         {
-
+        	e.printStackTrace();
         }
     }
 }
