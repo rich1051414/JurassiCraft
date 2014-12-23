@@ -599,7 +599,7 @@
         "ticksToAdulthood":10,
         "cultivateSpeed":1000,
         "favoriteFoodList":["item.wheat"],
-        "ridingItemList":["item.WheatOnAStick"],
+        "ridingItemList":["item.BeefOnAStick"],
         "isRidable":true,
         "livingSound1":"jurassicraft:para1",
         "livingSound2":"jurassicraft:para1",
