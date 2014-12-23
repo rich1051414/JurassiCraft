@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 
 public class EntitySanta extends EntityJurassiCraftRidable implements IDinosaur
 {
-
     public EntitySanta(World world)
     {
         super(world, CreatureManager.classToCreature(EntitySanta.class));
