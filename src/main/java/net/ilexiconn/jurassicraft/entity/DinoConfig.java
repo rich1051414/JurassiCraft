@@ -1,138 +1,96 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.io.InputStreamReader;
+import java.util.Collection;
 
 public class DinoConfig
 {
-	public static File loadDinoConfig()
+	public static void loadDinoConfig(JsonEntityParser parser)
 	{
-		File file = new File("json");
-		
 		try
 		{
-			File tempFile = File.createTempFile("dinos", ".json", file);
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/dinos.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.dinos = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/dinos.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
 		}
 	}
 
-	public static File loadReptileConfig()
+	public static void loadReptileConfig(JsonEntityParser parser)
 	{
 		try
 		{
-			File tempFile = File.createTempFile("reptiles", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/reptiles.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.reptiles = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/reptiles.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
 		}
 	}
 
-	public static File loadMammalConfig()
+	public static void loadMammalConfig(JsonEntityParser parser)
 	{
 		try
 		{
-			File tempFile = File.createTempFile("mammals", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/mammals.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.mammals = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/mammals.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
 		}
 	}
 
 
-	public static File loadBirdConfig()
+	public static void loadBirdConfig(JsonEntityParser parser)
 	{
 		try
 		{
-			File tempFile = File.createTempFile("birds", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/birds.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
-	}
-
-
-	public static File loadFishConfig()
-	{
-		try
-		{
-			File tempFile = File.createTempFile("fish", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/fish.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.birds = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/birds.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
 		}
 	}
 
-	public static File loadCephalopodConfig()
+
+	public static void loadFishConfig(JsonEntityParser parser)
 	{
 		try
 		{
-			File tempFile = File.createTempFile("cephalopods", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/cephalopods.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.fish = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/fish.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
 		}
 	}
 
-	public static File loadArthropodConfig()
+	public static void loadCephalopodConfig(JsonEntityParser parser)
 	{
 		try
 		{
-			File tempFile = File.createTempFile("arthropods", ".json", new File("json"));
-			tempFile.deleteOnExit();
-			InputStream in = DinoConfig.class.getResourceAsStream("/json/arthropods.json");
-			FileOutputStream out = new FileOutputStream(tempFile);
-			org.apache.commons.io.IOUtils.copy(in, out);
-			return tempFile;
+			parser.cephalopods = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/cephalopods.json")), new TypeToken<Collection<Entities>>(){}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
+		}
+	}
+
+	public static void loadArthropodConfig(JsonEntityParser parser)
+	{
+		try
+		{
+			parser.arthropods = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/arthropods.json")), new TypeToken<Collection<Entities>>(){}.getType());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 }
