@@ -891,10 +891,10 @@ public class ModelSanta extends MowzieModelBase
     Hand_Right_Claw_MiddleR.render(f5);
     //Foot_Right.render(f5);
    // Foot_LeftR.render(f5);
-    Left_Claw_1R.render(f5);
-    Left_Claw_2.render(f5);
-    Right_Claw_1R.render(f5);
-    Right_Claw_2R.render(f5);
+   // Left_Claw_1R.render(f5);
+   // Left_Claw_2.render(f5);
+   // Right_Claw_1R.render(f5);
+   //.render(f5);
     Quill_1R.render(f5);
     Quill_2R.render(f5);
     Quill_3.render(f5);
