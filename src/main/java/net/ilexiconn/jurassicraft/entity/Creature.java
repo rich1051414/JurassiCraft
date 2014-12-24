@@ -224,6 +224,11 @@ public class Creature
 
 	public String getLivingSound(int sound)
 	{
+		if(sound > livingSounds.size())
+		{
+			sound = livingSounds.size();
+		}
+		
 		return livingSounds.get(sound);
 	}
 
