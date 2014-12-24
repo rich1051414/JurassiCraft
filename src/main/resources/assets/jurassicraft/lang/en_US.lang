@@ -28,6 +28,7 @@ entity.Titanis.name=Titanis
 entity.Moeritherium.name=Moeritherium
 entity.Ammonite.name=Ammonite
 entity.Brachiopod.name=Brachiopod
+entity.Santa.name=Santa Claws
 
 //Entities_Syringe_Creatures
 entity.Mammoth.name=Mammoth
@@ -239,4 +240,5 @@ container.pad.infoUintatherium.page1=Uintatherium
 container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
 
-
+itemGroup.jurassicraft.items=Jurassicraft Items
+itemGroup.jurassicraft.blocks=Jurassicraft Blocks
