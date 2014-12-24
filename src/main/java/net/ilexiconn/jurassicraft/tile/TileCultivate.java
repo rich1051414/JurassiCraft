@@ -29,7 +29,6 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     private ItemStack[] slots = new ItemStack[4];
     private short cultivateTime;
     private int cultivateSpeed;
-    private byte creatureID;
     private byte waterStored;
     private short proximateValue;
     private short mineralValue;
@@ -41,11 +40,13 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     public final Map<Short, Byte> growthRateList = new HashMap<Short, Byte>();
     public int rotation;
 
+    private Creature creature;
+    
     public TileCultivate()
     {
         this.random = new Random();
         this.cultivateSpeed = 100;
-        this.creatureID = -1;
+        this.creature = null;
         this.waterStored = 0;
         this.cultivateTime = 0;
         this.proximateValue = 0;
@@ -55,12 +56,9 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         this.creatureSize = 0.0F;
     }
 
-    /**
-     * Returns the id for the rendering.
-     */
-    public byte getEmbryoID()
+    public Creature getCreature()
     {
-        return this.creatureID;
+        return this.creature;
     }
 
     /**
@@ -447,11 +445,9 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 {
                     if (dnaSlot.getTagCompound().getInteger("Quality") >= 50)
                     {
-                        Creature creatureFromId = CreatureManager.getCreatureFromDNA((ItemDNA) dnaSlot.getItem());
-                    	
-                    	this.creatureID = (byte) creatureFromId.getCreatureID();
+                        creature = CreatureManager.getCreatureFromDNA((ItemDNA) dnaSlot.getItem());
                         
-                        if (this.getProximateValue() < creatureFromId.getMinProximate() || this.getMineralValue() < creatureFromId.getMinMinerals() || this.getVitaminValue() < creatureFromId.getMinVitamins() || this.getLipidValue() < creatureFromId.getMinLipids())
+                        if (this.getProximateValue() < creature.getMinProximate() || this.getMineralValue() < creature.getMinMinerals() || this.getVitaminValue() < creature.getMinVitamins() || this.getLipidValue() < creature.getMinLipids())
                         {
                             return false;
                         }
@@ -481,12 +477,10 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             
             ItemStack cultivateResult = new ItemStack(((ItemDNA) getDNASlot().getItem()).getCorrespondingEggOrSyringe(), 1, 0);
             
-            Creature creatureFromId = CreatureManager.getCreatureFromId(this.creatureID);
-			
-            if (creatureFromId.getEgg() != null)
+            if (creature.getEgg() != null)
                 compound.setInteger("EggQuality", getDNASlot().getTagCompound().getInteger("Quality"));
                 compound.setString("EggDNA", getDNASlot().getTagCompound().getString("DNA"));
-            if (creatureFromId.getMammalSyringe() != null)
+            if (creature.getMammalSyringe() != null)
                 compound.setInteger("SyringeQuality", getDNASlot().getTagCompound().getInteger("Quality"));
                 compound.setString("SyringeDNA", getDNASlot().getTagCompound().getString("DNA"));
                 
@@ -496,10 +490,10 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             this.setCultivateTime((short) 0);
             this.setWaterStored((byte) 0);
             
-			this.proximateValue = (short) (proximateValue - creatureFromId.getMinProximate());
-            this.mineralValue = (short) (mineralValue - creatureFromId.getMinMinerals());
-            this.vitaminValue = (short) (vitaminValue - creatureFromId.getMinVitamins());
-            this.lipidValue = (short) (lipidValue - creatureFromId.getMinLipids());
+			this.proximateValue = (short) (proximateValue - creature.getMinProximate());
+            this.mineralValue = (short) (mineralValue - creature.getMinMinerals());
+            this.vitaminValue = (short) (vitaminValue - creature.getMinVitamins());
+            this.lipidValue = (short) (lipidValue - creature.getMinLipids());
         }
     }
 
@@ -511,11 +505,11 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     /**
      * Resets a list of values to update the size of the creature for rendering.
      */
-    private void recalculateGrowthRate(int id)
+    private void recalculateGrowthRate()
     {
-        if (id >= 0)
+        if (creature != null)
         {
-            int speed = CreatureManager.getCreatureFromId(this.getEmbryoID()).getCultivateSpeed();
+            int speed = creature.getCultivateSpeed();
             for (Byte i = 0; i <= 10 - 1; i++)
             {
                 if (i > 0)
@@ -531,13 +525,13 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Resets cultivateTime and creatureID, and updates render.
+     * Resets cultivateTime and creature, and updates render.
      */
     private void resetBaseValues()
     {
         this.cultivateTime = 0;
         this.cultivateSpeed = 100;
-        this.creatureID = -1;
+        this.creature = null;
         this.growthRateList.clear();
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
@@ -589,8 +583,8 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                     {
                         if (this.canCultivate())
                         {
-                            this.cultivateSpeed = CreatureManager.getCreatureFromId(this.getEmbryoID()).getCultivateSpeed();
-                            this.recalculateGrowthRate(this.creatureID);
+                            this.cultivateSpeed = creature.getCultivateSpeed();
+                            this.recalculateGrowthRate();
                             this.setCultivateTime((short) 1);
                             this.creatureSize = 0.0F;
                             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -632,13 +626,11 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     {
     	if (this.isHatching()) 
     	{
-            Creature creatureFromId = CreatureManager.getCreatureFromId(this.getEmbryoID());
-			
-            this.setProximateValue((short) (this.getProximateValue() - (int) (progress * creatureFromId.getMinProximate())));
-            this.setMineralValue((short) (this.getMineralValue() - (int) (progress * creatureFromId.getMinMinerals())));
-            this.setVitaminValue((short) (this.getVitaminValue() - (int) (progress * creatureFromId.getMinVitamins())));
+            this.setProximateValue((short) (this.getProximateValue() - (int) (progress * creature.getMinProximate())));
+            this.setMineralValue((short) (this.getMineralValue() - (int) (progress * creature.getMinMinerals())));
+            this.setVitaminValue((short) (this.getVitaminValue() - (int) (progress * creature.getMinVitamins())));
            
-            this.setLipidValue((short) (this.getLipidValue() - (int) (progress * creatureFromId.getMinLipids())));
+            this.setLipidValue((short) (this.getLipidValue() - (int) (progress * creature.getMinLipids())));
             
             if (progress >= 0.75F)
             {
@@ -655,7 +647,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             
             this.cultivateTime = 0;
             this.cultivateSpeed = 100;
-            this.creatureID = -1;
+            this.creature = null;
             this.growthRateList.clear();
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     	}
@@ -790,7 +782,18 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setByte("CreatureID", creatureID);
+        byte creatureID;
+        
+        if(creature != null)
+        {
+            creatureID = creature.getCreatureID();
+        }
+        else
+        {
+        	creatureID = -1;
+        }
+        
+		nbt.setByte("CreatureID", creatureID);
         nbt.setByte("Water", waterStored);
         nbt.setShort("Proximate", proximateValue);
         nbt.setShort("Mineral", mineralValue);
@@ -830,7 +833,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 this.slots[k] = ItemStack.loadItemStackFromNBT(compound);
             }
         }
-        this.creatureID = nbt.getByte("CreatureID");
+        this.creature = CreatureManager.getCreatureFromId(nbt.getByte("CreatureID"));
         this.creatureSize = nbt.getShort("CreatureSize");
         this.waterStored = nbt.getByte("Water");
         this.cultivateTime = nbt.getShort("cultivateTime");
@@ -840,10 +843,10 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         this.lipidValue = nbt.getShort("Lipid");
         rotation = nbt.getInteger("rotation");
        
-        if (creatureID >= 0)
+        if (creature != null)
         {
-            this.setCultivateSpeed(CreatureManager.getCreatureFromId(this.getEmbryoID()).getCultivateSpeed());
-            this.recalculateGrowthRate(creatureID);
+            this.setCultivateSpeed(creature.getCultivateSpeed());
+            this.recalculateGrowthRate();
         }
     }
 

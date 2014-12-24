@@ -55,14 +55,19 @@ public class CreatureManager
 
 	public static Creature getCreatureFromDNA(ItemDNA itemDNA)
 	{
-		for (Entry<Class<?>, Creature> creature : creatures.entrySet())
+		if(itemDNA != null)
 		{
-			if(creature.getValue().getDNA().equals(itemDNA))
+			for (Entry<Class<?>, Creature> creature : creatures.entrySet())
 			{
-				return creature.getValue();
+				ItemDNA currentDNA = creature.getValue().getDNA();
+				
+				if(itemDNA.equals(currentDNA))
+				{
+					return creature.getValue();
+				}
 			}
 		}
-
+		
 		return null;
 	}
 
