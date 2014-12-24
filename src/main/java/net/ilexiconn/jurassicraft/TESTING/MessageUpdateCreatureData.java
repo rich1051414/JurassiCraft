@@ -43,7 +43,7 @@ public class MessageUpdateCreatureData implements IMessage
     {
         public IMessage onMessage(MessageUpdateCreatureData message, MessageContext ctx)
         {
-            return null;
+            return null; //TODO
         }
     }
 }
