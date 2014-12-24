@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
@@ -12,8 +13,8 @@ public class ModCreativeTabs implements IContentHandler
 
     public void init()
     {
-        items = new CreativeTab("jurassicraft.items", ModItems.fossil);
-        blocks = new CreativeTab("jurassicraft.blocks", Item.getItemFromBlock(ModBlocks.dnaExtractor));
+        items = new CreativeTab("jurassicraft.items", Items.bone);
+        blocks = new CreativeTab("jurassicraft.blocks", Item.getItemFromBlock(Blocks.stone));
     }
 
     private static class CreativeTab extends CreativeTabs
