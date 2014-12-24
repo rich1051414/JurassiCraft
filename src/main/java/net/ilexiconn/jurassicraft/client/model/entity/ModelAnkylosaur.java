@@ -5,7 +5,7 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 
 public class ModelAnkylosaur extends MowzieModelBase
 {

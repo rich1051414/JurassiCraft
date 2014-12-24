@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.client.model.block;
 
 import net.minecraft.util.MathHelper;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
-import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
-import to.uk.ilexiconn.llib.client.model.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelEmbryo extends MowzieModelBase
 {

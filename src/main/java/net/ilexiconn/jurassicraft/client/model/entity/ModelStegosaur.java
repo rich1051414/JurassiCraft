@@ -4,8 +4,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
-import to.uk.ilexiconn.llib.client.model.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
 public class ModelStegosaur extends MowzieModelBase

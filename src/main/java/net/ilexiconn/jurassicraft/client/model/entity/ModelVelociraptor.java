@@ -12,8 +12,8 @@ import net.minecraft.entity.Entity;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
-import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
-import to.uk.ilexiconn.llib.client.model.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelVelociraptor extends MowzieModelBase
 {

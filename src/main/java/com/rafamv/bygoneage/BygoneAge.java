@@ -40,7 +40,7 @@ public class BygoneAge {
 	@Instance(MODID)
 	public static BygoneAge instance;
 
-	@SidedProxy(clientSide = "com.rafamv.bygoneage.proxy.ClientProxy", serverSide = "com.rafamv.bygoneage.proxy.ServerProxy")
+	@SidedProxy(clientSide = "com.rafamv.bygoneage.proxy.ClientProxy", serverSide = "com.rafamv.bygoneage.proxy.CommonProxy")
 	public static CommonProxy bygoneAgeProxy;
 
 	@EventHandler

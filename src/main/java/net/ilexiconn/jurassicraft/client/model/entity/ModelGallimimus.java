@@ -10,8 +10,8 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
-import to.uk.ilexiconn.llib.client.model.MowzieModelBase;
-import to.uk.ilexiconn.llib.client.model.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelGallimimus extends MowzieModelBase
 {
