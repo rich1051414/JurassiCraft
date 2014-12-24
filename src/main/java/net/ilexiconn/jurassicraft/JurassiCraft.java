@@ -11,6 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
+import net.ilexiconn.jurassicraft.client.model.entity.player.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.content.ContentLoader;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntitySanta;
 import net.ilexiconn.jurassicraft.entity.fish.EntityCoelacanth;
@@ -79,6 +80,8 @@ public class JurassiCraft extends Util
     @Mod.EventHandler
     public void preInitClient(FMLPreInitializationEvent event)
     {
+        MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());
+
         while (!isServerInitialized);
 
         getEntityParser().parseClientEntities();
