@@ -17,23 +17,16 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.2.4-daily_build-" + getDate()
+version = "1.3.0-daily_build-" + getDate()
 group = "maven.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
-repositories {
-	maven {
-		name = "ilexiconn"
-		url = "http://ilexiconn.uk.to/maven/"
-	}
-}
-
 dependencies {
-    compile 'llib:LLib:1.7.10-0.1.1-26:dev'
+    
 }
 
 minecraft {
-    version = "1.7.10-10.13.1.1217"
+    version = "1.7.10-10.13.2.1230"
     runDir = "minecraft"
 }
 
@@ -49,8 +42,9 @@ processResources {
     }
 
     from(sourceSets.main.resources.srcDirs) {
-        include 'to/uk/ilexiconn/data/entity/dinos.json'
         exclude 'mcmod.info'
+        exclude 'changelog.info'
+        exclude 'json/*.json'
     }
 }
 

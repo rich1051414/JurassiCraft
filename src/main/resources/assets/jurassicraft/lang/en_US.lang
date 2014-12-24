@@ -25,6 +25,10 @@ entity.Dilophosaurus.name=Dilophosaurus
 entity.Cearadactylus.name=Cearadactylus
 entity.Sarcosuchus.name=Sarcosuchus
 entity.Titanis.name=Titanis
+entity.Moeritherium.name=Moeritherium
+entity.Ammonite.name=Ammonite
+entity.Brachiopod.name=Brachiopod
+entity.Santa.name=Santa Claus
 
 //Entities_Syringe_Creatures
 entity.Mammoth.name=Mammoth
@@ -34,7 +38,6 @@ entity.Leptictidium.name=Leptictidium
 entity.Uintatherium.name=Uintatherium
 entity.Paraceratherium.name=Paraceratherium
 entity.Deinotherium.name=Deinotherium
-
 
 //Items
 item.dinoBone.name=Dinosaur Bone
@@ -237,4 +240,5 @@ container.pad.infoUintatherium.page1=Uintatherium
 container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
 
-
+itemGroup.jurassicraft.items=Jurassicraft Items
+itemGroup.jurassicraft.blocks=Jurassicraft Blocks
