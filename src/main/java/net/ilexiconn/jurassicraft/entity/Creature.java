@@ -137,14 +137,7 @@ public class Creature
 	{
 		Random rand = new Random();
 		
-		String randSound = livingSounds.get(rand.nextInt(livingSounds.size()));
-		
-		if(randSound == "")
-		{
-			return null;
-		}
-		
-		return randSound;
+		return getLivingSound(rand.nextInt(livingSounds.size()));
 	}
 	
 	public String getDeathSound()
@@ -189,7 +182,12 @@ public class Creature
 
 	public boolean isRidingItem(Item item)
 	{
-		return ridingItemList.contains(item);
+		if(ridingItemList != null && item != null)
+		{
+			return ridingItemList.contains(item);
+		}
+		
+		return false;
 	}
 
 	public boolean isRidable()
@@ -204,7 +202,7 @@ public class Creature
 
 	public boolean isFavoriteFood(Item item)
 	{
-		if(favoriteFoodList != null)
+		if(favoriteFoodList != null && item != null)
 		{
 			return favoriteFoodList.contains(item);
 		}
@@ -222,14 +220,23 @@ public class Creature
 		return numberOfInfoPages;
 	}
 
-	public String getLivingSound(int sound)
+	public String getLivingSound(int soundIndex)
 	{
-		if(sound >= livingSounds.size())
+		if(soundIndex >= livingSounds.size())
 		{
-			sound = livingSounds.size() - 1;
+			soundIndex = livingSounds.size() - 1;
 		}
 		
-		return livingSounds.get(sound);
+		String sound = livingSounds.get(soundIndex);
+		
+		if(sound == "")
+		{
+			return null;
+		}
+		else
+		{
+			return sound;
+		}
 	}
 
 	public float getMaxLength()

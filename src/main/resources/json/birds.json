@@ -29,7 +29,7 @@
         "favoriteFoodList":["item.beefRaw"],
         "ridingItemList":["item.BeefOnAStick"],
         "isRidable":true,
-        "livingSounds":[""],
+        "livingSounds":[null],
         "hurtSound":null,
         "deathSound":null,
         "numberOfTextures":2,

@@ -70,7 +70,7 @@
         "ticksToAdulthood":840000,
         "cultivateSpeed":1000,
         "favoriteFoodList":["item.beefRaw"],
-        "ridingItemList":[""],
+        "ridingItemList":[null],
         "isRidable":false,
         "livingSounds":["jurassicraft:tylo1", "jurassicraft:tylo2"],
         "hurtSound":"jurassicraft:tylo3",
