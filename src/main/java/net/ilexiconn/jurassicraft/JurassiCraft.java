@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.TESTING.MessageUpdateCreatureData;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.client.model.entity.player.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.content.ContentLoader;
@@ -70,6 +71,7 @@ public class JurassiCraft extends Util
         network.registerMessage(MessageFenceCrafting.Handler.class, MessageFenceCrafting.class, 0, Side.SERVER);
         network.registerMessage(MessageFenceBuilding.Handler.class, MessageFenceBuilding.class, 1, Side.SERVER);
         network.registerMessage(MessageFenceFixing.Handler.class, MessageFenceFixing.class, 2, Side.SERVER);
+        network.registerMessage(MessageUpdateCreatureData.Handler.class, MessageUpdateCreatureData.class, 3, Side.CLIENT);
         
 		GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
