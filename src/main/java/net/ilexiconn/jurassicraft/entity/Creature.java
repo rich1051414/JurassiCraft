@@ -224,9 +224,9 @@ public class Creature
 
 	public String getLivingSound(int sound)
 	{
-		if(sound > livingSounds.size())
+		if(sound >= livingSounds.size())
 		{
-			sound = livingSounds.size();
+			sound = livingSounds.size() - 1;
 		}
 		
 		return livingSounds.get(sound);
