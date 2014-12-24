@@ -25,18 +25,18 @@ public class RenderMeganeura extends RenderDinosaur
 
     	int textureIndex = dino.getCreatureTexture() + 1;
         
-    	if(textureIndex > 2)
+    	if(textureIndex > 1)
     	{
     		textureIndex = 1;
     	}
     	
         if(dino.getCreatureGender())
         {
-        	return new ResourceLocation("textures/entity/Meganeura_Male_" + textureIndex);
+        	return new ResourceLocation("jurassicraft", "textures/entity/Meganeura_Male_" + textureIndex + ".png");
         }
         else
         {
-			return new ResourceLocation("textures/entity/Meganeura_Female_" + textureIndex);
+			return new ResourceLocation("jurassicraft", "textures/entity/Meganeura_Female_" + textureIndex + ".png");
         }
     }
 }

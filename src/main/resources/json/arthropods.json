@@ -31,7 +31,7 @@
 		"livingSounds":[null],
         "hurtSound":null,
         "deathSound":null,
-        "numberOfTextures":2,
+        "numberOfTextures":1,
         "ridingStyle":0,
         "canBeTamedUponSpawning": true,
         "numberOfInfoPages": 1,
