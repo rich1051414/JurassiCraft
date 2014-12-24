@@ -360,7 +360,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
     public ResourceLocation getTexture()
     {
-        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + creature + ".png");
+        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + creature.getCreatureName() + ".png");
     }
 
     @Override
