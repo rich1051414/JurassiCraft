@@ -23,6 +23,7 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
 	public int timeSinceCharge = 0;
 	public boolean charging = false;
     public ControlledParam flailDegree = new ControlledParam(0F, 0F, 1F, 0F);
+    int stepCount = 0;
 	
     public EntityTriceratops(World world)
     {
@@ -88,5 +89,10 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
 		flailDegree.update();
         if (animID == 1 && animTick == 1)
             this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        if (this.stepCount <= 0 && this.charging) {
+        	this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
+        	stepCount = 10;
+        }
+        stepCount -= 1;
 	}
 }
