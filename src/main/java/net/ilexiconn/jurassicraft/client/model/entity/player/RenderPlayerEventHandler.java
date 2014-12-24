@@ -17,9 +17,14 @@ import java.util.UUID;
 public class RenderPlayerEventHandler
 {
     public UUID[] uuid = new UUID[] {
+            // iLexiconn
             UUID.fromString("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"),
+            // Ry_dog101
             UUID.fromString("a10dddd1-f990-433b-875b-8349d51fec57"),
-            UUID.fromString("487a286b-25a6-44d0-aaa0-f6b87fee6bfb")
+            // BobMowzie
+            UUID.fromString("487a286b-25a6-44d0-aaa0-f6b87fee6bfb"),
+            // Kashyapo
+            UUID.fromString("8803f3ac-1ed0-412a-ab44-844981af6e8b")
     };
     public ModelSantaHat santaHat = new ModelSantaHat();
 
