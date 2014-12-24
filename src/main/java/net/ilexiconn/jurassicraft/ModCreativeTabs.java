@@ -12,8 +12,8 @@ public class ModCreativeTabs implements IContentHandler
 
     public void init()
     {
-        items = new CreativeTab("jurassicraft.items", Items.apple);
-        blocks = new CreativeTab("jurassicraft.blocks", Items.arrow);
+        items = new CreativeTab("jurassicraft.items", ModItems.fossil);
+        blocks = new CreativeTab("jurassicraft.blocks", Item.getItemFromBlock(ModBlocks.dnaExtractor));
     }
 
     private static class CreativeTab extends CreativeTabs
