@@ -33,7 +33,7 @@ public class RenderPlayerEventHandler
             GL11.glRotatef(-event.entityPlayer.rotationYaw, 0, 1, 0);
             GL11.glTranslatef(0f, -0.1f, 0f);
             GL11.glRotatef(event.entityPlayer.rotationPitch, 1, 0, 0);
-            GL11.glTranslatef(0f, 1.5f, 0f);
+            GL11.glTranslatef(0f, 1.85f, 0f);
             GL11.glTranslatef(0f, 0.2f, 0f);
             GL11.glRotated(180f, 0f, 0f, 1f);
             GL11.glRotatef(180f, 0f, 1f, 0f);
