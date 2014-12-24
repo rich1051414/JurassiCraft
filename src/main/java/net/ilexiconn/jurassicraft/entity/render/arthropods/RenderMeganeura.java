@@ -22,14 +22,21 @@ public class RenderMeganeura extends RenderDinosaur
     public ResourceLocation getEntityTexture(Entity var1)
     {
         EntityMeganeura dino = (EntityMeganeura) var1;
-        switch (dino.getCreatureTexture())
+
+    	int textureIndex = dino.getCreatureTexture() + 1;
+        
+    	if(textureIndex > 2)
+    	{
+    		textureIndex = 1;
+    	}
+    	
+        if(dino.getCreatureGender())
         {
-            case 0:
-                return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/meganeura1.png");
-            case 1:
-                return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/meganeura2.png");
-            default:
-                return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/meganeura1.png");
+        	return new ResourceLocation("textures/entity/Meganeura_Male_" + textureIndex);
+        }
+        else
+        {
+			return new ResourceLocation("textures/entity/Meganeura_Female_" + textureIndex);
         }
     }
 }
