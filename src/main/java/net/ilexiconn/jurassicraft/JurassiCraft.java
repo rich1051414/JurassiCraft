@@ -30,7 +30,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Calendar;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "1.3.0 Pre-4")
+@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "1.3.0")
 public class JurassiCraft extends Util
 {
     @Mod.Instance("jurassicraft")
