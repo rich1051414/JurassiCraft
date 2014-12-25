@@ -1,17 +1,20 @@
 package net.ilexiconn.jurassicraft.client.model.entity.player;
 
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.UUID;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+
 import org.lwjgl.opengl.GL11;
 
-import java.util.UUID;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderPlayerEventHandler
@@ -26,8 +29,11 @@ public class RenderPlayerEventHandler
             // Kashyapo
             UUID.fromString("8803f3ac-1ed0-412a-ab44-844981af6e8b"),
             //TheLarsinator
-            UUID.fromString("a94683c5-aac9-464f-b064-67b1696237a5")
+            UUID.fromString("a94683c5-aac9-464f-b064-67b1696237a5"),
+            //gegy1000
+            UUID.fromString("c3ed4d52-fb4f-4964-ba1b-9cda2453741e")
     };
+    
     public ModelSantaHat santaHat = new ModelSantaHat();
 
     @SubscribeEvent
