@@ -24,7 +24,9 @@ public class RenderPlayerEventHandler
             // BobMowzie
             UUID.fromString("487a286b-25a6-44d0-aaa0-f6b87fee6bfb"),
             // Kashyapo
-            UUID.fromString("8803f3ac-1ed0-412a-ab44-844981af6e8b")
+            UUID.fromString("8803f3ac-1ed0-412a-ab44-844981af6e8b"),
+            //TheLarsinator
+            UUID.fromString("a94683c5-aac9-464f-b064-67b1696237a5")
     };
     public ModelSantaHat santaHat = new ModelSantaHat();
 
