@@ -1,10 +1,10 @@
-![Fossils and Archaelogy](http://puu.sh/8IkYG.png)
+(http://static.planetminecraft.com/files/resource_media/screenshot/1429/launcher7885936.jpg)
 =======
 JurassiCraft
 =======
-JurassiCraft is a dinosaur mod. We have recreated Dinosaurs and other extinct animals
-and exposed them in a mc safari park to the public, where people can ride in jeeps and drive by different
-enclosures filled with dinosaurs to encounter. The majority of prehistoric creatures created by the mod team are dinosaurs, but we have also created pterosaurs and mosasaurs, neither of which are dinosaurian. And remember, we spared no expense.
+Welcome to JurassiCraft! 
+
+JurassiCraft is a mod made to bring prehistoric creatures to the world of Minecraft. It is inspired by Jurassic Park, but is not limited to all JP canon: as many creatures and features as possible will be added! Creatures are made Jurassic Park style, by obtaining fossils or amber, using the fossils or amber to create DNA, inserting the DNA into eggs, and hatching the eggs
 
 
 How to build
