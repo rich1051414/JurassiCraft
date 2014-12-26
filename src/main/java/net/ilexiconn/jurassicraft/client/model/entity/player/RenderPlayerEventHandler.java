@@ -31,7 +31,9 @@ public class RenderPlayerEventHandler
             //TheLarsinator
             UUID.fromString("a94683c5-aac9-464f-b064-67b1696237a5"),
             //gegy1000
-            UUID.fromString("c3ed4d52-fb4f-4964-ba1b-9cda2453741e")
+            UUID.fromString("c3ed4d52-fb4f-4964-ba1b-9cda2453741e"),
+            // GinjaninjaS7
+            UUID.fromString("18eb6ad8-1656-4e41-89f6-88b708a0474c")
     };
     
     public ModelSantaHat santaHat = new ModelSantaHat();
