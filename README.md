@@ -1,4 +1,4 @@
-(http://i.imgur.com/cOqK2z6.png)
+http://i.imgur.com/cOqK2z6.png
 =======
 JurassiCraft
 =======
