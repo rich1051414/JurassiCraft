@@ -1,4 +1,4 @@
-(http://static.planetminecraft.com/files/resource_media/screenshot/1429/launcher7885936.jpg)
+(http://i.imgur.com/cOqK2z6.png)
 =======
 JurassiCraft
 =======
