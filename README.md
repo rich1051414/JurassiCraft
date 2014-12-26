@@ -25,3 +25,4 @@ or for IntelliJ IDEA:
 ```
 gradle idea
 ```
+This code is not open source, you may compile or do whatever as long as you do not distribute it publicly. You may also not pass this code of as yours.
