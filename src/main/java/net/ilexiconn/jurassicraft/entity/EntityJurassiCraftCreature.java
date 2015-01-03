@@ -915,6 +915,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 		super.writeEntityToNBT(compound);
 		compound.setByte("Id", creature.getCreatureID());
 		compound.setInteger("TicksExisted", this.getTotalTicksLived());
+		compound.setByte("GrowthStage", this.getGrowthStage());
 		compound.setString("DNASequence", this.getDNASequence());
 		compound.setFloat("GeneticQuality", this.getGeneticQuality());
 		compound.setBoolean("Gender", this.getCreatureGender());
@@ -925,25 +926,40 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
-		byte creatureID = compound.getByte("Id");
-		this.creature = CreatureManager.getCreatureFromId(creatureID);
+		this.creature = CreatureManager.getCreatureFromId(compound.getByte("Id"));
 		this.setDNASequence(compound.getString("DNASequence"));
 		this.setGeneticQuality(compound.getFloat("GeneticQuality"));
 		this.setCreatureGender(compound.getBoolean("Gender"));
 		this.setCreatureTexture(compound.getByte("Texture"));
 		this.resetGrowthStageList();
 		this.setTicksExisted(compound.getInteger("TicksExisted"));
+		this.setGrowthStage(compound.getByte("GrowthStage"));
 		this.setCreatureLength();
 		this.setCreatureHeight();
 		this.setCreatureScale();
 	}
 
 	@Override
+	public void writeSpawnData(ByteBuf buf) 
+	{
+		buf.writeByte(creature.getCreatureID());
+		buf.writeInt(this.ticksExisted);
+		buf.writeFloat(this.geneticQuality);
+		buf.writeByte(this.getGrowthStage());
+		buf.writeFloat(this.bBoxXZ);
+		buf.writeFloat(this.bBoxY);
+		buf.writeBoolean(this.gender);
+		buf.writeByte(this.texture);
+		//buf.writeBoolean(this.spawnedFromEgg);
+	}
+
+	@Override
 	public void readSpawnData(ByteBuf buf) 
 	{
 		this.creature = CreatureManager.getCreatureFromId(buf.readByte());
-		this.ticksExisted = buf.readInt();
-		this.geneticQuality = buf.readFloat();
+		this.setTicksExisted(buf.readInt());
+		this.setGeneticQuality(buf.readFloat());
+		this.setGrowthStage(buf.readByte());
 		this.bBoxXZ = buf.readFloat();
 		this.bBoxY = buf.readFloat();
 		this.gender = buf.readBoolean();
@@ -969,18 +985,5 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 //				this.setCreatureSize();
 //			}
 //		}
-	}
-
-	@Override
-	public void writeSpawnData(ByteBuf buf) 
-	{
-		buf.writeByte(creature.getCreatureID());
-		buf.writeInt(this.ticksExisted);
-		buf.writeFloat(this.geneticQuality);
-		buf.writeFloat(this.bBoxXZ);
-		buf.writeFloat(this.bBoxY);
-		buf.writeBoolean(this.gender);
-		buf.writeByte(this.texture);
-		//buf.writeBoolean(this.spawnedFromEgg);
 	}
 }
