@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.block;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -11,9 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 
 public class BlockDNAExtractor extends BlockContainer
 {

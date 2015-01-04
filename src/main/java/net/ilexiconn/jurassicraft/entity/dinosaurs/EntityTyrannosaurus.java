@@ -68,7 +68,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
                 AnimationAPI.sendAnimPacket(this, 1);
             }
             /*
-			 * else if(this.getAttackTarget() != null) {
+             * else if(this.getAttackTarget() != null) {
 			 * roarCount.thereAndBack(0F, 0.1F, 1, 40);
 			 * System.out.println(roarCount.change); }
 			 */
@@ -104,12 +104,12 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         super.onUpdate();
         roarCount.update();
         roarTiltDegree.update();
-        if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25) {
-        	this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
-        	stepCount = 60;
+        if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
+        {
+            this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
+            stepCount = 60;
         }
-        if (animID == 1 && animTick == 22)
-            this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        stepCount -= this.moveForward*10;
+        if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        stepCount -= this.moveForward * 10;
     }
 }

@@ -1,31 +1,37 @@
 package net.ilexiconn.jurassicraft.item;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.block.BlockFossilOre;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.block.BlockFossilOre;
 
-public class ToolFossilBreaker extends ItemPickaxe {
+public class ToolFossilBreaker extends ItemPickaxe
+{
 
-	public ToolFossilBreaker(ToolMaterial material, String toolName, int durability) {
-		super(material);
-		this.setMaxDamage(durability);
-		this.setMaxStackSize(1);
-		setUnlocalizedName(toolName);
-		setTextureName(Util.getModId() + toolName);
-		setCreativeTab(ModCreativeTabs.items);
-	}
+    public ToolFossilBreaker(ToolMaterial material, String toolName, int durability)
+    {
+        super(material);
+        this.setMaxDamage(durability);
+        this.setMaxStackSize(1);
+        setUnlocalizedName(toolName);
+        setTextureName(JurassiCraft.getModId() + toolName);
+        setCreativeTab(ModCreativeTabs.items);
+    }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
-		if (!world.isRemote) {
-			if (itemStack != null) {
-				if (world.getBlock(x, y, z) instanceof BlockFossilOre) {
-					/*
+    @Override
+    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entity)
+    {
+        if (!world.isRemote)
+        {
+            if (itemStack != null)
+            {
+                if (world.getBlock(x, y, z) instanceof BlockFossilOre)
+                {
+                    /*
 					 * TileEntity tileentity = world.getTileEntity(x, y, z); if
 					 * (tileentity instanceof TileEntityEncasedFossilBlock) {
 					 * TileEntityEncasedFossilBlock tileEntityfossil =
@@ -40,16 +46,21 @@ public class ToolFossilBreaker extends ItemPickaxe {
 					 * { itemStack.setItemDamage(itemStack.getItemDamage() + 1);
 					 * } return true; }
 					 */
-				} else if (world.getBlock(x, y, z) instanceof Block) {
-					if (itemStack.getItemDamage() >= itemStack.getMaxDamage()) {
-						itemStack.stackSize--;
-					} else {
-						itemStack.setItemDamage(itemStack.getItemDamage() + 1);
-					}
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+                }
+                else if (world.getBlock(x, y, z) instanceof Block)
+                {
+                    if (itemStack.getItemDamage() >= itemStack.getMaxDamage())
+                    {
+                        itemStack.stackSize--;
+                    }
+                    else
+                    {
+                        itemStack.setItemDamage(itemStack.getItemDamage() + 1);
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

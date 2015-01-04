@@ -1,5 +1,11 @@
 package net.ilexiconn.jurassicraft.tile;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.item.IDNASource;
+import net.ilexiconn.jurassicraft.item.ItemAmber;
+import net.ilexiconn.jurassicraft.item.ItemDNA;
+import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,14 +18,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.item.IDNASource;
-import net.ilexiconn.jurassicraft.item.ItemAmber;
-import net.ilexiconn.jurassicraft.item.ItemDNA;
-import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
@@ -38,12 +36,12 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
 
         for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
         {
-			ItemDNA dna = creature.getValue().getDNA();
-			if(dna != null)
-			{
-				dnas.add(dna);
-			}
-		}
+            ItemDNA dna = creature.getValue().getDNA();
+            if (dna != null)
+            {
+                dnas.add(dna);
+            }
+        }
     }
 
     public short getExtractionTime()
@@ -111,16 +109,20 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
                             newItem.getTagCompound().removeTag("Quality");
                             compound.setInteger("Quality", 100);
                             newItem.setTagCompound(compound);
-                        } else {
+                        }
+                        else
+                        {
                             compound.setInteger("Quality", 100);
                         }
                         if (newItem.getTagCompound().hasKey("DNA"))
                         {
-                        	String dna = newItem.getTagCompound().getString("DNA");
+                            String dna = newItem.getTagCompound().getString("DNA");
                             newItem.getTagCompound().removeTag("DNA");
                             compound.setString("DNA", dna);
                             newItem.setTagCompound(compound);
-                        } else {
+                        }
+                        else
+                        {
                             compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
                         }
                     }
@@ -187,26 +189,25 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
                             }
                             if (newItem.getTagCompound().hasKey("DNA"))
                             {
-                            	String dna = newItem.getTagCompound().getString("DNA");
+                                String dna = newItem.getTagCompound().getString("DNA");
                                 newItem.getTagCompound().removeTag("DNA");
                                 compound.setString("DNA", dna);
                                 newItem.setTagCompound(compound);
-                            } else {
+                            }
+                            else
+                            {
                                 compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
                             }
-                            
-                            
+
+
                         }
                     }
                     else
                     {
                         int output = this.worldObj.rand.nextInt(3);
-                        if (output == 0)
-                            newItem = new ItemStack(Blocks.sand, 3);
-                        else if (output == 1)
-                            newItem = new ItemStack(Blocks.stone, 1);
-                        else if (output == 2)
-                            newItem = new ItemStack(Items.bone, 2);
+                        if (output == 0) newItem = new ItemStack(Blocks.sand, 3);
+                        else if (output == 1) newItem = new ItemStack(Blocks.stone, 1);
+                        else if (output == 2) newItem = new ItemStack(Items.bone, 2);
                     }
                 }
                 for (int j = 4; j < 8; j++)

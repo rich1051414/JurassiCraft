@@ -1,13 +1,12 @@
 package net.ilexiconn.jurassicraft.config;
 
-import net.ilexiconn.jurassicraft.Util;
 
 import java.util.ArrayList;
 
 public class JsonCreatureDefinition
 {
     private static byte currentCreatureID = 0;
-	
+
     public byte creatureID = currentCreatureID++;
 
     public String creatureName;

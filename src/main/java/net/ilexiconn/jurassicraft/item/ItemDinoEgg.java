@@ -1,5 +1,9 @@
 package net.ilexiconn.jurassicraft.item;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -7,10 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class ItemDinoEgg extends Item
     {
         super();
         this.setUnlocalizedName("egg_" + dinoName);
-        this.setTextureName(Util.getModId() + "egg_" + dinoName);
+        this.setTextureName(JurassiCraft.getModId() + "egg_" + dinoName);
         this.setCreativeTab(ModCreativeTabs.items);
         this.dinoName = dinoName;
     }
@@ -36,9 +36,9 @@ public class ItemDinoEgg extends Item
                 return egg.getTagCompound().getString("EggDNA");
             }
         }
-        
+
         System.out.println("ERROR! DNA sequence was not determined yet!");
-        
+
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
 
@@ -79,9 +79,9 @@ public class ItemDinoEgg extends Item
             NBTTagCompound compound = new NBTTagCompound();
             if (egg.hasTagCompound())
             {
-            	if (egg.getTagCompound().hasKey("EggQuality"))
+                if (egg.getTagCompound().hasKey("EggQuality"))
                 {
-            		int oldQuality = egg.getTagCompound().getInteger("EggQuality");
+                    int oldQuality = egg.getTagCompound().getInteger("EggQuality");
                     egg.getTagCompound().removeTag("EggQuality");
                     switch (oldQuality)
                     {
@@ -100,14 +100,18 @@ public class ItemDinoEgg extends Item
                         default:
                             break;
                     }
-                } else {
+                }
+                else
+                {
                     compound.setInteger("EggQuality", 25);
                 }
-            	if (egg.getTagCompound().hasKey("EggDNA"))
+                if (egg.getTagCompound().hasKey("EggDNA"))
                 {
-            		egg.getTagCompound().removeTag("EggDNA");
+                    egg.getTagCompound().removeTag("EggDNA");
                     compound.setString("EggDNA", JurassiCraftDNAHandler.createDefaultDNA());
-                } else {
+                }
+                else
+                {
                     compound.setString("EggDNA", JurassiCraftDNAHandler.createDefaultDNA());
                 }
             }
@@ -140,11 +144,11 @@ public class ItemDinoEgg extends Item
         {
             this.onItemRightClick(egg, world, player);
         }
-        
+
         egg.stackSize--;
-        if (egg.stackSize <= 0) 
+        if (egg.stackSize <= 0)
         {
-        	egg = (ItemStack) null;
+            egg = (ItemStack) null;
         }
         return true;
     }

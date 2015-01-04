@@ -1,24 +1,24 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelLowSecurityFenceBase;
+import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelLowSecurityFenceBase;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowBase;
 
 public class TileSecurityFenceLowBaseRenderer extends TileEntitySpecialRenderer
 {
 
-    private static final ResourceLocation texture = new ResourceLocation(Util.getModId() + "textures/blocks/modelLowSecurityFenceBase.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/modelLowSecurityFenceBase.png");
     private ModelLowSecurityFenceBase model = new ModelLowSecurityFenceBase();
 
     public TileSecurityFenceLowBaseRenderer()
     {
-    	
+
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TileSecurityFenceLowBaseRenderer extends TileEntitySpecialRenderer
     {
         if (tileEntity instanceof TileSecurityFenceLowBase)
         {
-        	TileSecurityFenceLowBase tileEntityModel = (TileSecurityFenceLowBase) tileEntity;
+            TileSecurityFenceLowBase tileEntityModel = (TileSecurityFenceLowBase) tileEntity;
             int angle = 0;
             GL11.glPushMatrix();
             if (tileEntityModel.getWorldObj() == null)

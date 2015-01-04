@@ -2,13 +2,13 @@ package net.ilexiconn.jurassicraft.client.render.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 
 @SideOnly(Side.CLIENT)
 public class ItemCultivateRenderer implements IItemRenderer
@@ -21,7 +21,7 @@ public class ItemCultivateRenderer implements IItemRenderer
     {
         textures = new ResourceLocation[colors.length];
         for (int i = 0; i < colors.length; i++)
-            textures[i] = new ResourceLocation(Util.getModId() + "textures/blocks/cultivate_" + colors[i] + ".png");
+            textures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + colors[i] + ".png");
     }
 
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
@@ -46,7 +46,7 @@ public class ItemCultivateRenderer implements IItemRenderer
     {
         boolean firstPerson = false;
         int renderType = 0;
-        
+
         switch (type)
         {
             case ENTITY:
@@ -114,8 +114,8 @@ public class ItemCultivateRenderer implements IItemRenderer
 
                 GL11.glPopMatrix();
             }
-		default:
-			break;
+            default:
+                break;
         }
     }
 }

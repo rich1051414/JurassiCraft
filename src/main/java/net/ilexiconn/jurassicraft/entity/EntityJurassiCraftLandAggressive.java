@@ -1,18 +1,17 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfNonTamed;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfNonTamed;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class EntityJurassiCraftLandAggressive extends EntityJurassiCraftRidable
     {
         return false;
     }
-    
+
     /**
      * Sets the attack target if it is adult. If it is also tamed, this will check if the target is tamed by the player.
      */
@@ -109,11 +108,11 @@ public class EntityJurassiCraftLandAggressive extends EntityJurassiCraftRidable
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-		float attackDamage = (float) this.getCreatureAttack();
+        float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
-        	attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
+            attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
             i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
         }
         boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);

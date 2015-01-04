@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 
 public class JurassiCraftEntityAITargetIfHasAgeAndNonTamed extends EntityAINearestAttackableTarget
 {

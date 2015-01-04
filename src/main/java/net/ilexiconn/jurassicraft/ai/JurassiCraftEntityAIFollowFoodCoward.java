@@ -1,10 +1,9 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public class JurassiCraftEntityAIFollowFoodCoward extends EntityAIBase
 {
@@ -55,25 +54,25 @@ public class JurassiCraftEntityAIFollowFoodCoward extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-		if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 24.0D) 
-		{
-			if (this.temptingPlayer.getDistanceSq(this.targetX, this.targetY, this.targetZ) > 0.010000000000000002D) 
-			{
-				return false;
-			}
-			if (Math.abs((double) this.temptingPlayer.rotationPitch - this.rotationPitchOfThePlayer) > 5.0D || Math.abs((double) this.temptingPlayer.rotationYaw - this.rotationYawOfThePlayer) > 5.0D) 
-			{
-				return false;
-			}
-		} 
-		else 
-		{
-			this.targetX = this.temptingPlayer.posX;
-			this.targetY = this.temptingPlayer.posY;
-			this.targetZ = this.temptingPlayer.posZ;
-		}
-		this.rotationPitchOfThePlayer = (double) this.temptingPlayer.rotationPitch;
-		this.rotationYawOfThePlayer = (double) this.temptingPlayer.rotationYaw;
+        if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 24.0D)
+        {
+            if (this.temptingPlayer.getDistanceSq(this.targetX, this.targetY, this.targetZ) > 0.010000000000000002D)
+            {
+                return false;
+            }
+            if (Math.abs((double) this.temptingPlayer.rotationPitch - this.rotationPitchOfThePlayer) > 5.0D || Math.abs((double) this.temptingPlayer.rotationYaw - this.rotationYawOfThePlayer) > 5.0D)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            this.targetX = this.temptingPlayer.posX;
+            this.targetY = this.temptingPlayer.posY;
+            this.targetZ = this.temptingPlayer.posZ;
+        }
+        this.rotationPitchOfThePlayer = (double) this.temptingPlayer.rotationPitch;
+        this.rotationYawOfThePlayer = (double) this.temptingPlayer.rotationYaw;
         return this.shouldExecute();
     }
 

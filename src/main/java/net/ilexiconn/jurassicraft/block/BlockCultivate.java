@@ -1,40 +1,28 @@
 package net.ilexiconn.jurassicraft.block;
 
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
 
 public class BlockCultivate
 {
-    public static AxisAlignedBB[][] boxes =
-            {
-                    { //top
-                            AxisAlignedBB.getBoundingBox(0.0f, -1.0f, 0.0f, 1.0f, -0.6215f, 1.0f),
+    public static AxisAlignedBB[][] boxes = {{ //top
+            AxisAlignedBB.getBoundingBox(0.0f, -1.0f, 0.0f, 1.0f, -0.6215f, 1.0f),
 
-                            AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.0f, 0.062f, 0.93f, 0.062f),
-                            AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.0f, 1.0f, 0.93f, 0.062f),
-                            AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.938f, 0.062f, 0.93f, 1.0f),
-                            AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.938f, 1.0f, 0.93f, 1.0f),
+            AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.0f, 0.062f, 0.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.0f, 1.0f, 0.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.938f, 0.062f, 0.93f, 1.0f), AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.938f, 1.0f, 0.93f, 1.0f),
 
-                            AxisAlignedBB.getBoundingBox(0.062f, -0.6215f, 0.062f, 0.938f, 0.93f, 0.938f),
+            AxisAlignedBB.getBoundingBox(0.062f, -0.6215f, 0.062f, 0.938f, 0.93f, 0.938f),
 
-                            AxisAlignedBB.getBoundingBox(0.0f, 0.93f, 0.0f, 1.0f, 1.0f, 1.0f)
-                    },
-                    { //bottom
-                            AxisAlignedBB.getBoundingBox(0.0f, 0.0f, 0.0f, 1.0f, 0.3785f, 1.0f),
+            AxisAlignedBB.getBoundingBox(0.0f, 0.93f, 0.0f, 1.0f, 1.0f, 1.0f)}, { //bottom
+            AxisAlignedBB.getBoundingBox(0.0f, 0.0f, 0.0f, 1.0f, 0.3785f, 1.0f),
 
-                            AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.0f, 0.062f, 1.93f, 0.062f),
-                            AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.0f, 1.0f, 1.93f, 0.062f),
-                            AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.938f, 0.062f, 1.93f, 1.0f),
-                            AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.938f, 1.0f, 1.93f, 1.0f),
+            AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.0f, 0.062f, 1.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.0f, 1.0f, 1.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.938f, 0.062f, 1.93f, 1.0f), AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.938f, 1.0f, 1.93f, 1.0f),
 
-                            AxisAlignedBB.getBoundingBox(0.062f, 0.3785f, 0.062f, 0.938f, 1.93f, 0.938f),
+            AxisAlignedBB.getBoundingBox(0.062f, 0.3785f, 0.062f, 0.938f, 1.93f, 0.938f),
 
-                            AxisAlignedBB.getBoundingBox(0.0f, 1.93f, 0.0f, 1.0f, 2.0f, 1.0f)
-                    }
-            };
+            AxisAlignedBB.getBoundingBox(0.0f, 1.93f, 0.0f, 1.0f, 2.0f, 1.0f)}};
 
     public static void updateBlockStateWithBottom(World world, int x, int y, int z, boolean lit)
     {

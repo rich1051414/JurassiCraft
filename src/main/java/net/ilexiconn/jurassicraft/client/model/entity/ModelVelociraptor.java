@@ -7,13 +7,13 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelVelociraptor extends MowzieModelBase
 {
@@ -470,11 +470,11 @@ public class ModelVelociraptor extends MowzieModelBase
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
-//    Body_2.render(f5);
-//    Neck.render(f5);
-//    Head.render(f5);
-//    Upper_Jaw.render(f5);
-//    Lower_Jaw.render(f5);
+        //    Body_2.render(f5);
+        //    Neck.render(f5);
+        //    Head.render(f5);
+        //    Upper_Jaw.render(f5);
+        //    Lower_Jaw.render(f5);
 /*    Tail_1.render(f5);
     Tail_2.render(f5);
     Tail_3.render(f5);
@@ -493,12 +493,12 @@ public class ModelVelociraptor extends MowzieModelBase
     Hand_Right_Claw_Right.render(f5);
     Hand_Right_Claw_Left.render(f5);
     Hand_Right_Claw_Middle.render(f5);*/
-//    Foot_Left.render(f5);
-//    Foot_Right.render(f5);
-//    Left_Claw_1.render(f5);
-//    Left_Claw_2.render(f5);
-//    Right_Claw_1.render(f5);
-//    Right_Claw_2.render(f5);
+        //    Foot_Left.render(f5);
+        //    Foot_Right.render(f5);
+        //    Left_Claw_1.render(f5);
+        //    Left_Claw_2.render(f5);
+        //    Right_Claw_1.render(f5);
+        //    Right_Claw_2.render(f5);
 /*    Quill_1.render(f5);
     Quill_2.render(f5);
     Quill_3.render(f5);
@@ -616,7 +616,7 @@ public class ModelVelociraptor extends MowzieModelBase
     newfaceTarget(Tail_4, 6, raptor.getRenderYawOffsetChange(), 0);
     newfaceTarget(Tail_5, 6, raptor.getRenderYawOffsetChange(), 0);
     newfaceTarget(Tail_6, 6, raptor.getRenderYawOffsetChange(), 0);*/
-//    System.out.println(raptor.onGround + " " + raptor.leaping);
+        //    System.out.println(raptor.onGround + " " + raptor.leaping);
 
         if (raptor.getAnimTick() == 20 && raptor.getAnimID() == 3) raptor.setLeaping(true);
         if (raptor.leaping == true)

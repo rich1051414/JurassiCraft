@@ -2,13 +2,13 @@ package net.ilexiconn.jurassicraft.client.render.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 
 @SideOnly(Side.CLIENT)
 public class ItemEggRenderer implements IItemRenderer
@@ -116,7 +116,7 @@ public class ItemEggRenderer implements IItemRenderer
                     GL11.glScalef(scale * 4, scale * 4, scale * 4);
                 }
 
-                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(Util.getModId() + "textures/eggs/egg" + dino + ".png"));
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + dino + ".png"));
 
                 model.render();
 

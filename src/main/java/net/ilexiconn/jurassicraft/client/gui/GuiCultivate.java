@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.container.ContainerCultivate;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.container.ContainerCultivate;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
 
 public class GuiCultivate extends GuiContainer
 {
@@ -19,15 +19,16 @@ public class GuiCultivate extends GuiContainer
         super(new ContainerCultivate(inventoryPlayer, entity));
         this.cultivator = entity;
         this.xSize = 352;
-	    this.ySize = 188;
+        this.ySize = 188;
     }
 
     @Override
-    public void updateScreen() {
-    	if (this.cultivator.isHatching()) 
-    	{
-    	    this.mc.thePlayer.closeScreen();
-    	}
+    public void updateScreen()
+    {
+        if (this.cultivator.isHatching())
+        {
+            this.mc.thePlayer.closeScreen();
+        }
     }
 
     @Override
@@ -49,11 +50,11 @@ public class GuiCultivate extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
     {
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        mc.renderEngine.bindTexture(new ResourceLocation(Util.getModId() + "textures/gui/guiCultivateLeft.png"));
+        mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiCultivateLeft.png"));
         drawTexturedModalRect(this.width / 2 - xSize / 2, this.height / 2 - ySize / 2, 0, 0, 176, 188);
         int i0 = this.cultivator.getWaterStoredProgressScaled(67);
         this.drawTexturedModalRect(guiLeft + 48, guiTop + 18, 0, 188, 42, 67 - i0);
-        mc.renderEngine.bindTexture(new ResourceLocation(Util.getModId() + "textures/gui/guiCultivateRight.png"));
+        mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiCultivateRight.png"));
         drawTexturedModalRect(this.width / 2 + 1, this.height / 2 - ySize / 2, 0, 0, 176, 166);
         int i1 = this.cultivator.getProximateBarScaled(150);
         this.drawTexturedModalRect(guiLeft + 190, guiTop + 56, 0, 166, i1, 9);

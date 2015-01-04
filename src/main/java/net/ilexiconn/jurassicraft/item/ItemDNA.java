@@ -1,9 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
-import java.util.List;
-
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +12,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemDNA extends Item implements IDNASample
 {
 
@@ -21,24 +21,24 @@ public class ItemDNA extends Item implements IDNASample
     {
         super();
         setUnlocalizedName(name + "_DNA");
-        setTextureName(Util.getModId() + name + "_DNA");
+        setTextureName(JurassiCraft.getModId() + name + "_DNA");
         setCreativeTab(ModCreativeTabs.items);
     }
 
     public Item getCorrespondingEggOrSyringe()
     {
         Creature creature = CreatureManager.getCreatureFromDNA(this);
-        if(creature.getEgg() != null)
+        if (creature.getEgg() != null)
         {
-        	return creature.getEgg();
+            return creature.getEgg();
         }
-        else if(creature.getMammalSyringe() != null)
+        else if (creature.getMammalSyringe() != null)
         {
-        	return creature.getMammalSyringe();
+            return creature.getMammalSyringe();
         }
         else
         {
-        	return null;
+            return null;
         }
     }
 
@@ -92,9 +92,9 @@ public class ItemDNA extends Item implements IDNASample
             NBTTagCompound compound = new NBTTagCompound();
             if (dnaSample.hasTagCompound())
             {
-            	if (dnaSample.getTagCompound().hasKey("Quality"))
+                if (dnaSample.getTagCompound().hasKey("Quality"))
                 {
-            		int oldQuality = dnaSample.getTagCompound().getInteger("Quality");
+                    int oldQuality = dnaSample.getTagCompound().getInteger("Quality");
                     dnaSample.getTagCompound().removeTag("Quality");
                     switch (oldQuality)
                     {
@@ -113,14 +113,18 @@ public class ItemDNA extends Item implements IDNASample
                         default:
                             break;
                     }
-                } else {
+                }
+                else
+                {
                     compound.setInteger("Quality", 25);
                 }
-            	if (dnaSample.getTagCompound().hasKey("DNA"))
+                if (dnaSample.getTagCompound().hasKey("DNA"))
                 {
                     dnaSample.getTagCompound().removeTag("DNA");
                     compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-                } else {
+                }
+                else
+                {
                     compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
                 }
             }

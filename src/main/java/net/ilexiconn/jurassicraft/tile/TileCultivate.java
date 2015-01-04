@@ -1,11 +1,5 @@
 package net.ilexiconn.jurassicraft.tile;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftFoodNutrients;
@@ -21,6 +15,10 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class TileCultivate extends TileEntity implements ISidedInventory
 {
@@ -41,7 +39,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     public int rotation;
 
     private Creature creature;
-    
+
     public TileCultivate()
     {
         this.random = new Random();
@@ -436,8 +434,8 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     private boolean canCultivate()
     {
         ItemStack dnaSlot = getDNASlot();
-        
-		if (dnaSlot != null)
+
+        if (dnaSlot != null)
         {
             if (dnaSlot.hasTagCompound())
             {
@@ -446,7 +444,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                     if (dnaSlot.getTagCompound().getInteger("Quality") >= 50)
                     {
                         creature = CreatureManager.getCreatureFromDNA((ItemDNA) dnaSlot.getItem());
-                        
+
                         if (this.getProximateValue() < creature.getMinProximate() || this.getMineralValue() < creature.getMinMinerals() || this.getVitaminValue() < creature.getMinVitamins() || this.getLipidValue() < creature.getMinLipids())
                         {
                             return false;
@@ -474,33 +472,33 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         else
         {
             NBTTagCompound compound = new NBTTagCompound();
-            
+
             ItemStack cultivateResult = new ItemStack(((ItemDNA) getDNASlot().getItem()).getCorrespondingEggOrSyringe(), 1, 0);
-            
+
             if (creature.getEgg() != null)
                 compound.setInteger("EggQuality", getDNASlot().getTagCompound().getInteger("Quality"));
-                compound.setString("EggDNA", getDNASlot().getTagCompound().getString("DNA"));
+            compound.setString("EggDNA", getDNASlot().getTagCompound().getString("DNA"));
             if (creature.getMammalSyringe() != null)
                 compound.setInteger("SyringeQuality", getDNASlot().getTagCompound().getInteger("Quality"));
-                compound.setString("SyringeDNA", getDNASlot().getTagCompound().getString("DNA"));
-                
+            compound.setString("SyringeDNA", getDNASlot().getTagCompound().getString("DNA"));
+
             cultivateResult.setTagCompound(compound);
             this.slots[2] = (ItemStack) null;
             this.slots[2] = cultivateResult;
             this.setCultivateTime((short) 0);
             this.setWaterStored((byte) 0);
-            
-			this.proximateValue = (short) (proximateValue - creature.getMinProximate());
+
+            this.proximateValue = (short) (proximateValue - creature.getMinProximate());
             this.mineralValue = (short) (mineralValue - creature.getMinMinerals());
             this.vitaminValue = (short) (vitaminValue - creature.getMinVitamins());
             this.lipidValue = (short) (lipidValue - creature.getMinLipids());
         }
     }
 
-	private ItemStack getDNASlot() 
-	{
-		return this.slots[2];
-	}
+    private ItemStack getDNASlot()
+    {
+        return this.slots[2];
+    }
 
     /**
      * Resets a list of values to update the size of the creature for rendering.
@@ -624,14 +622,14 @@ public class TileCultivate extends TileEntity implements ISidedInventory
 
     public void cancelHatching(float progress)
     {
-    	if (this.isHatching()) 
-    	{
+        if (this.isHatching())
+        {
             this.setProximateValue((short) (this.getProximateValue() - (int) (progress * creature.getMinProximate())));
             this.setMineralValue((short) (this.getMineralValue() - (int) (progress * creature.getMinMinerals())));
             this.setVitaminValue((short) (this.getVitaminValue() - (int) (progress * creature.getMinVitamins())));
-           
+
             this.setLipidValue((short) (this.getLipidValue() - (int) (progress * creature.getMinLipids())));
-            
+
             if (progress >= 0.75F)
             {
                 this.setWaterStored((byte) 0);
@@ -644,13 +642,13 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             {
                 this.setWaterStored((byte) 2);
             }
-            
+
             this.cultivateTime = 0;
             this.cultivateSpeed = 100;
             this.creature = null;
             this.growthRateList.clear();
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-    	}
+        }
     }
 
     @Override
@@ -783,17 +781,17 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     {
         super.writeToNBT(nbt);
         byte creatureID;
-        
-        if(creature != null)
+
+        if (creature != null)
         {
             creatureID = creature.getCreatureID();
         }
         else
         {
-        	creatureID = -1;
+            creatureID = -1;
         }
-        
-		nbt.setByte("CreatureID", creatureID);
+
+        nbt.setByte("CreatureID", creatureID);
         nbt.setByte("Water", waterStored);
         nbt.setShort("Proximate", proximateValue);
         nbt.setShort("Mineral", mineralValue);
@@ -842,7 +840,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         this.vitaminValue = nbt.getShort("Vitamin");
         this.lipidValue = nbt.getShort("Lipid");
         rotation = nbt.getInteger("rotation");
-       
+
         if (creature != null)
         {
             this.setCultivateSpeed(creature.getCultivateSpeed());

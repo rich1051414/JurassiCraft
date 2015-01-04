@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityBasilosaurus extends NewEntitySwimming 
+public class EntityBasilosaurus extends NewEntitySwimming
 {
 
     public EntityBasilosaurus(World world)
@@ -29,8 +29,7 @@ public class EntityBasilosaurus extends NewEntitySwimming
         AxisAlignedBB area = this.boundingBox.expand(16.0D, 16.0D, 16.0D);
 
         EntityPlayer player = (EntityPlayer) super.findEntityToAttack();
-        if (player != null)
-            return player;
+        if (player != null) return player;
 
         return this.worldObj.findNearestEntityWithinAABB(EntityAnimal.class, area, this);
     }

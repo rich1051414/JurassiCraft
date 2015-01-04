@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLivingBase;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class RenderSwimming extends RenderDinosaur
 {
-	
-    /** Inherithed from Animals+ by Click_Me */
+
+    /**
+     * Inherithed from Animals+ by Click_Me
+     */
     public RenderSwimming(ModelBase modelbase, Creature dino, float shadow)
     {
         super(modelbase, dino, shadow);

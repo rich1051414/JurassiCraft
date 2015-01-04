@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.minecraft.item.Item;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
+import net.minecraft.item.Item;
 
 public class ItemAmber extends Item implements IDNASource
 {
@@ -10,7 +10,7 @@ public class ItemAmber extends Item implements IDNASource
     {
         super();
         setUnlocalizedName("amber");
-        setTextureName(Util.getModId() + "amber");
+        setTextureName(JurassiCraft.getModId() + "amber");
         setCreativeTab(ModCreativeTabs.items);
     }
 }

@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 
 public class JurassiCraftEntityAIPanicWhenOwnerHurtTarget extends EntityAITarget
 {
-	EntityJurassiCraftLandCoward cowardTameable;
+    EntityJurassiCraftLandCoward cowardTameable;
     EntityLivingBase attacker;
 
     public JurassiCraftEntityAIPanicWhenOwnerHurtTarget(EntityJurassiCraftLandCoward entityTameable)
@@ -33,7 +33,7 @@ public class JurassiCraftEntityAIPanicWhenOwnerHurtTarget extends EntityAITarget
             else
             {
                 this.attacker = owner.getLastAttacker();
-                return attacker != null && owner.getDistanceToEntity(cowardTameable) < 16.0F; 
+                return attacker != null && owner.getDistanceToEntity(cowardTameable) < 16.0F;
             }
         }
     }
@@ -42,7 +42,7 @@ public class JurassiCraftEntityAIPanicWhenOwnerHurtTarget extends EntityAITarget
     public void startExecuting()
     {
         if (!this.cowardTameable.isPanicking())
-        	this.cowardTameable.setFleeingTick(75 + this.cowardTameable.worldObj.rand.nextInt(100));
+            this.cowardTameable.setFleeingTick(75 + this.cowardTameable.worldObj.rand.nextInt(100));
         super.startExecuting();
     }
 }

@@ -20,18 +20,18 @@ import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityTriceratops extends EntityJurassiCraftLandProtective implements IDinosaur
 {
-	public int timeSinceCharge = 0;
-	public boolean charging = false;
+    public int timeSinceCharge = 0;
+    public boolean charging = false;
     public ControlledParam flailDegree = new ControlledParam(0F, 0F, 1F, 0F);
     int stepCount = 0;
-	
+
     public EntityTriceratops(World world)
     {
         super(world, CreatureManager.classToCreature(EntityTriceratops.class), 1);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
-    	this.tasks.addTask(2, new AITriceratopsCharge(this));
+        this.tasks.addTask(2, new AITriceratopsCharge(this));
         this.tasks.addTask(4, new JurassiCraftEntityAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(5, new JurassiCraftEntityAIWander(this, 0.8D * this.getCreatureSpeed()));
@@ -53,46 +53,45 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
         return 350;
     }
 
-	public void onLivingUpdate()
-	{
-		super.onLivingUpdate();
-		//Charge AI
+    public void onLivingUpdate()
+    {
+        super.onLivingUpdate();
+        //Charge AI
         float distanceFromTarget;
         if (getAttackTarget() != null)
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-        else
-            distanceFromTarget = -1;
+        else distanceFromTarget = -1;
         if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isPanicking() && this.getCreatureAgeInDays() >= 17)
             AnimationAPI.sendAnimPacket(this, 1);
-        if (timeSinceCharge != 0) 
-        	timeSinceCharge--;
-	}
-	
-	@Override
-	public void collideWithEntity(Entity victim) 
-	{
-		super.collideWithEntity(victim);
-		if (this.charging && !(victim instanceof EntityTriceratops)) {
-			victim.attackEntityFrom(DamageSource.causeMobDamage(this), 20);
-			double deltaX = victim.posX - victim.posX;
-			double deltaZ = victim.posZ - victim.posZ;
-			double angleYaw = (float) Math.atan2(deltaZ, deltaX);
-			victim.motionX += Math.cos(angleYaw);
-			victim.motionZ += Math.sin(angleYaw);
-			victim.motionY += 0.3;
-		}
-	}
-	
-	public void onUpdate()
-	{
-		super.onUpdate();
-		flailDegree.update();
-        if (animID == 1 && animTick == 1)
-            this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
-        if (this.stepCount <= 0 && this.charging) {
-        	this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
-        	stepCount = 10;
+        if (timeSinceCharge != 0) timeSinceCharge--;
+    }
+
+    @Override
+    public void collideWithEntity(Entity victim)
+    {
+        super.collideWithEntity(victim);
+        if (this.charging && !(victim instanceof EntityTriceratops))
+        {
+            victim.attackEntityFrom(DamageSource.causeMobDamage(this), 20);
+            double deltaX = victim.posX - victim.posX;
+            double deltaZ = victim.posZ - victim.posZ;
+            double angleYaw = (float) Math.atan2(deltaZ, deltaX);
+            victim.motionX += Math.cos(angleYaw);
+            victim.motionZ += Math.sin(angleYaw);
+            victim.motionY += 0.3;
+        }
+    }
+
+    public void onUpdate()
+    {
+        super.onUpdate();
+        flailDegree.update();
+        if (animID == 1 && animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        if (this.stepCount <= 0 && this.charging)
+        {
+            this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
+            stepCount = 10;
         }
         stepCount -= 1;
-	}
+    }
 }

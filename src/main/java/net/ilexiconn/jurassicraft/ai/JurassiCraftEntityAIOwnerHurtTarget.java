@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 
 public class JurassiCraftEntityAIOwnerHurtTarget extends EntityAITarget
 {

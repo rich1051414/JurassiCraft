@@ -1,9 +1,6 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.ilexiconn.jurassicraft.container.ContainerCultivate;
 import net.ilexiconn.jurassicraft.container.ContainerDNACombinator;
 import net.ilexiconn.jurassicraft.container.ContainerDNAExtractor;
@@ -12,6 +9,9 @@ import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -31,16 +31,13 @@ public class GuiHandler implements IGuiHandler
 
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-		if (ID == 69)
-			return new GuiDinoPad();
-        if (ID == 13)
-            return new GuiPregnancyProgress();
-        
+        if (ID == 69) return new GuiDinoPad();
+        if (ID == 13) return new GuiPregnancyProgress();
+
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
             return new GuiCultivate(player.inventory, (TileCultivate) tileEntity);
-        if (tileEntity instanceof TileCultivate && ID == 1)
-            return new GuiCultivateProcess((TileCultivate) tileEntity);
+        if (tileEntity instanceof TileCultivate && ID == 1) return new GuiCultivateProcess((TileCultivate) tileEntity);
         if (tileEntity instanceof TileSecurityFence)
             return new GuiSecurityFence(player.inventory, (TileSecurityFence) tileEntity);
         if (tileEntity instanceof TileDNAExtractor)

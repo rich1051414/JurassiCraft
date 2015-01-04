@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.minecraft.item.Item;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
+import net.minecraft.item.Item;
 
 public class ItemDinoBone extends Item
 {
@@ -10,7 +10,7 @@ public class ItemDinoBone extends Item
     {
         super();
         setUnlocalizedName("dinoBone");
-        setTextureName(Util.getModId() + "dinoBone");
+        setTextureName(JurassiCraft.getModId() + "dinoBone");
         setCreativeTab(ModCreativeTabs.items);
     }
 }

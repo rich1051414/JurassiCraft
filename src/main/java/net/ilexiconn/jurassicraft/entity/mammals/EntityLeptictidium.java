@@ -27,7 +27,7 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
         this.tasks.addTask(5, new JurassiCraftEntityAIWander(this, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        
+
         this.setCreatureExperiencePoints(1000);
     }
 

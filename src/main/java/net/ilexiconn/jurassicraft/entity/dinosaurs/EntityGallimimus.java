@@ -31,7 +31,7 @@ public class EntityGallimimus extends EntityJurassiCraftLandProtective implement
         this.tasks.addTask(8, new JurassiCraftEntityAIHerdBehavior(this, 96, 1500, 16, 0.6D * this.getCreatureSpeed()));
         this.setCreatureExperiencePoints(1000);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {

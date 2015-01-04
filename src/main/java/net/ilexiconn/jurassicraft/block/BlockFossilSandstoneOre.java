@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.block;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,9 +15,6 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
 
 import java.util.Random;
 
@@ -28,7 +28,7 @@ public class BlockFossilSandstoneOre extends Block
     {
         super(Material.ground);
         setBlockName("fossil_sandstone_ore");
-        setBlockTextureName(Util.getModId() + "fossil_sandstone_ore");
+        setBlockTextureName(JurassiCraft.getModId() + "fossil_sandstone_ore");
         setHardness(3.0F);
         setResistance(5.0F);
         setCreativeTab(ModCreativeTabs.blocks);
@@ -38,16 +38,23 @@ public class BlockFossilSandstoneOre extends Block
 
     public Item getItemDropped(int value, Random random, int thing)
     {
-    	float rand = random.nextFloat();
-    	if (rand < 0.25F) {
+        float rand = random.nextFloat();
+        if (rand < 0.25F)
+        {
             return Item.getItemFromBlock(Blocks.sandstone);
-    	} else if (rand < 0.5F) {
+        }
+        else if (rand < 0.5F)
+        {
             return Item.getItemFromBlock(Blocks.sand);
-    	} else if (rand < 0.75F) {
+        }
+        else if (rand < 0.75F)
+        {
             return Items.bone;
-    	} else {
+        }
+        else
+        {
             return ModItems.fossil;
-    	}
+        }
     }
 
     public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int h)
@@ -69,20 +76,19 @@ public class BlockFossilSandstoneOre extends Block
     public void registerBlockIcons(IIconRegister register)
     {
         for (int i = 0; i < 6; ++i)
-            topIcons[i] = register.registerIcon(Util.getModId() + "fossil_side_" + i + "_sandstone_top");
+            topIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_top");
 
         for (int i = 0; i < 6; ++i)
-            normalIcons[i] = register.registerIcon(Util.getModId() + "fossil_side_" + i + "_sandstone_normal");
+            normalIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_normal");
 
         for (int i = 0; i < 6; ++i)
-            bottomIcons[i] = register.registerIcon(Util.getModId() + "fossil_side_" + i + "_sandstone_bottom");
+            bottomIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_bottom");
     }
 
     @Override
     public IIcon getIcon(int side, int metadata)
     {
-        if (metadata > 5)
-            return topIcons[0];
+        if (metadata > 5) return topIcons[0];
 
         switch (side)
         {

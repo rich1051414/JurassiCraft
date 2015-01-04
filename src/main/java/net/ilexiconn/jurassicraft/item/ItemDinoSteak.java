@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.minecraft.item.ItemFood;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
+import net.minecraft.item.ItemFood;
 
 public class ItemDinoSteak extends ItemFood
 {
@@ -10,7 +10,7 @@ public class ItemDinoSteak extends ItemFood
     {
         super(8, 0.2f, true);
         this.setUnlocalizedName("dinoSteak");
-        this.setTextureName(Util.getModId() + "dinoSteak");
+        this.setTextureName(JurassiCraft.getModId() + "dinoSteak");
         this.setCreativeTab(ModCreativeTabs.items);
     }
 }

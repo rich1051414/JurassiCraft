@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 
 public class JurassiCraftLandEntityAIPanicIfNotAnger extends EntityAIBase
 {

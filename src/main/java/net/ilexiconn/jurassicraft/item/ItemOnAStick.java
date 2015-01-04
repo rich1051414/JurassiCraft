@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.minecraft.item.Item;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
+import net.minecraft.item.Item;
 
 public class ItemOnAStick extends Item
 {
@@ -10,7 +10,7 @@ public class ItemOnAStick extends Item
     {
         super();
         setUnlocalizedName(foodOnAStick + "OnAStick");
-        setTextureName(Util.getModId() + foodOnAStick + "OnAStick");
+        setTextureName(JurassiCraft.getModId() + foodOnAStick + "OnAStick");
         setCreativeTab(ModCreativeTabs.items);
     }
 }

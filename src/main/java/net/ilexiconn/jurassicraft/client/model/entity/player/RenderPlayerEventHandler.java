@@ -1,25 +1,22 @@
 package net.ilexiconn.jurassicraft.client.model.entity.player;
 
-import java.util.UUID;
-
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-
 import org.lwjgl.opengl.GL11;
 
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class RenderPlayerEventHandler
 {
-    public UUID[] uuid = new UUID[] {
+    public UUID[] uuid = new UUID[]{
             // iLexiconn
             UUID.fromString("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"),
             // Ry_dog101
@@ -33,15 +30,14 @@ public class RenderPlayerEventHandler
             //gegy1000
             UUID.fromString("c3ed4d52-fb4f-4964-ba1b-9cda2453741e"),
             // GinjaninjaS7
-            UUID.fromString("18eb6ad8-1656-4e41-89f6-88b708a0474c")
-    };
-    
+            UUID.fromString("18eb6ad8-1656-4e41-89f6-88b708a0474c")};
+
     public ModelSantaHat santaHat = new ModelSantaHat();
 
     @SubscribeEvent
     public void playerRender(RenderPlayerEvent.Pre event)
     {
-        if(JurassiCraft.isChristmas)
+        if (JurassiCraft.isChristmas)
         {
             GL11.glPushMatrix();
             GL11.glScalef(0.6f, 0.6f, 0.6f);
@@ -57,7 +53,7 @@ public class RenderPlayerEventHandler
             GL11.glPopMatrix();
         }
 
-        if(event.entityPlayer instanceof AbstractClientPlayer && isDev(event.entityPlayer.getUniqueID()))
+        if (event.entityPlayer instanceof AbstractClientPlayer && isDev(event.entityPlayer.getUniqueID()))
         {
             ((AbstractClientPlayer) event.entityPlayer).func_152121_a(MinecraftProfileTexture.Type.CAPE, new ResourceLocation("jurassicraft", "textures/cape/awesomeCape.png"));
         }

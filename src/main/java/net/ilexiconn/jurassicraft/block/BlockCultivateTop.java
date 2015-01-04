@@ -3,6 +3,9 @@ package net.ilexiconn.jurassicraft.block;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,10 +21,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
 
 import java.util.List;
 import java.util.Random;
@@ -37,12 +36,11 @@ public class BlockCultivateTop extends Block
     {
         super(Material.cactus);
         setBlockName("cultivate_top_" + (lit ? "lit" : "idle"));
-        setBlockTextureName(Util.getModId() + "cultivate");
+        setBlockTextureName(JurassiCraft.getModId() + "cultivate");
         setCreativeTab(null);
         setHardness(2f);
         setBlockBounds(0f, -1, 0f, 1f, 1f, 1f);
-        if (lit)
-            setLightLevel(1.0f);
+        if (lit) setLightLevel(1.0f);
         isLit = lit;
     }
 
@@ -62,8 +60,7 @@ public class BlockCultivateTop extends Block
         {
             String name = getTextureName();
 
-            if (colors[i] != null)
-                name = name + "_" + colors[i];
+            if (colors[i] != null) name = name + "_" + colors[i];
 
             icons[i] = iconRegister.registerIcon(name);
         }
@@ -195,8 +192,7 @@ public class BlockCultivateTop extends Block
         for (AxisAlignedBB aabb : aabbs)
         {
             AxisAlignedBB aabbTmp = aabb.getOffsetBoundingBox(x, y, z);
-            if (box.intersectsWith(aabbTmp))
-                list.add(aabbTmp);
+            if (box.intersectsWith(aabbTmp)) list.add(aabbTmp);
         }
     }
 
@@ -210,10 +206,8 @@ public class BlockCultivateTop extends Block
             MovingObjectPosition mop = aabb.getOffsetBoundingBox(x, y, z).calculateIntercept(origin, direction);
             if (mop != null)
             {
-                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin))
-                    closest = mop;
-                else
-                    closest = mop;
+                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin)) closest = mop;
+                else closest = mop;
             }
         }
         if (closest != null)

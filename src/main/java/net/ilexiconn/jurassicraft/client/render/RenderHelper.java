@@ -17,7 +17,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -72,19 +73,23 @@ public class RenderHelper
 
         if (info.renderSide[1]) renderBlocks.renderFaceYPos(info.baseBlock, x, y, z, info.getBlockTextureFromSide(1));
 
-        if (realDoLight) tessellator.setColorOpaque_F(lightEastWest * light, lightEastWest * light, lightEastWest * light);
+        if (realDoLight)
+            tessellator.setColorOpaque_F(lightEastWest * light, lightEastWest * light, lightEastWest * light);
 
         if (info.renderSide[2]) renderBlocks.renderFaceZNeg(info.baseBlock, x, y, z, info.getBlockTextureFromSide(2));
 
-        if (realDoLight) tessellator.setColorOpaque_F(lightEastWest * light, lightEastWest * light, lightEastWest * light);
+        if (realDoLight)
+            tessellator.setColorOpaque_F(lightEastWest * light, lightEastWest * light, lightEastWest * light);
 
         if (info.renderSide[3]) renderBlocks.renderFaceZPos(info.baseBlock, x, y, z, info.getBlockTextureFromSide(3));
 
-        if (realDoLight) tessellator.setColorOpaque_F(lightNorthSouth * light, lightNorthSouth * light, lightNorthSouth * light);
+        if (realDoLight)
+            tessellator.setColorOpaque_F(lightNorthSouth * light, lightNorthSouth * light, lightNorthSouth * light);
 
         if (info.renderSide[4]) renderBlocks.renderFaceXNeg(info.baseBlock, x, y, z, info.getBlockTextureFromSide(4));
 
-        if (realDoLight) tessellator.setColorOpaque_F(lightNorthSouth * light, lightNorthSouth * light, lightNorthSouth * light);
+        if (realDoLight)
+            tessellator.setColorOpaque_F(lightNorthSouth * light, lightNorthSouth * light, lightNorthSouth * light);
 
         if (info.renderSide[5]) renderBlocks.renderFaceXPos(info.baseBlock, x, y, z, info.getBlockTextureFromSide(5));
 

@@ -2,6 +2,9 @@ package net.ilexiconn.jurassicraft.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.container.slot.SlotDNASource;
+import net.ilexiconn.jurassicraft.item.IDNASource;
+import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,9 +12,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
-import net.ilexiconn.jurassicraft.container.slot.SlotDNASource;
-import net.ilexiconn.jurassicraft.item.IDNASource;
-import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 
 public class ContainerDNAExtractor extends Container
 {

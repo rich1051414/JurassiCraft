@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft;
 
+import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.ilexiconn.jurassicraft.content.IContentHandler;
 
 public class ModCreativeTabs implements IContentHandler
 {

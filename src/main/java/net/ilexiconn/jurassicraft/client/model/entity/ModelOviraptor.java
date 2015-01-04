@@ -1,14 +1,14 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
 public class ModelOviraptor extends MowzieModelBase
 {
     //fields
-	MowzieModelRenderer Head;
+    MowzieModelRenderer Head;
     MowzieModelRenderer Beak;
     MowzieModelRenderer Crest;
     MowzieModelRenderer Jaw;

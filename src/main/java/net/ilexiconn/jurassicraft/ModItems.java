@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.*;
+import net.minecraft.item.Item;
 
 import java.lang.reflect.Field;
 
@@ -53,8 +53,7 @@ public class ModItems implements IContentHandler
             try
             {
                 Item item = (Item) field.get(this);
-                if (field.getAnnotations().length == 0)
-                    GameRegistry.registerItem(item, item.getUnlocalizedName());
+                if (field.getAnnotations().length == 0) GameRegistry.registerItem(item, item.getUnlocalizedName());
             }
             catch (IllegalAccessException e)
             {

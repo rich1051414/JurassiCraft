@@ -1,18 +1,16 @@
 package thehippomaster.AnimationAPI;
 
-import net.minecraft.entity.Entity;
-import thehippomaster.AnimationAPI.packet.PacketAnim;
-import thehippomaster.AnimationAPI.packet.PacketPipeline;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.entity.Entity;
+import thehippomaster.AnimationAPI.packet.PacketAnim;
+import thehippomaster.AnimationAPI.packet.PacketPipeline;
 
-@Mod(modid = "animationapi", name = "AnimationAPI", version = "0.0.0")
+@Mod(modid = "animationapi", name = "AnimationAPI", version = "1.0.0")
 public class AnimationAPI {
 	
 	@Mod.EventHandler

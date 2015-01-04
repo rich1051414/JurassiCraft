@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 
 public class JurassiCraftEntityAIAngerProtective extends EntityAIBase
 {

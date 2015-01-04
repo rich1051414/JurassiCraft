@@ -1,24 +1,24 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelHighSecurityFenceGrid;
+import net.ilexiconn.jurassicraft.tile.TileSecurityFenceHighGrid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelHighSecurityFenceGrid;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceHighGrid;
 
 public class TileSecurityFenceHighGridRenderer extends TileEntitySpecialRenderer
 {
 
-    private static final ResourceLocation texture = new ResourceLocation(Util.getModId() + "textures/blocks/modelHighSecurityFenceGrid.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/modelHighSecurityFenceGrid.png");
     private ModelHighSecurityFenceGrid model = new ModelHighSecurityFenceGrid();
 
     public TileSecurityFenceHighGridRenderer()
     {
-    	
+
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TileSecurityFenceHighGridRenderer extends TileEntitySpecialRenderer
     {
         if (tileEntity instanceof TileSecurityFenceHighGrid)
         {
-        	TileSecurityFenceHighGrid tileEntityModel = (TileSecurityFenceHighGrid) tileEntity;
+            TileSecurityFenceHighGrid tileEntityModel = (TileSecurityFenceHighGrid) tileEntity;
             int angle = 0;
             GL11.glPushMatrix();
             if (tileEntityModel.getWorldObj() == null)

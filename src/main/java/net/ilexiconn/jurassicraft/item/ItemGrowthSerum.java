@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.minecraft.item.Item;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
+import net.minecraft.item.Item;
 
 public class ItemGrowthSerum extends Item
 {
@@ -10,7 +10,7 @@ public class ItemGrowthSerum extends Item
     {
         super();
         setUnlocalizedName("growthSerum");
-        setTextureName(Util.getModId() + "growth_Serum");
+        setTextureName(JurassiCraft.getModId() + "growth_Serum");
         setCreativeTab(ModCreativeTabs.items);
     }
 }

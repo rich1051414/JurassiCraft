@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.gen;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import net.ilexiconn.jurassicraft.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.ilexiconn.jurassicraft.ModBlocks;
 
 import java.util.Random;
 
@@ -85,11 +85,13 @@ public class WorldGenFossilOre implements IWorldGenerator
                                         {
                                             toGenerate = ModBlocks.clayFossilOre;
                                             metadataToGenerate = 0;
-                                        } else if (block == Blocks.stained_hardened_clay)
+                                        }
+                                        else if (block == Blocks.stained_hardened_clay)
                                         {
                                             toGenerate = ModBlocks.clayFossilOre;
                                             metadataToGenerate = convertVanillaMetadataToOre(blockMetadata);
-                                        } else if (block == Blocks.sandstone)
+                                        }
+                                        else if (block == Blocks.sandstone)
                                         {
                                             toGenerate = ModBlocks.sandstoneFossilOre;
                                             metadataToGenerate = 0;

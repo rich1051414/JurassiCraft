@@ -5,20 +5,16 @@
 // - ZeuX
 
 
-
-
-
-
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelSarcosuchus extends MowzieModelBase
 {
-  //fields
+    //fields
     MowzieModelRenderer bodytail;
     MowzieModelRenderer head_part_1;
     MowzieModelRenderer top_jaw_part_1;
@@ -46,255 +42,255 @@ public class ModelSarcosuchus extends MowzieModelBase
     MowzieModelRenderer leg__left_b_1;
     MowzieModelRenderer leg__left_b_2;
     MowzieModelRenderer leg__left_b_foot;
-  
-  public ModelSarcosuchus()
-  {
-    textureWidth = 256;
-    textureHeight = 128;
-    
-      bodytail = new MowzieModelRenderer(this, 1, 98);
-      bodytail.addBox(-6.5F, 1F, 0F, 13, 8, 8);
-      bodytail.setRotationPoint(0F, 13F, -6F);
-      bodytail.setTextureSize(256, 128);
-      bodytail.mirror = true;
-      setRotation(bodytail, 0F, 0F, 0F);
-      head_part_1 = new MowzieModelRenderer(this, 0, 24);
-      head_part_1.addBox(-7F, -1F, -14F, 14, 6, 9);
-      head_part_1.setRotationPoint(0F, 15F, 1F);
-      head_part_1.setTextureSize(256, 128);
-      head_part_1.mirror = true;
-      setRotation(head_part_1, 0F, 0F, 0F);
-      top_jaw_part_1 = new MowzieModelRenderer(this, 0, 40);
-      top_jaw_part_1.addBox(-6F, -4.440892E-16F, -20F, 12, 5, 6);
-      top_jaw_part_1.setRotationPoint(0F, 15F, 1F);
-      top_jaw_part_1.setTextureSize(256, 128);
-      top_jaw_part_1.mirror = true;
-      setRotation(top_jaw_part_1, 0F, 0F, 0F);
-      top_jaw_part_2 = new MowzieModelRenderer(this, 31, 37);
-      top_jaw_part_2.addBox(-4F, 1F, -32F, 8, 4, 18);
-      top_jaw_part_2.setRotationPoint(0F, 15F, 1F);
-      top_jaw_part_2.setTextureSize(256, 128);
-      top_jaw_part_2.mirror = true;
-      setRotation(top_jaw_part_2, 0F, 0F, 0F);
-      top_jaw_jaw_part_3 = new MowzieModelRenderer(this, 0, 11);
-      top_jaw_jaw_part_3.addBox(-5F, -4.440892E-16F, -37F, 10, 5, 6);
-      top_jaw_jaw_part_3.setRotationPoint(0F, 15F, 1F);
-      top_jaw_jaw_part_3.setTextureSize(256, 128);
-      top_jaw_jaw_part_3.mirror = true;
-      setRotation(top_jaw_jaw_part_3, 0F, 0F, 0F);
-      bottomjaw_part_1 = new MowzieModelRenderer(this, 130, 0);
-      bottomjaw_part_1.addBox(-6F, -8F, -18F, 12, 3, 16);
-      bottomjaw_part_1.setRotationPoint(0F, 15F, 1F);
-      bottomjaw_part_1.setTextureSize(256, 128);
-      bottomjaw_part_1.mirror = true;
-      setRotation(bottomjaw_part_1, 0F, 0F, 3.141593F);
-      bottom_jaw_part_2 = new MowzieModelRenderer(this, 76, 0);
-      bottom_jaw_part_2.addBox(-4F, -7F, -36F, 8, 2, 18);
-      bottom_jaw_part_2.setRotationPoint(0F, 15F, 1F);
-      bottom_jaw_part_2.setTextureSize(256, 128);
-      bottom_jaw_part_2.mirror = true;
-      setRotation(bottom_jaw_part_2, 0F, 0F, 3.141593F);
-      teeth_top = new MowzieModelRenderer(this, 0, 61);
-      teeth_top.addBox(-4.5F, 4.6F, -37F, 9, 4, 24);
-      teeth_top.setRotationPoint(0F, 15F, 1F);
-      teeth_top.setTextureSize(256, 128);
-      teeth_top.mirror = true;
-      setRotation(teeth_top, 0F, 0F, 0F);
-      body_part_1 = new MowzieModelRenderer(this, 31, 76);
-      body_part_1.addBox(-8.5F, -1F, 0F, 17, 9, 42);
-      body_part_1.setRotationPoint(0F, 14F, 2F);
-      body_part_1.setTextureSize(256, 128);
-      body_part_1.mirror = true;
-      setRotation(body_part_1, 0F, 0F, 0F);
-      tail_part_1 = new MowzieModelRenderer(this, 113, 89);
-      tail_part_1.addBox(-7F, 0F, -1F, 14, 8, 18);
-      tail_part_1.setRotationPoint(0F, 14F, 45F);
-      tail_part_1.setTextureSize(256, 128);
-      tail_part_1.mirror = true;
-      setRotation(tail_part_1, 0F, 0F, 0F);
-      tail_part_2 = new MowzieModelRenderer(this, 113, 53);
-      tail_part_2.addBox(-5F, 1F, 17F, 10, 7, 24);
-      tail_part_2.setRotationPoint(0F, 14F, 44F);
-      tail_part_2.setTextureSize(256, 128);
-      tail_part_2.mirror = true;
-      setRotation(tail_part_2, 0F, 0F, 0F);
-      tail_part_3 = new MowzieModelRenderer(this, 159, 92);
-      tail_part_3.addBox(-4F, 3F, 40F, 8, 5, 27);
-      tail_part_3.setRotationPoint(0F, 14F, 44F);
-      tail_part_3.setTextureSize(256, 128);
-      tail_part_3.mirror = true;
-      setRotation(tail_part_3, 0F, 0F, 0F);
-      spikes = new MowzieModelRenderer(this, 113, 21);
-      spikes.addBox(0F, -4F, 18F, 0, 5, 24);
-      spikes.setRotationPoint(0F, 14F, 44F);
-      spikes.setTextureSize(256, 128);
-      spikes.mirror = true;
-      setRotation(spikes, 0F, 0F, 0F);
-      spikes2 = new MowzieModelRenderer(this, 113, 23);
-      spikes2.addBox(0F, 0F, 41F, 0, 5, 24);
-      spikes2.setRotationPoint(0F, 14F, 44F);
-      spikes2.setTextureSize(256, 128);
-      spikes2.mirror = true;
-      setRotation(spikes2, 0F, 0F, 0F);
-      spikes3 = new MowzieModelRenderer(this, 113, 23);
-      spikes3.addBox(0F, -3F, 0F, 0, 5, 24);
-      spikes3.setRotationPoint(0F, 14F, 44F);
-      spikes3.setTextureSize(256, 128);
-      spikes3.mirror = true;
-      setRotation(spikes3, 0F, 0F, 0F);
-      leg__right_f_1 = new MowzieModelRenderer(this, 209, 25);
-      leg__right_f_1.addBox(4F, -2F, 0F, 3, 5, 7);
-      leg__right_f_1.setRotationPoint(-7F, 17F, 6F);
-      leg__right_f_1.setTextureSize(256, 128);
-      leg__right_f_1.mirror = true;
-      setRotation(leg__right_f_1, 0F, -1.570796F, 0F);
-      leg__right_f_2 = new MowzieModelRenderer(this, 209, 25);
-      leg__right_f_2.addBox(4F, -8F, 1.8F, 3, 5, 7);
-      leg__right_f_2.setRotationPoint(-7F, 17F, 6F);
-      leg__right_f_2.setTextureSize(256, 128);
-      leg__right_f_2.mirror = true;
-      setRotation(leg__right_f_2, -1.343904F, -1.570796F, 0F);
-      leg__right_f_foot = new MowzieModelRenderer(this, 210, 39);
-      leg__right_f_foot.addBox(-7.6F, 4.733333F, -4.2F, 2, 5, 7);
-      leg__right_f_foot.setRotationPoint(-7F, 17F, 9F);
-      leg__right_f_foot.setTextureSize(256, 128);
-      leg__right_f_foot.mirror = true;
-      setRotation(leg__right_f_foot, -1.570796F, 1.570796F, -1.570796F);
-      leg__left_f_1 = new MowzieModelRenderer(this, 209, 25);
-      leg__left_f_1.addBox(-4F, -2F, 0F, 3, 5, 7);
-      leg__left_f_1.setRotationPoint(7F, 17F, 9F);
-      leg__left_f_1.setTextureSize(256, 128);
-      leg__left_f_1.mirror = true;
-      setRotation(leg__left_f_1, 0F, -4.712389F, 0F);
-      leg__left_f_2 = new MowzieModelRenderer(this, 209, 25);
-      leg__left_f_2.addBox(-4F, -8F, 1.8F, 3, 5, 7);
-      leg__left_f_2.setRotationPoint(7F, 17F, 9F);
-      leg__left_f_2.setTextureSize(256, 128);
-      leg__left_f_2.mirror = true;
-      setRotation(leg__left_f_2, -1.343904F, -4.712389F, 0F);
-      leg__left_f_foot = new MowzieModelRenderer(this, 210, 39);
-      leg__left_f_foot.addBox(-7.6F, -10.26667F, -4.2F, 2, 5, 7);
-      leg__left_f_foot.setRotationPoint(7F, 17F, 9F);
-      leg__left_f_foot.setTextureSize(256, 128);
-      leg__left_f_foot.mirror = true;
-      setRotation(leg__left_f_foot, -1.570796F, 1.570796F, -1.570796F);
-      leg__right_b_1 = new MowzieModelRenderer(this, 209, 25);
-      leg__right_b_1.addBox(4F, -2F, 0F, 3, 5, 7);
-      leg__right_b_1.setRotationPoint(-7F, 17F, 32F);
-      leg__right_b_1.setTextureSize(256, 128);
-      leg__right_b_1.mirror = true;
-      setRotation(leg__right_b_1, 0F, -1.570796F, 0F);
-      leg__right_b_2 = new MowzieModelRenderer(this, 209, 25);
-      leg__right_b_2.addBox(4F, -8F, 1.8F, 3, 5, 7);
-      leg__right_b_2.setRotationPoint(-7F, 17F, 32F);
-      leg__right_b_2.setTextureSize(256, 128);
-      leg__right_b_2.mirror = true;
-      setRotation(leg__right_b_2, -1.343904F, -1.570796F, 0F);
-      leg__right_b_foot = new MowzieModelRenderer(this, 210, 39);
-      leg__right_b_foot.addBox(-7.6F, 4.733333F, -7.2F, 2, 5, 7);
-      leg__right_b_foot.setRotationPoint(-7F, 17F, 32F);
-      leg__right_b_foot.setTextureSize(256, 128);
-      leg__right_b_foot.mirror = true;
-      setRotation(leg__right_b_foot, -1.570796F, 1.570796F, -1.570796F);
-      leg__left_b_1 = new MowzieModelRenderer(this, 209, 25);
-      leg__left_b_1.addBox(-4F, -2F, 0F, 3, 5, 7);
-      leg__left_b_1.setRotationPoint(7F, 17F, 35F);
-      leg__left_b_1.setTextureSize(256, 128);
-      leg__left_b_1.mirror = true;
-      setRotation(leg__left_b_1, 0F, -4.712389F, 0F);
-      leg__left_b_2 = new MowzieModelRenderer(this, 209, 25);
-      leg__left_b_2.addBox(-4F, -8F, 1.8F, 3, 5, 7);
-      leg__left_b_2.setRotationPoint(7F, 17F, 35F);
-      leg__left_b_2.setTextureSize(256, 128);
-      leg__left_b_2.mirror = true;
-      setRotation(leg__left_b_2, -1.343904F, -4.712389F, 0F);
-      leg__left_b_foot = new MowzieModelRenderer(this, 210, 39);
-      leg__left_b_foot.addBox(-7.6F, -10.26667F, -7.2F, 2, 5, 7);
-      leg__left_b_foot.setRotationPoint(7F, 17F, 32F);
-      leg__left_b_foot.setTextureSize(256, 128);
-      leg__left_b_foot.mirror = true;
-      setRotation(leg__left_b_foot, -1.570796F, 1.570796F, -1.570796F);
-      
-      bodytail.setInitValuesToCurrentPose();
-      head_part_1.setInitValuesToCurrentPose();
-      top_jaw_part_1.setInitValuesToCurrentPose();
-      top_jaw_part_2.setInitValuesToCurrentPose();
-      top_jaw_jaw_part_3.setInitValuesToCurrentPose();
-      bottomjaw_part_1.setInitValuesToCurrentPose();
-      bottom_jaw_part_2.setInitValuesToCurrentPose();
-      teeth_top.setInitValuesToCurrentPose();
-      body_part_1.setInitValuesToCurrentPose();
-      tail_part_1.setInitValuesToCurrentPose();
-      tail_part_2.setInitValuesToCurrentPose();
-      tail_part_3.setInitValuesToCurrentPose();
-      spikes.setInitValuesToCurrentPose();
-      spikes2.setInitValuesToCurrentPose();
-      spikes3.setInitValuesToCurrentPose();
-      leg__right_f_1.setInitValuesToCurrentPose();
-      leg__right_f_2.setInitValuesToCurrentPose();
-      leg__right_f_foot.setInitValuesToCurrentPose();
-      leg__left_f_1.setInitValuesToCurrentPose();
-      leg__left_f_2.setInitValuesToCurrentPose();
-      leg__left_f_foot.setInitValuesToCurrentPose();
-      leg__right_b_1.setInitValuesToCurrentPose();
-      leg__right_b_2.setInitValuesToCurrentPose();
-      leg__right_b_foot.setInitValuesToCurrentPose();
-      leg__left_b_1.setInitValuesToCurrentPose();
-      leg__left_b_2.setInitValuesToCurrentPose();
-      leg__left_b_foot.setInitValuesToCurrentPose();
-  }
-  
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    setRotationAngles(f, f1, f2, f3, f4, f5);
-    bodytail.render(f5);
-    head_part_1.render(f5);
-    top_jaw_part_1.render(f5);
-    top_jaw_part_2.render(f5);
-    top_jaw_jaw_part_3.render(f5);
-    bottomjaw_part_1.render(f5);
-    bottom_jaw_part_2.render(f5);
-    teeth_top.render(f5);
-    body_part_1.render(f5);
-    tail_part_1.render(f5);
-    tail_part_2.render(f5);
-    tail_part_3.render(f5);
-    spikes.render(f5);
-    spikes2.render(f5);
-    spikes3.render(f5);
-    leg__right_f_1.render(f5);
-    leg__right_f_2.render(f5);
-    leg__right_f_foot.render(f5);
-    leg__left_f_1.render(f5);
-    leg__left_f_2.render(f5);
-    leg__left_f_foot.render(f5);
-    leg__right_b_1.render(f5);
-    leg__right_b_2.render(f5);
-    leg__right_b_foot.render(f5);
-    leg__left_b_1.render(f5);
-    leg__left_b_2.render(f5);
-    leg__left_b_foot.render(f5);
-  }
-  
-  private void setRotation(MowzieModelRenderer model, float x, float y, float z)
-  {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
-  
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-    this.tail_part_1.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.6F * f1;
-    this.spikes3.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.6F * f1;
-    
-    this.tail_part_2.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
-    this.spikes.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
-        
-    this.tail_part_3.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.1F * f1;
-    this.spikes2.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.1F * f1;
-  }
+
+    public ModelSarcosuchus()
+    {
+        textureWidth = 256;
+        textureHeight = 128;
+
+        bodytail = new MowzieModelRenderer(this, 1, 98);
+        bodytail.addBox(-6.5F, 1F, 0F, 13, 8, 8);
+        bodytail.setRotationPoint(0F, 13F, -6F);
+        bodytail.setTextureSize(256, 128);
+        bodytail.mirror = true;
+        setRotation(bodytail, 0F, 0F, 0F);
+        head_part_1 = new MowzieModelRenderer(this, 0, 24);
+        head_part_1.addBox(-7F, -1F, -14F, 14, 6, 9);
+        head_part_1.setRotationPoint(0F, 15F, 1F);
+        head_part_1.setTextureSize(256, 128);
+        head_part_1.mirror = true;
+        setRotation(head_part_1, 0F, 0F, 0F);
+        top_jaw_part_1 = new MowzieModelRenderer(this, 0, 40);
+        top_jaw_part_1.addBox(-6F, -4.440892E-16F, -20F, 12, 5, 6);
+        top_jaw_part_1.setRotationPoint(0F, 15F, 1F);
+        top_jaw_part_1.setTextureSize(256, 128);
+        top_jaw_part_1.mirror = true;
+        setRotation(top_jaw_part_1, 0F, 0F, 0F);
+        top_jaw_part_2 = new MowzieModelRenderer(this, 31, 37);
+        top_jaw_part_2.addBox(-4F, 1F, -32F, 8, 4, 18);
+        top_jaw_part_2.setRotationPoint(0F, 15F, 1F);
+        top_jaw_part_2.setTextureSize(256, 128);
+        top_jaw_part_2.mirror = true;
+        setRotation(top_jaw_part_2, 0F, 0F, 0F);
+        top_jaw_jaw_part_3 = new MowzieModelRenderer(this, 0, 11);
+        top_jaw_jaw_part_3.addBox(-5F, -4.440892E-16F, -37F, 10, 5, 6);
+        top_jaw_jaw_part_3.setRotationPoint(0F, 15F, 1F);
+        top_jaw_jaw_part_3.setTextureSize(256, 128);
+        top_jaw_jaw_part_3.mirror = true;
+        setRotation(top_jaw_jaw_part_3, 0F, 0F, 0F);
+        bottomjaw_part_1 = new MowzieModelRenderer(this, 130, 0);
+        bottomjaw_part_1.addBox(-6F, -8F, -18F, 12, 3, 16);
+        bottomjaw_part_1.setRotationPoint(0F, 15F, 1F);
+        bottomjaw_part_1.setTextureSize(256, 128);
+        bottomjaw_part_1.mirror = true;
+        setRotation(bottomjaw_part_1, 0F, 0F, 3.141593F);
+        bottom_jaw_part_2 = new MowzieModelRenderer(this, 76, 0);
+        bottom_jaw_part_2.addBox(-4F, -7F, -36F, 8, 2, 18);
+        bottom_jaw_part_2.setRotationPoint(0F, 15F, 1F);
+        bottom_jaw_part_2.setTextureSize(256, 128);
+        bottom_jaw_part_2.mirror = true;
+        setRotation(bottom_jaw_part_2, 0F, 0F, 3.141593F);
+        teeth_top = new MowzieModelRenderer(this, 0, 61);
+        teeth_top.addBox(-4.5F, 4.6F, -37F, 9, 4, 24);
+        teeth_top.setRotationPoint(0F, 15F, 1F);
+        teeth_top.setTextureSize(256, 128);
+        teeth_top.mirror = true;
+        setRotation(teeth_top, 0F, 0F, 0F);
+        body_part_1 = new MowzieModelRenderer(this, 31, 76);
+        body_part_1.addBox(-8.5F, -1F, 0F, 17, 9, 42);
+        body_part_1.setRotationPoint(0F, 14F, 2F);
+        body_part_1.setTextureSize(256, 128);
+        body_part_1.mirror = true;
+        setRotation(body_part_1, 0F, 0F, 0F);
+        tail_part_1 = new MowzieModelRenderer(this, 113, 89);
+        tail_part_1.addBox(-7F, 0F, -1F, 14, 8, 18);
+        tail_part_1.setRotationPoint(0F, 14F, 45F);
+        tail_part_1.setTextureSize(256, 128);
+        tail_part_1.mirror = true;
+        setRotation(tail_part_1, 0F, 0F, 0F);
+        tail_part_2 = new MowzieModelRenderer(this, 113, 53);
+        tail_part_2.addBox(-5F, 1F, 17F, 10, 7, 24);
+        tail_part_2.setRotationPoint(0F, 14F, 44F);
+        tail_part_2.setTextureSize(256, 128);
+        tail_part_2.mirror = true;
+        setRotation(tail_part_2, 0F, 0F, 0F);
+        tail_part_3 = new MowzieModelRenderer(this, 159, 92);
+        tail_part_3.addBox(-4F, 3F, 40F, 8, 5, 27);
+        tail_part_3.setRotationPoint(0F, 14F, 44F);
+        tail_part_3.setTextureSize(256, 128);
+        tail_part_3.mirror = true;
+        setRotation(tail_part_3, 0F, 0F, 0F);
+        spikes = new MowzieModelRenderer(this, 113, 21);
+        spikes.addBox(0F, -4F, 18F, 0, 5, 24);
+        spikes.setRotationPoint(0F, 14F, 44F);
+        spikes.setTextureSize(256, 128);
+        spikes.mirror = true;
+        setRotation(spikes, 0F, 0F, 0F);
+        spikes2 = new MowzieModelRenderer(this, 113, 23);
+        spikes2.addBox(0F, 0F, 41F, 0, 5, 24);
+        spikes2.setRotationPoint(0F, 14F, 44F);
+        spikes2.setTextureSize(256, 128);
+        spikes2.mirror = true;
+        setRotation(spikes2, 0F, 0F, 0F);
+        spikes3 = new MowzieModelRenderer(this, 113, 23);
+        spikes3.addBox(0F, -3F, 0F, 0, 5, 24);
+        spikes3.setRotationPoint(0F, 14F, 44F);
+        spikes3.setTextureSize(256, 128);
+        spikes3.mirror = true;
+        setRotation(spikes3, 0F, 0F, 0F);
+        leg__right_f_1 = new MowzieModelRenderer(this, 209, 25);
+        leg__right_f_1.addBox(4F, -2F, 0F, 3, 5, 7);
+        leg__right_f_1.setRotationPoint(-7F, 17F, 6F);
+        leg__right_f_1.setTextureSize(256, 128);
+        leg__right_f_1.mirror = true;
+        setRotation(leg__right_f_1, 0F, -1.570796F, 0F);
+        leg__right_f_2 = new MowzieModelRenderer(this, 209, 25);
+        leg__right_f_2.addBox(4F, -8F, 1.8F, 3, 5, 7);
+        leg__right_f_2.setRotationPoint(-7F, 17F, 6F);
+        leg__right_f_2.setTextureSize(256, 128);
+        leg__right_f_2.mirror = true;
+        setRotation(leg__right_f_2, -1.343904F, -1.570796F, 0F);
+        leg__right_f_foot = new MowzieModelRenderer(this, 210, 39);
+        leg__right_f_foot.addBox(-7.6F, 4.733333F, -4.2F, 2, 5, 7);
+        leg__right_f_foot.setRotationPoint(-7F, 17F, 9F);
+        leg__right_f_foot.setTextureSize(256, 128);
+        leg__right_f_foot.mirror = true;
+        setRotation(leg__right_f_foot, -1.570796F, 1.570796F, -1.570796F);
+        leg__left_f_1 = new MowzieModelRenderer(this, 209, 25);
+        leg__left_f_1.addBox(-4F, -2F, 0F, 3, 5, 7);
+        leg__left_f_1.setRotationPoint(7F, 17F, 9F);
+        leg__left_f_1.setTextureSize(256, 128);
+        leg__left_f_1.mirror = true;
+        setRotation(leg__left_f_1, 0F, -4.712389F, 0F);
+        leg__left_f_2 = new MowzieModelRenderer(this, 209, 25);
+        leg__left_f_2.addBox(-4F, -8F, 1.8F, 3, 5, 7);
+        leg__left_f_2.setRotationPoint(7F, 17F, 9F);
+        leg__left_f_2.setTextureSize(256, 128);
+        leg__left_f_2.mirror = true;
+        setRotation(leg__left_f_2, -1.343904F, -4.712389F, 0F);
+        leg__left_f_foot = new MowzieModelRenderer(this, 210, 39);
+        leg__left_f_foot.addBox(-7.6F, -10.26667F, -4.2F, 2, 5, 7);
+        leg__left_f_foot.setRotationPoint(7F, 17F, 9F);
+        leg__left_f_foot.setTextureSize(256, 128);
+        leg__left_f_foot.mirror = true;
+        setRotation(leg__left_f_foot, -1.570796F, 1.570796F, -1.570796F);
+        leg__right_b_1 = new MowzieModelRenderer(this, 209, 25);
+        leg__right_b_1.addBox(4F, -2F, 0F, 3, 5, 7);
+        leg__right_b_1.setRotationPoint(-7F, 17F, 32F);
+        leg__right_b_1.setTextureSize(256, 128);
+        leg__right_b_1.mirror = true;
+        setRotation(leg__right_b_1, 0F, -1.570796F, 0F);
+        leg__right_b_2 = new MowzieModelRenderer(this, 209, 25);
+        leg__right_b_2.addBox(4F, -8F, 1.8F, 3, 5, 7);
+        leg__right_b_2.setRotationPoint(-7F, 17F, 32F);
+        leg__right_b_2.setTextureSize(256, 128);
+        leg__right_b_2.mirror = true;
+        setRotation(leg__right_b_2, -1.343904F, -1.570796F, 0F);
+        leg__right_b_foot = new MowzieModelRenderer(this, 210, 39);
+        leg__right_b_foot.addBox(-7.6F, 4.733333F, -7.2F, 2, 5, 7);
+        leg__right_b_foot.setRotationPoint(-7F, 17F, 32F);
+        leg__right_b_foot.setTextureSize(256, 128);
+        leg__right_b_foot.mirror = true;
+        setRotation(leg__right_b_foot, -1.570796F, 1.570796F, -1.570796F);
+        leg__left_b_1 = new MowzieModelRenderer(this, 209, 25);
+        leg__left_b_1.addBox(-4F, -2F, 0F, 3, 5, 7);
+        leg__left_b_1.setRotationPoint(7F, 17F, 35F);
+        leg__left_b_1.setTextureSize(256, 128);
+        leg__left_b_1.mirror = true;
+        setRotation(leg__left_b_1, 0F, -4.712389F, 0F);
+        leg__left_b_2 = new MowzieModelRenderer(this, 209, 25);
+        leg__left_b_2.addBox(-4F, -8F, 1.8F, 3, 5, 7);
+        leg__left_b_2.setRotationPoint(7F, 17F, 35F);
+        leg__left_b_2.setTextureSize(256, 128);
+        leg__left_b_2.mirror = true;
+        setRotation(leg__left_b_2, -1.343904F, -4.712389F, 0F);
+        leg__left_b_foot = new MowzieModelRenderer(this, 210, 39);
+        leg__left_b_foot.addBox(-7.6F, -10.26667F, -7.2F, 2, 5, 7);
+        leg__left_b_foot.setRotationPoint(7F, 17F, 32F);
+        leg__left_b_foot.setTextureSize(256, 128);
+        leg__left_b_foot.mirror = true;
+        setRotation(leg__left_b_foot, -1.570796F, 1.570796F, -1.570796F);
+
+        bodytail.setInitValuesToCurrentPose();
+        head_part_1.setInitValuesToCurrentPose();
+        top_jaw_part_1.setInitValuesToCurrentPose();
+        top_jaw_part_2.setInitValuesToCurrentPose();
+        top_jaw_jaw_part_3.setInitValuesToCurrentPose();
+        bottomjaw_part_1.setInitValuesToCurrentPose();
+        bottom_jaw_part_2.setInitValuesToCurrentPose();
+        teeth_top.setInitValuesToCurrentPose();
+        body_part_1.setInitValuesToCurrentPose();
+        tail_part_1.setInitValuesToCurrentPose();
+        tail_part_2.setInitValuesToCurrentPose();
+        tail_part_3.setInitValuesToCurrentPose();
+        spikes.setInitValuesToCurrentPose();
+        spikes2.setInitValuesToCurrentPose();
+        spikes3.setInitValuesToCurrentPose();
+        leg__right_f_1.setInitValuesToCurrentPose();
+        leg__right_f_2.setInitValuesToCurrentPose();
+        leg__right_f_foot.setInitValuesToCurrentPose();
+        leg__left_f_1.setInitValuesToCurrentPose();
+        leg__left_f_2.setInitValuesToCurrentPose();
+        leg__left_f_foot.setInitValuesToCurrentPose();
+        leg__right_b_1.setInitValuesToCurrentPose();
+        leg__right_b_2.setInitValuesToCurrentPose();
+        leg__right_b_foot.setInitValuesToCurrentPose();
+        leg__left_b_1.setInitValuesToCurrentPose();
+        leg__left_b_2.setInitValuesToCurrentPose();
+        leg__left_b_foot.setInitValuesToCurrentPose();
+    }
+
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5);
+        bodytail.render(f5);
+        head_part_1.render(f5);
+        top_jaw_part_1.render(f5);
+        top_jaw_part_2.render(f5);
+        top_jaw_jaw_part_3.render(f5);
+        bottomjaw_part_1.render(f5);
+        bottom_jaw_part_2.render(f5);
+        teeth_top.render(f5);
+        body_part_1.render(f5);
+        tail_part_1.render(f5);
+        tail_part_2.render(f5);
+        tail_part_3.render(f5);
+        spikes.render(f5);
+        spikes2.render(f5);
+        spikes3.render(f5);
+        leg__right_f_1.render(f5);
+        leg__right_f_2.render(f5);
+        leg__right_f_foot.render(f5);
+        leg__left_f_1.render(f5);
+        leg__left_f_2.render(f5);
+        leg__left_f_foot.render(f5);
+        leg__right_b_1.render(f5);
+        leg__right_b_2.render(f5);
+        leg__right_b_foot.render(f5);
+        leg__left_b_1.render(f5);
+        leg__left_b_2.render(f5);
+        leg__left_b_foot.render(f5);
+    }
+
+    private void setRotation(MowzieModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
+        this.tail_part_1.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.6F * f1;
+        this.spikes3.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.6F * f1;
+
+        this.tail_part_2.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
+        this.spikes.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
+
+        this.tail_part_3.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.1F * f1;
+        this.spikes2.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.1F * f1;
+    }
 
 }

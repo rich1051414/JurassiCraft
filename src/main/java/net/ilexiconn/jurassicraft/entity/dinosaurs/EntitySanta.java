@@ -1,10 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
@@ -42,33 +40,33 @@ public class EntitySanta extends EntityJurassiCraftRidable implements IDinosaur
         return 350;
     }
 
-   
+
     @Override
     public void onLivingUpdate()
     {
-    	super.onLivingUpdate();
-    	
+        super.onLivingUpdate();
+
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.posY);
         int k = MathHelper.floor_double(this.posZ);
-    	
+
         for (int l = 0; l < 4; ++l)
         {
-            i = MathHelper.floor_double(this.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
+            i = MathHelper.floor_double(this.posX + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
             j = MathHelper.floor_double(this.posY);
-            k = MathHelper.floor_double(this.posZ + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25F));
+            k = MathHelper.floor_double(this.posZ + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
 
             if ((this.worldObj.getBlock(i, j, k).getMaterial() == Material.air || this.worldObj.getBlock(i, j, k).getMaterial() == Material.grass) && Blocks.snow_layer.canPlaceBlockAt(this.worldObj, i, j, k))
             {
                 this.worldObj.setBlock(i, j, k, Blocks.snow_layer);
-                this.worldObj.setBlock(i+1, j, k, Blocks.snow_layer);
-                this.worldObj.setBlock(i+1, j, k+1, Blocks.snow_layer);
-                this.worldObj.setBlock(i+1, j, k-1, Blocks.snow_layer);
-                this.worldObj.setBlock(i, j, k-1, Blocks.snow_layer);
-                this.worldObj.setBlock(i, j, k+1, Blocks.snow_layer);
-                this.worldObj.setBlock(i-1, j, k+1, Blocks.snow_layer);
-                this.worldObj.setBlock(i-1, j, k-1, Blocks.snow_layer);
-                this.worldObj.setBlock(i-1, j, k, Blocks.snow_layer);
+                this.worldObj.setBlock(i + 1, j, k, Blocks.snow_layer);
+                this.worldObj.setBlock(i + 1, j, k + 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i + 1, j, k - 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i, j, k - 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i, j, k + 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i - 1, j, k + 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i - 1, j, k - 1, Blocks.snow_layer);
+                this.worldObj.setBlock(i - 1, j, k, Blocks.snow_layer);
             }
         }
     }

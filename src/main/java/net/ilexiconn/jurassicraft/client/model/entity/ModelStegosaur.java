@@ -2,10 +2,10 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
 @SideOnly(Side.CLIENT)
 public class ModelStegosaur extends MowzieModelBase
@@ -305,7 +305,7 @@ public class ModelStegosaur extends MowzieModelBase
         addChildTo(leg_right_front_3, arm_right_1);
         addChildTo(arm_left_1, arm_left_2);
         addChildTo(arm_right_1, arm_right_2);
-        
+
         addChildTo(leg_left_back_3, leg_left_2);
         addChildTo(leg_right_back_3, leg_right_2);
         addChildTo(leg_left_2, leg_left_1);
@@ -324,7 +324,7 @@ public class ModelStegosaur extends MowzieModelBase
         leg_right_2.setRotationPoint(0, 0, 0);
         arm_right_1.setRotationPoint(0, 0, 0);
         arm_left_1.setRotationPoint(0, 0, 0);*/
-        
+
         leg_left_2.setRotationPoint(0, 0, 0);
         leg_right_2.setRotationPoint(0, 0, 0);
 
@@ -373,46 +373,46 @@ public class ModelStegosaur extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-            body_1.render(f5);
-            leg_left_1.render(f5);
-            leg_right_1.render(f5);
-            neck_1.render(f5);
-            tail_1.render(f5);
-            tail_2.render(f5);
-            tail_3.render(f5);
-            tail_4.render(f5);
-//            leg_left_2.render(f5);
-//            leg_right_2.render(f5);
-//            leg_right_back_3.render(f5);
-//            leg_left_back_3.render(f5);
-            foot_left.render(f5);
- //           arm_right_1.render(f5);
- //           arm_left_1.render(f5);
-            arm_left_2.render(f5);
-            arm_right_2.render(f5);
-            head_back.render(f5);
-//            upper_jaw_1.render(f5);
-//            head_.render(f5);
-            tail_end.render(f5);
-//            lower_jaw.render(f5);
-            plate_1.render(f5);
-            plate_2.render(f5);
-            plate_3.render(f5);
-            plate_4.render(f5);
-            plate_5.render(f5);
-            plate_6.render(f5);
-            plate_7.render(f5);
-            front_left_spike.render(f5);
-            front_right_spike.render(f5);
-            back_right_spike.render(f5);
-            back_left_spike.render(f5);
-            plate_8.render(f5);
-            plate_9.render(f5);
-            plate_10.render(f5);
-            plate_11.render(f5);
-//            upper_jaw_2.render(f5);
-//            leg_left_front_3.render(f5);
-//            leg_right_front_3.render(f5);
+        body_1.render(f5);
+        leg_left_1.render(f5);
+        leg_right_1.render(f5);
+        neck_1.render(f5);
+        tail_1.render(f5);
+        tail_2.render(f5);
+        tail_3.render(f5);
+        tail_4.render(f5);
+        //            leg_left_2.render(f5);
+        //            leg_right_2.render(f5);
+        //            leg_right_back_3.render(f5);
+        //            leg_left_back_3.render(f5);
+        foot_left.render(f5);
+        //           arm_right_1.render(f5);
+        //           arm_left_1.render(f5);
+        arm_left_2.render(f5);
+        arm_right_2.render(f5);
+        head_back.render(f5);
+        //            upper_jaw_1.render(f5);
+        //            head_.render(f5);
+        tail_end.render(f5);
+        //            lower_jaw.render(f5);
+        plate_1.render(f5);
+        plate_2.render(f5);
+        plate_3.render(f5);
+        plate_4.render(f5);
+        plate_5.render(f5);
+        plate_6.render(f5);
+        plate_7.render(f5);
+        front_left_spike.render(f5);
+        front_right_spike.render(f5);
+        back_right_spike.render(f5);
+        back_left_spike.render(f5);
+        plate_8.render(f5);
+        plate_9.render(f5);
+        plate_10.render(f5);
+        plate_11.render(f5);
+        //            upper_jaw_2.render(f5);
+        //            leg_left_front_3.render(f5);
+        //            leg_right_front_3.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)

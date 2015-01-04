@@ -24,7 +24,9 @@ public class ItemBlockFossilClayOre extends ItemBlock
             for (String item : colors[itemStack.getItemDamage()].replaceAll("_", " ").split(" "))
                 name = name + String.valueOf(item.charAt(0)).toUpperCase() + item.substring(1) + " ";
             return name + "Stained Clay Fossil Ore";
-        } else {
+        }
+        else
+        {
             return "Clay Fossil Ore";
         }
     }

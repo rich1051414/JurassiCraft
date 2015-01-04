@@ -7,11 +7,11 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
 public class ModelGallimimus extends MowzieModelBase
 {
@@ -362,17 +362,17 @@ public class ModelGallimimus extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-//    Left_Upper_Foot.render(f5);
-//    Right_Upper_Foot.render(f5);
-//    Left_Calf_1.render(f5);
-//    Right_Calf_1.render(f5);
+        //    Left_Upper_Foot.render(f5);
+        //    Right_Upper_Foot.render(f5);
+        //    Left_Calf_1.render(f5);
+        //    Right_Calf_1.render(f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
-//    Body_2.render(f5);
-//    Head.render(f5);
-//    Upper_Jaw.render(f5);
-//    Lower_Jaw.render(f5);
+        //    Body_2.render(f5);
+        //    Head.render(f5);
+        //    Upper_Jaw.render(f5);
+        //    Lower_Jaw.render(f5);
 /*    Tail_1.render(f5);
     Tail_2.render(f5);
     Tail_3.render(f5);
@@ -390,13 +390,13 @@ public class ModelGallimimus extends MowzieModelBase
     Hand_Right_Claw_Right.render(f5);
     Hand_Right_Claw_Left.render(f5);
     Hand_Right_Claw_Middle.render(f5);*/
-//    Foot_Left.render(f5);
-//    Foot_Right.render(f5);
-//    Neck_1.render(f5);
-//    Neck_2.render(f5);
-//    Neck_3.render(f5);
-//    Neck_4.render(f5);
-//    Neck_5.render(f5);
+        //    Foot_Left.render(f5);
+        //    Foot_Right.render(f5);
+        //    Neck_1.render(f5);
+        //    Neck_2.render(f5);
+        //    Neck_3.render(f5);
+        //    Neck_4.render(f5);
+        //    Neck_5.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)

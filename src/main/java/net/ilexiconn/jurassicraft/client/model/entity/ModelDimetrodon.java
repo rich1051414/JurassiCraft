@@ -6,10 +6,10 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 public class ModelDimetrodon extends MowzieModelBase
 {
@@ -225,9 +225,9 @@ public class ModelDimetrodon extends MowzieModelBase
         }
         else
         {
-//    Head.render(f5);
-//    BackHead.render(f5);
-//    Jaw.render(f5);
+            //    Head.render(f5);
+            //    BackHead.render(f5);
+            //    Jaw.render(f5);
             Neck1.render(f5);
             Torso.render(f5);
             Lower_Body.render(f5);
@@ -247,7 +247,7 @@ public class ModelDimetrodon extends MowzieModelBase
             Sail3.render(f5);
             Sail4.render(f5);
             MiniSail2.render(f5);
-//    Teeth.render(f5);
+            //    Teeth.render(f5);
         }
     }
 
@@ -258,8 +258,7 @@ public class ModelDimetrodon extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3,
-                                  float f4, float f5)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         walk(this.Leg1, 0.25F, 0.5f, true, 0, 0, f, f1);

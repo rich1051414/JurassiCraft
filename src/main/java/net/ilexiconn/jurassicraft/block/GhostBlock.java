@@ -1,12 +1,11 @@
 package net.ilexiconn.jurassicraft.block;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.Util;
 
 import java.util.Random;
 
@@ -22,7 +21,7 @@ public class GhostBlock extends Block
         super(Material.cloth);
         this.block = block;
         setBlockName(name);
-        setBlockTextureName(Util.getModId() + name);
+        setBlockTextureName(JurassiCraft.getModId() + name);
         blocksToBreak = blocks;
         setCreativeTab(null);
         setHardness(hardness);

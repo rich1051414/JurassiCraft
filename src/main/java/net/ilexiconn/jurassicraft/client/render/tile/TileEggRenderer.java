@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
+import net.ilexiconn.jurassicraft.tile.TileEgg;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
-import net.ilexiconn.jurassicraft.tile.TileEgg;
 
 public class TileEggRenderer extends TileEntitySpecialRenderer
 {
@@ -22,7 +22,7 @@ public class TileEggRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) x + 0.5f, (float) y + translation, (float) z + 0.5f);
         GL11.glScalef(scale, scale, scale);
 
-        texture = new ResourceLocation(Util.getModId() + "textures/eggs/egg" + egg.getDinoName() + ".png");
+        texture = new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + egg.getDinoName() + ".png");
         bindTexture(texture);
         GL11.glRotatef(180f, 0f, 0f, 1f);
         model.render();

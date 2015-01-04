@@ -2,6 +2,10 @@ package net.ilexiconn.jurassicraft.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.container.slot.SlotBucket;
+import net.ilexiconn.jurassicraft.container.slot.SlotDNASampleAndEgg;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftFoodNutrients;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,10 +13,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
-import net.ilexiconn.jurassicraft.container.slot.SlotBucket;
-import net.ilexiconn.jurassicraft.container.slot.SlotDNASampleAndEgg;
-import net.ilexiconn.jurassicraft.enums.JurassiCraftFoodNutrients;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
 
 public class ContainerCultivate extends Container
 {

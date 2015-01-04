@@ -2,6 +2,10 @@ package net.ilexiconn.jurassicraft.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAISit;
+import net.ilexiconn.jurassicraft.item.ItemDinoPad;
+import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
+import net.ilexiconn.jurassicraft.item.ItemOnAStick;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
@@ -12,11 +16,6 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAISit;
-import net.ilexiconn.jurassicraft.item.ItemDinoPad;
-import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
-import net.ilexiconn.jurassicraft.item.ItemOnAStick;
 
 public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature implements IEntityOwnable
 {
@@ -43,7 +42,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
     {
         return false;
     }
-    
+
     @Override
     public boolean interact(EntityPlayer player)
     {
@@ -52,7 +51,8 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
         {
             if (this.getCreature().isFavoriteFood(heldItemStack.getItem()))
             {
-            	if ((double) (this.getHealth() + 3.0F) <= this.getCreatureHealth()) {
+                if ((double) (this.getHealth() + 3.0F) <= this.getCreatureHealth())
+                {
                     if (!player.capabilities.isCreativeMode)
                     {
                         heldItemStack.stackSize--;
@@ -62,10 +62,10 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
                     }
                     this.heal(3.0F);
-            	} 
-            	else 
-            	{
-            		if (!this.isTamed() && !this.worldObj.isRemote)
+                }
+                else
+                {
+                    if (!this.isTamed() && !this.worldObj.isRemote)
                     {
                         if (!player.capabilities.isCreativeMode)
                         {
@@ -92,8 +92,8 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                             this.playTameEffect(true);
                             this.worldObj.setEntityState(this, (byte) 6);
                         }
-                    }	
-            	}
+                    }
+                }
             }
             else if (this.isTamed() && this.isOwner(player) && !this.worldObj.isRemote)
             {
@@ -176,7 +176,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
     {
         return this.getCreature().canBeTamedUponSpawning();
     }
-    
+
     public boolean isTamed()
     {
         return (this.dataWatcher.getWatchableObjectByte(15) & 4) != 0;

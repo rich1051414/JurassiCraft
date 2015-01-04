@@ -2,13 +2,13 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
 public class ModelTyrannosaurus extends MowzieModelBase
@@ -251,9 +251,9 @@ public class ModelTyrannosaurus extends MowzieModelBase
         addChildTo(this.Tail_1, this.Body_1);
 
         //Corrections
-//        Head.setRotationPoint(0, 0, 0);
-//        NeckJoint.setRotationPoint(0, -2, -3);
-//        Neck.setRotationPoint(0, 0, 0);
+        //        Head.setRotationPoint(0, 0, 0);
+        //        NeckJoint.setRotationPoint(0, -2, -3);
+        //        Neck.setRotationPoint(0, 0, 0);
         Neck.setRotationPoint(0, 1F, 2);
         Head.rotationPointZ -= 13;
         Head.rotationPointY -= 2;
@@ -328,16 +328,16 @@ public class ModelTyrannosaurus extends MowzieModelBase
             Left_Thigh.render(f5);
             Right_Thigh.render(f5);
             Body_1.render(f5);
-//            Body_2.render(f5);
-//            Neck.render(f5);
-//            Lower_Arm_Left.render(f5);
-//            Lower_Arm_Right.render(f5);
-//            Hand_Left.render(f5);
-//            Hand_Right.render(f5);
-//            Hand_Left_Claw_Left.render(f5);
-//            Hand_Left_Claw_Right.render(f5);
-//            Hand_Right_Claw_Right.render(f5);
-//            Hand_Right_Claw_Left.render(f5);
+            //            Body_2.render(f5);
+            //            Neck.render(f5);
+            //            Lower_Arm_Left.render(f5);
+            //            Lower_Arm_Right.render(f5);
+            //            Hand_Left.render(f5);
+            //            Hand_Right.render(f5);
+            //            Hand_Left_Claw_Left.render(f5);
+            //            Hand_Left_Claw_Right.render(f5);
+            //            Hand_Right_Claw_Right.render(f5);
+            //            Hand_Right_Claw_Left.render(f5);
         }
     }
 
@@ -441,7 +441,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
     {
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
-//        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
+        //        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
 
         animator.setAnim(1);
         animator.startPhase(15);

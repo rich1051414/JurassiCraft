@@ -28,7 +28,7 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
         this.tasks.addTask(5, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        
+
         this.setCreatureExperiencePoints(2500);
     }
 
@@ -41,7 +41,7 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
     @Override
     public String getLivingSound()
     {
-    	return this.getCreature().pickLivingSound();
+        return this.getCreature().pickLivingSound();
     }
 
     @Override

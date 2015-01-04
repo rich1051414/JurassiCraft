@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
 
 /* Inherithed from Animals+ by Click_Me */
 
@@ -40,7 +39,7 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
     {
         return false;
     }
-    
+
     @Override
     protected boolean canTriggerWalking()
     {
@@ -57,8 +56,7 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
     public void onUpdate()
     {
         super.onUpdate();
-        if (this.isInWater())
-            this.motionY *= 0.1D;
+        if (this.isInWater()) this.motionY *= 0.1D;
     }
 
     @Override
@@ -81,9 +79,7 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
                 this.isAttacking = false;
             }
 
-            if (this.worldObj.getBlock(MathHelper.floor_double(this.swimTargetX),
-                    MathHelper.floor_double(this.swimTargetY + this.height), MathHelper.floor_double(this.swimTargetZ))
-                    .getMaterial() == Material.water)
+            if (this.worldObj.getBlock(MathHelper.floor_double(this.swimTargetX), MathHelper.floor_double(this.swimTargetY + this.height), MathHelper.floor_double(this.swimTargetZ)).getMaterial() == Material.water)
             {
                 this.motionX += dx / dist * 0.05D * (double) this.swimSpeed;
                 this.motionY += dy / dist * 0.1D * (double) this.swimSpeed;
@@ -177,8 +173,7 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
                 this.attackEntityFrom(DamageSource.drown, 2.0F);
             }
         }
-        else
-            this.setAir(300);
+        else this.setAir(300);
     }
 
     @Override

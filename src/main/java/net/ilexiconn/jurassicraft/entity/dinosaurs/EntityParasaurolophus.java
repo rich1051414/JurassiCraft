@@ -51,26 +51,24 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
     @Override
     public String getLivingSound()
     {
-    	int I = this.rand.nextInt(3);
-    	
+        int I = this.rand.nextInt(3);
+
         if (I <= 1)
         {
             return this.getCreature().getLivingSound(I);
         }
-        else 
+        else
         {
-        	AnimationAPI.sendAnimPacket(this, 1);
-        	return null;
+            AnimationAPI.sendAnimPacket(this, 1);
+            return null;
         }
     }
-    
+
     public void onUpdate()
     {
         super.onUpdate();
-        if (this.moveForward != 0)
-            walkLean.change = 0.1F;
-        if (this.moveForward == 0)
-            walkLean.change = -0.1F;
+        if (this.moveForward != 0) walkLean.change = 0.1F;
+        if (this.moveForward == 0) walkLean.change = -0.1F;
         walkLean.update();
     }
 }

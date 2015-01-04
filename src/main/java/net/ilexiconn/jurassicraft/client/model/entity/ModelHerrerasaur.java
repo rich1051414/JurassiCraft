@@ -7,11 +7,11 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaur;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaur;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
 public class ModelHerrerasaur extends MowzieModelBase
 {
@@ -253,21 +253,21 @@ public class ModelHerrerasaur extends MowzieModelBase
         addChildTo(Head, Neck);
         addChildTo(Neck, Body_2);
         addChildTo(Body_2, Body_1);
-        
+
         addChildTo(Hand_Left_Claw_Left, Hand_Left);
         addChildTo(Hand_Left_Claw_Middle, Hand_Left);
         addChildTo(Hand_Left_Claw_Right, Hand_Left);
         addChildTo(Hand_Left, Lower_Arm_Left);
         addChildTo(Lower_Arm_Left, Upper_Arm_Left);
         addChildTo(Upper_Arm_Left, Body_1);
-        
+
         addChildTo(Hand_Right_Claw_Left, Hand_Right);
         addChildTo(Hand_Right_Claw_Middle, Hand_Right);
         addChildTo(Hand_Right_Claw_Right, Hand_Right);
         addChildTo(Hand_Right, Lower_Arm_Right);
         addChildTo(Lower_Arm_Right, Upper_Arm_Right);
         addChildTo(Upper_Arm_Right, Body_1);
-        
+
         addChildTo(Tail_6, Tail_5);
         addChildTo(Tail_5, Tail_4);
         addChildTo(Tail_4, Tail_3);
@@ -287,17 +287,17 @@ public class ModelHerrerasaur extends MowzieModelBase
         Head.rotationPointY -= 1.2;
         Head.rotateAngleX += 0.1;
         Body_2.setRotationPoint(0, -4.8F, -13);
-        
+
         Hand_Left_Claw_Left.setRotationPoint(0, 0, 0);
         Hand_Left_Claw_Middle.setRotationPoint(0, 0, 0);
         Hand_Left_Claw_Right.setRotationPoint(0, 0, 0);
-        
+
         Hand_Right_Claw_Left.setRotationPoint(0, 0, 0);
         Hand_Right_Claw_Middle.setRotationPoint(0, 0, 0);
         Hand_Right_Claw_Right.setRotationPoint(0, 0, 0);
-        
+
         Tail_1.setRotationPoint(0, -4.7F, 7);
-        
+
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
         Left_Calf_1.setInitValuesToCurrentPose();
@@ -336,18 +336,18 @@ public class ModelHerrerasaur extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-//    Left_Upper_Foot.render(f5);
-//    Right_Upper_Foot.render(f5);
-//    Left_Calf_1.render(f5);
-//    Right_Calf_1.render(f5);
+        //    Left_Upper_Foot.render(f5);
+        //    Right_Upper_Foot.render(f5);
+        //    Left_Calf_1.render(f5);
+        //    Right_Calf_1.render(f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
- //       Body_2.render(f5);
-//        Neck.render(f5);
- //       Head.render(f5);
-//        Upper_Jaw.render(f5);
-//        Lower_Jaw.render(f5);
+        //       Body_2.render(f5);
+        //        Neck.render(f5);
+        //       Head.render(f5);
+        //        Upper_Jaw.render(f5);
+        //        Lower_Jaw.render(f5);
 /*        Tail_1.render(f5);
         Tail_2.render(f5);
         Tail_3.render(f5);
@@ -366,8 +366,8 @@ public class ModelHerrerasaur extends MowzieModelBase
         Hand_Right_Claw_Right.render(f5);
         Hand_Right_Claw_Left.render(f5);
         Hand_Right_Claw_Middle.render(f5);*/
-//    Foot_Left.render(f5);
-//    Foot_Right.render(f5);
+        //    Foot_Left.render(f5);
+        //    Foot_Right.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -430,7 +430,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         walk(Neck, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
         walk(Head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
         walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.07F, f, f1);
-        
+
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
         walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, f, f1);
@@ -451,7 +451,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
         chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-        
+
         //Idling
         chainWave(tailParts, 0.1F, -0.05F, 2, herrera.frame, 1F);
         walk(Neck, 0.1F, 0.07F, false, -1F, 0F, herrera.frame, 1F);

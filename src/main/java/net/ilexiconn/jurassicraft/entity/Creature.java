@@ -1,376 +1,376 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import java.util.ArrayList;
-import java.util.Random;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.ilexiconn.jurassicraft.item.ItemDinoEgg;
 import net.ilexiconn.jurassicraft.item.ItemMammalSyringe;
 import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Creature
 {
-	private byte creatureID;
+    private byte creatureID;
 
-	private String creatureName;
-	private ArrayList<String> livingSounds;
-	private String hurtSound;
-	private String deathSound;
+    private String creatureName;
+    private ArrayList<String> livingSounds;
+    private String hurtSound;
+    private String deathSound;
 
-	private double minHealth;
-	private double minStrength;
-	private double minSpeed;
-	private double minKnockback;
-	private double minProximate;
-	private double minMinerals;
-	private double minVitamins;
-	private double minLipids;
-	private double maxHealth;
-	private double maxStrength;
-	private double maxSpeed;
-	private double maxKnockback;
-	private double ridingSpeed;
+    private double minHealth;
+    private double minStrength;
+    private double minSpeed;
+    private double minKnockback;
+    private double minProximate;
+    private double minMinerals;
+    private double minVitamins;
+    private double minLipids;
+    private double maxHealth;
+    private double maxStrength;
+    private double maxSpeed;
+    private double maxKnockback;
+    private double ridingSpeed;
 
-	private float adultAge;
-	private float minLength;
-	private float minHeight;
-	private float maxLength;
-	private float maxHeight;
-	private float xzBoxMin;
-	private float yBoxMin;
-	private float xzBoxDelta;
-	private float yBoxDelta;
-	private float scaleAdjustment;
+    private float adultAge;
+    private float minLength;
+    private float minHeight;
+    private float maxLength;
+    private float maxHeight;
+    private float xzBoxMin;
+    private float yBoxMin;
+    private float xzBoxDelta;
+    private float yBoxDelta;
+    private float scaleAdjustment;
 
-	private int ticksToAdulthood;
-	private int cultivateSpeed;
-	private int textureCount;
-	private int ridingStyle;
-	private int numberOfInfoPages;
+    private int ticksToAdulthood;
+    private int cultivateSpeed;
+    private int textureCount;
+    private int ridingStyle;
+    private int numberOfInfoPages;
 
-	private ArrayList favoriteFoodList;
-	private ArrayList ridingItemList;
+    private ArrayList favoriteFoodList;
+    private ArrayList ridingItemList;
 
-	private boolean isRidable;
-	private boolean canBeTamedUponSpawning;
-	private boolean waterCreature;
+    private boolean isRidable;
+    private boolean canBeTamedUponSpawning;
+    private boolean waterCreature;
 
-	private ItemDinoEgg egg;
-	private ItemMammalSyringe syringe;
-	private ItemMeat meat;
-	private ItemDNA dna;
+    private ItemDinoEgg egg;
+    private ItemMammalSyringe syringe;
+    private ItemMeat meat;
+    private ItemDNA dna;
 
-	private String creatureCategory;
+    private String creatureCategory;
 
-	public Creature(String creatureCategory, JsonCreatureDefinition def)
-	{
-		this.creatureCategory = creatureCategory;
+    public Creature(String creatureCategory, JsonCreatureDefinition def)
+    {
+        this.creatureCategory = creatureCategory;
 
-		this.adultAge = def.adultAge;
-		this.canBeTamedUponSpawning = def.canBeTamedUponSpawning;
-		this.creatureID = def.creatureID;
-		this.creatureName = def.creatureName;
-		this.cultivateSpeed = def.cultivateSpeed;
-		this.deathSound = def.deathSound;
-		this.favoriteFoodList = def.favoriteFoodList;
-		this.hurtSound = def.hurtSound;
-		this.isRidable = def.isRidable;
-		this.livingSounds = def.livingSounds;
-		this.maxHealth = def.maxHealth;
-		this.maxHeight = def.maxHeight;
-		this.maxKnockback = def.maxKnockback;
-		this.maxLength = def.maxLength;
-		this.maxSpeed = def.maxSpeed;
-		this.maxStrength = def.maxStrength;
-		this.minHealth = def.minHealth;
-		this.minHeight = def.minHeight;
-		this.minKnockback = def.minKnockback;
-		this.minLength = def.minLength;
-		this.minLipids = def.minLipids;
-		this.minMinerals = def.minMinerals;
-		this.minProximate = def.minProximate;
-		this.minSpeed = def.minSpeed;
-		this.minStrength = def.minStrength;
-		this.minVitamins = def.minVitamins;
-		this.numberOfInfoPages = def.numberOfInfoPages;
-		this.textureCount = def.numberOfTextures;
-		this.ridingItemList = def.ridingItemList;
-		this.ridingSpeed = def.ridingSpeed;
-		this.ridingStyle = def.ridingStyle;
-		this.scaleAdjustment = def.scaleAdjustment;
-		this.ticksToAdulthood = def.ticksToAdulthood;
-		this.waterCreature = def.waterCreature;
-		this.xzBoxDelta = def.xzBoxDelta;
-		this.xzBoxMin = def.xzBoxMin;
-		this.yBoxDelta = def.yBoxDelta;
-		this.yBoxMin = def.yBoxMin;
+        this.adultAge = def.adultAge;
+        this.canBeTamedUponSpawning = def.canBeTamedUponSpawning;
+        this.creatureID = def.creatureID;
+        this.creatureName = def.creatureName;
+        this.cultivateSpeed = def.cultivateSpeed;
+        this.deathSound = def.deathSound;
+        this.favoriteFoodList = def.favoriteFoodList;
+        this.hurtSound = def.hurtSound;
+        this.isRidable = def.isRidable;
+        this.livingSounds = def.livingSounds;
+        this.maxHealth = def.maxHealth;
+        this.maxHeight = def.maxHeight;
+        this.maxKnockback = def.maxKnockback;
+        this.maxLength = def.maxLength;
+        this.maxSpeed = def.maxSpeed;
+        this.maxStrength = def.maxStrength;
+        this.minHealth = def.minHealth;
+        this.minHeight = def.minHeight;
+        this.minKnockback = def.minKnockback;
+        this.minLength = def.minLength;
+        this.minLipids = def.minLipids;
+        this.minMinerals = def.minMinerals;
+        this.minProximate = def.minProximate;
+        this.minSpeed = def.minSpeed;
+        this.minStrength = def.minStrength;
+        this.minVitamins = def.minVitamins;
+        this.numberOfInfoPages = def.numberOfInfoPages;
+        this.textureCount = def.numberOfTextures;
+        this.ridingItemList = def.ridingItemList;
+        this.ridingSpeed = def.ridingSpeed;
+        this.ridingStyle = def.ridingStyle;
+        this.scaleAdjustment = def.scaleAdjustment;
+        this.ticksToAdulthood = def.ticksToAdulthood;
+        this.waterCreature = def.waterCreature;
+        this.xzBoxDelta = def.xzBoxDelta;
+        this.xzBoxMin = def.xzBoxMin;
+        this.yBoxDelta = def.yBoxDelta;
+        this.yBoxMin = def.yBoxMin;
 
-		if(def.addDNA)
-		{
-			dna = new ItemDNA(creatureName);
-			GameRegistry.registerItem(dna, dna.getUnlocalizedName());
-		}
+        if (def.addDNA)
+        {
+            dna = new ItemDNA(creatureName);
+            GameRegistry.registerItem(dna, dna.getUnlocalizedName());
+        }
 
-		if(def.addEgg)
-		{
-			egg = new ItemDinoEgg(creatureName);
-			GameRegistry.registerItem(egg, egg.getUnlocalizedName());
-		}
+        if (def.addEgg)
+        {
+            egg = new ItemDinoEgg(creatureName);
+            GameRegistry.registerItem(egg, egg.getUnlocalizedName());
+        }
 
-		if(def.addMeat)
-		{
-			meat = new ItemMeat(creatureName);
-			GameRegistry.registerItem(meat, meat.getUnlocalizedName());
-		}
+        if (def.addMeat)
+        {
+            meat = new ItemMeat(creatureName);
+            GameRegistry.registerItem(meat, meat.getUnlocalizedName());
+        }
 
-		if(def.addSyringe)
-		{
-			syringe = new ItemMammalSyringe(creatureName);
-			GameRegistry.registerItem(syringe, syringe.getUnlocalizedName());
-		}
-	}
+        if (def.addSyringe)
+        {
+            syringe = new ItemMammalSyringe(creatureName);
+            GameRegistry.registerItem(syringe, syringe.getUnlocalizedName());
+        }
+    }
 
-	public String pickLivingSound()
-	{
-		Random rand = new Random();
-		
-		return getLivingSound(rand.nextInt(livingSounds.size()));
-	}
-	
-	public String getDeathSound()
-	{
-		return deathSound;
-	}
-	
-	public String getHurtSound()
-	{
-		return hurtSound;
-	}
-	
-	public String getCreatureName()
-	{
-		return creatureName;
-	}
-	
-	public String getCreatureCategory()
-	{
-		return creatureCategory;
-	}
-	
-	public byte getCreatureID()
-	{
-		return creatureID;
-	}
-	
-	public boolean isWaterCreature()
-	{
-		return waterCreature;
-	}
-	
-	public ItemDNA getDNA()
-	{
-		return dna;
-	}
-	
-	public ItemMeat getMeat()
-	{
-		return meat;
-	}
+    public String pickLivingSound()
+    {
+        Random rand = new Random();
 
-	public boolean isRidingItem(Item item)
-	{
-		if(ridingItemList != null && item != null)
-		{
-			return ridingItemList.contains(item);
-		}
-		
-		return false;
-	}
+        return getLivingSound(rand.nextInt(livingSounds.size()));
+    }
 
-	public boolean isRidable()
-	{
-		return isRidable;
-	}
+    public String getDeathSound()
+    {
+        return deathSound;
+    }
 
-	public int getRidingStyle()
-	{
-		return ridingStyle;
-	}
+    public String getHurtSound()
+    {
+        return hurtSound;
+    }
 
-	public boolean isFavoriteFood(Item item)
-	{
-		if(favoriteFoodList != null && item != null)
-		{
-			return favoriteFoodList.contains(item);
-		}
-		
-		return false;
-	}
+    public String getCreatureName()
+    {
+        return creatureName;
+    }
 
-	public boolean canBeTamedUponSpawning() 
-	{
-		return canBeTamedUponSpawning;
-	}
+    public String getCreatureCategory()
+    {
+        return creatureCategory;
+    }
 
-	public int getInfoPageCount()
-	{
-		return numberOfInfoPages;
-	}
+    public byte getCreatureID()
+    {
+        return creatureID;
+    }
 
-	public String getLivingSound(int soundIndex)
-	{
-		if(soundIndex >= livingSounds.size())
-		{
-			soundIndex = livingSounds.size() - 1;
-		}
-		
-		String sound = livingSounds.get(soundIndex);
-		
-		if(sound == "")
-		{
-			return null;
-		}
-		else
-		{
-			return sound;
-		}
-	}
+    public boolean isWaterCreature()
+    {
+        return waterCreature;
+    }
 
-	public float getMaxLength()
-	{
-		return maxLength;
-	}
-	
-	public float getMaxHeight()
-	{
-		return maxHeight;
-	}
+    public ItemDNA getDNA()
+    {
+        return dna;
+    }
 
-	public double getMaxHealth()
-	{
-		return maxHealth;
-	}
-	
-	public double getMinHealth()
-	{
-		return minHealth;
-	}
+    public ItemMeat getMeat()
+    {
+        return meat;
+    }
 
-	public double getTicksToAdulthood() 
-	{
-		return ticksToAdulthood;
-	}
+    public boolean isRidingItem(Item item)
+    {
+        if (ridingItemList != null && item != null)
+        {
+            return ridingItemList.contains(item);
+        }
 
-	public double getMaxStrength() 
-	{
-		return maxStrength;
-	}
+        return false;
+    }
 
-	public double getMinStrength()
-	{
-		return minStrength;
-	}
+    public boolean isRidable()
+    {
+        return isRidable;
+    }
 
-	public double getMaxSpeed()
-	{
-		return maxSpeed;
-	}
-	
-	public double getMinSpeed()
-	{
-		return minSpeed;
-	}
+    public int getRidingStyle()
+    {
+        return ridingStyle;
+    }
 
-	public double getMaxKnockback()
-	{
-		return maxKnockback;
-	}
-	
-	public double getMinKnockback()
-	{
-		return minKnockback;
-	}
+    public boolean isFavoriteFood(Item item)
+    {
+        if (favoriteFoodList != null && item != null)
+        {
+            return favoriteFoodList.contains(item);
+        }
 
-	public double getYBoxMin() 
-	{
-		return yBoxMin;
-	}
-	
-	public double getYBoxDelta() 
-	{
-		return yBoxDelta;
-	}
-	
-	public double getXzBoxMin() 
-	{
-		return xzBoxMin;
-	}
-	
-	public double getXzBoxDelta() 
-	{
-		return xzBoxDelta;
-	}
+        return false;
+    }
 
-	public float getScaleAdjustment() 
-	{
-		return scaleAdjustment;
-	}
+    public boolean canBeTamedUponSpawning()
+    {
+        return canBeTamedUponSpawning;
+    }
 
-	public float getMinHeight() 
-	{
-		return minHeight;
-	}
+    public int getInfoPageCount()
+    {
+        return numberOfInfoPages;
+    }
 
-	public float getMinLength() 
-	{
-		return minLength;
-	}
+    public String getLivingSound(int soundIndex)
+    {
+        if (soundIndex >= livingSounds.size())
+        {
+            soundIndex = livingSounds.size() - 1;
+        }
 
-	public float getAdultAge() 
-	{
-		return adultAge;
-	}
+        String sound = livingSounds.get(soundIndex);
 
-	public int getTextureCount()
-	{
-		return textureCount;
-	}
+        if (sound == "")
+        {
+            return null;
+        }
+        else
+        {
+            return sound;
+        }
+    }
 
-	public ItemDinoEgg getEgg()
-	{
-		return egg;
-	}
-	
-	public ItemMammalSyringe getMammalSyringe()
-	{
-		return syringe;
-	}
+    public float getMaxLength()
+    {
+        return maxLength;
+    }
 
-	public double getMinProximate() 
-	{
-		return minProximate;
-	}
-	
-	public double getMinVitamins() 
-	{
-		return minVitamins;
-	}
-	
-	public double getMinLipids() 
-	{
-		return minLipids;
-	}
+    public float getMaxHeight()
+    {
+        return maxHeight;
+    }
 
-	public double getMinMinerals() 
-	{
-		return minMinerals;
-	}
+    public double getMaxHealth()
+    {
+        return maxHealth;
+    }
 
-	public int getCultivateSpeed()
-	{
-		return cultivateSpeed;
-	}
+    public double getMinHealth()
+    {
+        return minHealth;
+    }
+
+    public double getTicksToAdulthood()
+    {
+        return ticksToAdulthood;
+    }
+
+    public double getMaxStrength()
+    {
+        return maxStrength;
+    }
+
+    public double getMinStrength()
+    {
+        return minStrength;
+    }
+
+    public double getMaxSpeed()
+    {
+        return maxSpeed;
+    }
+
+    public double getMinSpeed()
+    {
+        return minSpeed;
+    }
+
+    public double getMaxKnockback()
+    {
+        return maxKnockback;
+    }
+
+    public double getMinKnockback()
+    {
+        return minKnockback;
+    }
+
+    public double getYBoxMin()
+    {
+        return yBoxMin;
+    }
+
+    public double getYBoxDelta()
+    {
+        return yBoxDelta;
+    }
+
+    public double getXzBoxMin()
+    {
+        return xzBoxMin;
+    }
+
+    public double getXzBoxDelta()
+    {
+        return xzBoxDelta;
+    }
+
+    public float getScaleAdjustment()
+    {
+        return scaleAdjustment;
+    }
+
+    public float getMinHeight()
+    {
+        return minHeight;
+    }
+
+    public float getMinLength()
+    {
+        return minLength;
+    }
+
+    public float getAdultAge()
+    {
+        return adultAge;
+    }
+
+    public int getTextureCount()
+    {
+        return textureCount;
+    }
+
+    public ItemDinoEgg getEgg()
+    {
+        return egg;
+    }
+
+    public ItemMammalSyringe getMammalSyringe()
+    {
+        return syringe;
+    }
+
+    public double getMinProximate()
+    {
+        return minProximate;
+    }
+
+    public double getMinVitamins()
+    {
+        return minVitamins;
+    }
+
+    public double getMinLipids()
+    {
+        return minLipids;
+    }
+
+    public double getMinMinerals()
+    {
+        return minMinerals;
+    }
+
+    public int getCultivateSpeed()
+    {
+        return cultivateSpeed;
+    }
 }

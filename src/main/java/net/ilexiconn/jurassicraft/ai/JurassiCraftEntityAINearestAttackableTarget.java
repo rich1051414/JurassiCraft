@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 
 import java.util.Collections;
 import java.util.Comparator;

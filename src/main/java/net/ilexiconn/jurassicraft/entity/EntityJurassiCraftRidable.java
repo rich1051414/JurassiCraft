@@ -12,7 +12,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
 
 public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
 {
@@ -35,7 +34,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     {
         return false;
     }
-    
+
     @Override
     public boolean interact(EntityPlayer player)
     {

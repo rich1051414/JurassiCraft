@@ -6,19 +6,19 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelHypsilophodon extends MowzieModelBase
 {
     //fields
-	private Animator animator;
-	
+    private Animator animator;
+
     MowzieModelRenderer body1;
     MowzieModelRenderer neck;
     MowzieModelRenderer head;
@@ -46,8 +46,8 @@ public class ModelHypsilophodon extends MowzieModelBase
         textureWidth = 128;
         textureHeight = 64;
 
-		animator = new Animator(this);
-        
+        animator = new Animator(this);
+
         body1 = new MowzieModelRenderer(this, 0, 32);
         body1.addBox(-2.5F, -2.5F, -5F, 5, 5, 5);
         body1.setRotationPoint(0F, 13.7F, -1F);
@@ -233,26 +233,26 @@ public class ModelHypsilophodon extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
-//   body1.render(f5);
-//    neck.render(f5);
-//    head.render(f5);
-//    mouthtop.render(f5);
+        //   body1.render(f5);
+        //    neck.render(f5);
+        //    head.render(f5);
+        //    mouthtop.render(f5);
         upperlegright.render(f5);
         upperlegleft.render(f5);
-//    midlegright.render(f5);
-//    midlegleft.render(f5);
-//    lowerlegright.render(f5);
-//    lowerlegleft.render(f5);
-//    feetleft.render(f5);
-//    feetright.render(f5);
-//    shoulderleft.render(f5);
-//    armleft.render(f5);
-//    shoulderright.render(f5);
-//    armright.render(f5);
+        //    midlegright.render(f5);
+        //    midlegleft.render(f5);
+        //    lowerlegright.render(f5);
+        //    lowerlegleft.render(f5);
+        //    feetleft.render(f5);
+        //    feetright.render(f5);
+        //    shoulderleft.render(f5);
+        //    armleft.render(f5);
+        //    shoulderright.render(f5);
+        //    armright.render(f5);
         body2.render(f5);
-//    tail2.render(f5);
-//    tail1.render(f5);
-//    tail3.render(f5);
+        //    tail2.render(f5);
+        //    tail1.render(f5);
+        //    tail3.render(f5);
     }
 
     private void resetPose()
@@ -286,7 +286,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
- 
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
@@ -336,12 +336,13 @@ public class ModelHypsilophodon extends MowzieModelBase
 
         chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
     }
-    
-    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    	animator.update(entity);
-    	setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
-    	EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
-    	
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        animator.update(entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
+        EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
+
         animator.setAnim(1);
         animator.startPhase(5);
         animator.rotate(neck, 0.9F, -0.4F, 0);

@@ -23,7 +23,7 @@ public class EntityHypsilophodon extends EntityJurassiCraftLandCoward implements
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
-    	this.tasks.addTask(2, new AIHypsilophodonScratchHead(this));
+        this.tasks.addTask(2, new AIHypsilophodonScratchHead(this));
         this.tasks.addTask(3, new JurassiCraftEntityAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 10.0F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaur.class, 16.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftEntityAIFollowFoodCoward(this, 1.1D * this.getCreatureSpeed()));

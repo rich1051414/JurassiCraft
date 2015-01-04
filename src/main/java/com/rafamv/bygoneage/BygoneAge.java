@@ -24,11 +24,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = BygoneAge.MODID, name = BygoneAge.MODNAME)
+@Mod(modid = BygoneAge.MODID, name = BygoneAge.MODNAME, version = BygoneAge.VERSION)
 public class BygoneAge {
 
 	public static final String MODID = "bygoneage";
 	public static final String MODNAME = "Bygone Age";
+	public static final String VERSION = "1.0";
 	public static EntityBygoneAgeCreature creatureToAnalyze;
 	public static CreativeTabs bygoneAgeTab = new CreativeTabs("BygoneAgeTab") {
 		@SideOnly(Side.CLIENT)

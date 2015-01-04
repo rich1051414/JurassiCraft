@@ -1,32 +1,38 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.minecraft.entity.ai.EntityAIBase;
 import net.ilexiconn.jurassicraft.entity.reptiles.EntityCearadactylus;
+import net.minecraft.entity.ai.EntityAIBase;
 
-public class EntityAICearadactylus extends EntityAIBase {
+public class EntityAICearadactylus extends EntityAIBase
+{
 
     private EntityCearadactylus theCearadactylus;
     private boolean isFlying;
 
-    public EntityAICearadactylus(EntityCearadactylus dactylus) {
+    public EntityAICearadactylus(EntityCearadactylus dactylus)
+    {
         this.theCearadactylus = dactylus;
         this.setMutexBits(5);
     }
 
-    public boolean shouldExecute() {
+    public boolean shouldExecute()
+    {
         return this.isFlying;
     }
 
-    public void startExecuting() {
+    public void startExecuting()
+    {
         this.theCearadactylus.getNavigator().clearPathEntity();
         this.theCearadactylus.setFlying(true);
     }
 
-    public void resetTask() {
+    public void resetTask()
+    {
         this.theCearadactylus.setFlying(false);
     }
 
-    public void setFlying(boolean flying) {
+    public void setFlying(boolean flying)
+    {
         this.isFlying = flying;
     }
 

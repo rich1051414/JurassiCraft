@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.Util;
 import net.ilexiconn.jurassicraft.block.BlockCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEmbryo;
@@ -26,8 +26,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
     {
         cultivateTextures = new ResourceLocation[colors.length];
         for (int i = 0; i < colors.length; i++)
-            cultivateTextures[i] = new ResourceLocation(Util.getModId() + "textures/blocks/cultivate_" + colors[i] + ".png");
-        embryoTextures = new ResourceLocation(Util.getModId() + "textures/blocks/embryo.png");
+            cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + colors[i] + ".png");
+        embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
     }
 
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float meta)

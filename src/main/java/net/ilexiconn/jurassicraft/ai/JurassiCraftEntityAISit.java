@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 
 public class JurassiCraftEntityAISit extends EntityAIBase
 {

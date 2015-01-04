@@ -7,18 +7,18 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 
 public class ModelParasaurolophus extends MowzieModelBase
 {
     public boolean isAlarmed;
-    
+
     private Animator animator;
 
     //fields
@@ -62,7 +62,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         textureHeight = 256;
 
         animator = new Animator(this);
-        
+
         Left_Lower_Foot = new MowzieModelRenderer(this, 98, 0);
         Left_Lower_Foot.addBox(-2F, 0F, 0F, 4, 2, 2);
         Left_Lower_Foot.setRotationPoint(7F, 20.8F, 7.7F);
@@ -309,7 +309,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         Body_1.rotationPointZ -= 15;
         Tail_1.rotationPointY -= 5;
         Tail_1.rotationPointZ += 7;
-        
+
         //Adjustments
         Body_3.rotateAngleX -= 0.25F;
         Neck.rotateAngleX += 0.25F;
@@ -372,9 +372,9 @@ public class ModelParasaurolophus extends MowzieModelBase
     Right_Calf_1.render(f5);*/
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
-//    Body_1.render(f5);
-//    Body_2.render(f5);
-//    Neck.render(f5);
+        //    Body_1.render(f5);
+        //    Body_2.render(f5);
+        //    Neck.render(f5);
 /*    Tail_1.render(f5);
     Tail_2.render(f5);
     Tail_3.render(f5);
@@ -386,7 +386,7 @@ public class ModelParasaurolophus extends MowzieModelBase
     Lower_Arm_Right.render(f5);
     Left_Hand.render(f5);
     Right_Hand.render(f5);*/
-//    Tail_6.render(f5);
+        //    Tail_6.render(f5);
 /*    Head.render(f5);
     Snout_1.render(f5);
     Snout_2.render(f5);
@@ -395,8 +395,8 @@ public class ModelParasaurolophus extends MowzieModelBase
     Crest_2.render(f5);
     Crest_3.render(f5);*/
         Body_3.render(f5);
-//    Foot_Left.render(f5);
-//    Foot_Right.render(f5);
+        //    Foot_Left.render(f5);
+        //    Foot_Right.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -456,8 +456,8 @@ public class ModelParasaurolophus extends MowzieModelBase
         faceTarget(Head, 2, f3, f4);
         faceTarget(Neck, 2, f3, f4);
 
-        if(allFoursLean > 0.15F) allFoursLean = 0.15F;
-        
+        if (allFoursLean > 0.15F) allFoursLean = 0.15F;
+
         //All fours behavior
         Body_3.rotateAngleX += allFoursLean * 1.5;
         Body_2.rotateAngleX -= allFoursLean / 5;
@@ -520,12 +520,13 @@ public class ModelParasaurolophus extends MowzieModelBase
 
         chainWave(tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
     }
-    
-    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    	animator.update(entity);
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
         EntityParasaurolophus para = (EntityParasaurolophus) entity;
-        
+
         animator.setAnim(1);
         animator.startPhase(15);
         animator.rotate(Body_3, 0.3F, 0, 0);

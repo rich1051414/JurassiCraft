@@ -1,13 +1,11 @@
 package net.ilexiconn.jurassicraft.entity.arthropods;
 
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 
 public class EntityMeganeura extends EntityJurassiCraftRidable
 {

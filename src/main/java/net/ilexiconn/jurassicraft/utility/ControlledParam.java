@@ -20,7 +20,7 @@ public class ControlledParam
 
     public void thereAndBack(float start, float change, float destination, int pause)
     {
-//		System.out.println("There and back");
+        //		System.out.println("There and back");
         mode = 1;
         this.value = start;
         this.change = change;

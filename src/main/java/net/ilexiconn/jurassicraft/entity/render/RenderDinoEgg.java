@@ -1,21 +1,20 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelCoelacanthEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelMeganeuraEgg;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderDinoEgg extends Render
 {
-    public RenderDinoEgg() {
-    	
+    public RenderDinoEgg()
+    {
+
     }
 
     @Override
@@ -66,7 +65,7 @@ public class RenderDinoEgg extends Render
             GL11.glPopMatrix();
         }
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {

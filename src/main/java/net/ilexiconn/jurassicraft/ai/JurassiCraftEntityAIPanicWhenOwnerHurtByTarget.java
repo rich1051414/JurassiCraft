@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 
 public class JurassiCraftEntityAIPanicWhenOwnerHurtByTarget extends EntityAITarget
 {
-	EntityJurassiCraftLandCoward cowardTameable;
+    EntityJurassiCraftLandCoward cowardTameable;
     EntityLivingBase whoTheOwnerIsAttacking;
 
     public JurassiCraftEntityAIPanicWhenOwnerHurtByTarget(EntityJurassiCraftLandCoward entityTameable)
@@ -25,11 +25,14 @@ public class JurassiCraftEntityAIPanicWhenOwnerHurtByTarget extends EntityAITarg
         }
         else
         {
-            if (this.cowardTameable.getOwner() != null) {
+            if (this.cowardTameable.getOwner() != null)
+            {
                 this.whoTheOwnerIsAttacking = (EntityLivingBase) this.cowardTameable.getOwner().getAITarget();
                 return whoTheOwnerIsAttacking != null;
-            } else {
-            	return false;
+            }
+            else
+            {
+                return false;
             }
         }
     }
@@ -38,7 +41,7 @@ public class JurassiCraftEntityAIPanicWhenOwnerHurtByTarget extends EntityAITarg
     public void startExecuting()
     {
         if (!this.cowardTameable.isPanicking())
-        	this.cowardTameable.setFleeingTick(75 + this.cowardTameable.worldObj.rand.nextInt(100));
+            this.cowardTameable.setFleeingTick(75 + this.cowardTameable.worldObj.rand.nextInt(100));
         super.startExecuting();
     }
 }

@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import thehippomaster.AnimationAPI.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
+import thehippomaster.AnimationAPI.AIAnimation;
 
 public class AIVelociraptorRoar extends AIAnimation
 {

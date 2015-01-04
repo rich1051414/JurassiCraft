@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -9,7 +10,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import net.ilexiconn.jurassicraft.Util;
 
 public class BlockStuffFluid extends BlockFluidClassic
 {
@@ -31,8 +31,8 @@ public class BlockStuffFluid extends BlockFluidClassic
     {
         fluidIcons = new IIcon[2];
 
-        fluidIcons[0] = iconRegister.registerIcon(Util.getModId() + "cultivator_water_still");
-        fluidIcons[1] = iconRegister.registerIcon(Util.getModId() + "cultivator_water_still");
+        fluidIcons[0] = iconRegister.registerIcon(JurassiCraft.getModId() + "cultivator_water_still");
+        fluidIcons[1] = iconRegister.registerIcon(JurassiCraft.getModId() + "cultivator_water_still");
     }
 
     public boolean canDisplace(IBlockAccess world, int x, int y, int z)

@@ -1,14 +1,11 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
-
 import org.lwjgl.opengl.GL11;
-
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public abstract class RenderReptile extends RenderLiving
 {

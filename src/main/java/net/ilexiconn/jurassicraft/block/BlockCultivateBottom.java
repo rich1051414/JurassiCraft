@@ -3,6 +3,10 @@ package net.ilexiconn.jurassicraft.block;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -20,11 +24,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
 
 import java.util.List;
 import java.util.Random;
@@ -40,12 +39,11 @@ public class BlockCultivateBottom extends BlockContainer
     {
         super(Material.cactus); // Yes..., Cactus xD
         setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
-        setBlockTextureName(Util.getModId() + "cultivate");
+        setBlockTextureName(JurassiCraft.getModId() + "cultivate");
         setCreativeTab(lit ? null : ModCreativeTabs.blocks);
         setHardness(2f);
         setBlockBounds(0f, 0f, 0f, 1f, 2f, 1f);
-        if (lit)
-            setLightLevel(1.0f);
+        if (lit) setLightLevel(1.0f);
         isLit = lit;
     }
 
@@ -53,8 +51,7 @@ public class BlockCultivateBottom extends BlockContainer
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        if (meta < 0 || meta >= colors.length)
-            meta = 0;
+        if (meta < 0 || meta >= colors.length) meta = 0;
         return icons[meta];
     }
 
@@ -76,8 +73,7 @@ public class BlockCultivateBottom extends BlockContainer
         {
             String name = getTextureName();
 
-            if (colors[i] != null)
-                name = name + "_" + colors[i];
+            if (colors[i] != null) name = name + "_" + colors[i];
 
             icons[i] = iconRegister.registerIcon(name);
         }
@@ -210,8 +206,7 @@ public class BlockCultivateBottom extends BlockContainer
         for (AxisAlignedBB aabb : aabbs)
         {
             AxisAlignedBB aabbTmp = aabb.getOffsetBoundingBox(x, y, z);
-            if (box.intersectsWith(aabbTmp))
-                list.add(aabbTmp);
+            if (box.intersectsWith(aabbTmp)) list.add(aabbTmp);
         }
     }
 
@@ -225,10 +220,8 @@ public class BlockCultivateBottom extends BlockContainer
             MovingObjectPosition mop = aabb.getOffsetBoundingBox(x, y, z).calculateIntercept(origin, direction);
             if (mop != null)
             {
-                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin))
-                    closest = mop;
-                else
-                    closest = mop;
+                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin)) closest = mop;
+                else closest = mop;
             }
         }
         if (closest != null)

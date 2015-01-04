@@ -22,8 +22,8 @@ public class RenderVelociraptor extends RenderDinosaur
         if (dino.isMale())
         {
             return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Velociraptor_Male_1.png");
-        } 
-        else 
+        }
+        else
         {
             return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Velociraptor_Female_1.png");
         }

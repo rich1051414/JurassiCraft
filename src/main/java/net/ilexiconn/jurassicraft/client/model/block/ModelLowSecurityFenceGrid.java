@@ -10,29 +10,29 @@ public class ModelLowSecurityFenceGrid extends ModelBase
     ModelRenderer reja3;
     ModelRenderer reja4;
     ModelRenderer reja1;
-    
+
     public ModelLowSecurityFenceGrid()
     {
-        reja2 = new ModelRenderer( this, 17, 25 );
-        reja2.setTextureSize( 64, 64 );
-        reja2.addBox( -8F, -0.5F, -0.5F, 16, 1, 1);
-        reja2.setRotationPoint( 0F, 23F, 0F );
-        reja3 = new ModelRenderer( this, 17, 25 );
-        reja3.setTextureSize( 64, 64 );
-        reja3.addBox( -8F, -0.5F, -0.5F, 16, 1, 1);
-        reja3.setRotationPoint( 0F, 15F, 0F );
-        reja4 = new ModelRenderer( this, 17, 25 );
-        reja4.setTextureSize( 64, 64 );
-        reja4.addBox( -8F, -0.5F, -0.5F, 16, 1, 1);
-        reja4.setRotationPoint( 0F, 11F, 0F );
-        reja1 = new ModelRenderer( this, 17, 25 );
-        reja1.setTextureSize( 64, 64 );
-        reja1.addBox( -8F, -0.5F, -0.5F, 16, 1, 1);
-        reja1.setRotationPoint( 0F, 19F, 0F );
+        reja2 = new ModelRenderer(this, 17, 25);
+        reja2.setTextureSize(64, 64);
+        reja2.addBox(-8F, -0.5F, -0.5F, 16, 1, 1);
+        reja2.setRotationPoint(0F, 23F, 0F);
+        reja3 = new ModelRenderer(this, 17, 25);
+        reja3.setTextureSize(64, 64);
+        reja3.addBox(-8F, -0.5F, -0.5F, 16, 1, 1);
+        reja3.setRotationPoint(0F, 15F, 0F);
+        reja4 = new ModelRenderer(this, 17, 25);
+        reja4.setTextureSize(64, 64);
+        reja4.addBox(-8F, -0.5F, -0.5F, 16, 1, 1);
+        reja4.setRotationPoint(0F, 11F, 0F);
+        reja1 = new ModelRenderer(this, 17, 25);
+        reja1.setTextureSize(64, 64);
+        reja1.addBox(-8F, -0.5F, -0.5F, 16, 1, 1);
+        reja1.setRotationPoint(0F, 19F, 0F);
     }
 
-   public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7)
-   {
+    public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7)
+    {
         reja2.rotateAngleX = 0F;
         reja2.rotateAngleY = 0F;
         reja2.rotateAngleZ = 0F;

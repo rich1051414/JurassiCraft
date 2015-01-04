@@ -1,19 +1,19 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelDnaCombiner;
+import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.Util;
-import net.ilexiconn.jurassicraft.client.model.block.ModelDnaCombiner;
-import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 
 public class TileDNACombinatorRenderer extends TileEntitySpecialRenderer
 {
 
-    private static final ResourceLocation texture = new ResourceLocation(Util.getModId() + "textures/blocks/dnaCombinator.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/dnaCombinator.png");
     private ModelDnaCombiner model = new ModelDnaCombiner();
 
     public TileDNACombinatorRenderer()

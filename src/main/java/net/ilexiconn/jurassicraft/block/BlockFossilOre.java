@@ -2,6 +2,9 @@ package net.ilexiconn.jurassicraft.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,9 +17,6 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.ModItems;
-import net.ilexiconn.jurassicraft.Util;
 
 import java.util.Random;
 
@@ -40,7 +40,7 @@ public class BlockFossilOre extends Block
     {
         super(Material.ground);
         setBlockName("fossil_ore");
-        setBlockTextureName(Util.getModId() + "fossil_ore");
+        setBlockTextureName(JurassiCraft.getModId() + "fossil_ore");
         setHardness(3.0F);
         setResistance(5.0F);
         setCreativeTab(ModCreativeTabs.blocks);
@@ -50,16 +50,23 @@ public class BlockFossilOre extends Block
 
     public Item getItemDropped(int value, Random random, int thing)
     {
-    	float rand = random.nextFloat();
-    	if (rand < 0.25F) {
+        float rand = random.nextFloat();
+        if (rand < 0.25F)
+        {
             return Item.getItemFromBlock(Blocks.stone);
-    	} else if (rand < 0.5F) {
+        }
+        else if (rand < 0.5F)
+        {
             return Item.getItemFromBlock(Blocks.cobblestone);
-    	} else if (rand < 0.75F) {
+        }
+        else if (rand < 0.75F)
+        {
             return Items.bone;
-    	} else {
+        }
+        else
+        {
             return ModItems.fossil;
-    	}
+        }
     }
 
     public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int h)
@@ -80,12 +87,12 @@ public class BlockFossilOre extends Block
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        icon_0 = iconRegister.registerIcon(Util.getModId() + "fossil_side_0");
-        icon_1 = iconRegister.registerIcon(Util.getModId() + "fossil_side_1");
-        icon_2 = iconRegister.registerIcon(Util.getModId() + "fossil_side_2");
-        icon_3 = iconRegister.registerIcon(Util.getModId() + "fossil_side_3");
-        icon_4 = iconRegister.registerIcon(Util.getModId() + "fossil_side_4");
-        icon_5 = iconRegister.registerIcon(Util.getModId() + "fossil_side_5");
+        icon_0 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_0");
+        icon_1 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_1");
+        icon_2 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_2");
+        icon_3 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_3");
+        icon_4 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_4");
+        icon_5 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_5");
     }
 
     @SideOnly(Side.CLIENT)

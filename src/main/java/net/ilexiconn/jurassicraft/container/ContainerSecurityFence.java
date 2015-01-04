@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.container;
 
+import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -7,7 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemRedstone;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
 
 public class ContainerSecurityFence extends Container
 {
@@ -33,17 +33,17 @@ public class ContainerSecurityFence extends Container
             this.addSlotToContainer(new Slot(playerInventory, i, 48 + i * 18, 232));
         }
     }
-    
+
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
         {
-        	this.fence.closeInventory();
+            this.fence.closeInventory();
         }
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
@@ -71,7 +71,7 @@ public class ContainerSecurityFence extends Container
                 }
                 else if (i >= 2)
                 {
-                	if (stackInSlot.getItem().getUnlocalizedName().equals("item.ingotIron"))
+                    if (stackInSlot.getItem().getUnlocalizedName().equals("item.ingotIron"))
                     {
                         if (!mergeItemStack(stackInSlot, 0, 1, false))
                         {
