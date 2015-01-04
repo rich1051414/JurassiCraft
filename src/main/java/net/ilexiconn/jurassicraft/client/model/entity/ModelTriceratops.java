@@ -497,7 +497,7 @@ public class ModelTriceratops extends MowzieModelBase
         FrontThighRight.rotationPointZ -= 0.5 * Math.cos(tric.frame * 0.1F);
         FrontThighLeft.rotationPointZ -= 0.5 * Math.cos(tric.frame * 0.1F);
 
-        tailSwing(tailParts, 0.1F, 0.05F, 2, tric.frame);
+        chainSwing(tailParts, 0.1F, 0.05F, 2, tric.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, tric.frame, 1F);
 
         //Specialized animations

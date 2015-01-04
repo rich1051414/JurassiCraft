@@ -418,7 +418,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         EntityHerrerasaur herrera = (EntityHerrerasaur) entity;
         resetPose();
-/*    f = herrera.frame;
+    /*f = herrera.frame;
     f1 = 1F;*/
         float scaleFactor = 0.77F;
         float height = 2F * f1;
@@ -429,7 +429,7 @@ public class ModelHerrerasaur extends MowzieModelBase
 
         walk(Neck, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
         walk(Head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
-        walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.07F, f, f1);
+        walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.05F, f, f1);
 
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
@@ -447,7 +447,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         MowzieModelRenderer[] rightArmParts = {this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
         MowzieModelRenderer[] leftArmParts = {this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
         MowzieModelRenderer[] tailParts = {this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
-        tailSwing(tailParts, 0.5F * scaleFactor, -0.1F * f1, 2, f);
+        chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
         chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
         chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
@@ -459,5 +459,6 @@ public class ModelHerrerasaur extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, herrera.frame, 1F);
         chainWave(rightArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
+        chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
     }
 }

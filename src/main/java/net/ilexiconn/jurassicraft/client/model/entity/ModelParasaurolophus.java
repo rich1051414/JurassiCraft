@@ -505,7 +505,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         walk(Right_Hand, 0.5F * scaleFactor, 0.5F, true, -1F - frontOffset, 0F, f, f1);
 
         chainWave(tailParts, 1F * scaleFactor, -0.1F, 2, f, f1);
-        tailSwing(tailParts, 0.5F * scaleFactor, 0.1F * f1, 2, f);
+        chainSwing(tailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
 
         //Idle
         walk(Neck, 0.1F, 0.07F, false, -1F, 0F, para.frame, 1F);
@@ -558,6 +558,5 @@ public class ModelParasaurolophus extends MowzieModelBase
         animator.endPhase();
         animator.setStationaryPhase(20);
         animator.resetPhase(10);
-
     }
 }
