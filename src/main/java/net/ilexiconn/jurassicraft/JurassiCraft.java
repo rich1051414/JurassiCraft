@@ -81,7 +81,6 @@ public class JurassiCraft
         if (isChristmas)
             EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.beach, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.frozenRiver, BiomeGenBase.jungle, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.extremeHills, BiomeGenBase.iceMountains, BiomeGenBase.icePlains, BiomeGenBase.mesa, BiomeGenBase.birchForest, BiomeGenBase.coldBeach, BiomeGenBase.savanna, BiomeGenBase.desert);
 
-        //TODO
         MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
         MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
 

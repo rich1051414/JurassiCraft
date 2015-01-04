@@ -194,6 +194,7 @@ container.pad.none=none
 container.pad.maxHealth=Maximum Health
 container.pad.maxLength=Maximum Length
 container.pad.maxHeight=Maximum Height
+
 container.pad.pregnancy.pregnantCow=Pregnant Cow
 container.pad.pregnancy.pregnantPig=Pregnant Pig
 container.pad.pregnancy.pregnantHorse=Pregnant Horse
@@ -203,7 +204,15 @@ container.pad.pregnancy.pig=Pig
 container.pad.pregnancy.horse=Horse
 container.pad.pregnancy.sheep=Sheep
 container.pad.pregnancy.noEmbryo=No embryo
+container.pad.pregnancy.dnaCode=DNA
+container.pad.pregnancy.dnaQuality=DNA quality
 
+container.pad.egg.hatching=Hatching
+container.pad.egg.notHatching=Egg is not hatching
+container.pad.egg.dried=Too hot
+container.pad.egg.frozen=Too cold
+container.pad.egg.dnaCode=DNA
+container.pad.egg.dnaQuality=DNA quality
 
 //Creature_Dinopad_Info
 container.pad.infoAnkylosaur.page1=Ankylosaurus, meaning "fused lizard", is a genus of ankylosaurid dinosaur. Fossils of Ankylosaurus are found in geologic formations dating to the very end of the Cretaceous period, between 66.5 and 66.0 million years ago, in western North America.

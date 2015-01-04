@@ -1,27 +1,35 @@
 package net.ilexiconn.jurassicraft.entity.egg;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadEgg;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Random;
 
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 {
@@ -32,7 +40,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     public boolean dried;
     public int quality;
     private String dnaSequence;
-
     public int rockAmount;
 
     public EntityDinoEgg(World world)
@@ -61,7 +68,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         if (!this.isEntityInvulnerable())
         {
-            if (worldObj.isRemote)
+            if (this.worldObj.isRemote)
             {
                 if (amount > 0)
                 {
@@ -80,10 +87,8 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                     }
                 }
             }
-
             this.setDead();
         }
-
         return super.attackEntityFrom(damage, amount);
     }
 
@@ -125,24 +130,24 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
         if (!this.isDead)
         {
-            if (worldObj.isRemote)
+        	if (this.worldObj.isRemote)
             {
                 if (this.dataWatcher.getWatchableObjectInt(25) == 0)
                 {
-                    froze = false;
+                	this.froze = false;
                 }
                 else
                 {
-                    froze = true;
+                	this.froze = true;
                 }
 
                 if (this.dataWatcher.getWatchableObjectInt(26) == 0)
                 {
-                    dried = false;
+                	this.dried = false;
                 }
                 else
                 {
-                    dried = true;
+                	this.dried = true;
                 }
 
                 this.currentSpawnTime = this.dataWatcher.getWatchableObjectInt(27);
@@ -153,7 +158,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 this.motionY -= 0.05F;
             }
 
-            if (motionY < -0.8F)
+            if (this.motionY < -0.8F)
             {
                 this.motionY = -0.8F;
             }
@@ -169,7 +174,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 this.motionZ *= 0.7F;
             }
 
-            if (!worldObj.isRemote)
+            if (!this.worldObj.isRemote)
             {
                 int amountToIncrease = 0;
 
@@ -182,8 +187,8 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 boolean overheat = enviroments.contains(EggEnviroment.OVERHEAT);
 
                 boolean cold = enviroments.contains(EggEnviroment.COLD);
-
-                if (creature.isWaterCreature())
+                
+				if (this.creature.isWaterCreature())
                 {
                     if (!wet)
                     {
@@ -220,38 +225,36 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                     }
                 }
 
-                currentSpawnTime += amountToIncrease;
+				this.currentSpawnTime += amountToIncrease;
 
-                if (currentSpawnTime < -500)
+                if (this.currentSpawnTime < -500)
                 {
-                    if (creature.isWaterCreature())
+                    if (this.creature.isWaterCreature())
                     {
-                        dried = true;
+                    	this.dried = true;
                     }
                     else
                     {
-                        froze = true;
+                    	this.froze = true;
                     }
                 }
 
-                if (currentSpawnTime >= spawnTime)
+                if (this.currentSpawnTime >= this.spawnTime)
                 {
-                    Class dinoToSpawnClass = CreatureManager.getCreatureClass(creature.getCreatureID());
+                    Class dinoToSpawnClass = CreatureManager.getCreatureClass(this.creature.getCreatureID());
 
                     try
                     {
-                        Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(worldObj);
+                        Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(this.worldObj);
                         if (dinoToSpawn instanceof EntityJurassiCraftCreature)
                         {
-                            EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
-                            baby.setGenetics(quality, dnaSequence);
-                            if (dinoToSpawn instanceof EntityJurassiCraftTameable && ((EntityJurassiCraftTameable) baby).canBeTamedUponSpawning())
-                            {
-                                EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
-                                if (owner != null)
-                                {
-                                    ((EntityJurassiCraftTameable) baby).setTamed(true);
-                                    ((EntityJurassiCraftTameable) baby).setOwner(owner.getCommandSenderName());
+                        	EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
+                        	baby.setGenetics(this.quality, this.dnaSequence);
+                        	if (dinoToSpawn instanceof EntityJurassiCraftTameable && ((EntityJurassiCraftTameable) baby).canBeTamedUponSpawning()) {
+                        		EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
+                            	if (owner != null) {
+                            		((EntityJurassiCraftTameable) baby).setTamed(true);
+                        			((EntityJurassiCraftTameable) baby).setOwner(owner.getCommandSenderName());
                                     this.worldObj.setEntityState((EntityJurassiCraftTameable) baby, (byte) 7);
                                 }
                             }
@@ -288,28 +291,28 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 }
             }
 
-            if (currentSpawnTime < (spawnTime - 100))
+            if (this.currentSpawnTime < (this.spawnTime - 100))
             {
                 if (!this.dried && !this.froze)
                 {
                     if (this.rotationPitch >= 5)
                     {
-                        rockAmount = -1;
+                    	this.rockAmount = -1;
                     }
                     else if (this.rotationPitch <= -5)
                     {
-                        rockAmount = 1;
+                    	this.rockAmount = 1;
                     }
 
-                    this.rotationPitch += (rockAmount / 2.0F);
+                    this.rotationPitch += (this.rockAmount / 2.0F);
                 }
             }
 
-            if (!worldObj.isRemote)
+            if (!this.worldObj.isRemote)
             {
-                this.dataWatcher.updateObject(25, froze ? 1 : 0);
-                this.dataWatcher.updateObject(26, dried ? 1 : 0);
-                this.dataWatcher.updateObject(27, currentSpawnTime);
+                this.dataWatcher.updateObject(25, this.froze ? 1 : 0);
+                this.dataWatcher.updateObject(26, this.dried ? 1 : 0);
+                this.dataWatcher.updateObject(27, this.currentSpawnTime);
             }
 
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
@@ -331,11 +334,11 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         this.dataWatcher.addObject(25, 0);
         this.dataWatcher.addObject(26, 0);
-        this.dataWatcher.addObject(27, rockAmount);
+        this.dataWatcher.addObject(27, this.rockAmount);
     }
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound nbt)
+	public void readEntityFromNBT(NBTTagCompound nbt)
     {
         this.spawnTime = nbt.getInteger("SpawnTime");
         this.currentSpawnTime = nbt.getInteger("CurrentSpawnTime");
@@ -347,31 +350,87 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     }
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound nbt)
+	public void writeEntityToNBT(NBTTagCompound nbt)
     {
-        nbt.setInteger("SpawnTime", spawnTime);
-        nbt.setInteger("CurrentSpawnTime", currentSpawnTime);
-        nbt.setInteger("CreatureID", creature.getCreatureID());
-        nbt.setBoolean("Froze", froze);
-        nbt.setBoolean("Dried", dried);
-        nbt.setInteger("Quality", quality);
-        nbt.setString("DNASequence", dnaSequence);
+        nbt.setInteger("SpawnTime", this.spawnTime);
+        nbt.setInteger("CurrentSpawnTime", this.currentSpawnTime);
+        nbt.setInteger("CreatureID", this.creature.getCreatureID());
+        nbt.setBoolean("Froze", this.froze);
+        nbt.setBoolean("Dried", this.dried);
+        nbt.setInteger("Quality", this.quality);
+        nbt.setString("DNASequence", this.dnaSequence);
     }
 
     public ResourceLocation getTexture()
     {
-        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + creature.getCreatureName() + ".png");
+        return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + this.creature.getCreatureName() + ".png");
     }
+
+    public int getHatchingProgressScaled(int i)
+    {
+    	if (this.spawnTime > 0) {
+			return (int) (i * this.currentSpawnTime / this.spawnTime);
+    	}
+        return 0;
+    }
+
+    public boolean isHatchingDone()
+    {
+        return (this.currentSpawnTime >= this.spawnTime);
+    }
+
+    public int getDNAQuality()
+    {
+        return this.quality;
+    }
+
+    public String getDNASequence()
+    {
+        return this.dnaSequence;
+    }
+
+    @Override
+    public boolean interactFirst(EntityPlayer player)
+    {
+		if (player.getHeldItem() != (ItemStack) null)
+		{
+			if (player.getHeldItem().getItem() instanceof ItemDinoPad) 
+			{
+				this.showStatus();
+			}
+		} else {
+            ItemStack itemStack = new ItemStack(this.creature.getEgg());
+            if (!player.worldObj.isRemote) {
+                NBTTagCompound compound = new NBTTagCompound();
+                compound.setInteger("EggQuality", this.quality);
+                compound.setString("EggDNA", this.dnaSequence);
+                itemStack.setTagCompound(compound);
+                if (player.inventory.addItemStackToInventory(itemStack))
+                {
+                    this.worldObj.playSoundAtEntity(player, "random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    this.setDead();
+                }
+            }
+		}
+        return true;
+    }
+
+	@SideOnly(Side.CLIENT)
+	private void showStatus()
+	{
+		GuiDinoPadEgg.eggToAnalyze = this;
+		FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 51, this.worldObj, 0, 0, 0);
+	}
 
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(creature.getCreatureID());
+        buffer.writeInt(this.creature.getCreatureID());
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
-        creature = CreatureManager.getCreatureFromId(additionalData.readInt());
+    	this.creature = CreatureManager.getCreatureFromId(additionalData.readInt());
     }
 }

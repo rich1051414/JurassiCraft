@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -11,8 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ItemDinoEgg extends Item
 {
@@ -132,24 +132,26 @@ public class ItemDinoEgg extends Item
     @Override
     public boolean onItemUse(ItemStack egg, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
-        if (!world.isRemote && !player.capabilities.isCreativeMode)
-        {
-            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
-        }
-        else if (!world.isRemote && !player.isSneaking())
-        {
-            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
-        }
-        else
-        {
-            this.onItemRightClick(egg, world, player);
-        }
-
-        egg.stackSize--;
-        if (egg.stackSize <= 0)
-        {
-            egg = (ItemStack) null;
-        }
-        return true;
+		if (((ItemDinoEgg) egg.getItem()).getEggQuality(egg) >= 50) {
+	        if (!world.isRemote && !player.capabilities.isCreativeMode)
+	        {
+	            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+	        }
+	        else if (!world.isRemote && !player.isSneaking())
+	        {
+	            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+	        }
+	        else
+	        {
+	            this.onItemRightClick(egg, world, player);
+	        }
+	        egg.stackSize--;
+	        if (egg.stackSize <= 0) 
+	        {
+	        	egg = (ItemStack) null;
+	        }
+	        return true;
+		}
+        return false;
     }
 }

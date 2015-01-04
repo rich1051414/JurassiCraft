@@ -5,7 +5,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.client.gui.GuiPregnancyProgress;
+import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
@@ -41,22 +41,22 @@ public class JurassiCraftInteractEvent
     {
         if (event.target instanceof EntityCow)
         {
-            GuiPregnancyProgress.creatureToAnalyze = (Object) event.target;
+            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
             FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
         }
         else if (event.target instanceof EntityPig)
         {
-            GuiPregnancyProgress.creatureToAnalyze = (Object) event.target;
+            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
             FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
         }
         else if (event.target instanceof EntityHorse)
         {
-            GuiPregnancyProgress.creatureToAnalyze = (Object) event.target;
+            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
             FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
         }
         else if (event.target instanceof EntitySheep)
         {
-            GuiPregnancyProgress.creatureToAnalyze = (Object) event.target;
+            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
             FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
         }
     }

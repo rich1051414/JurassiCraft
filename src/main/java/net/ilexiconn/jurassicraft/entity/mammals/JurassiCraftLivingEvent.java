@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.lang.reflect.InvocationTargetException;
+
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
@@ -14,8 +15,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-
-import java.lang.reflect.InvocationTargetException;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class JurassiCraftLivingEvent
 {
@@ -56,10 +56,10 @@ public class JurassiCraftLivingEvent
                 }
                 else
                 {
-                    spawnMammalBaby(cow.getMammalName(), cow.getDnaQuality(), cow.getDnaSequence(), event);
+                    spawnMammalBaby(cow.getMammalName(), cow.getDNAQuality(), cow.getDNASequence(), event);
                     cow.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
-                    cow.setDnaQuality(0);
-                    cow.setDnaSequence("");
+                    cow.setDNAQuality(0);
+                    cow.setDNASequence("");
                     cow.setPregnancyProgress(0);
                     cow.setPregnancySpeed(0);
                 }
@@ -77,10 +77,10 @@ public class JurassiCraftLivingEvent
                 }
                 else
                 {
-                    spawnMammalBaby(pig.getMammalName(), pig.getDnaQuality(), pig.getDnaSequence(), event);
+                    spawnMammalBaby(pig.getMammalName(), pig.getDNAQuality(), pig.getDNASequence(), event);
                     pig.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
-                    pig.setDnaQuality(0);
-                    pig.setDnaSequence("");
+                    pig.setDNAQuality(0);
+                    pig.setDNASequence("");
                     pig.setPregnancyProgress(0);
                     pig.setPregnancySpeed(0);
                 }
@@ -98,10 +98,10 @@ public class JurassiCraftLivingEvent
                 }
                 else
                 {
-                    spawnMammalBaby(horse.getMammalName(), horse.getDnaQuality(), horse.getDnaSequence(), event);
+                    spawnMammalBaby(horse.getMammalName(), horse.getDNAQuality(), horse.getDNASequence(), event);
                     horse.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
-                    horse.setDnaQuality(0);
-                    horse.setDnaSequence("");
+                    horse.setDNAQuality(0);
+                    horse.setDNASequence("");
                     horse.setPregnancyProgress(0);
                     horse.setPregnancySpeed(0);
                 }
@@ -119,10 +119,10 @@ public class JurassiCraftLivingEvent
                 }
                 else
                 {
-                    spawnMammalBaby(sheep.getMammalName(), sheep.getDnaQuality(), sheep.getDnaSequence(), event);
+                    spawnMammalBaby(sheep.getMammalName(), sheep.getDNAQuality(), sheep.getDNASequence(), event);
                     sheep.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
-                    sheep.setDnaQuality(0);
-                    sheep.setDnaSequence("");
+                    sheep.setDNAQuality(0);
+                    sheep.setDNASequence("");
                     sheep.setPregnancyProgress(0);
                     sheep.setPregnancySpeed(0);
                 }
