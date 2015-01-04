@@ -15,7 +15,7 @@ public class AIParasaurolophusTrumpet extends AIAnimation
         entityPara = (EntityParasaurolophus) entity;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }
@@ -32,7 +32,7 @@ public class AIParasaurolophusTrumpet extends AIAnimation
 
     public void updateTask()
     {
-        if (entityPara.getAnimTick() == 3)
+        if (entityPara.getAnimationTick() == 3)
         {
             double I = Math.random();
             if (I <= 0.3)

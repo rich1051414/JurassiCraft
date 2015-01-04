@@ -20,16 +20,6 @@
 		"logoFile": "/jurassiCraft.png"
 	},
 	{
-		"modid":"fossilhunting",
-		"name":"Fossil Hunting",
-		"parent":"jurassicraft"
-	},
-	{
-		"modid":"bygoneage",
-		"name":"Bygone Age",
-		"parent":"jurassicraft"
-	},
-	{
 		"modid":"animationapi",
 		"name":"AnimationAPI",
 		"parent":"jurassicraft"

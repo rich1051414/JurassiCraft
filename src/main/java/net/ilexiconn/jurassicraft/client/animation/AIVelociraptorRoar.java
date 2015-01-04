@@ -13,7 +13,7 @@ public class AIVelociraptorRoar extends AIAnimation
         entityRaptor = raptor;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 2;
     }

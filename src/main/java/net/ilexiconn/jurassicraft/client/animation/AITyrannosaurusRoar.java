@@ -14,7 +14,7 @@ public class AITyrannosaurusRoar extends AIAnimation
         entityTrex = trex;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }

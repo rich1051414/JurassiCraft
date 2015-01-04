@@ -18,7 +18,7 @@ public class AIAnkylosaurTailWhip extends AIAnimation
         attackTarget = null;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }
@@ -41,9 +41,9 @@ public class AIAnkylosaurTailWhip extends AIAnimation
 
     public void updateTask()
     {
-        if (entityAnkylosaur.getAnimTick() < 14)
+        if (entityAnkylosaur.getAnimationTick() < 14)
             entityAnkylosaur.getLookHelper().setLookPositionWithEntity(attackTarget, 30F, 30F);
-        if (entityAnkylosaur.getAnimTick() == 14 && attackTarget != null)
+        if (entityAnkylosaur.getAnimationTick() == 14 && attackTarget != null)
             attackTarget.attackEntityFrom(DamageSource.causeMobDamage(entityAnkylosaur), 1);
     }
 }

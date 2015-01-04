@@ -12,7 +12,7 @@ public class AIHypsilophodonScratchHead extends AIAnimation
         super(entity);
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }
@@ -31,6 +31,6 @@ public class AIHypsilophodonScratchHead extends AIAnimation
     {
         EntityLiving living = getEntity();
         IAnimatedEntity entity = (IAnimatedEntity) living;
-        return entity.getAnimID() == 0 && living.getRNG().nextInt(60) == 0;
+        return entity.getAnimationId() == 0 && living.getRNG().nextInt(60) == 0;
     }
 }

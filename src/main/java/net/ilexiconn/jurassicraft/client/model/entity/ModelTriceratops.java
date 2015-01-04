@@ -515,7 +515,7 @@ public class ModelTriceratops extends MowzieModelBase
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
 
-        animator.setAnim(1);
+        animator.setAnimation(1);
         animator.startPhase(4);
         animator.rotate(Waist, 0.25F, 0, 0);
         animator.rotate(FrontThighLeft, 0.125F, 0, 0);

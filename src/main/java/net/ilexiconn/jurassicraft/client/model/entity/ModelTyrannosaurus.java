@@ -443,7 +443,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
         //        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
 
-        animator.setAnim(1);
+        animator.setAnimation(1);
         animator.startPhase(15);
         animator.move(Body_1, 0, -3, -5);
         animator.move(Right_Thigh, 0, -3, -5);

@@ -18,7 +18,7 @@ public class AITriceratopsCharge extends AIAnimation
         entityTric = tric;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }
@@ -49,7 +49,7 @@ public class AITriceratopsCharge extends AIAnimation
 
     public void updateTask()
     {
-        if (entityTric.getAnimTick() < 40)
+        if (entityTric.getAnimationTick() < 40)
         {
             if (attackTarget != null)
             {
@@ -57,7 +57,7 @@ public class AITriceratopsCharge extends AIAnimation
             }
         }
 
-        if (entityTric.getAnimTick() >= 35 && entityTric.getAnimTick() <= 40)
+        if (entityTric.getAnimationTick() >= 35 && entityTric.getAnimationTick() <= 40)
         {
             if (attackTarget != null)
             {
@@ -67,7 +67,7 @@ public class AITriceratopsCharge extends AIAnimation
                 angleYaw = (float) Math.atan2(deltaZ, deltaX);
             }
         }
-        if (entityTric.getAnimTick() > 40)
+        if (entityTric.getAnimationTick() > 40)
         {
             entityTric.charging = true;
             if (attackTarget != null)

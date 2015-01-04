@@ -15,7 +15,7 @@ public class AIVelociraptorTwitchHead extends AIAnimation
         this.raptor = (EntityVelociraptor) animraptor;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 1;
     }
@@ -34,6 +34,6 @@ public class AIVelociraptorTwitchHead extends AIAnimation
     {
         EntityLiving living = getEntity();
         IAnimatedEntity entity = (IAnimatedEntity) living;
-        return entity.getAnimID() == 0 && living.getRNG().nextInt(45) == 0 && raptor.getAttackTarget() == null;
+        return entity.getAnimationId() == 0 && living.getRNG().nextInt(45) == 0 && raptor.getAttackTarget() == null;
     }
 }

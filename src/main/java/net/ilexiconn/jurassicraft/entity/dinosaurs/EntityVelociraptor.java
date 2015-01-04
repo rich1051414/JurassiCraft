@@ -62,7 +62,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0)
-            AnimationAPI.sendAnimPacket(this, 3);
+            AnimationAPI.sendAnimationPacket(this, 3);
         if (onGround == true) setLeaping(false);
         if (timeSinceLeap != 0) timeSinceLeap--;
 
@@ -77,7 +77,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
     public String getLivingSound()
     {
-        if (animID == 0 && this.getAttackTarget() == null) AnimationAPI.sendAnimPacket(this, 2);
+        if (animID == 0 && this.getAttackTarget() == null) AnimationAPI.sendAnimationPacket(this, 2);
         int I = rand.nextInt(4) + 1;
         if (I == 1) return "jurassicraft:RapHiss01";
         if (I == 2) return "jurassicraft:RapHiss02";
@@ -87,7 +87,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
     public String getDeathSound()
     {
-        if (animID == 0) AnimationAPI.sendAnimPacket(this, 2);
+        if (animID == 0) AnimationAPI.sendAnimationPacket(this, 2);
 
         return super.getDeathSound();
     }

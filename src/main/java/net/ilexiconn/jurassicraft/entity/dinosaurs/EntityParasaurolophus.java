@@ -59,7 +59,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
         }
         else
         {
-            AnimationAPI.sendAnimPacket(this, 1);
+            AnimationAPI.sendAnimationPacket(this, 1);
             return null;
         }
     }

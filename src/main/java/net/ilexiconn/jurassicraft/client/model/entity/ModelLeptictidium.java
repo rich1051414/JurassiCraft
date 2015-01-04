@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import com.rafamv.bygoneage.client.renderer.ResettableModelRenderer;
-import com.rafamv.bygoneage.enums.BygoneAgeAnimationIDs;
+import net.ilexiconn.jurassicraft.client.animation.BygoneAgeAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -343,7 +343,7 @@ public class ModelLeptictidium extends ModelBase
         float mouthOpenRotation = (float) Math.PI / 8.0F;
         float mouthCloseRotation = (float) Math.PI / 16.0F;
 
-        animator.setAnim(BygoneAgeAnimationIDs.ANIMATION_BITE.getAnimationID());
+        animator.setAnimation(BygoneAgeAnimationIDs.ANIMATION_BITE.getAnimationID());
         animator.startPhase(5);
         animator.rotate(mouth1, mouthOpenRotation, 0F, 0F);
         animator.rotate(mouth2, mouthOpenRotation, 0F, 0F);

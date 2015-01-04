@@ -11,7 +11,7 @@ public class AIAnkylosaurTailSlam extends AIAnimation
         super(entity);
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 2;
     }
@@ -38,6 +38,6 @@ public class AIAnkylosaurTailSlam extends AIAnimation
         if (living.getHealth() > living.getMaxHealth() - 4) return false;
 
         IAnimatedEntity entity = (IAnimatedEntity) living;
-        return entity.getAnimID() == 0 && living.getRNG().nextInt(30) == 0;
+        return entity.getAnimationId() == 0 && living.getRNG().nextInt(30) == 0;
     }
 }

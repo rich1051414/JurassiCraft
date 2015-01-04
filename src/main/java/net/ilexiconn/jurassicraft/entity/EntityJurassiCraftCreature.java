@@ -892,25 +892,25 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     }
 
     @Override
-    public void setAnimID(int id)
+    public void setAnimationId(int id)
     {
         animID = id;
     }
 
     @Override
-    public void setAnimTick(int tick)
+    public void setAnimationTick(int tick)
     {
         animTick = tick;
     }
 
     @Override
-    public int getAnimID()
+    public int getAnimationId()
     {
         return animID;
     }
 
     @Override
-    public int getAnimTick()
+    public int getAnimationTick()
     {
         return animTick;
     }

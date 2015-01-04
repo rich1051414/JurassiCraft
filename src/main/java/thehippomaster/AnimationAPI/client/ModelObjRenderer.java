@@ -1,165 +1,117 @@
 package thehippomaster.AnimationAPI.client;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraftforge.client.model.IModelCustom;
+import org.lwjgl.opengl.GL11;
 
-/**
- * ModelObjRenderer.java
- * A simple ModelRenderer-compatible class that allows the modder to link custom models to ModelRenderer models. Very useful
- * if the modder wants to replace a previous ModelRenderer with a custom model piece without having to redo all of the
- * translations, scales, and rotations. However, this model renders the methods addBox, setTextureOffset, etc useless, as it
- * only applies the translations and rotations originally in the ModelRenderer.
- * 
- * @author thehippomaster21
- */
 @SideOnly(Side.CLIENT)
-public class ModelObjRenderer extends ModelRenderer {
-	
-	public ModelObjRenderer(ModelBase bass) {
+public class ModelObjRenderer extends ModelRenderer 
+{
+	public IModelCustom model;
+	private float theScale;
+
+	private int displayList;
+	private boolean compiled;
+
+	public ModelObjRenderer(ModelBase bass) 
+	{
 		this(bass, null, 1F);
 	}
 	
-	public ModelObjRenderer(ModelBase bass, IModelCustom shape) {
+	public ModelObjRenderer(ModelBase bass, IModelCustom shape) 
+	{
 		this(bass, shape, 1F);
 	}
 	
-	public ModelObjRenderer(ModelBase bass, IModelCustom shape, float scale) {
+	public ModelObjRenderer(ModelBase bass, IModelCustom shape, float scale) 
+	{
 		super(bass);
 		theScale = scale;
 		model = shape;
 	}
 	
-	public void setScale(float scale) {
+	public void setScale(float scale) 
+	{
 		theScale = scale;
 	}
 	
-	@Override
-	public void render(float scale) {
-		if (!this.isHidden)
+	public void render(float scale)
+	{
+		if (!isHidden)
 		{
-			if (this.showModel)
+			if (showModel)
 			{
-				if (!this.compiled)
-				{
-					this.compileDisplayList(scale);
-				}
+				if (!compiled) compileDisplayList();
 
-				GL11.glTranslatef(this.offsetX, this.offsetY, this.offsetZ);
+				GL11.glTranslatef(offsetX, offsetY, offsetZ);
 				int i;
 
-				if (this.rotateAngleX == 0.0F && this.rotateAngleY == 0.0F && this.rotateAngleZ == 0.0F)
+				if (rotateAngleX == 0f && rotateAngleY == 0f && rotateAngleZ == 0f)
 				{
-					if (this.rotationPointX == 0.0F && this.rotationPointY == 0.0F && this.rotationPointZ == 0.0F)
+					if (rotationPointX == 0.0F && rotationPointY == 0.0F && rotationPointZ == 0f)
 					{
 						GL11.glPushMatrix();
 						GL11.glScalef(theScale, theScale, theScale);
 						GL11.glCallList(displayList);
 						GL11.glPopMatrix();
 
-						if (this.childModels != null)
-						{
-							for (i = 0; i < this.childModels.size(); ++i)
-							{
-								((ModelRenderer)this.childModels.get(i)).render(scale);
-							}
-						}
+						if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
 					}
 					else
 					{
-						GL11.glTranslatef(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
+						GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
 						GL11.glPushMatrix();
 						GL11.glScalef(theScale, theScale, theScale);
 						GL11.glCallList(displayList);
 						GL11.glPopMatrix();
 
-						if (this.childModels != null)
-						{
-							for (i = 0; i < this.childModels.size(); ++i)
-							{
-								((ModelRenderer)this.childModels.get(i)).render(scale);
-							}
-						}
+						if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer)childModels.get(i)).render(scale);
 
-						GL11.glTranslatef(-this.rotationPointX * scale, -this.rotationPointY * scale, -this.rotationPointZ * scale);
+						GL11.glTranslatef(-rotationPointX * scale, -rotationPointY * scale, -rotationPointZ * scale);
 					}
 				}
 				else
 				{
 					GL11.glPushMatrix();
-					GL11.glTranslatef(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
+					GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
 
-					if (this.rotateAngleZ != 0.0F)
-					{
-						GL11.glRotatef(this.rotateAngleZ * (180F / (float)Math.PI), 0.0F, 0.0F, 1.0F);
-					}
-
-					if (this.rotateAngleY != 0.0F)
-					{
-						GL11.glRotatef(this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
-					}
-
-					if (this.rotateAngleX != 0.0F)
-					{
-						GL11.glRotatef(this.rotateAngleX * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
-					}
+					if (rotateAngleZ != 0.0F) GL11.glRotatef(rotateAngleZ * (180f / (float)Math.PI), 0f, 0f, 1f);
+					if (rotateAngleY != 0.0F) GL11.glRotatef(rotateAngleY * (180f / (float)Math.PI), 0f, 1f, 0f);
+					if (rotateAngleX != 0.0F) GL11.glRotatef(rotateAngleX * (180f / (float)Math.PI), 1f, 0f, 0f);
 
 					GL11.glPushMatrix();
 					GL11.glScalef(theScale, theScale, theScale);
 					GL11.glCallList(displayList);
 					GL11.glPopMatrix();
 
-					if (this.childModels != null)
-					{
-						for (i = 0; i < this.childModels.size(); ++i)
-						{
-							((ModelRenderer)this.childModels.get(i)).render(scale);
-						}
-					}
+					if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer)childModels.get(i)).render(scale);
 
 					GL11.glPopMatrix();
 				}
 
-				GL11.glTranslatef(-this.offsetX, -this.offsetY, -this.offsetZ);
+				GL11.glTranslatef(-offsetX, -offsetY, -offsetZ);
 			}
 		}
 	}
 	
-	@Override
-	public void renderWithRotation(float scale) {
-		if (!this.isHidden)
+	public void renderWithRotation(float scale)
+	{
+		if (!isHidden)
 		{
-			if (this.showModel)
+			if (showModel)
 			{
-				if (!this.compiled)
-				{
-					this.compileDisplayList(scale);
-				}
+				if (!compiled) compileDisplayList();
 
 				GL11.glPushMatrix();
-				GL11.glTranslatef(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
+				GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
 
-				if (this.rotateAngleY != 0.0F)
-				{
-					GL11.glRotatef(this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
-				}
-
-				if (this.rotateAngleX != 0.0F)
-				{
-					GL11.glRotatef(this.rotateAngleX * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
-				}
-
-				if (this.rotateAngleZ != 0.0F)
-				{
-					GL11.glRotatef(this.rotateAngleZ * (180F / (float)Math.PI), 0.0F, 0.0F, 1.0F);
-				}
+				if (rotateAngleY != 0f) GL11.glRotatef(rotateAngleY * (180f / (float)Math.PI), 0f, 1f, 0f);
+				if (rotateAngleX != 0f) GL11.glRotatef(rotateAngleX * (180f / (float)Math.PI), 1f, 0f, 0f);
+				if (rotateAngleZ != 0f) GL11.glRotatef(rotateAngleZ * (180f / (float)Math.PI), 0f, 0f, 1f);
 
 				GL11.glPushMatrix();
 				GL11.glScalef(theScale, theScale, theScale);
@@ -170,23 +122,18 @@ public class ModelObjRenderer extends ModelRenderer {
 		}
 	}
 	
-	protected void compileDisplayList(float scale) {
+	protected void compileDisplayList()
+	{
 		displayList = GLAllocation.generateDisplayLists(1);
 		GL11.glNewList(displayList, GL11.GL_COMPILE);
 		
 		GL11.glPushMatrix();
-		GL11.glScalef(0.76F, 0.76F, 0.76F);
-		GL11.glRotatef(180F, 1F, 0F, 0F);
+		GL11.glScalef(0.76f, 0.76f, 0.76f);
+		GL11.glRotatef(180f, 1f, 0f, 0f);
 		model.renderAll();
 		GL11.glPopMatrix();
 		
 		GL11.glEndList();
 		compiled = true;
 	}
-	
-	public IModelCustom model;
-	private float theScale;
-	
-	private int displayList;
-	private boolean compiled;
 }

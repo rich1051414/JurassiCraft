@@ -65,7 +65,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
             if (animID == 0 && this.getAttackTarget() == null)
             {
-                AnimationAPI.sendAnimPacket(this, 1);
+                AnimationAPI.sendAnimationPacket(this, 1);
             }
             /*
              * else if(this.getAttackTarget() != null) {

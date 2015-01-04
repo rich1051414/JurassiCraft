@@ -16,7 +16,7 @@ public class AIVelociraptorLeap extends AIAnimation
         entityRaptor = raptor;
     }
 
-    public int getAnimID()
+    public int getAnimationId()
     {
         return 3;
     }
@@ -39,7 +39,7 @@ public class AIVelociraptorLeap extends AIAnimation
 
     public void updateTask()
     {
-        if (entityRaptor.getAnimTick() < 12)
+        if (entityRaptor.getAnimationTick() < 12)
         {
             if (attackTarget != null)
             {
@@ -47,7 +47,7 @@ public class AIVelociraptorLeap extends AIAnimation
             }
         }
 
-        if (entityRaptor.getAnimTick() == 12)
+        if (entityRaptor.getAnimationTick() == 12)
         {
             if (attackTarget != null)
             {

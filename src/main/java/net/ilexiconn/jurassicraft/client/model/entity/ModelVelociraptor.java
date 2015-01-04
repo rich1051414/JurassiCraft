@@ -571,7 +571,7 @@ public class ModelVelociraptor extends MowzieModelBase
 /*    f = raptor.frame;
     f1 = 1F;*/
         if (raptor.leaping) f1 = 0;
-        if (raptor.getAnimID() == 3 && raptor.getAnimTick() >= 6) f1 = 0;
+        if (raptor.getAnimationId() == 3 && raptor.getAnimationTick() >= 6) f1 = 0;
         float scaleFactor = 0.75F;
         float height = 2F * f1;
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
@@ -618,7 +618,7 @@ public class ModelVelociraptor extends MowzieModelBase
     newfaceTarget(Tail_6, 6, raptor.getRenderYawOffsetChange(), 0);*/
         //    System.out.println(raptor.onGround + " " + raptor.leaping);
 
-        if (raptor.getAnimTick() == 20 && raptor.getAnimID() == 3) raptor.setLeaping(true);
+        if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == 3) raptor.setLeaping(true);
         if (raptor.leaping == true)
         {
             Body_1.rotateAngleX -= 0.8;
@@ -661,16 +661,16 @@ public class ModelVelociraptor extends MowzieModelBase
         EntityVelociraptor raptor = (EntityVelociraptor) entity;
 
         //Head twitch
-        animator.setAnim(1);
+        animator.setAnimation(1);
         animator.startPhase(3);
-        if (raptor.getAnimTick() == 1 && raptor.getAnimID() == 1) TwitchAngle = (float) (Math.random() - 0.5);
+        if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == 1) TwitchAngle = (float) (Math.random() - 0.5);
         animator.rotate(Head, 0, 0, TwitchAngle);
         animator.endPhase();
         animator.setStationaryPhase(24);
         animator.resetPhase(3);
 
         //Roar
-        animator.setAnim(2);
+        animator.setAnimation(2);
         animator.startPhase(3);
         animator.rotate(Neck, -0.1F, 0, 0);
         animator.rotate(Head, 0.1F, 0, 0);
@@ -684,7 +684,7 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.resetPhase(5);
 
         //Leap
-        animator.setAnim(3);
+        animator.setAnimation(3);
         animator.startPhase(5);
         animator.move(Body_1, 0, 3, 0);
         animator.rotate(Body_1, 0.5F, 0, 0);

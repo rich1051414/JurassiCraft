@@ -343,7 +343,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
 
-        animator.setAnim(1);
+        animator.setAnimation(1);
         animator.startPhase(5);
         animator.rotate(neck, 0.9F, -0.4F, 0);
         animator.rotate(head, -0.8F, -0.25F, 0.7F);
