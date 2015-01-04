@@ -424,7 +424,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         walk(Lower_Arm_Right, 0.1F, 0.07F, false, -1F, 0F, trex.frame, 1F);
         walk(Lower_Arm_Left, 0.1F, 0.07F, false, -1F, 0F, trex.frame, 1F);
 
-        tailSwing(tailParts, 0.1F, 0.05F, 1, trex.frame);
+        chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1F);
 
         //Specialized animations

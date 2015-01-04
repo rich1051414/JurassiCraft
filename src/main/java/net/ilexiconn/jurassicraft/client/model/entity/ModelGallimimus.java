@@ -501,7 +501,7 @@ public class ModelGallimimus extends MowzieModelBase
         walk(Neck_4, scaleFactor, 0.1F, false, 1.5F, 0.3F, f, f1);
 
         chainWave(TailParts, 1 * scaleFactor, 0.1F, 1, f, f1);
-        tailSwing(TailParts, 0.5F * scaleFactor, 0.1F * f1, 2, f);
+        chainSwing(TailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
 
         //Idling
         chainWave(TailParts, 0.1F, -0.05F, 1, galli.frame, 1F);

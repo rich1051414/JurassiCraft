@@ -457,7 +457,6 @@ public class ModelBrachiosaur extends MowzieModelBase
         walk(front_left_foot, 0.05F, 0.175F, false, 0, 0, brachObama.frame, 1);
         chainWave(neckParts, 0.05F, -0.05F, -4, brachObama.frame, 1);
         chainWave(tailParts, 0.05F, -0.05F, 1, brachObama.frame, 1);
-        tailSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame);
-
+        chainSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame, 1);
     }
 }
