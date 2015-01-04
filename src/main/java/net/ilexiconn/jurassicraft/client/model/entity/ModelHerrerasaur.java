@@ -429,7 +429,7 @@ public class ModelHerrerasaur extends MowzieModelBase
 
         walk(Neck, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
         walk(Head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
-        walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.07F, f, f1);
+        walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.05F, f, f1);
 
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
@@ -459,5 +459,6 @@ public class ModelHerrerasaur extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, herrera.frame, 1F);
         chainWave(rightArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
+        chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
     }
 }
