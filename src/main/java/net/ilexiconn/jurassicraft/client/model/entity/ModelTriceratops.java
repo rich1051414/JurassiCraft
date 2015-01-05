@@ -433,8 +433,6 @@ public class ModelTriceratops extends MowzieModelBase
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         resetPose();
-        faceTarget(Head, 2, f3, f4);
-        faceTarget(Neck, 2, f3, f4);
         EntityTriceratops tric = (EntityTriceratops) entity;
         
  /*       f = tric.frame;
@@ -452,8 +450,8 @@ public class ModelTriceratops extends MowzieModelBase
         float frontOffset = -2F;
         float animationDegree = 2 - sprintModifier * 0.2F;
 
-        faceTarget(Head, 3, f3, f4);
-        faceTarget(Neck, 3, f3, f4);
+        faceTarget(Head, 2, f3, f4);
+        faceTarget(Neck, 2, f3, f4);
 
         bob(Waist, bobBase * scaleFactor, height, false, f, f1);
         bob(BackThighLeft, bobBase * scaleFactor, height, false, f, f1);
