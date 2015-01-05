@@ -421,31 +421,40 @@ public class ModelBrachiosaur extends MowzieModelBase
         EntityBrachiosaur brachObama = (EntityBrachiosaur) entity;
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         resetPose();
-        // f = brachObama.frame;
-        // f1 = 0.2F;
-        walk(top_leg_right, 0.2F, 0.5F, false, 0F, 0F, f, f1);
-        bob(top_leg_right, 0.4F, 1.5F, false, f, f1);
-        walk(bottom_leg_right, 0.2F, 0.5F, true, 1F, 0F, f, f1);
-        walk(right_back_foot, 0.2F, 0.5F, false, 1F, 0F, f, f1);
-
-        walk(top_leg_left, 0.2F, 0.5F, false, (float) ((2 * Math.PI) / 3F), 0, f, f1);
-        bob(top_leg_left, 0.4F, 1.5F, false, f, f1);
-        walk(bottom_leg_left, 0.2F, 0.5F, true, (float) (((2 * Math.PI) / 3F) + 1F), 0F, f, f1);
-        walk(left_back_foot, 0.2F, 0.5F, false, (float) (((2 * Math.PI) / 3F) + 1F), 0F, f, f1);
-
-        walk(front_left_top_leg, 0.2F, 0.5F, false, (float) ((2 * Math.PI) / 3F) - 0.5F, 0F, f, f1);
-        bob(front_left_top_leg, 0.4F, 1.5F, false, f, f1);
-        walk(bottom_front_left_leg, 0.2F, 1F, true, (float) (((2 * Math.PI) / 3F) - 0.5 - 0.5), -0.5F, f, f1);
-        walk(front_left_foot, 0.2F, 0.5F, false, (float) (((2 * Math.PI) / 3F) - 0.5 - 0.5F), 0.5F, f, f1);
-
-        walk(front_right_top_leg, 0.2F, 0.5F, false, -0.5F, 0, f, f1);
-        bob(front_right_top_leg, 0.4F, 1.5F, false, f, f1);
-        walk(bottom_front_right_leg, 0.2F, 1F, true, -0.5F - 0.5F, -0.5F, f, f1);
-        walk(front_right_foot, 0.2F, 0.5F, false, -0.5F - 0.5F, 0.5F, f, f1);
-
-        bob(body_1, 0.4F, 1.5F, false, f, f1);
+        /*f = brachObama.frame;
+        f1 = 0.2F;*/
         MowzieModelRenderer[] neckParts = {this.head, this.neck7, this.neck6, this.neck5, this.neck4, this.neck3, this.neck2, this.neck1};
         MowzieModelRenderer[] tailParts = {tail5, tail4, tail3};
+        MowzieModelRenderer[] tailParts2 = {tail5, tail4, tail3, tail2, tail1};
+        
+        float scaleFactor = 0.4F;
+        float height = 1.7F;
+        float frontOffset = -2F;
+        float animationDegree = 0.5F;
+        
+        bob(body_1, 2 * scaleFactor, height * animationDegree, false, f, f1);
+        bob(top_leg_left, 2 * scaleFactor, height * animationDegree, false, f, f1);
+        bob(top_leg_right, 2 * scaleFactor, height * animationDegree, false, f, f1);
+        walk(body_1, 2 * scaleFactor, 0.15F * height * animationDegree, true, -1.5F, 0F, f, f1);
+        chainWave(tailParts2, 2 * scaleFactor, 0.08F * animationDegree, 2, f, f1);
+        chainWave(neckParts, 2 * scaleFactor, 0.3F * animationDegree, 4, f, f1);
+        
+        walk(top_leg_left, 1F * scaleFactor, 1F * animationDegree, false, 0F, 0F, f, f1);
+        walk(bottom_leg_left, 1F * scaleFactor, 1F * animationDegree, true, 1F, 0F, f, f1);
+        walk(left_back_foot, 1F * scaleFactor, 1F * animationDegree, false, 1.5F, 0F, f, f1);
+
+        walk(top_leg_right, 1F * scaleFactor, 1F * animationDegree, true, 0F, 0F, f, f1);
+        walk(bottom_leg_right, 1F * scaleFactor, 1F * animationDegree, false, 1F, 0F, f, f1);
+        walk(right_back_foot, 1F * scaleFactor, 1F * animationDegree, true, 1.5F, 0F, f, f1);
+
+        walk(front_right_top_leg, 1F * scaleFactor, 2F * animationDegree, true, frontOffset + 0F, -0.1F, f, f1);
+        walk(bottom_front_right_leg, 1F * scaleFactor, 1.5F * animationDegree, true, frontOffset + 2F, -0.2F, f, f1);
+        walk(front_right_foot, 1F * scaleFactor, 1.3F * animationDegree, false, frontOffset + 1.5F, 0F, f, f1);
+
+        walk(front_left_top_leg, 1F * scaleFactor, 2F * animationDegree, false, frontOffset+ 0F, -0.1F, f, f1);
+        walk(bottom_front_left_leg, 1F * scaleFactor, 1.5F * animationDegree, false, frontOffset + 2F, -0.2F, f, f1);
+        walk(front_left_foot, 1F * scaleFactor, 1.3F * animationDegree, true, frontOffset + 1.5F, 0F, f, f1);
+
 
         //Idle
         walk(body_1, 0.05F, 0.025F, false, 0, 0, brachObama.frame, 1);
