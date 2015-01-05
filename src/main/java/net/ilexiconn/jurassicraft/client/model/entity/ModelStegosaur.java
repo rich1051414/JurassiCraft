@@ -333,10 +333,9 @@ public class ModelStegosaur extends MowzieModelBase {
         
 //        f = stego.frame;
  //       f1 = (float) Math.cos(f/50)*0.5F + 1F;
-        if(f1 > 0.5F) f1 = 0.5F;
         
-        float scaleFactor = 1F;
-        float height = 0.5F;
+        float scaleFactor = 0.5F;
+        float height = 0.8F;
         float frontOffset = -2F;
 
         faceTarget(head, 3, f3, f4);
@@ -351,25 +350,24 @@ public class ModelStegosaur extends MowzieModelBase {
         walk(headback, 2 * scaleFactor, 0.07F * height, false, 0.5F, 0F, f, f1);
         walk(head, 2 * scaleFactor, 0.07F * height, true, 1.5F, 0F, f, f1);
 
-        walk(legleftthigh, 1F * scaleFactor, 0.4F, false, 0F, 0F, f, f1);
-        walk(legleftcalf, 1F * scaleFactor, 0.4F, true, 1F, 0F, f, f1);
-        walk(legleftfoot, 1F * scaleFactor, 0.4F, false, 1.5F, 0F, f, f1);
+        walk(legleftthigh, 1F * scaleFactor, 0.8F, false, 0F, 0F, f, f1);
+        walk(legleftcalf, 1F * scaleFactor, 0.8F, true, 1F, 0F, f, f1);
+        walk(legleftfoot, 1F * scaleFactor, 0.8F, false, 1.5F, 0F, f, f1);
 
-        walk(legrightthigh, 1F * scaleFactor, 0.4F, true, 0F, 0F, f, f1);
-        walk(legrightcalf, 1F * scaleFactor, 0.4F, false, 1F, 0F, f, f1);
-        walk(legrightfoot, 1F * scaleFactor, 0.4F, true, 1.5F, 0F, f, f1);
+        walk(legrightthigh, 1F * scaleFactor, 0.8F, true, 0F, 0F, f, f1);
+        walk(legrightcalf, 1F * scaleFactor, 0.8F, false, 1F, 0F, f, f1);
+        walk(legrightfoot, 1F * scaleFactor, 0.8F, true, 1.5F, 0F, f, f1);
 
-        walk(armrightthigh, 1F * scaleFactor, 0.4F, true, frontOffset + 0F, -0.1F, f, f1);
-        walk(armrightcalf, 1F * scaleFactor, 0.4F, true, frontOffset + 1F, -0.2F, f, f1);
-        walk(armrightfoot, 1F * scaleFactor, 0.4F, false, frontOffset + 1.5F, 0F, f, f1);
+        walk(armrightthigh, 1F * scaleFactor, 0.8F, true, frontOffset + 0F, -0.1F, f, f1);
+        walk(armrightcalf, 1F * scaleFactor, 0.6F, true, frontOffset + 1F, -0.2F, f, f1);
+        walk(armrightfoot, 1F * scaleFactor, 0.8F, false, frontOffset + 1.5F, 0F, f, f1);
 
-        walk(armleftthigh, 1F * scaleFactor, 0.4F, false, frontOffset+ 0F, -0.1F, f, f1);
-        walk(armleftcalf, 1F * scaleFactor, 0.4F, false, frontOffset + 1F, -0.2F, f, f1);
-        walk(armleftfoot, 1F * scaleFactor, 0.4F, true, frontOffset + 1.5F, 0F, f, f1);
+        walk(armleftthigh, 1F * scaleFactor, 0.8F, false, frontOffset+ 0F, -0.1F, f, f1);
+        walk(armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
+        walk(armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
 
         MowzieModelRenderer[] tailParts = {this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
-        chainWave(tailParts, 2 * scaleFactor, 0.03F, 2, f, f1);
-        walk(tail1, 2 * scaleFactor, 0.2F * height, false, -1.5F, 0F, f, f1);
+        chainWave(tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
 
         //Idling
         walk(neck, 0.1F, 0.04F, false, -1F, 0F, stego.frame, 1F);
