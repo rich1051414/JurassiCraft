@@ -72,7 +72,7 @@ public class JurassiCraft
         GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
         GameRegistry.registerWorldGenerator(new WorldGenGypsum(), 1);
 
-        EntityRegistry.addSpawn(EntityCoelacanth.class, 3, 3, 5, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean, BiomeGenBase.river);
+        EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
 
         Calendar calendar = Calendar.getInstance();
 
