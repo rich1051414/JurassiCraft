@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.entity.mammals;
+package net.ilexiconn.jurassicraft.events;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

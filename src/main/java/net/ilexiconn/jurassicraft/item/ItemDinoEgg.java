@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemDinoEgg extends Item
@@ -23,7 +24,7 @@ public class ItemDinoEgg extends Item
         super();
         this.setUnlocalizedName("egg_" + dinoName);
         this.setTextureName(JurassiCraft.getModId() + "egg_" + dinoName);
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.dinoName = dinoName;
     }
 
@@ -36,9 +37,6 @@ public class ItemDinoEgg extends Item
                 return egg.getTagCompound().getString("EggDNA");
             }
         }
-
-        System.out.println("ERROR! DNA sequence was not determined yet!");
-
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
 
@@ -51,7 +49,6 @@ public class ItemDinoEgg extends Item
                 return egg.getTagCompound().getInteger("EggQuality");
             }
         }
-        System.out.println("ERROR! Egg quality was not determined yet!");
         return 75;
     }
 
@@ -62,11 +59,11 @@ public class ItemDinoEgg extends Item
         {
             if (egg.getTagCompound().hasKey("EggDNA"))
             {
-                list.add(EnumChatFormatting.GREEN + "DNA: " + egg.getTagCompound().getString("EggDNA"));
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dinoEgg.info.dna") + ": " + egg.getTagCompound().getString("EggDNA"));
             }
             if (egg.getTagCompound().hasKey("EggQuality"))
             {
-                list.add(EnumChatFormatting.GREEN + "Quality: " + egg.getTagCompound().getInteger("EggQuality") + "%");
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dinoEgg.info.quality") + ": " + egg.getTagCompound().getInteger("EggQuality") + "%");
             }
         }
     }
@@ -121,9 +118,9 @@ public class ItemDinoEgg extends Item
                 compound.setString("EggDNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
             egg.setTagCompound(compound);
-            if (world.isRemote)
+            if (!world.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("Cheater! New quality changed to " + egg.getTagCompound().getInteger("EggQuality") + "%"));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.qualityChanged") + " " + egg.getTagCompound().getInteger("EggQuality") + "%"));
             }
         }
         return egg;
@@ -132,7 +129,8 @@ public class ItemDinoEgg extends Item
     @Override
     public boolean onItemUse(ItemStack egg, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
-		if (((ItemDinoEgg) egg.getItem()).getEggQuality(egg) >= 50) {
+		if (egg.hasTagCompound() && egg.getTagCompound().hasKey("EggQuality") && egg.getTagCompound().getInteger("EggQuality") >= 50) 
+		{
 	        if (!world.isRemote && !player.capabilities.isCreativeMode)
 	        {
 	            world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
@@ -151,6 +149,10 @@ public class ItemDinoEgg extends Item
 	        	egg = (ItemStack) null;
 	        }
 	        return true;
+		} else {
+			if (!world.isRemote) {
+				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.errorQuality")));
+			}
 		}
         return false;
     }

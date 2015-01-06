@@ -1,17 +1,20 @@
-package net.ilexiconn.jurassicraft.entity.mammals;
+package net.ilexiconn.jurassicraft.events;
 
 import java.lang.reflect.InvocationTargetException;
 
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
+import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
+import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
+import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantSheep;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -47,7 +50,7 @@ public class JurassiCraftLivingEvent
         if (event.entityLiving instanceof EntityCow)
         {
             EntityPregnantCow cow = EntityPregnantCow.get((EntityCow) event.entityLiving);
-            if (cow != null && !cow.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo")))
+            if (cow != null && !cow.getMammalName().equals("noEmbryo"))
             {
                 if (cow.getPregnancyProgress() < cow.getPregnancySpeed())
                 {
@@ -57,7 +60,7 @@ public class JurassiCraftLivingEvent
                 else
                 {
                     spawnMammalBaby(cow.getMammalName(), cow.getDNAQuality(), cow.getDNASequence(), event);
-                    cow.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
+                    cow.setMammalName("noEmbryo");
                     cow.setDNAQuality(0);
                     cow.setDNASequence("");
                     cow.setPregnancyProgress(0);
@@ -68,7 +71,7 @@ public class JurassiCraftLivingEvent
         else if (event.entityLiving instanceof EntityPig)
         {
             EntityPregnantPig pig = EntityPregnantPig.get((EntityPig) event.entityLiving);
-            if (pig != null && !pig.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo")))
+            if (pig != null && !pig.getMammalName().equals("noEmbryo"))
             {
                 if (pig.getPregnancyProgress() < pig.getPregnancySpeed())
                 {
@@ -78,7 +81,7 @@ public class JurassiCraftLivingEvent
                 else
                 {
                     spawnMammalBaby(pig.getMammalName(), pig.getDNAQuality(), pig.getDNASequence(), event);
-                    pig.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
+                    pig.setMammalName("noEmbryo");
                     pig.setDNAQuality(0);
                     pig.setDNASequence("");
                     pig.setPregnancyProgress(0);
@@ -89,7 +92,7 @@ public class JurassiCraftLivingEvent
         else if (event.entityLiving instanceof EntityHorse)
         {
             EntityPregnantHorse horse = EntityPregnantHorse.get((EntityHorse) event.entityLiving);
-            if (horse != null && !horse.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo")))
+            if (horse != null && !horse.getMammalName().equals("noEmbryo"))
             {
                 if (horse.getPregnancyProgress() < horse.getPregnancySpeed())
                 {
@@ -99,7 +102,7 @@ public class JurassiCraftLivingEvent
                 else
                 {
                     spawnMammalBaby(horse.getMammalName(), horse.getDNAQuality(), horse.getDNASequence(), event);
-                    horse.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
+                    horse.setMammalName("noEmbryo");
                     horse.setDNAQuality(0);
                     horse.setDNASequence("");
                     horse.setPregnancyProgress(0);
@@ -110,7 +113,7 @@ public class JurassiCraftLivingEvent
         else if (event.entityLiving instanceof EntitySheep)
         {
             EntityPregnantSheep sheep = EntityPregnantSheep.get((EntitySheep) event.entityLiving);
-            if (sheep != null && !sheep.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo")))
+            if (sheep != null && !sheep.getMammalName().equals("noEmbryo"))
             {
                 if (sheep.getPregnancyProgress() < sheep.getPregnancySpeed())
                 {
@@ -120,7 +123,7 @@ public class JurassiCraftLivingEvent
                 else
                 {
                     spawnMammalBaby(sheep.getMammalName(), sheep.getDNAQuality(), sheep.getDNASequence(), event);
-                    sheep.setMammalName(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"));
+                    sheep.setMammalName("noEmbryo");
                     sheep.setDNAQuality(0);
                     sheep.setDNASequence("");
                     sheep.setPregnancyProgress(0);
@@ -132,7 +135,7 @@ public class JurassiCraftLivingEvent
 
     public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event)
     {
-        Class mammalToSpawnClass = CreatureManager.getCreatureClass(mammalName);
+		Class mammalToSpawnClass = CreatureManager.getCreatureClass(mammalName);
         try
         {
             Entity mammalToSpawn = (Entity) mammalToSpawnClass.getConstructor(World.class).newInstance(event.entityLiving.worldObj);
@@ -183,5 +186,4 @@ public class JurassiCraftLivingEvent
             e.printStackTrace();
         }
     }
-
 }

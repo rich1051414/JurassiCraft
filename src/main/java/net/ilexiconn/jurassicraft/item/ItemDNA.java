@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -10,9 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ItemDNA extends Item implements IDNASample
 {
@@ -22,7 +23,7 @@ public class ItemDNA extends Item implements IDNASample
         super();
         setUnlocalizedName(name + "_DNA");
         setTextureName(JurassiCraft.getModId() + name + "_DNA");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(ModCreativeTabs.dnas);
     }
 
     public Item getCorrespondingEggOrSyringe()
@@ -52,7 +53,7 @@ public class ItemDNA extends Item implements IDNASample
                 return dnaSample.getTagCompound().getString("DNA");
             }
         }
-        return "DNA sequence was not determined yet!";
+        return StatCollector.translateToLocal("item.dna.info.errorCode");
     }
 
     @Override
@@ -75,11 +76,11 @@ public class ItemDNA extends Item implements IDNASample
         {
             if (dnaSample.getTagCompound().hasKey("DNA"))
             {
-                list.add(EnumChatFormatting.GREEN + "DNA: " + dnaSample.getTagCompound().getString("DNA"));
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.dna") + ": " + dnaSample.getTagCompound().getString("DNA"));
             }
             if (dnaSample.getTagCompound().hasKey("Quality"))
             {
-                list.add(EnumChatFormatting.GREEN + "Quality: " + dnaSample.getTagCompound().getInteger("Quality") + "%");
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.quality") + ": " + dnaSample.getTagCompound().getInteger("Quality") + "%");
             }
         }
     }
@@ -136,8 +137,8 @@ public class ItemDNA extends Item implements IDNASample
             dnaSample.setTagCompound(compound);
             if (world.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("Cheater! New quality changed to " + dnaSample.getTagCompound().getInteger("Quality") + "%"));
-                player.addChatMessage(new ChatComponentText("Genetic code is: " + dnaSample.getTagCompound().getString("DNA")));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.qualityChanged") + " " + dnaSample.getTagCompound().getInteger("Quality") + "%"));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.geneticCodeIs") + ": " + dnaSample.getTagCompound().getString("DNA")));
             }
         }
         return dnaSample;

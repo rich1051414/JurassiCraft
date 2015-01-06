@@ -22,8 +22,8 @@ public class ModItems implements IContentHandler
     public static Item fishOnAStick;
     public static Item porkOnAStick;
     public static Item wheatOnAStick;
-
     public static Item net;
+    public static Item spawnEgg;
 
     public void init()
     {
@@ -40,9 +40,8 @@ public class ModItems implements IContentHandler
         fishOnAStick = new ItemOnAStick("Fish");
         porkOnAStick = new ItemOnAStick("Pork");
         wheatOnAStick = new ItemOnAStick("Wheat");
-
+        spawnEgg = new ItemSpawnEggJurassiCraft();
         net = new ItemNet();
-
         gameRegistry();
     }
 

@@ -1,37 +1,46 @@
-//CreativeTab
-itemGroup.jc.blocks=JurassiCraft Blocks
-itemGroup.jc.items=JurassiCraft Items
+//CreativeTabs==================================================
+itemGroup.jurassicraft.items=Jurassicraft Items
+itemGroup.jurassicraft.blocks=Jurassicraft Blocks
+itemGroup.jurassicraft.dnas=Jurassicraft DNA's
+itemGroup.jurassicraft.syringesEggs=Jurassicraft Syringes & Eggs
+itemGroup.jurassicraft.spawnEggs=Jurassicraft Spawn Eggs
 
 
-//Entities_Egg_Creatures
-entity.dino_egg.name=Dino Egg
+
+//Entities======================================================
+
+//Arthropods
+entity.Meganeura.name=Meganeura
+
+//Birds
+entity.Titanis.name=Titanis
+
+//Cephalopods
+entity.Ammonite.name=Ammonite
+entity.Brachiopod.name=Brachiopod
+
+//Dinosaurs
 entity.Ankylosaur.name=Ankylosaurus
 entity.Brachiosaur.name=Brachiosaurus
 entity.Velociraptor.name=Velociraptor
 entity.Leaellynasaur.name=Leaellynasaura
 entity.Herrerasaur.name=Herrerasaurus
 entity.Parasaurolophus.name=Parasaurolophus
-entity.Meganeura.name=Meganeura
 entity.Dilophosaurus.name=Dilophosaurus
-entity.Tylosaurus.name=Tylosaurus
 entity.Oviraptor.name=Oviraptor
 entity.Tyrannosaurus.name=Tyrannosaurus rex
 entity.Gallimimus.name=Gallimimus
 entity.Hypsilophodon.name=Hypsilophodon
-entity.Coelacanth.name=Coelacanth
 entity.Triceratops.name=Triceratops
 entity.Stegosaur.name=Stegosaurus
 entity.Dilophosaurus.name=Dilophosaurus
-entity.Cearadactylus.name=Cearadactylus
-entity.Sarcosuchus.name=Sarcosuchus
-entity.Titanis.name=Titanis
-entity.Moeritherium.name=Moeritherium
-entity.Ammonite.name=Ammonite
-entity.Brachiopod.name=Brachiopod
-entity.Santa.name=Santa Claws
 
-//Entities_Syringe_Creatures
+//Fish
+entity.Coelacanth.name=Coelacanth
+
+//Mammals
 entity.Mammoth.name=Mammoth
+entity.Moeritherium.name=Moeritherium
 entity.Arsinoitherium.name=Arsinoitherium
 entity.Basilosaurus.name=Basilosaurus
 entity.Leptictidium.name=Leptictidium
@@ -39,53 +48,55 @@ entity.Uintatherium.name=Uintatherium
 entity.Paraceratherium.name=Paraceratherium
 entity.Deinotherium.name=Deinotherium
 
-//Items
-item.dinoBone.name=Dinosaur Bone
-item.dinoSteak.name=Dinosaur Steak
-item.growthSerum.name=Growth Serum
-item.gypsumPowder.name=Gypsum Powder
-item.dinopad.name=Dinopad
+//Reptiles
+entity.Cearadactylus.name=Cearadactylus
+entity.Sarcosuchus.name=Sarcosuchus
+entity.Tylosaurus.name=Tylosaurus
 
-//Items_Egg_Creatures
-item.Ankylosaur_Meat.name=Ankylosaurus Meat
+//Others
+entity.dino_egg.name=Dino Egg
+entity.Santa.name=Santa Claws
+
+
+
+//Entity_Interaction============================================
+entity.Interaction.isSitting=is sitting
+entity.Interaction.isNotSitting=is not sitting anymore
+
+
+
+//Items=========================================================
+
+//DNAs
 item.Ankylosaur_DNA.name=Ankylosaurus DNA
-item.Brachiosaur_Meat.name=Brachiosaurus Meat
 item.Brachiosaur_DNA.name=Brachiosaurus DNA
-item.Velociraptor_Meat.name=Velociraptor Meat
 item.Velociraptor_DNA.name=Velociraptor DNA
-item.Stegosaur_Meat.name=Stegosaurus Meat
 item.Stegosaur_DNA.name=Stegosaurus DNA
-item.Triceratops_Meat.name=Triceratops Meat
 item.Triceratops_DNA.name=Triceratops DNA
-item.Coelacanth_Meat.name=Raw Coelacanth
 item.Coelacanth_DNA.name=Coelacanth DNA
-item.Tyrannosaurus_Meat.name=Tyrannosaurus rex Meat
 item.Tyrannosaurus_DNA.name=Tyrannosaurus rex DNA
-item.Gallimimus_Meat.name=Gallimimus Meat
 item.Gallimimus_DNA.name=Gallimimus DNA
-item.Leaellynasaur_Meat.name=Leaellynasaura Meat
 item.Leaellynasaur_DNA.name=Leaellynasaura DNA
-item.Hypsilophodon_Meat.name=Hypsilophodon Meat
 item.Hypsilophodon_DNA.name=Hypsilophodon DNA
-item.Tylosaurus_Meat.name=Tylosaurus Meat
 item.Tylosaurus_DNA.name=Tylosaurus DNA
-item.Meganeura_Meat.name=Raw Meganeura
 item.Meganeura_DNA.name=Meganeura DNA
-item.Herrerasaur_Meat.name=Herrerasaurus Meat
 item.Herrerasaur_DNA.name=Herrerasaurus DNA
-item.Parasaurolophus_Meat.name=Parasaurolophus Meat
 item.Parasaurolophus_DNA.name=Parasaurolophus DNA
-item.Dilophosaurus_Meat.name=Dilophosaurus Meat
 item.Dilophosaurus_DNA.name=Dilophosaurus DNA
-item.Oviraptor_Meat.name=Oviraptor Meat
 item.Oviraptor_DNA.name=Oviraptor DNA
-item.Cearadactylus_Meat.name=Cearadactylus Meat
 item.Cearadactylus_DNA.name=Cearadactylus DNA
-item.Sarcosuchus_Meat.name=Sarchosuchus Meat
 item.Sarcosuchus_DNA.name=Sarchosuchus DNA
-item.Titanis_Meat.name=Titanis Meat
 item.Titanis_DNA.name=Titanis DNA
+item.Mammoth_DNA.name=Mammoth DNA
+item.Arsinoitherium_DNA.name=Arsinoitherium DNA
+item.Basilosaurus_DNA.name=Basilosaurus DNA
+item.Leptictidium_DNA.name=Leptictidium DNA
+item.Uintatherium_DNA.name=Uintatherium DNA
+item.Paraceratherium_DNA.name=Paraceratherium DNA
+item.Deinotherium_DNA.name=Deinotherium DNA
+item.Moeritherium_DNA.name=Moeritherium DNA
 
+//Eggs
 item.egg_Brachiosaur.name=Egg of a Brachiosaurus
 item.egg_Velociraptor.name=Egg of a Velociraptor
 item.egg_Ankylosaur.name=Egg of an Ankylosaurus
@@ -106,24 +117,7 @@ item.egg_Cearadactylus.name=Egg of a Cearadactylus
 item.egg_Sarcosuchus.name=Egg of a Sarcosuchus
 item.egg_Titanis.name=Egg of a Titanis
 
-//Items_Syringe_Creatures
-item.Mammoth_Meat.name=Mammoth Meat
-item.Mammoth_DNA.name=Mammoth DNA
-item.Arsinoitherium_Meat.name=Arsinoitherium Meat
-item.Arsinoitherium_DNA.name=Arsinoitherium DNA
-item.Basilosaurus_Meat.name=Basilosaurus Meat
-item.Basilosaurus_DNA.name=Basilosaurus DNA
-item.Leptictidium_Meat.name=Leptictidium Meat
-item.Leptictidium_DNA.name=Leptictidium DNA
-item.Uintatherium_Meat.name=Uintatherium Meat
-item.Uintatherium_DNA.name=Uintatherium DNA
-item.Paraceratherium_Meat.name=Paraceratherium Meat
-item.Paraceratherium_DNA.name=Paraceratherium DNA
-item.Deinotherium_Meat.name=Deinotherium Meat
-item.Deinotherium_DNA.name=Deinotherium DNA
-item.Moeritherium_Meat.name=Moeritherium Meat
-item.Moeritherium_DNA.name=Moeritherium DNA
-
+//Syringes
 item.Mammoth_Syringe.name=Syringe of Mammoth
 item.Arsinoitherium_Syringe.name=Syringe of Arsinoitherium
 item.Basilosaurus_Syringe.name=Syringe of Basilosaurus
@@ -133,9 +127,122 @@ item.Paraceratherium_Syringe.name=Syringe of Paraceratherium
 item.Deinotherium_Syringe.name=Syringe of Deinotherium
 item.Moeritherium_Syringe.name=Syringe of Moeritherium
 
+//Spawn_Eggs
+item.spawnEgg_Brachiosaur.name=Egg of a Brachiosaurus
+item.spawnEgg_Velociraptor.name=Egg of a Velociraptor
+item.spawnEgg_Ankylosaur.name=Egg of an Ankylosaurus
+item.spawnEgg_Stegosaur.name=Egg of a Stegosaurus
+item.spawnEgg_Triceratops.name=Egg of a Triceratops
+item.spawnEgg_Coelacanth.name=Egg of a Coelacanth
+item.spawnEgg_Tyrannosaurus.name=Egg of a Tyrannosaurus rex
+item.spawnEgg_Oviraptor.name=Egg of an Oviraptor
+item.spawnEgg_Dilophosaurus.name=Egg of a Dilophosaurus
+item.spawnEgg_Parasaurolophus.name=Egg of a Parasaurolophus
+item.spawnEgg_Herrerasaur.name=Egg of a Herrerasaurus
+item.spawnEgg_Meganeura.name=Egg of a Meganeura
+item.spawnEgg_Tylosaurus.name=Egg of a Tylosaurus
+item.spawnEgg_Hypsilophodon.name=Egg of a Hypsilophodon
+item.spawnEgg_Leaellynasaur.name=Egg of a Leaellynasaura
+item.spawnEgg_Gallimimus.name=Egg of a Gallimimus
+item.spawnEgg_Cearadactylus.name=Egg of a Cearadactylus
+item.spawnEgg_Sarcosuchus.name=Egg of a Sarcosuchus
+item.spawnEgg_Titanis.name=Egg of a Titanis
+item.spawnEgg_Mammoth.name=Egg of a Mammoth
+item.spawnEgg_Arsinoitherium.name=Egg of a Arsinoitherium
+item.spawnEgg_Basilosaurus.name=Egg of a Basilosaurus
+item.spawnEgg_Leptictidium.name=Egg of a Leptictidium
+item.spawnEgg_Uintatherium.name=Egg of a Uintatherium
+item.spawnEgg_Paraceratherium.name=Egg of a Paraceratherium
+item.spawnEgg_Deinotherium.name=Egg of a Deinotherium
+item.spawnEgg_Moeritherium.name=Egg of a Moeritherium
 
-//Blocks
+//Meats
+item.Ankylosaur_Meat.name=Ankylosaurus Meat
+item.Brachiosaur_Meat.name=Brachiosaurus Meat
+item.Velociraptor_Meat.name=Velociraptor Meat
+item.Stegosaur_Meat.name=Stegosaurus Meat
+item.Triceratops_Meat.name=Triceratops Meat
+item.Coelacanth_Meat.name=Raw Coelacanth
+item.Tyrannosaurus_Meat.name=Tyrannosaurus rex Meat
+item.Gallimimus_Meat.name=Gallimimus Meat
+item.Leaellynasaur_Meat.name=Leaellynasaura Meat
+item.Hypsilophodon_Meat.name=Hypsilophodon Meat
+item.Tylosaurus_Meat.name=Tylosaurus Meat
+item.Meganeura_Meat.name=Raw Meganeura
+item.Herrerasaur_Meat.name=Herrerasaurus Meat
+item.Parasaurolophus_Meat.name=Parasaurolophus Meat
+item.Dilophosaurus_Meat.name=Dilophosaurus Meat
+item.Oviraptor_Meat.name=Oviraptor Meat
+item.Cearadactylus_Meat.name=Cearadactylus Meat
+item.Sarcosuchus_Meat.name=Sarchosuchus Meat
+item.Titanis_Meat.name=Titanis Meat
+item.Mammoth_Meat.name=Mammoth Meat
+item.Arsinoitherium_Meat.name=Arsinoitherium Meat
+item.Basilosaurus_Meat.name=Basilosaurus Meat
+item.Leptictidium_Meat.name=Leptictidium Meat
+item.Uintatherium_Meat.name=Uintatherium Meat
+item.Paraceratherium_Meat.name=Paraceratherium Meat
+item.Deinotherium_Meat.name=Deinotherium Meat
+item.Moeritherium_Meat.name=Moeritherium Meat
+
+//Others
+item.net.name=Net
+item.dinoBone.name=Dinosaur Bone
+item.dinoSteak.name=Dinosaur Steak
+item.growthSerum.name=Growth Serum
+item.gypsumPowder.name=Gypsum Powder
+item.dinopad.name=Dinopad
+item.AppleOnAStick.name=Apple On A Stick
+item.BeefOnAStick.name=Beef On A Stick
+item.CarrotOnAStick.name=Apple On A Stick
+item.FishOnAStick.name=Fish On A Stick
+item.PorkOnAStick.name=Pork On A Stick
+item.WheatOnAStick.name=Wheat On A Stick
+
+//Info
+item.growthSerum.info=Used to grow a creature
+item.egg.info.spawnBaby=Spawns a baby creature
+item.egg.info.spawnAdult=Spawns an adult creature
+item.egg.info.changeToBaby=Right click to spawn a baby
+item.egg.info.changeToAdult=Right click to spawn an adult
+item.egg.info.spawnSetToBaby=Egg spawn set to baby
+item.egg.info.spawnSetToAdult=Egg spawn set to adult
+item.dinoEgg.info.dna=DNA
+item.dinoEgg.info.quality=Quality
+item.dinoEgg.info.qualityChanged=Cheater! New quality changed to
+item.dinoEgg.info.errorQuality=This egg is not ready yet!
+item.dna.info.dna=DNA
+item.dna.info.quality=quality
+item.dna.info.errorQuality=ERROR! Egg quality was not determined yet!
+item.dna.info.errorCode=ERROR! DNA sequence was not determined yet!
+item.dna.info.qualityChanged=Cheater! New quality changed to
+item.dna.info.geneticCodeIs=Genetic code is
+item.syringe.info.dna=DNA
+item.syringe.info.quality=Quality
+item.syringe.info.qualityChanged=Cheater! New quality changed to
+item.syringe.info.errorQuality=This syringe is not ready yet!
+item.syringe.info.embryoInseminated=Embryo inseminated
+
+
+
+//Blocks========================================================
 tile.cultivate_idle.name=Cultivate
+tile.black_cultivate.name=Black Cultivate
+tile.red_cultivate.name=Red Cultivate
+tile.green_cultivate.name=Green Cultivate
+tile.brown_cultivate.name=Brown Cultivate
+tile.blue_cultivate.name=Blue Cultivate
+tile.purple_cultivate.name=Purple Cultivate
+tile.cyan_cultivate.name=Cyan Cultivate
+tile.light_gray_cultivate.name=Light Gray Cultivate
+tile.gray_cultivate.name=Gray Cultivate
+tile.pink_cultivate.name=Pink Cultivate
+tile.lime_cultivate.name=Lime Cultivate
+tile.yellow_cultivate.name=Yellow Cultivate
+tile.light_blue_cultivate.name=Light Blue Cultivate
+tile.magenta_cultivate.name=Magenta Cultivate
+tile.orange_cultivate.name=Orange Cultivate
+tile.white_cultivate.name=White Cultivate
 tile.dnaExtractor.name=DNA Extractor
 tile.dnaCombinator.name=DNA Combinator
 tile.security_Fence_Main.name=Security Fence Base
@@ -152,12 +259,8 @@ tile.block_Gypsum_Brick.name=Gypsum Brick
 tile.block_Gypsum_CobbleStone.name=Gypsum Cobblestone
 
 
-//Entity_Interaction
-entity.Interaction.isSitting=is sitting
-entity.Interaction.isNotSitting=is not sitting anymore
 
-
-//Containers
+//Containers====================================================
 container.cultivator.stopCultivating=Stop cultivating
 container.cultivator.cultivating=Cultivating
 container.cultivator.progress=Progress
@@ -194,7 +297,12 @@ container.pad.none=none
 container.pad.maxHealth=Maximum Health
 container.pad.maxLength=Maximum Length
 container.pad.maxHeight=Maximum Height
-
+container.pad.egg.hatching=Hatching
+container.pad.egg.notHatching=Egg is not hatching
+container.pad.egg.dried=Too hot
+container.pad.egg.frozen=Too cold
+container.pad.egg.dnaCode=DNA
+container.pad.egg.dnaQuality=DNA quality
 container.pad.pregnancy.pregnantCow=Pregnant Cow
 container.pad.pregnancy.pregnantPig=Pregnant Pig
 container.pad.pregnancy.pregnantHorse=Pregnant Horse
@@ -207,14 +315,7 @@ container.pad.pregnancy.noEmbryo=No embryo
 container.pad.pregnancy.dnaCode=DNA
 container.pad.pregnancy.dnaQuality=DNA quality
 
-container.pad.egg.hatching=Hatching
-container.pad.egg.notHatching=Egg is not hatching
-container.pad.egg.dried=Too hot
-container.pad.egg.frozen=Too cold
-container.pad.egg.dnaCode=DNA
-container.pad.egg.dnaQuality=DNA quality
-
-//Creature_Dinopad_Info
+//Dinopad_Info
 container.pad.infoAnkylosaur.page1=Ankylosaurus, meaning "fused lizard", is a genus of ankylosaurid dinosaur. Fossils of Ankylosaurus are found in geologic formations dating to the very end of the Cretaceous period, between 66.5 and 66.0 million years ago, in western North America.
 container.pad.infoAnkylosaur.page2=Ankylosaurus was a large animal by modern standards, estimated at lengths of 9 m (30 ft) and weighing up to 6 tonnes (13,000 lb). The whole animal is estimated at 6.25 m (20.5 feet) long, 1.5 m (4.9 feet) wide and 1.7 m (5.6 feet) tall at the hip.
 container.pad.infoAnkylosaur.page3=The tail club of Ankylosaurus is composed of several large osteoderms, which are fused to the last few tail vertebrae. It was heavy and supported by the last seven tail vertebrae, which interlocked to form a stiff rod at the base of the club.
@@ -249,5 +350,4 @@ container.pad.infoUintatherium.page1=Uintatherium
 container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
 
-itemGroup.jurassicraft.items=Jurassicraft Items
-itemGroup.jurassicraft.blocks=Jurassicraft Blocks
+

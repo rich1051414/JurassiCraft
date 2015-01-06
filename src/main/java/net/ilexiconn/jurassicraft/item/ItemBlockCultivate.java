@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemBlockCultivate extends ItemBlock
@@ -22,10 +23,10 @@ public class ItemBlockCultivate extends ItemBlock
 
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        String name = "";
-        for (String item : colors[itemStack.getItemDamage()].replaceAll("_", " ").split(" "))
-            name = name + String.valueOf(item.charAt(0)).toUpperCase() + item.substring(1) + " ";
-        return name + "Cultivate";
+        String displayName = "";
+        for (String color : colors[itemStack.getItemDamage()].split(" "))
+        	displayName = "tile." + color + "_cultivate" + ".name";
+        return StatCollector.translateToLocal(displayName);
     }
 
     public int getMetadata(int meta)

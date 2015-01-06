@@ -21,7 +21,7 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
 	public EntityPregnantSheep(EntitySheep sheep) 
 	{
 		this.sheep = sheep;
-		this.mammalName = StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo");
+		this.mammalName = "noEmbryo";
 		this.dnaQuality = 0;
 		this.dnaSequence = "";
 		this.pregnancySpeed = 0;

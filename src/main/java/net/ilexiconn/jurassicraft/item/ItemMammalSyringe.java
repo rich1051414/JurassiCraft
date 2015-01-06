@@ -38,7 +38,7 @@ public class ItemMammalSyringe extends Item
         super();
         this.setUnlocalizedName(mammal + "_Syringe");
         this.setTextureName(JurassiCraft.getModId() + mammal + "_Syringe");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.mammalName = mammal;
     }
 
@@ -51,7 +51,6 @@ public class ItemMammalSyringe extends Item
                 return syringe.getTagCompound().getString("SyringeDNA");
             }
         }
-        System.out.println("ERROR! Syringe sequence was not determined yet!");
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
 
@@ -64,7 +63,6 @@ public class ItemMammalSyringe extends Item
                 return syringe.getTagCompound().getInteger("SyringeQuality");
             }
         }
-        System.out.println("ERROR! Syringe quality was not determined yet!");
         return 75;
     }
 
@@ -75,11 +73,11 @@ public class ItemMammalSyringe extends Item
         {
             if (syringe.getTagCompound().hasKey("SyringeDNA"))
             {
-                list.add(EnumChatFormatting.GREEN + "DNA: " + syringe.getTagCompound().getString("SyringeDNA"));
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.syringe.info.dna") + ": " + syringe.getTagCompound().getString("SyringeDNA"));
             }
             if (syringe.getTagCompound().hasKey("SyringeQuality"))
             {
-                list.add(EnumChatFormatting.GREEN + "Quality: " + syringe.getTagCompound().getInteger("SyringeQuality") + "%");
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.syringe.info.quality") + ": " + syringe.getTagCompound().getInteger("SyringeQuality") + "%");
             }
         }
     }
@@ -134,9 +132,9 @@ public class ItemMammalSyringe extends Item
                 compound.setString("SyringeDNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
             syringe.setTagCompound(compound);
-            if (world.isRemote)
+            if (!world.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("Cheater! New quality changed to " + syringe.getTagCompound().getInteger("SyringeQuality") + "%"));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.qualityChanged") + " " + syringe.getTagCompound().getInteger("SyringeQuality") + "%"));
             }
         }
         return syringe;
@@ -150,7 +148,7 @@ public class ItemMammalSyringe extends Item
         {
             if (creature instanceof EntityAnimal && ((EntityAnimal) creature).getGrowingAge() == 0)
             {
-                if (!this.setBaby(creature, syringe))
+                if (!this.setBaby(player.worldObj, player, creature, syringe))
                 {
                     return false;
                 }
@@ -169,7 +167,7 @@ public class ItemMammalSyringe extends Item
         {
             if (creature instanceof EntityAnimal && ((EntityAnimal) creature).getGrowingAge() == 0)
             {
-                if (!this.setBaby(creature, syringe))
+                if (!this.setBaby(player.worldObj, player, creature, syringe))
                 {
                     return false;
                 }
@@ -187,19 +185,23 @@ public class ItemMammalSyringe extends Item
         return false;
     }
 
-	private boolean setBaby(EntityLivingBase creature, ItemStack syringe) {
-		if (((ItemMammalSyringe) syringe.getItem()).getSyringeQuality(syringe) >= 50) {
+	private boolean setBaby(World world, EntityPlayer player, EntityLivingBase creature, ItemStack syringe) {
+		if (syringe.hasTagCompound() && syringe.getTagCompound().hasKey("SyringeQuality") && syringe.getTagCompound().getInteger("SyringeQuality") >= 50) 
+		{
 			if (creature instanceof EntityCow)
 	        {
 	        	if (!this.creaturesFromCow.contains(this.mammalName)) {
 	    			return false;
 	        	} else {
 	            	EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creature));
-	            	if (cow != null && cow.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"))) {
+	            	if (cow != null && cow.getMammalName().equals("noEmbryo")) {
 	                	cow.setMammalName(this.mammalName);
 	                	cow.setDNAQuality(this.getSyringeQuality(syringe));
 	                	cow.setDNASequence(this.getSyringeDNASequence(syringe));
 	        			cow.setPregnancySpeed(2048);
+	        			if (!world.isRemote) {
+	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+	        			}
 	        			return true;
 	            	}
 	        	}
@@ -210,11 +212,14 @@ public class ItemMammalSyringe extends Item
 	    			return false;
 	        	} else {
 	            	EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creature));
-	                if (pig != null && pig.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"))) {
+	                if (pig != null && pig.getMammalName().equals("noEmbryo")) {
 	                	pig.setMammalName(this.mammalName);
 	                	pig.setDNAQuality(this.getSyringeQuality(syringe));
 	                	pig.setDNASequence(this.getSyringeDNASequence(syringe));
 	                	pig.setPregnancySpeed(2048);
+	        			if (!world.isRemote) {
+	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+	        			}
 	        			return true;
 	            	}
 	        	}
@@ -225,11 +230,14 @@ public class ItemMammalSyringe extends Item
 	    			return false;
 	        	} else {
 	            	EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creature));
-	                if (horse != null && horse.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"))) {
+	                if (horse != null && horse.getMammalName().equals("noEmbryo")) {
 	                	horse.setMammalName(this.mammalName);
 	                	horse.setDNAQuality(this.getSyringeQuality(syringe));
 	                	horse.setDNASequence(this.getSyringeDNASequence(syringe));
 	                	horse.setPregnancySpeed(2048);
+	        			if (!world.isRemote) {
+	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+	        			}
 	        			return true;
 	            	}
 	        	}
@@ -240,15 +248,22 @@ public class ItemMammalSyringe extends Item
 	    			return false;
 	        	} else {
 	            	EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creature));
-	                if (sheep != null && sheep.getMammalName().equals(StatCollector.translateToLocal("container.pad.pregnancy.noEmbryo"))) {
+	                if (sheep != null && sheep.getMammalName().equals("noEmbryo")) {
 	                	sheep.setMammalName(this.mammalName);
 	                	sheep.setDNAQuality(this.getSyringeQuality(syringe));
 	                	sheep.setDNASequence(this.getSyringeDNASequence(syringe));
 	                	sheep.setPregnancySpeed(2048);
+	        			if (!world.isRemote) {
+	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+	        			}
 	        			return true;
 	            	}
 	        	}
 	        }
+		} else {
+			if (!world.isRemote) {
+				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.errorQuality")));
+			}
 		}
 		return false;
 	}
