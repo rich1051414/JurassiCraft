@@ -28,6 +28,7 @@ public class ModelStegosaur extends MowzieModelBase {
     MowzieModelRenderer armrightthigh;
     MowzieModelRenderer headback;
     MowzieModelRenderer upperjaw;
+    MowzieModelRenderer upperjaw2;
     MowzieModelRenderer head;
     MowzieModelRenderer tail5;
     MowzieModelRenderer lowerjaw;
@@ -101,6 +102,9 @@ public class ModelStegosaur extends MowzieModelBase {
         this.upperjaw = new MowzieModelRenderer(this, 51, 116);
         this.upperjaw.setRotationPoint(0.0F, 10.7F, -21.0F);
         this.upperjaw.addBox(-1.0F, -1.8F, -8.5F, 2, 3, 5);
+        this.upperjaw2 = new MowzieModelRenderer(this, 51, 116);
+        this.upperjaw2.setRotationPoint(0.0F, 10.7F, -21.0F);
+        this.upperjaw2.addBox(-1.0F, -1.8F, -8.5F, 2, 3, 5);
         this.plate7tail2 = new MowzieModelRenderer(this, 36, 4);
         this.plate7tail2.setRotationPoint(0.0F, 6.5F, 16.8F);
         this.plate7tail2.addBox(2.5F, -6.5F, -3.8F, 1, 5, 5);
@@ -207,6 +211,7 @@ public class ModelStegosaur extends MowzieModelBase {
         this.setRotateAngle(armrightcalf, -0.3665191429188092F, -0.0F, 0.0F);
         
         addChildTo(upperjaw, head);
+        addChildTo(upperjaw2, head);
         addChildTo(lowerjaw, head);
         addChildTo(head, headback);
         addChildTo(plate5headback, headback);
@@ -249,7 +254,8 @@ public class ModelStegosaur extends MowzieModelBase {
         addChildTo(tail1, waist);
 
         //Corrections
-        upperjaw.setRotationPoint(0, 0, 0);
+        upperjaw.setRotationPoint(0.02F, 0, 0);
+        upperjaw2.setRotationPoint(-0.02F, 0, 0);
         plate5headback.setRotationPoint(0, 0, 0);
         plate4chest.setRotationPoint(0, 0, 0);
         plate8chest.setRotationPoint(0, 0, 0);

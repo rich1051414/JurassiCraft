@@ -438,6 +438,7 @@ public class ModelBrachiosaur extends MowzieModelBase
         walk(body_1, 2 * scaleFactor, 0.15F * height * animationDegree, true, -1.5F, 0F, f, f1);
         chainWave(tailParts2, 2 * scaleFactor, 0.08F * animationDegree, 2, f, f1);
         chainWave(neckParts, 2 * scaleFactor, 0.3F * animationDegree, 4, f, f1);
+        tail1.rotateAngleX += 0.1*f1;
         
         walk(top_leg_left, 1F * scaleFactor, 1F * animationDegree, false, 0F, 0F, f, f1);
         walk(bottom_leg_left, 1F * scaleFactor, 1F * animationDegree, true, 1F, 0F, f, f1);
