@@ -21,7 +21,7 @@ public class RenderCoelacanth extends RenderSwimming
     @Override
     public ResourceLocation getEntityTexture(Entity var1)
     {
-        return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Coelacanth.png");
+        return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/coelacanth.png");
     }
 
 }
