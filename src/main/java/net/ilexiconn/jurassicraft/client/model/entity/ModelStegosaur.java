@@ -391,7 +391,7 @@ public class ModelStegosaur extends MowzieModelBase {
         armleftthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
         armrightthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
 
-        chainSwing(tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
+        chainSwing(tailParts, 0.1F, 0.3F, 3, stego.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
     }
 }
