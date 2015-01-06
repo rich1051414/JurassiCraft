@@ -58,16 +58,16 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 
         this.creature = creature;
         this.spawnedFromEgg = false;
-
+        
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
             this.setRandomGenetics();
         }
-
+        this.setFullGrowth();
         this.resetGrowthStageList();
         this.setCreatureGender(JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) == 0.5F ? this.rand.nextBoolean() : (JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) > 0.5F));
         this.setNewCreatureTexture(JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
-
+        
         if (this.worldObj.isRemote)
         {
             this.setCreatureSize();
@@ -382,6 +382,26 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             this.setGrowthStage((byte) (120));
             this.setTicksExisted((int) (creature.getTicksToAdulthood() * this.getGrowthStage() / 120));
+            if (!this.worldObj.isRemote)
+            {
+                this.updateCreatureData(this.getTotalTicksLived());
+            }
+            else
+            {
+                this.setCreatureSize();
+            }
+        }
+    }
+    
+    /**
+     * Force the creature to grow to its minimum size.
+     */
+    public void setNoGrowth()
+    {
+        if (this.getGrowthStage() != 0)
+        {
+            this.setGrowthStage((byte) (0));
+            this.setTicksExisted(0);
             if (!this.worldObj.isRemote)
             {
                 this.updateCreatureData(this.getTotalTicksLived());
