@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
+import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
@@ -27,7 +28,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 {
     public String dnaSequence;
     public float geneticQuality;
-    public boolean gender;
     public byte texture;
     public float height;
     public float length;
@@ -44,10 +44,17 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public int expParameter = 100;
 
     private boolean spawnedFromEgg;
+    public boolean gender, isFlying;
+
+    public FlyingParameters flyingParameters;
 
     public EntityJurassiCraftCreature(World world, Creature creature)
     {
         super(world);
+
+        if(this != null) {
+            flyingParameters = new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, "grassandleaves");
+        }
 
         this.creature = creature;
         this.spawnedFromEgg = false;
@@ -311,6 +318,14 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
                 this.setCreatureSize();
             }
         }
+
+        if(riddenByEntity == null) {
+            motionY += 0.04f + 0.06f * flyingParameters.flySpeedModifier / 500f;
+            isFlying = true;
+        }
+
+        if(onGround && isFlying)
+            isFlying = false;
 
         super.onLivingUpdate();
     }
