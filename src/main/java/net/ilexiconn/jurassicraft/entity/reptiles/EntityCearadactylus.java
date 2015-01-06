@@ -1,9 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ai.EntityAICearadactylus;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.entity.IDinosaur;
@@ -35,7 +32,7 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
     {
         super(world, CreatureManager.classToCreature(EntityCearadactylus.class));
         this.getNavigator().setAvoidsWater(true);
-        this.tasks.addTask(0, this.flyingAi);
+        this.tasks.addTask(0, new JurassiCraftEntityAIFlying(this));
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
         this.tasks.addTask(2, this.aiSit);

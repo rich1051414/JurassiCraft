@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.arthropods;
 
+import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFlying;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,7 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
     public EntityMeganeura(World world)
     {
         super(world, CreatureManager.classToCreature(EntityMeganeura.class));
+        this.tasks.addTask(0, new JurassiCraftEntityAIFlying(this));
         this.setCreatureExperiencePoints(20);
     }
 
