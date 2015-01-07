@@ -1,9 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map.Entry;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -12,20 +10,16 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Facing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class ItemSpawnEggJurassiCraft extends Item {
 
@@ -108,39 +102,32 @@ public class ItemSpawnEggJurassiCraft extends Item {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet()) {
-			list.add(new ItemStack(item, 1, creature.getValue().getCreatureID()));
+			if (!creature.getValue().getCreatureName().equals("santa")) list.add(new ItemStack(item, 1, creature.getValue().getCreatureID()));
 		}
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int hitX, float hitY, float hitZ, float metadata) {
-		if (!world.isRemote) {
-			return true;
-		} else {
-			Block block = world.getBlock(x, y, z);
-			x += Facing.offsetsXForSide[hitX];
-			y += Facing.offsetsYForSide[hitX];
-			z += Facing.offsetsZForSide[hitX];
-			double yTranslation = 0.0D;
-			if (hitX == 1 && block.getRenderType() == 11) {
-				yTranslation = 0.5D;
-			}
-			EntityJurassiCraftCreature creature = (EntityJurassiCraftCreature) spawnCreature(world, player, itemStack, (double) x + 0.5D, (double) y + yTranslation, (double) z + 0.5D);
-			if (creature != null) {
-				if (creature instanceof EntityLivingBase && itemStack.hasDisplayName()) {
-					((EntityLiving) creature).setCustomNameTag(itemStack.getDisplayName());
-				}
-				if (!player.capabilities.isCreativeMode) {
-					itemStack.stackSize--;
-					if (itemStack.stackSize <= 0) {
-						itemStack = (ItemStack) null;
-					}
-				}
-				world.spawnEntityInWorld(creature);
-				creature.playLivingSound();
-			}
-			return true;
+		Block block = world.getBlock(x, y, z);
+		x += Facing.offsetsXForSide[hitX];
+		y += Facing.offsetsYForSide[hitX];
+		z += Facing.offsetsZForSide[hitX];
+		double yTranslation = 0.0D;
+		if (hitX == 1 && block.getRenderType() == 11) {
+			yTranslation = 0.5D;
 		}
+		EntityJurassiCraftCreature creature = spawnCreature(world, player, itemStack, (double) x + 0.5D, (double) y + yTranslation, (double) z + 0.5D);
+		if (creature != null) {
+			if (itemStack.hasDisplayName()) {
+				creature.setCustomNameTag(itemStack.getDisplayName());
+			}
+			if (!player.capabilities.isCreativeMode) {
+				itemStack.stackSize--;
+			}
+			world.spawnEntityInWorld(creature);
+			creature.playLivingSound();
+		}
+		return true;
 	}
 
 	public static EntityJurassiCraftCreature spawnCreature(World world, EntityPlayer player, ItemStack egg, double x, double y, double z) {
@@ -180,6 +167,6 @@ public class ItemSpawnEggJurassiCraft extends Item {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
-		return (EntityJurassiCraftCreature) null;
+		return null;
 	}
 }
