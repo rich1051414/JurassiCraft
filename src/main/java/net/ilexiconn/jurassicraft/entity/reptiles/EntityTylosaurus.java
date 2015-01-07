@@ -1,10 +1,12 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -31,5 +33,20 @@ public class EntityTylosaurus extends NewEntitySwimming
         if (player != null) return player;
 
         return this.worldObj.findNearestEntityWithinAABB(EntityAnimal.class, area, this);
+    }
+
+    @Override
+    protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
+    {
+    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(0 + (int) (6.5F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+        }
+        else
+        {
+            this.dropItem(ModItems.dinoSteak, count);
+        }
     }
 }

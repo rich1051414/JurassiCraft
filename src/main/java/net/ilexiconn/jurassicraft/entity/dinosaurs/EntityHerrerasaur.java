@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -16,6 +17,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implements IDinosaur
@@ -47,5 +49,20 @@ public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implemen
     public int getTalkInterval()
     {
         return 350;
+    }
+
+    @Override
+    protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
+    {
+    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        int count = Math.round(1 + (2.5F * developmentFraction) + this.rand.nextInt(0 + (int) (3.5F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+        }
+        else
+        {
+            this.dropItem(ModItems.dinoSteak, count);
+        }
     }
 }

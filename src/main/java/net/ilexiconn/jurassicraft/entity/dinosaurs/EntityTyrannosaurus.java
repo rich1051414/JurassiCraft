@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -18,6 +19,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.AnimationAPI;
 
@@ -111,5 +113,20 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         }
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         stepCount -= this.moveForward * 10;
+    }
+
+    @Override
+    protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
+    {
+    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(0 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+        }
+        else
+        {
+            this.dropItem(ModItems.dinoSteak, count);
+        }
     }
 }

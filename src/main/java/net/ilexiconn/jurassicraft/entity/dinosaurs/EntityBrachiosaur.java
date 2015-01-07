@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
@@ -11,6 +12,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityBrachiosaur extends EntityJurassiCraftLandProtective implements IDinosaur
@@ -40,5 +42,20 @@ public class EntityBrachiosaur extends EntityJurassiCraftLandProtective implemen
     public int getTalkInterval()
     {
         return 350;
+    }
+
+    @Override
+    protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
+    {
+    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(0 + (int) (7.0F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+        }
+        else
+        {
+            this.dropItem(ModItems.dinoSteak, count);
+        }
     }
 }

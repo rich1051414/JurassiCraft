@@ -1,10 +1,16 @@
 package net.ilexiconn.jurassicraft.tile;
 
+import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemAmber;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
+import net.ilexiconn.jurassicraft.item.ItemFossil;
+import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,10 +24,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-
-import java.util.ArrayList;
-import java.util.Map.Entry;
-import java.util.Random;
 
 public class TileDNAExtractor extends TileEntity implements ISidedInventory
 {
@@ -92,155 +94,210 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             if (slots[i] != (ItemStack) null && slots[i].getItem() instanceof IDNASource)
             {
                 ItemStack newItem = (ItemStack) null;
-                if (slots[i].getItem() instanceof ItemAmber)
+                
+            	if (slots[i].getItem() instanceof ItemFossil) 
+            	{
+            		newItem = this.getDNASampleFromFossil();
+            	} 
+            	else if (slots[i].getItem() instanceof ItemMeat) 
+            	{
+            		newItem = this.getDNASampleFromMeat(slots[i]);
+            	} 
+            	else if (slots[i].getItem() instanceof ItemAmber) 
+            	{
+            		newItem = this.getDNASampleFromAmber();
+            	} 
+            	else 
+            	{
+                    int output = this.worldObj.rand.nextInt(3);
+                    if (output == 0) 
+                    {
+                    	newItem = new ItemStack(Blocks.sand, 1 + this.worldObj.rand.nextInt(2));
+                    } 
+                    else if (output == 1) 
+                    {
+                    	newItem = new ItemStack(Blocks.cobblestone, 1 + this.worldObj.rand.nextInt(2));
+                    }
+                    else if (output == 2) 
+                    {
+                    	newItem = new ItemStack(Items.bone, 1 + this.worldObj.rand.nextInt(3));
+                    }
+            	}
+            	
+            	if (newItem != (ItemStack) null) {
+            		for (int j = 4; j < 8; j++)
+                    {
+                        if (this.slots[j] != (ItemStack) null && this.slots[j].getItem() == newItem.getItem())
+                        {
+                            this.slots[i].stackSize--;
+                            if (this.slots[i].stackSize <= 0)
+                            {
+                                this.slots[i] = (ItemStack) null;
+                            }
+                            this.slots[j].stackSize++;
+                            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                            return;
+                        }
+                    }
+                    for (int j = 4; j < 8; j++)
+                    {
+                        if (this.slots[j] == (ItemStack) null)
+                        {
+                            this.slots[i].stackSize--;
+                            if (this.slots[i].stackSize <= 0)
+                            {
+                                this.slots[i] = (ItemStack) null;
+                            }
+                            this.slots[j] = newItem;
+                            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                            return;
+                        }
+                    }
+            	}
+            }
+        }
+    }
+
+	private ItemStack getDNASampleFromFossil() {
+		if (this.worldObj.rand.nextFloat() >= 0.70F)
+        {
+            ItemStack dna = new ItemStack(this.getRandomDNA(new Random()));
+            if (!dna.hasTagCompound())
+            {
+                NBTTagCompound compound = new NBTTagCompound();
+                float probability = this.worldObj.rand.nextFloat();
+                if (probability <= 0.10F)
                 {
-                    NBTTagCompound compound = new NBTTagCompound();
-                    newItem = new ItemStack(getRandomDNA(new Random()));
-                    if (!newItem.hasTagCompound())
-                    {
-                        compound.setInteger("Quality", 100);
-                        compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-                        newItem.setTagCompound(compound);
-                    }
-                    else
-                    {
-                        if (newItem.getTagCompound().hasKey("Quality"))
-                        {
-                            newItem.getTagCompound().removeTag("Quality");
-                            compound.setInteger("Quality", 100);
-                            newItem.setTagCompound(compound);
-                        }
-                        else
-                        {
-                            compound.setInteger("Quality", 100);
-                        }
-                        if (newItem.getTagCompound().hasKey("DNA"))
-                        {
-                            String dna = newItem.getTagCompound().getString("DNA");
-                            newItem.getTagCompound().removeTag("DNA");
-                            compound.setString("DNA", dna);
-                            newItem.setTagCompound(compound);
-                        }
-                        else
-                        {
-                            compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-                        }
-                    }
+                    compound.setInteger("Quality", 100);
+                }
+                else if (probability <= 0.35F)
+                {
+                    compound.setInteger("Quality", 75);
+                }
+                else if (probability <= 0.75F)
+                {
+                    compound.setInteger("Quality", 50);
                 }
                 else
                 {
-                    if (this.worldObj.rand.nextInt(99) > 75)
+                    compound.setInteger("Quality", 25);
+                }
+                compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+                dna.setTagCompound(compound);
+                return dna;
+            }
+            else
+            {
+                if (!dna.getTagCompound().hasKey("Quality"))
+                {
+                    float probability = this.worldObj.rand.nextFloat();
+                    if (probability <= 0.10F)
                     {
-                        NBTTagCompound compound = new NBTTagCompound();
-                        newItem = new ItemStack(getRandomDNA(new Random()));
-                        if (!newItem.hasTagCompound())
-                        {
-                            compound = new NBTTagCompound();
-                            float probability = this.worldObj.rand.nextFloat();
-                            if (probability < 0.35F)
-                            {
-                                compound.setInteger("Quality", 25);
-                            }
-                            else if (probability < 0.65F)
-                            {
-                                compound.setInteger("Quality", 50);
-                            }
-                            else if (probability < 0.90F)
-                            {
-                                compound.setInteger("Quality", 75);
-                            }
-                            else
-                            {
-                                compound.setInteger("Quality", 100);
-                            }
-                            compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-                            newItem.setTagCompound(compound);
-                        }
-                        else
-                        {
-                            if (newItem.getTagCompound().hasKey("Quality"))
-                            {
-                                int quality = newItem.getTagCompound().getInteger("Quality");
-                                newItem.getTagCompound().removeTag("Quality");
-                                compound.setInteger("Quality", quality);
-                                newItem.setTagCompound(compound);
-                            }
-                            else
-                            {
-                                compound = new NBTTagCompound();
-                                float probability = this.worldObj.rand.nextFloat();
-                                if (probability < 0.35)
-                                {
-                                    compound.setInteger("Quality", 25);
-                                }
-                                else if (probability < 0.65)
-                                {
-                                    compound.setInteger("Quality", 50);
-                                }
-                                else if (probability < 0.90)
-                                {
-                                    compound.setInteger("Quality", 75);
-                                }
-                                else
-                                {
-                                    compound.setInteger("Quality", 100);
-                                }
-                                newItem.setTagCompound(compound);
-                            }
-                            if (newItem.getTagCompound().hasKey("DNA"))
-                            {
-                                String dna = newItem.getTagCompound().getString("DNA");
-                                newItem.getTagCompound().removeTag("DNA");
-                                compound.setString("DNA", dna);
-                                newItem.setTagCompound(compound);
-                            }
-                            else
-                            {
-                                compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-                            }
-
-
-                        }
+                    	dna.getTagCompound().setInteger("Quality", 100);
+                    }
+                    else if (probability <= 0.35F)
+                    {
+                    	dna.getTagCompound().setInteger("Quality", 75);
+                    }
+                    else if (probability <= 0.75F)
+                    {
+                    	dna.getTagCompound().setInteger("Quality", 50);
                     }
                     else
                     {
-                        int output = this.worldObj.rand.nextInt(3);
-                        if (output == 0) newItem = new ItemStack(Blocks.sand, 3);
-                        else if (output == 1) newItem = new ItemStack(Blocks.stone, 1);
-                        else if (output == 2) newItem = new ItemStack(Items.bone, 2);
+                    	dna.getTagCompound().setInteger("Quality", 25);
                     }
                 }
-                for (int j = 4; j < 8; j++)
+                if (!dna.getTagCompound().hasKey("DNA"))
                 {
-                    if (this.slots[j] != (ItemStack) null && this.slots[j].getItem() == newItem.getItem())
-                    {
-                        this.slots[i].stackSize--;
-                        if (this.slots[i].stackSize <= 0)
-                        {
-                            this.slots[i] = (ItemStack) null;
-                        }
-                        this.slots[j].stackSize++;
-                        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                        return;
-                    }
-                }
-                for (int j = 4; j < 8; j++)
-                {
-                    if (this.slots[j] == (ItemStack) null)
-                    {
-                        this.slots[i].stackSize--;
-                        if (this.slots[i].stackSize <= 0)
-                        {
-                            this.slots[i] = (ItemStack) null;
-                        }
-                        this.slots[j] = newItem;
-                        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                        return;
-                    }
+                	dna.getTagCompound().setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
                 }
             }
+        } 
+		else 
+		{
+            int output = this.worldObj.rand.nextInt(3);
+            if (output == 0) 
+            {
+            	return new ItemStack(Blocks.sand, 1 + this.worldObj.rand.nextInt(2));
+            } 
+            else if (output == 1) 
+            {
+            	return new ItemStack(Blocks.cobblestone, 1 + this.worldObj.rand.nextInt(2));
+            }
+            else if (output == 2) 
+            {
+            	return new ItemStack(Items.bone, 1 + this.worldObj.rand.nextInt(3));
+            }
         }
-        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+		return null;
+	}
+
+	private ItemStack getDNASampleFromAmber() {
+        ItemStack dna = new ItemStack(this.getRandomDNA(new Random()));
+        if (!dna.hasTagCompound())
+        {
+            NBTTagCompound compound = new NBTTagCompound();
+            compound.setInteger("Quality", 100);
+            compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+            dna.setTagCompound(compound);
+            return dna;
+        }
+        else
+        {
+            if (!dna.getTagCompound().hasKey("Quality"))
+            {
+            	dna.getTagCompound().setInteger("Quality", 100);
+            }
+            if (!dna.getTagCompound().hasKey("DNA"))
+            {
+            	dna.getTagCompound().setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+            }
+            return dna;
+        }
+	}
+
+    private ItemStack getDNASampleFromMeat(ItemStack meat) {
+        ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemMeat) meat.getItem()));
+    	if (meat.hasTagCompound()) {
+    		dna.setTagCompound(meat.getTagCompound());
+            if (!dna.getTagCompound().hasKey("Quality"))
+            {
+            	dna.getTagCompound().setInteger("Quality", 100);
+            }
+            if (!dna.getTagCompound().hasKey("DNA"))
+            {
+            	dna.getTagCompound().setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+            }
+            return dna;
+    	} else {
+    		if (!dna.hasTagCompound())
+            {
+            	NBTTagCompound compound = new NBTTagCompound();
+                compound.setInteger("Quality", 100);
+                compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+                dna.setTagCompound(compound);
+                return dna;
+            }
+            else
+            {
+                if (!dna.getTagCompound().hasKey("Quality"))
+                {
+                	dna.getTagCompound().setInteger("Quality", 100);
+                }
+                if (!dna.getTagCompound().hasKey("DNA"))
+                {
+                	dna.getTagCompound().setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+                }
+                return dna;
+            }
+    	}
+	}
+
+	private Item getDNAFromMeat(ItemMeat meat)
+    {
+    	ItemDNA dna = meat.getCorrespondingDNA();
+        return dna;
     }
 
     private Item getRandomDNA(Random rand)

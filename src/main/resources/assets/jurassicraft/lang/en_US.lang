@@ -212,7 +212,7 @@ item.dinoEgg.info.quality=Quality
 item.dinoEgg.info.qualityChanged=Cheater! New quality changed to
 item.dinoEgg.info.errorQuality=This egg is not ready yet!
 item.dna.info.dna=DNA
-item.dna.info.quality=quality
+item.dna.info.quality=Quality
 item.dna.info.errorQuality=ERROR! Egg quality was not determined yet!
 item.dna.info.errorCode=ERROR! DNA sequence was not determined yet!
 item.dna.info.qualityChanged=Cheater! New quality changed to
@@ -222,6 +222,12 @@ item.syringe.info.quality=Quality
 item.syringe.info.qualityChanged=Cheater! New quality changed to
 item.syringe.info.errorQuality=This syringe is not ready yet!
 item.syringe.info.embryoInseminated=Embryo inseminated
+item.meat.info.dna=DNA
+item.meat.info.quality=Quality
+item.meat.info.errorQuality=ERROR! Egg quality was not determined yet!
+item.meat.info.errorCode=ERROR! DNA sequence was not determined yet!
+item.meat.info.qualityChanged=Cheater! New quality changed to
+item.meat.info.geneticCodeIs=Genetic code is
 
 
 

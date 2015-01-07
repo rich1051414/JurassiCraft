@@ -9,10 +9,13 @@ import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPad;
+import net.ilexiconn.jurassicraft.entity.fish.EntityCoelacanth;
+import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,6 +36,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public float length;
     public float bBoxXZ;
     public float bBoxY;
+    public int expParameter = 100;
     protected final HashSet<Integer> growthStageList = new HashSet<Integer>();
 
     protected int animID;
@@ -41,11 +45,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 
     private Creature creature;
 
-    public int expParameter = 100;
-
-    private boolean spawnedFromEgg;
     public boolean gender, isFlying;
-
     public FlyingParameters flyingParameters;
 
     public EntityJurassiCraftCreature(World world, Creature creature)
@@ -55,13 +55,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         flyingParameters = new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, "grassandleaves");
 
         this.creature = creature;
-        this.spawnedFromEgg = false;
         
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
             this.setRandomGenetics();
         }
-//        this.setFullGrowth();
         this.resetGrowthStageList();
         this.setCreatureGender(JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) == 0.5F ? this.rand.nextBoolean() : (JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) > 0.5F));
         this.setNewCreatureTexture(JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
@@ -104,27 +102,33 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         return this.getCreature().getDeathSound();
     }
 
-    @Override
-    public Item getDropItem()
-    {
-        return this.getCreature().getMeat();
-    }
+	protected EntityItem dropItemStackWithGenetics(ItemStack itemStack) {
+		if (itemStack.getItem() instanceof IDNASource) {
+			NBTTagCompound compound = new NBTTagCompound();
+			if (this.hasDNASequence()) {
+				compound.setString("DNA", this.getDNASequence());
+			} else {
+				compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+			}
+			compound.setInteger("Quality", 100);
+			itemStack.setTagCompound(compound);
+		}
+		return this.entityDropItem(itemStack, 0.0F);
+	}
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-        float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (4.0F * developmentFraction) + this.rand.nextInt(3 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(2 + enchantBonus));
-        if (this.isBurning())
+    	if (this.isBurning())
         {
-            this.dropItem(ModItems.dinoSteak, count);
+    		this.dropItem(ModItems.dinoSteak, 1);
         }
         else
         {
-            this.dropItem(this.getCreature().getMeat(), count);
+            this.dropItem(this.getCreature().getMeat(), 1);
         }
     }
-
+    
     /**
      * Sets the creature genetic quality. Genetic quality is how much the
      * creature varies in status. 1.0F is the base value.
@@ -153,8 +157,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(12, 0F);
-        //this.dataWatcher.addObject(12, Float.valueOf((float) ((((this.length / creature.getMaxLength()) * (this.height / creature.getMaxHeight())) / 2))));
+        this.dataWatcher.addObject(12, 0.0F);
         this.dataWatcher.addObject(13, Byte.valueOf((byte) (0)));
     }
 
@@ -521,7 +524,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
      */
     public void setGenetics(int dnaQuality, String dna)
     {
-        System.out.println("Quality: " + dnaQuality + "% Code: " + dna + ", after being revised: " + JurassiCraftDNAHandler.reviseDNA(dna, dnaQuality));
         this.setDNASequence(JurassiCraftDNAHandler.reviseDNA(dna, dnaQuality));
         this.setGeneticQuality(JurassiCraftDNAHandler.getDefaultGeneticDNAQuality(dna));
     }
@@ -1005,7 +1007,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         buf.writeFloat(this.bBoxY);
         buf.writeBoolean(this.gender);
         buf.writeByte(this.texture);
-        //buf.writeBoolean(this.spawnedFromEgg);
     }
 
     @Override
@@ -1020,25 +1021,5 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.gender = buf.readBoolean();
         this.texture = buf.readByte();
         this.setCreatureSize();
-
-        //		this.spawnedFromEgg = buf.readBoolean();
-        //
-        //		resetGrowthStageList();
-        //
-        //		if(!spawnedFromEgg)
-        //		{
-        //			this.setGrowthStage((byte) (creature.getTicksToAdulthood()));
-        //
-        //			this.setBoundingBox();
-        //
-        //			if (!this.worldObj.isRemote)
-        //			{
-        //				this.updateCreatureData(this.getTotalTicksLived());
-        //			}
-        //			else
-        //			{
-        //				this.setCreatureSize();
-        //			}
-        //		}
     }
 }

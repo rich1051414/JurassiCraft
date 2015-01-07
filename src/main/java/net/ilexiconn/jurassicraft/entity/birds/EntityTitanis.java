@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.birds;
 
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
@@ -11,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityTitanis extends EntityJurassiCraftLandAggressive implements IDinosaur
@@ -28,7 +30,6 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
         this.tasks.addTask(5, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-
         this.setCreatureExperiencePoints(2500);
     }
 
@@ -54,5 +55,20 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
     public String getDeathSound()
     {
         return this.getCreature().getDeathSound();
+    }
+
+    @Override
+    protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
+    {
+    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        int count = Math.round(1 + (2.0F * developmentFraction) + this.rand.nextInt(0 + (int) (3.0F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+        }
+        else
+        {
+            this.dropItem(ModItems.dinoSteak, count);
+        }
     }
 }
