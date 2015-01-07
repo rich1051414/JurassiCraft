@@ -34,6 +34,6 @@ public class AIVelociraptorTwitchHead extends AIAnimation
     {
         EntityLiving living = getEntity();
         IAnimatedEntity entity = (IAnimatedEntity) living;
-        return entity.getAnimationId() == 0 && living.getRNG().nextInt(45) == 0 && raptor.getAttackTarget() == null;
+        return entity.getAnimationId() == 0 && living.getRNG().nextInt(45) == 0;
     }
 }

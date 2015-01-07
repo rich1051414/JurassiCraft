@@ -36,7 +36,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
+        this.tasks.addTask(3, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
         this.tasks.addTask(4, this.aiSit);
         this.tasks.addTask(2, new AITyrannosaurusRoar(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));

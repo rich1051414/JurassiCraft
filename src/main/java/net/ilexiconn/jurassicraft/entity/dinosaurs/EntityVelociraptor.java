@@ -34,8 +34,8 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(4, this.aiSit);
-        this.tasks.addTask(2, new AIVelociraptorTwitchHead(this));
-        this.tasks.addTask(2, new AIVelociraptorRoar(this));
+        this.tasks.addTask(7, new AIVelociraptorTwitchHead(this));
+        this.tasks.addTask(7, new AIVelociraptorRoar(this));
         this.tasks.addTask(2, new AIVelociraptorLeap(this));
         this.tasks.addTask(5, new JurassiCraftEntityAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(5, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
@@ -63,7 +63,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
         if (getAttackTarget() != null)
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
-        if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0)
+        if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0 && animID == 0)
             AnimationAPI.sendAnimationPacket(this, 3);
         if (onGround == true) setLeaping(false);
         if (timeSinceLeap != 0) timeSinceLeap--;
@@ -79,7 +79,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
     public String getLivingSound()
     {
-        if (animID == 0 && this.getAttackTarget() == null) AnimationAPI.sendAnimationPacket(this, 2);
+        if (animID == 0) AnimationAPI.sendAnimationPacket(this, 2);
         int I = rand.nextInt(4) + 1;
         if (I == 1) return "jurassicraft:RapHiss01";
         if (I == 2) return "jurassicraft:RapHiss02";

@@ -36,6 +36,12 @@ public class AIVelociraptorLeap extends AIAnimation
         super.startExecuting();
         attackTarget = entityRaptor.getAttackTarget();
     }
+    
+    public void resetTask()
+    {
+    	super.resetTask();
+        entityRaptor.getNavigator().tryMoveToEntityLiving(attackTarget, 1.5D);
+    }
 
     public void updateTask()
     {
