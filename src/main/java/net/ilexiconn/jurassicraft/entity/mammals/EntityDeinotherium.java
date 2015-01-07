@@ -48,8 +48,9 @@ public class EntityDeinotherium extends EntityJurassiCraftLandProtective impleme
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(0 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(enchantBonus));
-    	if (!this.isBurning())
+        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+    	System.out.println(count);
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }

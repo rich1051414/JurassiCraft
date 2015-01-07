@@ -104,7 +104,7 @@ public class ItemSpawnEggJurassiCraft extends Item {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet()) {
-			if (creature.getValue().getCreatureName().equals("santa")) list.add(new ItemStack(item, 1, creature.getValue().getCreatureID()));
+			if (!creature.getValue().getCreatureName().equals("Santa")) list.add(new ItemStack(item, 1, creature.getValue().getCreatureID()));
 		}
 	}
 

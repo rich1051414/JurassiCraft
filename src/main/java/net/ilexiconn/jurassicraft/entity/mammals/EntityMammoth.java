@@ -48,7 +48,7 @@ public class EntityMammoth extends EntityJurassiCraftLandProtective implements I
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (3.5F * developmentFraction) + this.rand.nextInt(0 + (int) (5.0F * developmentFraction)) + this.rand.nextInt(enchantBonus));
+        int count = Math.round(1 + (3.5F * developmentFraction) + this.rand.nextInt(1 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
     	if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));

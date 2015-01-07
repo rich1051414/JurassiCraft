@@ -155,6 +155,8 @@ item.spawnEgg_Uintatherium.name=Egg of a Uintatherium
 item.spawnEgg_Paraceratherium.name=Egg of a Paraceratherium
 item.spawnEgg_Deinotherium.name=Egg of a Deinotherium
 item.spawnEgg_Moeritherium.name=Egg of a Moeritherium
+item.spawnEgg_Brachiopod.name=Egg of a Brachiopod
+item.spawnEgg_Ammonite.name=Egg of a Ammonite
 
 //Meats
 item.Ankylosaur_Meat.name=Ankylosaurus Meat

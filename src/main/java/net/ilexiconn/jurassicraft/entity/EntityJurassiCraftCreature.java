@@ -103,7 +103,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     }
 
 	protected EntityItem dropItemStackWithGenetics(ItemStack itemStack) {
-		if (itemStack.getItem() instanceof IDNASource) {
+		if (itemStack.getItem() != null) {
 			NBTTagCompound compound = new NBTTagCompound();
 			if (this.hasDNASequence()) {
 				compound.setString("DNA", this.getDNASequence());
