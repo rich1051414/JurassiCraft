@@ -118,7 +118,7 @@ public class CreatureManager
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + creatureName);
             creatures.put(entity, new Creature(category, creature));
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            EntityRegistry.registerGlobalEntityID(entity, creatureName, entityId, 0, 0);
+            EntityRegistry.registerGlobalEntityID(entity, creatureName, entityId);
             EntityRegistry.registerModEntity(entity, creatureName, entityId, JurassiCraft.instance, 64, 1, true);
         }
         catch (Exception e)

@@ -22,7 +22,7 @@
 	{
 		"modid":"AnimationAPI",
 		"name":"AnimationAPI",
-		"version":"1.2.4",
+		"version":"1.2.4-JCEdition",
 		"parent":"jurassicraft"
 	}
 ]
