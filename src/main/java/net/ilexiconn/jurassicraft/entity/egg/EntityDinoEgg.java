@@ -260,7 +260,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                             }
                             baby.setPosition(this.posX, this.posY, this.posZ);
                             this.worldObj.spawnEntityInWorld(baby);
-                            baby.setNoGrowth();
+  //                          baby.setNoGrowth();
                             this.currentSpawnTime = 0;
                             this.setDead();
                         }

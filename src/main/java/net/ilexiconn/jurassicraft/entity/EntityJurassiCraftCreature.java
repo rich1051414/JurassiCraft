@@ -63,7 +63,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             this.setRandomGenetics();
         }
-        this.setFullGrowth();
+//        this.setFullGrowth();
         this.resetGrowthStageList();
         this.setCreatureGender(JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) == 0.5F ? this.rand.nextBoolean() : (JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) > 0.5F));
         this.setNewCreatureTexture(JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
