@@ -54,4 +54,10 @@ public class EntityCoelacanth extends EntitySwimming
     {
         this.dropItem(this.getCreature().getMeat(), 1);
     }
+
+    @Override
+    public boolean canDespawn()
+    {
+        return true;
+    }
 }
