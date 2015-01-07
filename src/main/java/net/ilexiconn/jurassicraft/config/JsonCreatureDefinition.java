@@ -51,6 +51,7 @@ public class JsonCreatureDefinition
     public boolean isRidable;
     public boolean canBeTamedUponSpawning;
     public boolean waterCreature;
+    public boolean flyingCreature;
 
     public boolean addEgg;
     public boolean addSyringe;

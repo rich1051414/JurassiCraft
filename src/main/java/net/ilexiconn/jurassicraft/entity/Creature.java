@@ -57,6 +57,7 @@ public class Creature
     private boolean isRidable;
     private boolean canBeTamedUponSpawning;
     private boolean waterCreature;
+    private boolean flyingCreature;
 
     private ItemDinoEgg egg;
     private ItemMammalSyringe syringe;
@@ -103,6 +104,7 @@ public class Creature
         this.scaleAdjustment = def.scaleAdjustment;
         this.ticksToAdulthood = def.ticksToAdulthood;
         this.waterCreature = def.waterCreature;
+        this.flyingCreature = def.flyingCreature;
         this.xzBoxDelta = def.xzBoxDelta;
         this.xzBoxMin = def.xzBoxMin;
         this.yBoxDelta = def.yBoxDelta;
@@ -168,6 +170,11 @@ public class Creature
     public boolean isWaterCreature()
     {
         return waterCreature;
+    }
+
+    public boolean isFlyingCreature()
+    {
+        return flyingCreature;
     }
 
     public ItemDNA getDNA()

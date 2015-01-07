@@ -36,6 +36,7 @@
         "canBeTamedUponSpawning": true,
         "numberOfInfoPages": 1,
         "waterCreature": false,
+        "flyingCreature": true,
         "addEgg": true,
         "addSyringe": false,
         "addMeat": true,

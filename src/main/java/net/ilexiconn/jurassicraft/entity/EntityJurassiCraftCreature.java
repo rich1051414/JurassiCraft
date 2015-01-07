@@ -52,9 +52,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         super(world);
 
-        if(this != null) {
-            flyingParameters = new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, "grassandleaves");
-        }
+        flyingParameters = new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, "grassandleaves");
 
         this.creature = creature;
         this.spawnedFromEgg = false;
@@ -319,13 +317,16 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
         }
 
-        if(riddenByEntity == null) {
-            motionY += 0.04f + 0.06f * flyingParameters.flySpeedModifier / 500f;
-            isFlying = true;
-        }
+        if (isFlyingCreature())
+        {
+            if(riddenByEntity == null) {
+                motionY += 0.04f + 0.06f * flyingParameters.flySpeedModifier / 500f;
+                isFlying = true;
+            }
 
-        if(onGround && isFlying)
-            isFlying = false;
+            if(onGround && isFlying)
+                isFlying = false;
+        }
 
         super.onLivingUpdate();
     }
@@ -924,6 +925,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public boolean isWaterCreature()
     {
         return this.getCreature().isWaterCreature();
+    }
+
+    public boolean isFlyingCreature()
+    {
+        return this.getCreature().isFlyingCreature();
     }
 
     @Override
