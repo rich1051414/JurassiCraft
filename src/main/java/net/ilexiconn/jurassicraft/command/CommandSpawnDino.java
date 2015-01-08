@@ -50,7 +50,6 @@ public class CommandSpawnDino extends CommandBase
             int x = args[1].equals("~") ? sender.getPlayerCoordinates().posX : parseInt(sender, args[1]);
             int y = args[2].equals("~") ? sender.getPlayerCoordinates().posY : parseInt(sender, args[2]);
             int z = args[3].equals("~") ? sender.getPlayerCoordinates().posZ : parseInt(sender, args[3]);
-            if (!args[4].equals("true") || !args[4].equals("false")) throw new WrongUsageException("commands.spawndino.usage");
             boolean isAdult = Boolean.parseBoolean(args[4]);
             spawnCreature(sender.getEntityWorld(), x, y, z, dinoName, isAdult);
         }
