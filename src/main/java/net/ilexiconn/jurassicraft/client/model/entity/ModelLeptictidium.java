@@ -1,370 +1,280 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.animation.BygoneAgeAnimationIDs;
-import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
-import net.minecraft.client.model.ModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-import thehippomaster.AnimationAPI.IAnimatedEntity;
-import thehippomaster.AnimationAPI.client.Animator;
 
-public class ModelLeptictidium extends ModelBase
-{
+/**
+ * ModelLeptictidium - RafaMv
+ * Created using Tabula 4.0.2
+ */
+public class ModelLeptictidium extends MowzieModelBase {
+	
+    public MowzieModelRenderer body1, body2, neck, head1, earLeft, earRight, head2, snout1, snout2, mouth1, mouth2, mouth3;
+    public MowzieModelRenderer leftLeg1, leftLeg2, leftLeg3, leftFoot, rightLeg1, rightLeg2, rightLeg3, rightFoot;
+    public MowzieModelRenderer rightHand, rightHand2, leftHand, leftHand2;
+    public MowzieModelRenderer tail1, tail2, tail3, tail4, tail5;
+    private MowzieModelRenderer[] tailParts;
+    
+    public ModelLeptictidium() {
+        this.textureWidth = 64;
+        this.textureHeight = 32;
 
-    private Animator animator;
-    public ResettableModelRenderer mouth1, mouth2, mouth3, snout1, snout2, head1, head2, ear1, ear2, neck, body1, body2, butt, tail1, tail2, tail3, tail4, lefthand1, lefthand2, righthand1, righthand2, leftleg1, leftleg2, leftleg3, leftfoot, rightleg1, rightleg2, rightleg3, rightfoot;
+        this.body1 = new MowzieModelRenderer(this, 0, 0);
+        this.body1.setRotationPoint(0.0F, 16.0F, 4.0F);
+        this.body1.addBox(-2.5F, -2.5F, -3.6F, 5, 5, 5);
+        this.body2 = new MowzieModelRenderer(this, 20, 0);
+        this.body2.setRotationPoint(0.0F, -0.5F, -3.5F);
+        this.body2.addBox(-2.0F, -2.0F, -5.0F, 4, 4, 6);
+        this.setRotateAngle(body2, -0.17453292519943295F, 0.0F, 0.0F);
+        this.neck = new MowzieModelRenderer(this, 20, 25);
+        this.neck.setRotationPoint(0.0F, -0.75F, -4.5F);
+        this.neck.addBox(-1.0F, -1.0F, -2.0F, 2, 2, 2);
+        this.setRotateAngle(neck, 0.04363323129985824F, 0.0F, 0.0F);
+        this.head1 = new MowzieModelRenderer(this, 30, 24);
+        this.head1.setRotationPoint(0.0F, 0.0F, -1.5F);
+        this.head1.addBox(-1.5F, -2.5F, -4.0F, 3, 3, 4);
+        this.setRotateAngle(head1, 0.17453292519943295F, 0.0F, 0.0F);
+        this.head2 = new MowzieModelRenderer(this, 44, 25);
+        this.head2.setRotationPoint(0.0F, 0.1F, 0.0F);
+        this.head2.addBox(-1.0F, -2.0F, -6.75F, 2, 2, 3);
+        this.setRotateAngle(head2, 0.08726646259971647F, 0.0F, 0.0F);
+        this.snout1 = new MowzieModelRenderer(this, 55, 28);
+        this.snout1.setRotationPoint(0.0F, -1.25F, -6.5F);
+        this.snout1.addBox(-0.5F, -0.5F, -2.0F, 1, 1, 2);
+        this.setRotateAngle(snout1, 0.5235987755982988F, -0.0F, 0.0F);
+        this.snout2 = new MowzieModelRenderer(this, 55, 25);
+        this.snout2.setRotationPoint(0.0F, 0.0F, -2.0F);
+        this.snout2.addBox(-0.5F, -0.5F, -0.75F, 1, 1, 1);
+        this.setRotateAngle(snout2, 0.5235987755982988F, -0.0F, 0.0F);
+        this.mouth1 = new MowzieModelRenderer(this, 38, 10);
+        this.mouth1.setRotationPoint(0.0F, 0.4F, -0.5F);
+        this.mouth1.addBox(-1.5F, 0.0F, -2.98F, 3, 1, 3);
+        this.mouth2 = new MowzieModelRenderer(this, 40, 16);
+        this.mouth2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.mouth2.addBox(-1.0F, 0.05F, -4.5F, 2, 1, 2);
+        this.mouth3 = new MowzieModelRenderer(this, 45, 21);
+        this.mouth3.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.mouth3.addBox(-0.5F, 0.1F, -6.0F, 1, 1, 2);
+        this.earLeft = new MowzieModelRenderer(this, 25, 20);
+        this.earLeft.setRotationPoint(1.0F, -2.0F, -0.5F);
+        this.earLeft.addBox(-0.5F, -3.0F, -0.5F, 1, 3, 1);
+        this.setRotateAngle(earLeft, -0.2617993877991494F, -0.0F, 0.15707963267948966F);
+        this.earRight = new MowzieModelRenderer(this, 31, 20);
+        this.earRight.setRotationPoint(-1.0F, -2.0F, -0.5F);
+        this.earRight.addBox(-0.5F, -3.0F, -0.5F, 1, 3, 1);
+        this.setRotateAngle(earRight, -0.2617993877991494F, -0.0F, -0.15707963267948966F);
+        this.leftLeg1 = new MowzieModelRenderer(this, 0, 10);
+        this.leftLeg1.setRotationPoint(2.0F, 0.0F, 0.0F);
+        this.leftLeg1.addBox(-0.5F, -1.0F, -2.0F, 2, 4, 4);
+        this.setRotateAngle(leftLeg1, 0.17453292519943295F, 0.0F, 0.0F);
+        this.leftFoot = new MowzieModelRenderer(this, 0, 24);
+        this.leftFoot.setRotationPoint(0.0F, 3.5F, -0.5F);
+        this.leftFoot.addBox(-0.5F, -0.6F, -1.5F, 1, 1, 2);
+        this.setRotateAngle(leftFoot, 0.5235987755982988F, 0.0F, 0.0F);
+        this.leftLeg3 = new MowzieModelRenderer(this, 0, 18);
+        this.leftLeg3.setRotationPoint(0.5F, 3.0F, -0.5F);
+        this.leftLeg3.addBox(-0.5F, -0.5F, -1.0F, 1, 4, 1);
+        this.setRotateAngle(leftLeg3, -1.0471975511965976F, 0.0F, 0.0F);
+        this.leftLeg2 = new MowzieModelRenderer(this, 4, 18);
+        this.leftLeg2.setRotationPoint(2.0F, 2.0F, 0.0F);
+        this.leftLeg2.addBox(0.0F, 0.0F, -1.0F, 1, 3, 2);
+        this.setRotateAngle(leftLeg2, 0.5235987755982988F, 0.0F, 0.0F);
+        this.rightHand = new MowzieModelRenderer(this, 25, 10);
+        this.rightHand.setRotationPoint(1.75F, 1.5F, -3.0F);
+        this.rightHand.addBox(-0.5F, 0.2F, -0.5F, 1, 2, 1);
+        this.setRotateAngle(rightHand, 0.2617993877991494F, 0.0F, 0.0F);
+        this.rightHand2 = new MowzieModelRenderer(this, 25, 14);
+        this.rightHand2.setRotationPoint(0.0F, 1.5F, 0.0F);
+        this.rightHand2.addBox(-0.5F, 0.1F, -0.3F, 1, 2, 1);
+        this.setRotateAngle(rightHand2, -0.5235987755982988F, 0.0F, 0.0F);
+        this.rightLeg1 = new MowzieModelRenderer(this, 12, 10);
+        this.rightLeg1.setRotationPoint(-2.0F, 0.0F, 0.0F);
+        this.rightLeg1.addBox(-1.0F, -1.0F, -2.0F, 2, 4, 4);
+        this.setRotateAngle(rightLeg1, 0.17453292519943295F, -0.0F, 0.0F);
+        this.rightLeg2 = new MowzieModelRenderer(this, 16, 18);
+        this.rightLeg2.setRotationPoint(-2.0F, 2.0F, 0.0F);
+        this.rightLeg2.addBox(-0.5F, 0.0F, -1.0F, 1, 3, 2);
+        this.setRotateAngle(rightLeg2, 0.5235987755982988F, -0.0F, 0.0F);
+        this.rightLeg3 = new MowzieModelRenderer(this, 12, 18);
+        this.rightLeg3.setRotationPoint(0.0F, 3.0F, -0.5F);
+        this.rightLeg3.addBox(-0.5F, -0.5F, -1.0F, 1, 4, 1);
+        this.setRotateAngle(rightLeg3, -1.0471975511965976F, -0.0F, 0.0F);
+        this.rightFoot = new MowzieModelRenderer(this, 12, 24);
+        this.rightFoot.setRotationPoint(0.0F, 3.5F, -0.5F);
+        this.rightFoot.addBox(-0.5F, -0.6F, -1.5F, 1, 1, 2);
+        this.setRotateAngle(rightFoot, 0.5235987755982988F, -0.0F, 0.0F);
+        this.leftHand = new MowzieModelRenderer(this, 30, 10);
+        this.leftHand.setRotationPoint(-1.75F, 1.5F, -3.0F);
+        this.leftHand.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1);
+        this.setRotateAngle(leftHand, 0.2617993877991494F, 0.0F, 0.0F);
+        this.leftHand2 = new MowzieModelRenderer(this, 30, 14);
+        this.leftHand2.setRotationPoint(0.0F, 1.5F, 0.0F);
+        this.leftHand2.addBox(-0.5F, 0.1F, -0.3F, 1, 2, 1);
+        this.setRotateAngle(leftHand2, -0.5235987755982988F, 0.0F, 0.0F);
+        this.tail1 = new MowzieModelRenderer(this, 40, 0);
+        this.tail1.setRotationPoint(0.0F, 0.0F, 1.0F);
+        this.tail1.addBox(-1.5F, -2.0F, 0.0F, 3, 3, 4);
+        this.tail2 = new MowzieModelRenderer(this, 54, 0);
+        this.tail2.setRotationPoint(0.0F, -0.5F, 4.0F);
+        this.tail2.addBox(-1.0F, -1.0F, -0.25F, 2, 2, 3);
+        this.tail3 = new MowzieModelRenderer(this, 54, 5);
+        this.tail3.setRotationPoint(0.0F, 0.0F, 2.5F);
+        this.tail3.addBox(-0.5F, -0.5F, 0.0F, 1, 1, 3);
+        this.tail4 = new MowzieModelRenderer(this, 54, 9);
+        this.tail4.setRotationPoint(0.0F, 0.0F, 3.0F);
+        this.tail4.addBox(-0.5F, -0.5F, -0.25F, 1, 1, 4);
+        this.tail5 = new MowzieModelRenderer(this, 52, 14);
+        this.tail5.setRotationPoint(0.0F, 0.0F, 3.5F);
+        this.tail5.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 5);
 
-    public ModelLeptictidium()
-    {
-        animator = new Animator(this);
-        textureWidth = 64;
-        textureHeight = 32;
+        //Head
+        this.body1.addChild(this.body2);
+        this.body2.addChild(this.neck);
+        this.neck.addChild(this.head1);
+        this.head1.addChild(this.earLeft);
+        this.head1.addChild(this.earRight);
+        this.head1.addChild(this.mouth1);
+        this.mouth1.addChild(this.mouth2);
+        this.mouth1.addChild(this.mouth3);
+        this.head1.addChild(this.head2);
+        this.head2.addChild(this.snout1);
+        this.snout1.addChild(this.snout2);
 
-        mouth2 = new ResettableModelRenderer(this, 40, 16);
-        mouth2.addBox(-1F, 1F, -4F, 2, 1, 2);
-        mouth2.setRotationPoint(0F, 13.5F, -5F);
-        mouth2.setTextureSize(64, 32);
-        mouth2.mirror = true;
-        setRotation(mouth2, 0.0872665F, 0F, 0F);
-        head1 = new ResettableModelRenderer(this, 30, 24);
-        head1.addBox(-1.5F, -2F, -4F, 3, 3, 4);
-        head1.setRotationPoint(0F, 13.5F, -5F);
-        head1.setTextureSize(64, 32);
-        head1.mirror = true;
-        setRotation(head1, 0.0872665F, 0F, 0F);
-        head2 = new ResettableModelRenderer(this, 44, 25);
-        head2.addBox(-1F, -1.8F, -6.5F, 2, 2, 3);
-        head2.setRotationPoint(0F, 13.5F, -5F);
-        head2.setTextureSize(64, 32);
-        head2.mirror = true;
-        setRotation(head2, 0.2617994F, 0F, 0F);
-        snout1 = new ResettableModelRenderer(this, 55, 28);
-        snout1.addBox(-0.5F, -2.6F, -8F, 1, 1, 2);
-        snout1.setRotationPoint(0F, 13.5F, -5F);
-        snout1.setTextureSize(64, 32);
-        snout1.mirror = true;
-        setRotation(snout1, 0.5235988F, 0F, 0F);
-        mouth3 = new ResettableModelRenderer(this, 45, 21);
-        mouth3.addBox(-0.5F, 1F, -6F, 1, 1, 2);
-        mouth3.setRotationPoint(0F, 13.5F, -5F);
-        mouth3.setTextureSize(64, 32);
-        mouth3.mirror = true;
-        setRotation(mouth3, 0.0872665F, 0F, 0F);
-        snout2 = new ResettableModelRenderer(this, 55, 25);
-        snout2.addBox(-0.5F, -4.5F, -8F, 1, 1, 1);
-        snout2.setRotationPoint(0F, 13.5F, -5F);
-        snout2.setTextureSize(64, 32);
-        snout2.mirror = true;
-        setRotation(snout2, 0.7853982F, 0F, 0F);
-        ear1 = new ResettableModelRenderer(this, 25, 20);
-        ear1.addBox(0.5F, -4F, -2F, 1, 3, 1);
-        ear1.setRotationPoint(0F, 13.5F, -5F);
-        ear1.setTextureSize(64, 32);
-        ear1.mirror = true;
-        setRotation(ear1, -0.2617994F, 0F, 0.1570796F);
-        ear2 = new ResettableModelRenderer(this, 31, 20);
-        ear2.addBox(-1.5F, -4F, -2F, 1, 3, 1);
-        ear2.setRotationPoint(0F, 13.5F, -5F);
-        ear2.setTextureSize(64, 32);
-        ear2.mirror = true;
-        setRotation(ear2, -0.2617994F, 0F, -0.1570796F);
-        neck = new ResettableModelRenderer(this, 20, 25);
-        neck.addBox(-1F, -0.5F, -1F, 2, 2, 2);
-        neck.setRotationPoint(0F, 13.5F, -4.5F);
-        neck.setTextureSize(64, 32);
-        neck.mirror = true;
-        setRotation(neck, 0.0872665F, 0F, 0F);
-        body1 = new ResettableModelRenderer(this, 20, 0);
-        body1.addBox(-2F, -2F, -8F, 4, 4, 6);
-        body1.setRotationPoint(0F, 16F, 4F);
-        body1.setTextureSize(64, 32);
-        body1.mirror = true;
-        setRotation(body1, -0.1745329F, 0F, 0F);
-        body2 = new ResettableModelRenderer(this, 0, 0);
-        body2.addBox(-2.5F, -2.5F, -3.6F, 5, 5, 5);
-        body2.setRotationPoint(0F, 16F, 4F);
-        body2.setTextureSize(64, 32);
-        body2.mirror = true;
-        setRotation(body2, 0F, 0F, 0F);
-        butt = new ResettableModelRenderer(this, 40, 0);
-        butt.addBox(-1.5F, -2F, 0F, 3, 3, 4);
-        butt.setRotationPoint(0F, 16F, 4F);
-        butt.setTextureSize(64, 32);
-        butt.mirror = true;
-        setRotation(butt, 0F, 0F, 0F);
-        tail1 = new ResettableModelRenderer(this, 54, 0);
-        tail1.addBox(-1F, -1F, -0.2F, 2, 2, 3);
-        tail1.setRotationPoint(0F, 15.5F, 8F);
-        tail1.setTextureSize(64, 32);
-        tail1.mirror = true;
-        setRotation(tail1, 0.1745329F, 0F, 0F);
-        tail2 = new ResettableModelRenderer(this, 54, 5);
-        tail2.addBox(-0.5F, -1F, 2F, 1, 1, 3);
-        tail2.setRotationPoint(0F, 15.5F, 8F);
-        tail2.setTextureSize(64, 32);
-        tail2.mirror = true;
-        setRotation(tail2, 0F, 0F, 0F);
-        tail3 = new ResettableModelRenderer(this, 54, 9);
-        tail3.addBox(-0.5F, -0.2F, 4.7F, 1, 1, 4);
-        tail3.setRotationPoint(0F, 15.5F, 8F);
-        tail3.setTextureSize(64, 32);
-        tail3.mirror = true;
-        setRotation(tail3, 0.1745329F, 0F, 0F);
-        tail4 = new ResettableModelRenderer(this, 52, 14);
-        tail4.addBox(-0.5F, -1F, 8.5F, 1, 1, 5);
-        tail4.setRotationPoint(0F, 15.5F, 8F);
-        tail4.setTextureSize(64, 32);
-        tail4.mirror = true;
-        setRotation(tail4, 0.0872665F, 0F, 0F);
-        lefthand1 = new ResettableModelRenderer(this, 25, 10);
-        lefthand1.addBox(1F, -1F, -0.7F, 1, 3, 1);
-        lefthand1.setRotationPoint(0F, 17F, -2.5F);
-        lefthand1.setTextureSize(64, 32);
-        lefthand1.mirror = true;
-        setRotation(lefthand1, 0.1745329F, 0F, 0F);
-        righthand1 = new ResettableModelRenderer(this, 30, 10);
-        righthand1.addBox(-2F, -1F, -0.7F, 1, 3, 1);
-        righthand1.setRotationPoint(0F, 17F, -2.5F);
-        righthand1.setTextureSize(64, 32);
-        righthand1.mirror = true;
-        setRotation(righthand1, 0.1745329F, 0F, 0F);
-        rightleg1 = new ResettableModelRenderer(this, 0, 10);
-        rightleg1.addBox(-0.5F, 0F, -2F, 2, 4, 4);
-        rightleg1.setRotationPoint(2F, 15F, 3F);
-        rightleg1.setTextureSize(64, 32);
-        rightleg1.mirror = true;
-        setRotation(rightleg1, 0.1745329F, 0F, 0F);
-        leftleg1 = new ResettableModelRenderer(this, 12, 10);
-        leftleg1.addBox(-1F, 0F, -2F, 2, 4, 4);
-        leftleg1.setRotationPoint(-2F, 15F, 3F);
-        leftleg1.setTextureSize(64, 32);
-        leftleg1.mirror = true;
-        setRotation(leftleg1, 0.1745329F, 0F, 0F);
-        rightleg3 = new ResettableModelRenderer(this, 0, 18);
-        rightleg3.addBox(0F, 2.5F, 3.2F, 1, 5, 1);
-        rightleg3.setRotationPoint(2F, 15F, 3F);
-        rightleg3.setTextureSize(64, 32);
-        rightleg3.mirror = true;
-        setRotation(rightleg3, -0.5235988F, 0F, 0F);
-        leftleg3 = new ResettableModelRenderer(this, 12, 18);
-        leftleg3.addBox(-0.5F, 2.5F, 3.2F, 1, 5, 1);
-        leftleg3.setRotationPoint(-2F, 15F, 3F);
-        leftleg3.setTextureSize(64, 32);
-        leftleg3.mirror = true;
-        setRotation(leftleg3, -0.5235988F, 0F, 0F);
-        rightfoot = new ResettableModelRenderer(this, 0, 24);
-        rightfoot.addBox(0F, 8F, -2.1F, 1, 1, 2);
-        rightfoot.setRotationPoint(2F, 15F, 3F);
-        rightfoot.setTextureSize(64, 32);
-        rightfoot.mirror = true;
-        setRotation(rightfoot, 0F, 0F, 0F);
-        leftfoot = new ResettableModelRenderer(this, 12, 24);
-        leftfoot.addBox(-0.5F, 8F, -2.1F, 1, 1, 2);
-        leftfoot.setRotationPoint(-2F, 15F, 3F);
-        leftfoot.setTextureSize(64, 32);
-        leftfoot.mirror = true;
-        setRotation(leftfoot, 0F, 0F, 0F);
-        lefthand2 = new ResettableModelRenderer(this, 25, 14);
-        lefthand2.addBox(1F, 0.6F, 0.8F, 1, 3, 1);
-        lefthand2.setRotationPoint(0F, 17F, -2.5F);
-        lefthand2.setTextureSize(64, 32);
-        lefthand2.mirror = true;
-        setRotation(lefthand2, -0.9599311F, 0F, 0F);
-        righthand2 = new ResettableModelRenderer(this, 30, 14);
-        righthand2.addBox(-2F, 0.6F, 0.8F, 1, 3, 1);
-        righthand2.setRotationPoint(0F, 17F, -2.5F);
-        righthand2.setTextureSize(64, 32);
-        righthand2.mirror = true;
-        setRotation(righthand2, -0.9599311F, 0F, 0F);
-        rightleg2 = new ResettableModelRenderer(this, 4, 18);
-        rightleg2.addBox(0F, 2F, -2F, 1, 3, 2);
-        rightleg2.setRotationPoint(2F, 15F, 3F);
-        rightleg2.setTextureSize(64, 32);
-        rightleg2.mirror = true;
-        setRotation(rightleg2, 0.5235988F, 0F, 0F);
-        leftleg2 = new ResettableModelRenderer(this, 16, 18);
-        leftleg2.addBox(-0.5F, 2F, -2F, 1, 3, 2);
-        leftleg2.setRotationPoint(-2F, 15F, 3F);
-        leftleg2.setTextureSize(64, 32);
-        leftleg2.mirror = true;
-        setRotation(leftleg2, 0.5235988F, 0F, 0F);
-        mouth1 = new ResettableModelRenderer(this, 38, 10);
-        mouth1.addBox(-1.5F, 1F, -2.977778F, 3, 1, 3);
-        mouth1.setRotationPoint(0F, 13.5F, -5F);
-        mouth1.setTextureSize(64, 32);
-        mouth1.mirror = true;
-        setRotation(mouth1, 0.0872665F, 0F, 0F);
+        //Arms
+        this.body2.addChild(this.rightHand);
+        this.rightHand.addChild(this.rightHand2);
+        this.body2.addChild(this.leftHand);
+        this.leftHand.addChild(this.leftHand2);
 
-        mouth1.savefirstParameters();
-        mouth2.savefirstParameters();
-        mouth3.savefirstParameters();
-        snout1.savefirstParameters();
-        snout2.savefirstParameters();
-        head1.savefirstParameters();
-        head2.savefirstParameters();
-        ear1.savefirstParameters();
-        ear2.savefirstParameters();
-        neck.savefirstParameters();
-        body1.savefirstParameters();
-        body2.savefirstParameters();
-        butt.savefirstParameters();
-        tail1.savefirstParameters();
-        tail2.savefirstParameters();
-        tail3.savefirstParameters();
-        tail4.savefirstParameters();
-        lefthand1.savefirstParameters();
-        lefthand2.savefirstParameters();
-        righthand1.savefirstParameters();
-        righthand2.savefirstParameters();
-        leftleg1.savefirstParameters();
-        leftleg2.savefirstParameters();
-        leftleg3.savefirstParameters();
-        leftfoot.savefirstParameters();
-        rightleg1.savefirstParameters();
-        rightleg2.savefirstParameters();
-        rightleg3.savefirstParameters();
-        rightfoot.savefirstParameters();
+        //Left leg
+        this.body1.addChild(this.rightLeg1);
+        this.body1.addChild(this.rightLeg2);
+        this.rightLeg2.addChild(this.rightLeg3);
+        this.rightLeg3.addChild(this.rightFoot);
+
+        //Right leg
+        this.body1.addChild(this.leftLeg1);
+        this.body1.addChild(this.leftLeg2);
+        this.leftLeg2.addChild(this.leftLeg3);
+        this.leftLeg3.addChild(this.leftFoot);
+
+        //Tail
+        this.body1.addChild(this.tail1);
+        this.tail1.addChild(this.tail2);
+        this.tail2.addChild(this.tail3);
+        this.tail3.addChild(this.tail4);
+        this.tail4.addChild(this.tail5);
+        
+        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+
+        this.body1.setInitValuesToCurrentPose();
+        this.body2.setInitValuesToCurrentPose();
+        this.neck.setInitValuesToCurrentPose();
+        this.head1.setInitValuesToCurrentPose();
+        this.earLeft.setInitValuesToCurrentPose();
+        this.earRight.setInitValuesToCurrentPose();
+        this.head2.setInitValuesToCurrentPose();
+        this.snout1.setInitValuesToCurrentPose();
+        this.snout2.setInitValuesToCurrentPose();
+        this.mouth1.setInitValuesToCurrentPose();
+        this.mouth2.setInitValuesToCurrentPose();
+        this.mouth3.setInitValuesToCurrentPose();
+        this.leftLeg1.setInitValuesToCurrentPose();
+        this.leftLeg2.setInitValuesToCurrentPose();
+        this.leftLeg3.setInitValuesToCurrentPose();
+        this.leftFoot.setInitValuesToCurrentPose();
+        this.rightLeg1.setInitValuesToCurrentPose();
+        this.rightLeg2.setInitValuesToCurrentPose();
+        this.rightLeg3.setInitValuesToCurrentPose();
+        this.rightFoot.setInitValuesToCurrentPose();
+        this.rightHand.setInitValuesToCurrentPose();
+        this.rightHand2.setInitValuesToCurrentPose();
+        this.leftHand.setInitValuesToCurrentPose();
+        this.leftHand2.setInitValuesToCurrentPose();
+        this.tail1.setInitValuesToCurrentPose();
+        this.tail2.setInitValuesToCurrentPose();
+        this.tail3.setInitValuesToCurrentPose();
+        this.tail4.setInitValuesToCurrentPose();
+        this.tail5.setInitValuesToCurrentPose();
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-    {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
         super.render(entity, f, f1, f2, f3, f4, f5);
-        animate(entity, f, f1, f2, f3, f4, f5);
-
-        mouth1.render(f5);
-        head1.render(f5);
-        head2.render(f5);
-        snout1.render(f5);
-        mouth2.render(f5);
-        mouth3.render(f5);
-        snout2.render(f5);
-        ear1.render(f5);
-        ear2.render(f5);
-        neck.render(f5);
-        body1.render(f5);
-        body2.render(f5);
-        butt.render(f5);
-        tail1.render(f5);
-        tail2.render(f5);
-        tail3.render(f5);
-        tail4.render(f5);
-        lefthand1.render(f5);
-        lefthand2.render(f5);
-        righthand2.render(f5);
-        righthand1.render(f5);
-        rightleg1.render(f5);
-        leftleg1.render(f5);
-        rightleg2.render(f5);
-        leftleg2.render(f5);
-        rightleg3.render(f5);
-        leftleg3.render(f5);
-        rightfoot.render(f5);
-        leftfoot.render(f5);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityLeptictidium) entity);
+        this.body1.render(f5);
     }
 
-    private void setRotation(ResettableModelRenderer model, float x, float y, float z)
-    {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
-    }
-
-    @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityLeptictidium entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        this.resetPose();
 
-        float legMovementX1 = f1 * MathHelper.cos(f * 0.67F);
-        float legMovementX2 = f1 * MathHelper.cos(f * 0.67F + (float) Math.PI);
+        float bodyMovement = 0.104719755F * MathHelper.cos(0.1F * entity.frame);
+        float bodyInclination = 0.523598776F * (1.0F - 2.0F * f1);
 
-        float headMovementX = f4 / (180F / (float) Math.PI);
-        float headMovementY = f3 / (180F / (float) Math.PI);
-        float handMovementX1 = f1 * MathHelper.cos(0.67F * f + (float) Math.PI);
-        float handMovementX2 = f1 * MathHelper.cos(0.67F * f);
+        this.body1.rotateAngleX += bodyMovement;
+        this.rightLeg2.rotateAngleX -= bodyMovement;
+        this.leftLeg2.rotateAngleX -= bodyMovement;
+        this.body2.rotateAngleX += bodyInclination;
+        this.neck.rotateAngleX -= bodyInclination;
+        this.tail1.rotateAngleX -= 0.25F * bodyInclination;
+        
+        this.walk(this.rightLeg1, 0.5F, 1.0F, false, 0F, 0, f, f1);
+        this.walk(this.rightLeg2, 0.5F, 1.0F, false, 0F, 0, f, f1);
+        this.walk(this.rightLeg3, 0.8F, 0.5F, false, 0F, 0, f, f1);
+        
+        this.walk(this.leftLeg1, 0.5F, 1.0F, false, 0F, 0, f, f1);
+        this.walk(this.leftLeg2, 0.5F, 1.0F, false, 0F, 0, f, f1);
+        this.walk(this.leftLeg3, 0.8F, 0.5F, false, 0F, 0, f, f1);
+		
+        this.chainSwing(this.tailParts, 0.1F, 0.05F, 1, entity.frame, 1F);
+        this.chainWave(this.tailParts, 0.1F, -0.05F, 2, entity.frame, 1F);
 
-        float snoutNaturalMovementX = 0.02F * MathHelper.cos(0.05F * f2);
-        float tailNaturalMovementX = MathHelper.sin(0.04F * f2);
-        float tailNaturalMovementZ = MathHelper.sin(0.08F * f2);
+        this.faceTarget(this.head1, 1, f3, f4);
 
-        head1.rotateAngleX = headMovementX + head1.firstRotateAngleX;
-        head2.rotateAngleX = headMovementX + head2.firstRotateAngleX;
-        snout1.rotateAngleX = headMovementX + snoutNaturalMovementX + snout1.firstRotateAngleX;
-        snout2.rotateAngleX = headMovementX + snoutNaturalMovementX + snout2.firstRotateAngleX;
-        mouth1.rotateAngleX = headMovementX + mouth1.firstRotateAngleX;
-        mouth2.rotateAngleX = headMovementX + mouth2.firstRotateAngleX;
-        mouth3.rotateAngleX = headMovementX + mouth3.firstRotateAngleX;
-        ear1.rotateAngleX = headMovementX + ear1.firstRotateAngleX;
-        ear2.rotateAngleX = headMovementX + ear2.firstRotateAngleX;
-
-        head1.rotateAngleY = headMovementY + head1.firstRotateAngleY;
-        head2.rotateAngleY = headMovementY + head2.firstRotateAngleY;
-        snout1.rotateAngleY = headMovementY + snout1.firstRotateAngleY;
-        snout2.rotateAngleY = headMovementY + snout2.firstRotateAngleY;
-        mouth1.rotateAngleY = headMovementY + mouth1.firstRotateAngleY;
-        mouth2.rotateAngleY = headMovementY + mouth2.firstRotateAngleY;
-        mouth3.rotateAngleY = headMovementY + mouth3.firstRotateAngleY;
-        ear1.rotateAngleY = headMovementY + ear1.firstRotateAngleY;
-        ear2.rotateAngleY = headMovementY + ear2.firstRotateAngleY;
-
-        lefthand1.rotateAngleX = handMovementX1 + righthand1.firstRotateAngleX;
-        lefthand2.rotateAngleX = handMovementX1 + righthand2.firstRotateAngleX;
-        righthand1.rotateAngleX = handMovementX2 + lefthand1.firstRotateAngleX;
-        righthand2.rotateAngleX = handMovementX2 + lefthand2.firstRotateAngleX;
-
-        rightleg1.rotateAngleX = legMovementX1 + rightleg1.firstRotateAngleX;
-        rightleg2.rotateAngleX = legMovementX1 + rightleg2.firstRotateAngleX;
-        rightleg3.rotateAngleX = legMovementX1 + rightleg3.firstRotateAngleX;
-        rightfoot.rotateAngleX = legMovementX1 + rightfoot.firstRotateAngleX;
-
-        leftleg1.rotateAngleX = legMovementX2 + leftleg1.firstRotateAngleX;
-        leftleg2.rotateAngleX = legMovementX2 + leftleg2.firstRotateAngleX;
-        leftleg3.rotateAngleX = legMovementX2 + leftleg3.firstRotateAngleX;
-        leftfoot.rotateAngleX = legMovementX2 + leftfoot.firstRotateAngleX;
-
-        butt.rotateAngleX = 0.025F * tailNaturalMovementX + butt.firstRotateAngleZ;
-        tail1.rotateAngleX = 0.20F * tailNaturalMovementX + tail1.firstRotateAngleX;
-        tail2.rotateAngleX = 0.15F * tailNaturalMovementX + tail2.firstRotateAngleX;
-        tail3.rotateAngleX = 0.20F * tailNaturalMovementX + tail3.firstRotateAngleX;
-        tail4.rotateAngleX = 0.20F * tailNaturalMovementX + tail4.firstRotateAngleX;
-
-        butt.rotateAngleZ = 0.025F * tailNaturalMovementZ + butt.firstRotateAngleZ;
-        tail1.rotateAngleZ = 0.20F * tailNaturalMovementZ + tail1.firstRotateAngleZ;
-        tail2.rotateAngleZ = 0.15F * tailNaturalMovementZ + tail2.firstRotateAngleZ;
-        tail3.rotateAngleZ = 0.225F * tailNaturalMovementZ + tail3.firstRotateAngleZ;
-        tail4.rotateAngleZ = 0.225F * tailNaturalMovementZ + tail4.firstRotateAngleZ;
+        this.bob(this.body1, 0.06F, 12.0F * f1, true, f, f1);
     }
 
-    public void animate(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void resetPose()
     {
-        animator.update((IAnimatedEntity) entity);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-        float mouthOpenRotation = (float) Math.PI / 8.0F;
-        float mouthCloseRotation = (float) Math.PI / 16.0F;
-
-        animator.setAnimation(BygoneAgeAnimationIDs.ANIMATION_BITE.getAnimationID());
-        animator.startPhase(5);
-        animator.rotate(mouth1, mouthOpenRotation, 0F, 0F);
-        animator.rotate(mouth2, mouthOpenRotation, 0F, 0F);
-        animator.rotate(mouth3, mouthOpenRotation, 0F, 0F);
-        animator.rotate(head1, -mouthOpenRotation, 0F, 0F);
-        animator.rotate(head2, -mouthOpenRotation, 0F, 0F);
-        animator.rotate(snout1, -mouthOpenRotation, 0F, 0F);
-        animator.rotate(snout2, -mouthOpenRotation, 0F, 0F);
-        animator.rotate(ear1, -mouthOpenRotation, 0F, 0F);
-        animator.rotate(ear2, -mouthOpenRotation, 0F, 0F);
-        animator.endPhase();
-        animator.setStationaryPhase(2);
-        animator.startPhase(1);
-        animator.rotate(mouth1, mouthCloseRotation, 0F, 0F);
-        animator.rotate(head1, mouthCloseRotation, 0F, 0F);
-        animator.rotate(head2, mouthCloseRotation, 0F, 0F);
-        animator.rotate(snout1, mouthCloseRotation, 0F, 0F);
-        animator.rotate(snout2, mouthCloseRotation, 0F, 0F);
-        animator.rotate(ear1, mouthCloseRotation, 0F, 0F);
-        animator.rotate(ear2, mouthCloseRotation, 0F, 0F);
-        animator.endPhase();
-        animator.resetPhase(10);
+        this.body1.setCurrentPoseToInitValues();
+        this.body2.setCurrentPoseToInitValues();
+        this.neck.setCurrentPoseToInitValues();
+        this.head1.setCurrentPoseToInitValues();
+        this.earLeft.setCurrentPoseToInitValues();
+        this.earRight.setCurrentPoseToInitValues();
+        this.head2.setCurrentPoseToInitValues();
+        this.snout1.setCurrentPoseToInitValues();
+        this.snout2.setCurrentPoseToInitValues();
+        this.mouth1.setCurrentPoseToInitValues();
+        this.mouth2.setCurrentPoseToInitValues();
+        this.mouth3.setCurrentPoseToInitValues();
+        this.leftLeg1.setCurrentPoseToInitValues();
+        this.leftLeg2.setCurrentPoseToInitValues();
+        this.leftLeg3.setCurrentPoseToInitValues();
+        this.leftFoot.setCurrentPoseToInitValues();
+        this.rightLeg1.setCurrentPoseToInitValues();
+        this.rightLeg2.setCurrentPoseToInitValues();
+        this.rightLeg3.setCurrentPoseToInitValues();
+        this.rightFoot.setCurrentPoseToInitValues();
+        this.rightHand.setCurrentPoseToInitValues();
+        this.rightHand2.setCurrentPoseToInitValues();
+        this.leftHand.setCurrentPoseToInitValues();
+        this.leftHand2.setCurrentPoseToInitValues();
+        this.tail1.setCurrentPoseToInitValues();
+        this.tail2.setCurrentPoseToInitValues();
+        this.tail3.setCurrentPoseToInitValues();
+        this.tail4.setCurrentPoseToInitValues();
+        this.tail5.setCurrentPoseToInitValues();
+    }
+    
+    public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) {
+    	modelRenderer.rotateAngleX = x;
+    	modelRenderer.rotateAngleY = y;
+    	modelRenderer.rotateAngleZ = z;
     }
 }
