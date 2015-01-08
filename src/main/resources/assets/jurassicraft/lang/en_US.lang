@@ -360,4 +360,4 @@ container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
 
 //Commands
-commands.spawndino.usage=/spawndino <dino> <adult> <x> <y> <z>
+commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]

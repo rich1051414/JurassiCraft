@@ -31,16 +31,38 @@ public class CommandSpawnDino extends CommandBase
 
     public void processCommand(ICommandSender sender, String[] args)
     {
-        if (args.length < 5)
+        if (args.length == 1)
+        {
+            String dinoName = args[0];
+            spawnCreature(sender.getEntityWorld(), sender.getPlayerCoordinates().posX, sender.getPlayerCoordinates().posY, sender.getPlayerCoordinates().posZ, dinoName, true);
+        }
+        else if (args.length == 4)
+        {
+            String dinoName = args[0];
+            int x = args[1].equals("~") ? sender.getPlayerCoordinates().posX : parseInt(sender, args[1]);
+            int y = args[2].equals("~") ? sender.getPlayerCoordinates().posY : parseInt(sender, args[2]);
+            int z = args[3].equals("~") ? sender.getPlayerCoordinates().posZ : parseInt(sender, args[3]);
+            spawnCreature(sender.getEntityWorld(), x, y, z, dinoName, true);
+        }
+        else if (args.length == 5)
+        {
+            String dinoName = args[0];
+            int x = args[1].equals("~") ? sender.getPlayerCoordinates().posX : parseInt(sender, args[1]);
+            int y = args[2].equals("~") ? sender.getPlayerCoordinates().posY : parseInt(sender, args[2]);
+            int z = args[3].equals("~") ? sender.getPlayerCoordinates().posZ : parseInt(sender, args[3]);
+            if (!args[4].equals("true") || !args[4].equals("false")) throw new WrongUsageException("commands.spawndino.usage");
+            boolean isAdult = Boolean.parseBoolean(args[4]);
+            spawnCreature(sender.getEntityWorld(), x, y, z, dinoName, isAdult);
+        }
+        else
         {
             throw new WrongUsageException("commands.spawndino.usage");
         }
-        spawnCreature(sender.getEntityWorld(), parseInt(sender, args[2]), parseInt(sender, args[3]), parseInt(sender, args[4]), args[0], Boolean.parseBoolean(args[1]));
     }
 
     public List addTabCompletionOptions(ICommandSender sender, String[] args)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, CreatureManager.getCreatureNames()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, "true", "false") : null);
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, CreatureManager.getCreatureNames()) : (args.length == 5 ? getListOfStringsMatchingLastWord(args, "true", "false") : null);
     }
 
     public void spawnCreature(World world, int x, int y, int z, String name, boolean adult)
