@@ -138,7 +138,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             	if (newItem != (ItemStack) null) {
             		for (int j = 4; j < 8; j++)
                     {
-                        if (this.slots[j] != (ItemStack) null && this.slots[j].getItem() == newItem.getItem())
+                        if (this.slots[j] != (ItemStack) null && this.slots[j].getItem() == newItem.getItem() && !newItem.hasTagCompound())
                         {
                             this.slots[i].stackSize--;
                             if (this.slots[i].stackSize <= 0)

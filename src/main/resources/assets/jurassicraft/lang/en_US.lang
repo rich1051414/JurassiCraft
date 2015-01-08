@@ -231,6 +231,13 @@ item.meat.info.errorQuality=ERROR! Egg quality was not determined yet!
 item.meat.info.errorCode=ERROR! DNA sequence was not determined yet!
 item.meat.info.qualityChanged=You cheater! New quality changed to
 item.meat.info.geneticCodeIs=Genetic code is
+item.drop.info.dna=DNA
+item.drop.info.dna.none=No DNA
+item.drop.info.quality=Quality
+item.drop.info.errorQuality=ERROR! Quality was not determined yet!
+item.drop.info.errorCode=ERROR! DNA sequence was not determined yet!
+item.drop.info.qualityChanged=Cheater! New quality changed to
+item.drop.info.geneticCodeIs=Genetic code is
 
 
 
