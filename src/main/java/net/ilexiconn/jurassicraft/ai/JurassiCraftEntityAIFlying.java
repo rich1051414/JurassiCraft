@@ -16,7 +16,6 @@ public class JurassiCraftEntityAIFlying extends EntityAIBase
     private final long OWNER_FIND_INTERVAL = 5000L;
     private final long SITTINGSPOT_REACHTIME = 3000L;
     private final double OWNER_DISTANCE_TO_TAKEOFF = 100D;
-    private boolean flag_height = false;
     private final EntityJurassiCraftCreature creature;
     private ChunkCoordinates currentFlightTarget;
     private Random rand;

@@ -150,7 +150,7 @@ public class ItemDinoEgg extends Item
 	        }
 	        return true;
 		} else {
-			if (!world.isRemote) {
+			if (world.isRemote) {
 				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.errorQuality")));
 			}
 		}
