@@ -17,6 +17,6 @@ public class BlockGypsumCobblestone extends Block
         this.setStepSound(soundTypeStone);
         this.setHarvestLevel("pickaxe", 0);
         setCreativeTab(ModCreativeTabs.blocks);
-        setBlockTextureName(JurassiCraft.getModId() + "block_Gypsum_CobbleStone");
+        setBlockTextureName(JurassiCraft.getModId() + "block_Gypsum_Cobblestone");
     }
 }
