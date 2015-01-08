@@ -26,10 +26,10 @@ public class GuiDinoPadEgg extends GuiScreen {
 	private int guiLeft;
 	private int guiTop;
 
-	public GuiDinoPadEgg() 
+	public GuiDinoPadEgg()
 	{
 		super();
-		if (this.eggToAnalyze instanceof EntityDinoEgg) 
+		if (this.eggToAnalyze instanceof EntityDinoEgg)
 		{
 			this.egg = (EntityDinoEgg) this.eggToAnalyze;
 		} 

@@ -1,7 +1,9 @@
 package net.ilexiconn.jurassicraft.events;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
@@ -24,7 +26,7 @@ public class JurassiCraftInteractEvent
             {
                 EntityPlayer player = (EntityPlayer) event.entity;
                 ItemStack heldItem = player.getHeldItem();
-                if (!event.target.worldObj.isRemote && heldItem != null && heldItem.getItem() instanceof ItemDinoPad)
+                if (FMLCommonHandler.instance().getSide() == Side.CLIENT && heldItem != null && heldItem.getItem() instanceof ItemDinoPad)
                 {
                     this.showStatus(event);
                 }

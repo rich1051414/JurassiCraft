@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.entity.egg;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Random;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadEgg;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -25,10 +25,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Random;
 
 
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
@@ -397,6 +397,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 		{
 			if (player.getHeldItem().getItem() instanceof ItemDinoPad) 
 			{
+                if (FMLCommonHandler.instance().getSide() == Side.SERVER) return true;
 				this.showStatus();
 			}
 		} else {
