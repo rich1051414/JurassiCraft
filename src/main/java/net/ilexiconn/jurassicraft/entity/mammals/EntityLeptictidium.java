@@ -56,7 +56,7 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

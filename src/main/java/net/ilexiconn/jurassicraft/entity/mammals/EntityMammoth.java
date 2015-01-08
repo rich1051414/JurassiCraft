@@ -55,7 +55,7 @@ public class EntityMammoth extends EntityJurassiCraftLandProtective implements I
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

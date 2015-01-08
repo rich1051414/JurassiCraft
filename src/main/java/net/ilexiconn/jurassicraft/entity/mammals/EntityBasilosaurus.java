@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
 import net.minecraft.entity.Entity;
@@ -47,7 +46,7 @@ public class EntityBasilosaurus extends NewEntitySwimming
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

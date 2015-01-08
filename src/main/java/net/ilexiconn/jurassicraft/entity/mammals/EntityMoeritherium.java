@@ -55,7 +55,7 @@ public class EntityMoeritherium extends EntityJurassiCraftLandProtective impleme
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

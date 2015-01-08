@@ -46,7 +46,7 @@ public class EntityTylosaurus extends NewEntitySwimming
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

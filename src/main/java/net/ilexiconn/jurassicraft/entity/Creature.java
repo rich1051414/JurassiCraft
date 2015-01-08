@@ -2,11 +2,9 @@ package net.ilexiconn.jurassicraft.entity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.item.ItemDNA;
-import net.ilexiconn.jurassicraft.item.ItemDinoEgg;
-import net.ilexiconn.jurassicraft.item.ItemMammalSyringe;
-import net.ilexiconn.jurassicraft.item.ItemMeat;
+import net.ilexiconn.jurassicraft.item.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -61,7 +59,8 @@ public class Creature
 
     private ItemDinoEgg egg;
     private ItemMammalSyringe syringe;
-    private ItemMeat meat;
+    private ItemDinoMeat meat;
+    private ItemDinoSteak steak;
     private ItemDNA dna;
 
     private String creatureCategory;
@@ -124,8 +123,11 @@ public class Creature
 
         if (def.addMeat)
         {
-            meat = new ItemMeat(creatureName);
+            meat = new ItemDinoMeat(creatureName);
+            steak = new ItemDinoSteak(creatureName);
             GameRegistry.registerItem(meat, meat.getUnlocalizedName());
+            GameRegistry.registerItem(steak, steak.getUnlocalizedName());
+            GameRegistry.addSmelting(new ItemStack(meat), new ItemStack(steak), 0f);
         }
 
         if (def.addSyringe)
@@ -182,9 +184,14 @@ public class Creature
         return dna;
     }
 
-    public ItemMeat getMeat()
+    public ItemDinoMeat getMeat()
     {
         return meat;
+    }
+
+    public ItemDinoSteak getSteak()
+    {
+        return steak;
     }
 
     public boolean isRidingItem(Item item)

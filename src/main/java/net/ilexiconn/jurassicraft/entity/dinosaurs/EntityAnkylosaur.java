@@ -53,7 +53,7 @@ public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implement
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

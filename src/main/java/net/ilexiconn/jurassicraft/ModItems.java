@@ -15,7 +15,6 @@ public class ModItems implements IContentHandler
     public static Item dinoBone;
     public static Item growthSerum;
     public static Item gypsumPowder;
-    public static Item dinoSteak;
     public static Item appleOnAStick;
     public static Item beefOnAStick;
     public static Item carrotOnAStick;
@@ -33,7 +32,6 @@ public class ModItems implements IContentHandler
         growthSerum = new ItemGrowthSerum();
         gypsumPowder = new ItemGypsumPowder();
         dinoPad = new ItemDinoPad();
-        dinoSteak = new ItemDinoSteak();
         appleOnAStick = new ItemOnAStick("Apple");
         beefOnAStick = new ItemOnAStick("Beef");
         carrotOnAStick = new ItemOnAStick("Carrot");

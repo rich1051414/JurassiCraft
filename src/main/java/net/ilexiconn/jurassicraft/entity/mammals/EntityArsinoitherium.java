@@ -55,7 +55,7 @@ public class EntityArsinoitherium extends EntityJurassiCraftLandProtective imple
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

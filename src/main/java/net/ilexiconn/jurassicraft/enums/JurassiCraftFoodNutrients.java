@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.enums;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -9,7 +8,6 @@ import java.util.Map;
 
 public enum JurassiCraftFoodNutrients
 {
-
     APPLE(Items.apple, 0.060D, 0.065D, 0.100D, 0.010D),
     POTATO(Items.potato, 0.100D, 0.200D, 0.160D, 0.020D),
     BREAD(Items.bread, 0.300D, 0.400D, 0.430D, 0.180D),
@@ -26,8 +24,7 @@ public enum JurassiCraftFoodNutrients
     CARROT(Items.carrot, 0.070D, 0.170D, 0.350D, 0.010D),
     SUGAR(Items.sugar, 0.200D, 0.010D, 0.010D, 0.010D),
     WATERMELON(Items.melon, 0.060D, 0.060D, 0.060D, 0.010D),
-    WHEAT(Items.wheat, 0.100D, 0.220D, 0.100D, 0.030D),
-    DINOSTEAK(ModItems.dinoSteak, 0.600D, 0.300D, 0.450D, 0.400D);
+    WHEAT(Items.wheat, 0.100D, 0.220D, 0.100D, 0.030D);
 
     private JurassiCraftFoodNutrients(Item foodID, double foodProximates, double foodMinerals, double foodVitamins, double foodLipids)
     {

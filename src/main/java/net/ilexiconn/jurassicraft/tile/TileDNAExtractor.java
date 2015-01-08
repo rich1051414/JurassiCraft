@@ -10,7 +10,7 @@ import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemAmber;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.ilexiconn.jurassicraft.item.ItemFossil;
-import net.ilexiconn.jurassicraft.item.ItemMeat;
+import net.ilexiconn.jurassicraft.item.ItemDinoMeat;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -99,7 +99,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             	{
             		newItem = this.getDNASampleFromFossil();
             	} 
-            	else if (slots[i].getItem() instanceof ItemMeat) 
+            	else if (slots[i].getItem() instanceof ItemDinoMeat)
             	{
             		newItem = this.getDNASampleFromMeat(slots[i]);
             	} 
@@ -258,7 +258,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
 	}
 
     private ItemStack getDNASampleFromMeat(ItemStack meat) {
-        ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemMeat) meat.getItem()));
+        ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemDinoMeat) meat.getItem()));
     	if (meat.hasTagCompound()) {
     		dna.setTagCompound(meat.getTagCompound());
             if (!dna.getTagCompound().hasKey("Quality"))
@@ -294,7 +294,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
     	}
 	}
 
-	private Item getDNAFromMeat(ItemMeat meat)
+	private Item getDNAFromMeat(ItemDinoMeat meat)
     {
     	ItemDNA dna = meat.getCorrespondingDNA();
         return dna;

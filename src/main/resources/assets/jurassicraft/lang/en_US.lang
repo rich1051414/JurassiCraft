@@ -225,6 +225,7 @@ item.syringe.info.qualityChanged=Cheater! New quality changed to
 item.syringe.info.errorQuality=This syringe is not ready yet!
 item.syringe.info.embryoInseminated=Embryo inseminated
 item.meat.info.dna=DNA
+item.meat.info.dna.none=No DNA
 item.meat.info.quality=Quality
 item.meat.info.errorQuality=ERROR! Egg quality was not determined yet!
 item.meat.info.errorCode=ERROR! DNA sequence was not determined yet!
@@ -358,4 +359,5 @@ container.pad.infoUintatherium.page1=Uintatherium
 container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
 
-
+//Commands
+commands.spawndino.usage=/spawndino <dino> <adult> <x> <y> <z>

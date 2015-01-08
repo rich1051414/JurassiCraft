@@ -8,7 +8,9 @@ import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.minecraft.client.renderer.entity.RenderLiving;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -19,6 +21,13 @@ public class CreatureManager
     public static Map<Class<?>, Creature> getCreatures()
     {
         return creatures;
+    }
+
+    public static String[] getCreatureNames()
+    {
+        List<String> list = new ArrayList<String>();
+        for (Creature creature : getCreatures().values()) list.add(creature.getCreatureName());
+        return list.toArray(new String[list.size()]);
     }
 
     public static Creature getCreatureFromId(int creatureID)

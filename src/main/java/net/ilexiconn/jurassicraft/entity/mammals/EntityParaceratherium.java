@@ -55,7 +55,7 @@ public class EntityParaceratherium extends EntityJurassiCraftLandProtective impl
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

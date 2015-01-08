@@ -1,13 +1,10 @@
 package net.ilexiconn.jurassicraft.item;
 
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,11 +14,13 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-public class ItemMeat extends ItemFood implements IDNASource
+import java.util.List;
+
+public class ItemDinoMeat extends ItemFood implements IDNASource
 {
-    public ItemMeat(String name)
+    public ItemDinoMeat(String name)
     {
-        super(4, 0.1F, true);
+        super(4, 0.1f, true);
         setPotionEffect(Potion.hunger.id, 30, 0, 0.8F);
         setUnlocalizedName(name + "_Meat");
         setTextureName(JurassiCraft.getModId() + name + "_Meat");

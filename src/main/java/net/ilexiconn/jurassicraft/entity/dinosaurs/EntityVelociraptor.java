@@ -105,7 +105,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

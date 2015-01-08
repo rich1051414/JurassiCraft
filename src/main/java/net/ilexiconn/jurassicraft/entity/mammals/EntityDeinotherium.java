@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
@@ -56,7 +55,7 @@ public class EntityDeinotherium extends EntityJurassiCraftLandProtective impleme
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

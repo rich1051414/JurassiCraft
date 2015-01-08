@@ -4,12 +4,14 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
+import net.ilexiconn.jurassicraft.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.content.ContentLoader;
 import net.ilexiconn.jurassicraft.entity.JsonEntityParser;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntitySanta;
@@ -23,7 +25,10 @@ import net.ilexiconn.jurassicraft.packet.MessageFenceBuilding;
 import net.ilexiconn.jurassicraft.packet.MessageFenceCrafting;
 import net.ilexiconn.jurassicraft.packet.MessageFenceFixing;
 import net.ilexiconn.jurassicraft.proxy.ServerProxy;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -85,6 +90,15 @@ public class JurassiCraft
         MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
 
         proxy.init();
+    }
+
+    @Mod.EventHandler
+    public void serverStart(FMLServerStartingEvent event)
+    {
+        MinecraftServer server = MinecraftServer.getServer();
+        ICommandManager command = server.getCommandManager();
+        ServerCommandManager manager = (ServerCommandManager) command;
+        manager.registerCommand(new CommandSpawnDino());
     }
 
     public static String getModId()

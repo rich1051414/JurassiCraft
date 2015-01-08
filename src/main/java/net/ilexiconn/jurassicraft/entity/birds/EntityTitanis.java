@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.birds;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
@@ -68,7 +67,7 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

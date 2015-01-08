@@ -108,7 +108,7 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

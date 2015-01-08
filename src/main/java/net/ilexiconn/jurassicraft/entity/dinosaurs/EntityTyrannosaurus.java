@@ -126,7 +126,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

@@ -48,7 +48,7 @@ public class EntityOviraptor extends EntityJurassiCraftLandAggressive implements
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }

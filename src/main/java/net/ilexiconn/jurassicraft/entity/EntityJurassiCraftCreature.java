@@ -9,15 +9,12 @@ import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPad;
-import net.ilexiconn.jurassicraft.entity.fish.EntityCoelacanth;
-import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
@@ -121,7 +118,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
     	if (this.isBurning())
         {
-    		this.dropItem(ModItems.dinoSteak, 1);
+            this.dropItem(this.getCreature().getSteak(), 1);
         }
         else
         {

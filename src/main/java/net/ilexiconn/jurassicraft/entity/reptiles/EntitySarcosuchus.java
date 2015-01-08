@@ -49,7 +49,7 @@ public class EntitySarcosuchus extends EntityJurassiCraftLandAggressive implemen
         }
         else
         {
-            this.dropItem(ModItems.dinoSteak, count);
+            this.dropItem(this.getCreature().getSteak(), count);
         }
     }
 }
