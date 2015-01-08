@@ -2,8 +2,6 @@ package net.ilexiconn.jurassicraft.events;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
@@ -17,7 +15,6 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 public class JurassiCraftInteractEvent
 {
-
     @SubscribeEvent
     public void onEntityInteract(EntityInteractEvent event)
     {
@@ -27,16 +24,14 @@ public class JurassiCraftInteractEvent
             {
                 EntityPlayer player = (EntityPlayer) event.entity;
                 ItemStack heldItem = player.getHeldItem();
-                if (!event.target.worldObj.isRemote && heldItem != (ItemStack) null && heldItem.getItem() instanceof ItemDinoPad)
+                if (!event.target.worldObj.isRemote && heldItem != null && heldItem.getItem() instanceof ItemDinoPad)
                 {
                     this.showStatus(event);
                 }
             }
         }
-
     }
 
-    @SideOnly(Side.CLIENT)
     public void showStatus(EntityInteractEvent event)
     {
         if (event.target instanceof EntityCow)
