@@ -53,8 +53,5 @@ public class JsonCreatureDefinition
     public boolean waterCreature;
     public boolean flyingCreature;
 
-    public boolean addEgg;
-    public boolean addSyringe;
-    public boolean addMeat;
-    public boolean addDNA;
+    public byte addItemTypes;
 }

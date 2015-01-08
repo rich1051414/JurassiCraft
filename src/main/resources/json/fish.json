@@ -38,9 +38,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     }
 ]

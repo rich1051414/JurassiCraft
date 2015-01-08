@@ -1,17 +1,26 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.item.*;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.item.ItemDNA;
+import net.ilexiconn.jurassicraft.item.ItemDinoEgg;
+import net.ilexiconn.jurassicraft.item.ItemDinoMeat;
+import net.ilexiconn.jurassicraft.item.ItemDinoSteak;
+import net.ilexiconn.jurassicraft.item.ItemMammalSyringe;
+import net.ilexiconn.jurassicraft.item.drops.ItemFeather;
+import net.ilexiconn.jurassicraft.item.drops.ItemFur;
+import net.ilexiconn.jurassicraft.item.drops.ItemScale;
+import net.ilexiconn.jurassicraft.item.drops.ItemSkin;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Creature
 {
     private byte creatureID;
+    private byte addItemTypes;
 
     private String creatureName;
     private ArrayList<String> livingSounds;
@@ -61,6 +70,10 @@ public class Creature
     private ItemMammalSyringe syringe;
     private ItemDinoMeat meat;
     private ItemDinoSteak steak;
+    private ItemFur fur;
+    private ItemSkin skin;
+    private ItemScale scale;
+    private ItemFeather feather;
     private ItemDNA dna;
 
     private String creatureCategory;
@@ -108,32 +121,61 @@ public class Creature
         this.xzBoxMin = def.xzBoxMin;
         this.yBoxDelta = def.yBoxDelta;
         this.yBoxMin = def.yBoxMin;
+        this.addItemTypes = def.addItemTypes;
 
-        if (def.addDNA)
-        {
-            dna = new ItemDNA(creatureName);
-            GameRegistry.registerItem(dna, dna.getUnlocalizedName());
-        }
-
-        if (def.addEgg)
-        {
-            egg = new ItemDinoEgg(creatureName);
-            GameRegistry.registerItem(egg, egg.getUnlocalizedName());
-        }
-
-        if (def.addMeat)
-        {
-            meat = new ItemDinoMeat(creatureName);
-            steak = new ItemDinoSteak(creatureName);
-            GameRegistry.registerItem(meat, meat.getUnlocalizedName());
-            GameRegistry.registerItem(steak, steak.getUnlocalizedName());
-            GameRegistry.addSmelting(new ItemStack(meat), new ItemStack(steak), 0f);
-        }
-
-        if (def.addSyringe)
-        {
-            syringe = new ItemMammalSyringe(creatureName);
-            GameRegistry.registerItem(syringe, syringe.getUnlocalizedName());
+        if (!def.creatureName.equals("Santa")) {
+        	switch (def.addItemTypes) 
+    		{
+    			case 0:
+    				/** DNA + Meat + Egg */
+    				this.dna = new ItemDNA(this.creatureName);
+    				this.egg = new ItemDinoEgg(this.creatureName);
+    				this.meat = new ItemDinoMeat(this.creatureName);
+    				this.steak = new ItemDinoSteak(this.creatureName);
+    				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+    				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+    				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+    				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+    				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+    				break;
+    			case 1:
+    				/** DNA + Meat + Syringe */
+    				this.dna = new ItemDNA(this.creatureName);
+    				this.meat = new ItemDinoMeat(this.creatureName);
+    				this.steak = new ItemDinoSteak(this.creatureName);
+    				this.syringe = new ItemMammalSyringe(this.creatureName);
+    				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+    				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+    				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+    				GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
+    				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+    				break;
+    			case 2:
+    				/** DNA + Meat + Egg + Scales */
+    				this.dna = new ItemDNA(this.creatureName);
+    				this.egg = new ItemDinoEgg(this.creatureName);
+    				this.meat = new ItemDinoMeat(this.creatureName);
+    				this.steak = new ItemDinoSteak(this.creatureName);
+    				this.scale = new ItemScale(this.creatureName);
+    				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+    				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+    				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+    				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+    				GameRegistry.registerItem(this.scale, this.scale.getUnlocalizedName());
+    				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+    				break;
+    			default:
+    				/** DNA + Meat + Egg */
+    				this.dna = new ItemDNA(this.creatureName);
+    				this.egg = new ItemDinoEgg(this.creatureName);
+    				this.meat = new ItemDinoMeat(this.creatureName);
+    				this.steak = new ItemDinoSteak(this.creatureName);
+    				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+    				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+    				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+    				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+    				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+    		}
         }
     }
 
@@ -146,102 +188,120 @@ public class Creature
 
     public String getDeathSound()
     {
-        return deathSound;
+        return this.deathSound;
     }
 
     public String getHurtSound()
     {
-        return hurtSound;
+        return this.hurtSound;
     }
 
     public String getCreatureName()
     {
-        return creatureName;
+        return this.creatureName;
     }
 
     public String getCreatureCategory()
     {
-        return creatureCategory;
+        return this.creatureCategory;
     }
 
     public byte getCreatureID()
     {
-        return creatureID;
+        return this.creatureID;
     }
 
     public boolean isWaterCreature()
     {
-        return waterCreature;
+        return this.waterCreature;
     }
 
     public boolean isFlyingCreature()
     {
-        return flyingCreature;
+        return this.flyingCreature;
     }
 
     public ItemDNA getDNA()
     {
-        return dna;
+        return this.dna;
     }
 
     public ItemDinoMeat getMeat()
     {
-        return meat;
+        return this.meat;
     }
 
     public ItemDinoSteak getSteak()
     {
-        return steak;
+        return this.steak;
+    }
+
+    public ItemFur getFur()
+    {
+        return this.fur;
+    }
+
+    public ItemSkin getSkin()
+    {
+        return this.skin;
+    }
+
+    public ItemScale getScale()
+    {
+        return this.scale;
+    }
+
+    public ItemFeather getFeather()
+    {
+        return this.feather;
     }
 
     public boolean isRidingItem(Item item)
     {
-        if (ridingItemList != null && item != null)
+        if (this.ridingItemList != null && item != null)
         {
-            return ridingItemList.contains(item);
+            return this.ridingItemList.contains(item);
         }
-
         return false;
     }
 
     public boolean isRidable()
     {
-        return isRidable;
+        return this.isRidable;
     }
 
     public int getRidingStyle()
     {
-        return ridingStyle;
+        return this.ridingStyle;
     }
 
     public boolean isFavoriteFood(Item item)
     {
-        if (favoriteFoodList != null && item != null)
+        if (this.favoriteFoodList != null && item != null)
         {
-            return favoriteFoodList.contains(item);
+            return this.favoriteFoodList.contains(item);
         }
-
         return false;
     }
 
     public boolean canBeTamedUponSpawning()
     {
-        return canBeTamedUponSpawning;
+        return this.canBeTamedUponSpawning;
     }
 
     public int getInfoPageCount()
     {
-        return numberOfInfoPages;
+        return this.numberOfInfoPages;
     }
 
     public String getLivingSound(int soundIndex)
     {
-        if (soundIndex >= livingSounds.size())
+        if (soundIndex >= this.livingSounds.size())
         {
-            soundIndex = livingSounds.size() - 1;
+            soundIndex = this.livingSounds.size() - 1;
         }
 
-        String sound = livingSounds.get(soundIndex);
+        String sound = this.livingSounds.get(soundIndex);
 
         if (sound == "")
         {
@@ -255,136 +315,141 @@ public class Creature
 
     public float getMaxLength()
     {
-        return maxLength;
+        return this.maxLength;
     }
 
     public float getMaxHeight()
     {
-        return maxHeight;
+        return this.maxHeight;
     }
 
     public double getMaxHealth()
     {
-        return maxHealth;
+        return this.maxHealth;
     }
 
     public double getMinHealth()
     {
-        return minHealth;
+        return this.minHealth;
     }
 
     public double getTicksToAdulthood()
     {
-        return ticksToAdulthood;
+        return this.ticksToAdulthood;
     }
 
     public double getMaxStrength()
     {
-        return maxStrength;
+        return this.maxStrength;
     }
 
     public double getMinStrength()
     {
-        return minStrength;
+        return this.minStrength;
     }
 
     public double getMaxSpeed()
     {
-        return maxSpeed;
+        return this.maxSpeed;
     }
 
     public double getMinSpeed()
     {
-        return minSpeed;
+        return this.minSpeed;
     }
 
     public double getMaxKnockback()
     {
-        return maxKnockback;
+        return this.maxKnockback;
     }
 
     public double getMinKnockback()
     {
-        return minKnockback;
+        return this.minKnockback;
     }
 
     public double getYBoxMin()
     {
-        return yBoxMin;
+        return this.yBoxMin;
     }
 
     public double getYBoxDelta()
     {
-        return yBoxDelta;
+        return this.yBoxDelta;
     }
 
     public double getXzBoxMin()
     {
-        return xzBoxMin;
+        return this.xzBoxMin;
     }
 
     public double getXzBoxDelta()
     {
-        return xzBoxDelta;
+        return this.xzBoxDelta;
     }
 
     public float getScaleAdjustment()
     {
-        return scaleAdjustment;
+        return this.scaleAdjustment;
     }
 
     public float getMinHeight()
     {
-        return minHeight;
+        return this.minHeight;
     }
 
     public float getMinLength()
     {
-        return minLength;
+        return this.minLength;
     }
 
     public float getAdultAge()
     {
-        return adultAge;
+        return this.adultAge;
     }
 
     public int getTextureCount()
     {
-        return textureCount;
+        return this.textureCount;
     }
 
     public ItemDinoEgg getEgg()
     {
-        return egg;
+        return this.egg;
     }
 
     public ItemMammalSyringe getMammalSyringe()
     {
-        return syringe;
+        return this.syringe;
     }
 
     public double getMinProximate()
     {
-        return minProximate;
+        return this.minProximate;
     }
 
     public double getMinVitamins()
     {
-        return minVitamins;
+        return this.minVitamins;
     }
 
     public double getMinLipids()
     {
-        return minLipids;
+        return this.minLipids;
     }
 
     public double getMinMinerals()
     {
-        return minMinerals;
+        return this.minMinerals;
     }
 
     public int getCultivateSpeed()
     {
-        return cultivateSpeed;
+        return this.cultivateSpeed;
+    }
+
+    public byte getAddedItemTypes()
+    {
+        return this.addItemTypes;
     }
 }

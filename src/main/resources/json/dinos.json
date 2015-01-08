@@ -38,10 +38,7 @@
         "numberOfInfoPages": 3,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Brachiosaur",
@@ -82,10 +79,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Velociraptor",
@@ -126,10 +120,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Stegosaur",
@@ -170,10 +161,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Triceratops",
@@ -214,10 +202,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Tyrannosaurus",
@@ -258,10 +243,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Gallimimus",
@@ -302,10 +284,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Hypsilophodon",
@@ -346,10 +325,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Leaellynasaur",
@@ -390,10 +366,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Herrerasaur",
@@ -434,10 +407,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Dilophosaurus",
@@ -478,10 +448,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Oviraptor",
@@ -522,10 +489,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Parasaurolophus",
@@ -566,10 +530,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
 	{
         "creatureName":"Santa",
@@ -610,9 +571,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": false,
-        "addMeat": false,
-        "addDNA": false
+        "addItemTypes": 0
     }
 ]

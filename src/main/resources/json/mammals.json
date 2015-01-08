@@ -38,10 +38,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Basilosaurus",
@@ -82,10 +79,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Leptictidium",
@@ -126,10 +120,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Uintatherium",
@@ -170,10 +161,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Deinotherium",
@@ -214,10 +202,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Mammoth",
@@ -258,10 +243,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Moeritherium",
@@ -302,10 +284,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     },
     {
         "creatureName":"Paraceratherium",
@@ -346,9 +325,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": true,
-        "addMeat": false,
-        "addDNA": true
+        "addItemTypes": 1
     }
 ]

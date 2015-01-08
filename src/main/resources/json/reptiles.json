@@ -38,10 +38,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": true,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     },
     {
         "creatureName":"Tylosaurus",
@@ -82,9 +79,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addEgg": true,
-        "addSyringe": false,
-        "addMeat": true,
-        "addDNA": true
+        "addItemTypes": 0
     }
 ]

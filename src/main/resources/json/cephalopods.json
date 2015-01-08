@@ -38,10 +38,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": false,
-        "addMeat": false,
-        "addDNA": false
+        "addItemTypes": 0
     },
     {
         "creatureName":"Brachiopod",
@@ -82,9 +79,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addEgg": false,
-        "addSyringe": false,
-        "addMeat": false,
-        "addDNA": false
+        "addItemTypes": 0
     }
 ]
