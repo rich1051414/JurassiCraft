@@ -30,7 +30,7 @@ public class ModRecipes implements IContentHandler
             if (meat != null)
             {
                 GameRegistry.addSmelting(meat, new ItemStack(ModItems.dinoSteak, 1), 5);
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 15), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));
             }
         }
 
