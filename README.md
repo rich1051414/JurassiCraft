@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jurassicraft/jurassicraft.png?label=ready&title=Ready)](https://waffle.io/jurassicraft/jurassicraft)
 <a href="http://imgur.com/JhHVzeU"><img src="http://i.imgur.com/JhHVzeU.jpg" title="source: imgur.com" /></a>
 =======
 JurassiCraft
