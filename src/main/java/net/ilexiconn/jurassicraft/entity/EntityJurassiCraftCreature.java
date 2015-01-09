@@ -2,10 +2,8 @@ package net.ilexiconn.jurassicraft.entity;
 
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
-import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -458,24 +456,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
 
         if (player.getHeldItem() != (ItemStack) null)
         {
-            if (player.getHeldItem().getItem() instanceof ItemDinoPad)
-            {
-                this.showStatus(player);
-            }
-            else if (player.getHeldItem().getItem().equals(ModItems.growthSerum))
+            if (player.getHeldItem().getItem().equals(ModItems.growthSerum))
             {
                 this.forceCreatureGrowth(player, player.getHeldItem(), (byte) 10);
             }
         }
         return super.interact(player);
-    }
-
-    /**
-     * Sets the creature into the analyzer and show its status.
-     */
-    private void showStatus(EntityPlayer player)
-    {
-        player.openGui(JurassiCraft.instance, 69, this.worldObj, this.getEntityId(), 0, 0);
     }
 
     /**

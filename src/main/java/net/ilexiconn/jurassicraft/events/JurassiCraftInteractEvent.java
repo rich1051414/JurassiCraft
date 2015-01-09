@@ -4,6 +4,8 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
@@ -37,6 +39,14 @@ public class JurassiCraftInteractEvent
         if (event.target instanceof EntityCow || event.target instanceof EntityPig || event.target instanceof EntityHorse || event.target instanceof EntitySheep)
         {
             player.openGui(JurassiCraft.instance, 13, event.target.worldObj, event.target.getEntityId(), 0, 0);
+        }
+        else if (event.target instanceof EntityDinoEgg)
+        {
+            player.openGui(JurassiCraft.instance, 51, event.target.worldObj, event.target.getEntityId(), 0, 0);
+        }
+        else if (event.target instanceof EntityJurassiCraftCreature)
+        {
+            player.openGui(JurassiCraft.instance, 69, event.target.worldObj, event.target.getEntityId(), 0, 0);
         }
     }
 }

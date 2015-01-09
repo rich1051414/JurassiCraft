@@ -1,15 +1,12 @@
 package net.ilexiconn.jurassicraft.entity.egg;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
-import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -390,14 +387,8 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     @Override
     public boolean interactFirst(EntityPlayer player)
     {
-		if (player.getHeldItem() != (ItemStack) null)
+		if (player.getHeldItem() == null)
 		{
-			if (player.getHeldItem().getItem() instanceof ItemDinoPad) 
-			{
-                if (FMLCommonHandler.instance().getSide() == Side.SERVER) return true;
-				this.showStatus(player);
-			}
-		} else {
             ItemStack itemStack = new ItemStack(this.creature.getEgg());
             if (!player.worldObj.isRemote) {
                 NBTTagCompound compound = new NBTTagCompound();
@@ -413,11 +404,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 		}
         return true;
     }
-
-	private void showStatus(EntityPlayer player)
-	{
-		player.openGui(JurassiCraft.instance, 51, this.worldObj, this.getEntityId(), 0, 0);
-	}
 
     @Override
     public void writeSpawnData(ByteBuf buffer)
