@@ -1,13 +1,10 @@
 package net.ilexiconn.jurassicraft.entity.egg;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.client.gui.GuiDinoPadEgg;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
@@ -398,7 +395,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 			if (player.getHeldItem().getItem() instanceof ItemDinoPad) 
 			{
                 if (FMLCommonHandler.instance().getSide() == Side.SERVER) return true;
-				this.showStatus();
+				this.showStatus(player);
 			}
 		} else {
             ItemStack itemStack = new ItemStack(this.creature.getEgg());
@@ -417,9 +414,9 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         return true;
     }
 
-	private void showStatus()
+	private void showStatus(EntityPlayer player)
 	{
-		FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 51, this.worldObj, this.getEntityId(), 0, 0);
+		player.openGui(JurassiCraft.instance, 51, this.worldObj, this.getEntityId(), 0, 0);
 	}
 
     @Override

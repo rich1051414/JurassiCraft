@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.Entity;
 import thehippomaster.AnimationAPI.packet.PacketAnimation;
 
-@Mod(modid = "AnimationAPI", name = "AnimationAPI", version = "1.2.4-jdediton")
+@Mod(modid = "jcanimationapi", name = "AnimationAPI", version = "1.2.4-jdediton")
 public class AnimationAPI
 {
 	@Instance("AnimationAPI")

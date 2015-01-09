@@ -20,7 +20,7 @@
 		"logoFile": "/jurassiCraft.png"
 	},
 	{
-		"modid":"AnimationAPI",
+		"modid":"jcanimationapi",
 		"name":"AnimationAPI",
 		"version":"1.2.4-JCEdition",
 		"parent":"jurassicraft"

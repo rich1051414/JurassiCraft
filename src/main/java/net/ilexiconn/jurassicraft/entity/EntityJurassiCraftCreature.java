@@ -1,9 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-
-import java.util.HashSet;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
@@ -19,8 +17,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+
+import java.util.HashSet;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -462,7 +460,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             if (player.getHeldItem().getItem() instanceof ItemDinoPad)
             {
-                this.showStatus();
+                this.showStatus(player);
             }
             else if (player.getHeldItem().getItem().equals(ModItems.growthSerum))
             {
@@ -475,9 +473,9 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     /**
      * Sets the creature into the analyzer and show its status.
      */
-    private void showStatus()
+    private void showStatus(EntityPlayer player)
     {
-        FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 69, this.worldObj, this.getEntityId(), 0, 0);
+        player.openGui(JurassiCraft.instance, 69, this.worldObj, this.getEntityId(), 0, 0);
     }
 
     /**

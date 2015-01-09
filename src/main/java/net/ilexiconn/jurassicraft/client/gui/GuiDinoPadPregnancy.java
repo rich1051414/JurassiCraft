@@ -1,6 +1,9 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.container.ContainerDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
@@ -9,20 +12,11 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiDinoPadPregnancy extends GuiScreen
@@ -34,34 +28,34 @@ public class GuiDinoPadPregnancy extends GuiScreen
     private int xSize;
     private int ySize;
 
-    public GuiDinoPadPregnancy(Entity creatureToAnalyze)
+    public GuiDinoPadPregnancy(ContainerDinoPadPregnancy c)
     {
         super();
-		if (creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) creatureToAnalyze).getGrowingAge() == 0) 
+		if (c.creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) c.creatureToAnalyze).getGrowingAge() == 0)
 		{
-			if (creatureToAnalyze instanceof EntityCow) {
-				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creatureToAnalyze));
+			if (c.creatureToAnalyze instanceof EntityCow) {
+				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) c.creatureToAnalyze));
 				if (cow != null) 
 				{
-					this.creature = (EntityCow) creatureToAnalyze;
+					this.creature = (EntityCow) c.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntityPig) {
-				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creatureToAnalyze));
+			} else if (c.creatureToAnalyze instanceof EntityPig) {
+				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) c.creatureToAnalyze));
 				if (pig != null) 
 				{
-					this.creature = (EntityPig) creatureToAnalyze;
+					this.creature = (EntityPig) c.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntityHorse) {
-				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creatureToAnalyze));
+			} else if (c.creatureToAnalyze instanceof EntityHorse) {
+				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) c.creatureToAnalyze));
 				if (horse != null) 
 				{
-					this.creature = (EntityHorse) creatureToAnalyze;
+					this.creature = (EntityHorse) c.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntitySheep) {
-				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creatureToAnalyze));
+			} else if (c.creatureToAnalyze instanceof EntitySheep) {
+				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) c.creatureToAnalyze));
 				if (sheep != null) 
 				{
-					this.creature = (EntitySheep) creatureToAnalyze;
+					this.creature = (EntitySheep) c.creatureToAnalyze;
 				}
 			} else {
 		    	this.creature = (EntityAnimal) null;

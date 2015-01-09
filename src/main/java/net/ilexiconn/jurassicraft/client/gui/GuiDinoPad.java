@@ -1,23 +1,21 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import java.util.HashMap;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class GuiDinoPad extends GuiScreen
@@ -31,12 +29,12 @@ public class GuiDinoPad extends GuiScreen
     private int pageNumber;
     private HashMap<Integer, String[]> dinoInfo = new HashMap<Integer, String[]>();
 
-    public GuiDinoPad(Entity creatureToAnalyze)
+    public GuiDinoPad(ContainerDinoPad c)
     {
         super();
-        if (creatureToAnalyze instanceof EntityJurassiCraftTameable)
+        if (c.creatureToAnalyze instanceof EntityJurassiCraftTameable)
         {
-            this.creature = (EntityJurassiCraftTameable) creatureToAnalyze;
+            this.creature = (EntityJurassiCraftTameable) c.creatureToAnalyze;
             this.xSize = 256;
             this.ySize = 176;
         }

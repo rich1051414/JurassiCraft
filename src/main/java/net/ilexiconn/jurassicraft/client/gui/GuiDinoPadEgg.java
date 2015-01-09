@@ -1,20 +1,18 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.container.ContainerDinoPadEgg;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiDinoPadEgg extends GuiScreen 
@@ -26,12 +24,12 @@ public class GuiDinoPadEgg extends GuiScreen
 	private int guiLeft;
 	private int guiTop;
 
-	public GuiDinoPadEgg(Entity eggToAnalyze)
+	public GuiDinoPadEgg(ContainerDinoPadEgg c)
 	{
 		super();
-		if (eggToAnalyze instanceof EntityDinoEgg)
+		if (c.eggToAnalyze != null)
 		{
-			this.egg = (EntityDinoEgg) eggToAnalyze;
+			this.egg = (EntityDinoEgg) c.eggToAnalyze;
 		} 
 		else 
 		{

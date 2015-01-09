@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.block;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
@@ -177,7 +176,7 @@ public class BlockCultivateTop extends Block
                 }
                 else
                 {
-                    FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
+                    player.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
                     return true;
                 }
             }

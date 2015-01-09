@@ -1,9 +1,6 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import net.ilexiconn.jurassicraft.container.ContainerCultivate;
-import net.ilexiconn.jurassicraft.container.ContainerDNACombinator;
-import net.ilexiconn.jurassicraft.container.ContainerDNAExtractor;
-import net.ilexiconn.jurassicraft.container.ContainerSecurityFence;
+import net.ilexiconn.jurassicraft.container.*;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
@@ -20,6 +17,10 @@ public class GuiHandler implements IGuiHandler
 {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
+        if (ID == 69) return new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
+        if (ID == 51) return new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
+        if (ID == 13) return new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
+
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
             return new ContainerCultivate(player.inventory, (TileCultivate) tileEntity);
@@ -34,9 +35,9 @@ public class GuiHandler implements IGuiHandler
 
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new GuiDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
-        if (ID == 51) return new GuiDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
-        if (ID == 13) return new GuiDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
+        if (ID == 69) return new GuiDinoPad(new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x)));
+        if (ID == 51) return new GuiDinoPadEgg(new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x)));
+        if (ID == 13) return new GuiDinoPadPregnancy(new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x)));
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
