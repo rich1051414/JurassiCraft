@@ -1,24 +1,27 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashMap;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import java.util.HashMap;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiDinoPad extends GuiScreen
+public class GuiDinoPad extends GuiContainer
 {
     private EntityJurassiCraftTameable creature;
     private int xSize;
@@ -29,15 +32,18 @@ public class GuiDinoPad extends GuiScreen
     private int pageNumber;
     private HashMap<Integer, String[]> dinoInfo = new HashMap<Integer, String[]>();
 
-    public GuiDinoPad(ContainerDinoPad c)
+    public GuiDinoPad(Entity creatureToAnalyze)
     {
-        super();
-        if (c.creatureToAnalyze instanceof EntityJurassiCraftTameable)
+        super(new ContainerDinoPad());
+        if (creatureToAnalyze instanceof EntityJurassiCraftTameable)
         {
-            this.creature = (EntityJurassiCraftTameable) c.creatureToAnalyze;
+            this.creature = (EntityJurassiCraftTameable) creatureToAnalyze;
             this.xSize = 256;
             this.ySize = 176;
-        }
+        } else {
+	    	this.creature = (EntityJurassiCraftTameable) null;
+            this.mc.thePlayer.closeScreen();
+		}
     }
 
     @Override
@@ -69,6 +75,7 @@ public class GuiDinoPad extends GuiScreen
     @Override
     public void onGuiClosed()
     {
+    	this.creature = (EntityJurassiCraftTameable) null;
         super.onGuiClosed();
     }
 
@@ -77,6 +84,7 @@ public class GuiDinoPad extends GuiScreen
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
         {
+	    	this.creature = (EntityJurassiCraftTameable) null;
             this.mc.thePlayer.closeScreen();
         }
     }
@@ -87,6 +95,7 @@ public class GuiDinoPad extends GuiScreen
         this.renderRotation++;
         if (!this.creature.isEntityAlive())
         {
+	    	this.creature = (EntityJurassiCraftTameable) null;
             this.mc.thePlayer.closeScreen();
         }
     }
@@ -123,12 +132,9 @@ public class GuiDinoPad extends GuiScreen
     }
 
     @Override
-    public void drawScreen(int x, int y, float f)
+    protected void drawGuiContainerForegroundLayer(int x, int y)
     {
-        drawDefaultBackground();
-        mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
-        drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-        switch (this.pageNumber)
+		switch (this.pageNumber)
         {
             case 0:
                 this.renderEmptyBars();
@@ -152,9 +158,14 @@ public class GuiDinoPad extends GuiScreen
                 this.renderCreatureInformation(this.pageNumber);
                 break;
         }
-
-        super.drawScreen(x, y, f);
     }
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
+	{
+        this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+	}
 
     private void renderEmptyBars()
     {
@@ -260,9 +271,9 @@ public class GuiDinoPad extends GuiScreen
         RenderHelper.enableStandardItemLighting();
         GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(1.5F * this.renderRotation, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(0.0F, creature.yOffset, 0.0F);
+        GL11.glTranslatef(0.0F, this.creature.yOffset, 0.0F);
         RenderManager.instance.playerViewY = 180.0F;
-        RenderManager.instance.renderEntityWithPosYaw(creature, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+        RenderManager.instance.renderEntityWithPosYaw(this.creature, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
         GL11.glPopMatrix();
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);

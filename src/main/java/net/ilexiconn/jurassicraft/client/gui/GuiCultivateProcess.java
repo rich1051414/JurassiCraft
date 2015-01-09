@@ -82,8 +82,8 @@ public class GuiCultivateProcess extends GuiScreen
     @Override
     public void drawScreen(int x, int y, float f)
     {
-        drawDefaultBackground();
-        mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiCultivateProgress.png"));
+        this.drawDefaultBackground();
+        this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiCultivateProgress.png"));
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
         this.drawTexturedModalRect(this.guiLeft + 13, this.guiTop + 49, 0, 107, this.cultivator.getcultivateTimeProgressScaled(150), 9);
         Creature creature = this.cultivator.getCreature();

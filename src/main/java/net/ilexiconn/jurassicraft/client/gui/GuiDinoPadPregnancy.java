@@ -1,25 +1,32 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantSheep;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
-public class GuiDinoPadPregnancy extends GuiScreen
+public class GuiDinoPadPregnancy extends GuiContainer
 {
     private EntityAnimal creature;
     private float renderRotation;
@@ -28,34 +35,34 @@ public class GuiDinoPadPregnancy extends GuiScreen
     private int xSize;
     private int ySize;
 
-    public GuiDinoPadPregnancy(ContainerDinoPadPregnancy c)
+    public GuiDinoPadPregnancy(Entity creatureToAnalyze)
     {
-        super();
-		if (c.creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) c.creatureToAnalyze).getGrowingAge() == 0)
+        super(new ContainerDinoPadPregnancy());
+		if (creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) creatureToAnalyze).getGrowingAge() == 0)
 		{
-			if (c.creatureToAnalyze instanceof EntityCow) {
-				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) c.creatureToAnalyze));
+			if (creatureToAnalyze instanceof EntityCow) {
+				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creatureToAnalyze));
 				if (cow != null) 
 				{
-					this.creature = (EntityCow) c.creatureToAnalyze;
+					this.creature = (EntityCow) creatureToAnalyze;
 				}
-			} else if (c.creatureToAnalyze instanceof EntityPig) {
-				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) c.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntityPig) {
+				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creatureToAnalyze));
 				if (pig != null) 
 				{
-					this.creature = (EntityPig) c.creatureToAnalyze;
+					this.creature = (EntityPig) creatureToAnalyze;
 				}
-			} else if (c.creatureToAnalyze instanceof EntityHorse) {
-				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) c.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntityHorse) {
+				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creatureToAnalyze));
 				if (horse != null) 
 				{
-					this.creature = (EntityHorse) c.creatureToAnalyze;
+					this.creature = (EntityHorse) creatureToAnalyze;
 				}
-			} else if (c.creatureToAnalyze instanceof EntitySheep) {
-				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) c.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntitySheep) {
+				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creatureToAnalyze));
 				if (sheep != null) 
 				{
-					this.creature = (EntitySheep) c.creatureToAnalyze;
+					this.creature = (EntitySheep) creatureToAnalyze;
 				}
 			} else {
 		    	this.creature = (EntityAnimal) null;
@@ -118,12 +125,9 @@ public class GuiDinoPadPregnancy extends GuiScreen
     }
 
     @Override
-    public void drawScreen(int x, int y, float f)
+    protected void drawGuiContainerForegroundLayer(int x, int y)
     {
-    	this.drawDefaultBackground();
-		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadPregnancy.png"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		if (this.creature != null && this.creature.isEntityAlive()) 
+    	if (this.creature != null && this.creature.isEntityAlive()) 
 		{
 			if (this.creature instanceof EntityCow) 
 			{
@@ -203,7 +207,12 @@ public class GuiDinoPadPregnancy extends GuiScreen
 			}
 			this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 30.0F);
 		}
-		super.drawScreen(x, y, f);
+    }
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadPregnancy.png"));
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
 	private void renderCreature(float x, float y, float scale) 
@@ -217,9 +226,9 @@ public class GuiDinoPadPregnancy extends GuiScreen
 		RenderHelper.enableStandardItemLighting();
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(1.5F * this.renderRotation, 0.0F, 1.0F, 0.0F);
-		GL11.glTranslatef(0.0F, creature.yOffset, 0.0F);
+		GL11.glTranslatef(0.0F, this.creature.yOffset, 0.0F);
 		RenderManager.instance.playerViewY = 180.0F;
-		RenderManager.instance.renderEntityWithPosYaw(creature, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+		RenderManager.instance.renderEntityWithPosYaw(this.creature, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		GL11.glPopMatrix();
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);

@@ -15,11 +15,12 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler
 {
+	@Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
-        if (ID == 51) return new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
-        if (ID == 13) return new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
+        if (ID == 69) return new ContainerDinoPad();
+        if (ID == 51) return new ContainerDinoPadEgg();
+        if (ID == 13) return new ContainerDinoPadPregnancy();
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
@@ -33,11 +34,12 @@ public class GuiHandler implements IGuiHandler
         return null;
     }
 
+	@Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new GuiDinoPad(new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x)));
-        if (ID == 51) return new GuiDinoPadEgg(new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x)));
-        if (ID == 13) return new GuiDinoPadPregnancy(new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x)));
+        if (ID == 69) return new GuiDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
+        if (ID == 51) return new GuiDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
+        if (ID == 13) return new GuiDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)

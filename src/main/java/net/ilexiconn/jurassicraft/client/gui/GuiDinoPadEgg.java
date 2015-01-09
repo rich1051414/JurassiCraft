@@ -1,21 +1,24 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadEgg;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
-public class GuiDinoPadEgg extends GuiScreen 
+public class GuiDinoPadEgg extends GuiContainer 
 {
 	private EntityDinoEgg egg;
 	private float renderRotation;
@@ -24,12 +27,12 @@ public class GuiDinoPadEgg extends GuiScreen
 	private int guiLeft;
 	private int guiTop;
 
-	public GuiDinoPadEgg(ContainerDinoPadEgg c)
+	public GuiDinoPadEgg(Entity eggToAnalyze)
 	{
-		super();
-		if (c.eggToAnalyze != null)
+        super(new ContainerDinoPadEgg());
+		if (eggToAnalyze != null)
 		{
-			this.egg = (EntityDinoEgg) c.eggToAnalyze;
+			this.egg = (EntityDinoEgg) eggToAnalyze;
 		} 
 		else 
 		{
@@ -58,6 +61,7 @@ public class GuiDinoPadEgg extends GuiScreen
 	@Override
 	public void onGuiClosed() 
 	{
+    	this.egg = (EntityDinoEgg) null;
 		super.onGuiClosed();
 	}
 
@@ -66,6 +70,7 @@ public class GuiDinoPadEgg extends GuiScreen
 	{
 		if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode()) 
 		{
+	    	this.egg = (EntityDinoEgg) null;
 			this.mc.thePlayer.closeScreen();
 		}
 	}
@@ -76,7 +81,7 @@ public class GuiDinoPadEgg extends GuiScreen
 		if (this.egg != null) 
 		{
 			this.renderRotation++;
-			if (this.egg.isHatchingDone() || !this.egg.isEntityAlive()) 
+			if (!this.egg.isEntityAlive()) 
 			{
 		    	this.egg = (EntityDinoEgg) null;
 				this.mc.thePlayer.closeScreen();
@@ -87,12 +92,9 @@ public class GuiDinoPadEgg extends GuiScreen
 		}
 	}
 
-	@Override
-	public void drawScreen(int x, int y, float f) 
-	{
-		drawDefaultBackground();
-		mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadEgg.png"));
-		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+    @Override
+    protected void drawGuiContainerForegroundLayer(int x, int y)
+    {
 		if (this.egg != null && this.egg.isEntityAlive()) 
 		{
 			this.fontRendererObj.drawString(StatCollector.translateToLocal("entity." + this.egg.creature.getCreatureName() + ".name"), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("entity." + this.egg.creature.getCreatureName() + ".name")) / 2, this.guiTop + 14, 14737632);
@@ -127,7 +129,12 @@ public class GuiDinoPadEgg extends GuiScreen
 			}
 			this.renderEgg((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 60.0F);
 		}
-		super.drawScreen(x, y, f);
+    }
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadEgg.png"));
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 	
 	private void renderEgg(float x, float y, float scale) 
@@ -141,9 +148,9 @@ public class GuiDinoPadEgg extends GuiScreen
 		RenderHelper.enableStandardItemLighting();
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(1.5F * this.renderRotation, 0.0F, 1.0F, 0.0F);
-		GL11.glTranslatef(0.0F, egg.yOffset, 0.0F);
+		GL11.glTranslatef(0.0F, this.egg.yOffset, 0.0F);
 		RenderManager.instance.playerViewY = 180.0F;
-		RenderManager.instance.renderEntityWithPosYaw(egg, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+		RenderManager.instance.renderEntityWithPosYaw(this.egg, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		GL11.glPopMatrix();
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
