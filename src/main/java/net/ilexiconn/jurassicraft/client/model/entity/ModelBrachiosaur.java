@@ -427,7 +427,7 @@ public class ModelBrachiosaur extends MowzieModelBase
         MowzieModelRenderer[] tailParts = {tail5, tail4, tail3};
         MowzieModelRenderer[] tailParts2 = {tail5, tail4, tail3, tail2, tail1};
         
-        float scaleFactor = 0.3F;
+        float scaleFactor = 0.2F;
         float height = 1.7F;
         float frontOffset = -2F;
         float animationDegree = 0.5F;
