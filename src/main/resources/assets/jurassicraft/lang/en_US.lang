@@ -61,8 +61,14 @@ entity.Santa.name=Santa Claws
 
 
 //Entity_Interaction============================================
-entity.Interaction.isSitting=is sitting
-entity.Interaction.isNotSitting=is not sitting anymore
+entity.interaction.fullGrown=This creature cannot grow anymore
+entity.interaction.tamed=You tamed this creature!
+entity.interaction.isSitting=is sitting
+entity.interaction.isNotSitting=is not sitting anymore
+entity.riding.notRidable=This creature is not ridable
+entity.riding.notTamed=This creature is not tamed yet
+entity.riding.notAdult=This creature is not an adult yet
+entity.riding.isRiding=There is someone already riding this creature
 
 
 

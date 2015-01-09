@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAISit;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
@@ -15,13 +13,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature implements IEntityOwnable
 {
 
     protected JurassiCraftEntityAISit aiSit = new JurassiCraftEntityAISit(this);
-    //DataWatchers: Owner = 14, Tamed Related = 15;
 
     public EntityJurassiCraftTameable(World world, Creature creature)
     {
@@ -84,8 +84,8 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                             this.setOwner(player.getCommandSenderName());
                             this.playTameEffect(true);
                             this.worldObj.setEntityState(this, (byte) 7);
-                            player.addChatMessage(new ChatComponentText("You tamed this creature!"));
-                            player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.interaction.tamed")));
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isSitting")));
                         }
                         else
                         {
@@ -105,13 +105,13 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                     this.setAttackTarget((EntityLivingBase) null);
                     this.aiSit.setSitting(true);
                     this.setSitting(true);
-                    player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isSitting")));
                 }
                 else
                 {
                     this.aiSit.setSitting(false);
                     this.setSitting(false);
-                    player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is not sitting anymore."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
                 }
             }
             return super.interact(player);
@@ -126,13 +126,13 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                 this.setAttackTarget((EntityLivingBase) null);
                 this.aiSit.setSitting(true);
                 this.setSitting(true);
-                player.addChatMessage(new ChatComponentText(this.getCreature().getCreatureName() + " is sitting."));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isSitting")));
             }
             else
             {
                 this.aiSit.setSitting(false);
                 this.setSitting(false);
-                player.addChatMessage(new ChatComponentText((this.getCreature().getCreatureName() + " is not sitting anymore.")));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
             }
         }
         return super.interact(player);

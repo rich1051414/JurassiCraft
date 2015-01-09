@@ -361,7 +361,7 @@ public class Creature
     {
         if (this.ridingItemList != null && item != null)
         {
-            return this.ridingItemList.contains(item);
+            return this.ridingItemList.contains(item.getUnlocalizedName());
         }
         return false;
     }
@@ -380,7 +380,7 @@ public class Creature
     {
         if (this.favoriteFoodList != null && item != null)
         {
-            return this.favoriteFoodList.contains(item);
+            return this.favoriteFoodList.contains(item.getUnlocalizedName());
         }
         return false;
     }

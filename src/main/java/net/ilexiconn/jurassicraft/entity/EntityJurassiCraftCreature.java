@@ -1,14 +1,12 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
-import net.ilexiconn.jurassicraft.client.gui.GuiDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
@@ -21,8 +19,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
-
-import java.util.HashSet;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -368,7 +366,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             {
                 if (!this.worldObj.isRemote)
                 {
-                    player.addChatMessage(new ChatComponentText("This creature cannot grow anymore."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.interaction.fullGrown")));
                 }
             }
         }

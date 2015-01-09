@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
@@ -44,25 +45,26 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
             if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
             {
                 this.setSitting(false);
+                this.aiSit.setSitting(false);
                 this.setRidingPlayer(player);
             }
             else
             {
                 if (!this.isCreatureRidable())
                 {
-                    player.addChatMessage(new ChatComponentText("This creature is not ridable."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notRidable")));
                 }
                 else if (!this.isTamed())
                 {
-                    player.addChatMessage(new ChatComponentText("This creature is not tamed yet."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notTamed")));
                 }
                 else if (!this.isCreatureAdult())
                 {
-                    player.addChatMessage(new ChatComponentText("This creature is not an adult yet."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notAdult")));
                 }
                 else if (this.riddenByEntity != null)
                 {
-                    player.addChatMessage(new ChatComponentText("There is someone already riding this creature."));
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.isRiding")));
                 }
             }
         }
