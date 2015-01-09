@@ -151,13 +151,13 @@ public class ModelLeptictidium extends MowzieModelBase {
 
         //Left leg
         this.body1.addChild(this.rightLeg1);
-        this.body1.addChild(this.rightLeg2);
+        this.rightLeg1.addChild(this.rightLeg2);
         this.rightLeg2.addChild(this.rightLeg3);
         this.rightLeg3.addChild(this.rightFoot);
 
         //Right leg
         this.body1.addChild(this.leftLeg1);
-        this.body1.addChild(this.leftLeg2);
+        this.leftLeg1.addChild(this.leftLeg2);
         this.leftLeg2.addChild(this.leftLeg3);
         this.leftLeg3.addChild(this.leftFoot);
 
@@ -170,6 +170,10 @@ public class ModelLeptictidium extends MowzieModelBase {
         
         this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
 
+        //Corrections
+        rightLeg2.rotationPointX = 0;
+        leftLeg2.rotationPointX = 0;
+        
         this.body1.setInitValuesToCurrentPose();
         this.body2.setInitValuesToCurrentPose();
         this.neck.setInitValuesToCurrentPose();
@@ -212,8 +216,62 @@ public class ModelLeptictidium extends MowzieModelBase {
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.resetPose();
+        
+            /*f = entity.frame;
+        	f1 = (float) Math.cos(f/20)*0.25F + 0.5F;*/
+            resetPose();
+            float globalSpeed = 0.6F;
+            float height = 12F * f1;
+            
+            MowzieModelRenderer[] noseParts = {this.snout2, this.snout1};
 
-        float bodyMovement = 0.104719755F * MathHelper.cos(0.1F * entity.frame);
+            faceTarget(head1, 2, f3, f4);
+            faceTarget(neck, 2, f3, f4);
+
+            bob(body1, 0.5F * globalSpeed, height, true, f, f1);
+
+            walk(leftLeg1, 1F * globalSpeed, 0.75F, true, 1F, 0.2F, f, f1);
+            walk(rightLeg1, 1F * globalSpeed, 0.75F, true, 0.5F, 0.2F, f, f1);
+            walk(leftLeg2, 1F * globalSpeed, 0.5F, true, 1.5F, 0.1F, f, f1);
+            walk(rightLeg2, 1F * globalSpeed, 0.5F, true, 1F, 0.1F, f, f1);
+            walk(leftLeg3, 1F * globalSpeed, 0.5F, true, 0.5F, 0F, f, f1);
+            walk(rightLeg3, 1F * globalSpeed, 0.5F, true, 1F, 0F, f, f1);
+            walk(leftFoot, 1F * globalSpeed, 0.5F, true, 1F, 0.75F, f, f1);
+            walk(rightFoot, 1F * globalSpeed, 0.5F, true, 0.5F, 0.75F, f, f1);
+
+            walk(body1, 1F * globalSpeed, 0.3F, false, 0.5F, 0F, f, f1);
+            walk(body2, 1F * globalSpeed, 0.5F, true, 1.0F, 0.5F, f, f1);
+            walk(neck, 1F * globalSpeed, 0.3F, true, 0.25F, 0.3F, f, f1);
+            walk(head1, 1F * globalSpeed, 0.3F, false, 0.25F, -0.8F, f, f1);
+
+            walk(rightHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
+            walk(leftHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
+            walk(rightHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
+            walk(leftHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
+            
+            chainWave(tailParts, 1F * globalSpeed, 0.2F, 2.7F, f, f1);
+            chainWave(noseParts, 1F * globalSpeed, -0.5F, 0F, f, f1);
+            flap(earLeft, 1F * globalSpeed, 0.5F, true, 1.0F, 0.8F, f, f1);
+            flap(earRight, 1F * globalSpeed, 0.5F, false, 1.0F, -0.8F, f, f1);
+            
+            //Idle
+            chainWave(tailParts, 0.2F, -0.05F, 2, entity.frame, 1F);
+            chainSwing(tailParts, 0.3F, 0.05F, 3, entity.frame, 1F);
+            walk(neck, 0.2F, 0.1F, false, -1F, 0F, entity.frame, 1F);
+            walk(head1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            flap(earLeft, 0.2F, 0.1F, true, -1.0F, 0F, entity.frame, 1F);
+            flap(earRight, 0.2F, 0.1F, false, -1.0F, 0F, entity.frame, 1F);
+            chainWave(noseParts, 0.2F, -0.1F, 0F, entity.frame, 1F);
+            walk(body2, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            walk(body1, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+            walk(leftLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            walk(rightLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            walk(rightHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            walk(leftHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+            walk(rightHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+            walk(leftHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+
+/*        float bodyMovement = 0.104719755F * MathHelper.cos(0.1F * entity.frame);
         float bodyInclination = 0.523598776F * (1.0F - 2.0F * f1);
 
         this.body1.rotateAngleX += bodyMovement;
@@ -234,9 +292,7 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.chainSwing(this.tailParts, 0.1F, 0.05F, 1, entity.frame, 1F);
         this.chainWave(this.tailParts, 0.1F, -0.05F, 2, entity.frame, 1F);
 
-        this.faceTarget(this.head1, 1, f3, f4);
-
-        this.bob(this.body1, 0.06F, 12.0F * f1, true, f, f1);
+        this.faceTarget(this.head1, 1, f3, f4);*/
     }
 
     public void resetPose()

@@ -291,7 +291,6 @@ public class ModelHypsilophodon extends MowzieModelBase
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         EntityHypsilophodon hypster = (EntityHypsilophodon) entity;
-        resetPose();
 /*    f = hypster.frame;
     f1 = (float) Math.cos(f/20)*0.25F + 0.5F;*/
         resetPose();
