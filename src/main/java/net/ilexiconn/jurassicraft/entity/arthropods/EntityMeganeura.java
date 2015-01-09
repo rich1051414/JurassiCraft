@@ -116,6 +116,19 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-        this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat()));
+    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+            this.dropItem(this.getCreature().getSkull(), 1);
+    	}
+    	else
+    	{
+    		if (!this.isBurning())
+            {
+                this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat()));
+            }
+            else
+            {
+                this.dropItem(this.getCreature().getSteak(), 1);
+            }
+    	}
     }
 }

@@ -22,7 +22,7 @@ public class ItemDNA extends Item implements IDNASample
     {
         super();
         setUnlocalizedName(name + "_DNA");
-        setTextureName(JurassiCraft.getModId() + name + "_DNA");
+        setTextureName(JurassiCraft.getModId() + "creature/" + name + "_DNA");
         setCreativeTab(ModCreativeTabs.dnas);
     }
 

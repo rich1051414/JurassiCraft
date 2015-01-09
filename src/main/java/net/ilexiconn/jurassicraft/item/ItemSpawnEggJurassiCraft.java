@@ -91,7 +91,7 @@ public class ItemSpawnEggJurassiCraft extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return StatCollector.translateToLocal(this.getUnlocalizedName() + "_" + CreatureManager.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + ".name").trim();
+		return StatCollector.translateToLocal("item." + CreatureManager.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + "_SpawnEgg.name").trim();
 	}
 
 	@Override

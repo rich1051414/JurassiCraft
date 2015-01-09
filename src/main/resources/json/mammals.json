@@ -38,7 +38,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Basilosaurus",
@@ -79,7 +79,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Leptictidium",
@@ -120,7 +120,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 8
     },
     {
         "creatureName":"Uintatherium",
@@ -161,7 +161,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Deinotherium",
@@ -202,7 +202,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Mammoth",
@@ -243,7 +243,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Moeritherium",
@@ -284,7 +284,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     },
     {
         "creatureName":"Paraceratherium",
@@ -325,6 +325,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 4
     }
 ]

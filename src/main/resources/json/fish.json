@@ -38,6 +38,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     }
 ]

@@ -2,20 +2,22 @@ package net.ilexiconn.jurassicraft.tile;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
-import java.util.Random;
 
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemAmber;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
-import net.ilexiconn.jurassicraft.item.ItemDinoMeat;
+import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.ilexiconn.jurassicraft.item.ItemFossil;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
+import net.ilexiconn.jurassicraft.item.drops.ItemBristles;
 import net.ilexiconn.jurassicraft.item.drops.ItemFeather;
 import net.ilexiconn.jurassicraft.item.drops.ItemFur;
 import net.ilexiconn.jurassicraft.item.drops.ItemScale;
 import net.ilexiconn.jurassicraft.item.drops.ItemSkin;
+import net.ilexiconn.jurassicraft.item.drops.ItemSkull;
+import net.ilexiconn.jurassicraft.item.drops.ItemTooth;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -103,21 +105,24 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             	{
             		newItem = this.getDNASampleFromFossil();
             	}
-            	else if (slots[i].getItem() instanceof ItemDinoMeat)
+            	else if (slots[i].getItem() instanceof ItemMeat)
             	{
             		newItem = this.getDNASampleFromMeat(slots[i]);
             	}
             	else if (slots[i].getItem() instanceof ItemAmber) 
             	{
             		newItem = this.getDNASampleFromAmber();
-            	} 
+            	}
             	else if (slots[i].getItem() instanceof ItemFur || 
             			slots[i].getItem() instanceof ItemSkin || 
             			slots[i].getItem() instanceof ItemScale || 
-            			slots[i].getItem() instanceof ItemFeather) 
+            			slots[i].getItem() instanceof ItemFeather || 
+            			slots[i].getItem() instanceof ItemSkull || 
+            			slots[i].getItem() instanceof ItemTooth || 
+            			slots[i].getItem() instanceof ItemBristles) 
             	{
             		newItem = this.getDNASampleFromDrop(slots[i]);
-            	} 
+            	}
             	else 
             	{
                     int output = this.worldObj.rand.nextInt(3);
@@ -269,7 +274,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
 	}
 
     private ItemStack getDNASampleFromMeat(ItemStack meat) {
-        ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemDinoMeat) meat.getItem()));
+        ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemMeat) meat.getItem()));
     	if (meat.hasTagCompound()) {
     		dna.setTagCompound(meat.getTagCompound());
             if (!dna.getTagCompound().hasKey("Quality"))
@@ -307,27 +312,41 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
 
     private ItemStack getDNASampleFromDrop(ItemStack itemStack) {
         ItemStack dna = (ItemStack) null;
-        if (itemStack.getItem() instanceof ItemFur) {
-        	dna = new ItemStack(this.getDNAFromFur((ItemFur) itemStack.getItem()));
-        } 
+        if (itemStack.getItem() instanceof ItemFur) 
+        {
+        	dna = new ItemStack(((ItemFur) itemStack.getItem()).getCorrespondingDNA());
+        }
         else if (itemStack.getItem() instanceof ItemSkin) 
         {
-        	dna = new ItemStack(this.getDNAFromSkin((ItemSkin) itemStack.getItem()));
-        } 
+        	dna = new ItemStack(((ItemSkin) itemStack.getItem()).getCorrespondingDNA());
+        }
         else if (itemStack.getItem() instanceof ItemScale) 
         {
-        	dna = new ItemStack(this.getDNAFromScale((ItemScale) itemStack.getItem()));
-        } 
+        	dna = new ItemStack(((ItemScale) itemStack.getItem()).getCorrespondingDNA());
+        }
         else if (itemStack.getItem() instanceof ItemFeather) 
         {
-        	dna = new ItemStack(this.getDNAFromFeather((ItemFeather) itemStack.getItem()));
-        } 
+        	dna = new ItemStack(((ItemFeather) itemStack.getItem()).getCorrespondingDNA());
+        }
+        else if (itemStack.getItem() instanceof ItemSkull) 
+        {
+        	dna = new ItemStack(((ItemSkull) itemStack.getItem()).getCorrespondingDNA());
+        }
+        else if (itemStack.getItem() instanceof ItemTooth) 
+        {
+        	dna = new ItemStack(((ItemTooth) itemStack.getItem()).getCorrespondingDNA());
+        }
+        else if (itemStack.getItem() instanceof ItemBristles) 
+        {
+        	dna = new ItemStack(((ItemBristles) itemStack.getItem()).getCorrespondingDNA());
+        }
         else 
         {
         	dna = new ItemStack(this.getRandomDNA());
         }
         
-    	if (itemStack.hasTagCompound()) {
+    	if (itemStack.hasTagCompound()) 
+    	{
     		dna.setTagCompound(itemStack.getTagCompound());
             if (!dna.getTagCompound().hasKey("Quality"))
             {
@@ -338,7 +357,9 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             	dna.getTagCompound().setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
             return dna;
-    	} else {
+    	}
+    	else 
+    	{
     		if (!dna.hasTagCompound())
             {
             	NBTTagCompound compound = new NBTTagCompound();
@@ -362,33 +383,9 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
     	}
 	}
 
-	private Item getDNAFromMeat(ItemDinoMeat meat)
+	private Item getDNAFromMeat(ItemMeat meat)
     {
     	ItemDNA dna = meat.getCorrespondingDNA();
-        return dna;
-    }
-
-	private Item getDNAFromFur(ItemFur fur)
-    {
-    	ItemDNA dna = fur.getCorrespondingDNA();
-        return dna;
-    }
-
-	private Item getDNAFromSkin(ItemSkin skin)
-    {
-    	ItemDNA dna = skin.getCorrespondingDNA();
-        return dna;
-    }
-
-	private Item getDNAFromScale(ItemScale scale)
-    {
-    	ItemDNA dna = scale.getCorrespondingDNA();
-        return dna;
-    }
-
-	private Item getDNAFromFeather(ItemFeather feather)
-    {
-    	ItemDNA dna = feather.getCorrespondingDNA();
         return dna;
     }
 

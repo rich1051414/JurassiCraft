@@ -38,7 +38,7 @@
         "numberOfInfoPages": 3,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Brachiosaur",
@@ -79,7 +79,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
     {
         "creatureName":"Velociraptor",
@@ -120,7 +120,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Stegosaur",
@@ -161,7 +161,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
     {
         "creatureName":"Triceratops",
@@ -202,7 +202,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
     {
         "creatureName":"Tyrannosaurus",
@@ -243,7 +243,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
     {
         "creatureName":"Gallimimus",
@@ -284,7 +284,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Hypsilophodon",
@@ -325,7 +325,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Leaellynasaur",
@@ -366,7 +366,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Herrerasaur",
@@ -407,7 +407,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Dilophosaurus",
@@ -448,7 +448,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
     {
         "creatureName":"Oviraptor",
@@ -489,7 +489,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 3
     },
     {
         "creatureName":"Parasaurolophus",
@@ -530,7 +530,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 5
     },
 	{
         "creatureName":"Santa",

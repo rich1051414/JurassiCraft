@@ -5,7 +5,7 @@ import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.item.ItemDinoMeat;
+import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ public class ModRecipes implements IContentHandler
 
         for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
         {
-            ItemDinoMeat meat = creature.getValue().getMeat();
+            ItemMeat meat = creature.getValue().getMeat();
             if (meat != null)
             {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));

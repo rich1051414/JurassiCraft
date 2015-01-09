@@ -49,14 +49,16 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (2.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        int countMeath = Math.round(1 + (2.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+        int countFur = Math.round(1.6F * developmentFraction + this.rand.nextInt(1 + (int) (1.6F * developmentFraction)));
+        if (!this.isBurning())
         {
-            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), countMeath));
         }
         else
         {
-            this.dropItem(this.getCreature().getSteak(), count);
+            this.dropItem(this.getCreature().getSteak(), countMeath);
         }
+        this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getFur(), countFur));
     }
 }

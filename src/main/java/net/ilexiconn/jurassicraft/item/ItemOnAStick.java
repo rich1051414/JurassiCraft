@@ -10,7 +10,7 @@ public class ItemOnAStick extends Item
     {
         super();
         setUnlocalizedName(foodOnAStick + "OnAStick");
-        setTextureName(JurassiCraft.getModId() + foodOnAStick + "OnAStick");
+        setTextureName(JurassiCraft.getModId() + "ridingItems/" + foodOnAStick + "OnAStick");
         setCreativeTab(ModCreativeTabs.items);
     }
 }

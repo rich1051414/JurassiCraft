@@ -59,8 +59,6 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
 
     public String getLivingSound()
     {
-        // if(isRoaring == false){
-        // isRoaring = true;
         int I = rand.nextInt(4) + 1;
         if (I == 1 && this.getCreatureAgeInDays() >= 25)
         {
@@ -69,11 +67,6 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             {
                 AnimationAPI.sendAnimationPacket(this, 1);
             }
-            /*
-             * else if(this.getAttackTarget() != null) {
-			 * roarCount.thereAndBack(0F, 0.1F, 1, 40);
-			 * System.out.println(roarCount.change); }
-			 */
             return null;
         }
         else if (I == 2)
@@ -85,8 +78,6 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         {
             return null;
         }
-        // }
-        // return null;
     }
 
     public String getHurtSound()
@@ -119,14 +110,20 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (3.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+        int countMeat = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (3.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+        int countTeeth = Math.round(1.5F * developmentFraction + this.rand.nextInt(1 + (int) (2.0F * developmentFraction)));
     	if (!this.isBurning())
         {
-            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), countMeat));
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getTooth(), countTeeth));
         }
         else
         {
-            this.dropItem(this.getCreature().getSteak(), count);
+            this.dropItem(this.getCreature().getSteak(), countMeat);
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getTooth(), countTeeth));
         }
+    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+            this.dropItem(this.getCreature().getSkull(), 1);
+    	}
     }
 }

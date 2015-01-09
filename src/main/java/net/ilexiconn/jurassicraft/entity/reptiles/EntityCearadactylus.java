@@ -197,5 +197,8 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
+    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+            this.dropItem(this.getCreature().getSkull(), 1);
+    	}
     }
 }

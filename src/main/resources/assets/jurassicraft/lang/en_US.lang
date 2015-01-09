@@ -1,5 +1,6 @@
 //CreativeTabs==================================================
 itemGroup.jurassicraft.items=Jurassicraft Items
+itemGroup.jurassicraft.itemsFood=Jurassicraft Food
 itemGroup.jurassicraft.blocks=Jurassicraft Blocks
 itemGroup.jurassicraft.dnas=Jurassicraft DNA's
 itemGroup.jurassicraft.syringesEggs=Jurassicraft Syringes & Eggs
@@ -74,7 +75,7 @@ item.Velociraptor_DNA.name=Velociraptor DNA
 item.Stegosaur_DNA.name=Stegosaurus DNA
 item.Triceratops_DNA.name=Triceratops DNA
 item.Coelacanth_DNA.name=Coelacanth DNA
-item.Tyrannosaurus_DNA.name=Tyrannosaurus rex DNA
+item.Tyrannosaurus_DNA.name=Tyrannosaurus DNA
 item.Gallimimus_DNA.name=Gallimimus DNA
 item.Leaellynasaur_DNA.name=Leaellynasaura DNA
 item.Hypsilophodon_DNA.name=Hypsilophodon DNA
@@ -95,68 +96,72 @@ item.Uintatherium_DNA.name=Uintatherium DNA
 item.Paraceratherium_DNA.name=Paraceratherium DNA
 item.Deinotherium_DNA.name=Deinotherium DNA
 item.Moeritherium_DNA.name=Moeritherium DNA
+item.Brachiopod_DNA.name=Brachiopod DNA
+item.Ammonite_DNA.name=Ammonite DNA
 
 //Eggs
-item.egg_Brachiosaur.name=Egg of a Brachiosaurus
-item.egg_Velociraptor.name=Egg of a Velociraptor
-item.egg_Ankylosaur.name=Egg of an Ankylosaurus
-item.egg_Stegosaur.name=Egg of a Stegosaurus
-item.egg_Triceratops.name=Egg of a Triceratops
-item.egg_Coelacanth.name=Egg of a Coelacanth
-item.egg_Tyrannosaurus.name=Egg of a Tyrannosaurus rex
-item.egg_Oviraptor.name=Egg of an Oviraptor
-item.egg_Dilophosaurus.name=Egg of a Dilophosaurus
-item.egg_Parasaurolophus.name=Egg of a Parasaurolophus
-item.egg_Herrerasaur.name=Egg of a Herrerasaurus
-item.egg_Meganeura.name=Egg of a Meganeura
-item.egg_Tylosaurus.name=Egg of a Tylosaurus
-item.egg_Hypsilophodon.name=Egg of a Hypsilophodon
-item.egg_Leaellynasaur.name=Egg of a Leaellynasaura
-item.egg_Gallimimus.name=Egg of a Gallimimus
-item.egg_Cearadactylus.name=Egg of a Cearadactylus
-item.egg_Sarcosuchus.name=Egg of a Sarcosuchus
-item.egg_Titanis.name=Egg of a Titanis
+item.Brachiosaur_Egg.name=Brachiosaurus Egg
+item.Velociraptor_Egg.name=Velociraptor Egg
+item.Ankylosaur_Egg.name=Ankylosaurus Egg
+item.Stegosaur_Egg.name=Stegosaurus Egg
+item.Triceratops_Egg.name=Triceratops Egg
+item.Coelacanth_Egg.name=Coelacanth Egg
+item.Tyrannosaurus_Egg.name=Tyrannosaurus Egg
+item.Oviraptor_Egg.name=Oviraptor Egg
+item.Dilophosaurus_Egg.name=Dilophosaurus Egg
+item.Parasaurolophus_Egg.name=Parasaurolophus Egg
+item.Herrerasaur_Egg.name=Herrerasaurus Egg
+item.Meganeura_Egg.name=Meganeura Egg
+item.Tylosaurus_Egg.name=Tylosaurus Egg
+item.Hypsilophodon_Egg.name=Hypsilophodon Egg
+item.Leaellynasaur_Egg.name=Leaellynasaura Egg
+item.Gallimimus_Egg.name=Gallimimus Egg
+item.Cearadactylus_Egg.name=Cearadactylus Egg
+item.Sarcosuchus_Egg.name=Sarcosuchus Egg
+item.Titanis_Egg.name=Titanis Egg
+item.Brachiopod_Egg.name=Brachiopod Egg
+item.Ammonite_Egg.name=Ammonite Egg
 
 //Syringes
-item.Mammoth_Syringe.name=Syringe of Mammoth
-item.Arsinoitherium_Syringe.name=Syringe of Arsinoitherium
-item.Basilosaurus_Syringe.name=Syringe of Basilosaurus
-item.Leptictidium_Syringe.name=Syringe of Leptictidium
-item.Uintatherium_Syringe.name=Syringe of Uintatherium
-item.Paraceratherium_Syringe.name=Syringe of Paraceratherium
-item.Deinotherium_Syringe.name=Syringe of Deinotherium
-item.Moeritherium_Syringe.name=Syringe of Moeritherium
+item.Mammoth_Syringe.name=Mammoth Syringe
+item.Arsinoitherium_Syringe.name=Arsinoitherium Syringe
+item.Basilosaurus_Syringe.name=Basilosaurus Syringe
+item.Leptictidium_Syringe.name=Leptictidium Syringe
+item.Uintatherium_Syringe.name=Uintatherium Syringe
+item.Paraceratherium_Syringe.name=Paraceratherium Syringe
+item.Deinotherium_Syringe.name=Deinotherium Syringe
+item.Moeritherium_Syringe.name=Moeritherium Syringe
 
 //Spawn_Eggs
-item.spawnEgg_Brachiosaur.name=Egg of a Brachiosaurus
-item.spawnEgg_Velociraptor.name=Egg of a Velociraptor
-item.spawnEgg_Ankylosaur.name=Egg of an Ankylosaurus
-item.spawnEgg_Stegosaur.name=Egg of a Stegosaurus
-item.spawnEgg_Triceratops.name=Egg of a Triceratops
-item.spawnEgg_Coelacanth.name=Egg of a Coelacanth
-item.spawnEgg_Tyrannosaurus.name=Egg of a Tyrannosaurus rex
-item.spawnEgg_Oviraptor.name=Egg of an Oviraptor
-item.spawnEgg_Dilophosaurus.name=Egg of a Dilophosaurus
-item.spawnEgg_Parasaurolophus.name=Egg of a Parasaurolophus
-item.spawnEgg_Herrerasaur.name=Egg of a Herrerasaurus
-item.spawnEgg_Meganeura.name=Egg of a Meganeura
-item.spawnEgg_Tylosaurus.name=Egg of a Tylosaurus
-item.spawnEgg_Hypsilophodon.name=Egg of a Hypsilophodon
-item.spawnEgg_Leaellynasaur.name=Egg of a Leaellynasaura
-item.spawnEgg_Gallimimus.name=Egg of a Gallimimus
-item.spawnEgg_Cearadactylus.name=Egg of a Cearadactylus
-item.spawnEgg_Sarcosuchus.name=Egg of a Sarcosuchus
-item.spawnEgg_Titanis.name=Egg of a Titanis
-item.spawnEgg_Mammoth.name=Egg of a Mammoth
-item.spawnEgg_Arsinoitherium.name=Egg of a Arsinoitherium
-item.spawnEgg_Basilosaurus.name=Egg of a Basilosaurus
-item.spawnEgg_Leptictidium.name=Egg of a Leptictidium
-item.spawnEgg_Uintatherium.name=Egg of a Uintatherium
-item.spawnEgg_Paraceratherium.name=Egg of a Paraceratherium
-item.spawnEgg_Deinotherium.name=Egg of a Deinotherium
-item.spawnEgg_Moeritherium.name=Egg of a Moeritherium
-item.spawnEgg_Brachiopod.name=Egg of a Brachiopod
-item.spawnEgg_Ammonite.name=Egg of a Ammonite
+item.Brachiosaur_SpawnEgg.name=Brachiosaurus Spawn Egg
+item.Velociraptor_SpawnEgg.name=Velociraptor Spawn Egg
+item.Ankylosaur_SpawnEgg.name=Ankylosaurus Spawn Egg
+item.Stegosaur_SpawnEgg.name=Stegosaurus Spawn Egg
+item.Triceratops_SpawnEgg.name=Triceratops Spawn Egg
+item.Coelacanth_SpawnEgg.name=Coelacanth Spawn Egg
+item.Tyrannosaurus_SpawnEgg.name=Tyrannosaurus Spawn Egg
+item.Oviraptor_SpawnEgg.name=Oviraptor Spawn Egg
+item.Dilophosaurus_SpawnEgg.name=Dilophosaurus Spawn Egg
+item.Parasaurolophus_SpawnEgg.name=Parasaurolophus Spawn Egg
+item.Herrerasaur_SpawnEgg.name=Herrerasaurus Spawn Egg
+item.Meganeura_SpawnEgg.name=Meganeura Spawn Egg
+item.Tylosaurus_SpawnEgg.name=Tylosaurus Spawn Egg
+item.Hypsilophodon_SpawnEgg.name=Hypsilophodon Spawn Egg
+item.Leaellynasaur_SpawnEgg.name=Leaellynasaura Spawn Egg
+item.Gallimimus_SpawnEgg.name=Gallimimus Spawn Egg
+item.Cearadactylus_SpawnEgg.name=Cearadactylus Spawn Egg
+item.Sarcosuchus_SpawnEgg.name=Sarcosuchus Spawn Egg
+item.Titanis_SpawnEgg.name=Titanis Spawn Egg
+item.Mammoth_SpawnEgg.name=Mammoth Spawn Egg
+item.Arsinoitherium_SpawnEgg.name=Arsinoitherium Spawn Egg
+item.Basilosaurus_SpawnEgg.name=Basilosaurus Spawn Egg
+item.Leptictidium_SpawnEgg.name=Leptictidium Spawn Egg
+item.Uintatherium_SpawnEgg.name=Uintatherium Spawn Egg
+item.Paraceratherium_SpawnEgg.name=Paraceratherium Spawn Egg
+item.Deinotherium_SpawnEgg.name=Deinotherium Spawn Egg
+item.Moeritherium_SpawnEgg.name=Moeritherium Spawn Egg
+item.Brachiopod_SpawnEgg.name=Brachiopod Spawn Egg
+item.Ammonite_SpawnEgg.name=Ammonite Spawn Egg
 
 //Meats
 item.Ankylosaur_Meat.name=Ankylosaurus Meat
@@ -165,7 +170,7 @@ item.Velociraptor_Meat.name=Velociraptor Meat
 item.Stegosaur_Meat.name=Stegosaurus Meat
 item.Triceratops_Meat.name=Triceratops Meat
 item.Coelacanth_Meat.name=Raw Coelacanth
-item.Tyrannosaurus_Meat.name=Tyrannosaurus rex Meat
+item.Tyrannosaurus_Meat.name=Tyrannosaurus Meat
 item.Gallimimus_Meat.name=Gallimimus Meat
 item.Leaellynasaur_Meat.name=Leaellynasaura Meat
 item.Hypsilophodon_Meat.name=Hypsilophodon Meat
@@ -186,14 +191,74 @@ item.Uintatherium_Meat.name=Uintatherium Meat
 item.Paraceratherium_Meat.name=Paraceratherium Meat
 item.Deinotherium_Meat.name=Deinotherium Meat
 item.Moeritherium_Meat.name=Moeritherium Meat
+item.Brachiopod_Meat.name=Brachiopod Meat
+item.Ammonite_Meat.name=Ammonite Meat
+
+//Cooked Meats
+item.Ankylosaur_Steak.name=Ankylosaurus Steak
+item.Brachiosaur_Steak.name=Brachiosaurus Steak
+item.Velociraptor_Steak.name=Velociraptor Steak
+item.Stegosaur_Steak.name=Stegosaurus Steak
+item.Triceratops_Steak.name=Triceratops Steak
+item.Coelacanth_Steak.name=Raw Coelacanth
+item.Tyrannosaurus_Steak.name=Tyrannosaurus Steak
+item.Gallimimus_Steak.name=Gallimimus Steak
+item.Leaellynasaur_Steak.name=Leaellynasaura Steak
+item.Hypsilophodon_Steak.name=Hypsilophodon Steak
+item.Tylosaurus_Steak.name=Tylosaurus Steak
+item.Meganeura_Steak.name=Cooked Meganeura
+item.Herrerasaur_Steak.name=Herrerasaurus Steak
+item.Parasaurolophus_Steak.name=Parasaurolophus Steak
+item.Dilophosaurus_Steak.name=Dilophosaurus Steak
+item.Oviraptor_Steak.name=Oviraptor Steak
+item.Cearadactylus_Steak.name=Cearadactylus Steak
+item.Sarcosuchus_Steak.name=Sarchosuchus Steak
+item.Titanis_Steak.name=Titanis Steak
+item.Mammoth_Steak.name=Mammoth Steak
+item.Arsinoitherium_Steak.name=Arsinoitherium Steak
+item.Basilosaurus_Steak.name=Basilosaurus Steak
+item.Leptictidium_Steak.name=Leptictidium Steak
+item.Uintatherium_Steak.name=Uintatherium Steak
+item.Paraceratherium_Steak.name=Paraceratherium Steak
+item.Deinotherium_Steak.name=Deinotherium Steak
+item.Moeritherium_Steak.name=Moeritherium Steak
+item.Brachiopod_Steak.name=Brachiopod Steak
+item.Ammonite_Steak.name=Ammonite Steak
+
+//Fur
+item.Leptictidium_Fur.name=Leptictidium Fur
+
+//Skin
+
+//Scales
+
+//Feathers
+
+//Bristles
+
+//Skull
+item.Brachiosaur_Skull.name=Brachiosaurus Skull
+item.Stegosaur_Skull.name=Stegosaurus Skull
+item.Triceratops_Skull.name=Triceratops Skull
+item.Tyrannosaurus_Skull.name=Tyrannosaurus Skull
+item.Parasaurolophus_Skull.name=Parasaurolophus Skull
+item.Dilophosaurus_Skull.name=Dilophosaurus Skull
+item.Tylosaurus_Skull.name=Tylosaurus Skull
+item.Cearadactylus_Skull.name=Cearadactylus Skull
+item.Sarcosuchus_Skull.name=Sarcosuchus Skull
+item.Titanis_Skull.name=Titanis Skull
+item.Meganeura_Skull.name=Meganeura Exoskeleton
+
+//Tooth
+item.Tyrannosaurus_Tooth.name=Tyrannosaurus Tooth
 
 //Others
 item.net.name=Net
+item.dinopad.name=Dinopad
 item.dinoBone.name=Dinosaur Bone
 item.dinoSteak.name=Dinosaur Steak
 item.growthSerum.name=Growth Serum
 item.gypsumPowder.name=Gypsum Powder
-item.dinopad.name=Dinopad
 item.AppleOnAStick.name=Apple On A Stick
 item.BeefOnAStick.name=Beef On A Stick
 item.CarrotOnAStick.name=Apple On A Stick

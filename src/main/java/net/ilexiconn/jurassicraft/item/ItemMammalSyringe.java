@@ -37,7 +37,7 @@ public class ItemMammalSyringe extends Item
     {
         super();
         this.setUnlocalizedName(mammal + "_Syringe");
-        this.setTextureName(JurassiCraft.getModId() + mammal + "_Syringe");
+        this.setTextureName(JurassiCraft.getModId() + "creature/" + mammal + "_Syringe");
         this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.mammalName = mammal;
     }
