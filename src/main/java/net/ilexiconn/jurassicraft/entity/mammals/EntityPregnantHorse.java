@@ -10,7 +10,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 public class EntityPregnantHorse implements IExtendedEntityProperties
 {
 
-    public final static String PREGNANT_HORSE_PROPERTY = "EntityPregnantHorse";
+    public final static String PREGNANT_HORSE_PROPERTY = "EntityPregnantHorseJC";
     private final EntityHorse horse;
     private String dnaSequence;
     private String mammalName;

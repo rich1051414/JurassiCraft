@@ -43,7 +43,7 @@ public class JurassiCraftEntityAIGallimimusFlocking extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.herdCreature.getAttackTarget() != null || this.herdCreature.getRNG().nextInt(500) < 499 || this.herdCreature.isSitting())
+        if (this.herdCreature.getAttackTarget() != null || this.herdCreature.getRNG().nextInt(501) < 500 || this.herdCreature.isSitting())
         {
             return false;
         }
@@ -100,13 +100,6 @@ public class JurassiCraftEntityAIGallimimusFlocking extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        /*
-		for (int i = 0; i < herd.size(); i++) {
-			if (!this.herd.get(i).isEntityAlive() || !this.herd.get(i).getNavigator().noPath()) {
-				return false;
-			}
-		}
-		*/
         return (!this.herdCreature.getNavigator().noPath() || this.timeTryingToMove < this.maxTimeTryingToMove);
     }
 
@@ -122,6 +115,7 @@ public class JurassiCraftEntityAIGallimimusFlocking extends EntityAIBase
             }
         }
         this.herd.clear();
+        this.followingDistanceOfTheHerd.clear();
         this.timeTryingToMove = 0;
     }
 }

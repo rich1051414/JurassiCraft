@@ -10,7 +10,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 public class EntityPregnantPig implements IExtendedEntityProperties
 {
 
-    public final static String PREGNANT_PIG_PROPERTY = "EntityPregnantPig";
+    public final static String PREGNANT_PIG_PROPERTY = "EntityPregnantPigJC";
     private final EntityPig pig;
     private String dnaSequence;
     private String mammalName;
