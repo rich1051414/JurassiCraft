@@ -6,7 +6,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -14,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityStegosaur extends EntityJurassiCraftLandProtective implements IDinosaur
+public class EntityStegosaur extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
     public EntityStegosaur(World world)
     {

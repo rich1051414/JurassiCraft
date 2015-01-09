@@ -36,25 +36,9 @@ public class JurassiCraftInteractEvent
 
     public void showStatus(EntityInteractEvent event)
     {
-        if (event.target instanceof EntityCow)
+        if (event.target instanceof EntityCow || event.target instanceof EntityPig || event.target instanceof EntityHorse || event.target instanceof EntitySheep)
         {
-            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
-        }
-        else if (event.target instanceof EntityPig)
-        {
-            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
-        }
-        else if (event.target instanceof EntityHorse)
-        {
-            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
-        }
-        else if (event.target instanceof EntitySheep)
-        {
-            GuiDinoPadPregnancy.creatureToAnalyze = (Object) event.target;
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, 0, 0, 0);
+            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, event.target.getEntityId(), 0, 0);
         }
     }
 }

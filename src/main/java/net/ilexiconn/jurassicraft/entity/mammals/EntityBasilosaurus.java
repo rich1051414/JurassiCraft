@@ -2,6 +2,8 @@ package net.ilexiconn.jurassicraft.entity.mammals;
 
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IMammal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityBasilosaurus extends NewEntitySwimming
+public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, ICarnivore
 {
 
     public EntityBasilosaurus(World world)

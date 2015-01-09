@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -16,9 +17,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiDinoPadEgg extends GuiScreen {
-
-	public static Object eggToAnalyze;
+public class GuiDinoPadEgg extends GuiScreen 
+{
 	private EntityDinoEgg egg;
 	private float renderRotation;
 	private int xSize;
@@ -26,12 +26,12 @@ public class GuiDinoPadEgg extends GuiScreen {
 	private int guiLeft;
 	private int guiTop;
 
-	public GuiDinoPadEgg()
+	public GuiDinoPadEgg(Entity eggToAnalyze)
 	{
 		super();
-		if (this.eggToAnalyze instanceof EntityDinoEgg)
+		if (eggToAnalyze instanceof EntityDinoEgg)
 		{
-			this.egg = (EntityDinoEgg) this.eggToAnalyze;
+			this.egg = (EntityDinoEgg) eggToAnalyze;
 		} 
 		else 
 		{

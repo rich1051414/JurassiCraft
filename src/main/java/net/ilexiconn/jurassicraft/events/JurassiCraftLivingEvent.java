@@ -160,7 +160,6 @@ public class JurassiCraftLivingEvent
 	                if (!event.entityLiving.worldObj.isRemote)
 	                {
 	                    event.entityLiving.worldObj.spawnEntityInWorld(baby);
-//	                    baby.setNoGrowth();
 	                }
 	            }
 	        }

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.item;
+package net.ilexiconn.jurassicraft.interfaces;
 
 import net.minecraft.item.ItemStack;
 

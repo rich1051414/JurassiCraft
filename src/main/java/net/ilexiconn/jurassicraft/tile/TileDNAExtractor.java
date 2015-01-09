@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.item.IDNASource;
+import net.ilexiconn.jurassicraft.interfaces.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemAmber;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.ilexiconn.jurassicraft.item.ItemMeat;

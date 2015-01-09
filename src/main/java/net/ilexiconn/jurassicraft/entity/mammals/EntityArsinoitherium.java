@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
-import net.ilexiconn.jurassicraft.entity.IMammal;
+import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.ilexiconn.jurassicraft.interfaces.IMammal;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -15,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityArsinoitherium extends EntityJurassiCraftLandProtective implements IMammal
+public class EntityArsinoitherium extends EntityJurassiCraftLandProtective implements IMammal, IHerbivore
 {
     public EntityArsinoitherium(World world)
     {

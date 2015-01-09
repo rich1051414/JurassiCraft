@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
@@ -26,7 +27,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiDinoPadPregnancy extends GuiScreen
 {
-    public static Object creatureToAnalyze;
     private EntityAnimal creature;
     private float renderRotation;
     private int guiLeft;
@@ -34,34 +34,34 @@ public class GuiDinoPadPregnancy extends GuiScreen
     private int xSize;
     private int ySize;
 
-    public GuiDinoPadPregnancy()
+    public GuiDinoPadPregnancy(Entity creatureToAnalyze)
     {
         super();
-		if (this.creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) this.creatureToAnalyze).getGrowingAge() == 0) 
+		if (creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) creatureToAnalyze).getGrowingAge() == 0) 
 		{
-			if (this.creatureToAnalyze instanceof EntityCow) {
-				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) this.creatureToAnalyze));
+			if (creatureToAnalyze instanceof EntityCow) {
+				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creatureToAnalyze));
 				if (cow != null) 
 				{
-					this.creature = (EntityCow) this.creatureToAnalyze;
+					this.creature = (EntityCow) creatureToAnalyze;
 				}
-			} else if (this.creatureToAnalyze instanceof EntityPig) {
-				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) this.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntityPig) {
+				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creatureToAnalyze));
 				if (pig != null) 
 				{
-					this.creature = (EntityPig) this.creatureToAnalyze;
+					this.creature = (EntityPig) creatureToAnalyze;
 				}
-			} else if (this.creatureToAnalyze instanceof EntityHorse) {
-				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) this.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntityHorse) {
+				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creatureToAnalyze));
 				if (horse != null) 
 				{
-					this.creature = (EntityHorse) this.creatureToAnalyze;
+					this.creature = (EntityHorse) creatureToAnalyze;
 				}
-			} else if (this.creatureToAnalyze instanceof EntitySheep) {
-				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) this.creatureToAnalyze));
+			} else if (creatureToAnalyze instanceof EntitySheep) {
+				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creatureToAnalyze));
 				if (sheep != null) 
 				{
-					this.creature = (EntitySheep) this.creatureToAnalyze;
+					this.creature = (EntitySheep) creatureToAnalyze;
 				}
 			} else {
 		    	this.creature = (EntityAnimal) null;

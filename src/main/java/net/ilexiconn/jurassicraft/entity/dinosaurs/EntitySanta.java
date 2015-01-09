@@ -5,7 +5,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -16,7 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntitySanta extends EntityJurassiCraftRidable implements IDinosaur
+public class EntitySanta extends EntityJurassiCraftRidable
 {
     public EntitySanta(World world)
     {

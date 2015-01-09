@@ -23,6 +23,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Creature
 {
+    private String creatureCategory;
+    
     private byte creatureID;
     private byte addItemTypes;
 
@@ -83,8 +85,6 @@ public class Creature
     private ItemSkull skull;
     private ItemTooth tooth;
 
-    private String creatureCategory;
-
     public Creature(String creatureCategory, JsonCreatureDefinition def)
     {
         this.creatureCategory = creatureCategory;
@@ -137,107 +137,132 @@ public class Creature
 				break;
 			case 1:
 				/** DNA + Egg */
-				this.dna = new ItemDNA(this.creatureName);
-				this.egg = new ItemEgg(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+				this.addDNA();
+				this.addEgg();
 				break;
 			case 2:
 				/** DNA + Syringe */
-				this.dna = new ItemDNA(this.creatureName);
-				this.syringe = new ItemMammalSyringe(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
+				this.addDNA();
+				this.addSyringe();
 				break;
 			case 3:
 				/** DNA + Egg + Meat */
-				this.dna = new ItemDNA(this.creatureName);
-				this.egg = new ItemEgg(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+				this.addDNA();
+				this.addEgg();
+				this.addMeat();
 				break;
 			case 4:
 				/** DNA + Syringe + Meat */
-				this.dna = new ItemDNA(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				this.syringe = new ItemMammalSyringe(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+				this.addDNA();
+				this.addSyringe();
+				this.addMeat();
 				break;
 			case 5:
 				/** DNA + Egg + Meat + Skull */
-				this.dna = new ItemDNA(this.creatureName);
-				this.egg = new ItemEgg(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				this.skull = new ItemSkull(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+				this.addDNA();
+				this.addEgg();
+				this.addMeat();
+				this.addSkull();
 				break;
 			case 6:
 				/** DNA + Syringe + Meat + Skull */
-				this.dna = new ItemDNA(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				this.skull = new ItemSkull(this.creatureName);
-				this.syringe = new ItemMammalSyringe(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
-				GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+				this.addDNA();
+				this.addSyringe();
+				this.addMeat();
+				this.addSkull();
 				break;
 			case 7:
 				/** DNA + Egg + Meat + Skull + Tooth */
-				this.dna = new ItemDNA(this.creatureName);
-				this.egg = new ItemEgg(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				this.skull = new ItemSkull(this.creatureName);
-				this.tooth = new ItemTooth(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
-				GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+				this.addDNA();
+				this.addEgg();
+				this.addMeat();
+				this.addSkull();
+				this.addTooth();
 				break;
 			case 8:
 				/** DNA + Syringe + Meat + Fur */
-				this.dna = new ItemDNA(this.creatureName);
-				this.meat = new ItemMeat(this.creatureName);
-				this.steak = new ItemSteak(this.creatureName);
-				this.fur = new ItemFur(this.creatureName);
-				this.syringe = new ItemMammalSyringe(this.creatureName);
-				GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
-				GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-				GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-				GameRegistry.registerItem(this.fur, this.fur.getUnlocalizedName());
-				GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
-				GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
-				if (this.creatureName.equals("Leptictidium")) {
-			        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet, 1), "FFF", "F F", 'F', new ItemStack(this.fur));
-			        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate, 1), "F F", "FFF", "FFF", 'F', new ItemStack(this.fur));
-			        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings, 1), "FFF", "F F", "F F", 'F', new ItemStack(this.fur));
-			        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots, 1), "F F", "F F", 'F', new ItemStack(this.fur));
-				}
+				this.addDNA();
+				this.addSyringe();
+				this.addMeat();
+				this.addFur();
 				break;
         }
+    }
+    
+    public void addDNA()
+    {
+    	this.dna = new ItemDNA(this.creatureName);
+    	GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+    }
+    
+
+    public void addEgg()
+    {
+    	this.egg = new ItemEgg(this.creatureName);
+    	GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+    }
+
+    public void addSyringe()
+    {
+    	this.syringe = new ItemMammalSyringe(this.creatureName);
+    	GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
+    }
+    
+    public void addMeat()
+    {
+		this.meat = new ItemMeat(this.creatureName);
+		this.steak = new ItemSteak(this.creatureName);
+		GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+		GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+		GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+    }
+
+    public void addFur()
+    {
+    	this.fur = new ItemFur(this.creatureName);
+    	GameRegistry.registerItem(this.fur, this.fur.getUnlocalizedName());
+    	if (this.creatureName.equals("Leptictidium")) {
+	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet, 1), "FFF", "F F", 'F', new ItemStack(this.fur));
+	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate, 1), "F F", "FFF", "FFF", 'F', new ItemStack(this.fur));
+	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings, 1), "FFF", "F F", "F F", 'F', new ItemStack(this.fur));
+	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots, 1), "F F", "F F", 'F', new ItemStack(this.fur));
+		}
+    }
+    
+    public void addSkin()
+    {
+    	this.skin = new ItemSkin(this.creatureName);
+    	GameRegistry.registerItem(this.skin, this.skin.getUnlocalizedName());
+    }
+    
+    public void addScale()
+    {
+    	this.scale = new ItemScale(this.creatureName);
+    	GameRegistry.registerItem(this.scale, this.scale.getUnlocalizedName());
+    }
+    
+    public void addFeather()
+    {
+    	this.feather = new ItemFeather(this.creatureName);
+    	GameRegistry.registerItem(this.feather, this.feather.getUnlocalizedName());
+    }
+    
+    public void addBristles()
+    {
+    	this.bristles = new ItemBristles(this.creatureName);
+    	GameRegistry.registerItem(this.bristles, this.bristles.getUnlocalizedName());
+    }
+    
+    public void addSkull()
+    {
+    	this.skull = new ItemSkull(this.creatureName);
+    	GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
+    }
+    
+    public void addTooth()
+    {
+    	this.tooth = new ItemTooth(this.creatureName);
+    	GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
     }
 
     public String pickLivingSound()

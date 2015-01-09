@@ -7,11 +7,12 @@ import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiopod;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.cephalopods.EntityBrachiopod;
 import net.ilexiconn.jurassicraft.entity.render.RenderCephalopod;
+import net.ilexiconn.jurassicraft.interfaces.ICephalopod;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
-public class RenderBrachiopod extends RenderCephalopod
+public class RenderBrachiopod extends RenderCephalopod implements ICephalopod
 {
     public RenderBrachiopod(Creature cephalopod)
     {

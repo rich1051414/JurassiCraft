@@ -8,7 +8,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIParasaurolophusTrumpet;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -18,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.AnimationAPI;
 
-public class EntityParasaurolophus extends EntityJurassiCraftLandProtective implements IDinosaur
+public class EntityParasaurolophus extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);
 

@@ -477,11 +477,9 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     /**
      * Sets the creature into the analyzer and show its status.
      */
-    @SideOnly(Side.CLIENT)
     private void showStatus()
     {
-        GuiDinoPad.creatureToAnalyze = this;
-        FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 69, this.worldObj, 0, 0, 0);
+        FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 69, this.worldObj, this.getEntityId(), 0, 0);
     }
 
     /**

@@ -8,7 +8,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -23,7 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.AnimationAPI;
 
-public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur
+public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
 
     private int stepCount = 0;

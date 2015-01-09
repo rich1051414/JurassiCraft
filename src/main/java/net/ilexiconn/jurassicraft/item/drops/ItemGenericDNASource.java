@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.item.IDNASource;
+import net.ilexiconn.jurassicraft.interfaces.IDNASource;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,8 +1,10 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
+import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityTylosaurus extends NewEntitySwimming
+public class EntityTylosaurus extends NewEntitySwimming implements IReptile, ICarnivore, IPiscivore
 {
     public EntityTylosaurus(World world)
     {

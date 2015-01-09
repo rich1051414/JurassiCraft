@@ -7,7 +7,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTam
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -20,7 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implements IDinosaur
+public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
 
     public EntityHerrerasaur(World par1World)

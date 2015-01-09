@@ -2,11 +2,15 @@ package net.ilexiconn.jurassicraft.entity.fish;
 
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntitySwimming;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IFish;
+import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class EntityCoelacanth extends EntitySwimming
+public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivore
 {
     public EntityCoelacanth(World world)
     {

@@ -10,7 +10,8 @@ import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -21,7 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thehippomaster.AnimationAPI.AnimationAPI;
 
-public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur
+public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
     public boolean leaping = false;
     public int timeSinceLeap;

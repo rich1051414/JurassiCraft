@@ -1,12 +1,13 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
-import net.ilexiconn.jurassicraft.entity.IDinosaur;
+import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
+import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
+import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -14,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntitySarcosuchus extends EntityJurassiCraftLandAggressive implements IDinosaur
+public class EntitySarcosuchus extends EntityJurassiCraftLandAggressive implements IReptile, ICarnivore, IPiscivore
 {
 
     public EntitySarcosuchus(World world)

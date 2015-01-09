@@ -417,11 +417,9 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         return true;
     }
 
-	@SideOnly(Side.CLIENT)
 	private void showStatus()
 	{
-		GuiDinoPadEgg.eggToAnalyze = this;
-		FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 51, this.worldObj, 0, 0, 0);
+		FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 51, this.worldObj, this.getEntityId(), 0, 0);
 	}
 
     @Override

@@ -4,10 +4,13 @@ import net.ilexiconn.jurassicraft.container.ContainerCultivate;
 import net.ilexiconn.jurassicraft.container.ContainerDNACombinator;
 import net.ilexiconn.jurassicraft.container.ContainerDNAExtractor;
 import net.ilexiconn.jurassicraft.container.ContainerSecurityFence;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
 import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -31,9 +34,9 @@ public class GuiHandler implements IGuiHandler
 
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new GuiDinoPad();
-        if (ID == 51) return new GuiDinoPadEgg();
-        if (ID == 13) return new GuiDinoPadPregnancy();
+        if (ID == 69) return new GuiDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
+        if (ID == 51) return new GuiDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
+        if (ID == 13) return new GuiDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
