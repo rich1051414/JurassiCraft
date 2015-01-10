@@ -227,7 +227,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
-        return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
+        return quality;
     }
 
     /**

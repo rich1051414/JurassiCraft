@@ -41,18 +41,15 @@ public class JurassiCraftInteractEvent
     {
         if (event.target instanceof EntityCow || event.target instanceof EntityPig || event.target instanceof EntityHorse || event.target instanceof EntitySheep)
         {
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 13, event.target.worldObj, event.target.getEntityId(), 0, 0);
-            //player.openGui(JurassiCraft.instance, 13, event.target.worldObj, event.target.getEntityId(), 0, 0);
+            player.openGui(JurassiCraft.instance, 13, event.target.worldObj, event.target.getEntityId(), 0, 0);
         }
         else if (event.target instanceof EntityDinoEgg)
         {
-            FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 51, event.target.worldObj, event.target.getEntityId(), 0, 0);
-            //player.openGui(JurassiCraft.instance, 51, event.target.worldObj, event.target.getEntityId(), 0, 0);
+            player.openGui(JurassiCraft.instance, 51, event.target.worldObj, event.target.getEntityId(), 0, 0);
         }
         else if (event.target instanceof EntityJurassiCraftCreature)
         {
-        	FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 69, event.target.worldObj, event.target.getEntityId(), 0, 0);
-            //player.openGui(JurassiCraft.instance, 69, event.target.worldObj, event.target.getEntityId(), 0, 0);
+            player.openGui(JurassiCraft.instance, 69, event.target.worldObj, event.target.getEntityId(), 0, 0);
         }
     }
 }

@@ -34,7 +34,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
     {
         super.entityInit();
         this.dataWatcher.addObject(15, Byte.valueOf((byte) 0));
-        this.dataWatcher.addObject(14, "");
+        this.dataWatcher.addObject(16, "");
     }
 
     @Override
@@ -221,12 +221,12 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
 
     public String getOwnerName()
     {
-        return this.dataWatcher.getWatchableObjectString(14);
+        return this.dataWatcher.getWatchableObjectString(16);
     }
 
     public void setOwner(String owner)
     {
-        this.dataWatcher.updateObject(14, owner);
+        this.dataWatcher.updateObject(16, owner);
     }
 
     /**

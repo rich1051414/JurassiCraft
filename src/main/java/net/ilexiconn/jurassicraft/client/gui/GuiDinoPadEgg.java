@@ -7,7 +7,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -27,16 +26,21 @@ public class GuiDinoPadEgg extends GuiContainer
 	private int guiLeft;
 	private int guiTop;
 
-	public GuiDinoPadEgg(Entity eggToAnalyze)
+	public GuiDinoPadEgg(ContainerDinoPadEgg container)
 	{
-        super(new ContainerDinoPadEgg());
-		if (eggToAnalyze != null)
+        super(container);
+		if (container.creatureToAnalyze != null)
 		{
-			this.egg = (EntityDinoEgg) eggToAnalyze;
+			this.egg = (EntityDinoEgg) container.creatureToAnalyze;
 		} 
 		else 
 		{
 	    	this.egg = (EntityDinoEgg) null;
+            this.mc.thePlayer.closeScreen();
+		}
+		
+		if (this.egg == (EntityDinoEgg) null) 
+		{
             this.mc.thePlayer.closeScreen();
 		}
 	}

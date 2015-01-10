@@ -144,7 +144,7 @@ public class ItemMammalSyringe extends Item
     public boolean itemInteractionForEntity(ItemStack syringe, EntityPlayer player, EntityLivingBase creature)
     {
 
-        if (!player.worldObj.isRemote && !player.capabilities.isCreativeMode)
+        if (!player.capabilities.isCreativeMode)
         {
             if (creature instanceof EntityAnimal && ((EntityAnimal) creature).getGrowingAge() == 0)
             {
@@ -163,7 +163,7 @@ public class ItemMammalSyringe extends Item
                 }
             }
         }
-        else if (!player.worldObj.isRemote && player.capabilities.isCreativeMode && !player.isSneaking())
+        else if (player.capabilities.isCreativeMode && !player.isSneaking())
         {
             if (creature instanceof EntityAnimal && ((EntityAnimal) creature).getGrowingAge() == 0)
             {

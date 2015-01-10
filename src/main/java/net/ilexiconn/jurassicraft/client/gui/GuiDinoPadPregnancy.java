@@ -10,7 +10,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
@@ -35,37 +34,42 @@ public class GuiDinoPadPregnancy extends GuiContainer
     private int xSize;
     private int ySize;
 
-    public GuiDinoPadPregnancy(Entity creatureToAnalyze)
+    public GuiDinoPadPregnancy(ContainerDinoPadPregnancy container)
     {
-        super(new ContainerDinoPadPregnancy());
-		if (creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) creatureToAnalyze).getGrowingAge() == 0)
+        super(container);
+		if (container.creatureToAnalyze instanceof EntityAnimal && ((EntityAnimal) container.creatureToAnalyze).getGrowingAge() == 0)
 		{
-			if (creatureToAnalyze instanceof EntityCow) {
-				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creatureToAnalyze));
+			if (container.creatureToAnalyze instanceof EntityCow) {
+				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) container.creatureToAnalyze));
 				if (cow != null) 
 				{
-					this.creature = (EntityCow) creatureToAnalyze;
+					this.creature = (EntityCow) container.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntityPig) {
-				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creatureToAnalyze));
+			} else if (container.creatureToAnalyze instanceof EntityPig) {
+				EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) container.creatureToAnalyze));
 				if (pig != null) 
 				{
-					this.creature = (EntityPig) creatureToAnalyze;
+					this.creature = (EntityPig) container.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntityHorse) {
-				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creatureToAnalyze));
+			} else if (container.creatureToAnalyze instanceof EntityHorse) {
+				EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) container.creatureToAnalyze));
 				if (horse != null) 
 				{
-					this.creature = (EntityHorse) creatureToAnalyze;
+					this.creature = (EntityHorse) container.creatureToAnalyze;
 				}
-			} else if (creatureToAnalyze instanceof EntitySheep) {
-				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creatureToAnalyze));
+			} else if (container.creatureToAnalyze instanceof EntitySheep) {
+				EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) container.creatureToAnalyze));
 				if (sheep != null) 
 				{
-					this.creature = (EntitySheep) creatureToAnalyze;
+					this.creature = (EntitySheep) container.creatureToAnalyze;
 				}
 			} else {
 		    	this.creature = (EntityAnimal) null;
+	            this.mc.thePlayer.closeScreen();
+			}
+			
+			if (this.creature == (EntityAnimal) null)
+			{
 	            this.mc.thePlayer.closeScreen();
 			}
 		}

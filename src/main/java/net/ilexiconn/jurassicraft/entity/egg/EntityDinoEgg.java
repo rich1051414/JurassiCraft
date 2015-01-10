@@ -28,13 +28,13 @@ import java.util.Random;
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 {
     public Creature creature;
-    public int spawnTime;
+    private String dnaSequence;
+    public int quality;
     public int currentSpawnTime;
+    public int spawnTime;
+    public int rockAmount;
     public boolean froze;
     public boolean dried;
-    public int quality;
-    private String dnaSequence;
-    public int rockAmount;
 
     public EntityDinoEgg(World world)
     {
@@ -332,30 +332,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.dataWatcher.addObject(27, this.rockAmount);
     }
 
-    @Override
-	public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        this.spawnTime = nbt.getInteger("SpawnTime");
-        this.currentSpawnTime = nbt.getInteger("CurrentSpawnTime");
-        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
-        this.froze = nbt.getBoolean("Froze");
-        this.dried = nbt.getBoolean("Dried");
-        this.quality = nbt.getInteger("Quality");
-        this.dnaSequence = nbt.getString("DNASequence");
-    }
-
-    @Override
-	public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        nbt.setInteger("SpawnTime", this.spawnTime);
-        nbt.setInteger("CurrentSpawnTime", this.currentSpawnTime);
-        nbt.setInteger("CreatureID", this.creature.getCreatureID());
-        nbt.setBoolean("Froze", this.froze);
-        nbt.setBoolean("Dried", this.dried);
-        nbt.setInteger("Quality", this.quality);
-        nbt.setString("DNASequence", this.dnaSequence);
-    }
-
     public ResourceLocation getTexture()
     {
         return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + this.creature.getCreatureName() + ".png");
@@ -403,6 +379,30 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
             }
 		}
         return true;
+    }
+
+    @Override
+	public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        nbt.setInteger("SpawnTime", this.spawnTime);
+        nbt.setInteger("CurrentSpawnTime", this.currentSpawnTime);
+        nbt.setInteger("CreatureID", this.creature.getCreatureID());
+        nbt.setBoolean("Froze", this.froze);
+        nbt.setBoolean("Dried", this.dried);
+        nbt.setInteger("Quality", this.quality);
+        nbt.setString("DNASequence", this.dnaSequence);
+    }
+
+    @Override
+	public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        this.spawnTime = nbt.getInteger("SpawnTime");
+        this.currentSpawnTime = nbt.getInteger("CurrentSpawnTime");
+        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
+        this.froze = nbt.getBoolean("Froze");
+        this.dried = nbt.getBoolean("Dried");
+        this.quality = nbt.getInteger("Quality");
+        this.dnaSequence = nbt.getString("DNASequence");
     }
 
     @Override

@@ -10,7 +10,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -32,16 +31,22 @@ public class GuiDinoPad extends GuiContainer
     private int pageNumber;
     private HashMap<Integer, String[]> dinoInfo = new HashMap<Integer, String[]>();
 
-    public GuiDinoPad(Entity creatureToAnalyze)
+    public GuiDinoPad(ContainerDinoPad container)
     {
-        super(new ContainerDinoPad());
-        if (creatureToAnalyze instanceof EntityJurassiCraftTameable)
+        super(container);
+        if (container.creatureToAnalyze instanceof EntityJurassiCraftTameable)
         {
-            this.creature = (EntityJurassiCraftTameable) creatureToAnalyze;
+            this.creature = (EntityJurassiCraftTameable) container.creatureToAnalyze;
             this.xSize = 256;
             this.ySize = 176;
-        } else {
-	    	this.creature = (EntityJurassiCraftTameable) null;
+        } 
+        else 
+        {
+            this.mc.thePlayer.closeScreen();
+		}
+		
+		if (this.creature == null) 
+		{
             this.mc.thePlayer.closeScreen();
 		}
     }
@@ -51,19 +56,21 @@ public class GuiDinoPad extends GuiContainer
     {
         this.buttonList.clear();
         this.dinoInfo.clear();
-
-        for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
+        if (this.creature != null) 
         {
-            this.dinoInfo.put(numberOfPages, this.getCreatureInformation(numberOfPages));
-        }
+        	for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
+            {
+                this.dinoInfo.put(numberOfPages, this.getCreatureInformation(numberOfPages));
+            }
 
-        this.renderRotation = 0.0F;
-        this.pageNumber = 0;
-        this.guiLeft = (int) ((this.width - this.xSize) / 2);
-        this.guiTop = (int) ((this.height - this.ySize) / 2);
-        this.buttonList.add(new GuiButtonDinopad(0, this.guiLeft + (this.xSize - 18) / 2, this.guiTop + 146, 0, 210, 18, 18));
-        this.buttonList.add(new GuiButtonDinopad(1, this.guiLeft + (this.xSize - 18) / 2 - 14, this.guiTop + 146, 36, 210, 12, 18));
-        this.buttonList.add(new GuiButtonDinopad(2, this.guiLeft + (this.xSize - 18) / 2 + 20, this.guiTop + 146, 60, 210, 12, 18));
+            this.renderRotation = 0.0F;
+            this.pageNumber = 0;
+            this.guiLeft = (int) ((this.width - this.xSize) / 2);
+            this.guiTop = (int) ((this.height - this.ySize) / 2);
+            this.buttonList.add(new GuiButtonDinopad(0, this.guiLeft + (this.xSize - 18) / 2, this.guiTop + 146, 0, 210, 18, 18));
+            this.buttonList.add(new GuiButtonDinopad(1, this.guiLeft + (this.xSize - 18) / 2 - 14, this.guiTop + 146, 36, 210, 12, 18));
+            this.buttonList.add(new GuiButtonDinopad(2, this.guiLeft + (this.xSize - 18) / 2 + 20, this.guiTop + 146, 60, 210, 12, 18));
+        }
     }
 
     @Override
@@ -75,7 +82,7 @@ public class GuiDinoPad extends GuiContainer
     @Override
     public void onGuiClosed()
     {
-    	this.creature = (EntityJurassiCraftTameable) null;
+    	this.creature = null;
         super.onGuiClosed();
     }
 
@@ -84,7 +91,6 @@ public class GuiDinoPad extends GuiContainer
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
         {
-	    	this.creature = (EntityJurassiCraftTameable) null;
             this.mc.thePlayer.closeScreen();
         }
     }
@@ -92,73 +98,80 @@ public class GuiDinoPad extends GuiContainer
     @Override
     public void updateScreen()
     {
-        this.renderRotation++;
-        if (!this.creature.isEntityAlive())
+        if (this.creature == null)
         {
-	    	this.creature = (EntityJurassiCraftTameable) null;
+            this.mc.thePlayer.closeScreen();
+        } 
+        else if (!this.creature.isEntityAlive())
+        {
             this.mc.thePlayer.closeScreen();
         }
+        this.renderRotation++;
     }
 
     @Override
     public void actionPerformed(GuiButton button)
     {
-        if (button.id == 0)
-        {
-            this.pageNumber = 0;
-        }
-        if (button.id == 1)
-        {
-            if (this.pageNumber > 0)
-            {
-                this.pageNumber--;
-            }
-            else
-            {
-                this.pageNumber = this.creature.getCreature().getInfoPageCount();
-            }
-        }
-        if (button.id == 2)
-        {
-            if (this.pageNumber < this.creature.getCreature().getInfoPageCount())
-            {
-                this.pageNumber++;
-            }
-            else
+    	if (this.creature != null) {
+    		if (button.id == 0)
             {
                 this.pageNumber = 0;
             }
-        }
+            if (button.id == 1)
+            {
+                if (this.pageNumber > 0)
+                {
+                    this.pageNumber--;
+                }
+                else
+                {
+                    this.pageNumber = this.creature.getCreature().getInfoPageCount();
+                }
+            }
+            if (button.id == 2)
+            {
+                if (this.pageNumber < this.creature.getCreature().getInfoPageCount())
+                {
+                    this.pageNumber++;
+                }
+                else
+                {
+                    this.pageNumber = 0;
+                }
+            }
+    	}
     }
     
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
 	{
-        this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		switch (this.pageNumber)
+        if (this.creature != null)
         {
-            case 0:
-                this.renderEmptyBars();
-                this.renderStatusBars();
+        	this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
+            this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+    		switch (this.pageNumber)
+            {
+                case 0:
+                    this.renderEmptyBars();
+                    this.renderStatusBars();
 
-                if (this.creature.getCreature().getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight())
-                {
-                    this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength()))));
-                }
-                else
-                {
-                    this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight())));
-                }
-
-                this.renderNameGenderStrings();
-                this.renderStatusStrings();
-                this.renderTamedStrings();
-                break;
-            default:
-                this.renderNameGenderStrings();
-                this.renderCreatureInformation(this.pageNumber);
-                break;
+                    if (this.creature.getCreature().getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight())
+                    {
+                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength()))));
+                    }
+                    else
+                    {
+                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight())));
+                    }
+                    this.renderNameGenderStrings();
+                    this.renderStatusStrings();
+                    this.renderTamedStrings();
+                    break;
+                default:
+                    this.renderNameGenderStrings();
+                    this.renderCreatureInformation(this.pageNumber);
+                    break;
+            }
         }
 	}
 
@@ -193,16 +206,16 @@ public class GuiDinoPad extends GuiContainer
 
     private void renderTamedStrings()
     {
-        if (creature.isTamed())
+        if (this.creature.isTamed())
         {
-            if (creature.getCreature().isRidable() && this.creature.isCreatureAdult())
+            if (this.creature.getCreature().isRidable() && this.creature.isCreatureAdult())
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftTameable) creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftTameable) this.creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
                 this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.ridable"), this.guiLeft + 67 - this.fontRendererObj.getStringWidth("Ridable") / 2, this.guiTop + 122, 14737632);
             }
             else
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) creature).getOwnerName()) / 2, this.guiTop + 122, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName()) / 2, this.guiTop + 122, 14737632);
             }
         }
         else
