@@ -123,12 +123,14 @@ public class GuiDinoPadPregnancy extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y)
-    {
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadPregnancy.png"));
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     	if (this.creature != null && this.creature.isEntityAlive()) 
 		{
+			this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 30.0F);
 			if (this.creature instanceof EntityCow) 
 			{
 				EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) this.creature));
@@ -205,14 +207,7 @@ public class GuiDinoPadPregnancy extends GuiContainer
 					this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.pregnancy.dnaQuality") + ": " + sheep.getDNAQuality() + "%", this.guiLeft + 180 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.pregnancy.dnaQuality") + ": " + sheep.getDNAQuality() + "%") / 2, this.guiTop + 104, 14737632);
 				}
 			}
-			this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 30.0F);
 		}
-    }
-    
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
-		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadPregnancy.png"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
 	private void renderCreature(float x, float y, float scale) 

@@ -91,12 +91,14 @@ public class GuiDinoPadEgg extends GuiContainer
 			this.mc.thePlayer.closeScreen();
 		}
 	}
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y)
-    {
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadEgg.png"));
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		if (this.egg != null && this.egg.isEntityAlive()) 
 		{
+			this.renderEgg((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 60.0F);
 			this.fontRendererObj.drawString(StatCollector.translateToLocal("entity." + this.egg.creature.getCreatureName() + ".name"), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("entity." + this.egg.creature.getCreatureName() + ".name")) / 2, this.guiTop + 14, 14737632);
 			if (this.egg.currentSpawnTime >= 0) 
 			{
@@ -127,14 +129,7 @@ public class GuiDinoPadEgg extends GuiContainer
 					this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.egg.dnaQuality") + ": " + this.egg.getDNAQuality() + "%", this.guiLeft + 180 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.egg.dnaQuality") + ": " + this.egg.getDNAQuality() + "%") / 2, this.guiTop + 92, 14737632);
 				}
 			}
-			this.renderEgg((float) (this.guiLeft + 67), (float) (this.guiTop + 108), 60.0F);
 		}
-    }
-    
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
-		this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadEgg.png"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 	
 	private void renderEgg(float x, float y, float scale) 

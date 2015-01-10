@@ -130,10 +130,12 @@ public class GuiDinoPad extends GuiContainer
             }
         }
     }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y)
-    {
+    
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
+	{
+        this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		switch (this.pageNumber)
         {
             case 0:
@@ -158,13 +160,6 @@ public class GuiDinoPad extends GuiContainer
                 this.renderCreatureInformation(this.pageNumber);
                 break;
         }
-    }
-    
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
-	{
-        this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
     private void renderEmptyBars()
