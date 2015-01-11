@@ -55,5 +55,8 @@ public class EntityStegosaur extends EntityJurassiCraftLandProtective implements
     	if (this.worldObj.rand.nextFloat() < 0.1F) {
             this.dropItem(this.getCreature().getSkull(), 1);
     	}
+    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+            this.dropItem(this.getCreature().getSkin(), 1);
+    	}
     }
 }

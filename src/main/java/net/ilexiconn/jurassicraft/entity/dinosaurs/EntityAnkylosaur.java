@@ -56,5 +56,8 @@ public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implement
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
+    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+            this.dropItem(this.getCreature().getSkin(), 1);
+    	}
     }
 }

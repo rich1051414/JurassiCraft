@@ -38,7 +38,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 4
+        "addItemTypes": 10
     },
     {
         "creatureName":"Basilosaurus",

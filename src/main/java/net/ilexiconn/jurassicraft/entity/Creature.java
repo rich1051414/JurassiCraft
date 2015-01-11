@@ -172,12 +172,11 @@ public class Creature
 				this.addSkull();
 				break;
 			case 7:
-				/** DNA + Egg + Meat + Skull + Tooth */
+				/** DNA + Egg + Meat + Skin */
 				this.addDNA();
 				this.addEgg();
 				this.addMeat();
-				this.addSkull();
-				this.addTooth();
+				this.addSkin();
 				break;
 			case 8:
 				/** DNA + Syringe + Meat + Fur */
@@ -185,6 +184,21 @@ public class Creature
 				this.addSyringe();
 				this.addMeat();
 				this.addFur();
+				break;
+			case 9:
+				/** DNA + Egg + Meat + Skull + Skin */
+				this.addDNA();
+				this.addEgg();
+				this.addMeat();
+				this.addSkull();
+				this.addSkin();
+				break;
+			case 10:
+				/** DNA + Syringe + Meat + Skin */
+				this.addDNA();
+				this.addSyringe();
+				this.addMeat();
+				this.addSkin();
 				break;
         }
     }

@@ -38,7 +38,7 @@
         "numberOfInfoPages": 3,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 7
     },
     {
         "creatureName":"Brachiosaur",
@@ -79,7 +79,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
     {
         "creatureName":"Velociraptor",
@@ -120,7 +120,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 7
     },
     {
         "creatureName":"Stegosaur",
@@ -161,7 +161,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
     {
         "creatureName":"Triceratops",
@@ -202,7 +202,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
     {
         "creatureName":"Tyrannosaurus",
@@ -243,7 +243,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
     {
         "creatureName":"Gallimimus",
@@ -325,7 +325,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 7
     },
     {
         "creatureName":"Leaellynasaur",
@@ -407,7 +407,7 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 7
     },
     {
         "creatureName":"Dilophosaurus",
@@ -448,7 +448,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
     {
         "creatureName":"Oviraptor",
@@ -530,7 +530,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 9
     },
 	{
         "creatureName":"Santa",

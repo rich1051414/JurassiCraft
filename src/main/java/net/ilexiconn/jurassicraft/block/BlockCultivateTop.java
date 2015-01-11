@@ -1,7 +1,8 @@
 package net.ilexiconn.jurassicraft.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
@@ -20,9 +21,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCultivateTop extends Block
 {
@@ -169,14 +170,14 @@ public class BlockCultivateTop extends Block
             if (tileEntity instanceof TileCultivate)
             {
                 TileCultivate tileCultivate = (TileCultivate) tileEntity;
-                if (tileCultivate.isUseableByPlayer(player))
+                if (tileCultivate.isUseableByPlayer(player) && !tileCultivate.isHatching())
                 {
                     player.openGui(JurassiCraft.instance, 0, world, x, y - 1, z);
                     return true;
                 }
                 else
                 {
-                    player.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
+                	FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
                     return true;
                 }
             }

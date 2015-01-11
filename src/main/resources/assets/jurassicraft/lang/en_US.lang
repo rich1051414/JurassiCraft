@@ -234,13 +234,26 @@ item.Ammonite_Steak.name=Ammonite Steak
 //Fur
 item.Leptictidium_Fur.name=Leptictidium Fur
 
-//Skin
+//Skins
+item.Ankylosaur_Skin_Male.name=Ankylosaurus Skin
+item.Arsinoitherium_Skin_Male.name=Arsinoitherium Skin
+item.Brachiosaur_Skin_Male.name=Brachiosaurus Skin
+item.Dilophosaurus_Skin_Male.name=Dilophosaurus Skin
+item.Herrerasaur_Skin_Male.name=Herrerasaur Skin
+item.Hypsilophodon_Skin_Male.name=Hypsilophodon Skin
+item.Parasaurolophus_Skin_Male.name=Parasaurolophus Skin
+item.Stegosaur_Skin_Male.name=Stegosaurus Skin
+item.Triceratops_Skin_Male.name=Triceratops Skin
+item.Tylosaurus_Skin_Male.name=Tylosaurus Skin
+item.Tyrannosaurus_Skin_Male.name=Tyrannosaurus Skin
+item.Velociraptor_Skin_Male.name=Velociraptor Skin
 
 //Scales
 
 //Feathers
 
 //Bristles
+item.Velociraptor_Bristles.name=Velociraptor Bristles
 
 //Skull
 item.Brachiosaur_Skull.name=Brachiosaurus Skull
