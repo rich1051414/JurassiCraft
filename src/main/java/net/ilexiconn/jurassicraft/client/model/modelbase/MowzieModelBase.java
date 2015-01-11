@@ -258,7 +258,7 @@ public class MowzieModelBase extends ModelBase
 		}
 		for (int i = 0; i < boxes.length; i++) 
 		{
-			boxes[i].rotateAngleY += 0.01745329251F * this.yawVariation / boxes.length;
+			boxes[i].rotateAngleY += 0.01745329251F * this.yawVariation / (boxes.length - i);
 		}
 	}
 	
@@ -309,7 +309,7 @@ public class MowzieModelBase extends ModelBase
 		}
 		for (int i = 0; i < boxes.length; i++) 
 		{
-			boxes[i].rotateAngleX += 0.01745329251F * this.pitchVariation / boxes.length;
+			boxes[i].rotateAngleX += 0.01745329251F * this.pitchVariation / (boxes.length - i);
 		}
 	}
 }

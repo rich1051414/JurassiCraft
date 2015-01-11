@@ -72,7 +72,7 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
             this.dropItem(this.getCreature().getSteak(), count);
         }
     	if (this.worldObj.rand.nextFloat() < 0.1F) {
-            this.dropItem(this.getCreature().getSkull(), 1);
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
     	}
     }
 }

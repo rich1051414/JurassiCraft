@@ -267,7 +267,7 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.walk(this.rightHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
         this.walk(this.leftHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
 
-        this.chainSwingBuffer(this.tailParts, 90.0F, 30, 3.0F, 5.0F, entity);
+        this.chainSwingBuffer(this.tailParts, 70.0F, 5, 3.0F, 5.0F, entity);
     }
 
     public void resetPose()

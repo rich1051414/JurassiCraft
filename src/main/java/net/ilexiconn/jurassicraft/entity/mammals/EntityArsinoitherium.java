@@ -58,7 +58,7 @@ public class EntityArsinoitherium extends EntityJurassiCraftLandProtective imple
             this.dropItem(this.getCreature().getSteak(), count);
         }
     	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
-            this.dropItem(this.getCreature().getSkin(), 1);
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
     	}
     }
 }
