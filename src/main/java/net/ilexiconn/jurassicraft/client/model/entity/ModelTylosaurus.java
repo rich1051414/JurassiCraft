@@ -609,10 +609,9 @@ public class ModelTylosaurus extends MowzieModelBase
         resetPose();
         EntityTylosaurus tylo = (EntityTylosaurus) entity;
         MowzieModelRenderer[] bodyParts = {this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6};
-		MowzieModelRenderer[] bufferParts = new MowzieModelRenderer[] { this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6 };
         float scaleFactor = 0.3F;
         float mouthOpenDivider = Math.abs(tylo.distanceFromTarget);
-        /*
+        
         if (mouthOpenDivider < 1) mouthOpenDivider = 1;
         Lower_Jaw.rotateAngleX += 1 / mouthOpenDivider;
         chainSwing(bodyParts, 1F * scaleFactor, 0.1F, -3, f, f1);
@@ -622,10 +621,8 @@ public class ModelTylosaurus extends MowzieModelBase
         walk(Right_Front_Flipper, 1 * scaleFactor, 0.3F, false, 0F, 0F, f, f1);
         walk(Left_Back_Flipper, 1 * scaleFactor, 0.3F, false, -1F, 0F, f, f1);
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.3F, false, -1F, 0F, f, f1);
-        */
-		this.chainSwingBuffer(bufferParts, 120.0F, 25, 3.0F, 3.0F, tylo);
-		
-		this.chainWaveBuffer(bufferParts, 180.0F, 100, 1.0F, 3.0F, tylo);
-    }
+        
+		this.chainSwingBuffer(bodyParts, 120.0F, 25, 3.0F, 3.0F, tylo);
+    	}
 
 }
