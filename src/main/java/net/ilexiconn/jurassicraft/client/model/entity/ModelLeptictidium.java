@@ -4,7 +4,6 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 
 /**
  * ModelLeptictidium - RafaMv
@@ -17,6 +16,7 @@ public class ModelLeptictidium extends MowzieModelBase {
     public MowzieModelRenderer rightHand, rightHand2, leftHand, leftHand2;
     public MowzieModelRenderer tail1, tail2, tail3, tail4, tail5;
     private MowzieModelRenderer[] tailParts;
+    private MowzieModelRenderer[] noseParts;
     
     public ModelLeptictidium() {
         this.textureWidth = 64;
@@ -167,9 +167,10 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.tail2.addChild(this.tail3);
         this.tail3.addChild(this.tail4);
         this.tail4.addChild(this.tail5);
-        
-        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
 
+		this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
+		this.noseParts = new MowzieModelRenderer[] { this.snout2, this.snout1 };
+        
         //Corrections
         rightLeg2.rotationPointX = 0;
         leftLeg2.rotationPointX = 0;
@@ -217,82 +218,56 @@ public class ModelLeptictidium extends MowzieModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.resetPose();
         
-            /*f = entity.frame;
-        	f1 = (float) Math.cos(f/20)*0.25F + 0.5F;*/
-            resetPose();
-            float globalSpeed = 0.6F;
-            float height = 12F * f1;
-            
-            MowzieModelRenderer[] noseParts = {this.snout2, this.snout1};
-
-            faceTarget(head1, 2, f3, f4);
-            faceTarget(neck, 2, f3, f4);
-
-            bob(body1, 0.5F * globalSpeed, height, true, f, f1);
-
-            walk(leftLeg1, 1F * globalSpeed, 0.75F, true, 1F, 0.2F, f, f1);
-            walk(rightLeg1, 1F * globalSpeed, 0.75F, true, 0.5F, 0.2F, f, f1);
-            walk(leftLeg2, 1F * globalSpeed, 0.5F, true, 1.5F, 0.1F, f, f1);
-            walk(rightLeg2, 1F * globalSpeed, 0.5F, true, 1F, 0.1F, f, f1);
-            walk(leftLeg3, 1F * globalSpeed, 0.5F, true, 0.5F, 0F, f, f1);
-            walk(rightLeg3, 1F * globalSpeed, 0.5F, true, 1F, 0F, f, f1);
-            walk(leftFoot, 1F * globalSpeed, 0.5F, true, 1F, 0.75F, f, f1);
-            walk(rightFoot, 1F * globalSpeed, 0.5F, true, 0.5F, 0.75F, f, f1);
-
-            walk(body1, 1F * globalSpeed, 0.3F, false, 0.5F, 0F, f, f1);
-            walk(body2, 1F * globalSpeed, 0.5F, true, 1.0F, 0.5F, f, f1);
-            walk(neck, 1F * globalSpeed, 0.3F, true, 0.25F, 0.3F, f, f1);
-            walk(head1, 1F * globalSpeed, 0.3F, false, 0.25F, -0.8F, f, f1);
-
-            walk(rightHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
-            walk(leftHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
-            walk(rightHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
-            walk(leftHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
-            
-            chainWave(tailParts, 1F * globalSpeed, 0.2F, 2.7F, f, f1);
-            chainWave(noseParts, 1F * globalSpeed, -0.5F, 0F, f, f1);
-            flap(earLeft, 1F * globalSpeed, 0.5F, true, 1.0F, 0.8F, f, f1);
-            flap(earRight, 1F * globalSpeed, 0.5F, false, 1.0F, -0.8F, f, f1);
-            
-            //Idle
-            chainWave(tailParts, 0.2F, -0.05F, 2, entity.frame, 1F);
-            chainSwing(tailParts, 0.3F, 0.05F, 3, entity.frame, 1F);
-            walk(neck, 0.2F, 0.1F, false, -1F, 0F, entity.frame, 1F);
-            walk(head1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            flap(earLeft, 0.2F, 0.1F, true, -1.0F, 0F, entity.frame, 1F);
-            flap(earRight, 0.2F, 0.1F, false, -1.0F, 0F, entity.frame, 1F);
-            chainWave(noseParts, 0.2F, -0.1F, 0F, entity.frame, 1F);
-            walk(body2, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            walk(body1, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
-            walk(leftLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            walk(rightLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            walk(rightHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            walk(leftHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
-            walk(rightHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
-            walk(leftHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
-
-/*        float bodyMovement = 0.104719755F * MathHelper.cos(0.1F * entity.frame);
-        float bodyInclination = 0.523598776F * (1.0F - 2.0F * f1);
-
-        this.body1.rotateAngleX += bodyMovement;
-        this.rightLeg2.rotateAngleX -= bodyMovement;
-        this.leftLeg2.rotateAngleX -= bodyMovement;
-        this.body2.rotateAngleX += bodyInclination;
-        this.neck.rotateAngleX -= bodyInclination;
-        this.tail1.rotateAngleX -= 0.25F * bodyInclination;
+        float globalSpeed = 0.6F;
+        float height = 12F * f1;
         
-        this.walk(this.rightLeg1, 0.5F, 1.0F, false, 0F, 0, f, f1);
-        this.walk(this.rightLeg2, 0.5F, 1.0F, false, 0F, 0, f, f1);
-        this.walk(this.rightLeg3, 0.8F, 0.5F, false, 0F, 0, f, f1);
-        
-        this.walk(this.leftLeg1, 0.5F, 1.0F, false, 0F, 0, f, f1);
-        this.walk(this.leftLeg2, 0.5F, 1.0F, false, 0F, 0, f, f1);
-        this.walk(this.leftLeg3, 0.8F, 0.5F, false, 0F, 0, f, f1);
-		
-        this.chainSwing(this.tailParts, 0.1F, 0.05F, 1, entity.frame, 1F);
-        this.chainWave(this.tailParts, 0.1F, -0.05F, 2, entity.frame, 1F);
+        this.faceTarget(this.head1, 2, f3, f4);
+        this.faceTarget(this.neck, 2, f3, f4);
 
-        this.faceTarget(this.head1, 1, f3, f4);*/
+        this.bob(this.body1, 0.5F * globalSpeed, height, true, f, f1);
+
+        this.walk(this.leftLeg1, 1F * globalSpeed, 0.75F, true, 1F, 0.2F, f, f1);
+        this.walk(this.rightLeg1, 1F * globalSpeed, 0.75F, true, 0.5F, 0.2F, f, f1);
+        this.walk(this.leftLeg2, 1F * globalSpeed, 0.5F, true, 1.5F, 0.1F, f, f1);
+        this.walk(this.rightLeg2, 1F * globalSpeed, 0.5F, true, 1F, 0.1F, f, f1);
+        this.walk(this.leftLeg3, 1F * globalSpeed, 0.5F, true, 0.5F, 0F, f, f1);
+        this.walk(this.rightLeg3, 1F * globalSpeed, 0.5F, true, 1F, 0F, f, f1);
+        this.walk(this.leftFoot, 1F * globalSpeed, 0.5F, true, 1F, 0.75F, f, f1);
+        this.walk(this.rightFoot, 1F * globalSpeed, 0.5F, true, 0.5F, 0.75F, f, f1);
+
+        this.walk(this.body1, 1F * globalSpeed, 0.3F, false, 0.5F, 0F, f, f1);
+        this.walk(this.body2, 1F * globalSpeed, 0.5F, true, 1.0F, 0.5F, f, f1);
+        this.walk(this.neck, 1F * globalSpeed, 0.3F, true, 0.25F, 0.3F, f, f1);
+        this.walk(this.head1, 1F * globalSpeed, 0.3F, false, 0.25F, -0.8F, f, f1);
+
+        this.walk(this.rightHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
+        this.walk(this.leftHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
+        this.walk(this.rightHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
+        this.walk(this.leftHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
+        
+        this.chainWave(this.tailParts, 1F * globalSpeed, 0.2F, 2.7F, f, f1);
+        this.chainWave(this.noseParts, 1F * globalSpeed, -0.5F, 0F, f, f1);
+        this.flap(this.earLeft, 1F * globalSpeed, 0.5F, true, 1.0F, 0.8F, f, f1);
+        this.flap(this.earRight, 1F * globalSpeed, 0.5F, false, 1.0F, -0.8F, f, f1);
+        
+        //Idle
+        this.chainWave(this.tailParts, 0.2F, -0.05F, 2, entity.frame, 1F);
+        this.chainSwing(this.tailParts, 0.3F, 0.05F, 3, entity.frame, 1F);
+        this.walk(this.neck, 0.2F, 0.1F, false, -1F, 0F, entity.frame, 1F);
+        this.walk(this.head1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.flap(this.earLeft, 0.2F, 0.1F, true, -1.0F, 0F, entity.frame, 1F);
+        this.flap(this.earRight, 0.2F, 0.1F, false, -1.0F, 0F, entity.frame, 1F);
+        this.chainWave(this.noseParts, 0.2F, -0.1F, 0F, entity.frame, 1F);
+        this.walk(this.body2, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.walk(this.body1, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+        this.walk(this.leftLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.walk(this.rightLeg1, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.walk(this.rightHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.walk(this.leftHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
+        this.walk(this.rightHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+        this.walk(this.leftHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
+
+        this.chainSwingBuffer(this.tailParts, 90.0F, 30, 3.0F, 5.0F, entity);
     }
 
     public void resetPose()
