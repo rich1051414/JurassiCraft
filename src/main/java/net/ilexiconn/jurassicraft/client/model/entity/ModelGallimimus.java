@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 public class ModelGallimimus extends MowzieModelBase
 {
@@ -509,5 +510,7 @@ public class ModelGallimimus extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, galli.frame, 1F);
         chainWave(RightArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
+        
+        this.chainSwingBuffer(TailParts, 70.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
     }
 }

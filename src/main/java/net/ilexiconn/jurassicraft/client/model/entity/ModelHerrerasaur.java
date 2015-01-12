@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaur;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 public class ModelHerrerasaur extends MowzieModelBase
 {
@@ -460,5 +461,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         chainWave(rightArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
+        
+        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
     }
 }

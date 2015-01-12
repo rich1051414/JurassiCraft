@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
 
@@ -609,6 +610,8 @@ public class ModelVelociraptor extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
         chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+        
+        this.chainSwingBuffer(tailParts, 70.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
     
 /*    newfaceTarget(Tail_1, 6, raptor.getRenderYawOffsetChange(), 0);
     newfaceTarget(Tail_2, 6, raptor.getRenderYawOffsetChange(), 0);

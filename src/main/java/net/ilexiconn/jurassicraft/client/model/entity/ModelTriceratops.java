@@ -11,6 +11,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
 
@@ -497,6 +498,7 @@ public class ModelTriceratops extends MowzieModelBase
 
         chainSwing(tailParts, 0.1F, 0.05F, 2, tric.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, tric.frame, 1F);
+        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
 
         //Specialized animations
         Head.rotateAngleZ += Math.cos(tric.frame) * tric.flailDegree.value / 3;

@@ -5,6 +5,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 public class ModelBrachiosaur extends MowzieModelBase
 {
@@ -456,7 +457,6 @@ public class ModelBrachiosaur extends MowzieModelBase
         walk(bottom_front_left_leg, 1F * scaleFactor, 1.5F * animationDegree, false, frontOffset + 2F, -0.2F, f, f1);
         walk(front_left_foot, 1F * scaleFactor, 1.3F * animationDegree, true, frontOffset + 1.5F, 0F, f, f1);
 
-
         //Idle
         walk(body_1, 0.05F, 0.025F, false, 0, 0, brachObama.frame, 1);
         walk(front_right_top_leg, 0.05F, 0.1F, false, 0, 0, brachObama.frame, 1);
@@ -468,5 +468,7 @@ public class ModelBrachiosaur extends MowzieModelBase
         chainWave(neckParts, 0.05F, -0.05F, -4, brachObama.frame, 1);
         chainWave(tailParts, 0.05F, -0.05F, 1, brachObama.frame, 1);
         chainSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame, 1);
+        
+        this.chainSwingBuffer(tailParts2, 70.0F, 5, 0.5F, 5.0F, (EntityLivingBase) entity);
     }
 }

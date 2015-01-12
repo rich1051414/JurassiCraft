@@ -7,6 +7,7 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 public class ModelStegosaur extends MowzieModelBase {
     MowzieModelRenderer waist;
@@ -393,5 +394,6 @@ public class ModelStegosaur extends MowzieModelBase {
 
         chainSwing(tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
+        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
     }
 }

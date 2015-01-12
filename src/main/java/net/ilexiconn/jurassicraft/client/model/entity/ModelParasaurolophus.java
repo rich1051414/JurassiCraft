@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import thehippomaster.AnimationAPI.IAnimatedEntity;
 import thehippomaster.AnimationAPI.client.Animator;
 
@@ -519,6 +520,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         walk(Left_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
 
         chainWave(tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
+        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)

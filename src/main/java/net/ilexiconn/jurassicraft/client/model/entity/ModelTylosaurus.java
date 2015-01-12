@@ -623,6 +623,7 @@ public class ModelTylosaurus extends MowzieModelBase
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.3F, false, -1F, 0F, f, f1);
         
 		this.chainSwingBuffer(bodyParts, 120.0F, 25, 3.0F, 3.0F, tylo);
+		this.chainWaveBuffer(bodyParts, 180.0F, 100, 1.0F, 3.0F, tylo);
     	}
 
 }
