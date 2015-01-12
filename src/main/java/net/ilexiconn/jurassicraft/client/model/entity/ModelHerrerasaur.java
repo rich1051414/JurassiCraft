@@ -462,6 +462,6 @@ public class ModelHerrerasaur extends MowzieModelBase
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
         
-        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
+        this.chainSwingBuffer(tailParts, 50.0F, 5, 3.0F, 4.0F, (EntityLivingBase) entity);
     }
 }

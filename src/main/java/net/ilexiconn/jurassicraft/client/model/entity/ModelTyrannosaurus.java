@@ -429,7 +429,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
 
         chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1F);
-        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
+        this.chainSwingBuffer(tailParts, 60.0F, 5, 1.0F, 5.0F, (EntityLivingBase) entity);
 
         //Specialized animations
         Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;

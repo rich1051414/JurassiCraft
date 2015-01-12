@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -227,6 +228,8 @@ public class MowzieModelBase extends ModelBase
 	 */
 	public void chainSwingBuffer(MowzieModelRenderer[] boxes, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
 	{
+		if (Minecraft.getMinecraft().isGamePaused()) return;
+		
 		if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle) 
 		{
 			this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
@@ -278,6 +281,8 @@ public class MowzieModelBase extends ModelBase
 	 */
 	public void chainWaveBuffer(MowzieModelRenderer[] boxes, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
 	{
+		if (Minecraft.getMinecraft().isGamePaused()) return;
+		
 		if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle) 
 		{
 			this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;

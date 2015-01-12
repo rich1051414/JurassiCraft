@@ -335,7 +335,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
 
         chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
-        this.chainSwingBuffer(tailParts, 70.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
+        this.chainSwingBuffer(tailParts, 65.0F, 4, 2.0F, 5.0F, (EntityLivingBase) entity);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)

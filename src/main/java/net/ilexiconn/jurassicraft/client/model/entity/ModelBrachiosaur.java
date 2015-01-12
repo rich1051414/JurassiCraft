@@ -469,6 +469,6 @@ public class ModelBrachiosaur extends MowzieModelBase
         chainWave(tailParts, 0.05F, -0.05F, 1, brachObama.frame, 1);
         chainSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame, 1);
         
-        this.chainSwingBuffer(tailParts2, 70.0F, 5, 0.5F, 5.0F, (EntityLivingBase) entity);
+        this.chainSwingBuffer(tailParts2, 60.0F, 4, 0.75F, 8.0F, (EntityLivingBase) entity);
     }
 }

@@ -394,6 +394,6 @@ public class ModelStegosaur extends MowzieModelBase {
 
         chainSwing(tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
-        this.chainSwingBuffer(tailParts, 70.0F, 5, 1F, 5.0F, (EntityLivingBase) entity);
+        this.chainSwingBuffer(tailParts, 45.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
     }
 }
