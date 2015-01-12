@@ -51,8 +51,8 @@ entity.Deinotherium.name=Deinotherium
 
 //Reptiles
 entity.Cearadactylus.name=Cearadactylus
-entity.Sarcosuchus.name=Sarcosuchus
 entity.Tylosaurus.name=Tylosaurus
+entity.Deinosuchus.name=Deinosuchus
 
 //Others
 entity.dino_egg.name=Dino Egg
@@ -102,6 +102,7 @@ item.Uintatherium_DNA.name=Uintatherium DNA
 item.Paraceratherium_DNA.name=Paraceratherium DNA
 item.Deinotherium_DNA.name=Deinotherium DNA
 item.Moeritherium_DNA.name=Moeritherium DNA
+item.Deinosuchus_DNA.name=Deinosuchus DNA
 item.Brachiopod_DNA.name=Brachiopod DNA
 item.Ammonite_DNA.name=Ammonite DNA
 
@@ -125,6 +126,7 @@ item.Gallimimus_Egg.name=Gallimimus Egg
 item.Cearadactylus_Egg.name=Cearadactylus Egg
 item.Sarcosuchus_Egg.name=Sarcosuchus Egg
 item.Titanis_Egg.name=Titanis Egg
+item.Deinosuchus_Egg.name=Deinosuchus Egg
 item.Brachiopod_Egg.name=Brachiopod Egg
 item.Ammonite_Egg.name=Ammonite Egg
 
@@ -166,6 +168,7 @@ item.Uintatherium_SpawnEgg.name=Uintatherium Spawn Egg
 item.Paraceratherium_SpawnEgg.name=Paraceratherium Spawn Egg
 item.Deinotherium_SpawnEgg.name=Deinotherium Spawn Egg
 item.Moeritherium_SpawnEgg.name=Moeritherium Spawn Egg
+item.Deinosuchus_SpawnEgg.name=Deinosuchus Spawn Egg
 item.Brachiopod_SpawnEgg.name=Brachiopod Spawn Egg
 item.Ammonite_SpawnEgg.name=Ammonite Spawn Egg
 
@@ -197,6 +200,7 @@ item.Uintatherium_Meat.name=Uintatherium Meat
 item.Paraceratherium_Meat.name=Paraceratherium Meat
 item.Deinotherium_Meat.name=Deinotherium Meat
 item.Moeritherium_Meat.name=Moeritherium Meat
+item.Deinosuchus_Meat.name=Deinosuchus Meat
 item.Brachiopod_Meat.name=Brachiopod Meat
 item.Ammonite_Meat.name=Ammonite Meat
 
@@ -228,6 +232,7 @@ item.Uintatherium_Steak.name=Uintatherium Steak
 item.Paraceratherium_Steak.name=Paraceratherium Steak
 item.Deinotherium_Steak.name=Deinotherium Steak
 item.Moeritherium_Steak.name=Moeritherium Steak
+item.Deinosuchus_Steak.name=Deinosuchus Steak
 item.Brachiopod_Steak.name=Brachiopod Steak
 item.Ammonite_Steak.name=Ammonite Steak
 
@@ -440,7 +445,6 @@ container.pad.infoDilophosaurus.page1=Dilophosaurus
 container.pad.infoTylosaurus.page1=Tylosaurus
 container.pad.infoOviraptor.page1=Oviraptor
 container.pad.infoCearadactylus.page1=Cearadactylus
-container.pad.infoSarcosuchus.page1=Sarcosuchus
 container.pad.infoMammoth.page1=Mammoth
 container.pad.infoArsinoitherium.page1=Arsinoitherium
 container.pad.infoBasilosaurus.page1=Basilosaurus
@@ -449,6 +453,9 @@ container.pad.infoTitanis.page1=Titanis
 container.pad.infoUintatherium.page1=Uintatherium
 container.pad.infoParaceratherium.page1=Paraceratherium
 container.pad.infoDeinotherium.page1=Deinotherium
+container.pad.infoDeinosuchus.page1=Deinosuchus
+container.pad.infoBrachiopod.page1=Brachiopod
+container.pad.infoAmmonite.page1=Ammonite
 
 //Commands
 commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]
