@@ -26,7 +26,6 @@ public class AITyrannosaurusWalkRoar extends AIAnimation
     public void startExecuting()
     {
         super.startExecuting();
-        System.out.println("Walk Roar");
     }
 
     public int getDuration()

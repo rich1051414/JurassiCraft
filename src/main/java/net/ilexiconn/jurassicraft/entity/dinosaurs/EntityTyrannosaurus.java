@@ -62,7 +62,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
 
     public String getLivingSound()
     {
-        int I = rand.nextInt(1) + 1;
+        int I = rand.nextInt(3) + 1;
         if (I == 1 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
