@@ -35,6 +35,10 @@ public class RenderDinoEgg extends Render
         {
             eggModel = new ModelCoelacanthEgg();
         }
+        else if (entity.creature.getCreatureName().toLowerCase().contains("orthacanthus"))
+        {
+            eggModel = new ModelCoelacanthEgg();
+        }
 
         if (!entity.isDead)
         {

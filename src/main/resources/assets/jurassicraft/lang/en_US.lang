@@ -38,6 +38,7 @@ entity.Dilophosaurus.name=Dilophosaurus
 
 //Fish
 entity.Coelacanth.name=Coelacanth
+entity.Orthacanthus.name=Orthacanthus
 
 //Mammals
 entity.Mammoth.name=Mammoth
@@ -105,6 +106,7 @@ item.Moeritherium_DNA.name=Moeritherium DNA
 item.Deinosuchus_DNA.name=Deinosuchus DNA
 item.Brachiopod_DNA.name=Brachiopod DNA
 item.Ammonite_DNA.name=Ammonite DNA
+item.Orthacanthus_DNA.name=Orthacanthus DNA
 
 //Eggs
 item.Brachiosaur_Egg.name=Brachiosaurus Egg
@@ -129,6 +131,7 @@ item.Titanis_Egg.name=Titanis Egg
 item.Deinosuchus_Egg.name=Deinosuchus Egg
 item.Brachiopod_Egg.name=Brachiopod Egg
 item.Ammonite_Egg.name=Ammonite Egg
+item.Orthacanthus_Egg.name=Orthacanthus Egg
 
 //Syringes
 item.Mammoth_Syringe.name=Mammoth Syringe
@@ -171,6 +174,7 @@ item.Moeritherium_SpawnEgg.name=Moeritherium Spawn Egg
 item.Deinosuchus_SpawnEgg.name=Deinosuchus Spawn Egg
 item.Brachiopod_SpawnEgg.name=Brachiopod Spawn Egg
 item.Ammonite_SpawnEgg.name=Ammonite Spawn Egg
+item.Orthacanthus_SpawnEgg.name=Orthacanthus Spawn Egg
 
 //Meats
 item.Ankylosaur_Meat.name=Ankylosaurus Meat
@@ -203,6 +207,7 @@ item.Moeritherium_Meat.name=Moeritherium Meat
 item.Deinosuchus_Meat.name=Deinosuchus Meat
 item.Brachiopod_Meat.name=Brachiopod Meat
 item.Ammonite_Meat.name=Ammonite Meat
+item.Orthacanthus_Meat.name=Orthacanthus Meat
 
 //Cooked Meats
 item.Ankylosaur_Steak.name=Ankylosaurus Steak
@@ -235,6 +240,7 @@ item.Moeritherium_Steak.name=Moeritherium Steak
 item.Deinosuchus_Steak.name=Deinosuchus Steak
 item.Brachiopod_Steak.name=Brachiopod Steak
 item.Ammonite_Steak.name=Ammonite Steak
+item.Orthacanthus_Steak.name=Orthacanthus Steak
 
 //Fur
 item.Leptictidium_Fur.name=Leptictidium Fur
@@ -456,6 +462,7 @@ container.pad.infoDeinotherium.page1=Deinotherium
 container.pad.infoDeinosuchus.page1=Deinosuchus
 container.pad.infoBrachiopod.page1=Brachiopod
 container.pad.infoAmmonite.page1=Ammonite
+container.pad.infoOrthacanthus.page1=Orthacanthus
 
 //Commands
 commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]
