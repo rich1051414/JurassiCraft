@@ -3,12 +3,11 @@ package net.ilexiconn.jurassicraft.client.animation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import thehippomaster.AnimationAPI.AIAnimation;
 
-
-public class AITyrannosaurusRoar extends AIAnimation
+public class AITyrannosaurusWalkRoar extends AIAnimation
 {
     private EntityTyrannosaurus entityTrex;
 
-    public AITyrannosaurusRoar(EntityTyrannosaurus trex)
+    public AITyrannosaurusWalkRoar(EntityTyrannosaurus trex)
     {
         super(trex);
         entityTrex = trex;
@@ -16,7 +15,7 @@ public class AITyrannosaurusRoar extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return 2;
     }
 
     public boolean isAutomatic()
@@ -27,7 +26,7 @@ public class AITyrannosaurusRoar extends AIAnimation
     public void startExecuting()
     {
         super.startExecuting();
-        System.out.println("Stand Roar");
+        System.out.println("Walk Roar");
     }
 
     public int getDuration()

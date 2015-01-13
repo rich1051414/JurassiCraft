@@ -6,6 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
+import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -40,6 +41,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         this.tasks.addTask(3, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
         this.tasks.addTask(4, this.aiSit);
         this.tasks.addTask(2, new AITyrannosaurusRoar(this));
+        this.tasks.addTask(6, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftEntityAIFollowFood(this, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
@@ -60,13 +62,14 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
 
     public String getLivingSound()
     {
-        int I = rand.nextInt(4) + 1;
+        int I = rand.nextInt(1) + 1;
         if (I == 1 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
-            if (animID == 0 && this.getAttackTarget() == null)
+            if (animID == 0)
             {
-                AnimationAPI.sendAnimationPacket(this, 1);
+            	if (this.moveForward == 0) {AnimationAPI.sendAnimationPacket(this, 1);}
+            	else {AnimationAPI.sendAnimationPacket(this, 2);}
             }
             return null;
         }
@@ -104,6 +107,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             stepCount = 60;
         }
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         stepCount -= this.moveForward * 10;
     }
 
