@@ -618,7 +618,6 @@ public class ModelTylosaurus extends MowzieModelBase
         Head.rotationPointX -= 3 * f1 * Math.sin(f * scaleFactor);
         walk(Right_Front_Flipper, 1 * scaleFactor, 0.3F, false, 0F, 0F, f, f1);
         walk(Left_Front_Flipper, 1 * scaleFactor, 0.3F, false, 0F, 0F, f, f1);
-        walk(Right_Front_Flipper, 1 * scaleFactor, 0.3F, false, 0F, 0F, f, f1);
         walk(Left_Back_Flipper, 1 * scaleFactor, 0.3F, false, -1F, 0F, f, f1);
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.3F, false, -1F, 0F, f, f1);
         

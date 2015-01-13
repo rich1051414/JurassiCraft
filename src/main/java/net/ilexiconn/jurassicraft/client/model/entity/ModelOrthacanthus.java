@@ -134,8 +134,8 @@ public class ModelOrthacanthus extends MowzieModelBase
 		this.body5.addChild(this.finBack);
 		this.body4.addChild(this.body5);
 
-		this.tailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3, this.body2, this.body1 };
-		this.shortTailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3 };
+		this.tailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3, this.body2, this.body1, this.head };
+		this.shortTailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3, this.body2, this.body1 };
 		
 		this.head.setInitValuesToCurrentPose();
 		this.mouth.setInitValuesToCurrentPose();
@@ -171,51 +171,53 @@ public class ModelOrthacanthus extends MowzieModelBase
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, orthacanthus);
 		this.resetPose();
-
+		/*f = orthacanthus.frame;
+		f1 = 0.4F;*/
 		float globalSpeed = 0.6F;
-
 		if (orthacanthus.onGround) 
 		{
 			this.head.rotationPointY += 4.0F;
 			this.bob(this.head, 0.3F, 4.0F, true, orthacanthus.frame, 1.0F);
 			this.flap(this.head, 0.3F, 0.5F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
 
-			this.chainWave(this.shortTailParts, 0.4F, 0.2F, 3.0D, orthacanthus.frame, 1.0F);
+			this.chainWave(this.shortTailParts, 0.6F, -0.1F, 3.0D, orthacanthus.frame, 1.0F);
 			this.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
+			this.flap(this.fliperLeft1, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft2, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft3, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft4, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight1, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight2, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight3, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight4, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
 		} 
 		else 
-		{
-			this.walk(this.fliperLeft1, 1.0F * globalSpeed, 0.6F, false, 0.0F, 0.8F, f, f1);
-			this.walk(this.fliperLeft2, 1.0F * globalSpeed, 0.6F, false, 0.0F, 0.8F, f, f1);
-
-			this.walk(this.fliperRight1, 1.0F * globalSpeed, 0.6F, true, 0.0F, 0.8F, f, f1);
-			this.walk(this.fliperRight2, 1.0F * globalSpeed, 0.6F, true, 0.0F, 0.8F, f, f1);
-			
-			this.flap(this.fliperLeft1, 1.0F * globalSpeed, 0.7F, false, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperLeft2, 1.0F * globalSpeed, 0.7F, false, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperLeft3, 1.0F * globalSpeed, 0.7F, false, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperLeft4, 1.0F * globalSpeed, 0.7F, false, 0.0F, 0.8F, f, f1);
+		{	
+			this.flap(this.fliperLeft1, 1.0F * globalSpeed, 0.7F, false, 0.0F, -0.8F, f, f1);
+			this.flap(this.fliperLeft2, 1.0F * globalSpeed, 0.7F, false, -1F, -0.8F, f, f1);
+			this.flap(this.fliperLeft3, 1.0F * globalSpeed, 0.7F, false, -2F, -0.8F, f, f1);
+			this.flap(this.fliperLeft4, 1.0F * globalSpeed, 0.7F, false, -3F, -0.8F, f, f1);
 
 			this.flap(this.fliperRight1, 1.0F * globalSpeed, 0.7F, true, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperRight2, 1.0F * globalSpeed, 0.7F, true, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperRight3, 1.0F * globalSpeed, 0.7F, true, 0.0F, 0.8F, f, f1);
-			this.flap(this.fliperRight4, 1.0F * globalSpeed, 0.7F, true, 0.0F, 0.8F, f, f1);
+			this.flap(this.fliperRight2, 1.0F * globalSpeed, 0.7F, true, -1F, 0.8F, f, f1);
+			this.flap(this.fliperRight3, 1.0F * globalSpeed, 0.7F, true, -2F, 0.8F, f, f1);
+			this.flap(this.fliperRight4, 1.0F * globalSpeed, 0.7F, true, -3F, 0.8F, f, f1);
 
-			this.chainSwing(this.tailParts, 1.0F * globalSpeed, 0.2F, 2.0D, f, f1);
-			this.chainWave(this.tailParts, 1.0F * globalSpeed, 0.2F, 2.0D, f, f1);
-
+			this.chainSwing(this.tailParts, 1.0F * globalSpeed, 0.5F, 3.0D, f, f1);
+	        head.rotationPointX -= -5 * f1 * Math.sin((f + 1) * globalSpeed);
+	        
 			//Idle
 			this.walk(this.mouth, 0.1F, 0.1F, false, 0.0F, 0.1F, orthacanthus.frame, 1.0F);
 			
-			this.flap(this.fliperLeft1, 0.2F, 0.25F, false, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperLeft2, 0.2F, 0.2F, false, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperLeft3, 0.2F, 0.15F, false, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperLeft4, 0.2F, 0.15F, false, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft1, 0.2F, 0.25F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft2, 0.2F, 0.2F, false, -1F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft3, 0.2F, 0.15F, false, -2F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperLeft4, 0.2F, 0.15F, false, -3F, 0.0F, orthacanthus.frame, 1.0F);
 
-			this.flap(this.fliperRight1, 0.2F, 0.25F, true, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperRight2, 0.2F, 0.2F, true, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperRight3, 0.2F, 0.15F, true, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
-			this.flap(this.fliperRight4, 0.2F, 0.15F, true, 1.0F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight1, 0.2F, 0.25F, true, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight2, 0.2F, 0.2F, true, -1F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight3, 0.2F, 0.15F, true, -2F, 0.0F, orthacanthus.frame, 1.0F);
+			this.flap(this.fliperRight4, 0.2F, 0.15F, true, -3F, 0.0F, orthacanthus.frame, 1.0F);
 
 			this.chainWave(this.tailParts, 0.025F, -0.05F, 3.0D, orthacanthus.frame, 1.0F);
 			this.chainSwing(this.tailParts, 0.05F, 0.05F, 1.5D, orthacanthus.frame, 1.0F);
