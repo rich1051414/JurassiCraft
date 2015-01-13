@@ -174,16 +174,7 @@ public class ModelOrthacanthus extends MowzieModelBase
 
 		float globalSpeed = 0.6F;
 
-		if (orthacanthus.onGround) 
-		{
-			this.head.rotationPointY += 4.0F;
-			this.bob(this.head, 0.3F, 4.0F, true, orthacanthus.frame, 1.0F);
-			this.flap(this.head, 0.3F, 0.5F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
-
-			this.chainWave(this.shortTailParts, 0.4F, 0.2F, 3.0D, orthacanthus.frame, 1.0F);
-			this.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
-		} 
-		else 
+		if (orthacanthus.isInWater())
 		{
 			this.walk(this.fliperLeft1, 1.0F * globalSpeed, 0.6F, false, 0.0F, 0.8F, f, f1);
 			this.walk(this.fliperLeft2, 1.0F * globalSpeed, 0.6F, false, 0.0F, 0.8F, f, f1);
@@ -221,7 +212,16 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.chainSwing(this.tailParts, 0.05F, 0.05F, 1.5D, orthacanthus.frame, 1.0F);
 
 			this.chainSwingBuffer(this.tailParts, 60.0F, 5, 3.0F, 5.0F, orthacanthus);
-		}
+		} 
+		else 
+		{
+			this.head.rotationPointY += 4.0F;
+			this.bob(this.head, 0.3F, 4.0F, true, orthacanthus.frame, 1.0F);
+			this.flap(this.head, 0.3F, 0.5F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
+
+			this.chainWave(this.shortTailParts, 0.4F, 0.2F, 3.0D, orthacanthus.frame, 1.0F);
+			this.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
+		} 
 	}
 
 	public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) {
