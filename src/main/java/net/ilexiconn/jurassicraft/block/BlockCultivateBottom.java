@@ -124,7 +124,7 @@ public class BlockCultivateBottom extends BlockContainer
                 }
                 else
                 {
-                	FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 1, world, x, y, z);
+                	player.openGui(JurassiCraft.instance, 1, world, x, y, z);
                     return true;
                 }
             }

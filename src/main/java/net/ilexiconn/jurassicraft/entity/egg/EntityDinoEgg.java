@@ -1,7 +1,11 @@
 package net.ilexiconn.jurassicraft.entity.egg;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -19,16 +23,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 {
     public Creature creature;
-    private String dnaSequence;
     public int quality;
     public int currentSpawnTime;
     public int spawnTime;
@@ -50,13 +50,48 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.spawnTime = spawnTime;
     }
 
-    public EntityDinoEgg(World world, Creature creature, int quality, String dna, int spawnTime, double x, double y, double z)
+	public EntityDinoEgg(World world, Creature creature, int quality, String dna, int spawnTime, double x, double y, double z)
     {
         this(world, creature, spawnTime);
         this.setPosition(x + 0.5F, y, z + 0.5F);
         this.quality = quality;
-        this.dnaSequence = dna;
+        this.setDNASequence(dna);
     }
+
+    public void setCreature(Creature creature) {
+		this.creature = creature;
+	}
+
+    /** Sets the creature DNA quality. */
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+
+    /** Returns the creature DNA quality. */
+    public int getDNAQuality()
+    {
+        return this.quality;
+    }
+
+    /** Sets the creature DNA sequence. */
+    public void setDNASequence(String dna)
+    {
+        this.dataWatcher.updateObject(24, String.valueOf(dna));
+    }
+
+    /** Returns the creature DNA sequence. */
+    public String getDNASequence()
+    {
+        return this.dataWatcher.getWatchableObjectString(24);
+    }
+
+	public void setCurrentSpawnTime(int currentSpawnTime) {
+		this.currentSpawnTime = currentSpawnTime;
+	}
+
+	public void setSpawnTime(int spawnTime) {
+		this.spawnTime = spawnTime;
+	}
 
     public boolean attackEntityFrom(DamageSource damage, float amount)
     {
@@ -243,7 +278,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         if (dinoToSpawn instanceof EntityJurassiCraftCreature)
                         {
                         	EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
-                        	baby.setGenetics(this.quality, this.dnaSequence);
+                        	baby.setGenetics(this.quality, this.getDNASequence());
                         	if (dinoToSpawn instanceof EntityJurassiCraftTameable && ((EntityJurassiCraftTameable) baby).canBeTamedUponSpawning()) {
                         		EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
                             	if (owner != null) {
@@ -254,7 +289,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                             }
                             baby.setPosition(this.posX, this.posY, this.posZ);
                             this.worldObj.spawnEntityInWorld(baby);
-  //                          baby.setNoGrowth();
                             this.currentSpawnTime = 0;
                             this.setDead();
                         }
@@ -327,6 +361,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     @Override
     protected void entityInit()
     {
+        this.dataWatcher.addObject(24, "");
         this.dataWatcher.addObject(25, 0);
         this.dataWatcher.addObject(26, 0);
         this.dataWatcher.addObject(27, this.rockAmount);
@@ -345,21 +380,6 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         return 0;
     }
 
-    public boolean isHatchingDone()
-    {
-        return (this.currentSpawnTime >= this.spawnTime);
-    }
-
-    public int getDNAQuality()
-    {
-        return this.quality;
-    }
-
-    public String getDNASequence()
-    {
-        return this.dnaSequence;
-    }
-
     @Override
     public boolean interactFirst(EntityPlayer player)
     {
@@ -369,7 +389,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
             if (!player.worldObj.isRemote) {
                 NBTTagCompound compound = new NBTTagCompound();
                 compound.setInteger("EggQuality", this.quality);
-                compound.setString("EggDNA", this.dnaSequence);
+                compound.setString("EggDNA", this.getDNASequence());
                 itemStack.setTagCompound(compound);
                 if (player.inventory.addItemStackToInventory(itemStack))
                 {
@@ -384,36 +404,40 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     @Override
 	public void writeEntityToNBT(NBTTagCompound nbt)
     {
+        nbt.setInteger("CreatureID", this.creature.getCreatureID());
+        nbt.setString("DNASequence", this.getDNASequence());
+        nbt.setInteger("Quality", this.quality);
         nbt.setInteger("SpawnTime", this.spawnTime);
         nbt.setInteger("CurrentSpawnTime", this.currentSpawnTime);
-        nbt.setInteger("CreatureID", this.creature.getCreatureID());
         nbt.setBoolean("Froze", this.froze);
         nbt.setBoolean("Dried", this.dried);
-        nbt.setInteger("Quality", this.quality);
-        nbt.setString("DNASequence", this.dnaSequence);
     }
 
     @Override
 	public void readEntityFromNBT(NBTTagCompound nbt)
     {
+        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
+        this.setDNASequence(nbt.getString("DNASequence"));
+        this.setQuality(nbt.getInteger("Quality"));
         this.spawnTime = nbt.getInteger("SpawnTime");
         this.currentSpawnTime = nbt.getInteger("CurrentSpawnTime");
-        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
         this.froze = nbt.getBoolean("Froze");
         this.dried = nbt.getBoolean("Dried");
-        this.quality = nbt.getInteger("Quality");
-        this.dnaSequence = nbt.getString("DNASequence");
     }
 
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
         buffer.writeInt(this.creature.getCreatureID());
+        buffer.writeInt(this.quality);
+        buffer.writeInt(this.spawnTime);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
     	this.creature = CreatureManager.getCreatureFromId(additionalData.readInt());
+    	this.quality = additionalData.readInt();
+    	this.spawnTime = additionalData.readInt();
     }
 }

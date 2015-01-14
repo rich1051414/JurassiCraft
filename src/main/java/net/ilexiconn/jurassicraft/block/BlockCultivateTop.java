@@ -177,7 +177,7 @@ public class BlockCultivateTop extends Block
                 }
                 else
                 {
-                	FMLClientHandler.instance().getClient().thePlayer.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
+                	player.openGui(JurassiCraft.instance, 1, world, x, y - 1, z);
                     return true;
                 }
             }

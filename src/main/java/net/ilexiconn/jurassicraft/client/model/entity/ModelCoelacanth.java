@@ -122,10 +122,10 @@ public class ModelCoelacanth extends MowzieModelBase
     	super.setRotationAngles(f, f1, f2, f3, f4, f5, coelacanth);
     	this.resetPose();
 
-		if (coelacanth.isInWater())
+		if (coelacanth.isAirBorne || coelacanth.isInWater())
 		{
 			this.droppingTimer.decreaseTimer();
-			this.headTop.rotateAngleZ = 1.57079633F * this.droppingTimer.getAnimationProgress();
+			this.headTop.rotateAngleZ = 1.57079633F * this.droppingTimer.getAnimationProgressSinSqrt();
 			
 			this.walk(this.sideFinLeft, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
 			this.walk(this.sideFinRight, 0.6F, 0.6F, true, 0.0F, 0.8F, f, f1);
@@ -149,9 +149,11 @@ public class ModelCoelacanth extends MowzieModelBase
 		} 
 		else 
 		{
+			float droppingProgress = this.droppingTimer.getAnimationProgressSinSqrt();
+			
 			this.droppingTimer.increaseTimer();
-			this.headTop.rotateAngleZ = 1.57079633F * this.droppingTimer.getAnimationProgress();
-			this.headTop.rotationPointY += 4.0F * this.droppingTimer.getAnimationProgress();
+			this.headTop.rotateAngleZ = 1.57079633F * droppingProgress;
+			this.headTop.rotationPointY += 4.0F * droppingProgress;
 
 			this.bob(this.headTop, 0.3F, 4.0F, true, coelacanth.frame, 1.0F);
 			

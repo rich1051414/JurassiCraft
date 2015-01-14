@@ -35,11 +35,10 @@ public class GuiDinoPadEgg extends GuiContainer
 		} 
 		else 
 		{
-	    	this.egg = (EntityDinoEgg) null;
             this.mc.thePlayer.closeScreen();
 		}
 		
-		if (this.egg == (EntityDinoEgg) null) 
+		if (this.egg == null) 
 		{
             this.mc.thePlayer.closeScreen();
 		}
@@ -65,7 +64,7 @@ public class GuiDinoPadEgg extends GuiContainer
 	@Override
 	public void onGuiClosed() 
 	{
-    	this.egg = (EntityDinoEgg) null;
+    	this.egg = null;
 		super.onGuiClosed();
 	}
 
@@ -74,7 +73,6 @@ public class GuiDinoPadEgg extends GuiContainer
 	{
 		if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode()) 
 		{
-	    	this.egg = (EntityDinoEgg) null;
 			this.mc.thePlayer.closeScreen();
 		}
 	}
@@ -87,11 +85,9 @@ public class GuiDinoPadEgg extends GuiContainer
 			this.renderRotation++;
 			if (!this.egg.isEntityAlive()) 
 			{
-		    	this.egg = (EntityDinoEgg) null;
 				this.mc.thePlayer.closeScreen();
 			}
 		} else {
-	    	this.egg = (EntityDinoEgg) null;
 			this.mc.thePlayer.closeScreen();
 		}
 	}
