@@ -14,13 +14,13 @@ public class MowzieModelBase extends ModelBase
 	/** Store every MowzieModelRenderer in this array */
 	protected MowzieModelRenderer[] parts;
 	/** Used to delay the tail animation when the entity rotates. */
-	protected int yawTimer;
+	private int yawTimer;
 	/** Rotation amount (rotateY) of the tail buffer. Added when the entity rotates. */
-	protected float yawVariation;
+	private float yawVariation;
 	/** Used to delay the tail animation when the entity rotates. */
-	protected int pitchTimer;
+	private int pitchTimer;
 	/** Rotation amount (rotateY) of the tail buffer. Added when the entity rotates. */
-	protected float pitchVariation;
+	private float pitchVariation;
 
 	/**
 	 * Saves the initial rotate angles and initial rotation points.

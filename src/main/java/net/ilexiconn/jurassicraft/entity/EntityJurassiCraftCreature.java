@@ -237,7 +237,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
             else
             {
-                this.setHalfOfTheCreatureSize(this.getXZBoundingBox() / 2.0F, this.getYBouningBox() / 2.0F);
+                this.setCreatureSize(0.8F * this.getXZBoundingBox(), 0.8F * this.getYBouningBox());
                 this.setCreatureScale();
             }
             this.heal((float) (this.getCreatureHealth() - this.prevHealth));
@@ -286,15 +286,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected final void setCreatureSize(float xzBoundingBox, float yBouningBox)
     {
         super.setSize(xzBoundingBox, yBouningBox);
-    }
-
-    /**
-     * Sets a new bounding box for the this.creature depending on its status. This is
-     * the half of the original BB, to better fit in combat
-     */
-    protected final void setHalfOfTheCreatureSize(float xzBoundingBox, float yBouningBox)
-    {
-        super.setSize(xzBoundingBox / 2.0F, yBouningBox / 2.0F);
     }
 
     /** Returns the scale of the this.creature. */
