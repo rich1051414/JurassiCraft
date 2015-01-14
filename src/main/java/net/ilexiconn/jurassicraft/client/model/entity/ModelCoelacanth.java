@@ -90,7 +90,7 @@ public class ModelCoelacanth extends MowzieModelBase
 		this.tail1.addChild(this.tail2);
 		this.tail2.addChild(this.tailFin);
 		
-		this.bodyParts = new MowzieModelRenderer[] { this.tail2, this.tail1, this.body };
+		this.bodyParts = new MowzieModelRenderer[] { this.tail2, this.tail1, this.body, this.headTop };
 		
 		this.headTop.setInitValuesToCurrentPose();
 		this.headBottom.setInitValuesToCurrentPose();
@@ -119,19 +119,19 @@ public class ModelCoelacanth extends MowzieModelBase
     {
     	super.setRotationAngles(f, f1, f2, f3, f4, f5, coelacanth);
     	this.resetPose();
-
 		if (coelacanth.isAirBorne || coelacanth.isInWater())
 		{
 			coelacanth.droppingTimer.decreaseTimer();
 			this.headTop.rotateAngleZ = 1.57079633F * coelacanth.droppingTimer.getAnimationProgressSinSqrt();
 			
-			this.walk(this.sideFinLeft, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
-			this.walk(this.sideFinRight, 0.6F, 0.6F, true, 0.0F, 0.8F, f, f1);
+			this.walk(this.sideFinLeft, 0.6F, 0.6F, true, 0.0F, 0.8F, f, f1);
+			this.walk(this.sideFinRight, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
 			
-			this.flap(this.sideFinLeft, 0.6F, 0.7F, false, 0.0F, 0.8F, f, f1);
-			this.flap(this.sideFinRight, 0.6F, 0.6F, true, 0.0F, 0.8F, f, f1);
+			this.flap(this.sideFinLeft, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
+			this.flap(this.sideFinRight, 0.6F, 0.6F, true, 0.0F, -0.8F, f, f1);
 			
 			this.chainSwing(this.bodyParts, 0.6F, 0.75F, 3.0D, f, f1);
+			headTop.rotationPointX -= -4 * f1 * Math.sin((f + 1) * 0.6);
 			
 			//Idle
 			this.bob(this.headTop, 0.04F, 2.0F, false, coelacanth.frame, 1.0F);
@@ -142,7 +142,7 @@ public class ModelCoelacanth extends MowzieModelBase
 			this.flap(this.sideFinRight, 0.2F, 0.25F, true, 1.0F, 0.0F, coelacanth.frame, 1.0F);
 			this.flap(this.bottomFinRight, 0.1F, 0.075F, true, 1.0F, 0.0F, coelacanth.frame, 1.0F);
 
-			this.chainSwing(this.bodyParts, 0.05F, 0.075F, 1.5D, coelacanth.frame, 1.0F);
+			this.chainSwing(this.bodyParts, 0.05F, -0.075F, 1.5D, coelacanth.frame, 1.0F);
 			coelacanth.tailBuffer.chainSwingBuffer(this.bodyParts, 60.0F, 5, 3.5F, 5.0F, coelacanth);
 		} 
 		else 
@@ -154,11 +154,13 @@ public class ModelCoelacanth extends MowzieModelBase
 			this.headTop.rotationPointY += 4.0F * droppingProgress;
 
 			this.bob(this.headTop, 0.3F, 4.0F, true, coelacanth.frame, 1.0F);
+			headTop.rotateAngleY += 0.3 * Math.cos((coelacanth.frame + 1) * 0.6F);
+			body.rotateAngleY -= 0.3 * Math.cos((coelacanth.frame + 1) * 0.6F);
 			
-			this.flap(this.sideFinLeft, 0.6F, 0.25F, false, 1.0F, 1.0F, coelacanth.frame, 1.0F);
-			this.flap(this.sideFinRight, 0.6F, 0.25F, true, 1.0F, -1.0F, coelacanth.frame, 1.0F);
+			this.flap(this.sideFinLeft, 1.2F, 0.25F, false, 1.0F, 1.0F, coelacanth.frame, 1.0F);
+			this.flap(this.sideFinRight, 1.2F, 0.25F, true, 1.0F, -1.0F, coelacanth.frame, 1.0F);
 			
-			this.chainSwing(this.bodyParts, 0.6F, 0.15F, 3.0D, coelacanth.frame, 1.0F);
+			this.chainSwing(this.bodyParts, 0.6F, 0.16F, 3.0D, coelacanth.frame, 1.0F);
 		}
     }
 
