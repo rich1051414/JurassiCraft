@@ -280,14 +280,15 @@ public class ModelTyrannosaurus extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTyrannosaurus trex)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        setToInitPose();
-        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
-/*    	f = trex.frame;
-//        f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
-    	f1 = 0.5F;*/
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, trex);
+		setToInitPose();
+		/*
+		 * f = trex.frame;
+		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
+		 * f1 = 0.5F;
+		 */
         float globalSpeed = 0.45F;
         float globalDegree = 0.4F;
         float height = 1F;
@@ -349,7 +350,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
 
         chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1F);
-        this.chainSwingBuffer(tailParts, 60.0F, 5, 1.0F, 5.0F, (EntityLivingBase) entity);
+        trex.tailBuffer.chainSwingBuffer(tailParts, 60.0F, 5, 1.0F, 5.0F, trex);
 
         //Specialized animations
         Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
@@ -359,7 +360,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update(entity);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
 
         animator.setAnimation(1);
         animator.startPhase(15);

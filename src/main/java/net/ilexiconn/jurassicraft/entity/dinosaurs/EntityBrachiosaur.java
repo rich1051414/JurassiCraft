@@ -5,6 +5,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -18,6 +19,8 @@ import net.minecraft.world.World;
 
 public class EntityBrachiosaur extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public EntityBrachiosaur(World world)
     {
         super(world, CreatureManager.classToCreature(EntityBrachiosaur.class), 1);

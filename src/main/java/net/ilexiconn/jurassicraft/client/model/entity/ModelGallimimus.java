@@ -45,6 +45,10 @@ public class ModelGallimimus extends MowzieModelBase
     MowzieModelRenderer Neck_4;
     MowzieModelRenderer Neck_5;
     MowzieModelRenderer HeadJoint;
+    MowzieModelRenderer[] NeckParts;
+    MowzieModelRenderer[] TailParts;
+    MowzieModelRenderer[] RightArmParts;
+    MowzieModelRenderer[] LeftArmParts;
 
     public ModelGallimimus()
     {
@@ -313,6 +317,11 @@ public class ModelGallimimus extends MowzieModelBase
         Foot_Left.offsetY += 0.15;
         Foot_Right.offsetY += 0.15;
 
+		NeckParts = new MowzieModelRenderer[] { this.Head, this.Neck_5, this.Neck_4, this.Neck_3, this.Neck_2, this.Neck_1 };
+		TailParts = new MowzieModelRenderer[] { this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2 };
+		RightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
+		LeftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
+
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
         Left_Calf_1.setInitValuesToCurrentPose();
@@ -354,7 +363,7 @@ public class ModelGallimimus extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
         //    Left_Upper_Foot.render(f5);
         //    Right_Upper_Foot.render(f5);
         //    Left_Calf_1.render(f5);
@@ -439,11 +448,10 @@ public class ModelGallimimus extends MowzieModelBase
         HeadJoint.setCurrentPoseToInitValues();
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityGallimimus galli)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-        EntityGallimimus galli = (EntityGallimimus) entity;
-		resetPose();
+		this.resetPose();
 		/*
 		f = galli.frame; 
 		f1 = 1F;
@@ -451,11 +459,6 @@ public class ModelGallimimus extends MowzieModelBase
         float scaleFactor = 0.9F;
         float height = 2.5F * f1;
         float legDelay = -0.1F;
-
-        MowzieModelRenderer[] NeckParts = {this.Head, this.Neck_5, this.Neck_4, this.Neck_3, this.Neck_2, this.Neck_1};
-        MowzieModelRenderer[] TailParts = {this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2};
-        MowzieModelRenderer[] RightArmParts = {this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
-        MowzieModelRenderer[] LeftArmParts = {this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
 
         Body_1.rotationPointY -= 2;
         Left_Thigh.rotationPointY -= 2;
@@ -505,6 +508,6 @@ public class ModelGallimimus extends MowzieModelBase
         chainWave(RightArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         
-        this.chainSwingBuffer(TailParts, 50.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
+        galli.tailBuffer.chainSwingBuffer(TailParts, 50.0F, 5, 3.0F, 5.0F, galli);
     }
 }

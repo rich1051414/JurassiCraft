@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.fish;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntitySwimming;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -12,6 +13,8 @@ import net.minecraft.world.World;
 
 public class EntityOrthacanthus extends EntitySwimming implements IFish, IPiscivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public EntityOrthacanthus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityOrthacanthus.class));

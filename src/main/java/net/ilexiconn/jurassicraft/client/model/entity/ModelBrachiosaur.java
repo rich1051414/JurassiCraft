@@ -5,11 +5,9 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
 public class ModelBrachiosaur extends MowzieModelBase
 {
-    //fields
     MowzieModelRenderer hips;
     MowzieModelRenderer body_1;
     MowzieModelRenderer body_2;
@@ -43,6 +41,9 @@ public class ModelBrachiosaur extends MowzieModelBase
     MowzieModelRenderer right_back_foot;
     MowzieModelRenderer nose;
     MowzieModelRenderer headJoint;
+    MowzieModelRenderer[] neckParts;
+    MowzieModelRenderer[] tailParts;
+    MowzieModelRenderer[] tailParts2;
 
     public ModelBrachiosaur()
     {
@@ -300,6 +301,10 @@ public class ModelBrachiosaur extends MowzieModelBase
         tail4.setRotationPoint(0, -6, 15);
         tail5.setRotationPoint(0, 1, 20);
 
+        this.neckParts = new MowzieModelRenderer[] {this.head, this.neck7, this.neck6, this.neck5, this.neck4, this.neck3, this.neck2, this.neck1};
+        this.tailParts = new MowzieModelRenderer[] {this.tail5, this.tail4, this.tail3};
+        this.tailParts2 = new MowzieModelRenderer[] {this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+        
         hips.setInitValuesToCurrentPose();
         body_1.setInitValuesToCurrentPose();
         body_2.setInitValuesToCurrentPose();
@@ -338,39 +343,39 @@ public class ModelBrachiosaur extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        //        hips.render(f5);
-        body_1.render(f5);
-        //        body_2.render(f5);
-        //        body_3.render(f5);
-        top_leg_left.render(f5);
-        //    bottom_leg_left.render(f5);
-        //    left_back_foot.render(f5);
-        //        front_left_top_leg.render(f5);
-        //    bottom_front_left_leg.render(f5);
-        //    front_left_foot.render(f5);
-        //        tail1.render(f5);
-        //        tail2.render(f5);
-        //        tail3.render(f5);
-        //        tail4.render(f5);
-        //        tail5.render(f5);
-        //        neck1.render(f5);
-        //        neck2.render(f5);
-        //       neck3.render(f5);
-        //       neck4.render(f5);
-        //       neck5.render(f5);
-        //       neck6.render(f5);
-        //        neck7.render(f5);
-        //       head.render(f5);
-        //        snout.render(f5);
-        //        jaw.render(f5);
-        //        front_right_top_leg.render(f5);
-        //    bottom_front_right_leg.render(f5);
-        //    front_right_foot.render(f5);
-        top_leg_right.render(f5);
-        //    bottom_leg_right.render(f5);
-        //    right_back_foot.render(f5);
-        //        nose.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityBrachiosaur) entity);
+		//        hips.render(f5);
+		body_1.render(f5);
+		//        body_2.render(f5);
+		//        body_3.render(f5);
+		top_leg_left.render(f5);
+		//    bottom_leg_left.render(f5);
+		//    left_back_foot.render(f5);
+		//        front_left_top_leg.render(f5);
+		//    bottom_front_left_leg.render(f5);
+		//    front_left_foot.render(f5);
+		//        tail1.render(f5);
+		//        tail2.render(f5);
+		//        tail3.render(f5);
+		//        tail4.render(f5);
+		//        tail5.render(f5);
+		//        neck1.render(f5);
+		//        neck2.render(f5);
+		//       neck3.render(f5);
+		//       neck4.render(f5);
+		//       neck5.render(f5);
+		//       neck6.render(f5);
+		//        neck7.render(f5);
+		//       head.render(f5);
+		//        snout.render(f5);
+		//        jaw.render(f5);
+		//        front_right_top_leg.render(f5);
+		//    bottom_front_right_leg.render(f5);
+		//    front_right_foot.render(f5);
+		top_leg_right.render(f5);
+		//    bottom_leg_right.render(f5);
+		//    right_back_foot.render(f5);
+		//        nose.render(f5);
     }
 
     private void resetPose()
@@ -417,16 +422,12 @@ public class ModelBrachiosaur extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityBrachiosaur brachObama)
     {
-        EntityBrachiosaur brachObama = (EntityBrachiosaur) entity;
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-        resetPose();
+        this.resetPose();
         /*f = brachObama.frame;
         f1 = 0.2F;*/
-        MowzieModelRenderer[] neckParts = {this.head, this.neck7, this.neck6, this.neck5, this.neck4, this.neck3, this.neck2, this.neck1};
-        MowzieModelRenderer[] tailParts = {tail5, tail4, tail3};
-        MowzieModelRenderer[] tailParts2 = {tail5, tail4, tail3, tail2, tail1};
         
         float scaleFactor = 0.2F;
         float height = 1.7F;
@@ -469,6 +470,6 @@ public class ModelBrachiosaur extends MowzieModelBase
         chainWave(tailParts, 0.05F, -0.05F, 1, brachObama.frame, 1);
         chainSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame, 1);
         
-        this.chainSwingBuffer(tailParts2, 60.0F, 4, 0.75F, 8.0F, (EntityLivingBase) entity);
+        brachObama.tailBuffer.chainSwingBuffer(tailParts2, 60.0F, 4, 0.75F, 8.0F, brachObama);
     }
 }

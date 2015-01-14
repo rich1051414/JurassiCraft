@@ -5,6 +5,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
@@ -18,6 +19,8 @@ import net.minecraft.world.World;
 
 public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements IMammal, IHerbivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public EntityLeptictidium(World world)
     {
         super(world, CreatureManager.classToCreature(EntityLeptictidium.class));

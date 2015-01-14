@@ -6,6 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITriceratopsCharge;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -24,6 +25,8 @@ import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityTriceratops extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public int timeSinceCharge = 0;
     public boolean charging = false;
     public ControlledParam flailDegree = new ControlledParam(0F, 0F, 1F, 0F);

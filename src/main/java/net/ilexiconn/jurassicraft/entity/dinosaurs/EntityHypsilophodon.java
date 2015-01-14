@@ -6,6 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIHypsilophodonScratchHead;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -20,6 +21,8 @@ import net.minecraft.world.World;
 
 public class EntityHypsilophodon extends EntityJurassiCraftLandCoward implements IDinosaur, IHerbivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public EntityHypsilophodon(World world)
     {
         super(world, CreatureManager.classToCreature(EntityHypsilophodon.class));

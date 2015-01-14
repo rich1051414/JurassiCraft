@@ -205,7 +205,7 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.chainWave(this.tailParts, 0.025F, -0.05F, 3.0D, orthacanthus.frame, 1.0F);
 			this.chainSwing(this.tailParts, 0.05F, 0.05F, 1.5D, orthacanthus.frame, 1.0F);
 
-			this.chainSwingBuffer(this.tailParts, 60.0F, 5, 3.0F, 5.0F, orthacanthus);
+			orthacanthus.tailBuffer.chainSwingBuffer(this.tailParts, 60.0F, 5, 3.0F, 5.0F, orthacanthus);
 		}
 		else
 		{
@@ -213,16 +213,18 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.bob(this.head, 0.3F, 4.0F, true, orthacanthus.frame, 1.0F);
 			this.flap(this.head, 0.3F, 0.5F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
 
-			this.chainWave(this.shortTailParts, 0.6F, -0.1F, 3.0D, orthacanthus.frame, 1.0F);
-			this.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
 			this.flap(this.fliperLeft1, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperLeft2, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperLeft3, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperLeft4, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
+			
 			this.flap(this.fliperRight1, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperRight2, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperRight3, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
 			this.flap(this.fliperRight4, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
+
+			this.chainWave(this.shortTailParts, 0.6F, -0.1F, 3.0D, orthacanthus.frame, 1.0F);
+			orthacanthus.tailBuffer.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
 		} 
 	}
 

@@ -5,6 +5,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
 /**
+ * This is a buffer used to delay a chain of parented boxes by using the yaw and pitch 
+ * of the entity.
+ * 
  * @author RafaMv
  */
 public class ChainBuffer

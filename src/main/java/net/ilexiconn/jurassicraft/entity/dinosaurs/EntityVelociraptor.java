@@ -8,6 +8,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -24,6 +25,8 @@ import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public boolean leaping = false;
     public int timeSinceLeap;
     public int texid;
