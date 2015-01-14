@@ -62,7 +62,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
 
     public String getLivingSound()
     {
-        int I = rand.nextInt(3) + 1;
+        int I = rand.nextInt(4) + 1;
         if (I == 1 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
@@ -108,7 +108,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         }
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        stepCount -= this.moveForward * 10;
+        stepCount -= this.moveForward * 9.5;
     }
 
     @Override
