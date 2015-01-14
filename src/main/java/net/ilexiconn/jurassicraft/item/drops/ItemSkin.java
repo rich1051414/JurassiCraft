@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.item.drops;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
@@ -10,15 +10,17 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemSkin extends ItemGenericDNASource
 {
 	@SideOnly(Side.CLIENT)
-	IIcon[] icons = new IIcon[2];
+	public IIcon maleIcon;
+
+	@SideOnly(Side.CLIENT)
+	public IIcon femaleIcon;
 	
     public ItemSkin(String name)
     {
@@ -42,7 +44,7 @@ public class ItemSkin extends ItemGenericDNASource
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int i)
 	{
-		return this.icons[i];
+		return i == 0 ? this.maleIcon : this.femaleIcon;
 	}
 	
 	@Override
@@ -57,7 +59,7 @@ public class ItemSkin extends ItemGenericDNASource
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iIconRegister)
     {
-		this.icons[0] = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
-		//this.icons[1] = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
+		this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
+		//this.femaleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
     }
 }
