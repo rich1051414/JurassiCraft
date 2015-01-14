@@ -175,6 +175,7 @@ public class ModelOrthacanthus extends MowzieModelBase
 		f1 = 0.4F;*/
 		float globalSpeed = 0.6F;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (orthacanthus.onGround) 
 		{
 			this.head.rotationPointY += 4.0F;
@@ -199,6 +200,8 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.flap(this.fliperLeft3, 1.0F * globalSpeed, 0.7F, false, -2F, -0.8F, f, f1);
 			this.flap(this.fliperLeft4, 1.0F * globalSpeed, 0.7F, false, -3F, -0.8F, f, f1);
 =======
+=======
+>>>>>>> FETCH_HEAD
 
 		if (orthacanthus.isInWater())
 		{
