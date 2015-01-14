@@ -3,15 +3,22 @@ package net.ilexiconn.jurassicraft.client.model.modelbase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.MathHelper;
 
+/**
+ * This is a timer that can be used to easily animate models between poses. You
+ * have to set the number of ticks between poses, increase or decrease the
+ * timer, and get the percentage using a specific function.
+ * 
+ * @author RafaMv
+ */
 public class ControlledAnimation
 {
 	/** It is the timer used to animate */
-	protected double timer;
+	private double timer;
 	/**
 	 * It is the limit time, the maximum value that the timer can be. I
 	 * represents the duration of the animation
 	 */
-	protected double limitTime;
+	private double limitTime;
 
 	public ControlledAnimation(int limitTime)
 	{
@@ -86,7 +93,7 @@ public class ControlledAnimation
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
 	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(4-8*x)). It
-	 * is quite uniform and needs if statements.
+	 * is quite uniform but slow, and needs if statements.
 	 */
 	public float getAnimationProgressSmooth()
 	{
@@ -107,9 +114,9 @@ public class ControlledAnimation
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
 	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(6-12*x)). It
-	 * is quite uniform.
+	 * is quite uniform, but fast.
 	 */
-	public float getAnimationProgressSharp()
+	public float getAnimationProgressSteep()
 	{
 		return (float) (1.0D / (1.0D + Math.exp(6.0D - 12.0D * (this.timer / this.limitTime))));
 	}
@@ -155,6 +162,44 @@ public class ControlledAnimation
 	public float getAnimationProgressSinPowerOf(int i)
 	{
 		return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.limitTime)), i);
+	}
+
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
+	 * of the animation (limitTime).It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
+	 * It is smooth.
+	 */
+	public float getAnimationProgressPoly2() 
+	{
+		float x = (float) (this.timer / this.limitTime);
+		float x2 = x * x;
+		return x2 / (x2 + (1 - x) * (1 - x));
+	}
+
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
+	 * of the animation (limitTime).It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
+	 * It is steep.
+	 */
+	public float getAnimationProgressPoly3() 
+	{
+		float x = (float) (this.timer / this.limitTime);
+		float x3 = x * x * x;
+		return x3 / (x3 + (1 - x) * (1 - x) * (1 - x));
+	}
+
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
+	 * of the animation (limitTime).It reaches 1.0F using x^n / (x^n + (1-x)^n).
+	 * It is steeper when n increases.
+	 * 
+	 * @param n is the power of the polynomial function.
+	 */
+	public float getAnimationProgressPolyN(int n) 
+	{
+		double x = this.timer / this.limitTime;
+		double xi = Math.pow(x, (double) n);
+		return (float) (xi / (xi + Math.pow((1.0D - x), (double) n)));
 	}
 
 	/**
