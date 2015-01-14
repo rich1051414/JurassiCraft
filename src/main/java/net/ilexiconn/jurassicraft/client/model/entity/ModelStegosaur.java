@@ -50,6 +50,7 @@ public class ModelStegosaur extends MowzieModelBase {
     MowzieModelRenderer plate11tail2;
     MowzieModelRenderer armleftfoot;
     MowzieModelRenderer armrightfoot;
+    MowzieModelRenderer[] tailParts;
 
     public ModelStegosaur()
     {
@@ -278,13 +279,15 @@ public class ModelStegosaur extends MowzieModelBase {
     	tail2.rotationPointY -= 0.7;
         
         this.parts = new MowzieModelRenderer[]{waist, legleftthigh, legrightthigh, neck, tail1, tail2, tail3, tail4, legleftcalf, legrightcalf, legrightfoot, legleftfoot, chest, armrightcalf, armleftcalf, armleftthigh, armrightthigh, headback, upperjaw, head, tail5, lowerjaw, plate1waist, plate2waist, plate3waist, plate4chest, plate5headback, plate6tail1, plate7tail2, tailspike2tail4, tailspike1tail4, tailspike4tail5, tailspike3tail5, plate8chest, plate9neck, plate10tail3, plate11tail2, armleftfoot, armrightfoot};
-        this.setInitPose();
+
+		tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
+		this.setInitPose();
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
     	super.render(entity, f, f1, f2, f3, f4, f5);
-    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaur) entity);
 //        this.tail3.render(f5);
 //        this.armrightthigh.render(f5);
 //        this.tail4.render(f5);
@@ -332,15 +335,14 @@ public class ModelStegosaur extends MowzieModelBase {
         modelRenderer.rotateAngleZ = z;
     }
     
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaur stego)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, stego);
         this.setToInitPose();
-        EntityStegosaur stego = (EntityStegosaur) entity;
-        
-//        f = stego.frame;
- //       f1 = (float) Math.cos(f/50)*0.5F + 1F;
-        
+
+		//        f = stego.frame;
+		//       f1 = (float) Math.cos(f/50)*0.5F + 1F;
+
         float scaleFactor = 0.5F;
         float height = 0.8F;
         float frontOffset = -2F;
@@ -373,7 +375,6 @@ public class ModelStegosaur extends MowzieModelBase {
         walk(armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
         walk(armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
 
-        MowzieModelRenderer[] tailParts = {this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
         chainWave(tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
 
         //Idling
@@ -394,6 +395,6 @@ public class ModelStegosaur extends MowzieModelBase {
 
         chainSwing(tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
-        this.chainSwingBuffer(tailParts, 45.0F, 5, 3.0F, 5.0F, (EntityLivingBase) entity);
+        stego.tailBuffer.chainSwingBuffer(tailParts, 45.0F, 5, 3.0F, 5.0F, stego);
     }
 }

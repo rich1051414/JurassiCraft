@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -24,7 +25,8 @@ import net.minecraft.world.World;
 
 public class EntityDeinosuchus extends EntityJurassiCraftLandAggressive implements IReptile, ICarnivore, IPiscivore
 {
-
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public EntityDeinosuchus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityDeinosuchus.class));

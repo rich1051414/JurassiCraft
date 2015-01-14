@@ -262,7 +262,7 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.faceTarget(this.head1, 1, f3, f4);
         
         this.chainSwing(this.tailParts, 0.1F, -0.02F, 2.0, deinosuchus.frame, 1F);
-        this.chainSwingBuffer(tailParts, 45.0F, 4, 2.5F, 5.0F, (EntityLivingBase) deinosuchus);
+        deinosuchus.tailBuffer.chainSwingBuffer(tailParts, 45.0F, 4, 2.5F, 5.0F, deinosuchus);
     }
     
 	public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) 

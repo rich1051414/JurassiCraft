@@ -7,6 +7,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTam
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -27,7 +28,7 @@ import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
-
+	public ChainBuffer tailBuffer = new ChainBuffer();
     private int stepCount = 0;
     private float shakeCount = 0;
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);

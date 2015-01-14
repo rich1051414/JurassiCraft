@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.fish;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntitySwimming;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -12,6 +14,9 @@ import net.minecraft.world.World;
 
 public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ControlledAnimation droppingTimer = new ControlledAnimation(35);
+	
     public EntityCoelacanth(World world)
     {
         super(world, CreatureManager.classToCreature(EntityCoelacanth.class));

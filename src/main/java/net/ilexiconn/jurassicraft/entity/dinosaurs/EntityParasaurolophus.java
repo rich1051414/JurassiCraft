@@ -6,6 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIParasaurolophusTrumpet;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -21,6 +22,8 @@ import thehippomaster.AnimationAPI.AnimationAPI;
 
 public class EntityParasaurolophus extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+	
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);
 
     public EntityParasaurolophus(World world)
