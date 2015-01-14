@@ -17,8 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-//version = "1.3.0-daily_build-" + getDate()
-version = '1.3.2'
+version = "1.3.3-daily_build-" + getDate()
 group = "maven.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
