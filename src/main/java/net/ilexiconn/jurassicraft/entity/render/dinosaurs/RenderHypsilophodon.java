@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelHypsilophodon;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -9,14 +7,16 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderHypsilophodon extends RenderDinosaur
 {
 
-    public RenderHypsilophodon(Creature dino)
+    public RenderHypsilophodon(Creature dinosaur)
     {
-        super(new ModelHypsilophodon(), dino, 0.55F);
+        super(new ModelHypsilophodon(), dinosaur, 0.55F);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelStegosaur;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -9,13 +7,15 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityStegosaur;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderStegosaur extends RenderDinosaur
 {
-    public RenderStegosaur(Creature dino)
+    public RenderStegosaur(Creature dinosaur)
     {
-        super(new ModelStegosaur(), dino, 1.0F);
+        super(new ModelStegosaur(), dinosaur, 1.0F);
     }
 
     @Override

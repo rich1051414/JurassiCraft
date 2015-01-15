@@ -28,7 +28,7 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
+        this.dataWatcher.addObject(17, Byte.valueOf((byte) 0));
     }
 
     /**
@@ -37,7 +37,7 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
     public void onUpdate()
     {
         super.onUpdate();
-        byte var1 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var1 = this.dataWatcher.getWatchableObjectByte(17);
     }
 
     protected void updateEntityActionState()

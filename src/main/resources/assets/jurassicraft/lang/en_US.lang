@@ -35,6 +35,7 @@ entity.Hypsilophodon.name=Hypsilophodon
 entity.Triceratops.name=Triceratops
 entity.Stegosaur.name=Stegosaurus
 entity.Dilophosaurus.name=Dilophosaurus
+entity.Carnotaurus.name=Carnotaurus
 
 //Fish
 entity.Coelacanth.name=Coelacanth
@@ -107,6 +108,7 @@ item.Deinosuchus_DNA.name=Deinosuchus DNA
 item.Brachiopod_DNA.name=Brachiopod DNA
 item.Ammonite_DNA.name=Ammonite DNA
 item.Orthacanthus_DNA.name=Orthacanthus DNA
+item.Carnotaurus_DNA.name=Carnotaurus DNA
 
 //Eggs
 item.Brachiosaur_Egg.name=Brachiosaurus Egg
@@ -132,6 +134,7 @@ item.Deinosuchus_Egg.name=Deinosuchus Egg
 item.Brachiopod_Egg.name=Brachiopod Egg
 item.Ammonite_Egg.name=Ammonite Egg
 item.Orthacanthus_Egg.name=Orthacanthus Egg
+item.Carnotaurus_Egg.name=Carnotaurus Egg
 
 //Syringes
 item.Mammoth_Syringe.name=Mammoth Syringe
@@ -175,6 +178,7 @@ item.Deinosuchus_SpawnEgg.name=Deinosuchus Spawn Egg
 item.Brachiopod_SpawnEgg.name=Brachiopod Spawn Egg
 item.Ammonite_SpawnEgg.name=Ammonite Spawn Egg
 item.Orthacanthus_SpawnEgg.name=Orthacanthus Spawn Egg
+item.Carnotaurus_SpawnEgg.name=Carnotaurus Spawn Egg
 
 //Meats
 item.Ankylosaur_Meat.name=Ankylosaurus Meat
@@ -208,6 +212,7 @@ item.Deinosuchus_Meat.name=Deinosuchus Meat
 item.Brachiopod_Meat.name=Brachiopod Meat
 item.Ammonite_Meat.name=Ammonite Meat
 item.Orthacanthus_Meat.name=Orthacanthus Meat
+item.Carnotaurus_Meat.name=Carnotaurus Meat
 
 //Cooked Meats
 item.Ankylosaur_Steak.name=Ankylosaurus Steak
@@ -241,6 +246,7 @@ item.Deinosuchus_Steak.name=Deinosuchus Steak
 item.Brachiopod_Steak.name=Brachiopod Steak
 item.Ammonite_Steak.name=Ammonite Steak
 item.Orthacanthus_Steak.name=Orthacanthus Steak
+item.Carnotaurus_Steak.name=Carnotaurus Steak
 
 //Fur
 item.Leptictidium_Fur.name=Leptictidium Fur
@@ -278,6 +284,7 @@ item.Cearadactylus_Skull.name=Cearadactylus Skull
 item.Sarcosuchus_Skull.name=Sarcosuchus Skull
 item.Titanis_Skull.name=Titanis Skull
 item.Meganeura_Skull.name=Meganeura Exoskeleton
+item.Carnotaurus_Skull.name=Carnotaurus Skull
 
 //Tooth
 item.Tyrannosaurus_Tooth.name=Tyrannosaurus Tooth
@@ -463,6 +470,9 @@ container.pad.info.Deinosuchus.page1=Deinosuchus
 container.pad.info.Brachiopod.page1=Brachiopod
 container.pad.info.Ammonite.page1=Ammonite
 container.pad.info.Orthacanthus.page1=Orthacanthus
+container.pad.info.Carnotaurus.page1=Carnotaurus
+
+
 
 //Commands
 commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]
