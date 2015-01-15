@@ -350,7 +350,14 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             if (player != null && !player.worldObj.isRemote)
             {
-            	player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.interaction.fullGrown")));
+            	if (this.hasCustomNameTag()) 
+            	{
+                	player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
+            	}
+            	else
+            	{
+                	player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
+            	}
             }
             return false;
         }

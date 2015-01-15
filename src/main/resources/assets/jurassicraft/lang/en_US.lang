@@ -62,13 +62,13 @@ entity.Santa.name=Santa Claws
 
 
 //Entity_Interaction============================================
-entity.interaction.fullGrown=This creature cannot grow anymore
-entity.interaction.tamed=You tamed this creature!
+entity.interaction.fullGrown=cannot grow anymore
+entity.interaction.tamed=was tamed!
 entity.interaction.isSitting=is sitting
 entity.interaction.isNotSitting=is not sitting anymore
-entity.riding.notRidable=This creature is not ridable
-entity.riding.notTamed=This creature is not tamed yet
-entity.riding.notAdult=This creature is not an adult yet
+entity.riding.notRidable=is not ridable
+entity.riding.notTamed=is not tamed yet
+entity.riding.notAdult=is not an adult yet
 entity.riding.isRiding=There is someone already riding this creature
 
 
@@ -427,42 +427,42 @@ container.pad.pregnancy.dnaCode=DNA
 container.pad.pregnancy.dnaQuality=DNA quality
 
 //Dinopad_Info
-container.pad.infoAnkylosaur.page1=Ankylosaurus, meaning "fused lizard", is a genus of ankylosaurid dinosaur. Fossils of Ankylosaurus are found in geologic formations dating to the very end of the Cretaceous period, between 66.5 and 66.0 million years ago, in western North America.
-container.pad.infoAnkylosaur.page2=Ankylosaurus was a large animal by modern standards, estimated at lengths of 9 m (30 ft) and weighing up to 6 tonnes (13,000 lb). The whole animal is estimated at 6.25 m (20.5 feet) long, 1.5 m (4.9 feet) wide and 1.7 m (5.6 feet) tall at the hip.
-container.pad.infoAnkylosaur.page3=The tail club of Ankylosaurus is composed of several large osteoderms, which are fused to the last few tail vertebrae. It was heavy and supported by the last seven tail vertebrae, which interlocked to form a stiff rod at the base of the club.
-container.pad.infoBrachiosaur.page1=Brachiosaurus is a genus of sauropod dinosaur from the Jurassic Morrison Formation of North America. It was first described by Elmer S. Riggs in 1903 from fossils found in the Grand River Canyon (now Colorado River) of western Colorado, in the United States.
-container.pad.infoBrachiosaur.page2= The proportions of Brachiosaurus are unlike most sauropods. The forelimbs were longer than the hindlimbs, which resulted in a steeply inclined trunk, and its tail was shorter in proportion to its neck than other sauropods of the Jurassic.
-container.pad.infoVelociraptor.page1=Velociraptor
-container.pad.infoStegosaur.page1=Stegosaurus, meaning "roof lizard" in reference to its bony plates, is a genus of armored stegosaurid dinosaur. They lived during the Late Jurassic period (Kimmeridgian to early Tithonian), some 155 to 150 million years ago in what is now western North America.
-container.pad.infoStegosaur.page2=Its array of plates and spikes has been the subject of much speculation. The spikes were most likely used for defense, while the plates have also been proposed as a defensive mechanism, as well as having display and thermoregulatory functions.
-container.pad.infoTriceratops.page1=Triceratops, "three-horn face", is a genus of herbivorous ceratopsid dinosaur that first appeared during the late Maastrichtian stage of the late Cretaceous period, about 68 million years ago in what is now North America.
-container.pad.infoTriceratops.page2=Triceratops are estimated to have reached about 8.0 to 9.0 meters in length, 2.8 to 3.0 meters in height, and 6.0 to 12.0 tonnes in weight. It shared the landscape with and was probably preyed upon by the fearsome Tyrannosaurus.
-container.pad.infoCoelacanth.page1=Coelacanth constitutes a now rare order of fish that includes two extant species in the genus Latimeria: the West Indian Ocean coelacanth and the Indonesian coelacanth.
-container.pad.infoTyrannosaurus.page1=Tyrannosaurus, meaning "tyrant lizard", is a genus of coelurosaurian theropod dinosaur. Tyrannosaurus lived throughout what is now western North America, which then was an island continent named Laramidia. Tyrannosaurus had a much wider range than other tyrannosaurids. 
-container.pad.infoTyrannosaurus.page2=Fossils are found in a variety of rock formations dating to the Maastrichtian age of the upper Cretaceous Period, 67 to 66 million years ago. 
-container.pad.infoGallimimus.page1=Gallimimus
-container.pad.infoHypsilophodon.page1=Hypsilophodon
-container.pad.infoLeaellynasaur.page1=Leaellynasaur
-container.pad.infoHerrerasaur.page1=Herrerasaurus was one of the earliest dinosaurs. Its name means "Herrera's lizard", after the rancher who discovered the first specimen. All known fossils of this carnivore have been discovered in rocks of Carnian age, 231.4 million years ago in northwestern Argentina.
-container.pad.infoHerrerasaur.page2=Herrerasaurus was a lightly built bipedal carnivore with a long tail and a relatively small head. Its length is estimated at 3 to 6 meters (10 to 20 ft), and its hip height at more than 1.1 meters (3.3 ft). It may have weighed around 210 to 350 kilograms (463 to 772 lb).
-container.pad.infoParasaurolophus.page1=Parasaurolophus
-container.pad.infoMeganeura.page1=Meganeura
-container.pad.infoDilophosaurus.page1=Dilophosaurus
-container.pad.infoTylosaurus.page1=Tylosaurus
-container.pad.infoOviraptor.page1=Oviraptor
-container.pad.infoCearadactylus.page1=Cearadactylus
-container.pad.infoMammoth.page1=Mammoth
-container.pad.infoArsinoitherium.page1=Arsinoitherium
-container.pad.infoBasilosaurus.page1=Basilosaurus
-container.pad.infoLeptictidium.page1=Leptictidium
-container.pad.infoTitanis.page1=Titanis
-container.pad.infoUintatherium.page1=Uintatherium
-container.pad.infoParaceratherium.page1=Paraceratherium
-container.pad.infoDeinotherium.page1=Deinotherium
-container.pad.infoDeinosuchus.page1=Deinosuchus
-container.pad.infoBrachiopod.page1=Brachiopod
-container.pad.infoAmmonite.page1=Ammonite
-container.pad.infoOrthacanthus.page1=Orthacanthus
+container.pad.info.Ankylosaur.page1=Ankylosaurus, meaning "fused lizard", is a genus of ankylosaurid dinosaur. Fossils of Ankylosaurus are found in geologic formations dating to the very end of the Cretaceous period, between 66.5 and 66.0 million years ago, in western North America.
+container.pad.info.Ankylosaur.page2=Ankylosaurus was a large animal by modern standards, estimated at lengths of 9 m (30 ft) and weighing up to 6 tonnes (13,000 lb). The whole animal is estimated at 6.25 m (20.5 feet) long, 1.5 m (4.9 feet) wide and 1.7 m (5.6 feet) tall at the hip.
+container.pad.info.Ankylosaur.page3=The tail club of Ankylosaurus is composed of several large osteoderms, which are fused to the last few tail vertebrae. It was heavy and supported by the last seven tail vertebrae, which interlocked to form a stiff rod at the base of the club.
+container.pad.info.Brachiosaur.page1=Brachiosaurus is a genus of sauropod dinosaur from the Jurassic Morrison Formation of North America. It was first described by Elmer S. Riggs in 1903 from fossils found in the Grand River Canyon (now Colorado River) of western Colorado, in the United States.
+container.pad.info.Brachiosaur.page2= The proportions of Brachiosaurus are unlike most sauropods. The forelimbs were longer than the hindlimbs, which resulted in a steeply inclined trunk, and its tail was shorter in proportion to its neck than other sauropods of the Jurassic.
+container.pad.info.Velociraptor.page1=Velociraptor
+container.pad.info.Stegosaur.page1=Stegosaurus, meaning "roof lizard" in reference to its bony plates, is a genus of armored stegosaurid dinosaur. They lived during the Late Jurassic period (Kimmeridgian to early Tithonian), some 155 to 150 million years ago in what is now western North America.
+container.pad.info.Stegosaur.page2=Its array of plates and spikes has been the subject of much speculation. The spikes were most likely used for defense, while the plates have also been proposed as a defensive mechanism, as well as having display and thermoregulatory functions.
+container.pad.info.Triceratops.page1=Triceratops, "three-horn face", is a genus of herbivorous ceratopsid dinosaur that first appeared during the late Maastrichtian stage of the late Cretaceous period, about 68 million years ago in what is now North America.
+container.pad.info.Triceratops.page2=Triceratops are estimated to have reached about 8.0 to 9.0 meters in length, 2.8 to 3.0 meters in height, and 6.0 to 12.0 tonnes in weight. It shared the landscape with and was probably preyed upon by the fearsome Tyrannosaurus.
+container.pad.info.Coelacanth.page1=Coelacanth constitutes a now rare order of fish that includes two extant species in the genus Latimeria: the West Indian Ocean coelacanth and the Indonesian coelacanth.
+container.pad.info.Tyrannosaurus.page1=Tyrannosaurus, meaning "tyrant lizard", is a genus of coelurosaurian theropod dinosaur. Tyrannosaurus lived throughout what is now western North America, which then was an island continent named Laramidia. Tyrannosaurus had a much wider range than other tyrannosaurids. 
+container.pad.info.Tyrannosaurus.page2=Fossils are found in a variety of rock formations dating to the Maastrichtian age of the upper Cretaceous Period, 67 to 66 million years ago. 
+container.pad.info.Gallimimus.page1=Gallimimus
+container.pad.info.Hypsilophodon.page1=Hypsilophodon
+container.pad.info.Leaellynasaur.page1=Leaellynasaur
+container.pad.info.Herrerasaur.page1=Herrerasaurus was one of the earliest dinosaurs. Its name means "Herrera's lizard", after the rancher who discovered the first specimen. All known fossils of this carnivore have been discovered in rocks of Carnian age, 231.4 million years ago in northwestern Argentina.
+container.pad.info.Herrerasaur.page2=Herrerasaurus was a lightly built bipedal carnivore with a long tail and a relatively small head. Its length is estimated at 3 to 6 meters (10 to 20 ft), and its hip height at more than 1.1 meters (3.3 ft). It may have weighed around 210 to 350 kilograms (463 to 772 lb).
+container.pad.info.Parasaurolophus.page1=Parasaurolophus
+container.pad.info.Meganeura.page1=Meganeura
+container.pad.info.Dilophosaurus.page1=Dilophosaurus
+container.pad.info.Tylosaurus.page1=Tylosaurus
+container.pad.info.Oviraptor.page1=Oviraptor
+container.pad.info.Cearadactylus.page1=Cearadactylus
+container.pad.info.Mammoth.page1=Mammoth
+container.pad.info.Arsinoitherium.page1=Arsinoitherium
+container.pad.info.Basilosaurus.page1=Basilosaurus
+container.pad.info.Leptictidium.page1=Leptictidium
+container.pad.info.Titanis.page1=Titanis
+container.pad.info.Uintatherium.page1=Uintatherium
+container.pad.info.Paraceratherium.page1=Paraceratherium
+container.pad.info.Deinotherium.page1=Deinotherium
+container.pad.info.Deinosuchus.page1=Deinosuchus
+container.pad.info.Brachiopod.page1=Brachiopod
+container.pad.info.Ammonite.page1=Ammonite
+container.pad.info.Orthacanthus.page1=Orthacanthus
 
 //Commands
 commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]

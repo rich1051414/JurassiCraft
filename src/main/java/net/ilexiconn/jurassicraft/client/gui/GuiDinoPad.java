@@ -191,7 +191,14 @@ public class GuiDinoPad extends GuiContainer
 
     private void renderNameGenderStrings()
     {
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName()) / 2, this.guiTop + 11, 14737632);
+    	if (this.creature.hasCustomNameTag())
+    	{
+            this.fontRendererObj.drawString(this.creature.getCustomNameTag() + " (" + this.creature.getCreatureName() + ")", this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCustomNameTag() + "(" + this.creature.getCreatureName() + ")") / 2, this.guiTop + 11, 14737632);
+    	}
+    	else
+    	{
+            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName()) / 2, this.guiTop + 11, 14737632);
+    	}
         this.fontRendererObj.drawString(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString()) / 2, this.guiTop + 19, 14737632);
     }
 
@@ -226,7 +233,7 @@ public class GuiDinoPad extends GuiContainer
 
     private String[] getCreatureInformation(int page)
     {
-        String info = StatCollector.translateToLocal("container.pad.info" + this.creature.getCreature().getCreatureName() + ".page" + page);
+        String info = StatCollector.translateToLocal("container.pad.info." + this.creature.getCreature().getCreatureName() + ".page" + page);
         String[] pageInfo = new String[8];
         if (info != null && info != "")
         {

@@ -52,15 +52,36 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
             {
                 if (!this.isCreatureRidable())
                 {
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notRidable")));
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notRidable")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notRidable")));
+                	}
                 }
                 else if (!this.isTamed())
                 {
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notTamed")));
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notTamed")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notTamed")));
+                	}
                 }
                 else if (!this.isCreatureAdult())
                 {
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.notAdult")));
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notAdult")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notAdult")));
+                	}
                 }
                 else if (this.riddenByEntity != null)
                 {

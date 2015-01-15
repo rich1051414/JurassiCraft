@@ -84,8 +84,16 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                             this.setOwner(player.getCommandSenderName());
                             this.playTameEffect(true);
                             this.worldObj.setEntityState(this, (byte) 7);
-                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.interaction.tamed")));
-                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                        	if (this.hasCustomNameTag()) 
+                        	{
+                        	    player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.tamed")));
+                                player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                        	}
+                        	else
+                        	{
+                        	    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.tamed")));
+                                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                        	}
                         }
                         else
                         {
@@ -105,13 +113,27 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                     this.setAttackTarget((EntityLivingBase) null);
                     this.aiSit.setSitting(true);
                     this.setSitting(true);
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+                	}
                 }
                 else
                 {
                     this.aiSit.setSitting(false);
                     this.setSitting(false);
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+                	}
                 }
             }
             return super.interact(player);
@@ -126,13 +148,27 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                 this.setAttackTarget((EntityLivingBase) null);
                 this.aiSit.setSitting(true);
                 this.setSitting(true);
-                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isSitting")));
+            	if (this.hasCustomNameTag()) 
+            	{
+                    player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+            	}
+            	else
+            	{
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isSitting")));
+            	}
             }
             else
             {
                 this.aiSit.setSitting(false);
                 this.setSitting(false);
-                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " "  + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+            	if (this.hasCustomNameTag()) 
+            	{
+                    player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+            	}
+            	else
+            	{
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.isNotSitting")));
+            	}
             }
         }
         return super.interact(player);
