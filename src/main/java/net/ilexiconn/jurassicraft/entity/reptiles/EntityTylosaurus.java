@@ -1,7 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.entity.EntitySwimming;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
@@ -12,8 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityTylosaurus extends NewEntitySwimming implements IReptile, ICarnivore, IPiscivore
+public class EntityTylosaurus extends EntitySwimming implements IReptile, ICarnivore, IPiscivore
 {
+	public ChainBuffer tailBuffer = new ChainBuffer();
+
     public EntityTylosaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityTylosaurus.class));

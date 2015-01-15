@@ -114,8 +114,9 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
 
             this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.5F;
             this.rotationYaw = this.renderYawOffset;
-            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationPitch += ((float) Math.atan2(this.motionY, (double) f) * 180.0F / (float) Math.PI - this.rotationPitch) * 0.5F;
+            float f = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
+            float f1 = MathHelper.wrapAngleTo180_float(f - this.rotationYaw);
+            this.rotationYaw += f1;
         }
         else
         {
