@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelTyrannosaurus;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -9,13 +7,15 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderTyrannosaurus extends RenderDinosaur
 {
-    public RenderTyrannosaurus(Creature dino)
+    public RenderTyrannosaurus(Creature dinosaur)
     {
-        super(new ModelTyrannosaurus(), dino, 0.8F);
+        super(new ModelTyrannosaurus(), dinosaur, 0.8F);
     }
 
     @Override

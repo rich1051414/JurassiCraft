@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiosaur;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -9,13 +7,15 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderBrachiosaur extends RenderDinosaur
 {
-    public RenderBrachiosaur(Creature dino)
+    public RenderBrachiosaur(Creature dinosaur)
     {
-        super(new ModelBrachiosaur(), dino, 1.6F);
+        super(new ModelBrachiosaur(), dinosaur, 1.6F);
     }
 
     @Override

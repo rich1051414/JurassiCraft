@@ -1,19 +1,20 @@
 package net.ilexiconn.jurassicraft.entity.render;
 
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
+
 import org.lwjgl.opengl.GL11;
 
 public abstract class RenderBird extends RenderLiving
 {
 
-    private JsonCreatureDefinition bird;
+    private Creature bird;
     private float resizableShadow;
 
-    public RenderBird(ModelBase model, JsonCreatureDefinition bird, float shadow)
+    public RenderBird(ModelBase model, Creature bird, float shadow)
     {
         super(model, 1.0F);
         this.setBird(bird);
@@ -30,12 +31,12 @@ public abstract class RenderBird extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setBird(JsonCreatureDefinition bird)
+    private void setBird(Creature bird)
     {
         this.bird = bird;
     }
 
-    public JsonCreatureDefinition getBird()
+    public Creature getBird()
     {
         return this.bird;
     }

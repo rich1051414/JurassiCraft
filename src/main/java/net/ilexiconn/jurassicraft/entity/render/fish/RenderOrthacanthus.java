@@ -14,9 +14,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderOrthacanthus extends RenderSwimming 
 {
 
-	public RenderOrthacanthus(Creature dino) 
+	public RenderOrthacanthus(Creature fish) 
 	{
-		super(new ModelOrthacanthus(), dino, 0.5F);
+		super(new ModelOrthacanthus(), fish, 0.5F);
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelHerrerasaur;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -9,13 +7,15 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaur;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderHerrerasaur extends RenderDinosaur
 {
-    public RenderHerrerasaur(Creature dino)
+    public RenderHerrerasaur(Creature dinosaur)
     {
-        super(new ModelHerrerasaur(), dino, 0.5F);
+        super(new ModelHerrerasaur(), dinosaur, 0.5F);
     }
 
     @Override

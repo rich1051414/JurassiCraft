@@ -13,16 +13,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderCoelacanth extends RenderSwimming
 {
 
-    public RenderCoelacanth(Creature dino)
+    public RenderCoelacanth(Creature fish)
     {
-        super(new ModelCoelacanth(), dino, 0.5F);
+        super(new ModelCoelacanth(), fish, 0.5F);
     }
 
     @Override
     public ResourceLocation getEntityTexture(Entity var1)
     {
         return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Coelacanth_Male_1.png");
-        //return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Coelacanth_Female_1.png");
     }
 
 }

@@ -5,6 +5,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLivingBase;
+
 import org.lwjgl.opengl.GL11;
 
 public abstract class RenderFish extends RenderLiving
@@ -30,7 +31,7 @@ public abstract class RenderFish extends RenderLiving
         return this.resizableShadow;
     }
 
-    public void setFish(Creature fish)
+    private void setFish(Creature fish)
     {
         this.fish = fish;
     }

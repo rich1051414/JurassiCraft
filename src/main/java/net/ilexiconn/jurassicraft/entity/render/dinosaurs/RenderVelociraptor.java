@@ -7,12 +7,15 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderVelociraptor extends RenderDinosaur
 {
-    public RenderVelociraptor(Creature dino)
+    public RenderVelociraptor(Creature dinosaur)
     {
-        super(new ModelVelociraptor(), dino, 0.65F);
+        super(new ModelVelociraptor(), dinosaur, 0.65F);
     }
 
     @Override
