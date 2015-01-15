@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.client.animation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityAnkylosaur;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.DamageSource;
-import thehippomaster.AnimationAPI.AIAnimation;
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AIAnkylosaurTailWhip extends AIAnimation
 {

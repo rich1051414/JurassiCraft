@@ -1,24 +1,24 @@
-package thehippomaster.AnimationAPI.packet;
+package net.ilexiconn.jurassicraft.packet;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
-import thehippomaster.AnimationAPI.IAnimatedEntity;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.minecraft.world.World;
 
-public class PacketAnimation implements IMessage
+public class MessageAnimation implements IMessage
 {
 	private byte animationId;
 	private int entityId;
 	
-	public PacketAnimation()
+	public MessageAnimation()
 	{
 		this((byte) 0, 0);
 	}
 	
-	public PacketAnimation(byte animation, int entity)
+	public MessageAnimation(byte animation, int entity)
 	{
 		animationId = animation;
 		entityId = entity;
@@ -36,11 +36,11 @@ public class PacketAnimation implements IMessage
 		entityId = buffer.readInt();
 	}
 
-	public static class Handler implements IMessageHandler<PacketAnimation, IMessage>
+	public static class Handler implements IMessageHandler<MessageAnimation, IMessage>
 	{
-		public IMessage onMessage(PacketAnimation packet, MessageContext ctx)
+		public IMessage onMessage(MessageAnimation packet, MessageContext ctx)
 		{
-			World world = AnimationAPI.proxy.getWorldClient();
+			World world = JurassiCraft.proxy.getWorldClient();
 			IAnimatedEntity entity = (IAnimatedEntity)world.getEntityByID(packet.entityId);
 			if(entity != null && packet.animationId != -1)
 			{

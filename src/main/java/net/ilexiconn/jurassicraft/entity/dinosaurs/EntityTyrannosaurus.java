@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -24,7 +23,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
+import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
@@ -69,8 +68,10 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
             if (animID == 0)
             {
-            	if (this.moveForward == 0) {AnimationAPI.sendAnimationPacket(this, 1);}
-            	else {AnimationAPI.sendAnimationPacket(this, 2);}
+            	if (this.moveForward == 0) {
+                    AnimationHandler.sendAnimationPacket(this, 1);}
+            	else {
+                    AnimationHandler.sendAnimationPacket(this, 2);}
             }
             return null;
         }

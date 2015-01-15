@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -21,7 +20,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
+import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
@@ -68,7 +67,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0 && animID == 0)
-            AnimationAPI.sendAnimationPacket(this, 3);
+            AnimationHandler.sendAnimationPacket(this, 3);
         if (onGround == true) setLeaping(false);
         if (timeSinceLeap != 0) timeSinceLeap--;
 
@@ -83,7 +82,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
     public String getLivingSound()
     {
-        if (animID == 0) AnimationAPI.sendAnimationPacket(this, 2);
+        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
         int I = rand.nextInt(4) + 1;
         if (I == 1) return "jurassicraft:RapHiss01";
         if (I == 2) return "jurassicraft:RapHiss02";
@@ -93,7 +92,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
     public String getDeathSound()
     {
-        if (animID == 0) AnimationAPI.sendAnimationPacket(this, 2);
+        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
 
         return super.getDeathSound();
     }

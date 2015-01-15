@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
-import thehippomaster.AnimationAPI.AIAnimation;
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AITyrannosaurusWalkRoar extends AIAnimation
 {

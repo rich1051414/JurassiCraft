@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
@@ -18,7 +17,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
+import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityParasaurolophus extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
@@ -65,7 +64,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
         }
         else
         {
-            AnimationAPI.sendAnimationPacket(this, 1);
+            AnimationHandler.sendAnimationPacket(this, 1);
             return null;
         }
     }

@@ -31,6 +31,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
+import net.ilexiconn.jurassicraft.packet.MessageAnimation;
 
 import java.util.Calendar;
 
@@ -47,6 +48,8 @@ public class JurassiCraft
     public static JsonEntityParser entityParser;
     public static ContentLoader contentLoader;
     public static SimpleNetworkWrapper network;
+
+    public static final String[] fTimer = new String[] {"field_71428_T", "S", "timer"};
 
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event)
@@ -72,6 +75,7 @@ public class JurassiCraft
         network.registerMessage(MessageFenceCrafting.Handler.class, MessageFenceCrafting.class, 0, Side.SERVER);
         network.registerMessage(MessageFenceBuilding.Handler.class, MessageFenceBuilding.class, 1, Side.SERVER);
         network.registerMessage(MessageFenceFixing.Handler.class, MessageFenceFixing.class, 2, Side.SERVER);
+        network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
 
         GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
         GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);

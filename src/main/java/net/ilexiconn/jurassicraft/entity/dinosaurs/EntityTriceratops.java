@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIHerdBehavior;
@@ -9,7 +8,6 @@ import net.ilexiconn.jurassicraft.client.animation.AITriceratopsCharge;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
-import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
@@ -21,7 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.AnimationAPI;
+import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityTriceratops extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
@@ -69,7 +67,7 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
         if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isPanicking() && this.getCreatureAgeInDays() >= 17)
-            AnimationAPI.sendAnimationPacket(this, 1);
+            AnimationHandler.sendAnimationPacket(this, 1);
         if (timeSinceCharge != 0) timeSinceCharge--;
     }
 

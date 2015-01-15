@@ -5,8 +5,8 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-import thehippomaster.AnimationAPI.IAnimatedEntity;
-import thehippomaster.AnimationAPI.client.Animator;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 
 public class ModelUintatherium extends ModelBase
 {

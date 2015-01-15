@@ -5,10 +5,21 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
 public class ServerProxy
 {
+    public float getPartialTick()
+    {
+        return 1f;
+    }
+
+    public World getWorldClient()
+    {
+        return null;
+    }
+
     public void renderEntity(Class<? extends EntityLiving> entity, RenderLiving renderLiving)
     {
 

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
 import net.minecraft.entity.EntityLiving;
-import thehippomaster.AnimationAPI.AIAnimation;
-import thehippomaster.AnimationAPI.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 
 public class AIHypsilophodonScratchHead extends AIAnimation
 {

@@ -16,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import thehippomaster.AnimationAPI.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
