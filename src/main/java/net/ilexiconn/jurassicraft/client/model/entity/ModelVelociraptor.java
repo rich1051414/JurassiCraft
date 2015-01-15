@@ -106,12 +106,14 @@ public class ModelVelociraptor extends MowzieModelBase
         Right_Thigh.setTextureSize(256, 256);
         Right_Thigh.mirror = true;
         setRotation(Right_Thigh, 0.6252203F, 0F, 0F);
-  /*    Body_1 = new MowzieModelRenderer(this, 118, 0);
-      Body_1.addBox(-4.5F, 0F, 0F, 9, 9, 21);
-      Body_1.setRotationPoint(0F, -0.5F, -7F);
-      Body_1.setTextureSize(256, 256);
-      Body_1.mirror = true;
-      setRotation(Body_1, -0.0743572F, 0F, 0F);*/
+        /*
+        Body_1 = new MowzieModelRenderer(this, 118, 0);
+      	Body_1.addBox(-4.5F, 0F, 0F, 9, 9, 21);
+      	Body_1.setRotationPoint(0F, -0.5F, -7F);
+      	Body_1.setTextureSize(256, 256);
+      	Body_1.mirror = true;
+      	setRotation(Body_1, -0.0743572F, 0F, 0F);
+      	*/
         Body_1 = new MowzieModelRenderer(this, 118, 0);
         Body_1.addBox(-4.5F, 0F, -17F, 9, 9, 21);
         Body_1.setRotationPoint(0F, 0.5F, 10F);
@@ -360,10 +362,12 @@ public class ModelVelociraptor extends MowzieModelBase
         addChildTo(Quill_7, Head);
         addChildTo(Head, HeadJoint);
         addChildTo(HeadJoint, Neck);
-   /*   addChildTo(Quill_2, Head);
-      addChildTo(Quill_3, Head);
-      addChildTo(Quill_4, Head);
-      addChildTo(Quill_5, Head);*/
+        /*   
+     	addChildTo(Quill_2, Head);
+      	addChildTo(Quill_3, Head);
+      	addChildTo(Quill_4, Head);
+      	addChildTo(Quill_5, Head);
+      	*/
         addChildTo(Neck, Body_2);
         addChildTo(Body_2, Body_1);
 
@@ -410,9 +414,9 @@ public class ModelVelociraptor extends MowzieModelBase
         Hand_Right_Claw_Middle.setRotationPoint(0F, -0.2F, -0.1F);
         Hand_Right_Claw_Right.setRotationPoint(-0.2F, -0.2F, -0.1F);
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
+        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
         
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
