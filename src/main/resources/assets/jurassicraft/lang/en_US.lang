@@ -70,6 +70,7 @@ entity.interaction.isNotSitting=is not sitting anymore
 entity.riding.notRidable=is not ridable
 entity.riding.notTamed=is not tamed yet
 entity.riding.notAdult=is not an adult yet
+entity.riding.sitting=is sitting at the moment
 entity.riding.isRiding=There is someone already riding this creature
 
 

@@ -3,12 +3,12 @@ package net.ilexiconn.jurassicraft.ai;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 
-public class JurassiCraftEntityAIAvoidEntityIfNotTamed extends EntityAIAvoidEntity
+public class JurassiCraftAIAvoidEntityIfNotTamed extends EntityAIAvoidEntity
 {
 
     private EntityJurassiCraftLandCoward cowardCreature;
 
-    public JurassiCraftEntityAIAvoidEntityIfNotTamed(EntityJurassiCraftLandCoward coward, Class avoidClass, float distanceFromEntity, double farSpeed, double p_i1616_6_)
+    public JurassiCraftAIAvoidEntityIfNotTamed(EntityJurassiCraftLandCoward coward, Class avoidClass, float distanceFromEntity, double farSpeed, double p_i1616_6_)
     {
         super(coward, avoidClass, distanceFromEntity, farSpeed, p_i1616_6_);
         this.cowardCreature = coward;

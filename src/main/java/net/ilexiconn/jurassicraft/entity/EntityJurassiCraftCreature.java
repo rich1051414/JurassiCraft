@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
@@ -16,18 +16,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
     private Creature creature;
-    public float geneticQuality;
-    public boolean gender;
-    public byte texture;
+    protected float geneticQuality;
+    protected boolean gender;
+    protected byte texture;
     
-    public float height, length;
-    public float bBoxXZ, bBoxY;
+    private float heightParameter, lengthParameter;
+    private float bBoxXZ, bBoxY;
     protected final HashSet<Integer> growthStageList = new HashSet<Integer>();
 
     protected int animID;
@@ -47,8 +46,29 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.setCreatureGender(JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) == 0.5F ? this.rand.nextBoolean() : (JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()) > 0.5F));
         this.setNewCreatureTexture(JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
         this.updateCreatureData(this.getTotalTicksLived());
-        this.animID = 0;
         this.animTick = 0;
+        this.animID = 0;
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(12, 0.0F);
+        this.dataWatcher.addObject(13, Byte.valueOf((byte) (0)));
+        this.dataWatcher.addObject(14, String.valueOf(""));
+    }
+
+    @Override
+    public boolean isAIEnabled()
+    {
+        return true;
+    }
+
+    @Override
+    protected boolean canDespawn()
+    {
+        return false;
     }
 
     /** Sets the creature. */
@@ -93,25 +113,10 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     }
 
     @Override
-    public boolean isAIEnabled()
-    {
-        return true;
-    }
-
-    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-    }
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        this.dataWatcher.addObject(12, 0.0F);
-        this.dataWatcher.addObject(13, Byte.valueOf((byte) (0)));
-        this.dataWatcher.addObject(14, String.valueOf(""));
     }
 
     @Override
@@ -506,7 +511,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
      */
     public float getCreatureLength()
     {
-        return (float) ((int) (100 * this.length)) / 100;
+        return (float) ((int) (100 * this.lengthParameter)) / 100;
     }
 
     public int getCreatureLengthScaled(int i)
@@ -520,7 +525,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
      */
     public float getCreatureHeight()
     {
-        return (float) ((int) (100 * this.height)) / 100;
+        return (float) ((int) (100 * this.heightParameter)) / 100;
     }
 
     public int getCreatureHeightScaled(int i)
@@ -617,11 +622,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         if (this.getTotalTicksLived() <= this.getCreature().getTicksToAdulthood())
         {
-            this.length = (float) (this.getGeneticQuality() * (this.getCreature().getMinLength() + (this.getTotalTicksLived() * (this.getCreature().getMaxLength() - this.getCreature().getMinLength()) / this.getCreature().getTicksToAdulthood())));
+            this.lengthParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMinLength() + (this.getTotalTicksLived() * (this.getCreature().getMaxLength() - this.getCreature().getMinLength()) / this.getCreature().getTicksToAdulthood())));
         }
         else
         {
-            this.length = (float) (this.getGeneticQuality() * (this.getCreature().getMaxLength()));
+            this.lengthParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMaxLength()));
         }
     }
 
@@ -632,11 +637,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         if (this.getTotalTicksLived() <= this.getCreature().getTicksToAdulthood())
         {
-            this.height = (float) (this.getGeneticQuality() * (this.getCreature().getMinHeight() + (this.getTotalTicksLived() * (this.getCreature().getMaxHeight() - this.getCreature().getMinHeight()) / this.getCreature().getTicksToAdulthood())));
+            this.heightParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMinHeight() + (this.getTotalTicksLived() * (this.getCreature().getMaxHeight() - this.getCreature().getMinHeight()) / this.getCreature().getTicksToAdulthood())));
         }
         else
         {
-            this.height = (float) (this.getGeneticQuality() * (this.getCreature().getMaxHeight()));
+            this.heightParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMaxHeight()));
         }
     }
 
@@ -710,12 +715,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
                 return (String.valueOf(years) + " " + yearString + String.valueOf(months) + " " + monthString + String.valueOf(days) + " " + dayString);
             }
         }
-    }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
     }
 
     @Override

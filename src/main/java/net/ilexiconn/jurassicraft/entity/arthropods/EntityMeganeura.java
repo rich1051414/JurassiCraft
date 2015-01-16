@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.arthropods;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFlying;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlying;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.entity.Entity;
@@ -20,7 +20,7 @@ public class EntityMeganeura extends EntityJurassiCraftFlyingCreature
     public EntityMeganeura(World world)
     {
         super(world, CreatureManager.classToCreature(EntityMeganeura.class), "grassandleaves");
-        this.tasks.addTask(0, new JurassiCraftEntityAIFlying(this));
+        this.tasks.addTask(0, new JurassiCraftAIFlying(this));
         this.setCreatureExperiencePoints(20);
     }
 

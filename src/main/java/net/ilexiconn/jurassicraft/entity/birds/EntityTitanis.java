@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.birds;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.IBird;
@@ -24,11 +24,11 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
         super(par1World, CreatureManager.classToCreature(EntityTitanis.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new JurassiCraftEntityAIWander(this, 0.7D * this.getCreatureSpeed()));
+        this.tasks.addTask(1, new JurassiCraftAIWander(this, 0.7D * this.getCreatureSpeed()));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
-        this.tasks.addTask(5, new JurassiCraftEntityAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
-        this.tasks.addTask(5, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(5, new JurassiCraftAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
+        this.tasks.addTask(5, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.setCreatureExperiencePoints(2500);

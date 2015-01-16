@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
-public class JurassiCraftEntityAIWander extends EntityAIBase
+public class JurassiCraftAIWander extends EntityAIBase
 {
     private EntityJurassiCraftTameable creature;
     private int leftWalk;
@@ -18,7 +18,7 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
     private double maxDistance;
     private double maxHeight;
 
-    public JurassiCraftEntityAIWander(EntityJurassiCraftTameable entity, double distance, double height, double velocity)
+    public JurassiCraftAIWander(EntityJurassiCraftTameable entity, double distance, double height, double velocity)
     {
         this.creature = entity;
         this.speed = velocity;
@@ -27,7 +27,7 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
         this.setMutexBits(1);
     }
 
-    public JurassiCraftEntityAIWander(EntityJurassiCraftTameable entity, double velocity)
+    public JurassiCraftAIWander(EntityJurassiCraftTameable entity, double velocity)
     {
         this.creature = entity;
         this.speed = velocity;
@@ -38,7 +38,7 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
 
     public boolean shouldExecute()
     {
-    	if (this.creature.isSitting())
+    	if (this.creature.isSitting() || this.creature.riddenByEntity != null)
     	{
     		return false;
     	}
@@ -82,7 +82,7 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
 
     public boolean continueExecuting()
     {
-        return !this.creature.getNavigator().noPath();
+        return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity != null;
     }
 
 }

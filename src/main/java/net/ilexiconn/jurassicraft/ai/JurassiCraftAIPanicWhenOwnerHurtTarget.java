@@ -4,12 +4,12 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 
-public class JurassiCraftEntityAIPanicWhenOwnerHurtTarget extends EntityAITarget
+public class JurassiCraftAIPanicWhenOwnerHurtTarget extends EntityAITarget
 {
     EntityJurassiCraftLandCoward cowardTameable;
     EntityLivingBase attacker;
 
-    public JurassiCraftEntityAIPanicWhenOwnerHurtTarget(EntityJurassiCraftLandCoward entityTameable)
+    public JurassiCraftAIPanicWhenOwnerHurtTarget(EntityJurassiCraftLandCoward entityTameable)
     {
         super(entityTameable, false);
         this.cowardTameable = entityTameable;

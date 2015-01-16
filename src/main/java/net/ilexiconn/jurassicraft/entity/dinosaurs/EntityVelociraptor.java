@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
@@ -39,21 +39,21 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
         this.tasks.addTask(7, new AIVelociraptorTwitchHead(this));
         this.tasks.addTask(7, new AIVelociraptorRoar(this));
         this.tasks.addTask(2, new AIVelociraptorLeap(this));
-        this.tasks.addTask(5, new JurassiCraftEntityAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
-        this.tasks.addTask(5, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
-        this.tasks.addTask(6, new JurassiCraftEntityAIWander(this, 0.8D * this.getCreatureSpeed()));
+        this.tasks.addTask(5, new JurassiCraftAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
+        this.tasks.addTask(5, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(6, new JurassiCraftAIWander(this, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityStegosaur.class, 0, 0.7F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityTriceratops.class, 0, 0.8F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 0, 0.25F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityOviraptor.class, 0, 0.33F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityBrachiosaur.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityStegosaur.class, 0, 0.7F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityTriceratops.class, 0, 0.8F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 0, 0.25F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityOviraptor.class, 0, 0.33F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityBrachiosaur.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
 
         this.setCreatureExperiencePoints(4500);
     }

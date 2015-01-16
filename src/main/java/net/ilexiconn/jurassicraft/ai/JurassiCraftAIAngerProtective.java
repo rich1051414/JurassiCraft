@@ -4,12 +4,12 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 
-public class JurassiCraftEntityAIAngerProtective extends EntityAIBase
+public class JurassiCraftAIAngerProtective extends EntityAIBase
 {
 
     private EntityJurassiCraftLandProtective entity;
 
-    public JurassiCraftEntityAIAngerProtective(EntityLiving entityLiving)
+    public JurassiCraftAIAngerProtective(EntityLiving entityLiving)
     {
         this.entity = (EntityJurassiCraftLandProtective) entityLiving;
     }

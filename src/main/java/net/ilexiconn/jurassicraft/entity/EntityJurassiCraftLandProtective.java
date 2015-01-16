@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIAngerProtective;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftLandEntityAIPanicIfNotAnger;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngerProtective;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPanicIfNotAngerLand;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,18 +26,12 @@ public class EntityJurassiCraftLandProtective extends EntityJurassiCraftRidable
     {
         super(world, creature);
         this.numberOfAllies = alliesToAttack;
-        this.tasks.addTask(1, new JurassiCraftLandEntityAIPanicIfNotAnger(this, 1.25D * this.getCreatureSpeed()));
+        this.tasks.addTask(1, new JurassiCraftAIPanicIfNotAngerLand(this, 1.25D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
-        this.targetTasks.addTask(1, new JurassiCraftEntityAIOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new JurassiCraftEntityAIOwnerHurtTarget(this));
+        this.targetTasks.addTask(1, new JurassiCraftAIOwnerHurtByTarget(this));
+        this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new JurassiCraftEntityAIAngerProtective(this));
-    }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
+        this.targetTasks.addTask(4, new JurassiCraftAIAngerProtective(this));
     }
 
     /**
@@ -85,7 +79,7 @@ public class EntityJurassiCraftLandProtective extends EntityJurassiCraftRidable
         {
             if (creature.isTamed())
             {
-                if (this.checkTarget(target))
+                if (this.checkTargetBeforeAttack(target))
                 {
                     creature.setAngerLevel((short) (300 + rand.nextInt(200)));
                     creature.setAttackTarget((EntityLivingBase) target);

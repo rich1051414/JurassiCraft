@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -40,24 +40,24 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new JurassiCraftEntityAIWander(this, this.getCreatureSpeed()));
+        this.tasks.addTask(3, new JurassiCraftAIWander(this, this.getCreatureSpeed()));
         this.tasks.addTask(4, this.aiSit);
         this.tasks.addTask(2, new AITyrannosaurusRoar(this));
         this.tasks.addTask(6, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
-        this.tasks.addTask(6, new JurassiCraftEntityAIFollowFood(this, 1.2D * this.getCreatureSpeed()));
-        this.tasks.addTask(6, new JurassiCraftEntityAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-        targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityStegosaur.class, 0, 0.5F));
-        targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityTriceratops.class, 0, 0.6F));
-        targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 0, 0.3F));
-        targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityOviraptor.class, 0, 0.2F));
-        targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityBrachiosaur.class, 0, 0.6F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));
-        this.targetTasks.addTask(3, new JurassiCraftEntityAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
+        targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityStegosaur.class, 0, 0.5F));
+        targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityTriceratops.class, 0, 0.6F));
+        targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 0, 0.3F));
+        targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityOviraptor.class, 0, 0.2F));
+        targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityBrachiosaur.class, 0, 0.6F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
 
         this.setCreatureExperiencePoints(6000);
     }

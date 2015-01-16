@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class JurassiCraftEntityAIFollowFoodCoward extends EntityAIBase
+public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
 {
     private EntityJurassiCraftCreature temptedEntity;
     private double speed;
@@ -19,7 +19,7 @@ public class JurassiCraftEntityAIFollowFoodCoward extends EntityAIBase
     private boolean isRunning;
     private boolean avoidWater;
 
-    public JurassiCraftEntityAIFollowFoodCoward(EntityJurassiCraftCreature creature, double velocity)
+    public JurassiCraftAIFollowFoodCoward(EntityJurassiCraftCreature creature, double velocity)
     {
         this.temptedEntity = creature;
         this.speed = velocity;

@@ -16,6 +16,7 @@ public class JurassiCraftAISit extends EntityAIBase
         this.setMutexBits(5);
     }
 
+    @Override
     public boolean shouldExecute()
     {
         if (!this.creature.isTamed())
@@ -33,23 +34,25 @@ public class JurassiCraftAISit extends EntityAIBase
         else
         {
             EntityLivingBase entitylivingbase = this.creature.getOwner();
-            return entitylivingbase == null ? true : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() != null ? false : this.isSitting);
+            return entitylivingbase == null ? false : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() != null ? false : this.isSitting);
         }
     }
 
+    @Override
     public void startExecuting()
     {
         this.creature.getNavigator().clearPathEntity();
         this.creature.setSitting(true);
     }
 
+    @Override
     public void resetTask()
     {
         this.creature.setSitting(false);
     }
 
-    public void setSitting(boolean par1)
+    public void setSitting(boolean flag)
     {
-        this.isSitting = par1;
+        this.isSitting = flag;
     }
 }

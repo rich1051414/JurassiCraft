@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import com.google.common.collect.Lists;
 
-public class JurassiCraftEntityAIGoNearWater extends EntityAIBase
+public class JurassiCraftAIGoNearWater extends EntityAIBase
 {
 
     private double speed;
@@ -28,17 +28,17 @@ public class JurassiCraftEntityAIGoNearWater extends EntityAIBase
     private long lastTimeExecuted;
     private float maxTime;
 
-    public JurassiCraftEntityAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed)
+    public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed)
     {
         this(creature, creatureSpeed, ((60*6+35)*1f/20f)); // 6 minutes and 35 seconds
     }
     
-    public JurassiCraftEntityAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, float maxTime)
+    public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, float maxTime)
     {
         this(creature, creatureSpeed, 25, maxTime);
     }
     
-    public JurassiCraftEntityAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, int maxSearchDistance, float maxTime)
+    public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, int maxSearchDistance, float maxTime)
     {
         this.creature = creature;
         this.world = creature.worldObj;

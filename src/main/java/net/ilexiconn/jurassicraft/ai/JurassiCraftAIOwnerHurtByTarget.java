@@ -4,13 +4,13 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 
-public class JurassiCraftEntityAIOwnerHurtByTarget extends EntityAITarget
+public class JurassiCraftAIOwnerHurtByTarget extends EntityAITarget
 {
     EntityJurassiCraftTameable defendingTameable;
     EntityLivingBase whoTheOwnerIsAttacking;
     private int revengeTime;
 
-    public JurassiCraftEntityAIOwnerHurtByTarget(EntityJurassiCraftTameable entityTameable)
+    public JurassiCraftAIOwnerHurtByTarget(EntityJurassiCraftTameable entityTameable)
     {
         super(entityTameable, false);
         this.defendingTameable = entityTameable;

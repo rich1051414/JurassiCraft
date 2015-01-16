@@ -11,7 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-public class JurassiCraftEntityAIFlying extends EntityAIBase
+public class JurassiCraftAIFlying extends EntityAIBase
 {
     private final long OWNER_FIND_INTERVAL = 5000L;
     private final long SITTINGSPOT_REACHTIME = 3000L;
@@ -22,7 +22,7 @@ public class JurassiCraftEntityAIFlying extends EntityAIBase
     private long nextOwnerCheckTime;
     private long sittingSpotAbortTime;
 
-    public JurassiCraftEntityAIFlying(EntityJurassiCraftFlyingCreature entity) {
+    public JurassiCraftAIFlying(EntityJurassiCraftFlyingCreature entity) {
         creature = entity;
         rand = entity.getRNG();
         nextOwnerCheckTime = System.currentTimeMillis();

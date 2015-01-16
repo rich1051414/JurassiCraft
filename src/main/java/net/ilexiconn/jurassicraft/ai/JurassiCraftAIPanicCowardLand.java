@@ -1,20 +1,20 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
-public class JurassiCraftLandEntityAIPanicIfNotAnger extends EntityAIBase
+public class JurassiCraftAIPanicCowardLand extends EntityAIBase
 {
 
-    private EntityJurassiCraftLandProtective runningCreature;
+    private EntityJurassiCraftLandCoward runningCreature;
     private double speed;
     private double randPosX;
     private double randPosY;
     private double randPosZ;
 
-    public JurassiCraftLandEntityAIPanicIfNotAnger(EntityJurassiCraftLandProtective creature, double newSpeed)
+    public JurassiCraftAIPanicCowardLand(EntityJurassiCraftLandCoward creature, double newSpeed)
     {
         this.runningCreature = creature;
         this.speed = newSpeed;

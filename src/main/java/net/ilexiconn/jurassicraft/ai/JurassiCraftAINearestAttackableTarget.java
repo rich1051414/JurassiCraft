@@ -10,28 +10,28 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class JurassiCraftEntityAINearestAttackableTarget extends EntityAITarget
+public class JurassiCraftAINearestAttackableTarget extends EntityAITarget
 {
 
     private final Class targetClass;
-    private final JurassiCraftEntityAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
+    private final JurassiCraftAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
     private final IEntitySelector targetEntitySelector;
     private final EntityJurassiCraftTameable attackerCreature;
     private EntityLivingBase targetEntity;
 
-    public JurassiCraftEntityAINearestAttackableTarget(EntityJurassiCraftTameable creature, Class target, boolean flag)
+    public JurassiCraftAINearestAttackableTarget(EntityJurassiCraftTameable creature, Class target, boolean flag)
     {
         super(creature, flag, false);
         this.targetClass = target;
         this.attackerCreature = creature;
-        this.theNearestAttackableTargetSorter = new JurassiCraftEntityAINearestAttackableTarget.Sorter(creature);
+        this.theNearestAttackableTargetSorter = new JurassiCraftAINearestAttackableTarget.Sorter(creature);
         this.setMutexBits(1);
         this.targetEntitySelector = new IEntitySelector()
         {
             @Override
             public boolean isEntityApplicable(Entity entity)
             {
-                return !(entity instanceof EntityLivingBase) ? false : (!JurassiCraftEntityAINearestAttackableTarget.this.isSuitableTarget((EntityLivingBase) entity, false) ? false : attackerCreature.isCreatureAdult());
+                return !(entity instanceof EntityLivingBase) ? false : (!JurassiCraftAINearestAttackableTarget.this.isSuitableTarget((EntityLivingBase) entity, false) ? false : attackerCreature.isCreatureAdult());
             }
         };
     }
@@ -49,7 +49,7 @@ public class JurassiCraftEntityAINearestAttackableTarget extends EntityAITarget
         else
         {
             this.targetEntity = (EntityLivingBase) list.get(0);
-            return this.attackerCreature.checkTarget(targetEntity);
+            return this.attackerCreature.checkTargetBeforeAttack(targetEntity);
         }
     }
 

@@ -30,10 +30,19 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     }
 
     @Override
-    protected boolean canDespawn()
+    public void onLivingUpdate()
     {
-        return false;
+        super.onLivingUpdate();
+        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && Minecraft.getMinecraft().gameSettings.keyBindUseItem.getIsKeyPressed())
+        {
+        	this.ridingPlayerRightClick();
+        }
     }
+
+	/**
+	 * Called in the onLivingUpdate() when this entity is being ridden by a player that is right clicking;
+	 */
+    public void ridingPlayerRightClick() {}
 
     @Override
     public boolean interact(EntityPlayer player)
@@ -41,7 +50,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
         ItemStack playerItemStack = player.inventory.getCurrentItem();
         if (!this.worldObj.isRemote && playerItemStack != (ItemStack) null && this.getCreature().isRidingItem(playerItemStack.getItem()))
         {
-            if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
+            if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && !this.isSitting() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
             {
                 this.setSitting(false);
                 this.aiSit.setSitting(false);
@@ -82,6 +91,17 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
                         player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notAdult")));
                 	}
                 }
+                else if (this.isSitting())
+                {
+                	if (this.hasCustomNameTag()) 
+                	{
+                        player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.sitting")));
+                	}
+                	else
+                	{
+                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.sitting")));
+                	}
+                }
                 else if (this.riddenByEntity != null)
                 {
                     player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity.riding.isRiding")));
@@ -104,7 +124,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     @Override
     public boolean allowLeashing()
     {
-        return !this.getLeashed() && !(this instanceof IMob) && this.isTamed();
+        return !this.getLeashed() && this.isTamed();
     }
 
     public void setRidingPlayer(EntityPlayer player)
@@ -115,7 +135,19 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     }
 
     /**
-     * Sets the mob rotation depending on the item position (pig style).
+     * Sets the mob rotation depending on where the player is looking (Horse Style). ID: 0.
+     */
+    private void handleMouseControlledRiding()
+    {
+        this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
+        this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
+        this.setRotation(this.rotationYaw, this.rotationPitch);
+        this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+        this.setRotation(this.rotationYaw, this.rotationPitch);
+    }
+
+    /**
+     * Sets the mob rotation depending on the item position (Pig Style). ID: 1.
      */
     private void handleFastItemControlledRiding()
     {
@@ -134,7 +166,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     }
 
     /**
-     * Sets the mob rotation depending on the item position (pig style).
+     * Sets the mob rotation depending on the item position (Pig Style). ID: 2.
      */
     private void handleSlowItemControlledRiding()
     {
@@ -153,7 +185,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     }
 
     /**
-     * Sets the mob rotation depending on the item position (pig style).
+     * Sets the mob rotation depending on the item position (Pig Style). ID: 3.
      */
     private void handleVerySlowItemControlledRiding()
     {
@@ -172,19 +204,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     }
 
     /**
-     * Sets the mob rotation depending on where the player is looking (horse style).
-     */
-    private void handleMouseControlledRiding()
-    {
-        this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
-        this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
-        this.setRotation(this.rotationYaw, this.rotationPitch);
-        this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
-        this.setRotation(this.rotationYaw, this.rotationPitch);
-    }
-
-    /**
-     * Sets the mob rotation depending on A and D keys.
+     * Sets the mob rotation depending on A and D keys. NOT WORKING!
      */
     private void handleKeyboardControlledRiding(float adjustment)
     {
@@ -237,7 +257,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
             {
                 movementForward = ((EntityLivingBase) this.riddenByEntity).moveForward * this.getMountingSpeed();
             }
-            if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && this.onGround && !this.isJumping && ((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() < ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage() - 20)
+            if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && this.onGround && !this.isJumping)
             {
             	this.decreaseHeldItemDurability(20);
                 this.jump();
@@ -270,9 +290,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Decreases the held item durability and destroys the item if stack size is 0 or less.
      */
-    private void decreaseHeldItemDurability(int damage)
+    protected void decreaseHeldItemDurability(int damage)
     {
-        if (((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage > ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage())
+        if (this.riddenByEntity != null && ((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage > ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage())
         {
             ((EntityPlayer) this.riddenByEntity).getHeldItem().stackSize--;
             if (((EntityPlayer) this.riddenByEntity).getHeldItem().stackSize <= 0)
@@ -285,13 +305,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
             ((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage);
         }
     }
-
-    @Override
-    public boolean isOnLadder()
-    {
-        return false;
-    }
-
+    
     public boolean isInvulnerable(DamageSource damageSource)
     {
         Entity entity = (Entity) damageSource.getEntity();
@@ -302,6 +316,12 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean isOnLadder()
+    {
         return false;
     }
 

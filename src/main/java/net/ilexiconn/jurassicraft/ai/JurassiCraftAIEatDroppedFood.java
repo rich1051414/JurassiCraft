@@ -6,7 +6,7 @@ import net.minecraft.entity.item.EntityItem;
 
 import java.util.List;
 
-public class JurassiCraftEntityAIEatDroppedFood extends EntityAIBase
+public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 {
 
     private EntityJurassiCraftTameable hungryCreature;
@@ -14,7 +14,7 @@ public class JurassiCraftEntityAIEatDroppedFood extends EntityAIBase
     private double timeTryingToEat;
     private EntityItem droppedFood;
 
-    public JurassiCraftEntityAIEatDroppedFood(EntityJurassiCraftTameable creature, double distance)
+    public JurassiCraftAIEatDroppedFood(EntityJurassiCraftTameable creature, double distance)
     {
         this.hungryCreature = creature;
         this.searchDistance = distance;

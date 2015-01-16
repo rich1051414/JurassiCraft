@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.MathHelper;
 
@@ -10,6 +12,7 @@ import net.minecraft.util.MathHelper;
  * 
  * @author RafaMv
  */
+@SideOnly(Side.CLIENT)
 public class ControlledAnimation
 {
 	/** It is the timer used to animate */
@@ -31,6 +34,7 @@ public class ControlledAnimation
 	 * 
 	 * @param limitTime is the maximum number of ticks that the timer can reach.
 	 */
+    @SideOnly(Side.CLIENT)
 	public void setLimitTime(int limitTime)
 	{
 		this.timer = 0;
@@ -42,6 +46,7 @@ public class ControlledAnimation
 	 * 
 	 * @param time is the number of ticks to be set.
 	 */
+    @SideOnly(Side.CLIENT)
 	public void setTimer(int time)
 	{
 		if ((double) time < this.limitTime)
@@ -49,12 +54,14 @@ public class ControlledAnimation
 	}
 
 	/** Sets the timer to 0. */
+    @SideOnly(Side.CLIENT)
 	public void resetTimer()
 	{
 		this.timer = 0;
 	}
 
 	/** Increases the timer by 1. */
+    @SideOnly(Side.CLIENT)
 	public void increaseTimer()
 	{
 		if (!Minecraft.getMinecraft().isGamePaused() && this.timer < this.limitTime)
@@ -66,6 +73,7 @@ public class ControlledAnimation
 	 * 
 	 * @param time is the number of ticks to be increased in the timer
 	 */
+    @SideOnly(Side.CLIENT)
 	public void increaseTimer(int time)
 	{
 		if (!Minecraft.getMinecraft().isGamePaused() && this.timer + (double) time < this.limitTime)
@@ -73,6 +81,7 @@ public class ControlledAnimation
 	}
 
 	/** Decreases the timer by 1. */
+    @SideOnly(Side.CLIENT)
 	public void decreaseTimer()
 	{
 		if (!Minecraft.getMinecraft().isGamePaused() && this.timer > 0)
@@ -84,6 +93,7 @@ public class ControlledAnimation
 	 * 
 	 * @param time is the number of ticks to be decreased in the timer
 	 */
+    @SideOnly(Side.CLIENT)
 	public void decreaseTimer(int time)
 	{
 		if (!Minecraft.getMinecraft().isGamePaused() && this.timer - (double) time > 0)
@@ -95,6 +105,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(4-8*x)). It
 	 * is quite uniform but slow, and needs if statements.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSmooth()
 	{
 		if (this.timer > 0.0D) 
@@ -116,6 +127,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(6-12*x)). It
 	 * is quite uniform, but fast.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSteep()
 	{
 		return (float) (1.0D / (1.0D + Math.exp(6.0D - 12.0D * (this.timer / this.limitTime))));
@@ -126,6 +138,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using a sine function. It is
 	 * fast in the beginning and slow in the end.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSin()
 	{
 		return MathHelper.sin(1.57079632679F * (float) (this.timer / this.limitTime));
@@ -136,6 +149,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using a sine function
 	 * squared. It is very smooth.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSinSqrt()
 	{
 		float result = MathHelper.sin(1.57079632679F * (float) (this.timer / this.limitTime));
@@ -147,6 +161,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using a sine function to the
 	 * power of ten. It is slow in the beginning and fast in the end.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSinToTen()
 	{
 		return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.limitTime)), 10);
@@ -159,6 +174,7 @@ public class ControlledAnimation
 	 * 
 	 * @param i is the power of the sine function.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressSinPowerOf(int i)
 	{
 		return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.limitTime)), i);
@@ -169,6 +185,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
 	 * It is smooth.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressPoly2() 
 	{
 		float x = (float) (this.timer / this.limitTime);
@@ -181,6 +198,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
 	 * It is steep.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressPoly3() 
 	{
 		float x = (float) (this.timer / this.limitTime);
@@ -195,6 +213,7 @@ public class ControlledAnimation
 	 * 
 	 * @param n is the power of the polynomial function.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressPolyN(int n) 
 	{
 		double x = this.timer / this.limitTime;
@@ -207,6 +226,7 @@ public class ControlledAnimation
 	 * of the animation (limitTime).It reaches 1.0F using 0.5 + arctan(PI * (x -
 	 * 0.5)) / 2.00776964. It is super smooth.
 	 */
+    @SideOnly(Side.CLIENT)
 	public float getAnimationProgressArcTan()
 	{
 		return (float) (0.5F + 0.49806510671F * Math.atan(3.14159265359D * ((double) (this.timer / this.limitTime) - 0.5D)));

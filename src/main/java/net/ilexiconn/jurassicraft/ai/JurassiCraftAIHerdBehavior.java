@@ -8,7 +8,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JurassiCraftEntityAIHerdBehavior extends EntityAIBase
+public class JurassiCraftAIHerdBehavior extends EntityAIBase
 {
 
     private EntityJurassiCraftTameable lostCreature;
@@ -21,7 +21,7 @@ public class JurassiCraftEntityAIHerdBehavior extends EntityAIBase
     private int timeTryingToMove;
     private int maxTimeTryingToMove;
 
-    public JurassiCraftEntityAIHerdBehavior(EntityJurassiCraftTameable creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
+    public JurassiCraftAIHerdBehavior(EntityJurassiCraftTameable creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
     {
         this.lostCreature = creature;
         this.searchDistance = distance;

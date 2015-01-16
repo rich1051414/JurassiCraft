@@ -3,12 +3,12 @@ package net.ilexiconn.jurassicraft.ai;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 
-public class JurassiCraftEntityAITargetIfNonTamed extends EntityAINearestAttackableTarget
+public class JurassiCraftAITargetIfNonTamed extends EntityAINearestAttackableTarget
 {
 
     private EntityJurassiCraftTameable creature;
 
-    public JurassiCraftEntityAITargetIfNonTamed(EntityJurassiCraftTameable entityTameable, Class targetClass, int chance)
+    public JurassiCraftAITargetIfNonTamed(EntityJurassiCraftTameable entityTameable, Class targetClass, int chance)
     {
         super(entityTameable, targetClass, chance, false);
         this.creature = entityTameable;

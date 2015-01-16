@@ -8,7 +8,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JurassiCraftEntityAIGallimimusFlocking extends EntityAIBase
+public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
 {
 
     private EntityJurassiCraftTameable herdCreature;
@@ -22,7 +22,7 @@ public class JurassiCraftEntityAIGallimimusFlocking extends EntityAIBase
     private int numberOfGallimimus;
     private int timeTryingToMove;
 
-    public JurassiCraftEntityAIGallimimusFlocking(EntityJurassiCraftTameable creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
+    public JurassiCraftAIGallimimusFlocking(EntityJurassiCraftTameable creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
     {
         this.herdCreature = creature;
         this.numberOfGallimimus = minimumNumberOfGallimimus;

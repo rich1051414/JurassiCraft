@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.entity;
 
 import java.util.List;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfNonTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfNonTamed;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,20 +21,14 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftFlying
     {
         super(world, creature, landingMaterial);
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.25F * this.getCreatureSpeed(), false));
-        this.targetTasks.addTask(1, new JurassiCraftEntityAIOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new JurassiCraftEntityAIOwnerHurtTarget(this));
+        this.targetTasks.addTask(1, new JurassiCraftAIOwnerHurtByTarget(this));
+        this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new JurassiCraftEntityAITargetIfNonTamed(this, EntityPlayer.class, 0));
+        this.targetTasks.addTask(4, new JurassiCraftAITargetIfNonTamed(this, EntityPlayer.class, 0));
     }
 
     @Override
     public boolean canBreatheUnderwater()
-    {
-        return false;
-    }
-
-    @Override
-    protected boolean canDespawn()
     {
         return false;
     }
@@ -48,7 +42,7 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftFlying
         {
             if (creature.isTamed())
             {
-                if (this.checkTarget(target))
+                if (this.checkTargetBeforeAttack(target))
                 {
                     creature.setAttackTarget((EntityLivingBase) target);
                 }
@@ -70,7 +64,7 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftFlying
         else
         {
             Entity attacker = damageSource.getEntity();
-            if (attacker != (Entity) null && this.checkTarget(attacker))
+            if (attacker != (Entity) null && this.checkTargetBeforeAttack(attacker))
             {
                 this.becomeAngryAt(this, attacker);
                 List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0D, 8.0D, 16.0D));
@@ -80,7 +74,7 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftFlying
                     if (entityNeighbor.getClass() == this.getClass())
                     {
                         EntityJurassiCraftFlyingAggressive entityNeighborAngry = (EntityJurassiCraftFlyingAggressive) entityNeighbor;
-                        if (entityNeighborAngry.checkTarget(attacker))
+                        if (entityNeighborAngry.checkTargetBeforeAttack(attacker))
                         {
                             becomeAngryAt(entityNeighborAngry, attacker);
                         }

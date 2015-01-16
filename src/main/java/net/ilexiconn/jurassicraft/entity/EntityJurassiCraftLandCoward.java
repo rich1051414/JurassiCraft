@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIOwnerHurtTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIPanicWhenOwnerHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftLandEntityAIPanicCoward;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPanicWhenOwnerHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPanicCowardLand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -21,9 +21,9 @@ public class EntityJurassiCraftLandCoward extends EntityJurassiCraftRidable
     public EntityJurassiCraftLandCoward(World world, Creature creature)
     {
         super(world, creature);
-        this.tasks.addTask(1, new JurassiCraftLandEntityAIPanicCoward(this, 1.25D * this.getCreatureSpeed()));
-        this.targetTasks.addTask(1, new JurassiCraftEntityAIPanicWhenOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new JurassiCraftEntityAIOwnerHurtTarget(this));
+        this.tasks.addTask(1, new JurassiCraftAIPanicCowardLand(this, 1.25D * this.getCreatureSpeed()));
+        this.targetTasks.addTask(1, new JurassiCraftAIPanicWhenOwnerHurtByTarget(this));
+        this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
     }
 
@@ -33,12 +33,6 @@ public class EntityJurassiCraftLandCoward extends EntityJurassiCraftRidable
     public void setFleeingTick(int value)
     {
         this.fleeingTick = value;
-    }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
     }
 
     /**

@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.ItemOnAStick;
@@ -20,8 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature implements IEntityOwnable
 {
-
-    protected JurassiCraftEntityAISit aiSit = new JurassiCraftEntityAISit(this);
+    protected JurassiCraftAISit aiSit = new JurassiCraftAISit(this);
 
     public EntityJurassiCraftTameable(World world, Creature creature)
     {
@@ -35,12 +34,6 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
         super.entityInit();
         this.dataWatcher.addObject(15, Byte.valueOf((byte) 0));
         this.dataWatcher.addObject(16, "");
-    }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
     }
 
     @Override
@@ -232,7 +225,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
         }
     }
 
-    public JurassiCraftEntityAISit getAiSit()
+    public JurassiCraftAISit getAiSit()
     {
         return this.aiSit;
     }
@@ -283,7 +276,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
     /**
      * Returns true if the target is not the owner of this creature or other creature from the same owner.
      */
-    public boolean checkTarget(Entity target)
+    public boolean checkTargetBeforeAttack(Entity target)
     {
         if (target != (Entity) null && target != this && target != this.getOwner())
         {
@@ -302,6 +295,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
         }
     }
 
+    @Override
     public EntityLivingBase getOwner()
     {
         return this.worldObj.getPlayerEntityByName(this.getOwnerName());
