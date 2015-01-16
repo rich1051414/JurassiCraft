@@ -93,15 +93,15 @@ public class MowzieModelBase extends ModelBase
 	 * 
 	 * Note: Just keep f3 and f4 from the setRotationAngles() method.
 	 * 
-	 * @param divider is the number of boxes being used. (i.e. if you are 
+	 * @param f is the number of boxes being used. (i.e. if you are 
 	 * using this on a head and neck, set it to 2. Just a head, 1);
 	 * @param f3 is the rotationYaw of the EntityLivingBase;
 	 * @param f4 is the rotationPitch of the EntityLivingBase.
 	 */
-	public void faceTarget(MowzieModelRenderer box, int divider, float f3, float f4) 
+	public void faceTarget(MowzieModelRenderer box, float f, float f3, float f4) 
 	{
-		box.rotateAngleY += (f3 / (180f / (float) Math.PI)) / divider;
-		box.rotateAngleX += (f4 / (180f / (float) Math.PI)) / divider;
+		box.rotateAngleY += (f3 / (180f / (float) Math.PI)) / f;
+		box.rotateAngleX += (f4 / (180f / (float) Math.PI)) / f;
 	}
 
 	/**

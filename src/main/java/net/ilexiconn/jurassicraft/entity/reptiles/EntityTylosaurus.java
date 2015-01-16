@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 public class EntityTylosaurus extends EntitySwimming implements IReptile, ICarnivore, IPiscivore
 {
 	public ChainBuffer tailBuffer = new ChainBuffer();
-
     public EntityTylosaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityTylosaurus.class));

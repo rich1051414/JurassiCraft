@@ -36,6 +36,7 @@ public class ModelCarnotaurus extends MowzieModelBase
 	public MowzieModelRenderer rightHand;
 	public MowzieModelRenderer leftHand;
 	public MowzieModelRenderer[] tailParts;
+	public MowzieModelRenderer[] bodyParts;
 
 	public ModelCarnotaurus() 
 	{
@@ -171,12 +172,10 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.body2.addChild(this.upperArmRight);
         this.upperArmRight.addChild(this.rightHand);
 
-        this.bodyMain.addChild(this.leftThigh);
         this.leftThigh.addChild(this.leftCalf1);
         this.leftCalf1.addChild(this.leftUpperFoot);
         this.leftUpperFoot.addChild(this.footLeft);
         
-        this.bodyMain.addChild(this.rightThigh);
         this.rightThigh.addChild(this.rightCalf1);
         this.rightCalf1.addChild(this.rightUpperFoot);
         this.rightUpperFoot.addChild(this.footRight);
@@ -187,9 +186,26 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.tail3.addChild(this.tail4);
         this.tail4.addChild(this.tail5);
         this.tail5.addChild(this.tail6);
+        
+        //Corrections
+        leftThigh.rotationPointY += 4;
+        leftThigh.rotationPointZ += 6;
+        rightThigh.rotationPointY += 4;
+        rightThigh.rotationPointZ += 6;
+        footLeft.rotationPointZ -= 1;
+        footRight.rotationPointZ -= 1;
+        footLeft.rotationPointY += 0.88;
+        footRight.rotationPointY += 0.88;
+        footLeft.rotateAngleZ -= 0.05;
+        footRight.rotateAngleZ -= 0.05;
+        rightHand.rotationPointZ -= 1;
+        leftHand.rotationPointZ -= 1;
+        rightHand.rotationPointY += 1;
+        leftHand.rotationPointY += 1;
 
 		this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
-
+		this.bodyParts = new MowzieModelRenderer[] { this.head, this.neck, this.body2, this.body1, this.bodyMain };
+		
         this.bodyMain.setInitValuesToCurrentPose();
         this.upperArmRight.setInitValuesToCurrentPose();
         this.upperArmLeft.setInitValuesToCurrentPose();
@@ -226,51 +242,61 @@ public class ModelCarnotaurus extends MowzieModelBase
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCarnotaurus) entity);
 		this.bodyMain.render(f5);
+		this.leftThigh.render(f5);
+		this.rightThigh.render(f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityCarnotaurus carnotaurus) 
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, carnotaurus);
 		this.resetPose();
-
+//		f = carnotaurus.frame;f1 = 0.8F;
+	    float globalSpeed = 0.55F;
+        float globalDegree = 0.5F;
+        float height = 1F;
+        
 		//running
-		this.walk(this.bodyMain, 0.125F, 0.05F, false, 0.0F, 0.15F, f, f1);
-		this.walk(this.tail1, 0.125F, 0.01F, false, 0.0F, -0.1F, f, f1);
-		
-		this.walk(this.upperArmRight, 0.25F, 0.0F, false, 0.0F, 0.85F, 1.0F, f1);
-		this.walk(this.upperArmLeft, 0.25F, 0.0F, false, 0.0F, 0.85F, 1.0F, f1);
-		
-		this.walk(this.leftThigh, 0.25F, 0.5F, false, 0.0F, 0.25F, f, f1);
-		this.walk(this.leftCalf1, 0.25F, 0.4F, true, 1.0F, 0.4F, f, f1);
-		this.walk(this.leftUpperFoot, 0.25F, 0.4F, false, 0.0F, 0.0F, f, f1);
-		this.walk(this.footLeft, 0.25F, 0.4F, true, 0.4F, -0.15F, f, f1);
+	    bob(bodyMain, 1F * globalSpeed, height, false, f, f1);
+        chainWave(bodyParts, 1F * globalSpeed, 0.08F, 3, f, f1);
+        chainSwing(tailParts, 0.5F * globalSpeed, -0.07F, 2, f, f1);
+        chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+        bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
+        bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
+        leftThigh.rotationPointY -= -1 * f1 * Math.cos(f * 0.5 * globalSpeed);
+        rightThigh.rotationPointY -= 1 * f1 * Math.cos(f * 0.5 * globalSpeed);
+        bodyMain.rotateAngleZ += 0.05 * f1;
+        walk(neck, 1F * globalSpeed, 0.25F, true, 3.1F, 0.4F, f, f1);
+        walk(head, 1F * globalSpeed, 0.25F, false, 3.1F, -0.4F, f, f1);
 
-		this.walk(this.rightThigh, 0.25F, 0.5F, true, 0.0F, 0.25F, f, f1);
-		this.walk(this.rightCalf1, 0.25F, 0.4F, false, 1.0F, 0.4F, f, f1);
-		this.walk(this.rightUpperFoot, 0.25F, 0.4F, true, 0.0F, 0.0F, f, f1);
-		this.walk(this.footRight, 0.25F, 0.4F, false, 0.4F, -0.15F, f, f1);
-		
-		
-		//Idle
-		
-		this.faceTarget(this.body2, 4, f3, f4);
-		this.faceTarget(this.body1, 4, f3, f4);
-		this.faceTarget(this.neck, 4, f3, f4);
-		this.faceTarget(this.head, 4, f3, f4);
+        walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+        walk(leftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+        walk(leftUpperFoot, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+        walk(footLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
 
-		this.walk(this.body2, 0.03F, 0.08F, false, 0.0F, 0.025F, carnotaurus.frame, 1.0F);
-		this.walk(this.bodyMain, 0.03F, 0.03F, false, 0.05F, 0.015F, carnotaurus.frame, 1.0F);
-		this.walk(this.leftThigh, 0.03F, 0.03F, true, 0.05F, 0.015F, carnotaurus.frame, 1.0F);
-		this.walk(this.rightThigh, 0.03F, 0.03F, true, 0.05F, 0.015F, carnotaurus.frame, 1.0F);
-		
-		this.walk(this.upperArmRight, 0.03F, 0.3F, true, 0.05F, 0.0F, carnotaurus.frame, 1.0F);
-		this.walk(this.upperArmLeft, 0.03F, 0.3F, true, 0.05F, 0.0F, carnotaurus.frame, 1.0F);
+        walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+        walk(rightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+        walk(rightUpperFoot, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+        walk(footRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+        
+        walk(upperArmRight, 1F * globalSpeed, 0.25F, true, 2F, 0F, f, f1);
+        walk(upperArmLeft, 1F * globalSpeed, 0.25F, true, 2F, 0F, f, f1);
 
-		this.walk(this.lowerJaw, 0.03F, 0.1F, false, 0.005F, 0.0F, carnotaurus.frame, 1.0F);
+		//Idle	
+		this.faceTarget(this.body2, 6, f3, f4);
+		this.faceTarget(this.body1, 6, f3, f4);
+		this.faceTarget(this.neck, 3F, f3, f4);
+		this.faceTarget(this.head, 3F, f3, f4);
+
+        chainWave(bodyParts, 0.07F, -0.03F, 3, carnotaurus.frame, 1.0F);
+        
+		this.walk(this.upperArmRight, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
+		this.walk(this.upperArmLeft, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
+
+		this.walk(this.lowerJaw, 0.03F, 0.1F, false, 0F, 0.0F, carnotaurus.frame, 1.0F);
 		
-		this.chainSwing(this.tailParts, 0.08F, 0.06F, 1, carnotaurus.frame, 1.0F);
-		this.chainWave(this.tailParts, 0.08F, -0.06F, 2, carnotaurus.frame, 1.0F);
-		
+        chainSwing(tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F);
+        chainWave(tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F);
+        
 		carnotaurus.tailBuffer.chainSwingBuffer(this.tailParts, 70.0F, 5, 2.5F, 5.0F, carnotaurus);
 	}
 	

@@ -291,27 +291,6 @@ public class ModelTyrannosaurus extends MowzieModelBase
         float height = 1F;
         faceTarget(Head, 2, f3, f4);
         faceTarget(Neck, 2, f3, f4);
-        /*Old animation
-        bob(Waist, 1F * scaleFactor, height, false, f, f1);
-        bob(LeftThigh, 1F * scaleFactor, height, false, f, f1);
-        bob(RightThigh, 1F * scaleFactor, height, false, f, f1);
-        walk(Waist, 1F * scaleFactor, height / 10, true, 0F, 0.15F, f, f1);
-        walk(Body, 1F * scaleFactor, height / 20, true, -0.5F, 0F, f, f1);
-        walk(Neck, 1F * scaleFactor, height / 20, true, -1F, 0.5F, f, f1);
-        walk(Head, 1F * scaleFactor, height / 10F, false, 0.5F, -0.2F, f, f1);
-
-        walk(LowerArmRight, 1F * scaleFactor, height / 5, true, -1F, -0.5F, f, f1);
-        walk(LowerArmLeft, 1F * scaleFactor, height / 5, true, -1F, -0.5F, f, f1);
-
-        walk(LeftThigh, 0.5F * scaleFactor, 0.5F, false, 0F, 0.7F, f, f1);
-        walk(LeftCalf1, 0.5F * scaleFactor, 0.3F, true, 1.5F, 0F, f, f1);
-        walk(LeftCalf2, 0.5F * scaleFactor, 0.7F, false, 0.5F, -0.4F, f, f1);
-        walk(FootLeft, 0.5F * scaleFactor, 1F, true, 0.5F, 0.5F, f, f1);
-
-        walk(RightThigh, 0.5F * scaleFactor, 0.5F, true, 0F, 0.7F, f, f1);
-        walk(RightCalf1, 0.5F * scaleFactor, 0.3F, false, 1.5F, 0F, f, f1);
-        walk(RightCalf2, 0.5F * scaleFactor, 0.7F, true, 0.5F, -0.4F, f, f1);
-        walk(FootRight, 0.5F * scaleFactor, 1F, false, 0.5F, 0.5F, f, f1);*/
         
         bob(Waist, 1F * globalSpeed, height, false, f, f1);
         bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
