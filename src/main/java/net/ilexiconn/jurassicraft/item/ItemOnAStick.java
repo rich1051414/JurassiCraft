@@ -9,8 +9,9 @@ public class ItemOnAStick extends Item
     public ItemOnAStick(String foodOnAStick)
     {
         super();
-        setUnlocalizedName(foodOnAStick + "OnAStick");
-        setTextureName(JurassiCraft.getModId() + "ridingItems/" + foodOnAStick + "OnAStick");
-        setCreativeTab(ModCreativeTabs.items);
+        this.setUnlocalizedName(foodOnAStick + "OnAStick");
+        this.setTextureName(JurassiCraft.getModId() + "ridingItems/" + foodOnAStick + "OnAStick");
+        this.setCreativeTab(ModCreativeTabs.items);
+        this.maxStackSize = 1;
     }
 }

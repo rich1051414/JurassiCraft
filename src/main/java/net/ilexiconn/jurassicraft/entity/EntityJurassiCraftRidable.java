@@ -16,13 +16,12 @@ import net.minecraft.world.World;
 
 public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
 {
-    protected float prevRearingAmount;
     private float mountingSpeed;
 
     public EntityJurassiCraftRidable(World world, Creature creature)
     {
         super(world, creature);
-        this.setMountingSpeed((float) (1.2D * this.getCreatureSpeed()));
+        this.setMountingSpeed((float) (this.getCreature().getRidingSpeed()));
     }
 
     public boolean isCreatureRidable()
@@ -228,7 +227,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
                 default:
                     this.handleSlowItemControlledRiding();
             }
-            this.stepHeight = 1.0F; // CHECK: Should change with height!!!
+            this.stepHeight = 1.0F; 
             movementStrafing = 0.25F * ((EntityLivingBase) this.riddenByEntity).moveStrafing * this.getMountingSpeed();
             if (Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed())
             {
@@ -240,10 +239,10 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
             }
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && this.onGround && !this.isJumping && ((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() < ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage() - 20)
             {
-                //((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + 20); CHECK LATER
+            	this.decreaseHeldItemDurability(20);
                 this.jump();
             }
-            //this.decreaseHeldItemDurability(); CHECK LATER
+            this.decreaseHeldItemDurability(1);
             if (!this.worldObj.isRemote)
             {
                 this.setAIMoveSpeed((float) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
@@ -271,9 +270,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Decreases the held item durability and destroys the item if stack size is 0 or less.
      */
-    private void decreaseHeldItemDurability()
+    private void decreaseHeldItemDurability(int damage)
     {
-        if (((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() > ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage())
+        if (((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage > ((EntityPlayer) this.riddenByEntity).getHeldItem().getMaxDamage())
         {
             ((EntityPlayer) this.riddenByEntity).getHeldItem().stackSize--;
             if (((EntityPlayer) this.riddenByEntity).getHeldItem().stackSize <= 0)
@@ -283,7 +282,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
         }
         else
         {
-            ((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + 1);
+            ((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage);
         }
     }
 
@@ -310,14 +309,13 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setFloat("MountingSpeed", this.getMountingSpeed());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setMountingSpeed(compound.getFloat("MountingSpeed"));
+        this.setMountingSpeed((float) (this.getCreature().getRidingSpeed()));
     }
 
 }

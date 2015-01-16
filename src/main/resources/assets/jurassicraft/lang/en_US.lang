@@ -302,6 +302,8 @@ item.CarrotOnAStick.name=Apple On A Stick
 item.FishOnAStick.name=Fish On A Stick
 item.PorkOnAStick.name=Pork On A Stick
 item.WheatOnAStick.name=Wheat On A Stick
+item.fossil.name=Fossil
+item.amber.name=Amber
 
 //Info
 item.growthSerum.info=Used to grow a creature
@@ -375,7 +377,8 @@ tile.fossil_clay_ore_stained_yellow.name=Yellow Stained Clay Fossil Ore
 tile.block_Gypsum_Block.name=Gypsum Block
 tile.block_Gypsum_Brick.name=Gypsum Brick
 tile.block_Gypsum_CobbleStone.name=Gypsum Cobblestone
-
+tile.fossil_ore.name=Fossil Ore
+tile.amber_ore.name=Amber Ore
 
 
 //Containers====================================================

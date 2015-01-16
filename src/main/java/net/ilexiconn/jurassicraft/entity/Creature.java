@@ -390,6 +390,11 @@ public class Creature
         return this.ridingStyle;
     }
 
+    public double getRidingSpeed()
+    {
+        return this.ridingSpeed;
+    }
+
     public boolean isFavoriteFood(Item item)
     {
         if (this.favoriteFoodList != null && item != null)
