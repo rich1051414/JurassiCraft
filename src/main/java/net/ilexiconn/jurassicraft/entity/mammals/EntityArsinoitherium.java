@@ -35,7 +35,7 @@ public class EntityArsinoitherium extends EntityJurassiCraftLandProtective imple
     @Override
     public double getMountedYOffset()
     {
-        return (double) this.getYBouningBox() * 1.0D;
+        return 0.86D * (double) this.getYBouningBox();
     }
 
     @Override

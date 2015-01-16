@@ -35,6 +35,12 @@ public class EntityTitanis extends EntityJurassiCraftLandAggressive implements I
     }
 
     @Override
+    public double getMountedYOffset()
+    {
+        return (double) this.getYBouningBox();
+    }
+
+    @Override
     public int getTalkInterval()
     {
         return 350;

@@ -44,7 +44,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
     @Override
     public double getMountedYOffset()
     {
-        return (double) this.getYBouningBox() * 1.1D;
+        return 1.1D * (double) this.getYBouningBox();
     }
 
     @Override

@@ -36,7 +36,7 @@ public class EntityMammoth extends EntityJurassiCraftLandProtective implements I
     @Override
     public double getMountedYOffset()
     {
-        return (double) this.getYBouningBox() * 1.0D;
+        return (double) this.getYBouningBox();
     }
 
     @Override

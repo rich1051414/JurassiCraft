@@ -23,7 +23,7 @@
         "xzBoxMin":0.55,
         "xzBoxDelta":0.8,
         "yBoxMin":1.0,
-        "yBoxDelta":0.65,
+        "yBoxDelta":0.815,
         "ticksToAdulthood":600000,
         "cultivateSpeed":1000,
         "favoriteFoodList":["item.beefRaw", "item.beefCooked", "item.porkchopRaw", "item.porkchopCooked", "item.chickenRaw", "item.chickenCooked"],

@@ -39,7 +39,7 @@ public class EntityBrachiosaur extends EntityJurassiCraftLandProtective implemen
     @Override
     public double getMountedYOffset()
     {
-        return (double) this.getYBouningBox() * 0.7D;
+        return 0.7D * (double) this.getYBouningBox();
     }
 
     @Override

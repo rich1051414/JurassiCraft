@@ -48,6 +48,12 @@ public class EntityCarnotaurus extends EntityJurassiCraftLandAggressive implemen
     }
 
     @Override
+    public double getMountedYOffset()
+    {
+        return 0.95D * (double) this.getYBouningBox();
+    }
+
+    @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
