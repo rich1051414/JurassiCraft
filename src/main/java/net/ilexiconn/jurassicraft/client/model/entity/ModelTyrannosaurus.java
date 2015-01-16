@@ -269,14 +269,9 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		this.faceTarget(Head, 2, f3, f4);
 		this.faceTarget(Neck, 2, f3, f4);
 		
-		if (trex.isSitting()) 
-		{
-			trex.sittingProgress.increaseTimer();
-		}
-		else
+		if (!trex.isSitting())
 		{
 			//Walking-dependent animation
-			trex.sittingProgress.decreaseTimer();
 			float globalSpeed = 0.45F;
 			float globalDegree = 0.4F;
 			float height = 1.0F;

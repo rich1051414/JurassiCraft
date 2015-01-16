@@ -114,6 +114,14 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         this.stepCount -= this.moveForward * 9.5;
 
+		if (this.isSitting()) 
+		{
+			this.sittingProgress.increaseTimer();
+		}
+		else
+		{
+			this.sittingProgress.decreaseTimer();
+		}
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
     }
 

@@ -53,6 +53,14 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     public void onUpdate()
     {
         super.onUpdate();
+		if (this.isAirBorne || this.isInWater())
+		{
+			this.droppingTimer.decreaseTimer();
+		}
+		else
+		{
+			this.droppingTimer.increaseTimer();
+		}
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 3, 4.0F, this);
     }
 
