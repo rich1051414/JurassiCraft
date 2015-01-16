@@ -15,7 +15,8 @@ import net.minecraft.world.World;
 
 public class EntityTylosaurus extends EntitySwimming implements IReptile, ICarnivore, IPiscivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(12);
+	
     public EntityTylosaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityTylosaurus.class));
@@ -39,6 +40,13 @@ public class EntityTylosaurus extends EntitySwimming implements IReptile, ICarni
         return this.worldObj.findNearestEntityWithinAABB(EntityAnimal.class, area, this);
     }
 
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(120.0F, 5, 8.0F, this);
+    }
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

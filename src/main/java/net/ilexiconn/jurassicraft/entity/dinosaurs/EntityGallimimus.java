@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class EntityGallimimus extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(4);
 	
     public EntityGallimimus(World world)
     {
@@ -50,6 +50,13 @@ public class EntityGallimimus extends EntityJurassiCraftLandProtective implement
         return 350;
     }
 
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
+    }
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
@@ -20,250 +19,280 @@ public class ChainBuffer
 	private int pitchTimer;
 	/** Rotation amount (rotateY) of the tail buffer. Added when the entity rotates. */
 	private float pitchVariation;
-
-	public ChainBuffer()
+	/** Array that contains the right rotations to be applied in the Y axis. */
+	private float[] yawArray;
+	/** Array that contains the right rotations to be applied in the X axis. */
+	private float[] pitchArray;
+	
+	public ChainBuffer(int numberOfParentedBoxes)
 	{
 		this.yawTimer = 0;
 		this.pitchTimer = 0;
 		this.yawVariation = 0.0F;
 		this.pitchVariation = 0.0F;
+		this.yawArray = new float[numberOfParentedBoxes];
+		this.pitchArray = new float[numberOfParentedBoxes];
 	}
-	
-	/**
-	 * Adds a specific rotation to a chain of parented boxes based on the entity movement (rotateAngleY).
-	 * 
-	 * @param boxes are the ModelRenderers to be animated;
-	 * @param maxAngle is the maximum angle that the tail can have. 
-	 * Try values about 40.0F to 90.0F degrees;
-	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
-	 * Try values about 5 to 30 ticks;
-	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
-	 * Try values about 3.0F degrees;
-	 * @param divider reduces the amount of angle added to the buffer. 
-	 * Try values about 5.0F.
-	 * @param entity is the EntityLivingBase that will be used to animate the tail;
-	 */
-	public void chainSwingBuffer(MowzieModelRenderer[] boxes, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
-	{
-		if (Minecraft.getMinecraft().isGamePaused()) return;
-		
-		if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
-			this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
-		
-		if (this.yawVariation > 0.7F * angleDecrement) 
-		{
-			if (this.yawTimer > bufferTime) 
-			{
-				this.yawVariation -= angleDecrement;
-				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
-				{
-					this.yawVariation = 0.0F;
-					this.yawTimer = 0;
-				}
-			}
-			else
-			{
-				this.yawTimer++;
-			}
-		} 
-		else if (this.yawVariation < -0.7F * angleDecrement) 
-		{
-			if (this.yawTimer > bufferTime) 
-			{
-				this.yawVariation += angleDecrement;
-				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
-				{
-					this.yawVariation = 0.0F;
-					this.yawTimer = 0;
-				}
-			}
-			else
-			{
-				this.yawTimer++;
-			}
-		}
-		
-		for (int i = 0; i < boxes.length; i++)
-			boxes[i].rotateAngleY += 0.01745329251F * this.yawVariation / (1 + i);
-	}
-	
-	/**
-	 * Adds a specific rotation to a chain of parented boxes based on the entity movement (rotateAngleX).
-	 * 
-	 * @param boxes are the ModelRenderers to be animated;
-	 * @param maxAngle is the maximum angle that the tail can have. 
-	 * Try values about 40.0F to 90.0F degrees;
-	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
-	 * Try values about 5 to 30 ticks;
-	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
-	 * Try values about 3.0F degrees;
-	 * @param divider reduces the amount of angle added to the buffer. 
-	 * Try values about 5.0F.
-	 * @param entity is the EntityLivingBase that will be used to animate the tail;
-	 */
-	public void chainWaveBuffer(MowzieModelRenderer[] boxes, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
-	{
-		if (Minecraft.getMinecraft().isGamePaused()) return;
-		
-		if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
-			this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;
-		
-		if (this.pitchVariation > 0.7F * angleDecrement) 
-		{
-			if (this.pitchTimer > bufferTime) 
-			{
-				this.pitchVariation -= angleDecrement;
-				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
-				{
-					this.pitchVariation = 0.0F;
-					this.pitchTimer = 0;
-				}
-			}
-			else
-			{
-				this.pitchTimer++;
-			}
-		} 
-		else if (this.pitchVariation < -0.7F * angleDecrement) 
-		{
-			if (this.pitchTimer > bufferTime) 
-			{
-				this.pitchVariation += angleDecrement;
-				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
-				{
-					this.pitchVariation = 0.0F;
-					this.pitchTimer = 0;
-				}
-			}
-			else
-			{
-				this.pitchTimer++;
-			}
-		}
-		
-		for (int i = 0; i < boxes.length; i++)
-			boxes[i].rotateAngleY += 0.01745329251F * this.yawVariation / (1 + i);
-	}
-	
-	/**
-	 * Returns a float array with all rotation buffers to be used in a chain of parented boxes based on 
-	 * the entity movement. Useful when two or more chains should be animated using the same rotations.
-	 * 
-	 * @param partLength is the number of parts to be animated. This represents the length of the final array;
-	 * @param maxAngle is the maximum angle that the tail can have. 
-	 * Try values about 40.0F to 90.0F degrees;
-	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
-	 * Try values about 5 to 30 ticks;
-	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
-	 * Try values about 3.0F degrees;
-	 * @param divider reduces the amount of angle added to the buffer. 
-	 * Try values about 5.0F.
-	 * @param entity is the EntityLivingBase that will be used to animate the tail;
-	 */
-	public float[] chainSwingBufferArray(int partLength, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
-	{
-		float[] rotations = new float[partLength];
-		
-		if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
-			this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
-		
-		if (this.yawVariation > 0.7F * angleDecrement) 
-		{
-			if (this.yawTimer > bufferTime) 
-			{
-				this.yawVariation -= angleDecrement;
-				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
-				{
-					this.yawVariation = 0.0F;
-					this.yawTimer = 0;
-				}
-			}
-			else
-			{
-				this.yawTimer++;
-			}
-		} 
-		else if (this.yawVariation < -0.7F * angleDecrement) 
-		{
-			if (this.yawTimer > bufferTime) 
-			{
-				this.yawVariation += angleDecrement;
-				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
-				{
-					this.yawVariation = 0.0F;
-					this.yawTimer = 0;
-				}
-			}
-			else
-			{
-				this.yawTimer++;
-			}
-		}
-		
-		for (int i = 0; i < rotations.length; i++)
-			rotations[i] += 0.01745329251F * this.yawVariation / (1 + i);
-		
-		return rotations;
-	}
-	
-	/**
-	 * Returns a float array with all rotation buffers to be used in a chain of parented boxes based on 
-	 * the entity movement. Useful when two or more chains should be animated using the same rotations.
-	 * 
-	 * @param partLength is the number of parts to be animated. This represents the length of the final array;
-	 * @param maxAngle is the maximum angle that the tail can have. 
-	 * Try values about 40.0F to 90.0F degrees;
-	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
-	 * Try values about 5 to 30 ticks;
-	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
-	 * Try values about 3.0F degrees;
-	 * @param divider reduces the amount of angle added to the buffer. 
-	 * Try values about 5.0F.
-	 * @param entity is the EntityLivingBase that will be used to animate the tail;
-	 */
-	public float[] chainWaveBufferArray(int partLength, float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
-	{
-		float[] rotations = new float[partLength];
-		
-		if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
-			this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;
-		
-		if (this.pitchVariation > 0.7F * angleDecrement) 
-		{
-			if (this.pitchTimer > bufferTime) 
-			{
-				this.pitchVariation -= angleDecrement;
-				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
-				{
-					this.pitchVariation = 0.0F;
-					this.pitchTimer = 0;
-				}
-				else
-				{
-					this.pitchTimer++;
-				}
-			}
-		} 
-		else if (this.pitchVariation < -0.7F * angleDecrement) 
-		{
-			if (this.pitchTimer > bufferTime) 
-			{
-				this.pitchVariation += angleDecrement;
-				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
-				{
-					this.pitchVariation = 0.0F;
-					this.pitchTimer = 0;
-				}
-			}
-			else
-			{
-				this.pitchTimer++;
-			}
-		}
-		
-		for (int i = 0; i < rotations.length; i++)
-			rotations[i] += 0.01745329251F * this.yawVariation / (1 + i);
 
-		return rotations;
+	/**
+	 * Adds a specific rotation, depending on the entity rotation, to an array that can be later
+	 * used to animate a chain of parented boxes. (rotateAngleY).
+	 * 
+	 * @param i is the number of boxes to be animated;
+	 * @param maxAngle is the maximum angle that the tail can have. 
+	 * Try values about 40.0F to 90.0F degrees;
+	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
+	 * Try values about 5 to 30 ticks;
+	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
+	 * Try values about 3.0F degrees;
+	 * @param divider reduces the amount of angle added to the buffer. 
+	 * Try values about 5.0F.
+	 * @param entity is the EntityLivingBase that will be used to animate the tail;
+	 */
+	public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
+	{
+		if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
+			this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
+		
+		if (this.yawVariation > 0.7F * angleDecrement) 
+		{
+			if (this.yawTimer > bufferTime) 
+			{
+				this.yawVariation -= angleDecrement;
+				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
+				{
+					this.yawVariation = 0.0F;
+					this.yawTimer = 0;
+				}
+			}
+			else
+			{
+				this.yawTimer++;
+			}
+		} 
+		else if (this.yawVariation < -0.7F * angleDecrement) 
+		{
+			if (this.yawTimer > bufferTime) 
+			{
+				this.yawVariation += angleDecrement;
+				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
+				{
+					this.yawVariation = 0.0F;
+					this.yawTimer = 0;
+				}
+			}
+			else
+			{
+				this.yawTimer++;
+			}
+		}
+		
+		for (int i = 0; i < this.yawArray.length; i++)
+			this.yawArray[i] = 0.01745329251F * this.yawVariation / this.pitchArray.length;
+	}
+
+	/**
+	 * Adds a specific rotation, depending on the entity rotation, to an array that can be later
+	 * used to animate a chain of parented boxes. (rotateAngleX).
+	 * 
+	 * @param i is the number of boxes to be animated;
+	 * @param maxAngle is the maximum angle that the tail can have. 
+	 * Try values about 40.0F to 90.0F degrees;
+	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
+	 * Try values about 5 to 30 ticks;
+	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
+	 * Try values about 3.0F degrees;
+	 * @param divider reduces the amount of angle added to the buffer. 
+	 * Try values about 5.0F.
+	 * @param entity is the EntityLivingBase that will be used to animate the tail;
+	 */
+	public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity) 
+	{
+		if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
+			this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;
+		
+		if (this.pitchVariation > 0.7F * angleDecrement) 
+		{
+			if (this.pitchTimer > bufferTime) 
+			{
+				this.pitchVariation -= angleDecrement;
+				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
+				{
+					this.pitchVariation = 0.0F;
+					this.pitchTimer = 0;
+				}
+			}
+			else
+			{
+				this.pitchTimer++;
+			}
+		} 
+		else if (this.pitchVariation < -0.7F * angleDecrement) 
+		{
+			if (this.pitchTimer > bufferTime) 
+			{
+				this.pitchVariation += angleDecrement;
+				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
+				{
+					this.pitchVariation = 0.0F;
+					this.pitchTimer = 0;
+				}
+			}
+			else
+			{
+				this.pitchTimer++;
+			}
+		}
+		
+		for (int i = 0; i < this.pitchArray.length; i++)
+			this.pitchArray[i] = 0.01745329251F * this.pitchVariation / this.pitchArray.length;
+	}
+
+	/**
+	 * Adds a specific rotation, depending on the entity rotation, to an array that can be later
+	 * used to animate a chain of parented boxes. (rotateAngleY).
+	 * 
+	 * @param i is the number of boxes to be animated;
+	 * @param maxAngle is the maximum angle that the tail can have. 
+	 * Try values about 40.0F to 90.0F degrees;
+	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
+	 * Try values about 5 to 30 ticks;
+	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
+	 * Try values about 3.0F degrees;
+	 * @param divider reduces the amount of angle added to the buffer. 
+	 * Try values about 5.0F.
+	 * @param entity is the EntityLivingBase that will be used to animate the tail;
+	 */
+	public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity) 
+	{
+		if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
+			this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset);
+		
+		if (this.yawVariation > 0.7F * angleDecrement) 
+		{
+			if (this.yawTimer > bufferTime) 
+			{
+				this.yawVariation -= angleDecrement;
+				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
+				{
+					this.yawVariation = 0.0F;
+					this.yawTimer = 0;
+				}
+			}
+			else
+			{
+				this.yawTimer++;
+			}
+		} 
+		else if (this.yawVariation < -0.7F * angleDecrement) 
+		{
+			if (this.yawTimer > bufferTime) 
+			{
+				this.yawVariation += angleDecrement;
+				if (MathHelper.abs(this.yawVariation) < angleDecrement) 
+				{
+					this.yawVariation = 0.0F;
+					this.yawTimer = 0;
+				}
+			}
+			else
+			{
+				this.yawTimer++;
+			}
+		}
+		
+		for (int i = 0; i < this.yawArray.length; i++)
+			this.yawArray[i] = 0.01745329251F * this.yawVariation / this.pitchArray.length;
+	}
+
+	/**
+	 * Adds a specific rotation, depending on the entity rotation, to an array that can be later
+	 * used to animate a chain of parented boxes. (rotateAngleX).
+	 * 
+	 * @param i is the number of boxes to be animated;
+	 * @param maxAngle is the maximum angle that the tail can have. 
+	 * Try values about 40.0F to 90.0F degrees;
+	 * @param bufferTime is the number of ticks necessary to start reducing the tail angle. 
+	 * Try values about 5 to 30 ticks;
+	 * @param angleDecrement is the amount of angle that will be reduced each tick. 
+	 * Try values about 3.0F degrees;
+	 * @param divider reduces the amount of angle added to the buffer. 
+	 * Try values about 5.0F.
+	 * @param entity is the EntityLivingBase that will be used to animate the tail;
+	 */
+	public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity) 
+	{
+		if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
+			this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch);
+		
+		if (this.pitchVariation > 0.7F * angleDecrement) 
+		{
+			if (this.pitchTimer > bufferTime) 
+			{
+				this.pitchVariation -= angleDecrement;
+				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
+				{
+					this.pitchVariation = 0.0F;
+					this.pitchTimer = 0;
+				}
+			}
+			else
+			{
+				this.pitchTimer++;
+			}
+		} 
+		else if (this.pitchVariation < -0.7F * angleDecrement) 
+		{
+			if (this.pitchTimer > bufferTime) 
+			{
+				this.pitchVariation += angleDecrement;
+				if (MathHelper.abs(this.pitchVariation) < angleDecrement) 
+				{
+					this.pitchVariation = 0.0F;
+					this.pitchTimer = 0;
+				}
+			}
+			else
+			{
+				this.pitchTimer++;
+			}
+		}
+		
+		for (int i = 0; i < this.pitchArray.length; i++)
+			this.pitchArray[i] = 0.01745329251F * this.pitchVariation / this.pitchArray.length;
+	}
+
+	/**
+	 * Adds a rotations in the Y axis depending on the entity rotation using a previous set array. (rotateAngleY).
+	 * 
+	 * @param boxes are the chain of parented boxes to be animated;
+	 */
+	public void applyChainSwingBuffer(MowzieModelRenderer[] boxes)
+	{
+		if (boxes.length == this.yawArray.length) {
+			for (int i = 0; i < boxes.length; i++)
+				boxes[i].rotateAngleY += this.yawArray[i];
+		}
+		else
+		{
+			System.out.println("Wrong array length being used in the buffer! Y axis.");
+		}
+	}
+
+	/**
+	 * Adds a rotations in the X axis depending on the entity rotation using a previous set array. (rotateAngleX).
+	 * 
+	 * @param boxes are the chain of parented boxes to be animated;
+	 */
+	public void applyChainWaveBuffer(MowzieModelRenderer[] boxes)
+	{
+		if (boxes.length == this.pitchArray.length) {
+			for (int i = 0; i < boxes.length; i++)
+				boxes[i].rotateAngleX += this.pitchArray[i];
+		}
+		else
+		{
+			System.out.println("Wrong array length being used in the buffer! X axis.");
+		}
 	}
 }

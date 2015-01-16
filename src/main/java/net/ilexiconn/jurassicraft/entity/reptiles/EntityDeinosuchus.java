@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class EntityDeinosuchus extends EntityJurassiCraftLandAggressive implements IReptile, ICarnivore, IPiscivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public EntityDeinosuchus(World world)
     {
@@ -54,6 +54,13 @@ public class EntityDeinosuchus extends EntityJurassiCraftLandAggressive implemen
         return 350;
     }
 
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 2.5F, this);
+    }
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

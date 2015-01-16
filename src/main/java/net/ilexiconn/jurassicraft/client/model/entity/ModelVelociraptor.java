@@ -11,7 +11,6 @@ import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 public class ModelVelociraptor extends MowzieModelBase
 {
     private Animator animator;
-
     private float TwitchAngle = 0.5F;
 
     MowzieModelRenderer Left_Upper_Foot;
@@ -413,10 +412,10 @@ public class ModelVelociraptor extends MowzieModelBase
         Hand_Right_Claw_Middle.setRotationPoint(0F, -0.2F, -0.1F);
         Hand_Right_Claw_Right.setRotationPoint(-0.2F, -0.2F, -0.1F);
 
-        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
-        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
-        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
-        
+		rightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
+		leftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
+		tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
+
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
         Left_Calf_1.setInitValuesToCurrentPose();
@@ -611,16 +610,8 @@ public class ModelVelociraptor extends MowzieModelBase
         chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         
-        raptor.tailBuffer.chainSwingBuffer(tailParts, 70.0F, 5, 3.0F, 5.0F, raptor);
-    
-/*    newfaceTarget(Tail_1, 6, raptor.getRenderYawOffsetChange(), 0);
-    newfaceTarget(Tail_2, 6, raptor.getRenderYawOffsetChange(), 0);
-    newfaceTarget(Tail_3, 6, raptor.getRenderYawOffsetChange(), 0);
-    newfaceTarget(Tail_4, 6, raptor.getRenderYawOffsetChange(), 0);
-    newfaceTarget(Tail_5, 6, raptor.getRenderYawOffsetChange(), 0);
-    newfaceTarget(Tail_6, 6, raptor.getRenderYawOffsetChange(), 0);*/
-        //    System.out.println(raptor.onGround + " " + raptor.leaping);
-
+        raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);
+        
         if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == 3) raptor.setLeaping(true);
         if (raptor.leaping == true)
         {
@@ -635,8 +626,6 @@ public class ModelVelociraptor extends MowzieModelBase
 
             Right_Thigh.rotateAngleX -= 1.2;
             Left_Thigh.rotateAngleX -= 1.2;
-            //   	Right_Thigh.rotateAngleY += 0.4F;
-            //   	Left_Thigh.rotateAngleY -= 0.4;
             Right_Calf_1.rotateAngleX -= 0.3;
             Left_Calf_1.rotateAngleX -= 0.3;
             Right_Upper_Foot.rotateAngleX += 0.3;

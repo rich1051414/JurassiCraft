@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class EntityStegosaur extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public EntityStegosaur(World world)
     {
@@ -40,6 +40,13 @@ public class EntityStegosaur extends EntityJurassiCraftLandProtective implements
     public int getTalkInterval()
     {
         return 350;
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFoodCoward;
@@ -21,7 +20,7 @@ import net.minecraft.world.World;
 
 public class EntityHypsilophodon extends EntityJurassiCraftLandCoward implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(3);
 	
     public EntityHypsilophodon(World world)
     {
@@ -45,6 +44,13 @@ public class EntityHypsilophodon extends EntityJurassiCraftLandCoward implements
     public int getTalkInterval()
     {
         return 350;
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(60.0F, 5, 3.8F, this);
     }
 
     @Override

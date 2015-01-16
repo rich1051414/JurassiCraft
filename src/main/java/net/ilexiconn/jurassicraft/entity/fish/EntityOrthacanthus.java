@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class EntityOrthacanthus extends EntitySwimming implements IFish, IPiscivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(6);
 	
     public EntityOrthacanthus(World world)
     {
@@ -48,6 +48,13 @@ public class EntityOrthacanthus extends EntitySwimming implements IFish, IPisciv
     public String getDeathSound()
     {
         return null;
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(65.0F, 3, 4.0F, this);
     }
 
     @Override

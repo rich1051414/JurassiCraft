@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(6);
 	
     public EntityHerrerasaur(World par1World)
     {
@@ -52,6 +52,13 @@ public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implemen
     public int getTalkInterval()
     {
         return 350;
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 3.0F, this);
     }
 
     @Override

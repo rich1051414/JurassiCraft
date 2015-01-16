@@ -1,20 +1,17 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
-import net.minecraft.entity.Entity;
-
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
-import net.ilexiconn.jurassicraft.client.model.animation.Animator;
+import net.minecraft.entity.Entity;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelTyrannosaurus extends MowzieModelBase
 {
-    int mouthCounter = 0;
-
     private Animator animator;
 
     public MowzieModelRenderer LeftCalf1;
@@ -48,6 +45,10 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public MowzieModelRenderer UpperJaw;
     public MowzieModelRenderer Teeth;
     public MowzieModelRenderer Body;
+    public MowzieModelRenderer[] tailParts;
+    public MowzieModelRenderer[] bodyParts;
+    public MowzieModelRenderer[] leftArmParts;
+    public MowzieModelRenderer[] rightArmParts;
 
     public ModelTyrannosaurus() {
     	animator = new Animator(this);
@@ -175,99 +176,77 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.LeftCalf2.addBox(-1.5F, 0.0F, -1.0F, 3, 8, 3);
         this.setRotation(LeftCalf2, -0.5576326960121882F, -0.0F, 0.0F);
 
-        addChildTo(Teeth, UpperJaw);
-        addChildTo(UpperJaw, Head);
-        addChildTo(LowerJaw, Head);
-        addChildTo(Head, Neck);
-        addChildTo(Neck, Chest);
+        this.addChildTo(this.Teeth, this.UpperJaw);
+        this.addChildTo(this.UpperJaw, this.Head);
+        this.addChildTo(this.LowerJaw, this.Head);
+        this.addChildTo(this.Head, this.Neck);
+        this.addChildTo(this.Neck, this.Chest);
 
-        addChildTo(HandLeftClawLeft, HandLeft);
-        addChildTo(HandLeftClawRight, HandLeft);
-        addChildTo(HandLeft, LowerArmLeft);
-        addChildTo(LowerArmLeft, UpperArmLeft);
-        addChildTo(UpperArmLeft, Chest);
+        this.addChildTo(this.HandLeftClawLeft, this.HandLeft);
+        this.addChildTo(this.HandLeftClawRight, this.HandLeft);
+        this.addChildTo(this.HandLeft, this.LowerArmLeft);
+        this.addChildTo(this.LowerArmLeft, this.UpperArmLeft);
+        this.addChildTo(this.UpperArmLeft, this.Chest);
 
-        addChildTo(HandRightClawLeft, HandRight);
-        addChildTo(HandRightClawRight, HandRight);
-        addChildTo(HandRight, LowerArmRight);
-        addChildTo(LowerArmRight, UpperArmRight);
-        addChildTo(UpperArmRight, Chest);
+        this.addChildTo(this.HandRightClawLeft, this.HandRight);
+        this.addChildTo(this.HandRightClawRight, this.HandRight);
+        this.addChildTo(this.HandRight, this.LowerArmRight);
+        this.addChildTo(this.LowerArmRight, this.UpperArmRight);
+        this.addChildTo(this.UpperArmRight, this.Chest);
         
-        addChildTo(Chest, Body);
-        addChildTo(Body, Waist);
+        this.addChildTo(this.Chest, this.Body);
+        this.addChildTo(this.Body, this.Waist);
 
-        addChildTo(this.FootLeft, this.LeftCalf2);
-        addChildTo(this.LeftCalf2, this.LeftCalf1);
-        addChildTo(this.LeftCalf1, this.LeftThigh);
+        this.addChildTo(this.FootLeft, this.LeftCalf2);
+        this.addChildTo(this.LeftCalf2, this.LeftCalf1);
+        this.addChildTo(this.LeftCalf1, this.LeftThigh);
 
-        addChildTo(this.FootRight, this.RightCalf2);
-        addChildTo(this.RightCalf2, this.RightCalf1);
-        addChildTo(this.RightCalf1, this.RightThigh);
+        this.addChildTo(this.FootRight, this.RightCalf2);
+        this.addChildTo(this.RightCalf2, this.RightCalf1);
+        this.addChildTo(this.RightCalf1, this.RightThigh);
 
-        addChildTo(this.Tail5, this.Tail4);
-        addChildTo(this.Tail4, this.Tail3);
-        addChildTo(this.Tail3, this.Tail2);
-        addChildTo(this.Tail2, this.Tail1);
-        addChildTo(this.Tail1, this.Waist);
+        this.addChildTo(this.Tail5, this.Tail4);
+        this.addChildTo(this.Tail4, this.Tail3);
+        this.addChildTo(this.Tail3, this.Tail2);
+        this.addChildTo(this.Tail2, this.Tail1);
+        this.addChildTo(this.Tail1, this.Waist);
 
         //Corrections
-        Tail1.rotationPointZ += 12;
-        Tail1.rotationPointY -= 4;
-        Chest.rotationPointZ -= 0;
-        Head.rotationPointZ -= 17;
-        Head.rotationPointY += 1;
-        Neck.rotationPointZ -= 9;
-        Neck.rotationPointY -= 3;
-        Teeth.setRotationPoint(0, 0, 0);
-        HandRightClawRight.setRotationPoint(0, 0, 0);
-        HandLeftClawRight.setRotationPoint(0, 0, 0);
-        HandRightClawLeft.setRotationPoint(0, 0, 0);
-        HandLeftClawLeft.setRotationPoint(0, 0, 0);
-        HandLeft.rotateAngleZ += 0.5;
-        HandRight.rotateAngleZ -= 0.5;
-        FootLeft.rotationPointZ -= 2;
-        FootRight.rotationPointZ -= 2;
-        FootLeft.rotationPointY += 1.75;
-        FootRight.rotationPointY += 1.75;
-        this.parts = new MowzieModelRenderer[]{LeftCalf1, RightCalf1, LeftThigh, RightThigh, Waist, Chest, Neck, Head, LowerJaw, Tail1, Tail2, Tail3, Tail4, Tail5, LowerArmLeft, LowerArmRight, HandLeft, HandRight, HandLeftClawLeft, HandLeftClawRight, HandRightClawRight, HandRightClawLeft, LeftCalf2, RightCalf2, FootLeft, FootRight, UpperArmRight, UpperArmLeft, UpperJaw, Teeth, Body};
+        this.Tail1.rotationPointZ += 12;
+        this.Tail1.rotationPointY -= 4;
+        this.Chest.rotationPointZ -= 0;
+        this.Head.rotationPointZ -= 17;
+        this.Head.rotationPointY += 1;
+        this.Neck.rotationPointZ -= 9;
+        this.Neck.rotationPointY -= 3;
+        this.Teeth.setRotationPoint(0, 0, 0);
+        this.HandRightClawRight.setRotationPoint(0, 0, 0);
+        this.HandLeftClawRight.setRotationPoint(0, 0, 0);
+        this.HandRightClawLeft.setRotationPoint(0, 0, 0);
+        this.HandLeftClawLeft.setRotationPoint(0, 0, 0);
+        this.HandLeft.rotateAngleZ += 0.5;
+        this.HandRight.rotateAngleZ -= 0.5;
+        this.FootLeft.rotationPointZ -= 2;
+        this.FootRight.rotationPointZ -= 2;
+        this.FootLeft.rotationPointY += 1.75;
+        this.FootRight.rotationPointY += 1.75;
+        
+        this.parts = new MowzieModelRenderer[]{this.LeftCalf1, this.RightCalf1, this.LeftThigh, this.RightThigh, this.Waist, this.Chest, this.Neck, this.Head, this.LowerJaw, this.Tail1, this.Tail2, this.Tail3, this.Tail4, this.Tail5, this.LowerArmLeft, this.LowerArmRight, this.HandLeft, this.HandRight, this.HandLeftClawLeft, this.HandLeftClawRight, this.HandRightClawRight, this.HandRightClawLeft, this.LeftCalf2, this.RightCalf2, this.FootLeft, this.FootRight, this.UpperArmRight, this.UpperArmLeft, this.UpperJaw, this.Teeth, this.Body};
+        this.tailParts = new MowzieModelRenderer[]{this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1};
+        this.bodyParts = new MowzieModelRenderer[]{this.Head, this.Neck, this.Chest, this.Body, this.Waist};
+        this.leftArmParts = new MowzieModelRenderer[]{this.HandLeft, this.LowerArmLeft, this.UpperArmLeft};
+        this.rightArmParts = new MowzieModelRenderer[]{this.HandRight, this.LowerArmRight, this.UpperArmRight};
+        
         this.setInitPose();
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
-/*        this.HandRightClawLeft.render(f5);
-        this.HandLeft.render(f5);
-        this.HandLeftClawLeft.render(f5);
-        this.LowerArmLeft.render(f5);
-        this.FootRight.render(f5);
-        this.LeftCalf1.render(f5);
-        this.Tail1.render(f5);
-        this.Teeth.render(f5);*/
-        this.Waist.render(f5);/*
-        this.Tail4.render(f5);
-        this.Tail3.render(f5);
-        this.Tail5.render(f5);
-        this.RightCalf2.render(f5);*/
-        this.RightThigh.render(f5);/*
-        this.Chest.render(f5);
-        this.Neck.render(f5);
-        this.HandLeftClawRight.render(f5);
-        this.UpperArmLeft.render(f5);
-        this.Head.render(f5);
-        this.LowerJaw.render(f5);
-        this.HandRightClawRight.render(f5);*/
-        this.LeftThigh.render(f5);/*
-        this.RightCalf1.render(f5);
-        this.HandRight.render(f5);
-        this.UpperArmRight.render(f5);
-        this.Body.render(f5);
-        this.FootLeft.render(f5);
-        this.Tail2.render(f5);
-        this.LowerArmRight.render(f5);
-        this.UpperJaw.render(f5);
-        this.LeftCalf2.render(f5);*/
+        this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
+        this.Waist.render(f5);
+        this.RightThigh.render(f5);
+        this.LeftThigh.render(f5);
     }
 
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
@@ -280,113 +259,113 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTyrannosaurus trex)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, trex);
-		setToInitPose();
+		this.setToInitPose();
+		
 		/*
-		 * f = trex.frame;
-		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
-		 * f1 = 0.5F;
-		 */
+		f = trex.frame;
+		f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
+		f1 = 0.5F;
+		*/
+		
         float globalSpeed = 0.45F;
         float globalDegree = 0.4F;
         float height = 1F;
-        faceTarget(Head, 2, f3, f4);
-        faceTarget(Neck, 2, f3, f4);
         
-        bob(Waist, 1F * globalSpeed, height, false, f, f1);
-        bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
-        bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
-        LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-        RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-        walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
-        walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
+        this.faceTarget(Head, 2, f3, f4);
+        this.faceTarget(Neck, 2, f3, f4);
+        
+        this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
+        this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
+        this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
+        this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+        this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+        this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
+        this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
 
-        walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
-        walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-        walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-        walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+        this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+        this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+        this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+        this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
 
-        walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
-        walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-        walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-        walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+        this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+        this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+        this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+        this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
 
-        MowzieModelRenderer[] tailParts = {this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1};
-        MowzieModelRenderer[] bodyParts = {this.Head, this.Neck, this.Chest, this.Body, this.Waist};
-        MowzieModelRenderer[] leftArmParts = {this.HandLeft, this.LowerArmLeft, this.UpperArmLeft};
-        MowzieModelRenderer[] rightArmParts = {this.HandRight, this.LowerArmRight, this.UpperArmRight};
-        chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
-        chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
-        chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-        chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+        this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+        this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
+        this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+        this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
 
         //Idling
-        chainWave(bodyParts, 0.1F, -0.03F, 3, trex.frame, 1F);
-        chainWave(rightArmParts, -0.1F, 0.2F, 4, trex.frame, 1F);
-        chainWave(leftArmParts, -0.1F, 0.2F, 4, trex.frame, 1F);
+        this.chainWave(bodyParts, 0.1F, -0.03F, 3, trex.frame, 1F);
+        this.chainWave(rightArmParts, -0.1F, 0.2F, 4, trex.frame, 1F);
+        this.chainWave(leftArmParts, -0.1F, 0.2F, 4, trex.frame, 1F);
 
-        chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1F);
-        chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1F);
-        trex.tailBuffer.chainSwingBuffer(tailParts, 60.0F, 5, 1.0F, 5.0F, trex);
+        this.chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1F);
+        this.chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1F);
+
+        trex.tailBuffer.applyChainSwingBuffer(this.tailParts);
 
         //Specialized animations
-        Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
-        LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
+        this.Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
+        this.LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        animator.update(entity);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
+    	this.animator.update(entity);
+    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
 
-        animator.setAnimation(1);
-        animator.startPhase(15);
-        animator.move(Waist, 0, -3, -5);
-        animator.move(RightThigh, 0, -3, -5);
-        animator.move(LeftThigh, 0, -3, -5);
-        animator.rotate(Waist, -0.3F, 0, 0);
-        animator.rotate(Head, 0.3F, 0, 0);
-        animator.rotate(RightThigh, 0.3F, 0, 0);
-        animator.rotate(RightCalf1, -0.4F, 0, 0);
-        animator.rotate(RightCalf2, 0.4F, 0, 0);
-        animator.rotate(FootRight, -0.3F, 0, 0);
-        animator.rotate(LeftThigh, -0.7F, 0, 0);
-        animator.rotate(LeftCalf1, 0.7F, 0, 0);
-        animator.rotate(LeftCalf2, -0.5F, 0, 0);
-        animator.rotate(FootLeft, 0.7F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(10);
-        animator.move(Waist, 0, 3, -10);
-        animator.move(RightThigh, 0, 3, -10);
-        animator.move(LeftThigh, 0, 3, -10);
-        animator.move(Head, 0, 1, 2);
-        animator.move(LowerJaw, 0, 0, 1);
-        animator.rotate(Waist, 0.2F, 0, 0);
-        animator.rotate(Neck, 0.5F, 0, 0);
-        animator.rotate(Head, -0.9F, 0, 0);
-        animator.rotate(LowerJaw, 0.9F, 0, 0);
-        animator.rotate(RightThigh, 0.6F, 0, 0);
-        animator.rotate(RightCalf1, 0.2F, 0, 0);
-        animator.rotate(RightCalf2, -0.4F, 0, 0);
-        animator.rotate(FootRight, -0.4F, 0, 0);
-        animator.rotate(LeftThigh, -0.3F, 0, 0);
-        animator.rotate(LeftCalf1, 0.2F, 0, 0);
-        animator.rotate(LeftCalf2, -0.2F, 0, 0);
-        animator.rotate(FootLeft, 0.3F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(35);
-        animator.resetPhase(15);
+        this.animator.setAnimation(1);
+        this.animator.startPhase(15);
+        this.animator.move(Waist, 0, -3, -5);
+        this.animator.move(RightThigh, 0, -3, -5);
+        this.animator.move(LeftThigh, 0, -3, -5);
+        this.animator.rotate(Waist, -0.3F, 0, 0);
+        this.animator.rotate(Head, 0.3F, 0, 0);
+        this.animator.rotate(RightThigh, 0.3F, 0, 0);
+        this.animator.rotate(RightCalf1, -0.4F, 0, 0);
+        this.animator.rotate(RightCalf2, 0.4F, 0, 0);
+        this.animator.rotate(FootRight, -0.3F, 0, 0);
+        this.animator.rotate(LeftThigh, -0.7F, 0, 0);
+        this.animator.rotate(LeftCalf1, 0.7F, 0, 0);
+        this.animator.rotate(LeftCalf2, -0.5F, 0, 0);
+        this.animator.rotate(FootLeft, 0.7F, 0, 0);
+        this.animator.endPhase();
+        this.animator.startPhase(10);
+        this.animator.move(Waist, 0, 3, -10);
+        this.animator.move(RightThigh, 0, 3, -10);
+        this.animator.move(LeftThigh, 0, 3, -10);
+        this.animator.move(Head, 0, 1, 2);
+        this.animator.move(LowerJaw, 0, 0, 1);
+        this.animator.rotate(Waist, 0.2F, 0, 0);
+        this.animator.rotate(Neck, 0.5F, 0, 0);
+        this.animator.rotate(Head, -0.9F, 0, 0);
+        this.animator.rotate(LowerJaw, 0.9F, 0, 0);
+        this.animator.rotate(RightThigh, 0.6F, 0, 0);
+        this.animator.rotate(RightCalf1, 0.2F, 0, 0);
+        this.animator.rotate(RightCalf2, -0.4F, 0, 0);
+        this.animator.rotate(FootRight, -0.4F, 0, 0);
+        this.animator.rotate(LeftThigh, -0.3F, 0, 0);
+        this.animator.rotate(LeftCalf1, 0.2F, 0, 0);
+        this.animator.rotate(LeftCalf2, -0.2F, 0, 0);
+        this.animator.rotate(FootLeft, 0.3F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(35);
+        this.animator.resetPhase(15);
         
-        animator.setAnimation(2);
-        animator.startPhase(15);
-        animator.rotate(Neck, -0.4F, 0, 0);
-        animator.rotate(Head, 0.8F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(10);
-        animator.rotate(Neck, 0.8F, 0, 0);
-        animator.rotate(Head, -0.8F, 0, 0);
-        animator.rotate(LowerJaw, 0.8F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(35);
-        animator.resetPhase(15);
+        this.animator.setAnimation(2);
+        this.animator.startPhase(15);
+        this.animator.rotate(Neck, -0.4F, 0, 0);
+        this.animator.rotate(Head, 0.8F, 0, 0);
+        this.animator.endPhase();
+        this.animator.startPhase(10);
+        this.animator.rotate(Neck, 0.8F, 0, 0);
+        this.animator.rotate(Head, -0.8F, 0, 0);
+        this.animator.rotate(LowerJaw, 0.8F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(35);
+        this.animator.resetPhase(15);
     }
 }

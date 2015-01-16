@@ -9,7 +9,9 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
-public class ModelStegosaur extends MowzieModelBase {
+public class ModelStegosaur extends MowzieModelBase 
+{
+	
     MowzieModelRenderer waist;
     MowzieModelRenderer legleftthigh;
     MowzieModelRenderer legrightthigh;
@@ -288,45 +290,9 @@ public class ModelStegosaur extends MowzieModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
     	super.render(entity, f, f1, f2, f3, f4, f5);
     	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaur) entity);
-//        this.tail3.render(f5);
-//        this.armrightthigh.render(f5);
-//        this.tail4.render(f5);
-//        this.plate2waist.render(f5);
-//        this.tailspike3tail5.render(f5);
-//        this.tail1.render(f5);
-//        this.plate4chest.render(f5);
-//        this.legleftcalf.render(f5);
-//        this.tail5.render(f5);
-//        this.tailspike2tail4.render(f5);
         this.waist.render(f5);
-//        this.upperjaw.render(f5);
-//        this.plate7tail2.render(f5);
-//        this.armrightfoot.render(f5);
-//        this.neck.render(f5);
-//        this.armleftcalf.render(f5);
-//        this.armleftthigh.render(f5);
-//        this.plate1waist.render(f5);
-//        this.plate10tail3.render(f5);
-//        this.head.render(f5);
-//        this.plate6tail1.render(f5);
         this.legleftthigh.render(f5);
-//        this.plate11tail2.render(f5);
-//        this.lowerjaw.render(f5);
-//        this.plate8chest.render(f5);
-//        this.legrightcalf.render(f5);
-//        this.tailspike4tail5.render(f5);
-//        this.plate5headback.render(f5);
-//        this.plate3waist.render(f5);
-//        this.legleftfoot.render(f5);
-//        this.tail2.render(f5);
         this.legrightthigh.render(f5);
-//        this.headback.render(f5);
-//        this.plate9neck.render(f5);
-//        this.legrightfoot.render(f5);
-//        this.armleftfoot.render(f5);
-//        this.tailspike1tail4.render(f5);
-//        this.chest.render(f5);
-//        this.armrightcalf.render(f5);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -340,8 +306,10 @@ public class ModelStegosaur extends MowzieModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, stego);
         this.setToInitPose();
 
-		//        f = stego.frame;
-		//       f1 = (float) Math.cos(f/50)*0.5F + 1F;
+		/*
+		f = stego.frame; 
+		f1 = (float) Math.cos(f/50)*0.5F + 1F;
+		*/
 
         float scaleFactor = 0.5F;
         float height = 0.8F;
@@ -390,11 +358,12 @@ public class ModelStegosaur extends MowzieModelBase {
         walk(armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
         walk(armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stego.frame, 1F);
         walk(armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
-        armleftthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
-        armrightthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
+        this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
+        this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
 
-        chainSwing(tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
-        chainWave(tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
-        stego.tailBuffer.chainSwingBuffer(tailParts, 45.0F, 5, 3.0F, 5.0F, stego);
+        chainSwing(this.tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
+        chainWave(this.tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
+        
+        stego.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
 }

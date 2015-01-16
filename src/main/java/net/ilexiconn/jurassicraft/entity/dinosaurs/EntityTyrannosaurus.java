@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAITargetIfHasAgeAndNonTamed;
@@ -7,6 +8,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
@@ -23,15 +25,15 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
     private int stepCount = 0;
     private float shakeCount = 0;
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
+	public ControlledAnimation sittingProgress = new ControlledAnimation(50);
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     public EntityTyrannosaurus(World world)
     {
@@ -101,8 +103,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
     public void onUpdate()
     {
         super.onUpdate();
-        roarCount.update();
-        roarTiltDegree.update();
+        this.roarCount.update();
+        this.roarTiltDegree.update();
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
@@ -110,7 +112,9 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         }
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        stepCount -= this.moveForward * 9.5;
+        this.stepCount -= this.moveForward * 9.5;
+
+        this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
     }
 
     @Override

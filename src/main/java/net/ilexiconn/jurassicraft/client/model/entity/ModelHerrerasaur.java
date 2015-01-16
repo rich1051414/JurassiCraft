@@ -336,38 +336,9 @@ public class ModelHerrerasaur extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaur) entity);
-        //    Left_Upper_Foot.render(f5);
-        //    Right_Upper_Foot.render(f5);
-        //    Left_Calf_1.render(f5);
-        //    Right_Calf_1.render(f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
-        //       Body_2.render(f5);
-        //        Neck.render(f5);
-        //       Head.render(f5);
-        //        Upper_Jaw.render(f5);
-        //        Lower_Jaw.render(f5);
-/*        Tail_1.render(f5);
-        Tail_2.render(f5);
-        Tail_3.render(f5);
-        Tail_4.render(f5);
-        Tail_5.render(f5);
-        Tail_6.render(f5);*/
-/*        Upper_Arm_Right.render(f5);
-        Upper_Arm_Left.render(f5);
-        Lower_Arm_Left.render(f5);
-        Lower_Arm_Right.render(f5);
-        Hand_Left.render(f5);
-        Hand_Right.render(f5);
-        Hand_Left_Claw_Left.render(f5);
-        Hand_Left_Claw_Right.render(f5);
-        Hand_Left_Claw_Middle.render(f5);
-        Hand_Right_Claw_Right.render(f5);
-        Hand_Right_Claw_Left.render(f5);
-        Hand_Right_Claw_Middle.render(f5);*/
-        //    Foot_Left.render(f5);
-        //    Foot_Right.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -416,11 +387,16 @@ public class ModelHerrerasaur extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHerrerasaur herrera)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, herrera);
-        resetPose();
-    /*f = herrera.frame;
-    f1 = 1F;*/
+		resetPose();
+		
+		/*
+		f = herrera.frame; 
+		f1 = 1F;
+		*/
+		
         float scaleFactor = 0.77F;
         float height = 2F * f1;
+        
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
@@ -457,6 +433,6 @@ public class ModelHerrerasaur extends MowzieModelBase
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
         
-        herrera.tailBuffer.chainSwingBuffer(tailParts, 50.0F, 5, 3.0F, 4.0F, herrera);
+        herrera.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
 }

@@ -23,7 +23,7 @@ import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityTriceratops extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public int timeSinceCharge = 0;
     public boolean charging = false;
@@ -58,6 +58,7 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
         return 350;
     }
 
+    @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -87,17 +88,20 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
         }
     }
 
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
-        flailDegree.update();
-        if (animID == 1 && animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        this.flailDegree.update();
+        if (this.animID == 1 && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
         if (this.stepCount <= 0 && this.charging)
         {
             this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
-            stepCount = 10;
+            this.stepCount = 10;
         }
-        stepCount -= 1;
+        this.stepCount -= 1;
+        
+        this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
     }
 
     @Override

@@ -297,7 +297,7 @@ public class ModelCarnotaurus extends MowzieModelBase
         chainSwing(tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F);
         chainWave(tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F);
         
-		carnotaurus.tailBuffer.chainSwingBuffer(this.tailParts, 70.0F, 5, 2.5F, 5.0F, carnotaurus);
+		carnotaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
 	}
 	
 	public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) {

@@ -1,17 +1,16 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
-import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 
 public class ModelHypsilophodon extends MowzieModelBase
 {
     private Animator animator;
-
     MowzieModelRenderer body1;
     MowzieModelRenderer neck;
     MowzieModelRenderer head;
@@ -330,7 +329,8 @@ public class ModelHypsilophodon extends MowzieModelBase
         walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
 
         chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
-        hypster.tailBuffer.chainSwingBuffer(tailParts, 65.0F, 4, 2.0F, 5.0F, hypster);
+        
+        hypster.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)

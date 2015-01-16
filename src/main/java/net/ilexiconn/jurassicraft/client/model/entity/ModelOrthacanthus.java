@@ -28,7 +28,7 @@ public class ModelOrthacanthus extends MowzieModelBase
 	public MowzieModelRenderer body5;
 	public MowzieModelRenderer finBack;
 	private MowzieModelRenderer[] tailParts;
-	MowzieModelRenderer[] shortTailParts;
+	private MowzieModelRenderer[] shortTailParts;
 
 	public ModelOrthacanthus() 
 	{
@@ -205,7 +205,7 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.chainWave(this.tailParts, 0.025F, -0.05F, 3.0D, orthacanthus.frame, 1.0F);
 			this.chainSwing(this.tailParts, 0.05F, 0.05F, 1.5D, orthacanthus.frame, 1.0F);
 
-			orthacanthus.tailBuffer.chainSwingBuffer(this.tailParts, 60.0F, 5, 3.0F, 5.0F, orthacanthus);
+			orthacanthus.tailBuffer.applyChainSwingBuffer(this.tailParts);
 		}
 		else
 		{
@@ -224,7 +224,6 @@ public class ModelOrthacanthus extends MowzieModelBase
 			this.flap(this.fliperRight4, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
 
 			this.chainWave(this.shortTailParts, 0.6F, -0.1F, 3.0D, orthacanthus.frame, 1.0F);
-			orthacanthus.tailBuffer.chainSwingBuffer(this.tailParts, 80.0F, 5, 3.0F, 5.0F, orthacanthus);
 		} 
 	}
 

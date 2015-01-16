@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.fish.EntityCoelacanth;
@@ -143,7 +142,7 @@ public class ModelCoelacanth extends MowzieModelBase
 			this.flap(this.bottomFinRight, 0.1F, 0.075F, true, 1.0F, 0.0F, coelacanth.frame, 1.0F);
 
 			this.chainSwing(this.bodyParts, 0.05F, -0.075F, 1.5D, coelacanth.frame, 1.0F);
-			coelacanth.tailBuffer.chainSwingBuffer(this.bodyParts, 60.0F, 5, 3.5F, 5.0F, coelacanth);
+			coelacanth.tailBuffer.applyChainSwingBuffer(this.bodyParts);
 		} 
 		else 
 		{

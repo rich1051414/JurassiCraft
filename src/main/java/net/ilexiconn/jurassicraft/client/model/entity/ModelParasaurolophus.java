@@ -11,7 +11,6 @@ import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 public class ModelParasaurolophus extends MowzieModelBase
 {
     public boolean isAlarmed;
-
     private Animator animator;
 
     MowzieModelRenderer Left_Lower_Foot;
@@ -514,8 +513,9 @@ public class ModelParasaurolophus extends MowzieModelBase
         walk(Right_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
         walk(Left_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
 
-        chainWave(tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
-        para.tailBuffer.chainSwingBuffer(tailParts, 45.0F, 4, 2.5F, 5.0F, para);
+        chainWave(this.tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
+        
+        para.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)

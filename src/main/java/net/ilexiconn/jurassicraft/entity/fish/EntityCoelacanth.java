@@ -4,17 +4,14 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntitySwimming;
-import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IFish;
-import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(4);
 	public ControlledAnimation droppingTimer = new ControlledAnimation(35);
 	
     public EntityCoelacanth(World world)
@@ -50,6 +47,13 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     public String getDeathSound()
     {
         return null;
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(55.0F, 3, 4.0F, this);
     }
 
     @Override

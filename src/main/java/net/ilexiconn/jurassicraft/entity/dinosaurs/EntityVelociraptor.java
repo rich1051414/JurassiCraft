@@ -24,8 +24,7 @@ import net.ilexiconn.jurassicraft.AnimationHandler;
 
 public class EntityVelociraptor extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
-	
+	public ChainBuffer tailBuffer = new ChainBuffer(6);
     public boolean leaping = false;
     public int timeSinceLeap;
     public int texid;
@@ -59,6 +58,7 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
         this.setCreatureExperiencePoints(4500);
     }
 
+    @Override
     public void onLivingUpdate()
     {
         // Leap AI
@@ -73,6 +73,13 @@ public class EntityVelociraptor extends EntityJurassiCraftLandAggressive impleme
 
         // Misc
         super.onLivingUpdate();
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 
     public void setLeaping(boolean l)

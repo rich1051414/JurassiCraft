@@ -5,7 +5,6 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
 public class ModelGallimimus extends MowzieModelBase
 {
@@ -364,41 +363,9 @@ public class ModelGallimimus extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
-        //    Left_Upper_Foot.render(f5);
-        //    Right_Upper_Foot.render(f5);
-        //    Left_Calf_1.render(f5);
-        //    Right_Calf_1.render(f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
-        //    Body_2.render(f5);
-        //    Head.render(f5);
-        //    Upper_Jaw.render(f5);
-        //    Lower_Jaw.render(f5);
-/*    Tail_1.render(f5);
-    Tail_2.render(f5);
-    Tail_3.render(f5);
-    Tail_4.render(f5);
-    Tail_5.render(f5);
- /*   Upper_Arm_Right.render(f5);
-    Upper_Arm_Left.render(f5);
-    Lower_Arm_Left.render(f5);
-    Lower_Arm_Right.render(f5);
-    Hand_Left.render(f5);
-    Hand_Right.render(f5);
- /*   Hand_Left_Claw_Left.render(f5);
-    Hand_Left_Claw_Right.render(f5);
-    Hand_Left_Claw_Middle.render(f5);
-    Hand_Right_Claw_Right.render(f5);
-    Hand_Right_Claw_Left.render(f5);
-    Hand_Right_Claw_Middle.render(f5);*/
-        //    Foot_Left.render(f5);
-        //    Foot_Right.render(f5);
-        //    Neck_1.render(f5);
-        //    Neck_2.render(f5);
-        //    Neck_3.render(f5);
-        //    Neck_4.render(f5);
-        //    Neck_5.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -508,6 +475,6 @@ public class ModelGallimimus extends MowzieModelBase
         chainWave(RightArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         
-        galli.tailBuffer.chainSwingBuffer(TailParts, 50.0F, 5, 3.0F, 5.0F, galli);
+        galli.tailBuffer.applyChainSwingBuffer(TailParts);
     }
 }

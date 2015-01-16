@@ -14,52 +14,54 @@ import net.minecraft.entity.Entity;
 public class ModelTylosaurus extends MowzieModelBase
 {
     //fields
-    MowzieModelRenderer Head;
-    MowzieModelRenderer Upper_Jaw;
-    MowzieModelRenderer Lower_Jaw;
-    MowzieModelRenderer Neck_;
-    MowzieModelRenderer Body_Section_1;
-    MowzieModelRenderer Body_Section_2;
-    MowzieModelRenderer Body_Section_3;
-    MowzieModelRenderer Tail_Section_1;
-    MowzieModelRenderer Tail_Section_2;
-    MowzieModelRenderer Tail_Section_3;
-    MowzieModelRenderer Tail_Section_4;
-    MowzieModelRenderer Fluke_Section_1;
-    MowzieModelRenderer Fluke_Section_2;
-    MowzieModelRenderer Fluke_Section_3;
-    MowzieModelRenderer Fluke_Section_4;
-    MowzieModelRenderer Fluke_Section_5;
-    MowzieModelRenderer Fluke_Section_6;
-    MowzieModelRenderer Right_Front_Flipper;
-    MowzieModelRenderer Left_Front_Flipper;
-    MowzieModelRenderer Right_Back_Flipper;
-    MowzieModelRenderer Left_Back_Flipper;
-    MowzieModelRenderer Upper_Knob_1_Neck;
-    MowzieModelRenderer Upper_Knob_2_Neck;
-    MowzieModelRenderer Upper_Knob_3_Neck;
-    MowzieModelRenderer Upper_Knob_4_Neck;
-    MowzieModelRenderer Upper_Knob_5_Body_1;
-    MowzieModelRenderer Upper_Knob_6_Body_1;
-    MowzieModelRenderer Upper_Knob_7_Body_1;
-    MowzieModelRenderer Upper_Knob_8_Fluke_1_Top;
-    MowzieModelRenderer Upper_Knob_9_Fluke_1_Top;
-    MowzieModelRenderer Upper_Knob_10_Fluke_3_Top;
-    MowzieModelRenderer Upper_Knob_11_Fluke_3_Top;
-    MowzieModelRenderer Upper_Knob_12_Fluke_3_Top;
-    MowzieModelRenderer Upper_Knob_13_Fluke_3_Top;
-    MowzieModelRenderer Upper_Knob_19_Fluke_4_Top;
-    MowzieModelRenderer Upper_Knob_20_Fluke_4_Top;
-    MowzieModelRenderer Lower_Knob_1_Fluke_2_Bottom;
-    MowzieModelRenderer Lower_Knob_2_Fluke_2_Bottom;
-    MowzieModelRenderer Lower_Knob_3_Fluke_3_Bottom;
-    MowzieModelRenderer Lower_Knob_4_Fluke_3_Bottom;
-    MowzieModelRenderer Lower_Knob_5_Fluke_3_Bottom;
-    MowzieModelRenderer Lower_Knob_6_Fluke_3_Bottom;
-    MowzieModelRenderer Lower_Knob_7_Fluke_3_Bottom;
-    MowzieModelRenderer Lower_Knob_8_Fluke_6_Bottom;
-    MowzieModelRenderer Lower_Knob_9_Fluke_6_Bottom;
-    MowzieModelRenderer Teeth;
+    public MowzieModelRenderer Head;
+    public MowzieModelRenderer Upper_Jaw;
+    public MowzieModelRenderer Lower_Jaw;
+    public MowzieModelRenderer Neck_;
+    public MowzieModelRenderer Body_Section_1;
+    public MowzieModelRenderer Body_Section_2;
+    public MowzieModelRenderer Body_Section_3;
+    public MowzieModelRenderer Tail_Section_1;
+    public MowzieModelRenderer Tail_Section_2;
+    public MowzieModelRenderer Tail_Section_3;
+    public MowzieModelRenderer Tail_Section_4;
+    public MowzieModelRenderer Fluke_Section_1;
+    public MowzieModelRenderer Fluke_Section_2;
+    public MowzieModelRenderer Fluke_Section_3;
+    public MowzieModelRenderer Fluke_Section_4;
+    public MowzieModelRenderer Fluke_Section_5;
+    public MowzieModelRenderer Fluke_Section_6;
+    public MowzieModelRenderer Right_Front_Flipper;
+    public MowzieModelRenderer Left_Front_Flipper;
+    public MowzieModelRenderer Right_Back_Flipper;
+    public MowzieModelRenderer Left_Back_Flipper;
+    public MowzieModelRenderer Upper_Knob_1_Neck;
+    public MowzieModelRenderer Upper_Knob_2_Neck;
+    public MowzieModelRenderer Upper_Knob_3_Neck;
+    public MowzieModelRenderer Upper_Knob_4_Neck;
+    public MowzieModelRenderer Upper_Knob_5_Body_1;
+    public MowzieModelRenderer Upper_Knob_6_Body_1;
+    public MowzieModelRenderer Upper_Knob_7_Body_1;
+    public MowzieModelRenderer Upper_Knob_8_Fluke_1_Top;
+    public MowzieModelRenderer Upper_Knob_9_Fluke_1_Top;
+    public MowzieModelRenderer Upper_Knob_10_Fluke_3_Top;
+    public MowzieModelRenderer Upper_Knob_11_Fluke_3_Top;
+    public MowzieModelRenderer Upper_Knob_12_Fluke_3_Top;
+    public MowzieModelRenderer Upper_Knob_13_Fluke_3_Top;
+    public MowzieModelRenderer Upper_Knob_19_Fluke_4_Top;
+    public MowzieModelRenderer Upper_Knob_20_Fluke_4_Top;
+    public MowzieModelRenderer Lower_Knob_1_Fluke_2_Bottom;
+    public MowzieModelRenderer Lower_Knob_2_Fluke_2_Bottom;
+    public MowzieModelRenderer Lower_Knob_3_Fluke_3_Bottom;
+    public MowzieModelRenderer Lower_Knob_4_Fluke_3_Bottom;
+    public MowzieModelRenderer Lower_Knob_5_Fluke_3_Bottom;
+    public MowzieModelRenderer Lower_Knob_6_Fluke_3_Bottom;
+    public MowzieModelRenderer Lower_Knob_7_Fluke_3_Bottom;
+    public MowzieModelRenderer Lower_Knob_8_Fluke_6_Bottom;
+    public MowzieModelRenderer Lower_Knob_9_Fluke_6_Bottom;
+    public MowzieModelRenderer Teeth;
+    public MowzieModelRenderer[] bodyParts;
+    
 
     public ModelTylosaurus()
     {
@@ -444,6 +446,8 @@ public class ModelTylosaurus extends MowzieModelBase
         Upper_Jaw.rotationPointY -= 5;
         Upper_Jaw.rotationPointZ -= 14;
 
+		this.bodyParts = new MowzieModelRenderer[] { this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6 };
+
         Head.setInitValuesToCurrentPose();
         Upper_Jaw.setInitValuesToCurrentPose();
         Lower_Jaw.setInitValuesToCurrentPose();
@@ -545,53 +549,8 @@ public class ModelTylosaurus extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTylosaurus) entity);
         Head.render(f5);
-        //	    Upper_Jaw.render(f5);
-        //	    Lower_Jaw.render(f5);
-        //	    Neck_.render(f5);
-        //	    Body_Section_1.render(f5);
-/*	    Body_Section_2.render(f5);
-        Body_Section_3.render(f5);
-	    Tail_Section_1.render(f5);
-	    Tail_Section_2.render(f5);
-	    Tail_Section_3.render(f5);
-	    Tail_Section_4.render(f5);
-	    Fluke_Section_1.render(f5);
-	    Fluke_Section_2.render(f5);
-	    Fluke_Section_3.render(f5);
-	    Fluke_Section_4.render(f5);
-	    Fluke_Section_5.render(f5);
-	    Fluke_Section_6.render(f5);*/
-        //	    Right_Front_Flipper.render(f5);
-        //	    Left_Front_Flipper.render(f5);
-        //	    Right_Back_Flipper.render(f5);
-        //	    Left_Back_Flipper.render(f5);
-/*	    Upper_Knob_1_Neck.render(f5);
-	    Upper_Knob_2_Neck.render(f5);
-	    Upper_Knob_3_Neck.render(f5);
-	    Upper_Knob_4_Neck.render(f5);
-	    Upper_Knob_5_Body_1.render(f5);
-	    Upper_Knob_6_Body_1.render(f5);
-	    Upper_Knob_7_Body_1.render(f5);*/
-/*	    Upper_Knob_8_Fluke_1_Top.render(f5);
-	    Upper_Knob_9_Fluke_1_Top.render(f5);
-	    Upper_Knob_10_Fluke_3_Top.render(f5);
-	    Upper_Knob_11_Fluke_3_Top.render(f5);
-	    Upper_Knob_12_Fluke_3_Top.render(f5);
-	    Upper_Knob_13_Fluke_3_Top.render(f5);
-	    Upper_Knob_19_Fluke_4_Top.render(f5);
-	    Upper_Knob_20_Fluke_4_Top.render(f5);
-	    Lower_Knob_1_Fluke_2_Bottom.render(f5);
-	    Lower_Knob_2_Fluke_2_Bottom.render(f5);
-	    Lower_Knob_3_Fluke_3_Bottom.render(f5);
-	    Lower_Knob_4_Fluke_3_Bottom.render(f5);
-	    Lower_Knob_5_Fluke_3_Bottom.render(f5);
-	    Lower_Knob_6_Fluke_3_Bottom.render(f5);
-	    Lower_Knob_7_Fluke_3_Bottom.render(f5);
-	    Lower_Knob_8_Fluke_6_Bottom.render(f5);
-	    Lower_Knob_9_Fluke_6_Bottom.render(f5);*/
-        //	    Teeth.render(f5);
     }
 
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
@@ -601,21 +560,20 @@ public class ModelTylosaurus extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTylosaurus tylo)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        resetPose();
-        EntityTylosaurus tylo = (EntityTylosaurus) entity;
-        MowzieModelRenderer[] bodyParts = {this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6};
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, tylo);
+        this.resetPose();
+        
         float scaleFactor = 0.3F;
         
-        chainSwing(bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
+        chainSwing(this.bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
         Head.rotationPointX -= 6 * f1 * Math.sin(f * scaleFactor);
         walk(Right_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
         
-		tylo.tailBuffer.chainSwingBuffer(bodyParts, 80.0F, 5, 3.0F, 5.0F, tylo);
-    	}
+		tylo.tailBuffer.applyChainSwingBuffer(this.bodyParts);
+    }
 }

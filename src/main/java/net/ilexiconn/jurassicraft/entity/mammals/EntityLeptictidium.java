@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements IMammal, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public EntityLeptictidium(World world)
     {
@@ -49,6 +49,13 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
         return 400;
     }
 
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(60.0F, 3, 4.0F, this);
+    }
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

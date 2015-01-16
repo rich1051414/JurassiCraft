@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class EntityCarnotaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer();
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     public EntityCarnotaurus(World world)
     {
@@ -52,7 +52,14 @@ public class EntityCarnotaurus extends EntityJurassiCraftLandAggressive implemen
     {
         return 0.95D * (double) this.getYBouningBox();
     }
-
+    
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
+    }
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
