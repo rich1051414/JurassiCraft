@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.block.*;
-import net.ilexiconn.jurassicraft.block.fence.*;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
@@ -36,6 +35,8 @@ public class ModBlocks implements IContentHandler
     public static Block fossilOre;
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
+    
+    /*
     public static Block securityFenceBase;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
@@ -46,6 +47,7 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceHighPole;
     public static Block securityFenceHighBase;
     public static Block securityFenceHighFence;
+    */
 
     public void init()
     {
@@ -63,6 +65,7 @@ public class ModBlocks implements IContentHandler
         sandstoneFossilOre = new BlockFossilSandstoneOre();
         clayFossilOre = new BlockFossilClayOre();
         dinoPad = new BlockDinoPad();
+        /*
         securityFenceBase = new BlockSecurityFenceMain();
         securityFenceLowPole = new BlockSecurityFenceLowPole();
         securityFenceLowBase = new BlockSecurityFenceLowBase();
@@ -73,6 +76,7 @@ public class ModBlocks implements IContentHandler
         securityFenceHighPole = new BlockSecurityFenceHighPole();
         securityFenceHighBase = new BlockSecurityFenceHighBase();
         securityFenceHighFence = new BlockSecurityFenceHighGrid();
+        */
         gameRegistry();
     }
 

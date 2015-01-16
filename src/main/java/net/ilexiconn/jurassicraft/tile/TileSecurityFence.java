@@ -1147,6 +1147,7 @@ public class TileSecurityFence extends TileEntity implements ISidedInventory
         int blockMetadata = 0;
         switch (security)
         {
+        	/*
             case 0:
                 fenceBase = ModBlocks.securityFenceLowBase;
                 fenceGrid = ModBlocks.securityFenceLowFence;
@@ -1162,6 +1163,7 @@ public class TileSecurityFence extends TileEntity implements ISidedInventory
                 fenceGrid = ModBlocks.securityFenceHighFence;
                 fencePole = ModBlocks.securityFenceHighPole;
                 break;
+            */
         }
         switch (direction)
         {

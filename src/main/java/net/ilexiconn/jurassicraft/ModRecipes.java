@@ -35,8 +35,8 @@ public class ModRecipes implements IContentHandler
 
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.dnaCombinator, 1), "III", "IRI", "III", 'I', Items.iron_ingot, 'R', Items.redstone);
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.dnaExtractor, 1), "IIG", "IRG", "III", 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceBase, 1), "III", "SRS", "SSS", 'I', Items.iron_ingot, 'S', Blocks.stone, 'R', Items.redstone);
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.dinoPad, 1), "III", "RGR", "III", 'I', Items.iron_ingot, 'G', Items.glowstone_dust, 'R', Items.redstone);
+        //GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceBase, 1), "III", "SRS", "SSS", 'I', Items.iron_ingot, 'S', Blocks.stone, 'R', Items.redstone);
 
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.gypsumPowder, 2), "TG", 'T', Items.stone_pickaxe.setContainerItem(Items.stone_pickaxe), 'G', ModBlocks.gypsumCobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.gypsumPowder, 2), "TG", 'T', Items.iron_pickaxe.setContainerItem(Items.iron_pickaxe), 'G', ModBlocks.gypsumCobblestone);
