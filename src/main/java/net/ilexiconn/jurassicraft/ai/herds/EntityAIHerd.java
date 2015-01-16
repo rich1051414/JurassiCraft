@@ -34,7 +34,7 @@ public abstract class EntityAIHerd extends EntityAIBase
                 break;
             }
             double distance = herd.getDistanceFrom(creature);
-            if(distance < 64)
+            if(distance < 35)
             {
                 if(herd.isAcceptable(creature))
                 {
