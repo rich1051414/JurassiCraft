@@ -34,9 +34,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected int animTick;
     public int frame;
     public int expParameter;
-
-    public FlyingParameters flyingParameters;
-    public boolean isFlying;
     
     public EntityJurassiCraftCreature(World world, Creature creature)
     {
@@ -52,7 +49,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.updateCreatureData(this.getTotalTicksLived());
         this.animID = 0;
         this.animTick = 0;
-        this.flyingParameters = new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, "grassandleaves");
     }
 
     /** Sets the creature. */
@@ -137,16 +133,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
             if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
         }
-        if (this.isFlyingCreature())
-        {
-            if(this.riddenByEntity == null) {
-                this.motionY += 0.04f + 0.06f * this.flyingParameters.flySpeedModifier / 500f;
-                this.isFlying = true;
-            }
-
-            if(this.onGround && this.isFlying)
-                this.isFlying = false;
-        }
         super.onLivingUpdate();
     }
 
@@ -154,7 +140,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public boolean interact(EntityPlayer player)
     {
     	/** DEBUG INFO */
-    	this.showDebugInfo(player);
+    	//this.showDebugInfo(player);
     	
         if (player != null && player.getHeldItem() != (ItemStack) null)
         {

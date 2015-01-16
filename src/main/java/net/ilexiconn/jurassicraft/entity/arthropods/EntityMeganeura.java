@@ -1,16 +1,15 @@
 package net.ilexiconn.jurassicraft.entity.arthropods;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFlying;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityMeganeura extends EntityJurassiCraftRidable
+public class EntityMeganeura extends EntityJurassiCraftFlyingCreature
 {
     public int courseChangeCooldown = 0;
     public double waypointX;
@@ -20,7 +19,7 @@ public class EntityMeganeura extends EntityJurassiCraftRidable
 
     public EntityMeganeura(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityMeganeura.class));
+        super(world, CreatureManager.classToCreature(EntityMeganeura.class), "grassandleaves");
         this.tasks.addTask(0, new JurassiCraftEntityAIFlying(this));
         this.setCreatureExperiencePoints(20);
     }

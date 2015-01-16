@@ -1,6 +1,8 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import java.util.Random;
+
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,20 +11,18 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-import java.util.Random;
-
 public class JurassiCraftEntityAIFlying extends EntityAIBase
 {
     private final long OWNER_FIND_INTERVAL = 5000L;
     private final long SITTINGSPOT_REACHTIME = 3000L;
     private final double OWNER_DISTANCE_TO_TAKEOFF = 100D;
-    private final EntityJurassiCraftCreature creature;
+    private final EntityJurassiCraftFlyingCreature creature;
     private ChunkCoordinates currentFlightTarget;
     private Random rand;
     private long nextOwnerCheckTime;
     private long sittingSpotAbortTime;
 
-    public JurassiCraftEntityAIFlying(EntityJurassiCraftCreature entity) {
+    public JurassiCraftEntityAIFlying(EntityJurassiCraftFlyingCreature entity) {
         creature = entity;
         rand = entity.getRNG();
         nextOwnerCheckTime = System.currentTimeMillis();

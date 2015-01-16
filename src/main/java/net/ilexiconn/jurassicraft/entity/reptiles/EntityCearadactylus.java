@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFlying;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftEntityAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingAggressive;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implements IReptile, IPiscivore
+public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive implements IReptile, IPiscivore
 {
 
     private double flightTargetX;
@@ -36,7 +36,7 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
 
     public EntityCearadactylus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityCearadactylus.class));
+        super(world, CreatureManager.classToCreature(EntityCearadactylus.class), "grassandleaves");
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new JurassiCraftEntityAIFlying(this));
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -128,13 +128,10 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
             if (this.rand.nextInt(50) == 0) this.takeOff();
         }
     }
-
-    // For animations for Josh
+    
     public void takeOff()
     {
         this.flyingAi.setFlying(true);
-
-        //
         this.flightTargetX = this.posX + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
         this.flightTargetY = this.posY + (double) (this.rand.nextFloat() * 8.0F);
         this.flightTargetZ = this.posZ + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
@@ -179,8 +176,6 @@ public class EntityCearadactylus extends EntityJurassiCraftLandAggressive implem
         super.writeEntityToNBT(nbttag);
         nbttag.setByte("Flying", this.dataWatcher.getWatchableObjectByte(17));
     }
-
-    // Other's code:
 
     @Override
     public double getMountedYOffset()
