@@ -81,6 +81,7 @@ public class EntityJurassiCraftTameable extends EntityJurassiCraftCreature imple
                             this.setPathToEntity((PathEntity) null);
                             this.setAttackTarget((EntityLivingBase) null);
                             this.aiSit.setSitting(true);
+                            this.setSitting(true);
                             this.setOwner(player.getCommandSenderName());
                             this.playTameEffect(true);
                             this.worldObj.setEntityState(this, (byte) 7);

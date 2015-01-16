@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
 public class JurassiCraftEntityAIWander extends EntityAIBase
 {
-    private EntityJurassiCraftCreature entity;
+    private EntityJurassiCraftTameable creature;
     private int leftWalk;
     private double xPosition;
     private double xDirection;
@@ -18,18 +18,18 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
     private double maxDistance;
     private double maxHeight;
 
-    public JurassiCraftEntityAIWander(EntityJurassiCraftCreature creature, double distance, double height, double velocity)
+    public JurassiCraftEntityAIWander(EntityJurassiCraftTameable entity, double distance, double height, double velocity)
     {
-        this.entity = creature;
+        this.creature = entity;
         this.speed = velocity;
         this.maxDistance = distance;
         this.maxHeight = height;
         this.setMutexBits(1);
     }
 
-    public JurassiCraftEntityAIWander(EntityJurassiCraftCreature creature, double velocity)
+    public JurassiCraftEntityAIWander(EntityJurassiCraftTameable entity, double velocity)
     {
-        this.entity = creature;
+        this.creature = entity;
         this.speed = velocity;
         this.maxDistance = 16;
         this.maxHeight = 6;
@@ -38,12 +38,15 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
 
     public boolean shouldExecute()
     {
-
-        if (leftWalk > 0)
+    	if (this.creature.isSitting())
+    	{
+    		return false;
+    	}
+    	else if (this.leftWalk > 0)
         {
             this.leftWalk--;
             Vec3 toward = Vec3.createVectorHelper(this.xPosition + this.xDirection, 0, this.zPosition + this.zDirection);
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.entity, (int) (this.maxDistance), (int) this.maxHeight, toward);
+            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, (int) (this.maxDistance), (int) this.maxHeight, toward);
             if (vec3 == null)
             {
                 return false;
@@ -58,11 +61,11 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
         }
         else
         {
-            if (this.entity.getRNG().nextInt(120) == 0)
+            if (this.creature.getRNG().nextInt(120) == 0)
             {
-                this.leftWalk = (int) Math.sqrt(this.entity.getGrowthStage());
-                this.xDirection = this.entity.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
-                this.zDirection = this.entity.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
+                this.leftWalk = (int) Math.sqrt(this.creature.getGrowthStage());
+                this.xDirection = this.creature.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
+                this.zDirection = this.creature.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
                 return false;
             }
             else
@@ -74,12 +77,12 @@ public class JurassiCraftEntityAIWander extends EntityAIBase
 
     public void startExecuting()
     {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+        this.creature.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
     }
 
     public boolean continueExecuting()
     {
-        return !this.entity.getNavigator().noPath();
+        return !this.creature.getNavigator().noPath();
     }
 
 }

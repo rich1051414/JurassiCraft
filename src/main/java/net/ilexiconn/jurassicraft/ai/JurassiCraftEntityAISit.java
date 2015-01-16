@@ -34,7 +34,7 @@ public class JurassiCraftEntityAISit extends EntityAIBase
         else
         {
             EntityLivingBase entitylivingbase = this.creature.getOwner();
-            return entitylivingbase == null ? true : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() != null ? false : this.isSitting);
+            return entitylivingbase == null ? false : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() != null ? false : this.isSitting);
         }
     }
 
@@ -51,8 +51,8 @@ public class JurassiCraftEntityAISit extends EntityAIBase
         this.creature.setSitting(false);
     }
 
-    public void setSitting(boolean par1)
+    public void setSitting(boolean flag)
     {
-        this.isSitting = par1;
+        this.isSitting = flag;
     }
 }
