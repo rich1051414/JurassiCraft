@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class JurassiCraftAIFollowFood extends EntityAIBase
 {
-    private EntityJurassiCraftCreature temptedEntity;
+    private EntityJurassiCraftTameable temptedEntity;
     private double speed;
     private double targetX;
     private double targetY;
@@ -15,11 +15,10 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
     private double rotationPitchOfThePlayer;
     private double rotationYawOfThePlayer;
     private EntityPlayer temptingPlayer;
-    private int delayTemptCounter;
     private boolean isRunning;
     private boolean avoidWater;
 
-    public JurassiCraftAIFollowFood(EntityJurassiCraftCreature creature, double velocity)
+    public JurassiCraftAIFollowFood(EntityJurassiCraftTameable creature, double velocity)
     {
         this.temptedEntity = creature;
         this.speed = velocity;
@@ -29,16 +28,15 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.delayTemptCounter > 0)
+        if (this.temptedEntity.isSitting() || this.temptedEntity.riddenByEntity != null)
         {
-            this.delayTemptCounter--;
             return false;
         }
         else
         {
             this.temptingPlayer = this.temptedEntity.worldObj.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
 
-            if (this.temptingPlayer == null)
+            if (this.temptingPlayer == null || !this.temptingPlayer.isEntityAlive())
             {
                 return false;
             }
@@ -49,7 +47,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
             }
         }
     }
-
+    
     @Override
     public void startExecuting()
     {
@@ -60,17 +58,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
         this.avoidWater = this.temptedEntity.getNavigator().getAvoidsWater();
         this.temptedEntity.getNavigator().setAvoidsWater(false);
     }
-
-    @Override
-    public void resetTask()
-    {
-        this.temptingPlayer = null;
-        this.temptedEntity.getNavigator().clearPathEntity();
-        this.delayTemptCounter = 60;
-        this.isRunning = false;
-        this.temptedEntity.getNavigator().setAvoidsWater(this.avoidWater);
-    }
-
+    
     @Override
     public void updateTask()
     {
@@ -83,6 +71,22 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
         {
             this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
         }
+    }
+
+    @Override
+    public boolean continueExecuting()
+    {
+    	 ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
+        return this.temptedEntity.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.temptedEntity.isSitting() && this.temptedEntity.riddenByEntity == null && (itemstack != null && this.temptedEntity.getCreature().isFavoriteFood(itemstack.getItem()));
+    }
+
+    @Override
+    public void resetTask()
+    {
+        this.temptingPlayer = null;
+        this.temptedEntity.getNavigator().clearPathEntity();
+        this.isRunning = false;
+        this.temptedEntity.getNavigator().setAvoidsWater(this.avoidWater);
     }
 
     public boolean isRunning()

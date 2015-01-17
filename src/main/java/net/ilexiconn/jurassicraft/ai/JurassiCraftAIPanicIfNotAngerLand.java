@@ -48,6 +48,11 @@ public class JurassiCraftAIPanicIfNotAngerLand extends EntityAIBase
     @Override
     public void startExecuting()
     {
+    	if (this.runningCreature.isSitting())
+    	{
+    		this.runningCreature.getAiSit().setSitting(false);
+    		this.runningCreature.setSitting(false);
+    	}
         this.runningCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
     }
 

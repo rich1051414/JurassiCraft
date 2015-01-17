@@ -30,7 +30,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.hungryCreature.getAttackTarget() != null || this.hungryCreature.getRNG().nextInt(100) < 90)
+        if (this.hungryCreature.getRNG().nextInt(100) < 90 || this.hungryCreature.getAttackTarget() != null || this.hungryCreature.isSitting())
         {
             return false;
         }
@@ -85,7 +85,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return (this.timeTryingToEat < 100 && !this.droppedFood.isDead && !this.hungryCreature.isDead);
+        return (this.timeTryingToEat < 100 && !this.droppedFood.isDead && !this.hungryCreature.isDead) && !this.hungryCreature.isSitting() && this.hungryCreature.riddenByEntity == null;
     }
 
     @Override

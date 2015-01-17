@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
 {
-    private EntityJurassiCraftCreature temptedEntity;
+    private EntityJurassiCraftTameable temptedEntity;
     private double speed;
     private double targetX;
     private double targetY;
@@ -15,11 +15,10 @@ public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
     private double rotationPitchOfThePlayer;
     private double rotationYawOfThePlayer;
     private EntityPlayer temptingPlayer;
-    private int delayTemptCounter;
     private boolean isRunning;
     private boolean avoidWater;
 
-    public JurassiCraftAIFollowFoodCoward(EntityJurassiCraftCreature creature, double velocity)
+    public JurassiCraftAIFollowFoodCoward(EntityJurassiCraftTameable creature, double velocity)
     {
         this.temptedEntity = creature;
         this.speed = velocity;
@@ -30,9 +29,8 @@ public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.delayTemptCounter > 0)
+        if (this.temptedEntity.isSitting() || this.temptedEntity.riddenByEntity != null)
         {
-            this.delayTemptCounter--;
             return false;
         }
         else
@@ -48,6 +46,31 @@ public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
                 ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
                 return itemstack == null ? false : (this.temptedEntity.getCreature().isFavoriteFood(itemstack.getItem())) && this.temptedEntity.getAttackTarget() == null;
             }
+        }
+    }
+
+    @Override
+    public void startExecuting()
+    {
+        this.targetX = this.temptingPlayer.posX;
+        this.targetY = this.temptingPlayer.posY;
+        this.targetZ = this.temptingPlayer.posZ;
+        this.isRunning = true;
+        this.avoidWater = this.temptedEntity.getNavigator().getAvoidsWater();
+        this.temptedEntity.getNavigator().setAvoidsWater(false);
+    }
+
+    @Override
+    public void updateTask()
+    {
+        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, (float) this.temptedEntity.getVerticalFaceSpeed());
+        if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
+        {
+            this.temptedEntity.getNavigator().clearPathEntity();
+        }
+        else
+        {
+            this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
         }
     }
 
@@ -73,18 +96,7 @@ public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
         }
         this.rotationPitchOfThePlayer = (double) this.temptingPlayer.rotationPitch;
         this.rotationYawOfThePlayer = (double) this.temptingPlayer.rotationYaw;
-        return this.shouldExecute();
-    }
-
-    @Override
-    public void startExecuting()
-    {
-        this.targetX = this.temptingPlayer.posX;
-        this.targetY = this.temptingPlayer.posY;
-        this.targetZ = this.temptingPlayer.posZ;
-        this.isRunning = true;
-        this.avoidWater = this.temptedEntity.getNavigator().getAvoidsWater();
-        this.temptedEntity.getNavigator().setAvoidsWater(false);
+        return this.temptedEntity.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.temptedEntity.isSitting() && this.temptedEntity.riddenByEntity == null;
     }
 
     @Override
@@ -92,23 +104,8 @@ public class JurassiCraftAIFollowFoodCoward extends EntityAIBase
     {
         this.temptingPlayer = null;
         this.temptedEntity.getNavigator().clearPathEntity();
-        this.delayTemptCounter = 150;
         this.isRunning = false;
         this.temptedEntity.getNavigator().setAvoidsWater(this.avoidWater);
-    }
-
-    @Override
-    public void updateTask()
-    {
-        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, (float) this.temptedEntity.getVerticalFaceSpeed());
-        if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
-        {
-            this.temptedEntity.getNavigator().clearPathEntity();
-        }
-        else
-        {
-            this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
-        }
     }
 
     public boolean isRunning()

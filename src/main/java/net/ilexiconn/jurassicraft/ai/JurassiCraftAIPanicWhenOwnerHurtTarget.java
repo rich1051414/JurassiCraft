@@ -41,6 +41,11 @@ public class JurassiCraftAIPanicWhenOwnerHurtTarget extends EntityAITarget
     @Override
     public void startExecuting()
     {
+    	if (this.cowardTameable.isSitting())
+    	{
+    		this.cowardTameable.getAiSit().setSitting(false);
+    		this.cowardTameable.setSitting(false);
+    	}
         if (!this.cowardTameable.isPanicking())
             this.cowardTameable.setFleeingTick(75 + this.cowardTameable.worldObj.rand.nextInt(100));
         super.startExecuting();
