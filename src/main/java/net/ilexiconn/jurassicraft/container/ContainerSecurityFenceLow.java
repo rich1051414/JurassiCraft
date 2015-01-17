@@ -1,25 +1,31 @@
 package net.ilexiconn.jurassicraft.container;
 
-import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
+import net.ilexiconn.jurassicraft.container.slot.SlotFence;
+import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemRedstone;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
-public class ContainerSecurityFence extends Container
+public class ContainerSecurityFenceLow extends Container
 {
+    private TileSecurityFenceLowMain fence;
 
-    private TileSecurityFence fence;
-
-    public ContainerSecurityFence(InventoryPlayer playerInventory, TileEntity tileEntity)
+    public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowMain tileEntity)
     {
-        this.fence = (TileSecurityFence) tileEntity;
-        this.addSlotToContainer(new Slot(this.fence, 0, 159, 47));
-        this.addSlotToContainer(new Slot(this.fence, 1, 193, 47));
+        this.fence = tileEntity;
 
+        /** Iron Ingot Slots */
+        this.addSlotToContainer(new SlotFence(this.fence, 0, 130, 47));
+        this.addSlotToContainer(new SlotFence(this.fence, 1, 150, 47));
+
+        /** Redstone Slots */
+        this.addSlotToContainer(new SlotFence(this.fence, 2, 170, 47));
+        this.addSlotToContainer(new SlotFence(this.fence, 3, 190, 47));
+
+        /** Player's Inventory */
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
@@ -61,7 +67,7 @@ public class ContainerSecurityFence extends Container
             {
                 ItemStack stackInSlot = slot.getStack();
                 stackFinal = stackInSlot.copy();
-                if (i < 2)
+                if (i < 4)
                 {
                     if (!mergeItemStack(stackInSlot, 9, inventorySlots.size(), true))
                     {
@@ -69,18 +75,18 @@ public class ContainerSecurityFence extends Container
                     }
                     slot.onSlotChange(stackInSlot, stackFinal);
                 }
-                else if (i >= 2)
+                else if (i >= 4)
                 {
                     if (stackInSlot.getItem().getUnlocalizedName().equals("item.ingotIron"))
                     {
-                        if (!mergeItemStack(stackInSlot, 0, 1, false))
+                        if (!mergeItemStack(stackInSlot, 0, 2, false))
                         {
                             return null;
                         }
                     }
                     else if (stackInSlot.getItem() instanceof ItemRedstone)
                     {
-                        if (!mergeItemStack(stackInSlot, 1, 2, false))
+                        if (!mergeItemStack(stackInSlot, 2, 4, false))
                         {
                             return null;
                         }

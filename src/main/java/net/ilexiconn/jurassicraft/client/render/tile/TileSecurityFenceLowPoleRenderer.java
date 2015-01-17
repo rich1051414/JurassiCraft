@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 public class TileSecurityFenceLowPoleRenderer extends TileEntitySpecialRenderer
@@ -51,6 +52,10 @@ public class TileSecurityFenceLowPoleRenderer extends TileEntitySpecialRenderer
                         angle = -270;
                         break;
                 }
+                /*
+                if (tileEntityModel != null)
+                	System.out.println("tileEntityModel: " + tileEntityModel.getGridAtSide(direction));
+                */
             }
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             GL11.glScalef(1.0F, 1.0F, 1.0F);

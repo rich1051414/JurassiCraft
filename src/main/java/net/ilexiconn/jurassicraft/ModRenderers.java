@@ -34,13 +34,7 @@ public class ModRenderers implements IContentHandler
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowBase.class, new TileSecurityFenceLowBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowGrid.class, new TileSecurityFenceLowGridRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowPole.class, new TileSecurityFenceLowPoleRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceMediumBase.class, new TileSecurityFenceMediumBaseRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceMediumGrid.class, new TileSecurityFenceMediumGridRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceMediumPole.class, new TileSecurityFenceMediumPoleRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceHighBase.class, new TileSecurityFenceHighBaseRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceHighGrid.class, new TileSecurityFenceHighGridRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceHighPole.class, new TileSecurityFenceHighPoleRenderer());
-
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityDinoEgg.class, new RenderDinoEgg());
     }
 }

@@ -9,6 +9,7 @@ import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityOrthacanthus extends EntitySwimming implements IFish, IPiscivore
@@ -60,12 +61,12 @@ public class EntityOrthacanthus extends EntitySwimming implements IFish, IPisciv
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	
+        this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
     }
 
     @Override
     public boolean canDespawn()
     {
-        return true;
+        return !this.isTamed();
     }
 }

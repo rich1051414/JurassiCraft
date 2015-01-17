@@ -7,6 +7,7 @@ import net.ilexiconn.jurassicraft.entity.EntitySwimming;
 import net.ilexiconn.jurassicraft.interfaces.IFish;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivore
@@ -67,12 +68,12 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-        this.dropItem(this.getCreature().getMeat(), 1);
+        this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
     }
 
     @Override
     public boolean canDespawn()
     {
-        return true;
+        return !this.isTamed();
     }
 }

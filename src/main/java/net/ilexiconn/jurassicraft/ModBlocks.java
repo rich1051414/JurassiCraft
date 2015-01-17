@@ -1,7 +1,24 @@
 package net.ilexiconn.jurassicraft;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.block.*;
+import java.lang.reflect.Field;
+
+import net.ilexiconn.jurassicraft.block.BlockAmberOre;
+import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
+import net.ilexiconn.jurassicraft.block.BlockCultivateTop;
+import net.ilexiconn.jurassicraft.block.BlockDNACombinator;
+import net.ilexiconn.jurassicraft.block.BlockDNAExtractor;
+import net.ilexiconn.jurassicraft.block.BlockDinoPad;
+import net.ilexiconn.jurassicraft.block.BlockFossilClayOre;
+import net.ilexiconn.jurassicraft.block.BlockFossilOre;
+import net.ilexiconn.jurassicraft.block.BlockFossilSandstoneOre;
+import net.ilexiconn.jurassicraft.block.BlockGypsumBlock;
+import net.ilexiconn.jurassicraft.block.BlockGypsumBrick;
+import net.ilexiconn.jurassicraft.block.BlockGypsumCobblestone;
+import net.ilexiconn.jurassicraft.block.BlockStuffFluid;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
@@ -9,8 +26,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import java.lang.reflect.Field;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks implements IContentHandler
 {
@@ -36,18 +52,10 @@ public class ModBlocks implements IContentHandler
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
     
-    /*
-    public static Block securityFenceBase;
+    public static Block securityFenceLowMain;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
-    public static Block securityFenceLowFence;
-    public static Block securityFenceMediumPole;
-    public static Block securityFenceMediumBase;
-    public static Block securityFenceMediumFence;
-    public static Block securityFenceHighPole;
-    public static Block securityFenceHighBase;
-    public static Block securityFenceHighFence;
-    */
+    public static Block securityFenceLowGrid;
 
     public void init()
     {
@@ -65,18 +73,10 @@ public class ModBlocks implements IContentHandler
         sandstoneFossilOre = new BlockFossilSandstoneOre();
         clayFossilOre = new BlockFossilClayOre();
         dinoPad = new BlockDinoPad();
-        /*
-        securityFenceBase = new BlockSecurityFenceMain();
+        securityFenceLowMain = new BlockSecurityFenceLowMain();
         securityFenceLowPole = new BlockSecurityFenceLowPole();
         securityFenceLowBase = new BlockSecurityFenceLowBase();
-        securityFenceLowFence = new BlockSecurityFenceLowGrid();
-        securityFenceMediumPole = new BlockSecurityFenceMediumPole();
-        securityFenceMediumBase = new BlockSecurityFenceMediumBase();
-        securityFenceMediumFence = new BlockSecurityFenceMediumGrid();
-        securityFenceHighPole = new BlockSecurityFenceHighPole();
-        securityFenceHighBase = new BlockSecurityFenceHighBase();
-        securityFenceHighFence = new BlockSecurityFenceHighGrid();
-        */
+        securityFenceLowGrid = new BlockSecurityFenceLowGrid();
         gameRegistry();
     }
 

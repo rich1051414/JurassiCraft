@@ -6,13 +6,13 @@ import net.ilexiconn.jurassicraft.container.ContainerDNAExtractor;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadEgg;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadPregnancy;
-import net.ilexiconn.jurassicraft.container.ContainerSecurityFence;
+import net.ilexiconn.jurassicraft.container.ContainerSecurityFenceLow;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFence;
+import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -31,12 +31,12 @@ public class GuiHandler implements IGuiHandler
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
             return new ContainerCultivate(player.inventory, (TileCultivate) tileEntity);
-        if (tileEntity instanceof TileSecurityFence)
-            return new ContainerSecurityFence(player.inventory, (TileSecurityFence) tileEntity);
         if (tileEntity instanceof TileDNAExtractor)
             return new ContainerDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
         if (tileEntity instanceof TileDNACombinator)
             return new ContainerDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
+        if (tileEntity instanceof TileSecurityFenceLowMain)
+            return new ContainerSecurityFenceLow(player.inventory, (TileSecurityFenceLowMain) tileEntity);
         return null;
     }
 
@@ -50,13 +50,14 @@ public class GuiHandler implements IGuiHandler
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
             return new GuiCultivate(player.inventory, (TileCultivate) tileEntity);
-        if (tileEntity instanceof TileCultivate && ID == 1) return new GuiCultivateProcess((TileCultivate) tileEntity);
-        if (tileEntity instanceof TileSecurityFence)
-            return new GuiSecurityFence(player.inventory, (TileSecurityFence) tileEntity);
+        if (tileEntity instanceof TileCultivate && ID == 1) 
+        	return new GuiCultivateProcess((TileCultivate) tileEntity);
         if (tileEntity instanceof TileDNAExtractor)
             return new GuiDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
         if (tileEntity instanceof TileDNACombinator)
             return new GuiDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
+        if (tileEntity instanceof TileSecurityFenceLowMain)
+            return new GuiSecurityFenceLow(player.inventory, (TileSecurityFenceLowMain) tileEntity);
         return null;
     }
 }

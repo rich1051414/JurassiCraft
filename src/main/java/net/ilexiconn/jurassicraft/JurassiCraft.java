@@ -1,15 +1,7 @@
 package net.ilexiconn.jurassicraft;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.util.Calendar;
+
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.content.ContentLoader;
@@ -21,9 +13,8 @@ import net.ilexiconn.jurassicraft.events.JurassiCraftLivingEvent;
 import net.ilexiconn.jurassicraft.gen.WorldGenAmberOre;
 import net.ilexiconn.jurassicraft.gen.WorldGenFossilOre;
 import net.ilexiconn.jurassicraft.gen.WorldGenGypsum;
-import net.ilexiconn.jurassicraft.packet.MessageFenceBuilding;
-import net.ilexiconn.jurassicraft.packet.MessageFenceCrafting;
-import net.ilexiconn.jurassicraft.packet.MessageFenceFixing;
+import net.ilexiconn.jurassicraft.packet.MessageAnimation;
+import net.ilexiconn.jurassicraft.packet.MessageFence;
 import net.ilexiconn.jurassicraft.proxy.ServerProxy;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -31,9 +22,16 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
-import net.ilexiconn.jurassicraft.packet.MessageAnimation;
-
-import java.util.Calendar;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
@@ -62,6 +60,7 @@ public class JurassiCraft
         contentLoader.addContentHandler(new ModEntities());
         contentLoader.addContentHandler(new ModItems());
         contentLoader.addContentHandler(new ModRecipes());
+        
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) contentLoader.addContentHandler(new ModRenderers());
         contentLoader.addContentHandler(new ModTileEntities());
 
@@ -72,10 +71,8 @@ public class JurassiCraft
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
         network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
-        network.registerMessage(MessageFenceCrafting.Handler.class, MessageFenceCrafting.class, 0, Side.SERVER);
-        network.registerMessage(MessageFenceBuilding.Handler.class, MessageFenceBuilding.class, 1, Side.SERVER);
-        network.registerMessage(MessageFenceFixing.Handler.class, MessageFenceFixing.class, 2, Side.SERVER);
         network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
+        network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
 
         GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
         GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);

@@ -29,25 +29,25 @@ public class TileSecurityFenceLowGridRenderer extends TileEntitySpecialRenderer
             TileSecurityFenceLowGrid tileEntityModel = (TileSecurityFenceLowGrid) tileEntity;
             int angle = 0;
             GL11.glPushMatrix();
-            if (tileEntityModel.getWorldObj() == null)
-            {
-                angle = 0;
-            }
-            else
+            if (tileEntityModel.getWorldObj() != null)
             {
                 int direction = tileEntityModel.getBlockMetadata();
                 switch (direction)
                 {
                     case 0:
+                    case 4:
                         angle = -180;
                         break;
                     case 1:
+                    case 5:
                         angle = -90;
                         break;
                     case 2:
+                    case 6:
                         angle = 0;
                         break;
                     case 3:
+                    case 7:
                         angle = -270;
                         break;
                 }
