@@ -265,83 +265,101 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
 		f1 = 0.5F;
 		*/
-
+		
+		if(!trex.isSitting()) {
+		//Walking-dependent animation
+		float globalSpeed = 0.45F;
+		float globalDegree = 0.4F;
+		float height = 1.0F;
+		
 		this.faceTarget(Head, 2, f3, f4);
 		this.faceTarget(Neck, 2, f3, f4);
 		
-		if (!trex.isSitting())
-		{
-			//Walking-dependent animation
-			float globalSpeed = 0.45F;
-			float globalDegree = 0.4F;
-			float height = 1.0F;
-			
-			this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
-			this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
-			this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
-			this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-			this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-			this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
-			this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
+		this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
+		this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
+		this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
+		this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+		this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+		this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
+		this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
 
-			this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
-			this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-			this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-			this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+		this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+		this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+		this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+		this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
 
-			this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
-			this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-			this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-			this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+		this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+		this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+		this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+		this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
 
-			this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
-			this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
-			this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-			this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+		this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+		this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
+		this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+		this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
 		}
 		
+		//Sitting Pose
 		float sittingProgress = trex.sittingProgress.getAnimationProgressSinSqrt();
 		float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
+		float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
+		
+		this.Waist.rotationPointY += 11.5F * sittingProgress;
+		this.RightThigh.rotationPointY += 11.5F * sittingProgress;
+		this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
+		this.RightThigh.rotationPointZ += 5F * sittingProgress;
+		this.LeftThigh.rotationPointZ += 5F * sittingProgress;
 
-		//Sitting Pose
-		this.Waist.rotationPointY += 9.5F * sittingProgress;
-		this.RightThigh.rotationPointY += 9.3F * sittingProgress;
-		this.LeftThigh.rotationPointY += 9.3F * sittingProgress;
+		this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
+		this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
+		this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
+		this.LowerArmLeft.rotateAngleX -= 1.2F * sittingProgress;
+		this.LowerArmRight.rotationPointY -= 1F * sittingProgress;
+		this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
+		this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
+		this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
 
-		this.UpperArmRight.rotateAngleX -= 1.1F * sittingProgress;
-		this.UpperArmLeft.rotateAngleX -= 1.1F * sittingProgress;
+		this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
+		this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
 
-		this.RightThigh.rotateAngleX -= 1.0F * sittingProgress;
-		this.LeftThigh.rotateAngleX -= 1.0F * sittingProgress;
+		this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
+		this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
+		this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
+		this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
 
-		this.RightCalf1.rotationPointY += 4.0F * sittingProgress;
-		this.LeftCalf1.rotationPointY += 4.0F * sittingProgress;
-		this.RightCalf1.rotateAngleX += 1.1F * sittingProgress;
-		this.LeftCalf1.rotateAngleX += 1.1F * sittingProgress;
+		this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
+		this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
+		this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
+		this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
 
-		this.RightCalf2.rotationPointZ -= 2.0F * sittingProgress;
-		this.LeftCalf2.rotationPointZ -= 2.0F * sittingProgress;
-		this.RightCalf2.rotateAngleX -= 1.1F * sittingProgress;
-		this.LeftCalf2.rotateAngleX -= 1.1F * sittingProgress;
-
-		this.FootRight.rotationPointZ += 0.7F * sittingProgress;
-		this.FootLeft.rotationPointZ += 0.7F * sittingProgress;
-		this.FootRight.rotateAngleX += 1.0F * sittingProgress;
-		this.FootLeft.rotateAngleX += 1.0F * sittingProgress;
+		this.FootRight.rotateAngleX += 0.7F * sittingProgress;
+		this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
+		
+		this.Neck.rotateAngleX += 0.55F * restHeadProgress;
+		this.Head.rotateAngleX -= 0.75F * restHeadProgress;
+		this.Chest.rotateAngleX += 0.15F * restHeadProgress;
+		this.UpperArmRight.rotateAngleX += 0.3F * restHeadProgress;
+		this.UpperArmLeft.rotateAngleX += 0.3F * restHeadProgress;
+		this.LowerArmRight.rotateAngleX -= 0.3F * restHeadProgress;
+		this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
+		walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+		walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+		walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+		walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+		walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
 
 		this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
 		for (int i = 0; i < this.tailParts.length; i++) {
 			this.tailParts[i].rotateAngleX += 0.15F * (sittingProgress - sittingProgressFast);
-			this.tailParts[i].rotationPointY += 0.8F * sittingProgress;
 		}
 		
 		//Idling
-		this.chainWave(bodyParts, 0.1F, -0.03F, 3, trex.frame, 1.0F - 0.6F * sittingProgress);
-		this.chainWave(rightArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F - 0.5F * sittingProgress);
-		this.chainWave(leftArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F - 0.5F * sittingProgress);
+		this.chainWave(bodyParts, 0.1F, -0.03F - (-0.03F * restHeadProgress), 3, trex.frame, 1.0F - 0.6F * sittingProgress);
+		this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+		this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
 
-		this.chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1.0F - 0.5F * sittingProgress);
-		this.chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1.0F - 0.5F * sittingProgress);
+		this.chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1.0F - 0.6F * sittingProgress);
+		this.chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1.0F - 0.6F * sittingProgress);
 
 		trex.tailBuffer.applyChainSwingBuffer(tailParts);
 

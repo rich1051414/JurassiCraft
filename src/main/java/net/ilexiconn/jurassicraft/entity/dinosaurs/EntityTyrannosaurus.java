@@ -33,7 +33,10 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
 	public ControlledAnimation sittingProgress = new ControlledAnimation(50);
+	public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
+	private boolean restingHead = false;
+	private int restHeadSwitchTimer = 300;
 
     public EntityTyrannosaurus(World world)
     {
@@ -71,7 +74,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
             if (animID == 0)
             {
             	if (this.moveForward == 0) {
-                    AnimationHandler.sendAnimationPacket(this, 1);}
+                    if (!this.isSitting()) AnimationHandler.sendAnimationPacket(this, 1);}
             	else {
                     AnimationHandler.sendAnimationPacket(this, 2);}
             }
@@ -105,6 +108,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         super.onUpdate();
         this.roarCount.update();
         this.roarTiltDegree.update();
+        //Step Sound
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
@@ -113,15 +117,28 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         this.stepCount -= this.moveForward * 9.5;
+        
+        //Breathing Sound
+        if (this.frame % 62 == 28) this.playSound("jurassicraft:trexbreath", 1.0F, this.getSoundPitch());
 
+
+        //Sitting Animation
 		if (this.isSitting()) 
 		{
 			this.sittingProgress.increaseTimer();
+			if (!restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0) {restingHead = true; restHeadSwitchTimer = 300;}
+			if (restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0) {restingHead = false; restHeadSwitchTimer = 300;}
+			if(restHeadSwitchTimer > 0) restHeadSwitchTimer--;
 		}
 		else
 		{
 			this.sittingProgress.decreaseTimer();
+			restingHead = false;
+			restHeadSwitchTimer = 300;
 		}
+		if (restingHead) restHeadProgress.increaseTimer();
+		if (!restingHead) restHeadProgress.decreaseTimer();
+		
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
     }
 

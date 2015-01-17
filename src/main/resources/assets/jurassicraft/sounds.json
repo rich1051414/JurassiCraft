@@ -2,6 +2,7 @@
        "trex1": {"category": "master","sounds": [{"name": "trex1","stream": false}]},
        "trex2": {"category": "master","sounds": [{"name": "trex2","stream": false}]},
        "trex3": {"category": "master","sounds": [{"name": "trex3","stream": false}]},
+       "trexbreath": {"category": "master","sounds": [{"name": "trexbreath","stream": false}]},
 	   "gali1": {"category": "master","sounds": [{"name": "gali1","stream": false}]},
        "gali2": {"category": "master","sounds": [{"name": "gali2","stream": false}]},
        "gali3": {"category": "master","sounds": [{"name": "gali3","stream": false}]},
