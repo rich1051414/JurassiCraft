@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 
 import java.util.Map.Entry;
@@ -18,7 +18,7 @@ public class ModRecipes implements IContentHandler
     {
         GameRegistry.addSmelting(ModBlocks.gypsumCobblestone, new ItemStack(ModBlocks.gypsumBlock, 1), 5);
 
-        for (int i = 0; i < BlockCultivateBottom.colors.length; i++)
+        for (int i = 0; i < ItemDye.field_150921_b.length; i++)
         {
             GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), new ItemStack(Items.dye, 1, i), new ItemStack(ModBlocks.cultivateBottomOff));
             GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GIG", "G G", "III", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, i));

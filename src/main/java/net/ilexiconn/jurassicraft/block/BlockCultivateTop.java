@@ -1,8 +1,7 @@
 package net.ilexiconn.jurassicraft.block;
 
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
@@ -13,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -21,13 +21,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockCultivateTop extends Block
 {
-    public static String[] colors = {"black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
     public boolean isLit;
@@ -55,12 +54,12 @@ public class BlockCultivateTop extends Block
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        icons = new IIcon[colors.length];
-        for (int i = 0; i < colors.length; i++)
+        icons = new IIcon[ItemDye.field_150921_b.length];
+        for (int i = 0; i < ItemDye.field_150921_b.length; i++)
         {
             String name = getTextureName();
 
-            if (colors[i] != null) name = name + "_" + colors[i];
+            if (ItemDye.field_150921_b[i] != null) name = name + "_" + ItemDye.field_150921_b[i];
 
             icons[i] = iconRegister.registerIcon(name);
         }
