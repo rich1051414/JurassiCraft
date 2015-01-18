@@ -15,7 +15,7 @@ public class BlockSecurityFenceLowPole extends BlockSecurityFence implements IFe
 	
 	public BlockSecurityFenceLowPole()
 	{
-		super(7.5F, 112.5F, 2, "block_Low_Security_Fence_Pole");
+		super(7.5F, 112.5F, 2, "low_Security_Fence_Pole");
 		this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.0F, 0.7F);
         this.setCreativeTab(ModCreativeTabs.blocks);
 	}

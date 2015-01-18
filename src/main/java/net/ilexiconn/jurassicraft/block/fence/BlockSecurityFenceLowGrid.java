@@ -18,7 +18,7 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
 	
     public BlockSecurityFenceLowGrid()
     {
-    	super(5.0F, 75.0F, 2, "block_Low_Security_Fence_Grid");
+    	super(5.0F, 75.0F, 2, "low_Security_Fence_Grid");
     }
 
     @Override

@@ -16,16 +16,14 @@ public class ContainerSecurityFenceLow extends Container
     public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowMain tileEntity)
     {
         this.fence = tileEntity;
+        
+        this.addSlotToContainer(new SlotFence(this.fence, 0, 128, 43));
+        this.addSlotToContainer(new SlotFence(this.fence, 1, 146, 43));
+        this.addSlotToContainer(new SlotFence(this.fence, 2, 164, 43));
+        this.addSlotToContainer(new SlotFence(this.fence, 3, 182, 43));
+        this.addSlotToContainer(new SlotFence(this.fence, 4, 200, 43));
+        this.addSlotToContainer(new SlotFence(this.fence, 5, 218, 43));
 
-        /** Iron Ingot Slots */
-        this.addSlotToContainer(new SlotFence(this.fence, 0, 130, 47));
-        this.addSlotToContainer(new SlotFence(this.fence, 1, 150, 47));
-
-        /** Redstone Slots */
-        this.addSlotToContainer(new SlotFence(this.fence, 2, 170, 47));
-        this.addSlotToContainer(new SlotFence(this.fence, 3, 190, 47));
-
-        /** Player's Inventory */
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
@@ -67,7 +65,7 @@ public class ContainerSecurityFenceLow extends Container
             {
                 ItemStack stackInSlot = slot.getStack();
                 stackFinal = stackInSlot.copy();
-                if (i < 4)
+                if (i < 6)
                 {
                     if (!mergeItemStack(stackInSlot, 9, inventorySlots.size(), true))
                     {
@@ -75,18 +73,11 @@ public class ContainerSecurityFenceLow extends Container
                     }
                     slot.onSlotChange(stackInSlot, stackFinal);
                 }
-                else if (i >= 4)
+                else if (i >= 6)
                 {
-                    if (stackInSlot.getItem().getUnlocalizedName().equals("item.ingotIron"))
+                    if (stackInSlot.getItem().getUnlocalizedName().equals("item.ingotIron") || stackInSlot.getItem() instanceof ItemRedstone)
                     {
-                        if (!mergeItemStack(stackInSlot, 0, 2, false))
-                        {
-                            return null;
-                        }
-                    }
-                    else if (stackInSlot.getItem() instanceof ItemRedstone)
-                    {
-                        if (!mergeItemStack(stackInSlot, 2, 4, false))
+                        if (!mergeItemStack(stackInSlot, 0, 6, false))
                         {
                             return null;
                         }

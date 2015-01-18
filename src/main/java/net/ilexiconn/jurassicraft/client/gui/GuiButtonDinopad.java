@@ -12,8 +12,8 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiButtonDinopad extends GuiButton
 {
-    public int xguiPos;
-    public int yguiPos;
+	private int xguiPos;
+	private int yguiPos;
 
     public GuiButtonDinopad(int id, int xPos, int yPos, int xguiPosition, int yguiPosition, int width, int height)
     {

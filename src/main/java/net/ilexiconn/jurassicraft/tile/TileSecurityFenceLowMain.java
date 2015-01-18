@@ -23,16 +23,17 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileSecurityFenceLowMain extends TileEntity implements ISidedInventory
 {
-    private ItemStack[] slots = new ItemStack[4];
+    private ItemStack[] slots = new ItemStack[6];
     private boolean[] builtFences = new boolean[4];
     private boolean[] fenceState = new boolean[4];
     private int plannedSide = 0;
+
 	private static final int REDSTONEPERGRID = 3;
 	private static final int IRONPERGRID = 1;
-	public static final int MAXDISTANCE = 10;
 	
     public TileSecurityFenceLowMain()
     {
+        this.plannedSide = 0;
     	for (int i = 0; i < builtFences.length; i++)
     		builtFences[i] = false;
     }
@@ -73,75 +74,116 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 		return this.fenceState[side];
 	}
 
-    public boolean hasIronStored() {
-		return this.slots[0] != null || this.slots[1] != null;
+	public boolean hasIronStored()
+	{
+		for (int i = 0; i < this.slots.length; i++)
+		{
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem().getUnlocalizedName().equals("item.ingotIron"))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean hasNumberOfIronStored(int amount)
 	{
 		int ironStored = 0;
-		
-		if (this.slots[0] != null && this.slots[0].getItem().getUnlocalizedName().equals("item.ingotIron"))
-			ironStored += this.slots[0].stackSize;
-		
-		if (this.slots[1] != null && this.slots[1].getItem().getUnlocalizedName().equals("item.ingotIron"))
-			ironStored += this.slots[1].stackSize;
-		
+		for (int i = 0; i < this.slots.length; i++)
+		{
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem().getUnlocalizedName().equals("item.ingotIron"))
+					ironStored += this.slots[i].stackSize;
+			}
+		}
 		return ironStored >= amount;
 	}
 
-	public void reduceIronIngots(int amount) {
-		if (this.slots[0].stackSize >= amount)
+	public void reduceIronIngots(int amount)
+	{
+		for (int i = 0; i < this.slots.length; i++)
 		{
-			this.slots[0].stackSize -= amount;
-			if (this.slots[0].stackSize < 1)
-				this.slots[0] = null;
-		}
-		else
-		{
-			this.slots[1].stackSize -= (amount - this.slots[0].stackSize);
-			if (this.slots[1].stackSize < 1)
-				this.slots[1] = null;
-			this.slots[0] = null;
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem().getUnlocalizedName().equals("item.ingotIron"))
+				{
+					if (this.slots[i].stackSize >= amount)
+					{
+						this.slots[i].stackSize -= amount;
+						if (this.slots[i].stackSize < 1)
+							this.slots[i] = null;
+					}
+					else
+					{
+						amount -= this.slots[i].stackSize;
+						this.slots[i] = null;
+					}
+				}
+			}
 		}
 	}
 
-    public boolean hasRedstoneStored() {
-		return this.slots[2] != null || this.slots[3] != null;
+	public boolean hasRedstoneStored()
+	{
+		for (int i = 0; i < this.slots.length; i++)
+		{
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem() instanceof ItemRedstone)
+					return true;
+			}
+		}
+		return false;
 	}
-
+	
 	public boolean hasNumberOfRedstoneStored(int amount)
 	{
 		int redstoneStored = 0;
-		
-		if (this.slots[2] != null && this.slots[2].getItem() instanceof ItemRedstone)
-			redstoneStored += this.slots[2].stackSize;
-		
-		if (this.slots[3] != null && this.slots[3].getItem() instanceof ItemRedstone)
-			redstoneStored += this.slots[3].stackSize;
-		
+		for (int i = 0; i < this.slots.length; i++)
+		{
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem() instanceof ItemRedstone)
+					redstoneStored += this.slots[i].stackSize;
+			}
+		}
 		return redstoneStored >= amount;
 	}
 
-	public void reduceRedstone(int amount) {
-		if (this.slots[2].stackSize >= amount)
+	public void reduceRedstone(int amount)
+	{
+		for (int i = 0; i < this.slots.length; i++)
 		{
-			this.slots[2].stackSize -= amount;
-			if (this.slots[2].stackSize < 1)
-				this.slots[2] = null;
-		}
-		else
-		{
-			this.slots[3].stackSize -= (amount - this.slots[2].stackSize);
-			if (this.slots[3].stackSize < 1)
-				this.slots[3] = null;
-			this.slots[2] = null;
+			if (this.slots[i] != null)
+			{
+				if (this.slots[i].getItem() instanceof ItemRedstone)
+				{
+					if (this.slots[i].stackSize >= amount)
+					{
+						this.slots[i].stackSize -= amount;
+						if (this.slots[i].stackSize < 1)
+							this.slots[i] = null;
+					}
+					else
+					{
+						amount -= this.slots[i].stackSize;
+						this.slots[i] = null;
+					}
+				}
+			}
 		}
 	}
 	
     public boolean hasItems()
     {
-        return this.hasRedstoneStored() || this.hasIronStored();
+		for (int i = 0; i < this.slots.length; i++)
+		{
+			if (this.slots[i] != null && this.slots[i].stackSize > 0)
+				return true;
+		}
+		return false;
     }
 
     private boolean hasLowSecurityMainFenceBlockAt(TileSecurityFenceLowMain mainFence, int x, int y, int z) {

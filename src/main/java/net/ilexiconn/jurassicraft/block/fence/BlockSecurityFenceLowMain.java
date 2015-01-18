@@ -18,7 +18,7 @@ public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFe
 {
     public BlockSecurityFenceLowMain()
     {
-    	super(10.0F, 150.0F, 2, "block_Low_Security_Fence_Main");
+    	super(10.0F, 150.0F, 2, "low_Security_Fence_Main");
         this.setCreativeTab(ModCreativeTabs.blocks);
     }
 
