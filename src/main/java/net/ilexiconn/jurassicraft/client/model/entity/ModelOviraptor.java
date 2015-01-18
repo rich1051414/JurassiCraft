@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityOviraptor;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
@@ -334,7 +335,7 @@ public class ModelOviraptor extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityOviraptor)entity);
 //        Head.render(f5);
 //        Crest.render(f5);
 //        Beak.render(f5);
@@ -380,21 +381,26 @@ public class ModelOviraptor extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityOviraptor ovi)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-    	this.setToInitPose();
-    	
-/*        this.Tail1.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.2F * f1;
-        this.Tail2.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.4F * f1;
-        this.TailFeather.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.5F * f1;
+       
+    	this.setToInitPose();  
+    	f = ovi.frame;
+        f1 = 0.5F;
+    	float globalSpeed = 0.5F, globalDegree = 1;
+    	this.bob(LowerBody, 1F*globalSpeed, 1F, false, f, f1);
+    	this.bob(Thigh1, 1F*globalSpeed, 1F, false, f, f1);
+    	this.bob(Thigh2, 1F*globalSpeed, 1F, false, f, f1);
+    	this.walk(Thigh1, 0.5F*globalSpeed, 0.8F*globalDegree, false, 0, 0.4F, f, f1);
+    	this.walk(Thigh2, 0.5F*globalSpeed, 0.8F*globalDegree, true, 0, 0.4F, f, f1);
+    	this.walk(Calves1, 0.5F*globalSpeed, 0.5F*globalDegree, true, 1F, 0F, f, f1);
+    	this.walk(Calves2, 0.5F*globalSpeed, 0.5F*globalDegree, false, 1F, 0F, f, f1);
+    	this.walk(Ankle1, 0.5F*globalSpeed, 0.5F*globalDegree, false, 0F, 0F, f, f1);
+    	this.walk(Ankle2, 0.5F*globalSpeed, 0.5F*globalDegree, true, 0F, 0F, f, f1);
+    	this.walk(Foot1, 0.5F*globalSpeed, 0.5F*globalDegree, true, 0F, 0F, f, f1);
+    	this.walk(Foot2, 0.5F*globalSpeed, 0.5F*globalDegree, false, 0F, 0F, f, f1);
 
-        this.Thigh1.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
-        this.Calves1.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
-        this.Foot1.rotateAngleX = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
-
-        this.Thigh2.rotateAngleX = MathHelper.cos(f * 0.3332F + (float) Math.PI) * 0.8F * f1;
-        this.Calves2.rotateAngleX = MathHelper.cos(f * 0.3332F + (float) Math.PI) * 0.8F * f1;
-        this.Foot2.rotateAngleX = MathHelper.cos(f * 0.3332F + (float) Math.PI) * 0.8F * f1;*/
+    	this.walk(Neck, 1F*globalSpeed, 0.25F*globalDegree, false, 1F, 0.4F, f, f1);
     }
 }
