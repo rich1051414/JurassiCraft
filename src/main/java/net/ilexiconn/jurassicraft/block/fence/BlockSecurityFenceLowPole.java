@@ -1,11 +1,13 @@
 package net.ilexiconn.jurassicraft.block.fence;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.interfaces.IFenceGrid;
 import net.ilexiconn.jurassicraft.interfaces.IFencePole;
 import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowPole;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

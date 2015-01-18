@@ -826,13 +826,13 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	if (this.isBurning())
+    	if (!this.isBurning())
         {
-            this.dropItem(this.getCreature().getSteak(), 1);
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
         }
         else
         {
-            this.dropItem(this.getCreature().getMeat(), 1);
+            this.dropItem(this.getCreature().getSteak(), 1);
         }
     }
     

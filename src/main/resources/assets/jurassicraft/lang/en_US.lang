@@ -212,7 +212,7 @@ item.Moeritherium_Meat.name=Moeritherium Meat
 item.Deinosuchus_Meat.name=Deinosuchus Meat
 item.Brachiopod_Meat.name=Brachiopod Meat
 item.Ammonite_Meat.name=Ammonite Meat
-item.Orthacanthus_Meat.name=Orthacanthus Meat
+item.Orthacanthus_Meat.name=Raw Orthacanthus
 item.Carnotaurus_Meat.name=Carnotaurus Meat
 
 //Cooked Meats
@@ -226,7 +226,7 @@ item.Tyrannosaurus_Steak.name=Tyrannosaurus Steak
 item.Gallimimus_Steak.name=Gallimimus Steak
 item.Leaellynasaur_Steak.name=Leaellynasaura Steak
 item.Hypsilophodon_Steak.name=Hypsilophodon Steak
-item.Tylosaurus_Steak.name=Tylosaurus Steak
+item.Tylosaurus_Steak.name=Tylosaurus Fillet
 item.Meganeura_Steak.name=Cooked Meganeura
 item.Herrerasaur_Steak.name=Herrerasaurus Steak
 item.Parasaurolophus_Steak.name=Parasaurolophus Steak
@@ -246,7 +246,7 @@ item.Moeritherium_Steak.name=Moeritherium Steak
 item.Deinosuchus_Steak.name=Deinosuchus Steak
 item.Brachiopod_Steak.name=Brachiopod Steak
 item.Ammonite_Steak.name=Ammonite Steak
-item.Orthacanthus_Steak.name=Orthacanthus Steak
+item.Orthacanthus_Steak.name=Cooked Orthacanthus
 item.Carnotaurus_Steak.name=Carnotaurus Steak
 
 //Fur
@@ -416,6 +416,7 @@ container.fence.noRedstone=No redstone dust
 container.fence.noIronIngots=No iron ingots
 container.fence.notBroken=Fence isn't broken
 container.fence.pathBlocked=Obstructed path
+container.fence.baseIsWrong=Base is wrong
 container.pad.creature=Creature
 container.pad.years=years, 
 container.pad.months=months, 

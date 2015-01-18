@@ -317,7 +317,6 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
     	return null;
     }
 
-	/** Needs to check if there is a grid at the right side. */
 	public void setGridsToAllFencePoles(TileSecurityFenceLowMain mainFence)
 	{
 		int i = this.getFencePoleHeight(mainFence);
@@ -326,7 +325,7 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 		{
 			for (int side = 0; side < 4; side++)
 			{
-				TileEntity fence = mainFence.worldObj.getTileEntity(mainFence.xCoord, mainFence.yCoord, mainFence.zCoord);
+				TileEntity fence = mainFence.worldObj.getTileEntity(mainFence.xCoord, mainFence.yCoord + height + 1, mainFence.zCoord);
 				if (fence instanceof TileSecurityFenceLowPole)
 					((TileSecurityFenceLowPole) fence).setGridAtSide(side, this.hasFenceAt(side));
 			}
@@ -335,25 +334,64 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 
 	public int getFenceBaseLength(TileSecurityFenceLowMain mainFence, int side)
 	{
+		boolean flag = true;
+		int metadata = mainFence.getBlockMetadata();
 		int i = 0;
+		//System.out.println("side " + side + " metadata " + metadata);
 		switch (side)
 		{
-		/** South */
+			/** South */
 			case 0:
-				while (this.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + i + 1)) 
-					i++;
-				/** West */
+				while (flag) {
+					metadata = mainFence.worldObj.getBlockMetadata(mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + i + 1);
+					if (mainFence.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + i + 1) && (metadata == 1 || metadata == 3)) {
+						i++;
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				break;
+			/** West */
 			case 1:
-				while (this.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord - i - 1, mainFence.yCoord, mainFence.zCoord)) 
-					i++;
-				/** North */
+				while (flag) {
+					metadata = mainFence.worldObj.getBlockMetadata(mainFence.xCoord - i - 1, mainFence.yCoord, mainFence.zCoord);
+					if (mainFence.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord - i - 1, mainFence.yCoord, mainFence.zCoord) && (metadata == 0 || metadata == 2)) {
+						i++;
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				break;
+			/** North */
 			case 2:
-				while (this.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - i - 1)) 
-					i++;
-				/** East */
+				while (flag) {
+					metadata = mainFence.worldObj.getBlockMetadata(mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - i - 1);
+					if (mainFence.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - i - 1) && (metadata == 1 || metadata == 3)) {
+						i++;
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				break;
+			/** East */
 			case 3:
-				while (this.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord + i + 1, mainFence.yCoord, mainFence.zCoord)) 
-					i++;
+				while (flag) {
+					metadata = mainFence.worldObj.getBlockMetadata(mainFence.xCoord + i + 1, mainFence.yCoord, mainFence.zCoord);
+					if (mainFence.hasLowSecurityBaseFenceBlockAt(mainFence, mainFence.xCoord + i + 1, mainFence.yCoord, mainFence.zCoord) && (metadata == 0 || metadata == 2)) {
+						i++;
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				break;
 		}
 		return i;
 	}
@@ -363,18 +401,18 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 		length++;
 		switch (side)
 		{
-		/** South */
+			/** South */
 			case 0:
-				return this.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + length);
-				/** West */
+				return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + length);
+			/** West */
 			case 1:
-				return this.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord - length, mainFence.yCoord, mainFence.zCoord);
-				/** North */
+				return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord - length, mainFence.yCoord, mainFence.zCoord);
+			/** North */
 			case 2:
-				return this.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - length);
-				/** East */
+				return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - length);
+			/** East */
 			case 3:
-				return this.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord + length, mainFence.yCoord, mainFence.zCoord);
+				return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord + length, mainFence.yCoord, mainFence.zCoord);
 			default:
 				return false;
 		}
@@ -736,7 +774,6 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 
     		if (!this.isBaseAtSideValid(this, side, length))
     		{
-				/** Missing other main base. */
     			return;
     		}
     		else
@@ -750,7 +787,6 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 
     			if (!this.hasNumberOfIronStored(ironRequired))
     			{
-    				/** More iron ingot is required. */
     				return;
     			}
     			else
@@ -758,14 +794,12 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
     				int redstoneRequired = this.getRedstoneRequiredForGrid(numberOfGrids);
     				if (!this.hasNumberOfRedstoneStored(redstoneRequired))
     				{
-	    				/** More redstone is required. */
     					return;
     				}
     				else
     				{
     					if (!this.hasEmptySpaceAt(this, side, length, height))
     					{
-    						/** Something is blocking the grid path. */
     						return;
     					}
     					else
@@ -863,7 +897,6 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
     			int height = this.getSmallerFencePoleHeight(this, otherFence);
     			
 				this.changeFenceState(this.isFenceOn(side), this, otherFence, side, length, height);
-		        
 				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		        otherFence.worldObj.markBlockForUpdate(otherFence.xCoord, otherFence.yCoord, otherFence.zCoord);
     		}

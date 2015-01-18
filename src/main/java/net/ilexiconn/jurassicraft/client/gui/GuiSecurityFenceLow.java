@@ -166,13 +166,13 @@ public class GuiSecurityFenceLow extends GuiContainer
     	this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 48, 163, 4210752);
     	if (this.errorMessage != null)
     	{
-    		if (this.errorMessage == "container.fence.pathBlocked" || this.errorMessage == "container.fence.notBroken" || this.errorMessage == "container.fence.fenceOn")
+    		if (this.errorMessage == "container.fence.noIronIngots" || this.errorMessage == "container.fence.noRedstone")
         	{
-        		this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage), 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage))/2, 146, 4210752);
+				this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")", 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")") / 2, 146, 4210752);
         	}
     		else
     		{
-        		this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")", 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")")/2, 146, 4210752);
+				this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage), 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage)) / 2, 146, 4210752);
     		}
     	}
     }
@@ -293,6 +293,11 @@ public class GuiSecurityFenceLow extends GuiContainer
     					this.missingMaterials = 0;
         			}
         		}
+    			else
+    			{
+    			    this.errorMessage = "container.fence.baseIsWrong";
+    				this.missingMaterials = 0;
+    			}
     		}
     		else
     		{
@@ -353,6 +358,11 @@ public class GuiSecurityFenceLow extends GuiContainer
 					this.missingMaterials = ironRequiredToBuild;
     			}
     		}
+			else
+			{
+			    this.errorMessage = "container.fence.baseIsWrong";
+				this.missingMaterials = 0;
+			}
 	    	((GuiButton) this.buttonList.get(5)).enabled = false;
             ((GuiButton) this.buttonList.get(7)).enabled = false;
         }

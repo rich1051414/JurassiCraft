@@ -68,7 +68,14 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-        this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
+    	if (!this.isBurning())
+        {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
+        }
+        else
+        {
+            this.dropItem(this.getCreature().getSteak(), 1);
+        }
     }
 
     @Override

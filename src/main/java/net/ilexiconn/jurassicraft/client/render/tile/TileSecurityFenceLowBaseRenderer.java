@@ -36,6 +36,7 @@ public class TileSecurityFenceLowBaseRenderer extends TileEntitySpecialRenderer
             else
             {
                 int direction = tileEntityModel.getBlockMetadata();
+                //System.out.println(direction);
                 switch (direction)
                 {
                     case 0:
