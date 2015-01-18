@@ -411,6 +411,7 @@ container.fence.north=North
 container.fence.east=East
 container.fence.buildFence=Build Fence
 container.fence.fixFence=Fix Fence
+container.fence.fenceOn=Turn the fence off
 container.fence.noRedstone=No redstone dust
 container.fence.noIronIngots=No iron ingots
 container.fence.notBroken=Fence isn't broken

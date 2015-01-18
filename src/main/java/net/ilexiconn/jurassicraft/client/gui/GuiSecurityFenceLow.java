@@ -166,7 +166,7 @@ public class GuiSecurityFenceLow extends GuiContainer
     	this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 48, 163, 4210752);
     	if (this.errorMessage != null)
     	{
-    		if (this.errorMessage == "container.fence.pathBlocked" || this.errorMessage == "container.fence.notBroken")
+    		if (this.errorMessage == "container.fence.pathBlocked" || this.errorMessage == "container.fence.notBroken" || this.errorMessage == "container.fence.fenceOn")
         	{
         		this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage), 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage))/2, 146, 4210752);
         	}
@@ -246,50 +246,58 @@ public class GuiSecurityFenceLow extends GuiContainer
             ((GuiButton) this.buttonList.get(6)).enabled = true;
 	    	((GuiButton) this.buttonList.get(7)).visible = true;
 	    	
-        	int length = this.fence.getFenceBaseLength(this.fence, this.fence.getPlannedSide());
-
-    		if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
+    		if (!this.fence.isFenceOn(this.fence.getPlannedSide()))
     		{
-    			TileSecurityFenceLowMain otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
-    			
-    			int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
+    			int length = this.fence.getFenceBaseLength(this.fence, this.fence.getPlannedSide());
 
-    			int numberOfGridsToFix = this.fence.getNumberOfGridsToFix(this.fence, this.fence.getPlannedSide(), length, height);
-    			
-    			if (numberOfGridsToFix > 0)
-    			{
-    				int ironRequiredToFix = this.fence.getIronRequiredForGrid(numberOfGridsToFix);
+        		if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
+        		{
+        			TileSecurityFenceLowMain otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
+        			
+        			int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
 
-        			if (this.fence.hasNumberOfIronStored(ironRequiredToFix))
+        			int numberOfGridsToFix = this.fence.getNumberOfGridsToFix(this.fence, this.fence.getPlannedSide(), length, height);
+        			
+        			if (numberOfGridsToFix > 0)
         			{
-        				int redstoneRequiredToFix = this.fence.getRedstoneRequiredForGrid(numberOfGridsToFix);
-        				
-        				if (this.fence.hasNumberOfRedstoneStored(redstoneRequiredToFix))
-        				{
-    				    	((GuiButton) this.buttonList.get(5)).enabled = false;
-    				    	((GuiButton) this.buttonList.get(7)).enabled = true;
-    				    	this.refreshSwitchButton();
-    						this.missingMaterials = 0;
-    					    this.errorMessage = null;
-    				    	return;
-        				}
-        				else
-        				{
-        				    this.errorMessage = "container.fence.noRedstone";
-        					this.missingMaterials = redstoneRequiredToFix;
-        				}
+        				int ironRequiredToFix = this.fence.getIronRequiredForGrid(numberOfGridsToFix);
+
+            			if (this.fence.hasNumberOfIronStored(ironRequiredToFix))
+            			{
+            				int redstoneRequiredToFix = this.fence.getRedstoneRequiredForGrid(numberOfGridsToFix);
+            				
+            				if (this.fence.hasNumberOfRedstoneStored(redstoneRequiredToFix))
+            				{
+        				    	((GuiButton) this.buttonList.get(5)).enabled = false;
+        				    	((GuiButton) this.buttonList.get(7)).enabled = true;
+        				    	this.refreshSwitchButton();
+        						this.missingMaterials = 0;
+        					    this.errorMessage = null;
+        				    	return;
+            				}
+            				else
+            				{
+            				    this.errorMessage = "container.fence.noRedstone";
+            					this.missingMaterials = redstoneRequiredToFix;
+            				}
+            			}
+            			else
+            			{
+        				    this.errorMessage = "container.fence.noIronIngots";
+        					this.missingMaterials = ironRequiredToFix;
+            			}
         			}
         			else
         			{
-    				    this.errorMessage = "container.fence.noIronIngots";
-    					this.missingMaterials = ironRequiredToFix;
+    				    this.errorMessage = "container.fence.notBroken";
+    					this.missingMaterials = 0;
         			}
-    			}
-    			else
-    			{
-				    this.errorMessage = "container.fence.notBroken";
-					this.missingMaterials = 0;
-    			}
+        		}
+    		}
+    		else
+    		{
+			    this.errorMessage = "container.fence.fenceOn";
+				this.missingMaterials = 0;
     		}
 	    	((GuiButton) this.buttonList.get(5)).enabled = false;
 	    	((GuiButton) this.buttonList.get(7)).enabled = false;
