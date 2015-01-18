@@ -228,7 +228,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
             else
             {
-                this.setCreatureSize(0.8F * this.getXZBoundingBox(), 0.8F * this.getYBouningBox());
+                this.setCreatureSize(0.5F * this.getXZBoundingBox(), 0.5F * this.getYBouningBox());
                 this.setCreatureScale();
             }
             this.heal((float) (this.getCreatureHealth() - this.prevHealth));

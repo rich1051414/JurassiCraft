@@ -2,14 +2,14 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityStegosaur;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityStegosaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
-public class ModelStegosaur extends MowzieModelBase 
+public class ModelStegosaurus extends MowzieModelBase 
 {
 	
     MowzieModelRenderer waist;
@@ -54,7 +54,7 @@ public class ModelStegosaur extends MowzieModelBase
     MowzieModelRenderer armrightfoot;
     MowzieModelRenderer[] tailParts;
 
-    public ModelStegosaur()
+    public ModelStegosaurus()
     {
         this.textureWidth = 256;
         this.textureHeight = 128;
@@ -289,7 +289,7 @@ public class ModelStegosaur extends MowzieModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
     	super.render(entity, f, f1, f2, f3, f4, f5);
-    	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaur) entity);
+    	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaurus) entity);
         this.waist.render(f5);
         this.legleftthigh.render(f5);
         this.legrightthigh.render(f5);
@@ -301,7 +301,7 @@ public class ModelStegosaur extends MowzieModelBase
         modelRenderer.rotateAngleZ = z;
     }
     
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaur stego)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaurus stego)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, stego);
         this.setToInitPose();

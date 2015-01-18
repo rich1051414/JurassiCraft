@@ -2,12 +2,12 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaur;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
-public class ModelHerrerasaur extends MowzieModelBase
+public class ModelHerrerasaurus extends MowzieModelBase
 {
     MowzieModelRenderer Left_Upper_Foot;
     MowzieModelRenderer Right_Upper_Foot;
@@ -45,7 +45,7 @@ public class ModelHerrerasaur extends MowzieModelBase
     MowzieModelRenderer[] leftArmParts;
     MowzieModelRenderer[] tailParts;
     
-    public ModelHerrerasaur()
+    public ModelHerrerasaurus()
     {
         textureWidth = 256;
         textureHeight = 256;
@@ -335,7 +335,7 @@ public class ModelHerrerasaur extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaur) entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
@@ -384,7 +384,7 @@ public class ModelHerrerasaur extends MowzieModelBase
         Foot_Right.setCurrentPoseToInitValues();
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHerrerasaur herrera)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHerrerasaurus herrera)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, herrera);
 		resetPose();

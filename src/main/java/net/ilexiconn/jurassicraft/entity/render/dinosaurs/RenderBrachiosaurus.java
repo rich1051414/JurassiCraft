@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.entity.render.dinosaurs;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiosaur;
+import net.ilexiconn.jurassicraft.client.model.entity.ModelBrachiosaurus;
 import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaurus;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinosaur;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -11,17 +11,17 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderBrachiosaur extends RenderDinosaur
+public class RenderBrachiosaurus extends RenderDinosaur
 {
-    public RenderBrachiosaur(Creature dinosaur)
+    public RenderBrachiosaurus(Creature dinosaur)
     {
-        super(new ModelBrachiosaur(), dinosaur, 1.6F);
+        super(new ModelBrachiosaurus(), dinosaur, 1.6F);
     }
 
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {
-        EntityBrachiosaur dino = (EntityBrachiosaur) entity;
+        EntityBrachiosaurus dino = (EntityBrachiosaurus) entity;
         if (dino.isMale())
         {
             return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Brachiosaurus_Male_1.png");

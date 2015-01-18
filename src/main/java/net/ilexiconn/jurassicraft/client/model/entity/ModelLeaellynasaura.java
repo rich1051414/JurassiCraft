@@ -12,7 +12,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelLeaellynasaur extends MowzieModelBase
+public class ModelLeaellynasaura extends MowzieModelBase
 {
     //fields
     MowzieModelRenderer body;
@@ -36,7 +36,7 @@ public class ModelLeaellynasaur extends MowzieModelBase
     MowzieModelRenderer body1;
     MowzieModelRenderer tailback;
 
-    public ModelLeaellynasaur()
+    public ModelLeaellynasaura()
     {
         textureWidth = 128;
         textureHeight = 64;

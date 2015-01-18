@@ -17,16 +17,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityLeaellynasaur extends EntityJurassiCraftLandCoward implements IDinosaur, IHerbivore
+public class EntityLeaellynasaura extends EntityJurassiCraftLandCoward implements IDinosaur, IHerbivore
 {
-    public EntityLeaellynasaur(World world)
+    public EntityLeaellynasaura(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityLeaellynasaur.class));
+        super(world, CreatureManager.classToCreature(EntityLeaellynasaura.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 10.0F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
-        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaur.class, 16.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaurus.class, 16.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIFollowFoodCoward(this, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 0.8D * this.getCreatureSpeed()));

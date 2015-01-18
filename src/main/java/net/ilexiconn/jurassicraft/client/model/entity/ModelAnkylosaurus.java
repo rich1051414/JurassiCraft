@@ -7,7 +7,7 @@ import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelAnkylosaur extends MowzieModelBase
+public class ModelAnkylosaurus extends MowzieModelBase
 {
     ModelRenderer body_1;
     ModelRenderer body_2;
@@ -154,7 +154,7 @@ public class ModelAnkylosaur extends MowzieModelBase
     //	private Animator animator;
     public int frame;
 
-    public ModelAnkylosaur()
+    public ModelAnkylosaurus()
     {
         //    	animator = new Animator(this);
 

@@ -2,11 +2,11 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaur;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityBrachiosaurus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelBrachiosaur extends MowzieModelBase
+public class ModelBrachiosaurus extends MowzieModelBase
 {
     MowzieModelRenderer hips;
     MowzieModelRenderer body_1;
@@ -45,7 +45,7 @@ public class ModelBrachiosaur extends MowzieModelBase
     MowzieModelRenderer[] tailParts;
     MowzieModelRenderer[] tailParts2;
 
-    public ModelBrachiosaur()
+    public ModelBrachiosaurus()
     {
         textureWidth = 512;
         textureHeight = 256;
@@ -343,7 +343,7 @@ public class ModelBrachiosaur extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityBrachiosaur) entity);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityBrachiosaurus) entity);
 		//        hips.render(f5);
 		body_1.render(f5);
 		//        body_2.render(f5);
@@ -422,7 +422,7 @@ public class ModelBrachiosaur extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityBrachiosaur brachObama)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityBrachiosaurus brachObama)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         this.resetPose();

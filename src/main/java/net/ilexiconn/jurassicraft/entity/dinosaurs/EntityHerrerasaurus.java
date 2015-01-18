@@ -22,13 +22,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
+public class EntityHerrerasaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
 {
 	public ChainBuffer tailBuffer = new ChainBuffer(6);
 	
-    public EntityHerrerasaur(World par1World)
+    public EntityHerrerasaurus(World par1World)
     {
-        super(par1World, CreatureManager.classToCreature(EntityHerrerasaur.class));
+        super(par1World, CreatureManager.classToCreature(EntityHerrerasaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIWander(this, 0.7D * this.getCreatureSpeed()));
@@ -39,7 +39,7 @@ public class EntityHerrerasaur extends EntityJurassiCraftLandAggressive implemen
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(5, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityHypsilophodon.class, 0, 0.4F));
-        this.targetTasks.addTask(5, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityLeaellynasaur.class, 0, 0.4F));
+        this.targetTasks.addTask(5, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityLeaellynasaura.class, 0, 0.4F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 0, 0.9F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));

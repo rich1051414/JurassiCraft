@@ -1,9 +1,10 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -15,26 +16,24 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
+public class EntityStegosaurus extends EntityJurassiCraftLandProtective implements IDinosaur, IHerbivore
 {
-    public EntityAnkylosaur(World world)
+	public ChainBuffer tailBuffer = new ChainBuffer(5);
+	
+    public EntityStegosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityAnkylosaur.class), 1);
+        super(world, CreatureManager.classToCreature(EntityStegosaurus.class), 1);
+        this.getNavigator().setAvoidsWater(true);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 0.7D * this.getCreatureSpeed()));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.setCreatureExperiencePoints(5000);
-    }
-
-    @Override
-    public double getMountedYOffset()
-    {
-        return 1.05D * (double) this.getYBouningBox();
+        this.tasks.addTask(7, new JurassiCraftAIHerdBehavior(this, 96, 2000, 20, 0.7D * this.getCreatureSpeed()));
+        this.setCreatureExperiencePoints(3500);
     }
 
     @Override
@@ -44,10 +43,17 @@ public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implement
     }
 
     @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
+    }
+
+    @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
-        int count = Math.round(1 + (3.0F * developmentFraction) + this.rand.nextInt(1 + (int) (3.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+        int count = Math.round(1 + (4.0F * developmentFraction) + this.rand.nextInt(1 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
     	if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
@@ -56,6 +62,9 @@ public class EntityAnkylosaur extends EntityJurassiCraftLandProtective implement
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
+    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
+    	}
     	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
     	}

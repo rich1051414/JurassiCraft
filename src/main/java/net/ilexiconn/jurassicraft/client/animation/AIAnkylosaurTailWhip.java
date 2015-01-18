@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityAnkylosaur;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityAnkylosaurus;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.DamageSource;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
@@ -8,10 +8,10 @@ import net.ilexiconn.jurassicraft.ai.AIAnimation;
 public class AIAnkylosaurTailWhip extends AIAnimation
 {
 
-    private EntityAnkylosaur entityAnkylosaur;
+    private EntityAnkylosaurus entityAnkylosaur;
     private EntityLiving attackTarget;
 
-    public AIAnkylosaurTailWhip(EntityAnkylosaur ankylosaur)
+    public AIAnkylosaurTailWhip(EntityAnkylosaurus ankylosaur)
     {
         super(ankylosaur);
         entityAnkylosaur = ankylosaur;
