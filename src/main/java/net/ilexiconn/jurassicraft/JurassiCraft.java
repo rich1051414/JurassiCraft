@@ -1,9 +1,18 @@
 package net.ilexiconn.jurassicraft;
 
-import java.util.Calendar;
-
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.command.CommandSpawnDino;
+import net.ilexiconn.jurassicraft.config.ConfigHandler;
 import net.ilexiconn.jurassicraft.content.ContentLoader;
 import net.ilexiconn.jurassicraft.entity.JsonEntityParser;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntitySanta;
@@ -22,18 +31,10 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
+import java.util.Calendar;
+
+@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.config.ConfigFactory")
 public class JurassiCraft
 {
     @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy")
@@ -42,6 +43,7 @@ public class JurassiCraft
     public static JurassiCraft instance;
 
     public static boolean isChristmas;
+    public static boolean enableDebugging;
 
     public static JsonEntityParser entityParser;
     public static ContentLoader contentLoader;
@@ -65,6 +67,7 @@ public class JurassiCraft
         contentLoader.addContentHandler(new ModTileEntities());
 
         contentLoader.init();
+        ConfigHandler.init(event.getSuggestedConfigurationFile());
 
         entityParser.parseServerEntities();
 

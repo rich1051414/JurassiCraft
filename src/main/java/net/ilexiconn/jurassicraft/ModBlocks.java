@@ -1,20 +1,8 @@
 package net.ilexiconn.jurassicraft;
 
-import java.lang.reflect.Field;
-
-import net.ilexiconn.jurassicraft.block.BlockAmberOre;
-import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
-import net.ilexiconn.jurassicraft.block.BlockCultivateTop;
-import net.ilexiconn.jurassicraft.block.BlockDNACombinator;
-import net.ilexiconn.jurassicraft.block.BlockDNAExtractor;
-import net.ilexiconn.jurassicraft.block.BlockDinoPad;
-import net.ilexiconn.jurassicraft.block.BlockFossilClayOre;
-import net.ilexiconn.jurassicraft.block.BlockFossilOre;
-import net.ilexiconn.jurassicraft.block.BlockFossilSandstoneOre;
-import net.ilexiconn.jurassicraft.block.BlockGypsumBlock;
-import net.ilexiconn.jurassicraft.block.BlockGypsumBrick;
-import net.ilexiconn.jurassicraft.block.BlockGypsumCobblestone;
-import net.ilexiconn.jurassicraft.block.BlockStuffFluid;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.ilexiconn.jurassicraft.annotation.IgnoreRegistration;
+import net.ilexiconn.jurassicraft.block.*;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowMain;
@@ -26,19 +14,20 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.lang.reflect.Field;
 
 public class ModBlocks implements IContentHandler
 {
-    @Deprecated
+    @IgnoreRegistration
     public static Block clayFossilOre;
-    @Deprecated
+    @IgnoreRegistration
     public static Fluid cultivateFluid;
-    @Deprecated
+    @IgnoreRegistration
     public static Block cultivateLiquid;
-    @Deprecated
+    @IgnoreRegistration
     public static Block cultivateBottomOff;
-    @Deprecated
+    @IgnoreRegistration
     public static Block cultivateBottomOn;
     public static Block cultivateTopOff;
     public static Block cultivateTopOn;
@@ -96,7 +85,7 @@ public class ModBlocks implements IContentHandler
         {
             try
             {
-                if (field.getAnnotations().length == 0)
+                if (!field.isAnnotationPresent(IgnoreRegistration.class))
                 {
                     Block block = (Block) field.get(this);
                     GameRegistry.registerBlock(block, block.getUnlocalizedName());

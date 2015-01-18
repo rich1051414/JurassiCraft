@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.config.DinoConfig;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.dinoconfig.DinoConfig;
+import net.ilexiconn.jurassicraft.dinoconfig.JsonCreatureDefinition;
 
 import java.util.Collection;
 

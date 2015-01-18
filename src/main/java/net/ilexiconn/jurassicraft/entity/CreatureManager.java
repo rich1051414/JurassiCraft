@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.dinoconfig.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.minecraft.client.renderer.entity.RenderLiving;
 

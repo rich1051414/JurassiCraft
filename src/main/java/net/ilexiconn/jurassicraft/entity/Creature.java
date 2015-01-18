@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.entity;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.ilexiconn.jurassicraft.config.JsonCreatureDefinition;
+import net.ilexiconn.jurassicraft.dinoconfig.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.ilexiconn.jurassicraft.item.ItemEgg;
 import net.ilexiconn.jurassicraft.item.ItemMammalSyringe;

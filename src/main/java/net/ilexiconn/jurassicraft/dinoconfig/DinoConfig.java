@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.config;
+package net.ilexiconn.jurassicraft.dinoconfig;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;

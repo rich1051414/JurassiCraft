@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.config;
+package net.ilexiconn.jurassicraft.dinoconfig;
 
 
 import java.util.ArrayList;
