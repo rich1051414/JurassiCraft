@@ -304,6 +304,9 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
 		float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
 		
+		Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2)*restHeadProgress);
+		Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2)*restHeadProgress);
+		
 		this.Waist.rotationPointY += 11.5F * sittingProgress;
 		this.RightThigh.rotationPointY += 11.5F * sittingProgress;
 		this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
@@ -335,6 +338,14 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		this.FootRight.rotateAngleX += 0.7F * sittingProgress;
 		this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
 		
+		this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
+		this.Tail2.rotateAngleX += 0.1F * sittingProgress;
+		this.Tail3.rotateAngleX += 0.15F * sittingProgress;
+		this.Tail4.rotateAngleX += 0.15F * sittingProgress;
+		this.Tail4.rotationPointY += 0.5F * sittingProgress;
+		walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
+		Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
+		
 		this.Neck.rotateAngleX += 0.55F * restHeadProgress;
 		this.Head.rotateAngleX -= 0.75F * restHeadProgress;
 		this.Chest.rotateAngleX += 0.15F * restHeadProgress;
@@ -344,6 +355,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
 		walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
 		walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+		Tail1.rotationPointY += (0.2F * restHeadProgress) * Math.cos((trex.frame + 1) * 0.08);
 		walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
 		walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
 		walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
@@ -358,8 +370,8 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
 		this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
 
-		this.chainSwing(tailParts, 0.1F, 0.05F, 1, trex.frame, 1.0F - 0.6F * sittingProgress);
-		this.chainWave(tailParts, 0.1F, -0.05F, 2, trex.frame, 1.0F - 0.6F * sittingProgress);
+		this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
+		this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
 
 		trex.tailBuffer.applyChainSwingBuffer(tailParts);
 
