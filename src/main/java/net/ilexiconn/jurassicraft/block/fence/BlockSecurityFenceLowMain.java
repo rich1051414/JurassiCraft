@@ -103,9 +103,6 @@ public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFe
 									break;
 							}
 							neighborFence.getWorldObj().markBlockForUpdate(neighborFence.xCoord, neighborFence.yCoord, neighborFence.zCoord);
-
-			        		for (int side1 = 0; side1 < 4; side1++)
-			        			System.out.println("Tile != null and hasFenceAt(" + side1 + ") " + neighborFence.hasFenceAt(side1));
 						}
                 	}
                 }

@@ -337,7 +337,6 @@ public class TileSecurityFenceLowMain extends TileEntity implements ISidedInvent
 		boolean flag = true;
 		int metadata = mainFence.getBlockMetadata();
 		int i = 0;
-		//System.out.println("side " + side + " metadata " + metadata);
 		switch (side)
 		{
 			/** South */
