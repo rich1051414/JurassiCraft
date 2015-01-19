@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.client.render.tile;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.block.BlockCultivate;
+import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEmbryo;
 import net.ilexiconn.jurassicraft.client.render.RenderHelper;
@@ -12,11 +13,11 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 public class TileCultivateRenderer extends TileEntitySpecialRenderer
 {
-    public String[] colors = {"black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
     public ModelCultivate cultivate = new ModelCultivate();
     public ModelEmbryo embryo = new ModelEmbryo();
     public ResourceLocation[] cultivateTextures;
@@ -24,16 +25,20 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
 
     public TileCultivateRenderer()
     {
-        cultivateTextures = new ResourceLocation[colors.length];
-        for (int i = 0; i < colors.length; i++)
-            cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + colors[i] + ".png");
-        embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
+        this.embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
+        this.cultivateTextures = new ResourceLocation[BlockCultivateBottom.icons.length];
+        for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
+        	this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + BlockCultivateBottom.icons[i] + ".png");
     }
 
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float meta)
     {
         GL11.glEnable(GL11.GL_BLEND);
         TileCultivate tile = (TileCultivate) tileEntity;
+        int metadata = 0;
+        if (tile.getWorldObj() != null) {
+            metadata = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        }
 
         if (tile.isHatching())
         {
@@ -44,8 +49,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
             int rotation = BlockCultivate.getRotation(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
             GL11.glRotatef(rotation == 0 ? 0f : rotation == 1 ? -90f : rotation == 2 ? -180f : 90f, 0f, 1f, 0f);
             GL11.glRotatef(180f, 0f, 0f, 1f);
-            Minecraft.getMinecraft().renderEngine.bindTexture(embryoTextures);
-            embryo.render(tile);
+            Minecraft.getMinecraft().renderEngine.bindTexture(this.embryoTextures);
+            this.embryo.render(tile);
             GL11.glPopMatrix();
         }
 
@@ -54,8 +59,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glTranslatef((float) x + 0.5f, (float) y + 1.5f, (float) z + 0.5f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        Minecraft.getMinecraft().renderEngine.bindTexture(cultivateTextures[tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord)]);
-        cultivate.render(false);
+        Minecraft.getMinecraft().renderEngine.bindTexture(this.cultivateTextures[metadata]);
+        this.cultivate.render(false);
         GL11.glPopMatrix();
 
         int[] displayList = RenderHelper.getFluidDisplayLists(tile.getWorldObj(), ModBlocks.cultivateFluid, ModBlocks.cultivateLiquid);
@@ -64,7 +69,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        bindTexture(TextureMap.locationBlocksTexture);
+        this.bindTexture(TextureMap.locationBlocksTexture);
         GL11.glTranslatef((float) x + 0.125f, (float) y + 1.29f, (float) z + 0.125f);
         GL11.glScalef(0.75f, 0.75f * 2.5f, 0.75f);
         GL11.glTranslatef(0, -0.5f, 0);
@@ -77,8 +82,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glTranslatef((float) x + 0.5f, (float) y + 1.5f, (float) z + 0.5f);
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        Minecraft.getMinecraft().renderEngine.bindTexture(cultivateTextures[tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord)]);
-        cultivate.renderGlass();
+        Minecraft.getMinecraft().renderEngine.bindTexture(this.cultivateTextures[metadata]);
+        this.cultivate.renderGlass();
         GL11.glPopMatrix();
         GL11.glDisable(GL11.GL_BLEND);
     }

@@ -1,7 +1,8 @@
 package net.ilexiconn.jurassicraft.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
@@ -24,64 +25,58 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCultivateBottom extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
-    public IIcon[] icons;
+    public static final IIcon[] icons = new IIcon[ItemDye.field_150921_b.length];
     public boolean isLit;
 
     public BlockCultivateBottom(boolean lit)
     {
         super(Material.cactus); // Yes..., Cactus xD
-        setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
-        setBlockTextureName(JurassiCraft.getModId() + "cultivate");
-        setCreativeTab(lit ? null : ModCreativeTabs.blocks);
-        setHardness(2f);
-        setBlockBounds(0f, 0f, 0f, 1f, 2f, 1f);
-        if (lit) setLightLevel(1.0f);
-        isLit = lit;
+        this.setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
+        this.setBlockTextureName(JurassiCraft.getModId() + "cultivate");
+        this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);
+        this.setHardness(2.0F);
+        this.setBlockBounds(0.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        if (lit) setLightLevel(1.0F);
+        this.isLit = lit;
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int metadata)
     {
-        if (meta < 0 || meta >= ItemDye.field_150921_b.length) meta = 0;
-        return icons[meta];
+        return this.icons[metadata % this.icons.length];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < ItemDye.field_150921_b.length; i++)
+        for (int i = 0; i < this.icons.length; i++)
             list.add(new ItemStack(item, 1, i));
+    }
+
+    public static int getColor(int metadata)
+    {
+        return ~metadata & 15;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        icons = new IIcon[ItemDye.field_150921_b.length];
-
-        for (int i = 0; i < ItemDye.field_150921_b.length; i++)
-        {
-            String name = getTextureName();
-
-            if (ItemDye.field_150921_b[i] != null) name = name + "_" + ItemDye.field_150921_b[i];
-
-            icons[i] = iconRegister.registerIcon(name);
-        }
+        for (int i = 0; i < this.icons.length; i++)
+            this.icons[i] = iconRegister.registerIcon(this.getTextureName() + "_" + ItemDye.field_150921_b[this.getColor(i)]);
     }
 
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped(int metadata)
     {
-        return meta;
+        return metadata;
     }
 
     @Override
@@ -132,13 +127,13 @@ public class BlockCultivateBottom extends BlockContainer
     }
 
     @Override
-    public Item getItemDropped(int meta, Random random, int fortune)
+    public Item getItemDropped(int metadata, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldMetadata)
+    public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate)
@@ -171,15 +166,14 @@ public class BlockCultivateBottom extends BlockContainer
                         }
                     }
                 }
-                world.func_147453_f(x, y, z, oldblock);
+                world.func_147453_f(x, y, z, block);
             }
         }
-        world.setBlockToAir(x, y + 1, z);
-        super.breakBlock(world, x, y, z, oldblock, oldMetadata);
+        super.breakBlock(world, x, y, z, block, metadata);
     }
 
     @Override
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta)
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int metadata)
     {
         world.setBlockToAir(x, y + 1, z);
         world.removeTileEntity(x, y + 1, z);

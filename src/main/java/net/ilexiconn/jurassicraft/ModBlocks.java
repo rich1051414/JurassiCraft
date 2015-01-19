@@ -41,7 +41,7 @@ public class ModBlocks implements IContentHandler
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
     
-    public static Block securityFenceLowMain;
+    public static Block securityFenceLowCorner;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
@@ -62,7 +62,7 @@ public class ModBlocks implements IContentHandler
         sandstoneFossilOre = new BlockFossilSandstoneOre();
         clayFossilOre = new BlockFossilClayOre();
         dinoPad = new BlockDinoPad();
-        securityFenceLowMain = new BlockSecurityFenceLowMain();
+        securityFenceLowCorner = new BlockSecurityFenceLowMain();
         securityFenceLowPole = new BlockSecurityFenceLowPole();
         securityFenceLowBase = new BlockSecurityFenceLowBase();
         securityFenceLowGrid = new BlockSecurityFenceLowGrid();
