@@ -33,6 +33,7 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 	protected int hungry = huntingInterval;
 	protected static Random rand = new Random();
 	private int newTarget = 500;
+	public Vec3 territory;
 	
 	public EntitySwimmingBase(World par1World, Creature creature)
 	{
@@ -98,13 +99,20 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 	{
 		super.updateAITasks();
 		
+		if(territory == null)
+		{
+			territory = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+			territory.xCoord = this.posX;
+			territory.yCoord = this.posY;
+			territory.zCoord = this.posZ;
+		}
 		if(this.isInWater())
 		{
 			--hungry;
 			EntityPlayer closestPlayer= null;
 			
 			
-			currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ);
+			currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
 			
 			if(hungry <= -2400)
 			{
@@ -114,25 +122,28 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 			
 			if(hungry <= 0)
 			{
+				--attackTimer;
 				if(hungryTarget == null)
 					this.currentSwimTarget = this.getHungryTarget();
 				else
 				{
 					--newTarget;
+					territory = null;
 					this.currentSwimTarget = Vec3.createVectorHelper(hungryTarget.posX, hungryTarget.posY, hungryTarget.posZ);
 				}
 				
 			}
 			else
-				currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ);
+				currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
 			
 			if(newTarget <= 0 || (hungryTarget != null && this.getDistanceToEntity(hungryTarget) > 15))
 			{
 				newTarget = 500;
 				hungryTarget = null;
 			}
-
-			System.out.println(currentSwimTarget);
+			if(this.currentSwimTarget != null &&  territory != null && Math.sqrt(currentSwimTarget.xCoord * territory.xCoord + currentSwimTarget.yCoord * territory.yCoord + currentSwimTarget.zCoord * territory.zCoord ) > 30)
+				currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, true);
+			
 			if(this.currentSwimTarget != null)
 			{
 				approachTarget(this.posX, this.posY, this.posZ, swimSpeed);
@@ -161,17 +172,6 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 	
 	
 	
-	
-	public Vec3 handlePlayerInRange(EntityPlayer player)
-	{
-		if(player.ridingEntity == null && player.isInWater() && attackTimer < 0)
-			return Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
-		else
-			return this.findRandomTarget(this.posX, this.posY, this.posZ);
-		
-		
-		
-	}
 
 	
 	
@@ -204,21 +204,26 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 			
 		}
 		if(Target == null)
-			return findRandomTarget(posX, posY, posZ);
-		else
+			return findRandomTarget(posX, posY, posZ, false);
+		else if(attackTimer <= 0)
 			return Vec3.createVectorHelper(Target.posX, Target.posY, Target.posZ);
+		else
+			return currentSwimTarget;
 	}
 	
+	/*
+	 * Get a prioritized Target by comparing current target to new entity in range.
+	 * Target = current target. Null at beginning of search
+	 * entity1 = next entity in range to compare with target. Should never be null
+	 */
 	public EntityLivingBase getTargetPriority(EntityLivingBase Target, EntityLivingBase entity1)
 	{
 		if(Target != null)
 		{
 			if(Target instanceof EntityPlayer)
 				return Target;
-			else if(Target instanceof EntitySwimmingBase) //Won't go for other SwimmingBase creatures.
-				return entity1;
 			else
-				return Target;
+				return entity1;
 		}
 		else
 			return entity1;
@@ -250,7 +255,7 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 	int movementskip = 0;
 	int xMovement = -1,yMovement = -1,zMovement = -1;
 	
-	public Vec3 findRandomTarget(double X, double Y, double Z) 
+	public Vec3 findRandomTarget(double X, double Y, double Z, boolean force) 
 	{
 		if(isInWater()){
 			movementskip--;
@@ -258,7 +263,7 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 			if(movementskip <= 0){
 				//Will cause server and client to produce random yet identical rolls.
 				rand.setSeed(getEntityId() + chunkCoordX + chunkCoordY + chunkCoordZ);
-				movementskip = rand.nextInt(80);
+				movementskip = rand.nextInt(15);
 				int randomWaterCheck = 0;
 				
 				Block block1 = Blocks.bedrock;
@@ -269,21 +274,14 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 				
 				while(randomWaterCheck < 20){
 					//reuse last movement unless a wall is there.
-					if(randomWaterCheck == 0 && xMovement != -1){
+					if(randomWaterCheck == 0 && xMovement != -1 && !force){
 						newPos = Vec3.createVectorHelper(X + xMovement, Y + yMovement, Z + zMovement);
 						block1 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord - (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord - (this.width / 2.0f)));
 						block2 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord + (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord + (this.width / 2.0f)));
 						if(block1 instanceof BlockLiquid){
 							if(block2 instanceof BlockLiquid) {
-								double rand1 =  (Math.PI/36.0D)*rand.nextDouble() - (Math.PI/36.0D)*rand.nextDouble();
-								double rand2 =  (Math.PI/36.0D)*rand.nextDouble() - (Math.PI/36.0D)*rand.nextDouble();
-								System.out.println(rand1);
-								xMovement =  15 * (int)Math.sin((rotationYaw * Math.PI / 180F) + rand1);
-								zMovement =   15 * (int)Math.cos((rotationYaw * Math.PI / 180F) + rand2);
-								yMovement = rand.nextInt(2) - rand.nextInt(1);
-								return Vec3.createVectorHelper(X +  xMovement, Y + yMovement, Z +zMovement);
 								
-//								break;
+								break;
 								
 							}
 							}
@@ -303,6 +301,7 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 					block1 = Blocks.bedrock;
 					block2 = Blocks.bedrock;
 				}
+				
 				
 				if(block1 != Blocks.bedrock){
 					this.swimSpeed = 1;
@@ -342,8 +341,8 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
 	    public boolean attackEntityAsMob(Entity entity)
 	    {
 	        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-	        
-	        setHungry(60);
+
+            this.attackTimer = 60;
 	        //onKillEntity is not a part of JurrasicCraftEntityRidable, but I needed when this entity kills another....
 	        if(entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getHealth() <= f)
 	        {

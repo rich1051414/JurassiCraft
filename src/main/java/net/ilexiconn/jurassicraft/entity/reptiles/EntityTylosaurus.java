@@ -7,6 +7,7 @@ import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -34,6 +35,21 @@ public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, IC
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(120.0F, 5, 8.0F, this);
     }
+    
+    public EntityLivingBase getTargetPriority(EntityLivingBase Target, EntityLivingBase entity1)
+	{
+		if(Target != null)
+		{
+			if(Target instanceof EntityPlayer)
+				return Target;
+			else if(Target instanceof EntityTylosaurus) //Won't go for other Tylosaurus unless nothing else around
+				return entity1;
+			else
+				return Target;
+		}
+		else
+			return entity1;
+	}
     
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
