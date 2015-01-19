@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.entity.reptiles;
 
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntitySwimming;
+import net.ilexiconn.jurassicraft.entity.EntitySwimmingBase;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
@@ -13,32 +13,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityTylosaurus extends EntitySwimming implements IReptile, ICarnivore, IPiscivore
+public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, ICarnivore, IPiscivore
 {
 	public ChainBuffer tailBuffer = new ChainBuffer(12);
 	
     public EntityTylosaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityTylosaurus.class));
-        this.swimRadius = 16.0F;
-        this.swimRadiusHeight = 10.0F;
-        this.swimSpeed = 0.6F;
-        this.jumpOnLand = false;
-        this.attackInterval = 1;
-        this.isAgressive = true;
+
+        this.swimSpeed = 2.2F;
         this.setCreatureExperiencePoints(5000);
+    	huntingInterval = 600;
+    	this.setHungry(huntingInterval);
     }
 
-    @Override
-    protected Entity findEntityToAttack()
-    {
-        AxisAlignedBB area = this.boundingBox.expand(16.0D, 16.0D, 16.0D);
-
-        EntityPlayer player = (EntityPlayer) super.findEntityToAttack();
-        if (player != null) return player;
-
-        return this.worldObj.findNearestEntityWithinAABB(EntityAnimal.class, area, this);
-    }
 
     @Override
     public void onUpdate()
