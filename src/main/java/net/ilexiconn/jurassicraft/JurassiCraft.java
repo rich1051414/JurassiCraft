@@ -66,10 +66,10 @@ public class JurassiCraft
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) contentLoader.addContentHandler(new ModRenderers());
         contentLoader.addContentHandler(new ModTileEntities());
 
+        entityParser.parseServerEntities();
+        
         contentLoader.init();
         ConfigHandler.init(event.getSuggestedConfigurationFile());
-
-        entityParser.parseServerEntities();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
