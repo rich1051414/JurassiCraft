@@ -1,4 +1,4 @@
-{       "footstep": {"category": "master","sounds": [{"name": "footstep","stream": false}]},
+{      "footstep": {"category": "master","sounds": [{"name": "footstep","stream": false}]},
        "trex1": {"category": "master","sounds": [{"name": "trex1","stream": false}]},
        "trex2": {"category": "master","sounds": [{"name": "trex2","stream": false}]},
        "trex3": {"category": "master","sounds": [{"name": "trex3","stream": false}]},
@@ -50,5 +50,16 @@
        "ParaCall04": {"category": "master","sounds": [{"name": "ParaCall04","stream": false}]},
        "ParaCall05": {"category": "master","sounds": [{"name": "ParaCall05","stream": false}]},
        "gallop": {"category": "master","sounds": [{"name": "gallop","stream": false}]},
+       "leptictidiumSay1": {"category": "master","sounds": [{"name": "leptictidiumSay1","stream": false}]},
+       "leptictidiumSay2": {"category": "master","sounds": [{"name": "leptictidiumSay2","stream": false}]},
+       "leptictidiumHit": {"category": "master","sounds": [{"name": "leptictidiumHit","stream": false}]},
+       "leptictidiumDeath": {"category": "master","sounds": [{"name": "leptictidiumDeath","stream": false}]},
+       "mammothSay1": {"category": "master","sounds": [{"name": "mammothSay1","stream": false}]},
+       "mammothSay2": {"category": "master","sounds": [{"name": "mammothSay2","stream": false}]},
+       "mammothHit": {"category": "master","sounds": [{"name": "mammothHit","stream": false}]},
+       "mammothDeath": {"category": "master","sounds": [{"name": "mammothDeath","stream": false}]},
+       "carnocall01": {"category": "master","sounds": [{"name": "carnocall01","stream": false}]},
+       "carnocall02": {"category": "master","sounds": [{"name": "carnocall02","stream": false}]},
+       "carnoroar01": {"category": "master","sounds": [{"name": "carnoroar01","stream": false}]},
        "bells": {"category": "master","sounds": [{"name": "bells","stream": false}]}
 }

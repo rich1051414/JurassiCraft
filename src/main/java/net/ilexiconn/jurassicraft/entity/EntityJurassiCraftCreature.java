@@ -795,19 +795,22 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     @Override
     public String getLivingSound()
     {
-        return this.getCreature().pickLivingSound();
+        this.playSound(this.getCreature().pickLivingSound(), this.getSoundVolume(), this.getSoundPitch());
+        return null;
     }
 
     @Override
     public String getHurtSound()
     {
-        return this.getCreature().getHurtSound();
+        this.playSound(this.getCreature().getHurtSound(), this.getSoundVolume(), this.getSoundPitch());
+        return null;
     }
 
     @Override
     public String getDeathSound()
     {
-        return this.getCreature().getDeathSound();
+        this.playSound(this.getCreature().getDeathSound(), this.getSoundVolume(), this.getSoundPitch());
+        return null;
     }
 
 	protected EntityItem dropItemStackWithGenetics(ItemStack itemStack) {

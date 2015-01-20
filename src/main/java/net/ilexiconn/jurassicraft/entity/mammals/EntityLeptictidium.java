@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFoodCoward;
@@ -38,17 +37,42 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
     }
 
     @Override
-    public double getMountedYOffset()
-    {
-        return (double) this.getYBouningBox() * 1.0D;
-    }
-
-    @Override
     public int getTalkInterval()
     {
         return 400;
     }
 
+	@Override
+	public String getLivingSound()
+	{
+		switch (this.rand.nextInt(2))
+		{
+			case 0:
+				this.playSound("jurassicraft:leptictidiumSay1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 1:
+				this.playSound("jurassicraft:leptictidiumSay2", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			default:
+
+		}
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		this.playSound("jurassicraft:leptictidiumHit", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		this.playSound("jurassicraft:leptictidiumDeath", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+    
     @Override
     public void onUpdate()
     {
