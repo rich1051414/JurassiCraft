@@ -595,7 +595,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 	
 	private void buildFenceOff(TileSecurityFenceHighCorner mainFence1, TileSecurityFenceHighCorner mainFence2, int side, int length, int height)
 	{
-		Block grid = ModBlocks.securityFenceHighGrid;
+		//HERE Block grid = ModBlocks.securityFenceHighGrid;
 		switch (side)
 		{
 		/** South */
@@ -604,7 +604,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 				{
 					for (int j = 0; j < length; j++)
 					{
-						mainFence1.worldObj.setBlock(mainFence1.xCoord, mainFence1.yCoord + i + 1, mainFence1.zCoord + j + 1, grid, 1, 2);
+						//mainFence1.worldObj.setBlock(mainFence1.xCoord, mainFence1.yCoord + i + 1, mainFence1.zCoord + j + 1, grid, 1, 2);
 					}
 				}
 				mainFence1.setFenceAt(0, true);
@@ -618,7 +618,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 				{
 					for (int j = 0; j < length; j++)
 					{
-						mainFence1.worldObj.setBlock(mainFence1.xCoord - j - 1, mainFence1.yCoord + i + 1, mainFence1.zCoord, grid, 2, 2);
+						//mainFence1.worldObj.setBlock(mainFence1.xCoord - j - 1, mainFence1.yCoord + i + 1, mainFence1.zCoord, grid, 2, 2);
 					}
 				}
 				mainFence1.setFenceAt(1, true);
@@ -632,7 +632,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 				{
 					for (int j = 0; j < length; j++)
 					{
-						mainFence1.worldObj.setBlock(mainFence1.xCoord, mainFence1.yCoord + i + 1, mainFence1.zCoord - j - 1, grid, 3, 2);
+						//mainFence1.worldObj.setBlock(mainFence1.xCoord, mainFence1.yCoord + i + 1, mainFence1.zCoord - j - 1, grid, 3, 2);
 					}
 				}
 				mainFence1.setFenceAt(2, true);
@@ -646,7 +646,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 				{
 					for (int j = 0; j < length; j++)
 					{
-						mainFence1.worldObj.setBlock(mainFence1.xCoord + j + 1, mainFence1.yCoord + i + 1, mainFence1.zCoord, grid, 0, 2);
+						//mainFence1.worldObj.setBlock(mainFence1.xCoord + j + 1, mainFence1.yCoord + i + 1, mainFence1.zCoord, grid, 0, 2);
 					}
 				}
 				mainFence1.setFenceAt(3, true);

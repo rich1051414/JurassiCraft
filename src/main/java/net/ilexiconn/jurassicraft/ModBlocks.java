@@ -46,6 +46,7 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
     
+    /*
     public static Block securityFenceMediumCorner;
     public static Block securityFenceMediumPole;
     public static Block securityFenceMediumBase;
@@ -55,7 +56,8 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceHighPole;
     public static Block securityFenceHighBase;
     public static Block securityFenceHighGrid;
-
+    */
+    
     public void init()
     {
         cultivateBottomOff = new BlockCultivateBottom(false);
