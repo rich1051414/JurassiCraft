@@ -5,7 +5,7 @@ import java.util.HashMap;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerSecurityFenceLow;
 import net.ilexiconn.jurassicraft.packet.MessageFence;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -18,11 +18,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiSecurityFenceLow extends GuiContainer
 {
     private HashMap<Integer, int[]> fenceMap = new HashMap<Integer, int[]>();
-    private TileSecurityFenceLowMain fence;
+    private TileSecurityFenceLowCorner fence;
     private int missingMaterials;
     private String errorMessage;
 
-    public GuiSecurityFenceLow(InventoryPlayer inventoryPlayer, TileSecurityFenceLowMain entity)
+    public GuiSecurityFenceLow(InventoryPlayer inventoryPlayer, TileSecurityFenceLowCorner entity)
     {
         super(new ContainerSecurityFenceLow(inventoryPlayer, entity));
         if (entity != null)
@@ -252,7 +252,7 @@ public class GuiSecurityFenceLow extends GuiContainer
 
         		if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
         		{
-        			TileSecurityFenceLowMain otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
+        			TileSecurityFenceLowCorner otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
         			
         			int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
 
@@ -318,7 +318,7 @@ public class GuiSecurityFenceLow extends GuiContainer
 
     		if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
     		{
-    			TileSecurityFenceLowMain otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
+    			TileSecurityFenceLowCorner otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
     			
     			int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
 

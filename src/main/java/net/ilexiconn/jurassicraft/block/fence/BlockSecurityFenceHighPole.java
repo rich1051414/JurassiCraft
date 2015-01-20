@@ -4,17 +4,17 @@ import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.interfaces.IFenceGrid;
 import net.ilexiconn.jurassicraft.interfaces.IFencePole;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceMediumPole;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockSecurityFenceLowPole extends BlockSecurityFence implements IFencePole
+public class BlockSecurityFenceHighPole extends BlockSecurityFence implements IFencePole
 {
 	
-	public BlockSecurityFenceLowPole()
+	public BlockSecurityFenceHighPole()
 	{
 		super(7.5F, 112.5F, 2, "low_Security_Fence_Pole");
 		this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.0F, 0.7F);
@@ -47,7 +47,7 @@ public class BlockSecurityFenceLowPole extends BlockSecurityFence implements IFe
 			if (world.getTileEntity(x, y + 1, z) != (TileEntity) null)
 				world.removeTileEntity(x, y + 1, z);
 			world.setBlockToAir(x, y + 1, z);
-			this.dropPole(world, x, y, z);
+        	this.dropPole(world, x, y, z);
 		}
 		if (world.getBlock(x, y, z + 1) instanceof IFenceGrid)
 		{
@@ -83,10 +83,10 @@ public class BlockSecurityFenceLowPole extends BlockSecurityFence implements IFe
 		float zRand = world.rand.nextFloat() * 0.8F + 0.1F;
 		world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(ModBlocks.securityFenceLowPole, 1, 0)));
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata)
 	{
-		return new TileSecurityFenceLowPole();
+		return new TileSecurityFenceMediumPole();
 	}
 }

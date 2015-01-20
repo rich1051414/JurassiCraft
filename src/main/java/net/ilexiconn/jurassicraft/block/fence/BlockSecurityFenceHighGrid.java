@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.block.fence;
 import java.util.Random;
 
 import net.ilexiconn.jurassicraft.interfaces.IFenceGrid;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceMediumGrid;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -13,10 +13,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFenceGrid
+public class BlockSecurityFenceHighGrid extends BlockSecurityFence implements IFenceGrid
  {
 	
-    public BlockSecurityFenceLowGrid()
+    public BlockSecurityFenceHighGrid()
     {
     	super(5.0F, 75.0F, 2, "low_Security_Fence_Grid");
     }
@@ -49,13 +49,13 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
 			case 2:
 			case 4:
 			case 6:
-				if (world.getBlock(x - 1, y, z) instanceof BlockSecurityFenceLowGrid)
+				if (world.getBlock(x - 1, y, z) instanceof BlockSecurityFenceHighGrid)
 				{
 					if (world.getTileEntity(x - 1, y, z) != (TileEntity) null)
 						world.removeTileEntity(x - 1, y, z);
 					world.setBlockToAir(x - 1, y, z);
 				}
-				if (world.getBlock(x + 1, y, z) instanceof BlockSecurityFenceLowGrid)
+				if (world.getBlock(x + 1, y, z) instanceof BlockSecurityFenceHighGrid)
 				{
 					if (world.getTileEntity(x + 1, y, z) != (TileEntity) null)
 						world.removeTileEntity(x + 1, y, z);
@@ -67,13 +67,13 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
 			case 3:
 			case 5:
 			case 7:
-				if (world.getBlock(x, y, z + 1) instanceof BlockSecurityFenceLowGrid)
+				if (world.getBlock(x, y, z + 1) instanceof BlockSecurityFenceHighGrid)
 				{
 					if (world.getTileEntity(x, y, z + 1) != (TileEntity) null)
 						world.removeTileEntity(x, y, z + 1);
 					world.setBlockToAir(x, y, z + 1);
 				}
-				if (world.getBlock(x, y, z - 1) instanceof BlockSecurityFenceLowGrid)
+				if (world.getBlock(x, y, z - 1) instanceof BlockSecurityFenceHighGrid)
 				{
 					if (world.getTileEntity(x, y, z - 1) != (TileEntity) null)
 						world.removeTileEntity(x, y, z - 1);
@@ -155,6 +155,6 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {
-        return new TileSecurityFenceLowGrid();
+        return new TileSecurityFenceMediumGrid();
     }
 }

@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.container;
 
 import net.ilexiconn.jurassicraft.container.slot.SlotFence;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSecurityFenceLow extends Container
 {
-    private TileSecurityFenceLowMain fence;
+    private TileSecurityFenceLowCorner fence;
 
-    public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowMain tileEntity)
+    public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowCorner tileEntity)
     {
         this.fence = tileEntity;
         

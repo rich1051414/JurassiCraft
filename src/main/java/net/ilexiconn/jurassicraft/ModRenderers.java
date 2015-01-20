@@ -9,10 +9,16 @@ import net.ilexiconn.jurassicraft.client.render.item.ItemDNACombinatorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDinoPadRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.*;
+import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowBaseRenderer;
+import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowGridRenderer;
+import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowPoleRenderer;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.entity.render.RenderDinoEgg;
 import net.ilexiconn.jurassicraft.tile.*;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 

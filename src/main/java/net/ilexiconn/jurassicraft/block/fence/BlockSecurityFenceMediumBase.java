@@ -2,14 +2,14 @@ package net.ilexiconn.jurassicraft.block.fence;
 
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.interfaces.IFenceBase;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceMediumBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 
-public class BlockSecurityFenceLowBase extends BlockSecurityFence implements IFenceBase
+public class BlockSecurityFenceMediumBase extends BlockSecurityFence implements IFenceBase
 {
-    public BlockSecurityFenceLowBase()
+    public BlockSecurityFenceMediumBase()
     {
     	super(10.0F, 150.0F, 2, "low_Security_Fence_Base");
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
@@ -37,6 +37,6 @@ public class BlockSecurityFenceLowBase extends BlockSecurityFence implements IFe
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {
-        return new TileSecurityFenceLowBase();
+        return new TileSecurityFenceMediumBase();
     }
 }

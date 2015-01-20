@@ -33,14 +33,22 @@ public class ModRecipes implements IContentHandler
             }
         }
 
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowCorner, 1), "SSS", "SIS", "SSS", 'I', Blocks.iron_block, 'S', Blocks.stone);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowBase, 1), "SSS", "III",  'I', Items.iron_ingot, 'S', Blocks.stone);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowPole, 1), "SIS", "SIS", "SIS", 'I', Items.iron_ingot, 'S', Blocks.stone);
+        /*
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceMediumCorner, 1), "ISI", "SBS", "ISI", 'B', ModBlocks.securityFenceLowCorner, 'I', Items.iron_ingot, 'S', Blocks.stone);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceMediumBase, 1), "SSS", "IBI",  'B', ModBlocks.securityFenceLowBase, 'I', Items.iron_ingot, 'S', Blocks.stone);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceMediumPole, 1), "SIS", "IBI", "SIS", 'B', ModBlocks.securityFenceLowPole, 'I', Items.iron_ingot, 'S', Blocks.stone);
+        
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceHighCorner, 1), "III", "IBI", "FFF", 'B', ModBlocks.securityFenceMediumCorner, 'I', Items.iron_ingot, 'F', Blocks.iron_block);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceHighBase, 1), "III", "IBI",  'B', ModBlocks.securityFenceMediumBase, 'I', Items.iron_ingot);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceHighPole, 1), "III", "IBI", "III", 'B', ModBlocks.securityFenceMediumPole, 'I', Items.iron_ingot);
+        */
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.dnaCombinator, 1), "III", "IRI", "III", 'I', Items.iron_ingot, 'R', Items.redstone);
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.dnaExtractor, 1), "IIG", "IRG", "III", 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone);
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.dinoPad, 1), "III", "RGR", "III", 'I', Items.iron_ingot, 'G', Items.glowstone_dust, 'R', Items.redstone);
 
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowCorner, 1), "SSS", "SIS", "SSS", 'I', Blocks.iron_block, 'S', Blocks.stone);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowBase, 1), "SSS", "III",  'I', Items.iron_ingot, 'S', Blocks.stone);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowPole, 1), "SIS", "SIS", "SIS", 'I', Items.iron_ingot, 'S', Blocks.stone);
-        
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.gypsumPowder, 2), "TG", 'T', Items.stone_pickaxe.setContainerItem(Items.stone_pickaxe), 'G', ModBlocks.gypsumCobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.gypsumPowder, 2), "TG", 'T', Items.iron_pickaxe.setContainerItem(Items.iron_pickaxe), 'G', ModBlocks.gypsumCobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.gypsumPowder, 2), "TG", 'T', Items.diamond_pickaxe.setContainerItem(Items.diamond_pickaxe), 'G', ModBlocks.gypsumCobblestone);

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.tile;
+package net.ilexiconn.jurassicraft.tile.fence;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -6,11 +6,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileSecurityFenceLowPole extends TileEntity
+public class TileSecurityFenceMediumPole extends TileEntity
 {
     private boolean[] builtFences = new boolean[4];
     
-    public TileSecurityFenceLowPole()
+    public TileSecurityFenceMediumPole()
     {
     	for (int i = 0; i < builtFences.length; i++)
     		builtFences[i] = false;

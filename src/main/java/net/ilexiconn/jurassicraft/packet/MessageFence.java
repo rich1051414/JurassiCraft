@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.packet;
 
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -67,26 +67,26 @@ public class MessageFence implements IMessage
                         {
                         	/** Build Low Security */
                         	case 0:
-                        		if (tileEntity instanceof TileSecurityFenceLowMain)
+                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowMain) tileEntity).tryToBuildFence(message.side);
+                                    	((TileSecurityFenceLowCorner) tileEntity).tryToBuildFence(message.side);
                                 }
                         		break;
                             /** Turn On of Off Low Security */
                         	case 1:
-                        		if (tileEntity instanceof TileSecurityFenceLowMain)
+                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowMain) tileEntity).tryToTurnOnTheFence(message.side);
+                                    	((TileSecurityFenceLowCorner) tileEntity).tryToTurnOnTheFence(message.side);
                                 }
                         		break;
                             /** Fix Low Security */
                         	case 2:
-                        		if (tileEntity instanceof TileSecurityFenceLowMain)
+                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowMain) tileEntity).tryToFixFence(message.side);
+                                    	((TileSecurityFenceLowCorner) tileEntity).tryToFixFence(message.side);
                                 }
                         		break;
                         }

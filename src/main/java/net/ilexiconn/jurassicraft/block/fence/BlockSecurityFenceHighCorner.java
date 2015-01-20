@@ -1,10 +1,11 @@
 package net.ilexiconn.jurassicraft.block.fence;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.interfaces.IFenceMain;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowPole;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceMediumCorner;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,9 +15,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 
-public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFenceMain
+public class BlockSecurityFenceHighCorner extends BlockSecurityFence implements IFenceMain
 {
-    public BlockSecurityFenceLowMain()
+    public BlockSecurityFenceHighCorner()
     {
     	super(10.0F, 150.0F, 2, "low_Security_Fence_Main");
         this.setCreativeTab(ModCreativeTabs.blocks);
@@ -41,9 +42,9 @@ public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFe
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity instanceof TileSecurityFenceLowMain)
+        if (tileEntity instanceof TileSecurityFenceMediumCorner)
         {
-        	TileSecurityFenceLowMain fence = (TileSecurityFenceLowMain) tileEntity;
+        	TileSecurityFenceMediumCorner fence = (TileSecurityFenceMediumCorner) tileEntity;
             if (fence.hasItems())
             {
                 for (int i = 0; i < fence.getSizeInventory(); i++)
@@ -76,7 +77,7 @@ public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFe
                 {
                 	if (fence.hasFenceAt(side))
                 	{
-                		TileSecurityFenceLowMain neighborFence = fence.getNextLowSecurityMainFenceBlock(fence, side, 128);
+                		TileSecurityFenceMediumCorner neighborFence = fence.getNextMediumSecurityCornerFenceBlock(fence, side, 128);
 						if (neighborFence != null)
 						{
 							switch (side)
@@ -114,13 +115,22 @@ public class BlockSecurityFenceLowMain extends BlockSecurityFence implements IFe
         {
         	world.removeTileEntity(x, y + 1, z);
         	world.setBlockToAir(x, y + 1, z);
+        	this.dropPole(world, x, y, z);
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
 
+	public void dropPole(World world, int x, int y, int z)
+	{
+		float xRand = world.rand.nextFloat() * 0.8F + 0.1F;
+		float yRand = world.rand.nextFloat() * 0.8F + 0.1F;
+		float zRand = world.rand.nextFloat() * 0.8F + 0.1F;
+		world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(ModBlocks.securityFenceLowPole, 1, 0)));
+	}
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {
-        return new TileSecurityFenceLowMain();
+        return new TileSecurityFenceMediumCorner();
     }
 }

@@ -12,7 +12,7 @@ import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
 import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
-import net.ilexiconn.jurassicraft.tile.TileSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -35,8 +35,8 @@ public class GuiHandler implements IGuiHandler
             return new ContainerDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
         if (tileEntity instanceof TileDNACombinator)
             return new ContainerDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
-        if (tileEntity instanceof TileSecurityFenceLowMain)
-            return new ContainerSecurityFenceLow(player.inventory, (TileSecurityFenceLowMain) tileEntity);
+        if (tileEntity instanceof TileSecurityFenceLowCorner)
+            return new ContainerSecurityFenceLow(player.inventory, (TileSecurityFenceLowCorner) tileEntity);
         return null;
     }
 
@@ -56,8 +56,8 @@ public class GuiHandler implements IGuiHandler
             return new GuiDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
         if (tileEntity instanceof TileDNACombinator)
             return new GuiDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
-        if (tileEntity instanceof TileSecurityFenceLowMain)
-            return new GuiSecurityFenceLow(player.inventory, (TileSecurityFenceLowMain) tileEntity);
+        if (tileEntity instanceof TileSecurityFenceLowCorner)
+            return new GuiSecurityFenceLow(player.inventory, (TileSecurityFenceLowCorner) tileEntity);
         return null;
     }
 }

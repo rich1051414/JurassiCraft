@@ -1,8 +1,8 @@
-package net.ilexiconn.jurassicraft.tile;
+package net.ilexiconn.jurassicraft.tile.fence;
 
 import java.util.HashMap;
 
-import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.interfaces.IFenceBase;
 import net.ilexiconn.jurassicraft.interfaces.IFenceGrid;
 import net.ilexiconn.jurassicraft.interfaces.IFencePole;
@@ -273,7 +273,7 @@ public class TileSecurityFence extends TileEntity implements ISidedInventory
 
     private boolean hasSecurityFenceMainBlockAt(World world, int x, int y, int z)
     {
-        return world.getBlock(x, y, z) instanceof BlockSecurityFenceLowMain;
+        return world.getBlock(x, y, z) instanceof BlockSecurityFenceLowCorner;
     }
 
     public boolean canCraftBases(int number)

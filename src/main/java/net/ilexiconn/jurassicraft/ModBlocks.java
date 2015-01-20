@@ -5,7 +5,7 @@ import net.ilexiconn.jurassicraft.annotation.IgnoreRegistration;
 import net.ilexiconn.jurassicraft.block.*;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
-import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowMain;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
@@ -40,11 +40,21 @@ public class ModBlocks implements IContentHandler
     public static Block fossilOre;
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
-    
+
     public static Block securityFenceLowCorner;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
+    
+    public static Block securityFenceMediumCorner;
+    public static Block securityFenceMediumPole;
+    public static Block securityFenceMediumBase;
+    public static Block securityFenceMediumGrid;
+    
+    public static Block securityFenceHighCorner;
+    public static Block securityFenceHighPole;
+    public static Block securityFenceHighBase;
+    public static Block securityFenceHighGrid;
 
     public void init()
     {
@@ -62,10 +72,21 @@ public class ModBlocks implements IContentHandler
         sandstoneFossilOre = new BlockFossilSandstoneOre();
         clayFossilOre = new BlockFossilClayOre();
         dinoPad = new BlockDinoPad();
-        securityFenceLowCorner = new BlockSecurityFenceLowMain();
+        securityFenceLowCorner = new BlockSecurityFenceLowCorner();
         securityFenceLowPole = new BlockSecurityFenceLowPole();
         securityFenceLowBase = new BlockSecurityFenceLowBase();
         securityFenceLowGrid = new BlockSecurityFenceLowGrid();
+        /*
+        securityFenceMediumCorner = new BlockSecurityFenceMediumCorner();
+        securityFenceMediumPole = new BlockSecurityFenceMediumPole();
+        securityFenceMediumBase = new BlockSecurityFenceMediumBase();
+        securityFenceMediumGrid = new BlockSecurityFenceMediumGrid();
+
+        securityFenceHighCorner = new BlockSecurityFenceHighCorner();
+        securityFenceHighPole = new BlockSecurityFenceHighPole();
+        securityFenceHighBase = new BlockSecurityFenceHighBase();
+        securityFenceHighGrid = new BlockSecurityFenceHighGrid();
+        */
         gameRegistry();
     }
 
