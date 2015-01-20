@@ -145,9 +145,7 @@ public class ItemEgg extends Item
 	        }
 	        egg.stackSize--;
 	        if (egg.stackSize <= 0) 
-	        {
 	        	egg = (ItemStack) null;
-	        }
 	        return true;
 		} else {
 			if (world.isRemote) {

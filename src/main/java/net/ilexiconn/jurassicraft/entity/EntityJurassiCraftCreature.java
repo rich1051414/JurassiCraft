@@ -119,13 +119,14 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-        if (this.animID != 0) this.animTick++;
-        this.frame++;
-    }
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if (this.animID != 0)
+			this.animTick++;
+		this.frame++;
+	}
 
     @Override
     public void onLivingUpdate()
@@ -207,7 +208,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     }
 
     /** Updates the creature status. */
-    private void updateCreatureData(int ticks)
+    protected void updateCreatureData(int ticks)
     {
     	if (ticks > 0) {
     		double ticksToAdulthood = this.getCreature().getTicksToAdulthood();
