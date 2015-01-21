@@ -110,7 +110,7 @@ public class JCPathNavigate extends PathNavigate
         boolean flag = true;
         for(IPathValidator validator : validators)
         {
-            flag &= validator.validatePath(this, path, speed);
+            flag = flag && validator.validatePath(this, path, speed);
         }
         return flag;
     }

@@ -1,15 +1,7 @@
 package net.ilexiconn.jurassicraft;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.util.Calendar;
+
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.config.ConfigHandler;
@@ -32,7 +24,18 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.util.Calendar;
+import org.apache.logging.log4j.Logger;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.config.ConfigFactory")
 public class JurassiCraft
@@ -50,10 +53,14 @@ public class JurassiCraft
     public static SimpleNetworkWrapper network;
 
     public static final String[] fTimer = new String[] {"field_71428_T", "S", "timer"};
+    
+    public Logger logger;
 
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event)
     {
+        logger = event.getModLog();
+        
         entityParser = new JsonEntityParser();
         contentLoader = new ContentLoader();
 

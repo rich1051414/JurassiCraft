@@ -16,6 +16,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
 
     private ArrayList<EntityJurassiCraftCreature> creatures;
     private Class<? extends EntityJurassiCraftCreature> herdType;
+    private boolean groupAttack;
     
     private static List<CreatureHerd> herds = Lists.newArrayList();
     
@@ -83,7 +84,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         boolean flag = true;
         for(EntityJurassiCraftCreature creature : c)
         {
-            flag &= add(creature);
+            flag = flag && add(creature);
         }
         return flag;
     }
@@ -189,8 +190,21 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         return creature.getPosition(1f).distanceTo(center);
     }
 
+    public boolean groupAttack()
+    {
+        return groupAttack;
+    }
+    
+    public CreatureHerd groupAttack(boolean attack)
+    {
+        groupAttack = attack;
+        return this;
+    }
+    
     public void attack(EntityLivingBase target)
     {
+        if(!groupAttack)
+            return;
         for(EntityJurassiCraftCreature creature : creatures)
         {
             creature.setAttackTarget(target);
