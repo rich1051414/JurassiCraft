@@ -47,6 +47,7 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
 	@Override
 	public boolean continueExecuting()
 	{
+		this.attacker = null;
 		return this.creature.isFleeing();
 	}
 }

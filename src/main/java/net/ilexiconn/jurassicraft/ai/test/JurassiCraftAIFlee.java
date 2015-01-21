@@ -55,7 +55,6 @@ public class JurassiCraftAIFlee extends EntityAIBase
 	@Override
 	public void startExecuting()
 	{
-		this.creature.setSleeping(false);
 		this.creature.setPlaying(false);
 		this.creature.setSocializing(false);
 		this.creature.setEating(false);

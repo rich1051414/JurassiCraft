@@ -21,8 +21,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * This class holds many status of the creature, such as sitting, taming, sleeping, and other
- * behaviors. Every status is set by using bit flags.
+ * This class holds many states of the creature, such as sitting, taming, sleeping, and other
+ * behaviors. Every state is set by using bit flags.
  * 
  * NOTE: IT WILL REPLACE THE EntityJurassiCraftTameable!!!
  * 
@@ -30,8 +30,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implements IEntityOwnable {
 
+	protected int angryTicks;
+
 	public EntityJurassiCraftSmart(World world, Creature creature) {
-	super(world, creature);
+		super(world, creature);
 	}
 
 	@Override
@@ -80,15 +82,15 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	}
 
 	/**
-	 * Sets the status of the creature. It uses bitwise language.
+	 * Sets the states of the creature. It uses bitwise language.
 	 * 
-	 * @param status is an integer representing one or more status that are true.
+	 * @param states is an integer representing one or more states that are true.
 	 */
-	public void setStatus(int status) {
-		this.dataWatcher.updateObject(15, Integer.valueOf((int) status));
+	public void setStatus(int states) {
+		this.dataWatcher.updateObject(15, Integer.valueOf((int) states));
 	}
 
-	/** Returns the status of the creature. It uses bitwise language. */
+	/** Returns the states of the creature. It uses bitwise language. */
 	public int getStatus() {
 		return (int) this.dataWatcher.getWatchableObjectInt(15);
 	}
@@ -107,7 +109,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
-	/** Sets incompatible status false to set swimming status. */
+	/** Sets incompatible states false to set swimming state. */
 	public void forceSwimming(boolean flag) {
 		this.setStatus(this.getStatus() & ~Status.SITTING);
 		this.setStatus(this.getStatus() & ~Status.SLEEPING);
@@ -133,7 +135,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
-	/** Sets incompatible status false to set flying status. */
+	/** Sets incompatible states false to set flying state. */
 	public void forceFlying(boolean flag) {
 		this.setStatus(this.getStatus() & ~Status.SITTING);
 		this.setStatus(this.getStatus() & ~Status.SLEEPING);
@@ -197,7 +199,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
-	/** Sets true for the sitting status and false for the stressed and defending behavior. */
+	/** Sets true for the sitting state and false for the stressed and defending states. */
 	public void forceSitting(EntityPlayer player) {
 		this.setStatus(this.getStatus() & ~Status.DEFENDING);
 		this.setStatus(this.getStatus() & ~Status.ATTACKING);
@@ -215,7 +217,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.handleSittingText(player);
 	}
 
-	/** Shows a text about the sitting status of the creature. */
+	/** Shows a text about the sitting state of the creature. */
 	public void handleSittingText(EntityPlayer player) {
 		if (player != null) {
 			if (this.isSitting()) {
@@ -363,6 +365,33 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
+    /**
+     * Sets the angry ticks of the creature. When it is positive, it can be reduced each tick
+	 * using some AI.
+     */
+    public void setAngerLevel(int angryTicks)
+    {
+        this.angryTicks = angryTicks;
+    }
+
+	/**
+	 * Returns the angry ticks of the creature. Higher than zero means that the creature is
+	 * attacking.
+	 */
+    public int getAngerLevel()
+    {
+        return this.angryTicks;
+    }
+
+	/**
+	 * Returns the angry ticks of the creature. Higher than zero means that the creature is
+	 * attacking.
+	 */
+    public boolean isAngry()
+    {
+        return this.angryTicks > 0;
+    }
+
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isFleeing() {
 		return (this.getStatus() & Status.FLEEING) == Status.FLEEING;
@@ -459,7 +488,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         return this.getCreature().canBeTamedUponSpawning();
     }
 
-	/** Clear all status from this creature, except for the injury and tamed status. */
+	/** Clear all states from this creature, except for the injury and tamed state. */
 	public void clearStatus() {
 		this.setStatus(this.getStatus() & ~Status.SITTING);
 		this.setStatus(this.getStatus() & ~Status.SLEEPING);

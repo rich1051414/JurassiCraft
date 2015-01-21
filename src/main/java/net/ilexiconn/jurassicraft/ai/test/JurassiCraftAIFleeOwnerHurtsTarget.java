@@ -3,12 +3,12 @@ package net.ilexiconn.jurassicraft.ai.test;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 
-public class JurassiCraftAIFleeOwnerHurtTarget extends EntityAITarget
+public class JurassiCraftAIFleeOwnerHurtsTarget extends EntityAITarget
 {
 	EntityJurassiCraftSmart creature;
 	EntityLivingBase target;
 
-	public JurassiCraftAIFleeOwnerHurtTarget(EntityJurassiCraftSmart entity)
+	public JurassiCraftAIFleeOwnerHurtsTarget(EntityJurassiCraftSmart entity)
 	{
 		super(entity, false);
 		this.creature = entity;
@@ -47,6 +47,7 @@ public class JurassiCraftAIFleeOwnerHurtTarget extends EntityAITarget
 	@Override
 	public boolean continueExecuting()
 	{
+		this.target = null;
 		return this.creature.isFleeing();
 	}
 }
