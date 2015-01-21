@@ -50,13 +50,13 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.creature.isInWater() || !this.creature.onGround)
+		if (this.creature.isInWater() || !this.creature.onGround || this.creature.isSwimming() || this.creature.isFlying()|| this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isDefending()  || this.creature.isBreeding())
 			return false;
 		
 		if (!this.creature.isTamed()) {
 			this.nonTamedTimer++;
 			if (this.nonTamedTimer > this.nonTamedStartingTime) {
-				return this.creature.getRNG().nextInt(this.nonTamedChance) == 0 && !this.creature.isDefending() && !this.creature.isStressed();
+				return this.creature.getRNG().nextInt(this.nonTamedChance) == 0 && !this.creature.isDefending();
 			} else {
 				return false;
 			}
@@ -69,8 +69,13 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 	@Override
 	public void startExecuting() {
 		this.creature.getNavigator().clearPathEntity();
-		this.creature.setStressed(false);
+		this.creature.setSwimming(false);
+		this.creature.setFlying(false);
+		this.creature.setEating(false);
+		this.creature.setDrinking(false);
 		this.creature.setDefending(false);
+		this.creature.setPlaying(false);
+		this.creature.setBreeding(false);
 		if (this.creature.isTamed()) {
 			this.creature.setSitting(true, (EntityPlayer) this.creature.getOwner());
 		} else {

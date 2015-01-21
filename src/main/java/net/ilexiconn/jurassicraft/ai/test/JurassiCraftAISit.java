@@ -22,9 +22,9 @@ public class JurassiCraftAISit extends EntityAIBase {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.creature.isInWater() || !this.creature.onGround || !this.creature.isTamed())
+		if (this.creature.isInWater() || !this.creature.onGround || !this.creature.isTamed() || this.creature.isSwimming() || this.creature.isFlying()|| this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isDefending()  || this.creature.isBreeding())
 			return false;
-
+		
 		EntityLivingBase entitylivingbase = this.creature.getOwner();
 		return !this.creature.isSitting() ? false : (entitylivingbase == null ? false : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() == null));
 	}
@@ -32,8 +32,13 @@ public class JurassiCraftAISit extends EntityAIBase {
 	@Override
 	public void startExecuting() {
 		this.creature.getNavigator().clearPathEntity();
-		this.creature.setStressed(false);
+		this.creature.setSwimming(false);
+		this.creature.setFlying(false);
+		this.creature.setEating(false);
+		this.creature.setDrinking(false);
 		this.creature.setDefending(false);
+		this.creature.setPlaying(false);
+		this.creature.setBreeding(false);
 		this.creature.setSitting(true, (EntityPlayer) this.creature.getOwner());
 	}
 
