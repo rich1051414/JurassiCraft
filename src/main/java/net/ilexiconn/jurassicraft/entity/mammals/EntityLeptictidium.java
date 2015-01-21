@@ -39,7 +39,7 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
     @Override
     public int getTalkInterval()
     {
-        return 400;
+        return 350;
     }
 
 	@Override
@@ -48,13 +48,11 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
 		switch (this.rand.nextInt(2))
 		{
 			case 0:
-				this.playSound("jurassicraft:leptictidiumSay1", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound("jurassicraft:LeptictidiumSay1", this.getSoundVolume(), this.getSoundPitch());
 				break;
 			case 1:
-				this.playSound("jurassicraft:leptictidiumSay2", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound("jurassicraft:LeptictidiumSay2", this.getSoundVolume(), this.getSoundPitch());
 				break;
-			default:
-
 		}
 		return null;
 	}
@@ -62,14 +60,14 @@ public class EntityLeptictidium extends EntityJurassiCraftLandCoward implements 
 	@Override
 	public String getHurtSound()
 	{
-		this.playSound("jurassicraft:leptictidiumHit", this.getSoundVolume(), this.getSoundPitch());
+		this.playSound("jurassicraft:LeptictidiumHit", this.getSoundVolume(), this.getSoundPitch());
 		return null;
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		this.playSound("jurassicraft:leptictidiumDeath", this.getSoundVolume(), this.getSoundPitch());
+		this.playSound("jurassicraft:LeptictidiumDeath", this.getSoundVolume(), this.getSoundPitch());
 		return null;
 	}
     

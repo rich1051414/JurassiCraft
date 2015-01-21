@@ -51,8 +51,6 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive impl
         this.setCreatureExperiencePoints(5000);
     }
 
-    // Click Me's code:
-
     @Override
     protected void entityInit()
     {
@@ -76,6 +74,40 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive impl
             }
         }
     }
+
+    @Override
+    public double getMountedYOffset()
+    {
+        return (double) this.getYBouningBox() * 0.6D;
+    }
+
+    @Override
+    public int getTalkInterval()
+    {
+        return 350;
+	}
+
+	@Override
+	public String getLivingSound()
+	{
+		this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		if (this.rand.nextBoolean())
+			this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
 
     @Override
     protected void updateAITasks()
@@ -175,12 +207,6 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive impl
     {
         super.writeEntityToNBT(nbttag);
         nbttag.setByte("Flying", this.dataWatcher.getWatchableObjectByte(17));
-    }
-
-    @Override
-    public double getMountedYOffset()
-    {
-        return (double) this.getYBouningBox() * 0.6D;
     }
 
     @Override

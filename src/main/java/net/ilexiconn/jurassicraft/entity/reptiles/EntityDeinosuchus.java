@@ -54,6 +54,75 @@ public class EntityDeinosuchus extends EntityJurassiCraftLandAggressive implemen
         return 350;
     }
 
+	@Override
+	public String getLivingSound()
+	{
+		if (this.isSitting())
+		{
+			if (this.rand.nextBoolean())
+			{
+				this.playSound("jurassicraft:DeinosuchusRest1", this.getSoundVolume(), this.getSoundPitch());
+			}
+			else
+			{
+				this.playSound("jurassicraft:DeinosuchusRest2", this.getSoundVolume(), this.getSoundPitch());
+			}
+		}
+		else
+		{
+			switch (this.rand.nextInt(10))
+			{
+				case 0:
+				case 1:
+				case 2:
+					this.playSound("jurassicraft:DeinosuchusHiss1", this.getSoundVolume(), this.getSoundPitch());
+					break;
+				case 3:
+				case 4:
+				case 5:
+					this.playSound("jurassicraft:DeinosuchusHiss3", this.getSoundVolume(), this.getSoundPitch());
+					break;
+				case 6:
+				case 7:
+					this.playSound("jurassicraft:DeinosuchusHiss2", this.getSoundVolume(), this.getSoundPitch());
+					break;
+				case 8:
+				case 9:
+					this.playSound("jurassicraft:DeinosuchusHiss4", this.getSoundVolume(), this.getSoundPitch());
+					break;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		switch (this.rand.nextInt(10))
+		{
+			case 0:
+			case 1:
+				this.playSound("jurassicraft:DeinosuchusHit1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 2:
+				this.playSound("jurassicraft:DeinosuchusHit2", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 3:
+			case 4:
+				this.playSound("jurassicraft:DeinosuchusHit3", this.getSoundVolume(), this.getSoundPitch());
+				break;
+		}
+		this.playSound("jurassicraft:DeinosuchusSnap1", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		this.playSound("jurassicraft:DeinosuchusHiss3", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
     @Override
     public void onUpdate()
     {

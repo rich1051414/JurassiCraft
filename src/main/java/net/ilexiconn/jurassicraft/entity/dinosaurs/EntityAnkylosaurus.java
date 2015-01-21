@@ -43,6 +43,56 @@ public class EntityAnkylosaurus extends EntityJurassiCraftLandProtective impleme
         return 350;
     }
 
+	@Override
+	public String getLivingSound()
+	{
+		switch (this.rand.nextInt(9))
+		{
+			case 0:
+				this.playSound("jurassicraft:AnkylosaurusRoar1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 1:
+				this.playSound("jurassicraft:AnkylosaurusRoar2", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 2:
+				this.playSound("jurassicraft:AnkylosaurusSay1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 3:
+				this.playSound("jurassicraft:AnkylosaurusSay2", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 4:
+				this.playSound("jurassicraft:AnkylosaurusCall1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 5:
+				this.playSound("jurassicraft:AnkylosaurusCall2", this.getSoundVolume(), this.getSoundPitch());
+		}
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		switch (this.rand.nextInt(4))
+		{
+			case 0:
+				this.playSound("jurassicraft:AnkylosaurusCall1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 1:
+				this.playSound("jurassicraft:AnkylosaurusCall2", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 2:
+				this.playSound("jurassicraft:AnkylosaurusSay1", this.getSoundVolume(), this.getSoundPitch());
+		}
+		return null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		this.playSound("jurassicraft:AnkylosaurusCall2", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

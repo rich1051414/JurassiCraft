@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
@@ -47,7 +46,41 @@ public class EntityBrachiosaurus extends EntityJurassiCraftLandProtective implem
     {
         return 350;
     }
-    
+
+	@Override
+	public String getLivingSound()
+	{
+		switch (this.rand.nextInt(3))
+		{
+			case 0:
+			case 1:
+				this.playSound("jurassicraft:BrachiosaurusCall1", this.getSoundVolume(), this.getSoundPitch());
+		}
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		switch (this.rand.nextInt(5))
+		{
+			case 0:
+			case 1:
+				this.playSound("jurassicraft:BrachiosaurusHit1", this.getSoundVolume(), this.getSoundPitch());
+				break;
+			case 2:
+				this.playSound("jurassicraft:BrachiosaurusHit2", this.getSoundVolume(), this.getSoundPitch());
+		}
+		return null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		this.playSound("jurassicraft:BrachiosaurusDeath", this.getSoundVolume(), this.getSoundPitch());
+		return null;
+	}
+
     @Override
     public void onUpdate()
     {
