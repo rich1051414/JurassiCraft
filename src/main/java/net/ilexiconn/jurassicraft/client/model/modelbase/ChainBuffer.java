@@ -38,6 +38,14 @@ public class ChainBuffer
 	}
 
 	/**
+	 * Sets both yaw and pitch variations to zero.
+	 */
+	public void resetRotations() {
+		this.yawVariation = 0.0F;
+		this.pitchVariation = 0.0F;
+	}
+
+	/**
 	 * Adds a specific rotation, depending on the entity rotation, to an array that can be later
 	 * used to animate a chain of parented boxes. (rotateAngleY).
 	 * 

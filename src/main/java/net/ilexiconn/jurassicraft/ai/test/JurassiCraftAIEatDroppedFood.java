@@ -52,7 +52,6 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 	{
 		this.creature.setDefending(false);
 		this.creature.setAttacking(false);
-		this.creature.setFleeing(false);
 		this.creature.setBreeding(false);
 		this.creature.setPlaying(false);
 		this.creature.setSocializing(false);
@@ -69,6 +68,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 		double distance = Math.sqrt(Math.pow((double) (this.creature.posX - this.droppedFood.posX), 2.0D) + Math.pow((double) (this.creature.posY - this.droppedFood.posY), 2.0D) + Math.pow((double) (this.creature.posZ - this.droppedFood.posZ), 2.0D));
 		if (distance < 1.2D) {
 			this.droppedFood.setDead();
+			this.creature.setEating(true);
 		} else {
 			this.timeTryingToEat++;
 			if (this.creature.getNavigator().noPath())
@@ -86,6 +86,5 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 		this.creature.getNavigator().clearPathEntity();
 		this.droppedFood = (EntityItem) null;
 		this.timeTryingToEat = 0;
-		this.creature.setEating(true);
 	}
 }

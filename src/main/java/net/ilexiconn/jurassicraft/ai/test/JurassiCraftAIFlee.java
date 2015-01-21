@@ -7,7 +7,6 @@ import net.minecraft.util.Vec3;
 public class JurassiCraftAIFlee extends EntityAIBase
 {
 	private EntityJurassiCraftSmart creature;
-	private int fleeingVariation;
 	private int fleeingTime;
 	private double randPosX;
 	private double randPosY;
@@ -19,7 +18,6 @@ public class JurassiCraftAIFlee extends EntityAIBase
 		this.creature = entity;
 		this.speed = velocity;
 		this.fleeingTime = duration;
-		this.fleeingVariation = 0;
 		this.setMutexBits(1);
 	}
 
@@ -42,13 +40,12 @@ public class JurassiCraftAIFlee extends EntityAIBase
 				this.randPosX = vec3.xCoord;
 				this.randPosY = vec3.yCoord;
 				this.randPosZ = vec3.zCoord;
-				this.fleeingVariation = (int) (this.fleeingTime * (0.7F + 0.6F * this.creature.getRNG().nextFloat()));
 				return true;
 			}
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -65,6 +62,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
 		this.creature.setInLove(false);
 		this.creature.setSitting(false, null);
 		this.creature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+		this.creature.setFleeingTick(this.fleeingTime + (int) (this.fleeingTime * (0.7F + 0.6F * this.creature.getRNG().nextFloat())));
 	}
 
 	@Override
@@ -76,7 +74,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
 	@Override
 	public boolean continueExecuting()
 	{
-		return !this.creature.getNavigator().noPath() && this.creature.getFleeingTick() < (this.fleeingTime + this.fleeingVariation);
+		return !this.creature.getNavigator().noPath() && this.creature.getFleeingTick() > 0;
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class JurassiCraftAIDrinking extends EntityAIBase
 
 	public boolean continueExecuting()
 	{
-		return this.timer >= 0 && !this.creature.isSitting() && !this.creature.isSleeping() && this.creature.riddenByEntity == null;
+		return this.timer >= 0 && !this.creature.isSitting() && !this.creature.isSleeping() && !this.creature.hasBeenHurt() && this.creature.riddenByEntity == null;
 	}
 
 	@Override

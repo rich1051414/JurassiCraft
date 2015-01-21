@@ -30,7 +30,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 		this.setMutexBits(5);
 		this.nonTamedTimer = 0;
 		if (nonTamedStartingTime > 499) {
-			this.nonTamedStartingTime = nonTamedStartingTime;
+			this.nonTamedStartingTime = nonTamedStartingTime + (int) (nonTamedStartingTime * this.creature.getRNG().nextFloat());
 		} else {
 			this.nonTamedStartingTime = 500;
 		}
@@ -76,11 +76,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 		this.creature.setDefending(false);
 		this.creature.setPlaying(false);
 		this.creature.setBreeding(false);
-		if (this.creature.isTamed()) {
-			this.creature.setSitting(true, (EntityPlayer) this.creature.getOwner());
-		} else {
-			this.creature.setSitting(true, null);
-		}
+		this.creature.setSitting(true, null);
 		this.nonTamedTimer = 0;
 	}
 
@@ -92,13 +88,12 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 
 	@Override
 	public boolean continueExecuting() {
-		return this.nonTamedTimer < this.nonTamedMinDuration && this.creature.isSitting();
+		return this.creature.isSitting() && this.nonTamedTimer < this.nonTamedMinDuration && !this.creature.hasBeenHurt() && this.creature.getAttackTarget() == null;
 	}
 
 	@Override
 	public void resetTask() {
 		this.nonTamedDurationVariation = (int) (this.nonTamedMinDuration * 0.5F * this.creature.getRNG().nextFloat());
-		this.nonTamedTimer = 0;
 		if (this.creature.isTamed()) {
 			this.creature.setSitting(false, (EntityPlayer) this.creature.getOwner());
 		} else {

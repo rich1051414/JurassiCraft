@@ -1,16 +1,18 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.test.EntityJurassiCraftSmart;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAIEating;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAISitNatural;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAITargetIfHasAgeAndNonTamed;
+import net.ilexiconn.jurassicraft.ai.test.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandAggressive;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
@@ -18,15 +20,11 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implements IDinosaur, ICarnivore
+public class EntityTyrannosaurus extends EntityJurassiCraftSmart implements IDinosaur, ICarnivore
 {
     private int stepCount = 0;
     private float shakeCount = 0;
@@ -43,15 +41,20 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new JurassiCraftAIWander(this, this.getCreatureSpeed()));
-        this.tasks.addTask(4, this.aiSit);
+        this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
         this.tasks.addTask(2, new AITyrannosaurusRoar(this));
         this.tasks.addTask(6, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
-        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
+        
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 50, 0.1F));
+
+        /*
         targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityStegosaurus.class, 0, 0.5F));
         targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityTriceratops.class, 0, 0.6F));
         targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityGallimimus.class, 0, 0.3F));
@@ -61,7 +64,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftLandAggressive implem
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityCow.class, 0, 0.9F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPig.class, 0, 0.9F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
-
+         */
+        
         this.setCreatureExperiencePoints(6000);
     }
 

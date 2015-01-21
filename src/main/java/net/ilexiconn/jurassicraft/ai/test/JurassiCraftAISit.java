@@ -44,7 +44,7 @@ public class JurassiCraftAISit extends EntityAIBase {
 
 	@Override
 	public boolean continueExecuting() {
-		return this.creature.isSitting();
+		return this.creature.isSitting() && !this.creature.hasBeenHurt();
 	}
 
 	@Override

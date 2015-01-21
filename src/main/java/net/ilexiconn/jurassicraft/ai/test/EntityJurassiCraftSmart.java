@@ -76,12 +76,12 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 						}
 					}
 				} else if (this.isTamed() && this.isOwner(player) && !this.worldObj.isRemote) {
-					this.setSitting(!this.isSitting(), player);
+					this.setSitting(!this.isSitting(), null);
 				}
 			}
 		} else {
 			if (this.isTamed() && this.isOwner(player) && !this.worldObj.isRemote) {
-				this.setSitting(!this.isSitting(), player);
+				this.setSitting(!this.isSitting(), null);
 			}
 		}
 		return super.interact(player);
@@ -216,11 +216,11 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		this.setStatus(this.getStatus() & ~Status.SWIMMING);
 		this.setStatus(this.getStatus() & ~Status.FLYING);
 		this.setStatus(this.getStatus() | Status.SITTING);
-            this.isJumping = false;
-            this.setPathToEntity((PathEntity) null);
-            this.setTarget((Entity) null);
-            this.setAttackTarget((EntityLivingBase) null);
-            this.handleSittingText(player);
+		this.isJumping = false;
+		this.setPathToEntity((PathEntity) null);
+		this.setTarget((Entity) null);
+		this.setAttackTarget((EntityLivingBase) null);
+		this.handleSittingText(player);
 	}
 
 	/** Shows a text about the sitting state of the creature. */
@@ -427,6 +427,11 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	public int getFleeingTick() {
 		return fleeingTick;
 	}
+	
+	/** Returns true if the creature was damaged recently. */
+	public boolean hasBeenHurt() {
+		return this.hurtTime > 0;
+	}
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isPlaying() {
@@ -606,12 +611,10 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** This can be used to check if the flags are working properly. */
 	public void testFlags() {
-		System.out.println("");
+		System.out.println("========================================================");
 		System.out.println("TESTING FLAG OPERATIONS");
 		System.out.println("Before adding anything: " + Integer.toBinaryString(this.getStatus()) + " = " + this.getStatus());
-		System.out.println("this.isFlying(): " + this.isFlying() + ", this.isHungry(): " + this.isHungry() + ", this.isSitting(): " + this.isSitting());
-		//Add flags here.
-		System.out.println("this.isFlying(): " + this.isFlying() + ", this.isHungry(): " + this.isHungry() + ", this.isSitting(): " + this.isSitting());
+		System.out.println("this.isHungry(): " + this.isHungry() + ", this.isEating(): " + this.isEating() + ", this.isSitting(): " + this.isSitting());
 		System.out.println("After addition: " + Integer.toBinaryString(this.getStatus()) + " = " + this.getStatus());
 	}
 
@@ -619,6 +622,8 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 		compound.setInteger("Status", this.getStatus());
+        compound.setInteger("FleeingTick", this.getFleeingTick());
+        compound.setInteger("AngerLevel", this.getAngerLevel());
 		if (this.getOwnerName() != null) {
 			compound.setString("Owner", this.getOwnerName());
 		} else {
@@ -631,6 +636,10 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		super.readEntityFromNBT(compound);
 		if (compound.hasKey("Status"))
 			this.setStatus(compound.getInteger("Status"));
+		if (compound.hasKey("FleeingTick"))
+			this.setFleeingTick(compound.getInteger("FleeingTick"));
+		if (compound.hasKey("AngerLevel"))
+			this.setAngerLevel(compound.getInteger("AngerLevel"));
 		if (compound.hasKey("Owner")) {
 			String ownerName = compound.getString("Owner");
 			if (ownerName != null && ownerName.length() > 0) {

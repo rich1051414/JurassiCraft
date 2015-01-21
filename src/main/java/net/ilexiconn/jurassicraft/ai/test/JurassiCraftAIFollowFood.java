@@ -11,6 +11,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
 	private boolean avoidWater;
 	private double speed;
 	private int stealFoodChance;
+	private int stealFoodTimer;
 
 	public JurassiCraftAIFollowFood(EntityJurassiCraftSmart entity, int stealFoodChance, double velocity)
 	{
@@ -55,6 +56,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
 		this.creature.setSitting(false, null);
 		this.avoidWater = this.creature.getNavigator().getAvoidsWater();
 		this.creature.getNavigator().setAvoidsWater(false);
+		this.stealFoodTimer = 50;
 	}
 
 	@Override
@@ -65,12 +67,17 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
 		if (distancesq < 6.25D * this.creature.getGeneticQuality())
 		{
 			this.creature.getNavigator().clearPathEntity();
-			if (distancesq < 5.5D && this.creature.getRNG().nextInt(this.stealFoodChance) == 0)
+			if (distancesq < 5.5D && this.creature.getRNG().nextInt(this.stealFoodChance) == 0 && stealFoodTimer < 0)
 			{
+				this.stealFoodTimer = 50;
 				ItemStack heldItem = this.temptingPlayer.getHeldItem();
 				heldItem.stackSize--;
 				if (heldItem.stackSize < 1)
 					heldItem = null;
+			}
+			else
+			{
+				this.stealFoodTimer--;
 			}
 		}
 		else
@@ -83,7 +90,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
 	public boolean continueExecuting()
 	{
 		ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
-		return this.creature.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.creature.isSitting() && this.creature.riddenByEntity == null && (itemstack != null && this.creature.getCreature().isFavoriteFood(itemstack.getItem()));
+		return this.creature.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.creature.isSitting() && !this.creature.hasBeenHurt() && this.creature.riddenByEntity == null && (itemstack != null && this.creature.getCreature().isFavoriteFood(itemstack.getItem()));
 	}
 
 	@Override

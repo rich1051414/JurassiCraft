@@ -79,7 +79,7 @@ public class JurassiCraftAIWander extends EntityAIBase
 
 	public boolean continueExecuting()
 	{
-		return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity != null && this.creature.getAttackTarget() == null;
+		return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity == null && this.creature.getAttackTarget() == null;
 	}
 
 	@Override
