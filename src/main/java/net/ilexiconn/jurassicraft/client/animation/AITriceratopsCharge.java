@@ -9,7 +9,6 @@ public class AITriceratopsCharge extends AIAnimation
 {
     private EntityTriceratops entityTric;
     private EntityLivingBase attackTarget = null;
-    private float playerYawBeforeCharging = 0.0F;
     private float chargeAcceleration = 0.2F;
     private float chargeSpeed = 1;
     private float angleYaw = 0.0F;
@@ -39,8 +38,6 @@ public class AITriceratopsCharge extends AIAnimation
     {
         super.startExecuting();
         this.attackTarget = this.entityTric.getAttackTarget();
-        if (this.entityTric.riddenByEntity != null)
-        	this.playerYawBeforeCharging = this.entityTric.riddenByEntity.rotationYaw;
     }
 
     public void resetTask()
@@ -53,30 +50,24 @@ public class AITriceratopsCharge extends AIAnimation
 
     public void updateTask()
     {
-        if (this.entityTric.getAnimationTick() < 40)
-        {
-            if (this.attackTarget != null)
-            {
-            	this.entityTric.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
-            }
-        }
+        if (this.entityTric.getAnimationTick() == 1) entityTric.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
 
-        if (this.entityTric.getAnimationTick() >= 35 && this.entityTric.getAnimationTick() <= 40)
+        if (this.entityTric.getAnimationTick() < 40 && this.attackTarget != null) this.entityTric.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
+
+        if (this.entityTric.getAnimationTick() >= 35 && this.entityTric.getAnimationTick() <= 40 && this.attackTarget != null)
         {
-            if (this.attackTarget != null)
-            {
                 double deltaX = this.attackTarget.posX - this.entityTric.posX;
                 double deltaZ = this.attackTarget.posZ - this.entityTric.posZ;
-
                 this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
-            }
         }
+        
         if (this.entityTric.getAnimationTick() > 40)
         {
             if (this.attackTarget != null || this.entityTric.riddenByEntity != null)
             {
             	if (this.entityTric.riddenByEntity != null && this.entityTric.riddenByEntity instanceof EntityPlayer) {
-            		this.angleYaw = (float) (this.playerYawBeforeCharging * Math.PI/180 + Math.PI/2);
+            		this.angleYaw = (float) (entityTric.riddenByEntity.rotationYaw * Math.PI/180 + Math.PI/2);
+            		entityTric.rotationYaw = entityTric.riddenByEntity.rotationYaw;
             		this.chargeAcceleration = 0.3F;
             	}
             	this.entityTric.charging = true;

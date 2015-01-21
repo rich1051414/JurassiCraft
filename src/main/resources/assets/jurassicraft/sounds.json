@@ -51,6 +51,7 @@
         "tric2": {"category": "master","sounds": [{"name": "tric2","stream": false}]},
         "tric3": {"category": "master","sounds": [{"name": "tric3","stream": false}]},
         "gallop": {"category": "master","sounds": [{"name": "gallop","stream": false}]},
+        "TriceratopsCharge": {"category": "master","sounds": [{"name": "TriceratopsCharge","stream": false}]},
 
         "stego1": {"category": "master","sounds": [{"name": "stego1","stream": false}]},
         "stego2": {"category": "master","sounds": [{"name": "stego2","stream": false}]},
