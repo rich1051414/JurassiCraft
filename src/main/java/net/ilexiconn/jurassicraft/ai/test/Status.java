@@ -22,19 +22,21 @@ public class Status {
 	public static final int DRINKING = (int) Math.pow(2, 8);
 	/** SOCIALIZING represents whether the creature is socializing. */
 	public static final int SOCIALIZING = (int) Math.pow(2, 9);
-	/** INJURED represents whether the creature is injured. */
-	public static final int INJURED = (int) Math.pow(2, 10);
-	/** DEFENDING represents whether the creature is defending itself. */
-	public static final int DEFENDING = (int) Math.pow(2, 11);
-	/** FLEEING represents whether the creature is fleeing. */
-	public static final int FLEEING = (int) Math.pow(2, 12);
 	/** PLAYING represents whether the creature is playing. */
-	public static final int PLAYING = (int) Math.pow(2, 13);
-	/** STALKING represents whether the creature is stalking a prey. */
-	public static final int STALKING = (int) Math.pow(2, 14);
+	public static final int PLAYING = (int) Math.pow(2, 10);
 	/** BREEDING represents whether the creature is breeding. */
-	public static final int BREEDING = (int) Math.pow(2, 15);
+	public static final int BREEDING = (int) Math.pow(2, 11);
 	/** INLOVE represents whether the creature is in love. */
-	public static final int INLOVE = (int) Math.pow(2, 16);
+	public static final int INLOVE = (int) Math.pow(2, 12);
+	/** STALKING represents whether the creature is stalking a prey. */
+	public static final int STALKING = (int) Math.pow(2, 13);
+	/** FLEEING represents whether the creature is fleeing. */
+	public static final int FLEEING = (int) Math.pow(2, 14);
+	/** INJURED represents whether the creature is injured. */
+	public static final int INJURED = (int) Math.pow(2, 15);
+	/** DEFENDING represents whether the creature is defending itself. */
+	public static final int DEFENDING = (int) Math.pow(2, 16);
+	/** ATTACKING represents whether the creature is attacking. */
+	public static final int ATTACKING = (int) Math.pow(2, 17);
 
 }

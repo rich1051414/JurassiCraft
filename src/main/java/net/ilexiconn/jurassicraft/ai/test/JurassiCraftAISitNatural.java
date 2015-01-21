@@ -50,7 +50,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.creature.isInWater() || !this.creature.onGround || this.creature.isSwimming() || this.creature.isFlying()|| this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isDefending()  || this.creature.isBreeding())
+		if (this.creature.isInWater() || !this.creature.onGround || this.creature.isSwimming() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isDefending()  || this.creature.isBreeding())
 			return false;
 		
 		if (!this.creature.isTamed()) {

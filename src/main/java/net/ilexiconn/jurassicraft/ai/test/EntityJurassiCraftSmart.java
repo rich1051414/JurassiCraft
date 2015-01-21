@@ -42,20 +42,6 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	}
 
 	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		if (this.rand.nextInt(100) == 0)
-			this.updateStatus();
-	}
-
-	@Override
-	/** Adds the updateStatus() every time that the creature grows */
-	protected void updateCreatureData(int ticks) {
-		super.updateCreatureData(ticks);
-		this.updateStatus();
-	}
-
-	@Override
 	public boolean interact(EntityPlayer player) {
 		ItemStack heldItemStack = player.getHeldItem();
 		if (heldItemStack != null) {
@@ -191,9 +177,14 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		return (this.getStatus() & Status.SITTING) == Status.SITTING;
 	}
 
-	/** Sets if the creature is sitting. */
+	/**
+	 * Sets if the creature is sitting.
+	 * 
+	 * @param flag is the next state that the creature will be (true/false).
+	 * @param player is the EntityPlayer that will receive the sitting text. Set null to not send the message.
+	 */
 	public void setSitting(boolean flag, EntityPlayer player) {
-		if (flag && !this.isDefending() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
+		if (flag && !this.isDefending() && !this.isEating() && !this.isAttacking() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
 			this.setStatus(this.getStatus() | Status.SITTING);
 			this.isJumping = false;
 			this.setPathToEntity((PathEntity) null);
@@ -209,6 +200,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	/** Sets true for the sitting status and false for the stressed and defending behavior. */
 	public void forceSitting(EntityPlayer player) {
 		this.setStatus(this.getStatus() & ~Status.DEFENDING);
+		this.setStatus(this.getStatus() & ~Status.ATTACKING);
 		this.setStatus(this.getStatus() & ~Status.EATING);
 		this.setStatus(this.getStatus() & ~Status.DRINKING);
 		this.setStatus(this.getStatus() & ~Status.PLAYING);
@@ -252,7 +244,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is sleeping. */
 	public void setSleeping(boolean flag) {
-		if (flag && this.isSitting() && !this.isDefending() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
+		if (flag && this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
 			this.setStatus(this.getStatus() | Status.SLEEPING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.SLEEPING);
@@ -280,7 +272,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is stressed. */
 	public void setEating(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isDefending() && !this.isSitting() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
+		if (flag && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isSitting() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
 			this.setStatus(this.getStatus() | Status.EATING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.EATING);
@@ -308,7 +300,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is stressed. */
 	public void setDrinking(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isSitting() && !this.isDefending() && !this.isEating() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
+		if (flag && !this.isSleeping() && !this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
 			this.setStatus(this.getStatus() | Status.DRINKING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.DRINKING);
@@ -336,7 +328,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is socializing. */
 	public void setSocializing(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isDefending() && !this.isBreeding()) {
+		if (flag && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isBreeding()) {
 			this.setStatus(this.getStatus() | Status.SOCIALIZING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.SOCIALIZING);
@@ -357,6 +349,20 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
+	/** Returns true if the creature is attacking. */
+	public boolean isAttacking() {
+		return (this.getStatus() & Status.ATTACKING) == Status.ATTACKING;
+	}
+
+	/** Sets if the creature is attacking. */
+	public void setAttacking(boolean flag) {
+		if (flag && !this.isSleeping()) {
+			this.setStatus(this.getStatus() | Status.ATTACKING);
+		} else {
+			this.setStatus(this.getStatus() & ~Status.ATTACKING);
+		}
+	}
+
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isFleeing() {
 		return (this.getStatus() & Status.FLEEING) == Status.FLEEING;
@@ -371,6 +377,22 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
+	/**
+	 * Sets the fleeing tick value of the creature. When it is positive, it can be reduced each tick
+	 * using some AI.
+	 */
+	public void setFleeingTick(int value) {
+		this.fleeingTick = value;
+	}
+
+	/**
+	 * Returns the fleeing ticks of the creature. Higher than zero means that the creature was
+	 * attacked and it is fleeing.
+	 */
+	public int getFleeingTick() {
+		return fleeingTick;
+	}
+
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isPlaying() {
 		return (this.getStatus() & Status.PLAYING) == Status.PLAYING;
@@ -378,7 +400,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setPlaying(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isEating() && !this.isDrinking()) {
+		if (flag && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isAttacking()) {
 
 			this.setStatus(this.getStatus() | Status.PLAYING);
 		} else {
@@ -407,7 +429,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setBreeding(boolean flag) {
-		if (flag && !this.isSitting() && !this.isSleeping() && !this.isDefending() && !this.isEating() && !this.isDrinking() && !this.isSwimming() && !this.isFlying()) {
+		if (flag && !this.isSitting() && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isSwimming() && !this.isFlying()) {
 			this.setStatus(this.getStatus() | Status.BREEDING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.BREEDING);
@@ -437,22 +459,6 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         return this.getCreature().canBeTamedUponSpawning();
     }
 
-	/** Update all status trying to remove incompatibilities, such as sleeping and defending at the same time. */
-	public void updateStatus() {
-		if (this.isDefending()) {
-			this.setSleeping(false);
-			this.setSitting(false, null);
-			this.setSocializing(false);
-		}
-		if (this.isSleeping()) {
-			this.setSocializing(false);
-			this.setDefending(false);
-		}
-		if (this.isSitting()) {
-			this.setDefending(false);
-		}
-	}
-
 	/** Clear all status from this creature, except for the injury and tamed status. */
 	public void clearStatus() {
 		this.setStatus(this.getStatus() & ~Status.SITTING);
@@ -463,6 +469,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		this.setStatus(this.getStatus() & ~Status.DRINKING);
 		this.setStatus(this.getStatus() & ~Status.SOCIALIZING);
 		this.setStatus(this.getStatus() & ~Status.DEFENDING);
+		this.setStatus(this.getStatus() & ~Status.ATTACKING);
 		this.setStatus(this.getStatus() & ~Status.FLEEING);
 		this.setStatus(this.getStatus() & ~Status.PLAYING);
 		this.setStatus(this.getStatus() & ~Status.STALKING);
