@@ -16,7 +16,7 @@ public class JCPathNavigate extends PathNavigate
 {
 
     /**
-     * If this search range is <code>>= 0</code>, then {@link JCPathNavigate#getPathSearchRange()} returns it. Otherwise, the value from {@link PathNavigate} is used.
+     * If this search range is <code>> 0</code>, then {@link JCPathNavigate#getPathSearchRange()} returns it. Otherwise, the value from {@link PathNavigate} is used.
      */
     private float masterSearchRange;
     private List<IPathValidator> validators;
@@ -24,12 +24,13 @@ public class JCPathNavigate extends PathNavigate
     public JCPathNavigate(EntityLiving entity, World world)
     {
         super(entity, world);
+        masterSearchRange = -1f;
         validators = Lists.newArrayList();
     }
     
     /**
      * Sets the master search range.
-     * If the given range is <code>< 0</code>, then the value of {@link PathNavigate#getPathSearchRange()} is used.
+     * If the given range is <code><= 0</code>, then the value of {@link PathNavigate#getPathSearchRange()} is used.
      * @param range
      *             The max value to which to search pathes.
      * @see {@link JCPathNavigate#masterSearchRange}
@@ -41,7 +42,7 @@ public class JCPathNavigate extends PathNavigate
     
     public float getPathSearchRange()
     {
-        if(masterSearchRange < 0f)
+        if(masterSearchRange <= 0f)
         {
             return super.getPathSearchRange();
         }
