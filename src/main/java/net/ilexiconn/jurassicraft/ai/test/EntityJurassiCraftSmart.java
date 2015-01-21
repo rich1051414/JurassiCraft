@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.ai.test;
 
+import net.ilexiconn.jurassicraft.ai.JCPathNavigate;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
@@ -7,6 +8,7 @@ import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.ItemOnAStick;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,7 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -34,6 +37,9 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	public EntityJurassiCraftSmart(World world, Creature creature) {
 		super(world, creature);
+		
+		JCPathNavigate nav = new JCPathNavigate(this, world);
+        ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6); // Rewrites the navigator
 	}
 
 	@Override
