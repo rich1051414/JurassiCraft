@@ -437,7 +437,7 @@ public class ModelTriceratops extends MowzieModelBase
 		 */
 
         //Sprinting functionality parameters
-        float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.9))));
+        float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.92))));
         float legOffsetModifier = 2.5F;
         float bobBase = 2F;
         if (sprintModifier >= 0.9) bobBase = 1F;

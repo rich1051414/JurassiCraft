@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.client.animation;
 
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AITriceratopsCharge extends AIAnimation
@@ -69,9 +70,14 @@ public class AITriceratopsCharge extends AIAnimation
         }
         if (entityTric.getAnimationTick() > 40)
         {
-            entityTric.charging = true;
-            if (attackTarget != null)
+            
+            if (attackTarget != null || entityTric.riddenByEntity != null)
             {
+            	if (entityTric.riddenByEntity != null && entityTric.riddenByEntity instanceof EntityPlayer) {
+            		angleYaw = (float) (entityTric.riddenByEntity.rotationYaw * Math.PI/180 + Math.PI/2);
+            		chargeAcceleration = 0.3F;
+            	}
+            	entityTric.charging = true;
                 if (Math.sqrt(entityTric.motionX * entityTric.motionX + entityTric.motionZ * entityTric.motionZ) < chargeSpeed - 0.2)
                 {
                     entityTric.motionX += chargeAcceleration * Math.cos(angleYaw);

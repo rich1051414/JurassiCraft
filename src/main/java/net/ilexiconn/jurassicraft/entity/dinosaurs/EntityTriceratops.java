@@ -8,6 +8,7 @@ import net.ilexiconn.jurassicraft.client.animation.AITriceratopsCharge;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandProtective;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
@@ -123,5 +124,18 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
     	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
     	}
+    }
+    
+    @Override
+    public void ridingPlayerRightClick() {
+    	if (onGround && timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
+            AnimationHandler.sendAnimationPacket(this, 1);
+    }
+    
+    @Override
+    public boolean canBeSteered() {
+    	super.canBeSteered();
+    	if (this.getAnimationId() == 1) return false;
+    	else return true;
     }
 }
