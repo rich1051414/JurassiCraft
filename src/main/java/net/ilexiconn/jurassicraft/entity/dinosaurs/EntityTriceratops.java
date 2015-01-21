@@ -12,13 +12,17 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidable;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.ilexiconn.jurassicraft.AnimationHandler;
 
@@ -50,7 +54,32 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
     @Override
     public double getMountedYOffset()
     {
+    	if (this.getAnimationId() == 1)
+    	{
+    		if (this.getAnimationTick() < 5)
+        	{
+        		float animationProgress = (float) this.getAnimationTick() / 5.0F;
+        		return 0.91D * (double) this.getYBouningBox() - (0.3F * MathHelper.sin(animationProgress));
+        	}
+    		else if (this.getAnimationTick() < 18)
+        	{
+        		float animationProgress = (float) (this.getAnimationTick() - 5) / 13.0F;
+        		return 0.91D * (double) this.getYBouningBox() + (0.6F * MathHelper.sin(animationProgress));
+        	}
+        	else if (this.getAnimationTick() < 39)
+        	{
+        		float animationProgress = (float) (this.getAnimationTick() - 18) / 21.0F;
+        		return 0.91D * (double) this.getYBouningBox() - (0.5F * MathHelper.sin(animationProgress));
+        	}
+    	}
         return 0.91D * (double) this.getYBouningBox();
+    }
+    
+    @Override
+    protected void handleFastItemControlledRiding()
+    {
+    	if (this.getAnimationId() != 1)
+    		super.handleFastItemControlledRiding();
     }
 
     @Override
@@ -74,6 +103,22 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
     }
 
     @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.flailDegree.update();
+        if (this.animID == 1 && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        if (this.stepCount <= 0 && this.charging)
+        {
+            this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
+            this.stepCount = 10;
+        }
+        this.stepCount -= 1;
+        
+        this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
+    }
+
+    @Override
     public void collideWithEntity(Entity victim)
     {
         super.collideWithEntity(victim);
@@ -88,21 +133,13 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
             victim.motionY += 0.3;
         }
     }
-
+    
     @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-        this.flailDegree.update();
-        if (this.animID == 1 && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
-        if (this.stepCount <= 0 && this.charging)
-        {
-            this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
-            this.stepCount = 10;
-        }
-        this.stepCount -= 1;
-        
-        this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
+    public void ridingPlayerRightClick() {
+    	if (onGround && timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem())) {
+            this.decreaseHeldItemDurability(20);
+    		AnimationHandler.sendAnimationPacket(this, 1);
+    	}
     }
 
     @Override
@@ -124,18 +161,5 @@ public class EntityTriceratops extends EntityJurassiCraftLandProtective implemen
     	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
     	}
-    }
-    
-    @Override
-    public void ridingPlayerRightClick() {
-    	if (onGround && timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
-            AnimationHandler.sendAnimationPacket(this, 1);
-    }
-    
-    @Override
-    public boolean canBeSteered() {
-    	super.canBeSteered();
-    	if (this.getAnimationId() == 1) return false;
-    	else return true;
     }
 }

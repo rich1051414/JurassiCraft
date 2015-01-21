@@ -1,22 +1,23 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AITriceratopsCharge extends AIAnimation
 {
     private EntityTriceratops entityTric;
     private EntityLivingBase attackTarget = null;
-    private float angleYaw;
-    private float chargeSpeed = 1;
+    private float playerYawBeforeCharging = 0.0F;
     private float chargeAcceleration = 0.2F;
+    private float chargeSpeed = 1;
+    private float angleYaw = 0.0F;
 
     public AITriceratopsCharge(EntityTriceratops tric)
     {
         super(tric);
-        entityTric = tric;
+        this.entityTric = tric;
     }
 
     public int getAnimationId()
@@ -37,56 +38,57 @@ public class AITriceratopsCharge extends AIAnimation
     public void startExecuting()
     {
         super.startExecuting();
-        attackTarget = entityTric.getAttackTarget();
+        this.attackTarget = this.entityTric.getAttackTarget();
+        if (this.entityTric.riddenByEntity != null)
+        	this.playerYawBeforeCharging = this.entityTric.riddenByEntity.rotationYaw;
     }
 
     public void resetTask()
     {
         super.resetTask();
-        entityTric.timeSinceCharge = 150;
-        entityTric.charging = false;
-        entityTric.setAttackTarget(null);
+        this.entityTric.timeSinceCharge = 150;
+        this.entityTric.charging = false;
+        this.entityTric.setAttackTarget(null);
     }
 
     public void updateTask()
     {
-        if (entityTric.getAnimationTick() < 40)
+        if (this.entityTric.getAnimationTick() < 40)
         {
-            if (attackTarget != null)
+            if (this.attackTarget != null)
             {
-                entityTric.getLookHelper().setLookPositionWithEntity(attackTarget, 30F, 30F);
+            	this.entityTric.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
             }
         }
 
-        if (entityTric.getAnimationTick() >= 35 && entityTric.getAnimationTick() <= 40)
+        if (this.entityTric.getAnimationTick() >= 35 && this.entityTric.getAnimationTick() <= 40)
         {
-            if (attackTarget != null)
+            if (this.attackTarget != null)
             {
-                double deltaX = attackTarget.posX - entityTric.posX;
-                double deltaZ = attackTarget.posZ - entityTric.posZ;
+                double deltaX = this.attackTarget.posX - this.entityTric.posX;
+                double deltaZ = this.attackTarget.posZ - this.entityTric.posZ;
 
-                angleYaw = (float) Math.atan2(deltaZ, deltaX);
+                this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
             }
         }
-        if (entityTric.getAnimationTick() > 40)
+        if (this.entityTric.getAnimationTick() > 40)
         {
-            
-            if (attackTarget != null || entityTric.riddenByEntity != null)
+            if (this.attackTarget != null || this.entityTric.riddenByEntity != null)
             {
-            	if (entityTric.riddenByEntity != null && entityTric.riddenByEntity instanceof EntityPlayer) {
-            		angleYaw = (float) (entityTric.riddenByEntity.rotationYaw * Math.PI/180 + Math.PI/2);
-            		chargeAcceleration = 0.3F;
+            	if (this.entityTric.riddenByEntity != null && this.entityTric.riddenByEntity instanceof EntityPlayer) {
+            		this.angleYaw = (float) (this.playerYawBeforeCharging * Math.PI/180 + Math.PI/2);
+            		this.chargeAcceleration = 0.3F;
             	}
-            	entityTric.charging = true;
-                if (Math.sqrt(entityTric.motionX * entityTric.motionX + entityTric.motionZ * entityTric.motionZ) < chargeSpeed - 0.2)
+            	this.entityTric.charging = true;
+                if (Math.sqrt(this.entityTric.motionX * this.entityTric.motionX + this.entityTric.motionZ * this.entityTric.motionZ) < this.chargeSpeed - 0.2)
                 {
-                    entityTric.motionX += chargeAcceleration * Math.cos(angleYaw);
-                    entityTric.motionZ += chargeAcceleration * Math.sin(angleYaw);
+                	this.entityTric.motionX += this.chargeAcceleration * Math.cos(angleYaw);
+                    this.entityTric.motionZ += this.chargeAcceleration * Math.sin(angleYaw);
                 }
                 else
                 {
-                    entityTric.motionX = chargeSpeed * Math.cos(angleYaw);
-                    entityTric.motionZ = chargeSpeed * Math.sin(angleYaw);
+                	this.entityTric.motionX = this.chargeSpeed * Math.cos(angleYaw);
+                	this.entityTric.motionZ = this.chargeSpeed * Math.sin(angleYaw);
                 }
             }
         }

@@ -137,7 +137,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Sets the mob rotation depending on where the player is looking (Horse Style). ID: 0.
      */
-    private void handleMouseControlledRiding()
+    protected void handleMouseControlledRiding()
     {
         this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
         this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
@@ -149,7 +149,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 1.
      */
-    private void handleFastItemControlledRiding()
+    protected void handleFastItemControlledRiding()
     {
         this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
         float adjust = MathHelper.wrapAngleTo180_float(((EntityLivingBase) this.riddenByEntity).rotationYaw - this.rotationYaw) * 0.5F;
@@ -168,7 +168,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 2.
      */
-    private void handleSlowItemControlledRiding()
+    protected void handleSlowItemControlledRiding()
     {
         this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
         float adjust = MathHelper.wrapAngleTo180_float(((EntityLivingBase) this.riddenByEntity).rotationYaw - this.rotationYaw) * 0.5F;
@@ -187,7 +187,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 3.
      */
-    private void handleVerySlowItemControlledRiding()
+    protected void handleVerySlowItemControlledRiding()
     {
         this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
         float adjust = MathHelper.wrapAngleTo180_float(((EntityLivingBase) this.riddenByEntity).rotationYaw - this.rotationYaw) * 0.5F;
@@ -206,7 +206,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     /**
      * Sets the mob rotation depending on A and D keys. NOT WORKING!
      */
-    private void handleKeyboardControlledRiding(float adjustment)
+    protected void handleKeyboardControlledRiding(float adjustment)
     {
         float adjustPitch = 0.0F;
         float adjustYaw = 0.0F;
