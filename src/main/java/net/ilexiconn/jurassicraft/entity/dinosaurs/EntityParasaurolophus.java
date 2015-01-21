@@ -27,6 +27,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
 {
 	public ChainBuffer tailBuffer = new ChainBuffer(6);
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);
+    public int timeUntilCanCall = 0;
 
     public EntityParasaurolophus(World world)
     {
@@ -67,7 +68,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
         }
         else
         {
-            AnimationHandler.sendAnimationPacket(this, 1);
+            if (timeUntilCanCall == 0 && animID == 0) AnimationHandler.sendAnimationPacket(this, 1);
             return null;
         }
     }
@@ -79,6 +80,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftLandProtective impl
         if (this.moveForward != 0) this.walkLean.change = 0.1F;
         if (this.moveForward == 0) this.walkLean.change = -0.1F;
         this.walkLean.update();
+        if(timeUntilCanCall > 0) timeUntilCanCall--;
 
         this.tailBuffer.calculateChainSwingBuffer(48.0F, 3, 5.0F, this);
     }
