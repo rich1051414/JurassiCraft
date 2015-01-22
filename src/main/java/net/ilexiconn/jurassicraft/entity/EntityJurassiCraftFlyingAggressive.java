@@ -8,7 +8,6 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
 {
 	public FlyingParameters flyingParameters;
 	private String landingMaterial;
-	public boolean isFlying;
 
 	public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
 	{
@@ -26,11 +25,11 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
 			if (this.riddenByEntity == null)
 			{
 				this.motionY += 0.04F + 0.06F * this.flyingParameters.flySpeedModifier / 500.0F;
-				this.isFlying = true;
+				this.setFlying(true);
 			}
 
-			if (this.onGround && this.isFlying)
-				this.isFlying = false;
+			if (this.onGround && this.isFlying())
+				this.setFlying(false);
 		}
 		super.onLivingUpdate();
 	}
@@ -55,22 +54,11 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
 		this.landingMaterial = landingMaterial;
 	}
 
-	public boolean isFlying()
-	{
-		return isFlying;
-	}
-
-	public void setFlying(boolean isFlying)
-	{
-		this.isFlying = isFlying;
-	}
-
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 		compound.setString("LandingMaterial", this.landingMaterial);
-		compound.setBoolean("IsFlying", this.isFlying);
 	}
 
 	@Override
@@ -79,6 +67,5 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
 		super.readEntityFromNBT(compound);
 		this.setLandingMaterial(compound.getString("LandingMaterial"));
 		this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, compound.getString("LandingMaterial")));
-		this.setFlying(compound.getBoolean("IsFlying"));
 	}
 }

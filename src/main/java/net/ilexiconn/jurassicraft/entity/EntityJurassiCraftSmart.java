@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import net.ilexiconn.jurassicraft.ai.JCPathNavigate;
-import net.ilexiconn.jurassicraft.ai.Status;
+import net.ilexiconn.jurassicraft.ai.States;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.ItemOnAStick;
@@ -101,66 +101,66 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	}
 
 	/** Returns true if the creature is swimming. */
-	public boolean isSwimming() {
-		return (this.getStatus() & Status.SWIMMING) == Status.SWIMMING;
+	public boolean isTakingOff() {
+		return (this.getStatus() & States.TAKINGOFF) == States.TAKINGOFF;
 	}
 
 	/** Sets if the creature is swimming. */
-	public void setSwimming(boolean flag) {
+	public void setTakingOff(boolean flag) {
 		if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.SWIMMING);
+			this.setStatus(this.getStatus() | States.TAKINGOFF);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.SWIMMING);
+			this.setStatus(this.getStatus() & ~States.TAKINGOFF);
 		}
 	}
 
 	/** Sets incompatible states false to set swimming state. */
-	public void forceSwimming(boolean flag) {
-		this.setStatus(this.getStatus() & ~Status.SITTING);
-		this.setStatus(this.getStatus() & ~Status.SLEEPING);
-		this.setStatus(this.getStatus() & ~Status.EATING);
-		this.setStatus(this.getStatus() & ~Status.DRINKING);
-		this.setStatus(this.getStatus() & ~Status.PLAYING);
-		this.setStatus(this.getStatus() & ~Status.BREEDING);
-		this.setStatus(this.getStatus() & ~Status.FLYING);
-		this.setStatus(this.getStatus() | Status.SWIMMING);
+	public void forceTakingOff(boolean flag) {
+		this.setStatus(this.getStatus() & ~States.SITTING);
+		this.setStatus(this.getStatus() & ~States.SLEEPING);
+		this.setStatus(this.getStatus() & ~States.EATING);
+		this.setStatus(this.getStatus() & ~States.DRINKING);
+		this.setStatus(this.getStatus() & ~States.PLAYING);
+		this.setStatus(this.getStatus() & ~States.BREEDING);
+		this.setStatus(this.getStatus() & ~States.FLYING);
+		this.setStatus(this.getStatus() | States.TAKINGOFF);
 	}
 
 	/** Returns true if the creature is flying. */
 	public boolean isFlying() {
-		return (this.getStatus() & Status.FLYING) == Status.FLYING;
+		return (this.getStatus() & States.FLYING) == States.FLYING;
 	}
 
 	/** Sets if the creature is flying. */
 	public void setFlying(boolean flag) {
-		if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming()) {
-			this.setStatus(this.getStatus() | Status.FLYING);
+		if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && this.isTakingOff()) {
+			this.setStatus(this.getStatus() | States.FLYING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.FLYING);
+			this.setStatus(this.getStatus() & ~States.FLYING);
 		}
 	}
 
 	/** Sets incompatible states false to set flying state. */
 	public void forceFlying(boolean flag) {
-		this.setStatus(this.getStatus() & ~Status.SITTING);
-		this.setStatus(this.getStatus() & ~Status.SLEEPING);
-		this.setStatus(this.getStatus() & ~Status.EATING);
-		this.setStatus(this.getStatus() & ~Status.DRINKING);
-		this.setStatus(this.getStatus() & ~Status.PLAYING);
-		this.setStatus(this.getStatus() & ~Status.BREEDING);
-		this.setStatus(this.getStatus() & ~Status.SWIMMING);
-		this.setStatus(this.getStatus() | Status.FLYING);
+		this.setStatus(this.getStatus() & ~States.SITTING);
+		this.setStatus(this.getStatus() & ~States.SLEEPING);
+		this.setStatus(this.getStatus() & ~States.EATING);
+		this.setStatus(this.getStatus() & ~States.DRINKING);
+		this.setStatus(this.getStatus() & ~States.PLAYING);
+		this.setStatus(this.getStatus() & ~States.BREEDING);
+		this.setStatus(this.getStatus() & ~States.TAKINGOFF);
+		this.setStatus(this.getStatus() | States.FLYING);
 	}
 
 	/** Returns true if the creature is tamed. */
 	public boolean isTamed() {
-		return (this.getStatus() & Status.TAMED) == Status.TAMED;
+		return (this.getStatus() & States.TAMED) == States.TAMED;
 	}
 
 	/** Sets if the creature is wandering. */
 	public void setTamed(boolean flag, EntityPlayer player) {
 		if (flag) {
-			this.setStatus(this.getStatus() | Status.TAMED);
+			this.setStatus(this.getStatus() | States.TAMED);
             this.setAttackTarget((EntityLivingBase) null);
             this.setPathToEntity((PathEntity) null);
             this.forceSitting(player);
@@ -175,13 +175,13 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         	    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.tamed")));
         	}
 		} else {
-			this.setStatus(this.getStatus() & ~Status.TAMED);
+			this.setStatus(this.getStatus() & ~States.TAMED);
 		}
 	}
 
 	/** Returns true if the creature is sitting. */
 	public boolean isSitting() {
-		return (this.getStatus() & Status.SITTING) == Status.SITTING;
+		return (this.getStatus() & States.SITTING) == States.SITTING;
 	}
 
 	/**
@@ -191,30 +191,30 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	 * @param player is the EntityPlayer that will receive the sitting text. Set null to not send the message.
 	 */
 	public void setSitting(boolean flag, EntityPlayer player) {
-		if (flag && !this.isDefending() && !this.isEating() && !this.isAttacking() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.SITTING);
+		if (flag && !this.isDefending() && !this.isEating() && !this.isAttacking() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.SITTING);
 			this.isJumping = false;
 			this.setPathToEntity((PathEntity) null);
 			this.setTarget((Entity) null);
 			this.setAttackTarget((EntityLivingBase) null);
 			this.handleSittingText(player);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.SITTING);
+			this.setStatus(this.getStatus() & ~States.SITTING);
 			this.handleSittingText(player);
 		}
 	}
 
 	/** Sets true for the sitting state and false for the stressed and defending states. */
 	public void forceSitting(EntityPlayer player) {
-		this.setStatus(this.getStatus() & ~Status.DEFENDING);
-		this.setStatus(this.getStatus() & ~Status.ATTACKING);
-		this.setStatus(this.getStatus() & ~Status.EATING);
-		this.setStatus(this.getStatus() & ~Status.DRINKING);
-		this.setStatus(this.getStatus() & ~Status.PLAYING);
-		this.setStatus(this.getStatus() & ~Status.BREEDING);
-		this.setStatus(this.getStatus() & ~Status.SWIMMING);
-		this.setStatus(this.getStatus() & ~Status.FLYING);
-		this.setStatus(this.getStatus() | Status.SITTING);
+		this.setStatus(this.getStatus() & ~States.DEFENDING);
+		this.setStatus(this.getStatus() & ~States.ATTACKING);
+		this.setStatus(this.getStatus() & ~States.EATING);
+		this.setStatus(this.getStatus() & ~States.DRINKING);
+		this.setStatus(this.getStatus() & ~States.PLAYING);
+		this.setStatus(this.getStatus() & ~States.BREEDING);
+		this.setStatus(this.getStatus() & ~States.TAKINGOFF);
+		this.setStatus(this.getStatus() & ~States.FLYING);
+		this.setStatus(this.getStatus() | States.SITTING);
 		this.isJumping = false;
 		this.setPathToEntity((PathEntity) null);
 		this.setTarget((Entity) null);
@@ -246,113 +246,113 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Returns true if the creature is sleeping. */
 	public boolean isSleeping() {
-		return (this.getStatus() & Status.SLEEPING) == Status.SLEEPING;
+		return (this.getStatus() & States.SLEEPING) == States.SLEEPING;
 	}
 
 	/** Sets if the creature is sleeping. */
 	public void setSleeping(boolean flag) {
-		if (flag && this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.SLEEPING);
+		if (flag && this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.SLEEPING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.SLEEPING);
+			this.setStatus(this.getStatus() & ~States.SLEEPING);
 		}
 	}
 
 	/** Returns true if the creature is hungry. */
 	public boolean isHungry() {
-		return (this.getStatus() & Status.HUNGRY) == Status.HUNGRY;
+		return (this.getStatus() & States.HUNGRY) == States.HUNGRY;
 	}
 
 	/** Sets if the creature is hungry. */
 	public void setHunger(boolean flag) {
 		if (flag) {
-			this.setStatus(this.getStatus() | Status.HUNGRY);
+			this.setStatus(this.getStatus() | States.HUNGRY);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.HUNGRY);
+			this.setStatus(this.getStatus() & ~States.HUNGRY);
 		}
 	}
 
 	/** Returns true if the creature is stressed. */
 	public boolean isEating() {
-		return (this.getStatus() & Status.EATING) == Status.EATING;
+		return (this.getStatus() & States.EATING) == States.EATING;
 	}
 
 	/** Sets if the creature is stressed. */
 	public void setEating(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isSitting() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.EATING);
+		if (flag && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isSitting() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.EATING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.EATING);
+			this.setStatus(this.getStatus() & ~States.EATING);
 		}
 	}
 
 	/** Returns true if the creature is thirsty. */
 	public boolean isThirsty() {
-		return (this.getStatus() & Status.THIRSTY) == Status.THIRSTY;
+		return (this.getStatus() & States.THIRSTY) == States.THIRSTY;
 	}
 
 	/** Sets if the creature is thirsty. */
 	public void setThirsty(boolean flag) {
 		if (flag) {
-			this.setStatus(this.getStatus() | Status.THIRSTY);
+			this.setStatus(this.getStatus() | States.THIRSTY);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.THIRSTY);
+			this.setStatus(this.getStatus() & ~States.THIRSTY);
 		}
 	}
 	
 	/** Returns true if the creature is stressed. */
 	public boolean isDrinking() {
-		return (this.getStatus() & Status.DRINKING) == Status.DRINKING;
+		return (this.getStatus() & States.DRINKING) == States.DRINKING;
 	}
 
 	/** Sets if the creature is stressed. */
 	public void setDrinking(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isPlaying() && !this.isBreeding() && !this.isSwimming() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.DRINKING);
+		if (flag && !this.isSleeping() && !this.isSitting() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isPlaying() && !this.isBreeding() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.DRINKING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.DRINKING);
+			this.setStatus(this.getStatus() & ~States.DRINKING);
 		}
 	}
 
 	/** Returns true if the creature is injured. */
 	public boolean isInjured() {
-		return (this.getStatus() & Status.INJURED) == Status.INJURED;
+		return (this.getStatus() & States.INJURED) == States.INJURED;
 	}
 
 	/** Sets if the creature is injured. */
 	public void setInjured(boolean flag) {
 		if (flag) {
-			this.setStatus(this.getStatus() | Status.INJURED);
+			this.setStatus(this.getStatus() | States.INJURED);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.INJURED);
+			this.setStatus(this.getStatus() & ~States.INJURED);
 		}
 	}
 
 	/** Returns true if the creature is socializing. */
 	public boolean isSocializing() {
-		return (this.getStatus() & Status.SOCIALIZING) == Status.SOCIALIZING;
+		return (this.getStatus() & States.SOCIALIZING) == States.SOCIALIZING;
 	}
 
 	/** Sets if the creature is socializing. */
 	public void setSocializing(boolean flag) {
 		if (flag && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isBreeding()) {
-			this.setStatus(this.getStatus() | Status.SOCIALIZING);
+			this.setStatus(this.getStatus() | States.SOCIALIZING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.SOCIALIZING);
+			this.setStatus(this.getStatus() & ~States.SOCIALIZING);
 		}
 	}
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isDefending() {
-		return (this.getStatus() & Status.DEFENDING) == Status.DEFENDING;
+		return (this.getStatus() & States.DEFENDING) == States.DEFENDING;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setDefending(boolean flag) {
 		if (flag && !this.isSleeping()) {
-			this.setStatus(this.getStatus() | Status.DEFENDING);
+			this.setStatus(this.getStatus() | States.DEFENDING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.DEFENDING);
+			this.setStatus(this.getStatus() & ~States.DEFENDING);
 		}
 	}
 
@@ -374,29 +374,29 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     
 	/** Returns true if the creature is attacking. */
 	public boolean isAttacking() {
-		return (this.getStatus() & Status.ATTACKING) == Status.ATTACKING;
+		return (this.getStatus() & States.ATTACKING) == States.ATTACKING;
 	}
 
 	/** Sets if the creature is attacking. */
 	public void setAttacking(boolean flag) {
 		if (flag && !this.isSleeping()) {
-			this.setStatus(this.getStatus() | Status.ATTACKING);
+			this.setStatus(this.getStatus() | States.ATTACKING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.ATTACKING);
+			this.setStatus(this.getStatus() & ~States.ATTACKING);
 		}
 	}
     
 	/** Returns true if the creature is attacking. */
 	public boolean isAngry() {
-		return (this.getStatus() & Status.ANGRY) == Status.ANGRY;
+		return (this.getStatus() & States.ANGRY) == States.ANGRY;
 	}
 
 	/** Sets if the creature is attacking. */
 	public void setAngry(boolean flag) {
 		if (flag && !this.isSleeping() && !this.isFleeing()) {
-			this.setStatus(this.getStatus() | Status.ANGRY);
+			this.setStatus(this.getStatus() | States.ANGRY);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.ANGRY);
+			this.setStatus(this.getStatus() & ~States.ANGRY);
 		}
 	}
 
@@ -455,15 +455,15 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isFleeing() {
-		return (this.getStatus() & Status.FLEEING) == Status.FLEEING;
+		return (this.getStatus() & States.FLEEING) == States.FLEEING;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setFleeing(boolean flag) {
 		if (flag && !this.isSleeping()) {
-			this.setStatus(this.getStatus() | Status.FLEEING);
+			this.setStatus(this.getStatus() | States.FLEEING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.FLEEING);
+			this.setStatus(this.getStatus() & ~States.FLEEING);
 		}
 	}
 
@@ -498,58 +498,58 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isPlaying() {
-		return (this.getStatus() & Status.PLAYING) == Status.PLAYING;
+		return (this.getStatus() & States.PLAYING) == States.PLAYING;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setPlaying(boolean flag) {
-		if (flag && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isAttacking()) {
+		if (flag && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isAttacking() && !this.isTakingOff()) {
 
-			this.setStatus(this.getStatus() | Status.PLAYING);
+			this.setStatus(this.getStatus() | States.PLAYING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.PLAYING);
+			this.setStatus(this.getStatus() & ~States.PLAYING);
 		}
 	}
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isStalking() {
-		return (this.getStatus() & Status.STALKING) == Status.STALKING;
+		return (this.getStatus() & States.STALKING) == States.STALKING;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setStalking(boolean flag) {
-		if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.STALKING);
+		if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.STALKING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.STALKING);
+			this.setStatus(this.getStatus() & ~States.STALKING);
 		}
 	}
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isBreeding() {
-		return (this.getStatus() & Status.BREEDING) == Status.BREEDING;
+		return (this.getStatus() & States.BREEDING) == States.BREEDING;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setBreeding(boolean flag) {
-		if (flag && !this.isSitting() && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isSwimming() && !this.isFlying()) {
-			this.setStatus(this.getStatus() | Status.BREEDING);
+		if (flag && !this.isSitting() && !this.isSleeping() && !this.isDefending() && !this.isAttacking() && !this.isEating() && !this.isDrinking() && !this.isTakingOff() && !this.isFlying()) {
+			this.setStatus(this.getStatus() | States.BREEDING);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.BREEDING);
+			this.setStatus(this.getStatus() & ~States.BREEDING);
 		}
 	}
 
 	/** Returns true if the creature is defending itself from some threat. */
 	public boolean isInLove() {
-		return (this.getStatus() & Status.INLOVE) == Status.INLOVE;
+		return (this.getStatus() & States.INLOVE) == States.INLOVE;
 	}
 
 	/** Sets if the creature is defending itself from some threat. */
 	public void setInLove(boolean flag) {
 		if (flag && !this.isSleeping()) {
-			this.setStatus(this.getStatus() | Status.INLOVE);
+			this.setStatus(this.getStatus() | States.INLOVE);
 		} else {
-			this.setStatus(this.getStatus() & ~Status.INLOVE);
+			this.setStatus(this.getStatus() & ~States.INLOVE);
 		}
 	}
 	
@@ -564,19 +564,19 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	/** Clear all states from this creature, except for the injury and tamed state. */
 	public void clearStatus() {
-		this.setStatus(this.getStatus() & ~Status.SITTING);
-		this.setStatus(this.getStatus() & ~Status.SLEEPING);
-		this.setStatus(this.getStatus() & ~Status.HUNGRY);
-		this.setStatus(this.getStatus() & ~Status.THIRSTY);
-		this.setStatus(this.getStatus() & ~Status.EATING);
-		this.setStatus(this.getStatus() & ~Status.DRINKING);
-		this.setStatus(this.getStatus() & ~Status.SOCIALIZING);
-		this.setStatus(this.getStatus() & ~Status.DEFENDING);
-		this.setStatus(this.getStatus() & ~Status.ATTACKING);
-		this.setStatus(this.getStatus() & ~Status.FLEEING);
-		this.setStatus(this.getStatus() & ~Status.PLAYING);
-		this.setStatus(this.getStatus() & ~Status.STALKING);
-		this.setStatus(this.getStatus() & ~Status.INLOVE);
+		this.setStatus(this.getStatus() & ~States.SITTING);
+		this.setStatus(this.getStatus() & ~States.SLEEPING);
+		this.setStatus(this.getStatus() & ~States.HUNGRY);
+		this.setStatus(this.getStatus() & ~States.THIRSTY);
+		this.setStatus(this.getStatus() & ~States.EATING);
+		this.setStatus(this.getStatus() & ~States.DRINKING);
+		this.setStatus(this.getStatus() & ~States.SOCIALIZING);
+		this.setStatus(this.getStatus() & ~States.DEFENDING);
+		this.setStatus(this.getStatus() & ~States.ATTACKING);
+		this.setStatus(this.getStatus() & ~States.FLEEING);
+		this.setStatus(this.getStatus() & ~States.PLAYING);
+		this.setStatus(this.getStatus() & ~States.STALKING);
+		this.setStatus(this.getStatus() & ~States.INLOVE);
 	}
 
 	@Override
@@ -622,7 +622,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	@Override
 	public boolean allowLeashing() {
-		return !this.getLeashed() && this.isTamed();
+        return !this.getLeashed() && this.isTamed() && !this.isTakingOff() && !this.isFlying();
 	}
 
 	@Override

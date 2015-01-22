@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.ai;
 
-public class Status {
+public class States {
 
     /** TAMED represents whether the creature is tamed or not. */
     public static final int TAMED = 1 << 0;
     /** FLYING represents whether the creature is flying. */
     public static final int FLYING = 1 << 1;
     /** SWIMMING represents whether the creature is swimming. */
-    public static final int SWIMMING = 1 << 2;
+    public static final int TAKINGOFF = 1 << 2;
     /** SITTING represents whether the creature is sleeping. */
     public static final int SITTING = 1 << 3;
     /** SLEEPING represents whether the creature is sitting. */

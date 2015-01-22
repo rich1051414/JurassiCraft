@@ -25,7 +25,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping() || this.creature.isEating() || this.creature.isDrinking())
+		if (this.creature.isSitting() || this.creature.isTakingOff() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping() || this.creature.isEating() || this.creature.isDrinking())
 		{
 			return false;
 		}

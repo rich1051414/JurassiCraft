@@ -23,7 +23,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.creature.getAttackTarget() != null || this.creature.isSitting() || this.creature.isFlying() || this.creature.isFleeing() || this.creature.isAttacking() || this.creature.isDefending() || this.creature.isEating() || this.creature.isDrinking()) {
+		if (this.creature.getAttackTarget() != null || this.creature.isSitting()|| this.creature.isTakingOff() || this.creature.isFlying() || this.creature.isFleeing() || this.creature.isAttacking() || this.creature.isDefending() || this.creature.isEating() || this.creature.isDrinking()) {
 			return false;
 		}
 		else if (this.creature.getRNG().nextInt(25) == 0)

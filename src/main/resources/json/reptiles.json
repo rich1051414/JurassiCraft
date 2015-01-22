@@ -18,7 +18,7 @@
         "minMinerals":800,
         "minVitamins":1500,
         "minLipids":250,
-        "ridingSpeed":0.35,
+        "ridingSpeed":0.325,
         "adultAge":0.5,
         "xzBoxMin":0.5,
         "xzBoxDelta":2.0,

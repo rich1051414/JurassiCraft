@@ -1,13 +1,11 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -46,7 +44,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
     public boolean interact(EntityPlayer player)
     {
         ItemStack playerItemStack = player.inventory.getCurrentItem();
-        if (!this.worldObj.isRemote && playerItemStack != (ItemStack) null && this.getCreature().isRidingItem(playerItemStack.getItem()))
+        if (!this.worldObj.isRemote && this.checkRidingItem(playerItemStack))
         {
             if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && !this.isSitting() && !this.isSleeping() && !this.isAttacking() && !this.isDefending() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
             {
@@ -108,7 +106,11 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         return super.interact(player);
     }
 
-    public float getMountingSpeed()
+    protected boolean checkRidingItem(ItemStack ridingItem) {
+    	return ridingItem != null && this.getCreature().isRidingItem(ridingItem.getItem());
+	}
+
+	public float getMountingSpeed()
     {
         return this.mountingSpeed;
     }
@@ -116,12 +118,6 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
     public void setMountingSpeed(float speed)
     {
         this.mountingSpeed = speed;
-    }
-
-    @Override
-    public boolean allowLeashing()
-    {
-        return !this.getLeashed() && this.isTamed() && !this.isFlying();
     }
 
     public void setRidingPlayer(EntityPlayer player)
@@ -225,8 +221,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
     @Override
     public void moveEntityWithHeading(float movementStrafing, float movementForward)
     {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
+        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.checkRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem()))
         {
+        	EntityPlayer player = (EntityPlayer) this.riddenByEntity;
             switch (this.getCreature().getRidingStyle())
             {
                 case 0:
@@ -245,24 +242,26 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
                     this.handleSlowItemControlledRiding();
             }
             this.stepHeight = 1.0F; 
-            movementStrafing = 0.25F * ((EntityLivingBase) this.riddenByEntity).moveStrafing * this.getMountingSpeed();
+            movementStrafing = 0.25F * player.moveStrafing * this.getMountingSpeed();
             if (Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed())
             {
-                movementForward = ((EntityLivingBase) this.riddenByEntity).moveForward * 0.3F * this.getMountingSpeed();
+                movementForward = player.moveForward * 0.3F * this.getMountingSpeed();
             }
             else
             {
-                movementForward = ((EntityLivingBase) this.riddenByEntity).moveForward * this.getMountingSpeed();
+                movementForward = player.moveForward * this.getMountingSpeed();
             }
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && this.onGround && !this.isJumping)
             {
-            	this.decreaseHeldItemDurability(20);
-                this.jump();
+            	if (!this.isAirBorne)
+            	{
+                	this.decreaseHeldItemDurability(20);
+                    this.jump();
+            	}
             }
             this.decreaseHeldItemDurability(1);
             if (!this.worldObj.isRemote)
             {
-                this.setAIMoveSpeed((float) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
                 super.moveEntityWithHeading(movementStrafing, movementForward);
             }
             this.prevLimbSwingAmount = this.limbSwingAmount;
@@ -301,19 +300,6 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         {
             ((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage);
         }
-    }
-    
-    public boolean isInvulnerable(DamageSource damageSource)
-    {
-        Entity entity = (Entity) damageSource.getEntity();
-        if (entity != null)
-        {
-            if (entity == riddenByEntity || entity == this || entity == this.getOwner())
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

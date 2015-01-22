@@ -178,7 +178,7 @@ public class JurassiCraftAIFlying extends EntityAIBase
     int targetHeight = 0;
 
     private void takeOff() {
-        creature.isFlying = true;
+        creature.setFlying(true);
         takingOff = true;
         flightTicks = 0;
         targetHeight = (int) creature.posY + (int) (Math.random() * (creature.flyingParameters.flyHeightMax - creature.flyingParameters.flyHeightMin))
