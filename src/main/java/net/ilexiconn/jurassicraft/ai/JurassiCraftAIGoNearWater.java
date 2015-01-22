@@ -146,7 +146,7 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
                 poolX = (float) Math.floor(centerX);
                 poolY = (float) Math.floor(centerY);
                 poolZ = (float) Math.floor(centerZ);
-                lastTimeExecuted = world.getWorldTime();
+                lastTimeExecuted = world.getWorldTime(); // TODO: Check if entity can go to this pool 
                 this.foundPool = true;
             }
         }

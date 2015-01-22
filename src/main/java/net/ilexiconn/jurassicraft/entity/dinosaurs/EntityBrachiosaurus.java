@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatLeaves;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
@@ -33,6 +34,9 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
     {
         super(world, CreatureManager.classToCreature(EntityBrachiosaurus.class));
         this.getNavigator().setAvoidsWater(true);
+        
+        this.tasks.addTask(10, new JurassiCraftAIEatLeaves(this, getCreatureSpeed()));
+        
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
