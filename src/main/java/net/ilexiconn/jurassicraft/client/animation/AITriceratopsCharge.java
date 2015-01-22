@@ -12,6 +12,10 @@ public class AITriceratopsCharge extends AIAnimation
     private float chargeAcceleration = 0.2F;
     private float chargeSpeed = 1;
     private float angleYaw = 0.0F;
+    private float startX;
+    private float startZ;
+    private float distanceTravelled;
+    private float distanceOfTargetFromStart;
 
     public AITriceratopsCharge(EntityTriceratops tric)
     {
@@ -38,6 +42,9 @@ public class AITriceratopsCharge extends AIAnimation
     {
         super.startExecuting();
         this.attackTarget = this.entityTric.getAttackTarget();
+        startX = (float) entityTric.posX;
+        startZ = (float) entityTric.posZ;
+    	if (attackTarget != null) distanceOfTargetFromStart = (float) Math.sqrt((startX - attackTarget.posX) * (startX - attackTarget.posX) + (startZ - attackTarget.posZ) * (startZ - attackTarget.posZ));
     }
 
     public void resetTask()
@@ -50,6 +57,7 @@ public class AITriceratopsCharge extends AIAnimation
 
     public void updateTask()
     {
+    	distanceTravelled = (float) Math.sqrt((startX - entityTric.posX) * (startX - entityTric.posX) + (startZ - entityTric.posZ) * (startZ - entityTric.posZ));    	
         if (this.entityTric.getAnimationTick() == 1) entityTric.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
 
         if (this.entityTric.getAnimationTick() < 40 && this.attackTarget != null) this.entityTric.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
@@ -71,6 +79,11 @@ public class AITriceratopsCharge extends AIAnimation
             		this.chargeAcceleration = 0.3F;
             	}
             	this.entityTric.charging = true;
+            	if (attackTarget != null && distanceOfTargetFromStart > distanceTravelled) {
+            		double deltaX = this.attackTarget.posX - this.entityTric.posX;
+                    double deltaZ = this.attackTarget.posZ - this.entityTric.posZ;
+            		angleYaw = (float) Math.atan2(deltaZ, deltaX);
+            	}
                 if (Math.sqrt(this.entityTric.motionX * this.entityTric.motionX + this.entityTric.motionZ * this.entityTric.motionZ) < this.chargeSpeed - 0.2)
                 {
                 	this.entityTric.motionX += this.chargeAcceleration * Math.cos(angleYaw);
