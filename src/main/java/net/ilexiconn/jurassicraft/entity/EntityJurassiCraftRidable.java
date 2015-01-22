@@ -4,17 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
+public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
 {
     private float mountingSpeed;
 
@@ -50,10 +48,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
         ItemStack playerItemStack = player.inventory.getCurrentItem();
         if (!this.worldObj.isRemote && playerItemStack != (ItemStack) null && this.getCreature().isRidingItem(playerItemStack.getItem()))
         {
-            if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && !this.isSitting() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
+            if (this.isCreatureRidable() && this.isTamed() && this.isCreatureAdult() && !this.isSitting() && !this.isSleeping() && !this.isAttacking() && !this.isDefending() && this.riddenByEntity == null && player.getCommandSenderName().equals(this.getOwnerName()))
             {
-                this.setSitting(false);
-                this.aiSit.setSitting(false);
+                this.setSitting(false, null);
                 this.setRidingPlayer(player);
             }
             else
@@ -124,7 +121,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     @Override
     public boolean allowLeashing()
     {
-        return !this.getLeashed() && this.isTamed();
+        return !this.getLeashed() && this.isTamed() && !this.isFlying();
     }
 
     public void setRidingPlayer(EntityPlayer player)
@@ -324,18 +321,4 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftTameable
     {
         return false;
     }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
-        super.writeEntityToNBT(compound);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
-        super.readEntityFromNBT(compound);
-        this.setMountingSpeed((float) (this.getCreature().getRidingSpeed()));
-    }
-
 }

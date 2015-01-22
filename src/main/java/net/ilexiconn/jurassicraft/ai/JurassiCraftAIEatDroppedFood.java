@@ -1,98 +1,91 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
 
-import java.util.List;
-
 public class JurassiCraftAIEatDroppedFood extends EntityAIBase
 {
+	private EntityJurassiCraftSmart creature;
+	private EntityItem droppedFood;
+	private double timeTryingToEat;
+	private double searchDistance;
 
-    private EntityJurassiCraftTameable hungryCreature;
-    private double searchDistance;
-    private double timeTryingToEat;
-    private EntityItem droppedFood;
+	public JurassiCraftAIEatDroppedFood(EntityJurassiCraftSmart entity, double distance)
+	{
+		this.creature = entity;
+		this.searchDistance = distance;
+		this.timeTryingToEat = 0;
+	}
 
-    public JurassiCraftAIEatDroppedFood(EntityJurassiCraftTameable creature, double distance)
-    {
-        this.hungryCreature = creature;
-        this.searchDistance = distance;
-        this.timeTryingToEat = 0;
-    }
+	@Override
+	public boolean shouldExecute() {
+		if (this.creature.getAttackTarget() != null || this.creature.isSitting() || this.creature.isFlying() || this.creature.isFleeing() || this.creature.isAttacking() || this.creature.isDefending() || this.creature.isEating() || this.creature.isDrinking()) {
+			return false;
+		}
+		else if (this.creature.getRNG().nextInt(25) == 0)
+		{
+			List nearEntityList = this.creature.worldObj.getEntitiesWithinAABBExcludingEntity(this.creature, this.creature.boundingBox.expand(this.searchDistance, this.searchDistance / 2.0D, this.searchDistance));
+			if (!nearEntityList.isEmpty())
+			{
+				for (int i = nearEntityList.size() - 1; i > -1; i--)
+				{
+					Entity item = (Entity) nearEntityList.get(i);
+					if (item instanceof EntityItem)
+					{
+						this.droppedFood = (EntityItem) item;
+						if (this.creature.getCreature().isFavoriteFood(this.droppedFood.getEntityItem().getItem()))
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 
-    @Override
-    public boolean isInterruptible()
-    {
-        return true;
-    }
+	@Override
+	public void startExecuting()
+	{
+		this.creature.setDefending(false);
+		this.creature.setAttacking(false);
+		this.creature.setBreeding(false);
+		this.creature.setPlaying(false);
+		this.creature.setSocializing(false);
+		this.creature.setEating(false);
+		this.creature.setDrinking(false);
+		this.creature.setSitting(false, null);
+		this.creature.getNavigator().tryMoveToXYZ(droppedFood.posX, droppedFood.posY, droppedFood.posZ, this.creature.getCreatureSpeed());
+		this.timeTryingToEat = 0;
+		super.startExecuting();
+	}
 
-    @Override
-    public boolean shouldExecute()
-    {
-        if (this.hungryCreature.getRNG().nextInt(100) < 90 || this.hungryCreature.getAttackTarget() != null || this.hungryCreature.isSitting())
-        {
-            return false;
-        }
-        List nearEntityList = this.hungryCreature.worldObj.getEntitiesWithinAABBExcludingEntity(this.hungryCreature, this.hungryCreature.boundingBox.expand(searchDistance, 8.0D, searchDistance));
-        if (!nearEntityList.isEmpty())
-        {
-            for (int i = nearEntityList.size() - 1; i > -1; i--)
-            {
-                if (nearEntityList.get(i) instanceof EntityItem && this.hungryCreature.getCreature().isFavoriteFood(((EntityItem) nearEntityList.get(i)).getEntityItem().getItem()))
-                {
-                    this.droppedFood = (EntityItem) nearEntityList.get(i);
-                    return this.droppedFood != (EntityItem) null;
-                }
-            }
-        }
+	@Override
+	public void updateTask() {
+		double distance = Math.sqrt(Math.pow((double) (this.creature.posX - this.droppedFood.posX), 2.0D) + Math.pow((double) (this.creature.posY - this.droppedFood.posY), 2.0D) + Math.pow((double) (this.creature.posZ - this.droppedFood.posZ), 2.0D));
+		if (distance < 1.2D) {
+			this.droppedFood.setDead();
+			this.creature.setEating(true);
+		} else {
+			this.timeTryingToEat++;
+			if (this.creature.getNavigator().noPath())
+				this.creature.getNavigator().tryMoveToXYZ(this.droppedFood.posX, this.droppedFood.posY, this.droppedFood.posZ, this.creature.getCreatureSpeed());
+		}
+	}
 
-        return false;
-    }
+	@Override
+	public boolean continueExecuting() {
+		return this.timeTryingToEat < 125 && this.droppedFood.isEntityAlive() && this.creature.isEntityAlive() && !this.creature.isSitting() && this.creature.riddenByEntity == null && !this.creature.isAttacking() && !this.creature.isDefending();
+	}
 
-    @Override
-    public void startExecuting()
-    {
-        if (this.hungryCreature.isTamed())
-        {
-            this.hungryCreature.setSitting(false);
-        }
-
-        this.hungryCreature.getNavigator().tryMoveToXYZ(droppedFood.posX, droppedFood.posY, droppedFood.posZ, this.hungryCreature.getCreatureSpeed());
-        super.startExecuting();
-    }
-
-    @Override
-    public void updateTask()
-    {
-        if (this.hungryCreature.getNavigator() == null)
-        {
-            this.hungryCreature.getNavigator().tryMoveToXYZ(this.droppedFood.posX, this.droppedFood.posY, this.droppedFood.posZ, this.hungryCreature.getCreatureSpeed());
-        }
-
-        double distance = Math.sqrt(Math.pow((double) (this.hungryCreature.posX - this.droppedFood.posX), 2.0D) + Math.pow((double) (this.hungryCreature.posY - this.droppedFood.posY), 2.0D) + Math.pow((double) (this.hungryCreature.posZ - this.droppedFood.posZ), 2.0D));
-
-        if (distance < 1.0D)
-        {
-            this.droppedFood.setDead();
-        }
-        else
-        {
-            this.timeTryingToEat++;
-        }
-    }
-
-    @Override
-    public boolean continueExecuting()
-    {
-        return (this.timeTryingToEat < 100 && !this.droppedFood.isDead && !this.hungryCreature.isDead) && !this.hungryCreature.isSitting() && this.hungryCreature.riddenByEntity == null;
-    }
-
-    @Override
-    public void resetTask()
-    {
-        this.hungryCreature.getNavigator().clearPathEntity();
-        this.droppedFood = (EntityItem) null;
-        this.timeTryingToEat = 0;
-    }
+	@Override
+	public void resetTask() {
+		this.creature.getNavigator().clearPathEntity();
+		this.droppedFood = (EntityItem) null;
+		this.timeTryingToEat = 0;
+	}
 }

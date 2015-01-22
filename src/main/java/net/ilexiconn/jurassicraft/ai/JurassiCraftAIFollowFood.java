@@ -1,96 +1,104 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class JurassiCraftAIFollowFood extends EntityAIBase
 {
-    private EntityJurassiCraftTameable temptedEntity;
-    private double speed;
-    private double targetX;
-    private double targetY;
-    private double targetZ;
-    private double rotationPitchOfThePlayer;
-    private double rotationYawOfThePlayer;
-    private EntityPlayer temptingPlayer;
-    private boolean isRunning;
-    private boolean avoidWater;
+	private EntityJurassiCraftSmart creature;
+	private EntityPlayer temptingPlayer;
+	private boolean avoidWater;
+	private double speed;
+	private int stealFoodChance;
+	private int stealFoodTimer;
 
-    public JurassiCraftAIFollowFood(EntityJurassiCraftTameable creature, double velocity)
-    {
-        this.temptedEntity = creature;
-        this.speed = velocity;
-        this.setMutexBits(3);
-    }
+	public JurassiCraftAIFollowFood(EntityJurassiCraftSmart entity, int stealFoodChance, double velocity)
+	{
+		this.creature = entity;
+		this.speed = velocity;
+		this.stealFoodChance = stealFoodChance;
+		this.setMutexBits(3);
+	}
 
-    @Override
-    public boolean shouldExecute()
-    {
-        if (this.temptedEntity.isSitting() || this.temptedEntity.riddenByEntity != null)
-        {
-            return false;
-        }
-        else
-        {
-            this.temptingPlayer = this.temptedEntity.worldObj.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
+	@Override
+	public boolean shouldExecute()
+	{
+		if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping() || this.creature.isEating() || this.creature.isDrinking())
+		{
+			return false;
+		}
+		else
+		{
+			this.temptingPlayer = this.creature.worldObj.getClosestPlayerToEntity(this.creature, 10.0D);
+			if (this.temptingPlayer == null)
+			{
+				return false;
+			}
+			else
+			{
+				ItemStack itemStack = this.temptingPlayer.getHeldItem();
+				return itemStack == null ? false : (this.creature.getAttackTarget() == null && this.creature.getCreature().isFavoriteFood(itemStack.getItem()));
+			}
+		}
+	}
 
-            if (this.temptingPlayer == null || !this.temptingPlayer.isEntityAlive())
-            {
-                return false;
-            }
-            else
-            {
-                ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
-                return itemstack == null ? false : (this.temptedEntity.getCreature().isFavoriteFood(itemstack.getItem())) && this.temptedEntity.getAttackTarget() == null;
-            }
-        }
-    }
-    
-    @Override
-    public void startExecuting()
-    {
-        this.targetX = this.temptingPlayer.posX;
-        this.targetY = this.temptingPlayer.posY;
-        this.targetZ = this.temptingPlayer.posZ;
-        this.isRunning = true;
-        this.avoidWater = this.temptedEntity.getNavigator().getAvoidsWater();
-        this.temptedEntity.getNavigator().setAvoidsWater(false);
-    }
-    
-    @Override
-    public void updateTask()
-    {
-        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, (float) this.temptedEntity.getVerticalFaceSpeed());
-        if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
-        {
-            this.temptedEntity.getNavigator().clearPathEntity();
-        }
-        else
-        {
-            this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
-        }
-    }
+	@Override
+	public void startExecuting()
+	{
+		this.creature.setPlaying(false);
+		this.creature.setSocializing(false);
+		this.creature.setEating(false);
+		this.creature.setDrinking(false);
+		this.creature.setDefending(false);
+		this.creature.setAttacking(false);
+		this.creature.setBreeding(false);
+		this.creature.setSitting(false, null);
+		this.avoidWater = this.creature.getNavigator().getAvoidsWater();
+		this.creature.getNavigator().setAvoidsWater(false);
+		this.stealFoodTimer = 50;
+	}
 
-    @Override
-    public boolean continueExecuting()
-    {
-    	 ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
-        return this.temptedEntity.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.temptedEntity.isSitting() && this.temptedEntity.riddenByEntity == null && (itemstack != null && this.temptedEntity.getCreature().isFavoriteFood(itemstack.getItem()));
-    }
+	@Override
+	public void updateTask()
+	{
+		this.creature.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, (float) this.creature.getVerticalFaceSpeed());
+		double distancesq = this.creature.getDistanceSqToEntity(this.temptingPlayer);
+		if (distancesq < 6.25D * this.creature.getGeneticQuality())
+		{
+			this.creature.getNavigator().clearPathEntity();
+			if (distancesq < 5.5D && this.creature.getRNG().nextInt(this.stealFoodChance) == 0 && stealFoodTimer < 0)
+			{
+				this.stealFoodTimer = 50;
+				ItemStack heldItem = this.temptingPlayer.getHeldItem();
+				heldItem.stackSize--;
+				if (heldItem.stackSize < 1)
+					heldItem = null;
+			}
+			else
+			{
+				this.stealFoodTimer--;
+			}
+		}
+		else
+		{
+			this.creature.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
+		}
+	}
 
-    @Override
-    public void resetTask()
-    {
-        this.temptingPlayer = null;
-        this.temptedEntity.getNavigator().clearPathEntity();
-        this.isRunning = false;
-        this.temptedEntity.getNavigator().setAvoidsWater(this.avoidWater);
-    }
+	@Override
+	public boolean continueExecuting()
+	{
+		ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
+		return this.creature.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.creature.isSitting() && !this.creature.hasBeenHurt() && this.creature.riddenByEntity == null && (itemstack != null && this.creature.getCreature().isFavoriteFood(itemstack.getItem()));
+	}
 
-    public boolean isRunning()
-    {
-        return this.isRunning;
-    }
+	@Override
+	public void resetTask()
+	{
+		this.temptingPlayer = null;
+		this.creature.getNavigator().clearPathEntity();
+		this.creature.getNavigator().setAvoidsWater(this.avoidWater);
+	}
 }

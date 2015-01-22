@@ -1,134 +1,84 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import java.util.List;
-
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfNonTamed;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.ilexiconn.jurassicraft.ai.stats.FlyingParameters;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftFlyingCreature
+public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggressive
 {
-    public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
-    {
-        super(world, creature, landingMaterial);
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.25F * this.getCreatureSpeed(), false));
-        this.targetTasks.addTask(1, new JurassiCraftAIOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new JurassiCraftAITargetIfNonTamed(this, EntityPlayer.class, 0));
-    }
+	public FlyingParameters flyingParameters;
+	private String landingMaterial;
+	public boolean isFlying;
 
-    @Override
-    public boolean canBreatheUnderwater()
-    {
-        return false;
-    }
+	public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
+	{
+		super(world, creature);
+		this.setLandingMaterial(landingMaterial);
+		this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
+		this.setFlying(false);
+	}
 
-    /**
-     * Sets the attack target if it is adult. If it is also tamed, this will check if the target is tamed by the player.
-     */
-    private void becomeAngryAt(EntityJurassiCraftFlyingAggressive creature, Entity target)
-    {
-        if (creature.isCreatureAdult())
-        {
-            if (creature.isTamed())
-            {
-                if (this.checkTargetBeforeAttack(target))
-                {
-                    creature.setAttackTarget((EntityLivingBase) target);
-                }
-            }
-            else
-            {
-                creature.setAttackTarget((EntityLivingBase) target);
-            }
-        }
-    }
+	@Override
+	public void onLivingUpdate()
+	{
+		if (this.isFlyingCreature())
+		{
+			if (this.riddenByEntity == null)
+			{
+				this.motionY += 0.04F + 0.06F * this.flyingParameters.flySpeedModifier / 500.0F;
+				this.isFlying = true;
+			}
 
-    @Override
-    public boolean attackEntityFrom(DamageSource damageSource, float damage)
-    {
-        if (this.isEntityInvulnerable())
-        {
-            return false;
-        }
-        else
-        {
-            Entity attacker = damageSource.getEntity();
-            if (attacker != (Entity) null && this.checkTargetBeforeAttack(attacker))
-            {
-                this.becomeAngryAt(this, attacker);
-                List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0D, 8.0D, 16.0D));
-                for (int i = 0; i < list.size(); ++i)
-                {
-                    Entity entityNeighbor = (Entity) list.get(i);
-                    if (entityNeighbor.getClass() == this.getClass())
-                    {
-                        EntityJurassiCraftFlyingAggressive entityNeighborAngry = (EntityJurassiCraftFlyingAggressive) entityNeighbor;
-                        if (entityNeighborAngry.checkTargetBeforeAttack(attacker))
-                        {
-                            becomeAngryAt(entityNeighborAngry, attacker);
-                        }
-                    }
-                }
-                return super.attackEntityFrom(damageSource, damage);
-            }
-            else
-            {
-                return super.attackEntityFrom(damageSource, damage);
-            }
-        }
-    }
+			if (this.onGround && this.isFlying)
+				this.isFlying = false;
+		}
+		super.onLivingUpdate();
+	}
 
-    @Override
-    protected void attackEntity(Entity entity, float par2)
-    {
-        if (this.attackTime <= 0 && par2 < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
-        {
-            this.attackTime = 20;
-            this.attackEntityAsMob(entity);
-        }
-    }
+	public FlyingParameters getFlyingParameters()
+	{
+		return flyingParameters;
+	}
 
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        float attackDamage = (float) this.getCreatureAttack();
-        int i = 0;
-        if (entity instanceof EntityLivingBase)
-        {
-            attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
-            i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
-        }
-        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
-        if (flag)
-        {
-            if (i > 0)
-            {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
-            int j = EnchantmentHelper.getFireAspectModifier(this);
-            if (j > 0)
-            {
-                entity.setFire(j * 4);
-            }
-            if (entity instanceof EntityLivingBase)
-            {
-                EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
-            }
-            EnchantmentHelper.func_151385_b(this, entity);
-        }
-        return flag;
-    }
+	public void setFlyingParameters(FlyingParameters flyingParameters)
+	{
+		this.flyingParameters = flyingParameters;
+	}
+
+	public String getLandingMaterial()
+	{
+		return landingMaterial;
+	}
+
+	public void setLandingMaterial(String landingMaterial)
+	{
+		this.landingMaterial = landingMaterial;
+	}
+
+	public boolean isFlying()
+	{
+		return isFlying;
+	}
+
+	public void setFlying(boolean isFlying)
+	{
+		this.isFlying = isFlying;
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound)
+	{
+		super.writeEntityToNBT(compound);
+		compound.setString("LandingMaterial", this.landingMaterial);
+		compound.setBoolean("IsFlying", this.isFlying);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound)
+	{
+		super.readEntityFromNBT(compound);
+		this.setLandingMaterial(compound.getString("LandingMaterial"));
+		this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, compound.getString("LandingMaterial")));
+		this.setFlying(compound.getBoolean("IsFlying"));
+	}
 }

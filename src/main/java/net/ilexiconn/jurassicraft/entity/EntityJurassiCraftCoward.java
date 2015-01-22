@@ -1,26 +1,16 @@
-package net.ilexiconn.jurassicraft.ai.test;
+package net.ilexiconn.jurassicraft.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ilexiconn.jurassicraft.entity.Creature;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityJurassiCraftCoward extends EntityJurassiCraftSmart {
+public class EntityJurassiCraftCoward extends EntityJurassiCraftRidable {
 
 	public EntityJurassiCraftCoward(World world, Creature creature) {
 		super(world, creature);
-	}
-
-	/** Sets the creature to flee. */
-	private void startFleeing() {
-		if (this.isSitting())
-			this.setSitting(false, null);
-		this.setAttackTarget((EntityLivingBase) null);
-		this.setFleeing(true);
 	}
 
 	@Override

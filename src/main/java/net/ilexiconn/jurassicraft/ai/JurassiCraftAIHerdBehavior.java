@@ -1,18 +1,18 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JurassiCraftAIHerdBehavior extends EntityAIBase
 {
 
-    private EntityJurassiCraftTameable lostCreature;
-    private EntityJurassiCraftTameable herdCreature;
+    private EntityJurassiCraftSmart lostCreature;
+    private EntityJurassiCraftSmart herdCreature;
     private double lostCreatureOldFollowRange;
     private double searchDistance;
     private double distanceToHerd;
@@ -21,7 +21,7 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
     private int timeTryingToMove;
     private int maxTimeTryingToMove;
 
-    public JurassiCraftAIHerdBehavior(EntityJurassiCraftTameable creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
+    public JurassiCraftAIHerdBehavior(EntityJurassiCraftSmart creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
     {
         this.lostCreature = creature;
         this.searchDistance = distance;
@@ -45,15 +45,15 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
         {
             return false;
         }
-        ArrayList<EntityJurassiCraftTameable> nearCreaturesList = new ArrayList<EntityJurassiCraftTameable>();
+        ArrayList<EntityJurassiCraftSmart> nearCreaturesList = new ArrayList<EntityJurassiCraftSmart>();
         List<Entity> nearEntityList = this.lostCreature.worldObj.getEntitiesWithinAABBExcludingEntity(this.lostCreature, this.lostCreature.boundingBox.expand(this.searchDistance, 8.0D, this.searchDistance));
         if (!nearEntityList.isEmpty())
         {
             for (int i = nearEntityList.size() - 1; i > -1; i--)
             {
-                if (nearEntityList.get(i) instanceof EntityJurassiCraftTameable && nearEntityList.get(i).getClass() == lostCreature.getClass() && ((EntityJurassiCraftTameable) nearEntityList.get(i)).getUniqueID() != lostCreature.getUniqueID())
+                if (nearEntityList.get(i) instanceof EntityJurassiCraftSmart && nearEntityList.get(i).getClass() == lostCreature.getClass() && ((EntityJurassiCraftSmart) nearEntityList.get(i)).getUniqueID() != lostCreature.getUniqueID())
                 {
-                    nearCreaturesList.add((EntityJurassiCraftTameable) nearEntityList.get(i));
+                    nearCreaturesList.add((EntityJurassiCraftSmart) nearEntityList.get(i));
                 }
             }
             if (nearCreaturesList.size() < 4)
@@ -135,7 +135,7 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
     {
         this.lostCreature.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.lostCreatureOldFollowRange);
         this.lostCreature.getNavigator().clearPathEntity();
-        this.herdCreature = (EntityJurassiCraftTameable) null;
+        this.herdCreature = (EntityJurassiCraftSmart) null;
         this.timeTryingToMove = 0;
     }
 }

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.ai.test;
+package net.ilexiconn.jurassicraft.ai;
 
 public class Status {
 
@@ -38,5 +38,7 @@ public class Status {
     public static final int DEFENDING = 1 << 16;
     /** ATTACKING represents whether the creature is attacking. */
     public static final int ATTACKING = 1 << 17;
+    /** ANGRY represents whether the creature is angry. */
+    public static final int ANGRY = 1 << 18;
 
 }

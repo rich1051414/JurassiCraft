@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
@@ -17,7 +17,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -146,14 +145,14 @@ public class JurassiCraftLivingEvent
 	            {
 	                EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) mammalToSpawn;
 	                baby.setGenetics(quality, dnaSequence);
-	                if (mammalToSpawn instanceof EntityJurassiCraftTameable && ((EntityJurassiCraftTameable) baby).canBeTamedUponSpawning())
+	                if (mammalToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning())
 	                {
 	                    EntityPlayer owner = event.entityLiving.worldObj.getClosestPlayerToEntity(event.entityLiving, 6.0F);
 	                    if (owner != null)
 	                    {
-	                        ((EntityJurassiCraftTameable) baby).setTamed(true);
-	                        ((EntityJurassiCraftTameable) baby).setOwner(owner.getCommandSenderName());
-	                        event.entityLiving.worldObj.setEntityState((EntityJurassiCraftTameable) baby, (byte) 7);
+	                        ((EntityJurassiCraftSmart) baby).setTamed(true, owner);
+	                        ((EntityJurassiCraftSmart) baby).setOwner(owner.getCommandSenderName());
+	                        event.entityLiving.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
 	                    }
 	                }
 	                baby.setPosition(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);

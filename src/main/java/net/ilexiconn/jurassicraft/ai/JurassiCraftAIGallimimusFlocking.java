@@ -1,18 +1,18 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
 {
 
-    private EntityJurassiCraftTameable herdCreature;
-    private ArrayList<EntityJurassiCraftTameable> herd = new ArrayList<EntityJurassiCraftTameable>();
+    private EntityJurassiCraftSmart herdCreature;
+    private ArrayList<EntityJurassiCraftSmart> herd = new ArrayList<EntityJurassiCraftSmart>();
     private ArrayList<Double> followingDistanceOfTheHerd = new ArrayList<Double>();
     private double searchDistance;
     private double movementSpeed;
@@ -22,7 +22,7 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
     private int numberOfGallimimus;
     private int timeTryingToMove;
 
-    public JurassiCraftAIGallimimusFlocking(EntityJurassiCraftTameable creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
+    public JurassiCraftAIGallimimusFlocking(EntityJurassiCraftSmart creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
     {
         this.herdCreature = creature;
         this.numberOfGallimimus = minimumNumberOfGallimimus;
@@ -53,9 +53,9 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
         {
             for (int i = 0; i < nearEntityList.size(); i++)
             {
-                if (nearEntityList.get(i) instanceof EntityJurassiCraftTameable && nearEntityList.get(i).getClass() == herdCreature.getClass() && !((EntityJurassiCraftTameable) nearEntityList.get(i)).isSitting())
+                if (nearEntityList.get(i) instanceof EntityJurassiCraftSmart && nearEntityList.get(i).getClass() == herdCreature.getClass() && !((EntityJurassiCraftSmart) nearEntityList.get(i)).isSitting())
                 {
-                    this.herd.add((EntityJurassiCraftTameable) nearEntityList.get(i));
+                    this.herd.add((EntityJurassiCraftSmart) nearEntityList.get(i));
                 }
             }
             if (this.herd.size() >= this.numberOfGallimimus)

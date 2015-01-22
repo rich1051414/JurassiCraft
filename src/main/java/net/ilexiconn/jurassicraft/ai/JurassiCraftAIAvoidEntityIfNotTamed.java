@@ -1,23 +1,22 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftLandCoward;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 
 public class JurassiCraftAIAvoidEntityIfNotTamed extends EntityAIAvoidEntity
 {
+	private EntityJurassiCraftSmart creature;
 
-    private EntityJurassiCraftLandCoward cowardCreature;
+	public JurassiCraftAIAvoidEntityIfNotTamed(EntityJurassiCraftSmart entity, Class avoidClass, float distanceFromEntity, double farSpeed, double nearSpeed)
+	{
+		super(entity, avoidClass, distanceFromEntity, farSpeed, nearSpeed);
+		this.creature = entity;
+		this.setMutexBits(1);
+	}
 
-    public JurassiCraftAIAvoidEntityIfNotTamed(EntityJurassiCraftLandCoward coward, Class avoidClass, float distanceFromEntity, double farSpeed, double p_i1616_6_)
-    {
-        super(coward, avoidClass, distanceFromEntity, farSpeed, p_i1616_6_);
-        this.cowardCreature = coward;
-        this.setMutexBits(1);
-    }
-
-    @Override
-    public boolean shouldExecute()
-    {
-        return !this.cowardCreature.isTamed() && super.shouldExecute();
-    }
+	@Override
+	public boolean shouldExecute()
+	{
+		return !this.creature.isTamed() && super.shouldExecute();
+	}
 }

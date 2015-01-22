@@ -1,5 +1,7 @@
-package net.ilexiconn.jurassicraft.ai.test;
+package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
@@ -61,20 +63,29 @@ public class JurassiCraftAIFlee extends EntityAIBase
 		this.creature.setBreeding(false);
 		this.creature.setInLove(false);
 		this.creature.setSitting(false, null);
-		this.creature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
-		this.creature.setFleeingTick(this.fleeingTime + (int) (this.fleeingTime * (0.7F + 0.6F * this.creature.getRNG().nextFloat())));
+		this.creature.setFleeingTick(this.fleeingTime + (int) (this.fleeingTime * 0.6F * this.creature.getRNG().nextFloat()));
 	}
 
 	@Override
 	public void updateTask()
 	{
 		this.creature.setFleeingTick(this.creature.getFleeingTick() - 1);
+		if (this.creature.getNavigator().noPath()) {
+			Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.creature, 5, 4);
+			if (vec3 != null)
+			{
+				this.randPosX = vec3.xCoord;
+				this.randPosY = vec3.yCoord;
+				this.randPosZ = vec3.zCoord;
+				this.creature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+			}
+		}
 	}
 
 	@Override
 	public boolean continueExecuting()
 	{
-		return !this.creature.getNavigator().noPath() && this.creature.getFleeingTick() > 0;
+		return this.creature.getFleeingTick() > 0 && !this.creature.isSitting() && !this.creature.isSleeping() && this.creature.riddenByEntity == null;
 	}
 
 	@Override
@@ -82,5 +93,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
 	{
 		this.creature.setFleeingTick(0);
 		this.creature.setFleeing(false);
+		if (this.creature.getAttackTarget() != null)
+			this.creature.setAttackTarget((EntityLivingBase) null);
 	}
 }

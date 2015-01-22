@@ -4,9 +4,10 @@ import net.ilexiconn.jurassicraft.ai.EntityAICearadactylus;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlying;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingAggressive;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.block.material.Material;
@@ -22,7 +23,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive implements IReptile, IPiscivore
+public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implements IReptile, IPiscivore
 {
 
     private double flightTargetX;
@@ -40,15 +41,14 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingAggressive impl
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new JurassiCraftAIFlying(this));
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new JurassiCraftAIWander(this, this.getCreatureSpeed()));
-        this.tasks.addTask(2, this.aiSit);
+        this.tasks.addTask(1, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
+        this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
-        this.tasks.addTask(5, new JurassiCraftAIFollowFood(this, 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(5, new JurassiCraftAIFollowFood(this, 60, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(5, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-
-        this.setCreatureExperiencePoints(5000);
+        this.setCreatureExperiencePoints(1500);
     }
 
     @Override

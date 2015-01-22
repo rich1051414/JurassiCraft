@@ -169,8 +169,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         System.out.println("================= Client ==================");
         if (player != null && player.getHeldItem() != (ItemStack) null)
         System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
-        if (this instanceof EntityJurassiCraftTameable)
-        System.out.println("Owner: " + ((EntityJurassiCraftTameable) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftTameable) this).isTamed());
+        if (this instanceof EntityJurassiCraftSmart)
+        System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
         System.out.println("Health: " + this.getCreatureHealth());
         System.out.println("Attack: " + this.getCreatureAttack());
         System.out.println("Speed: " + this.getCreatureSpeed());
@@ -189,8 +189,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         System.out.println("================= Server ==================");
         if (player != null && player.getHeldItem() != (ItemStack) null)
         System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
-        if (this instanceof EntityJurassiCraftTameable)
-        System.out.println("Owner: " + ((EntityJurassiCraftTameable) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftTameable) this).isTamed());
+        if (this instanceof EntityJurassiCraftSmart)
+        System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
         System.out.println("Health: " + this.getCreatureHealth());
         System.out.println("Attack: " + this.getCreatureAttack());
         System.out.println("Speed: " + this.getCreatureSpeed());

@@ -7,7 +7,7 @@ import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadEgg;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPadPregnancy;
 import net.ilexiconn.jurassicraft.container.ContainerSecurityFenceLow;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
@@ -24,7 +24,7 @@ public class GuiHandler implements IGuiHandler
 	@Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x));
+        if (ID == 69) return new ContainerDinoPad((EntityJurassiCraftSmart) world.getEntityByID(x));
         if (ID == 51) return new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x));
         if (ID == 13) return new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x));
         
@@ -43,7 +43,7 @@ public class GuiHandler implements IGuiHandler
 	@Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        if (ID == 69) return new GuiDinoPad(new ContainerDinoPad((EntityJurassiCraftTameable) world.getEntityByID(x)));
+        if (ID == 69) return new GuiDinoPad(new ContainerDinoPad((EntityJurassiCraftSmart) world.getEntityByID(x)));
         if (ID == 51) return new GuiDinoPadEgg(new ContainerDinoPadEgg((EntityDinoEgg) world.getEntityByID(x)));
         if (ID == 13) return new GuiDinoPadPregnancy(new ContainerDinoPadPregnancy((EntityAnimal) world.getEntityByID(x)));
 

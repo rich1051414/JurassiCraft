@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiDinoPad extends GuiContainer
 {
-    private EntityJurassiCraftTameable creature;
+    private EntityJurassiCraftSmart creature;
     private int xSize;
     private int ySize;
     private int guiLeft;
@@ -34,9 +34,9 @@ public class GuiDinoPad extends GuiContainer
     public GuiDinoPad(ContainerDinoPad container)
     {
         super(container);
-        if (container.creatureToAnalyze instanceof EntityJurassiCraftTameable)
+        if (container.creatureToAnalyze instanceof EntityJurassiCraftSmart)
         {
-            this.creature = (EntityJurassiCraftTameable) container.creatureToAnalyze;
+            this.creature = (EntityJurassiCraftSmart) container.creatureToAnalyze;
             this.xSize = 256;
             this.ySize = 176;
         } 
@@ -217,12 +217,12 @@ public class GuiDinoPad extends GuiContainer
         {
             if (this.creature.getCreature().isRidable() && this.creature.isCreatureAdult())
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftTameable) this.creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftSmart) this.creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
                 this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.ridable"), this.guiLeft + 67 - this.fontRendererObj.getStringWidth("Ridable") / 2, this.guiTop + 122, 14737632);
             }
             else
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftTameable) this.creature).getOwnerName()) / 2, this.guiTop + 122, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName()) / 2, this.guiTop + 122, 14737632);
             }
         }
         else

@@ -10,7 +10,7 @@ import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -279,12 +279,12 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         {
                         	EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
                         	baby.setGenetics(this.quality, this.getDNASequence());
-                        	if (dinoToSpawn instanceof EntityJurassiCraftTameable && ((EntityJurassiCraftTameable) baby).canBeTamedUponSpawning()) {
+                        	if (dinoToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning()) {
                         		EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
                             	if (owner != null) {
-                            		((EntityJurassiCraftTameable) baby).setTamed(true);
-                        			((EntityJurassiCraftTameable) baby).setOwner(owner.getCommandSenderName());
-                                    this.worldObj.setEntityState((EntityJurassiCraftTameable) baby, (byte) 7);
+                            		((EntityJurassiCraftSmart) baby).setTamed(true, owner);
+                        			((EntityJurassiCraftSmart) baby).setOwner(owner.getCommandSenderName());
+                                    this.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
                                 }
                             }
                             baby.setPosition(this.posX, this.posY, this.posZ);

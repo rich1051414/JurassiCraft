@@ -1,14 +1,14 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class JurassiCraftAINearestAttackableTarget extends EntityAITarget
 {
@@ -16,10 +16,10 @@ public class JurassiCraftAINearestAttackableTarget extends EntityAITarget
     private final Class targetClass;
     private final JurassiCraftAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
     private final IEntitySelector targetEntitySelector;
-    private final EntityJurassiCraftTameable attackerCreature;
+    private final EntityJurassiCraftSmart attackerCreature;
     private EntityLivingBase targetEntity;
 
-    public JurassiCraftAINearestAttackableTarget(EntityJurassiCraftTameable creature, Class target, boolean flag)
+    public JurassiCraftAINearestAttackableTarget(EntityJurassiCraftSmart creature, Class target, boolean flag)
     {
         super(creature, flag, false);
         this.targetClass = target;
@@ -49,7 +49,7 @@ public class JurassiCraftAINearestAttackableTarget extends EntityAITarget
         else
         {
             this.targetEntity = (EntityLivingBase) list.get(0);
-            return this.attackerCreature.checkTargetBeforeAttack(targetEntity);
+            return this.attackerCreature.checkTargetBeforeAttacking(targetEntity);
         }
     }
 

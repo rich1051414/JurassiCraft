@@ -1,5 +1,6 @@
-package net.ilexiconn.jurassicraft.ai.test;
+package net.ilexiconn.jurassicraft.ai;
 
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class JurassiCraftAIDrinking extends EntityAIBase

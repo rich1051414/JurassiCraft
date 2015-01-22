@@ -1,88 +1,92 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
+/**
+ * This AI makes an EntityJurassiCraftSmart walk if the creature is not sitting, sleeping, flying,
+ * or being ridden.
+ * 
+ * @author RafaMv
+ */
 public class JurassiCraftAIWander extends EntityAIBase
 {
-    private EntityJurassiCraftTameable creature;
-    private int leftWalk;
-    private double xPosition;
-    private double xDirection;
-    private double yPosition;
-    private double zPosition;
-    private double zDirection;
-    private double speed;
-    private double maxDistance;
-    private double maxHeight;
+	private EntityJurassiCraftSmart creature;
+	private double xPosition;
+	private double yPosition;
+	private double zPosition;
+	private double speed;
+	private int maxDistance;
+	private int maxHeight;
+	private int chanceToWalk;
+	private int timer;
 
-    public JurassiCraftAIWander(EntityJurassiCraftTameable entity, double distance, double height, double velocity)
-    {
-        this.creature = entity;
-        this.speed = velocity;
-        this.maxDistance = distance;
-        this.maxHeight = height;
-        this.setMutexBits(1);
-    }
+	public JurassiCraftAIWander(EntityJurassiCraftSmart entity, int chanceToWalk, double velocity)
+	{
+		this(entity, chanceToWalk, 16, 6, velocity);
+	}
 
-    public JurassiCraftAIWander(EntityJurassiCraftTameable entity, double velocity)
-    {
-        this.creature = entity;
-        this.speed = velocity;
-        this.maxDistance = 16;
-        this.maxHeight = 6;
-        this.setMutexBits(1);
-    }
+	public JurassiCraftAIWander(EntityJurassiCraftSmart entity, int chanceToWalk, int distance, int height, double velocity)
+	{
+		this.creature = entity;
+		this.chanceToWalk = chanceToWalk;
+		this.speed = velocity;
+		this.maxDistance = distance;
+		this.maxHeight = height;
+		this.setMutexBits(1);
+	}
 
-    public boolean shouldExecute()
-    {
-    	if (this.creature.isSitting() || this.creature.riddenByEntity != null)
-    	{
-    		return false;
-    	}
-    	else if (this.leftWalk > 0)
-        {
-            this.leftWalk--;
-            Vec3 toward = Vec3.createVectorHelper(this.xPosition + this.xDirection, 0, this.zPosition + this.zDirection);
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, (int) (this.maxDistance), (int) this.maxHeight, toward);
-            if (vec3 == null)
-            {
-                return false;
-            }
-            else
-            {
-                this.xPosition = vec3.xCoord;
-                this.yPosition = vec3.yCoord;
-                this.zPosition = vec3.zCoord;
-                return true;
-            }
-        }
-        else
-        {
-            if (this.creature.getRNG().nextInt(120) == 0)
-            {
-                this.leftWalk = (int) Math.sqrt(this.creature.getGrowthStage());
-                this.xDirection = this.creature.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
-                this.zDirection = this.creature.getRNG().nextInt((int) (this.maxDistance * 2) + 1) - this.maxDistance;
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+	public boolean shouldExecute() {
+		if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping())
+		{
+			return false;
+		}
+		else
+		{
+			if (timer < 0 && this.creature.getRNG().nextInt(this.chanceToWalk) == 0)
+			{
+				double xDirection = (double) (this.creature.getRNG().nextInt(this.maxDistance * 2 + 1) - this.maxDistance);
+				double zDirection = (double) (this.creature.getRNG().nextInt(this.maxDistance * 2 + 1) - this.maxDistance);
+				Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, this.maxDistance, this.maxHeight, Vec3.createVectorHelper(this.xPosition + xDirection, 0, this.zPosition + zDirection));
+				if (vec3 == null)
+				{
+					return false;
+				}
+				else
+				{
+					this.xPosition = vec3.xCoord;
+					this.yPosition = vec3.yCoord;
+					this.zPosition = vec3.zCoord;
+					return true;
+				}
+			}
+			else
+			{
+				this.timer--;
+				return false;
+			}
+		}
+	}
 
-    public void startExecuting()
-    {
-        this.creature.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
-    }
+	public void startExecuting()
+	{
+		this.creature.setSitting(false, null);
+		this.creature.setSleeping(false);
+		this.creature.setFlying(false);
+		this.creature.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+	}
 
-    public boolean continueExecuting()
-    {
-        return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity != null;
-    }
+	public boolean continueExecuting()
+	{
+		return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity == null && this.creature.getAttackTarget() == null;
+	}
 
+	@Override
+	public void resetTask()
+	{
+		this.creature.getNavigator().clearPathEntity();
+		this.timer = 50;
+	}
 }

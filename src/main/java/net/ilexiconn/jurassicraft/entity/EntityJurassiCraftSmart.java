@@ -1,9 +1,7 @@
-package net.ilexiconn.jurassicraft.ai.test;
+package net.ilexiconn.jurassicraft.entity;
 
 import net.ilexiconn.jurassicraft.ai.JCPathNavigate;
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftTameable;
+import net.ilexiconn.jurassicraft.ai.Status;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.ItemOnAStick;
@@ -34,10 +32,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implements IEntityOwnable {
 
 	protected int angryTicks;
+	protected int numberOfAllies;
 
 	public EntityJurassiCraftSmart(World world, Creature creature) {
 		super(world, creature);
-		
+		this.numberOfAllies = 0;
 		JCPathNavigate nav = new JCPathNavigate(this, world);
         ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6); // Rewrites the navigator
 	}
@@ -357,6 +356,22 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		}
 	}
 
+	/**
+	 * Sets the required number of creature of the same type to attack as group.
+	 */
+	public void setNumberOfAllies(int numberOfAllies)
+	{
+        this.numberOfAllies = numberOfAllies;
+    }
+
+	/**
+	 * Returns the required number of creature of the same type to attack as group.
+	 */
+    public int getNumberOfAllies()
+    {
+        return this.numberOfAllies;
+    }
+    
 	/** Returns true if the creature is attacking. */
 	public boolean isAttacking() {
 		return (this.getStatus() & Status.ATTACKING) == Status.ATTACKING;
@@ -368,6 +383,20 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 			this.setStatus(this.getStatus() | Status.ATTACKING);
 		} else {
 			this.setStatus(this.getStatus() & ~Status.ATTACKING);
+		}
+	}
+    
+	/** Returns true if the creature is attacking. */
+	public boolean isAngry() {
+		return (this.getStatus() & Status.ANGRY) == Status.ANGRY;
+	}
+
+	/** Sets if the creature is attacking. */
+	public void setAngry(boolean flag) {
+		if (flag && !this.isSleeping() && !this.isFleeing()) {
+			this.setStatus(this.getStatus() | Status.ANGRY);
+		} else {
+			this.setStatus(this.getStatus() & ~Status.ANGRY);
 		}
 	}
 
@@ -388,14 +417,40 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.angryTicks;
     }
+    
+	/**
+	 * Sets the angry level of this creature.
+	 */
+    protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity attacker) {
+    		creature.becomeAngry(attacker, 0.0F);
+	}
 
 	/**
-	 * Returns the angry ticks of the creature. Higher than zero means that the creature is
-	 * attacking.
+	 * Sets this creature to attack a target if it has a proper age. If it is also tamed, this will
+	 * check if the target is tamed by the owner of this creature.
 	 */
-    public boolean isAngry()
+    protected void becomeAngry(Entity target, float agePercentage)
     {
-        return this.angryTicks > 0;
+        if (this.isCreatureOlderThan(agePercentage))
+        {
+            if (this.isTamed())
+            {
+                if (this.checkTargetBeforeAttacking(target))
+                {
+            		if (this.isSitting())
+            			this.setSitting(false, null);
+                	this.setAttackTarget((EntityLivingBase) target);
+            		this.setAngry(true);
+                }
+            }
+            else
+            {
+        		if (this.isSitting())
+        			this.setSitting(false, null);
+            	this.setAttackTarget((EntityLivingBase) target);
+        		this.setAngry(true);
+            }
+        }
     }
 
 	/** Returns true if the creature is defending itself from some threat. */
@@ -426,6 +481,14 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	 */
 	public int getFleeingTick() {
 		return fleeingTick;
+	}
+
+	/** Sets the creature to flee. */
+	protected void startFleeing() {
+		if (this.isSitting())
+			this.setSitting(false, null);
+		this.setAttackTarget((EntityLivingBase) null);
+		this.setFleeing(true);
 	}
 	
 	/** Returns true if the creature was damaged recently. */
@@ -600,8 +663,8 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	 */
 	public boolean checkTargetBeforeAttacking(Entity target) {
 		if (target == (Entity) null || target == this || target == this.getOwner()) {
-			if (target instanceof EntityJurassiCraftTameable) {
-				return !this.isOwner(((EntityJurassiCraftTameable) target).getOwner());
+			if (target instanceof EntityJurassiCraftSmart) {
+				return !this.isOwner(((EntityJurassiCraftSmart) target).getOwner());
 			} else {
 				return true;
 			}
