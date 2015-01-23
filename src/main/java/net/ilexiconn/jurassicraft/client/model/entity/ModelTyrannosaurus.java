@@ -422,7 +422,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.endPhase();
         this.animator.setStationaryPhase(35);
         this.animator.resetPhase(15);
-        
+
         this.animator.setAnimation(2);
         this.animator.startPhase(15);
         this.animator.rotate(Neck, -0.4F, 0, 0);
@@ -434,6 +434,64 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.rotate(LowerJaw, 0.8F, 0, 0);
         this.animator.endPhase();
         this.animator.setStationaryPhase(35);
+        this.animator.resetPhase(15);
+
+        this.animator.setAnimation(3);
+        this.animator.startPhase(8);
+        this.animator.rotate(Waist, -0.35F, 0.0F, 0.0F);
+        this.animator.rotate(Tail1, 0.15F, 0.0F, 0.0F);
+        this.animator.rotate(Tail2, 0.125F, 0.0F, 0.0F);
+        this.animator.rotate(Tail3, 0.1F, 0.0F, 0.0F);
+        this.animator.rotate(Tail4, 0.1F, 0.0F, 0.0F);
+        this.animator.rotate(Tail5, 0.1F, 0.0F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(2);
+        this.animator.startPhase(4);
+        this.animator.rotate(Waist, -0.15F, 0.0F, 0.0F);
+        this.animator.rotate(Body, 0.25F, 0.0F, 0.0F);
+        this.animator.rotate(Chest, 0.3F, 0.0F, 0.0F);
+        this.animator.rotate(Neck, 0.25F, 0.0F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.6F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(4);
+        this.animator.rotate(Body, 0.0F, -0.05F, 0.0F);
+        this.animator.rotate(Chest, 0.0F, -0.05F, 0.0F);
+        this.animator.rotate(Neck, 0.0F, -0.2F, 0.0F);
+        this.animator.rotate(Head, 0.0F, -0.1F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.7F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(4);
+        this.animator.rotate(Body, 0.0F, -0.05F, 0.0F);
+        this.animator.rotate(Chest, 0.0F, -0.05F, 0.0F);
+        this.animator.rotate(Neck, 0.0F, -0.2F, 0.0F);
+        this.animator.rotate(Head, 0.0F, -0.1F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.7F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(8);
+        this.animator.rotate(Body, 0.0F, 0.2F, 0.0F);
+        this.animator.rotate(Chest, 0.0F, 0.2F, 0.0F);
+        this.animator.rotate(Neck, 0.0F, 0.8F, 0.0F);
+        this.animator.rotate(Head, 0.0F, 0.4F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.7F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(8);
+        this.animator.rotate(Body, 0.0F, -0.2F, 0.0F);
+        this.animator.rotate(Chest, 0.0F, -0.2F, 0.0F);
+        this.animator.rotate(Neck, 0.0F, -0.8F, 0.0F);
+        this.animator.rotate(Head, 0.0F, -0.4F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.7F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(8);
+        this.animator.rotate(Body, 0.0F, 0.2F, 0.0F);
+        this.animator.rotate(Chest, 0.0F, 0.2F, 0.0F);
+        this.animator.rotate(Neck, 0.0F, 0.8F, 0.0F);
+        this.animator.rotate(Head, 0.0F, 0.4F, 0.0F);
+        this.animator.rotate(LowerJaw, 0.7F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(2);
+        this.animator.rotate(LowerJaw, 0.0F, 0.0F, 0.0F);
+        this.animator.endPhase();
         this.animator.resetPhase(15);
     }
 }

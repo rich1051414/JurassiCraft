@@ -9,6 +9,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -20,6 +21,8 @@ import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -33,6 +36,7 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements IDinosaur, ICarnivore
@@ -46,6 +50,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	private boolean restingHead = false;
 	private int restHeadSwitchTimer = 300;
+	private double entityRiderYawDelta;
+	private double entityRiderPitchDelta;
 
     public EntityTyrannosaurus(World world)
     {
@@ -54,13 +60,14 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
+        this.tasks.addTask(3, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
         this.tasks.addTask(2, new AITyrannosaurusRoar(this));
-        this.tasks.addTask(6, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(6, new AITyrannosaurusEatingGallimimus(this, EntityGallimimus.class));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
@@ -82,6 +89,22 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.setCreatureExperiencePoints(6000);
     }
 
+    @Override
+    public void updateRiderPosition()
+    {
+        if (this.riddenByEntity != null)
+        {
+        	if (this.riddenByEntity instanceof EntityGallimimus)
+        	{
+                this.riddenByEntity.setPosition(this.posX, this.posY - this.riddenByEntity.height / 2.0D + this.getMountedYOffset(), this.posZ);
+        	}
+        	else
+        	{
+                this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ);
+        	}
+        }
+    }
+    
     public String getLivingSound()
     {
         int I = rand.nextInt(4) + 1;
@@ -93,7 +116,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             	if (this.moveForward == 0) {
                     if (!this.isSitting()) AnimationHandler.sendAnimationPacket(this, 1);}
             	else {
-                    AnimationHandler.sendAnimationPacket(this, 2);}
+                    AnimationHandler.sendAnimationPacket(this, 2);
+                    }
             }
             return null;
         }
@@ -157,6 +181,21 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 		if (!restingHead) restHeadProgress.decreaseTimer();
 		
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+		if (this.riddenByEntity instanceof EntityGallimimus)
+    	{
+			if (this.getAttackTarget() == this.riddenByEntity)
+				this.setAttackTarget((EntityLivingBase) null);
+			return false;
+    	}
+		else
+		{
+			return super.attackEntityAsMob(entity);
+		}
     }
 
     @Override

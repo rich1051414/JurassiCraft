@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityWaterCreature extends EntityJurassiCraftCreature
+public class EntityWaterCreature extends EntityJurassiCraftSmart
 {
     public EntityWaterCreature(World world, Creature creature)
     {

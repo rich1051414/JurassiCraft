@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -10,12 +13,13 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIParasaurolophusTrumpet;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -24,7 +28,9 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 public class EntityGallimimus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
@@ -76,6 +82,39 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource damageSource, float damage)
+    {
+        if ((this.getHealth() - damage) <= 0.0F && damageSource.getEntity() instanceof EntityTyrannosaurus)
+        {
+			EntityTyrannosaurus tyrannosaurus = (EntityTyrannosaurus) damageSource.getEntity();
+			this.setHealth(1.0F);
+			this.mountEntity(tyrannosaurus);
+			tyrannosaurus.setAttackTarget((EntityLivingBase) null);
+			this.setAttackTarget((EntityLivingBase) null);
+			return false;
+        }
+        else
+        {
+            return super.attackEntityFrom(damageSource, damage);
+        }
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+		if (this.ridingEntity instanceof EntityTyrannosaurus)
+    	{
+			if (this.getAttackTarget() == this.ridingEntity)
+				this.setAttackTarget((EntityLivingBase) null);
+			return false;
+    	}
+		else
+		{
+			return super.attackEntityAsMob(entity);
+		}
     }
     
     @Override
