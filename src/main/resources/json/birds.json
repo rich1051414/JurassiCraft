@@ -27,7 +27,7 @@
         "ticksToAdulthood":600000,
         "cultivateSpeed":1000,
         "favoriteFoodList":["item.beefRaw", "item.beefCooked", "item.porkchopRaw", "item.porkchopCooked", "item.chickenRaw", "item.chickenCooked"],
-        "ridingItemList":["item.BeefOnAStick", "item.FishOnAStick", "item.ChickenOnAStick", "item.PorkOnAStick"],
+        "ridingItemList":["item.BeefOnAStick", "item.ChickenOnAStick", "item.PorkOnAStick"],
         "isRidable":true,
         "livingSounds":[null],
         "hurtSound":null,

@@ -26,7 +26,7 @@
         "yBoxDelta":1.0,
         "ticksToAdulthood":840000,
         "cultivateSpeed":1000,
-        "favoriteFoodList":["item.fishRaw", "item.fishCooked"],
+        "favoriteFoodList":["item.fish.cod.raw", "item.fish.salmon.raw", "item.fish.cod.cooked", "item.fish.salmon.cooked"],
         "ridingItemList":[null],
         "isRidable":false,
         "livingSounds":[null],

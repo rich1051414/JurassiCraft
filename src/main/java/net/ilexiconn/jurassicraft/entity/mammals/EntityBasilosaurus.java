@@ -1,11 +1,30 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityLeaellynasaura;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityOviraptor;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -23,6 +42,17 @@ public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, IC
         this.jumpOnLand = false;
         this.attackInterval = 1;
         this.isAgressive = true;
+        
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
+        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
+        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
+        this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
+        this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySquid.class, 100, 0.2F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 100, 0.3F));
         this.setCreatureExperiencePoints(5000);
     }
 

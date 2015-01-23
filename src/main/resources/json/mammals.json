@@ -67,7 +67,7 @@
         "yBoxDelta":1.2,
         "ticksToAdulthood":840000,
         "cultivateSpeed":1000,
-        "favoriteFoodList":["item.beefRaw", "item.beefCooked", "item.porkchopRaw", "item.porkchopCooked", "item.fishRaw", "item.fishCooked", "item.chickenRaw", "item.chickenCooked"],
+        "favoriteFoodList":["item.beefRaw", "item.beefCooked", "item.porkchopRaw", "item.porkchopCooked", "item.fish.cod.raw", "item.fish.salmon.raw", "item.fish.cod.cooked", "item.fish.salmon.cooked", "item.chickenRaw", "item.chickenCooked"],
         "ridingItemList":["item.BeefOnAStick", "item.FishOnAStick", "item.ChickenOnAStick", "item.PorkOnAStick"],
         "isRidable":false,
 		"livingSounds":[null],
