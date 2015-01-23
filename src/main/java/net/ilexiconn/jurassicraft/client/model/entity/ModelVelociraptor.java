@@ -695,7 +695,7 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.rotate(Foot_Right, 0.2F, 0, 0);
         animator.rotate(Foot_Left, 0.2F, 0, 0);
         animator.endPhase();
-        animator.setStationaryPhase(7);
+        animator.setStationaryPhase(5);
         animator.startPhase(4);
         animator.move(Body_1, 0, -3, 0);
         animator.move(Tail_1, 0, 0, 0);
@@ -713,6 +713,7 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.rotate(Foot_Left, -1F, 0, 0);
         animator.endPhase();
 
+        animator.startPhase(2);
         animator.rotate(Body_1, -0.8F, 0, 0);
         animator.rotate(Neck, 0.8F, 0, 0);
         animator.rotate(Head, 0.5F, 0, 0);

@@ -9,6 +9,12 @@ public class AIVelociraptorLeap extends AIAnimation
 {
     private EntityVelociraptor entityRaptor;
     private EntityLivingBase attackTarget;
+    private double destX;
+    private double destZ;
+    private double targetSpeedX;
+    private double targetSpeedZ;
+    private double targetPrevPosX;
+    private double targetPrevPosZ;
 
     public AIVelociraptorLeap(EntityVelociraptor raptor)
     {
@@ -40,30 +46,37 @@ public class AIVelociraptorLeap extends AIAnimation
     public void resetTask()
     {
     	super.resetTask();
-        entityRaptor.getNavigator().tryMoveToEntityLiving(attackTarget, 1.5D);
     }
 
     public void updateTask()
     {
-        if (entityRaptor.getAnimationTick() < 12)
+        if (entityRaptor.getAnimationTick() < 10)
         {
             if (attackTarget != null)
             {
                 entityRaptor.getLookHelper().setLookPositionWithEntity(attackTarget, 30F, 30F);
             }
         }
+        
+        if (entityRaptor.getAnimationTick() == 9) {
+        	targetPrevPosX = attackTarget.posX;
+        	targetPrevPosZ = attackTarget.posZ;
+        }
 
-        if (entityRaptor.getAnimationTick() == 12)
+        if (entityRaptor.getAnimationTick() == 10)
         {
-            if (attackTarget != null)
+        	if (attackTarget != null)
             {
-                double d0 = attackTarget.posX - entityRaptor.posX;
-                double d1 = attackTarget.posZ - entityRaptor.posZ;
+        		targetSpeedX = attackTarget.posX - targetPrevPosX;
+        		targetSpeedZ = attackTarget.posZ - targetPrevPosZ;
+        		double leapDuration = 6;
+        		destX = attackTarget.posX + targetSpeedX*leapDuration*2;
+        		destZ = attackTarget.posZ + targetSpeedZ*leapDuration*2;
+                double d = Math.sqrt((destX - entityRaptor.posX) * (destX - entityRaptor.posX) + (destZ - entityRaptor.posZ) * (destZ - entityRaptor.posZ));
+                double a = Math.atan2((destZ - entityRaptor.posZ), (destX - entityRaptor.posX));
 
-                float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-
-                entityRaptor.motionX = 1.6 * (d0 / (double) f2 * 0.5D * 0.800000011920929D + entityRaptor.motionX * 0.20000000298023224D);
-                entityRaptor.motionZ = 1.6 * (d1 / (double) f2 * 0.5D * 0.800000011920929D + entityRaptor.motionZ * 0.20000000298023224D);
+                entityRaptor.motionX = (d/leapDuration)*Math.cos(a);
+                entityRaptor.motionZ = (d/leapDuration)*Math.sin(a);
                 entityRaptor.motionY = 0.6D;
                 entityRaptor.timeSinceLeap = 150;
 
