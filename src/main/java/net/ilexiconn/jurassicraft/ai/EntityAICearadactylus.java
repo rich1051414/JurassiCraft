@@ -1,15 +1,15 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import net.ilexiconn.jurassicraft.entity.reptiles.EntityCearadactylus;
+import net.ilexiconn.jurassicraft.entity.reptiles.EntityCearadactylusOld;
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAICearadactylus extends EntityAIBase
 {
 
-    private EntityCearadactylus theCearadactylus;
+    private EntityCearadactylusOld theCearadactylus;
     private boolean isFlying;
 
-    public EntityAICearadactylus(EntityCearadactylus dactylus)
+    public EntityAICearadactylus(EntityCearadactylusOld dactylus)
     {
         this.theCearadactylus = dactylus;
         this.setMutexBits(5);

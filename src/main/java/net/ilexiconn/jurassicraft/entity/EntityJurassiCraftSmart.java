@@ -25,8 +25,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  * This class holds many states of the creature, such as sitting, taming, sleeping, and other
  * behaviors. Every state is set by using bit flags.
  * 
- * NOTE: IT WILL REPLACE THE EntityJurassiCraftTameable!!!
- * 
  * @author RafaMv
  */
 public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implements IEntityOwnable {
