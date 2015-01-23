@@ -264,16 +264,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             {
                 super.moveEntityWithHeading(movementStrafing, movementForward);
             }
-            this.prevLimbSwingAmount = this.limbSwingAmount;
-            double d1 = this.posX - this.prevPosX;
-            double d0 = this.posZ - this.prevPosZ;
-            float f4 = MathHelper.sqrt_double(d1 * d1 + d0 * d0) * 4.0F;
-            if (f4 > 1.0F)
-            {
-                f4 = 1.0F;
-            }
-            this.limbSwingAmount = this.limbSwingAmount + (f4 - this.limbSwingAmount) * 0.4F;
-            this.limbSwing = this.limbSwing + this.limbSwingAmount;
+            this.handleLimbMovement();
         }
         else
         {
@@ -282,6 +273,21 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             super.moveEntityWithHeading(movementStrafing, movementForward);
         }
     }
+
+	/** Makes corrections to the limbSwing. */
+	protected void handleLimbMovement()
+	{
+		this.prevLimbSwingAmount = this.limbSwingAmount;
+		double pointX = this.posX - this.prevPosX;
+		double pointZ = this.posZ - this.prevPosZ;
+		float distance = MathHelper.sqrt_double(pointX * pointX + pointZ * pointZ) * 4.0F;
+		if (distance > 1.0F)
+		{
+			distance = 1.0F;
+		}
+		this.limbSwingAmount += (distance - this.limbSwingAmount) * 0.4F;
+		this.limbSwing += this.limbSwingAmount;
+	}
 
     /**
      * Decreases the held item durability and destroys the item if stack size is 0 or less.

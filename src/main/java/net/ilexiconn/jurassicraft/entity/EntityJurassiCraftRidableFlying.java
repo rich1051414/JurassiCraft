@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -13,8 +12,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 {
 	private static int MAX_TAKEOFF_TIME = 60;
 	private int takeOffTimer;
-	private float prevRearingAmount;
-	private float extra;
+	private int flapDelay;
 
 	public EntityJurassiCraftRidableFlying(World world, Creature creature)
 	{
@@ -91,8 +89,8 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 					 */
 					if (this.onGround)
 					{
-						this.motionX *= 0.7F;
-						this.motionZ *= 0.7F;
+						this.motionX *= 0.75F;
+						this.motionZ *= 0.75F;
 						this.setTakingOff(false);
 						this.setFlying(false);
 						this.resetTakeOffTimer();
@@ -102,7 +100,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 					this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 					//SERVER AND CLIENT CHECK LATER
 					this.onUpdateFlyingClient();
-					this.onUpdateFlyingServer();
+					this.onUpdateFlyingServerGlide();
 					/** END METHOD HERE IF FLYING. */
 					return;
 				}
@@ -183,7 +181,37 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 		this.handleLimbMovement();
 	}
 
-	private void onUpdateFlyingServer()
+	private void onUpdateFlyingServerGlide()
+	{
+		this.motionX = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
+		this.motionZ = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.cos(0.01745329251F * this.rotationYaw));
+		
+		/** Flap wings and go up if delay is negative */
+		if (this.getFlapDelay() < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed())
+		{
+			this.motionY += 1.5D;
+			this.setFlapDelay(20);
+		}
+		else
+		{
+			this.decreaseFlapDelay();
+			/** Decrease motion Y if delay is positive. Decrease more first. */
+			this.motionY *= 0.7D + 0.15D * Math.sin(1.57079632679D * (double) this.getFlapDelay() / 20.0D);
+		}
+
+		/** Go down if delay is negative, creature should keep flapping its wings */
+		if (this.getFlapDelay() < 0)
+		{
+			this.moveEntity(this.motionX, this.motionY - 0.2D, this.motionZ);
+		}
+		/** Keep the motion Y, which is decreasing to 0 gradually, if delay is positive */
+		else
+		{
+			this.moveEntity(this.motionX, this.motionY, this.motionZ);
+		}
+	}
+
+	private void onUpdateFlyingServerFreeMovement()
 	{
 		if (this.motionY <= 2.0F * this.getMountingSpeed() && Minecraft.getMinecraft().gameSettings.keyBindForward.getIsKeyPressed())
 		{
@@ -198,30 +226,19 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 		this.moveEntity(this.motionX, this.motionY + 0.05D, this.motionZ);
 	}
 
-	private void handleLimbMovement()
-	{
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double pointX = this.posX - this.prevPosX;
-		double pointZ = this.posZ - this.prevPosZ;
-		float distance = MathHelper.sqrt_double(pointX * pointX + pointZ * pointZ) * 4.0F;
-		if (distance > 1.0F)
-		{
-			distance = 1.0F;
-		}
-		this.limbSwingAmount += (distance - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
-	}
-
+	/** Returns if the creature is flyable or not. Value can be set using the creature's json file. */
 	public boolean isCreatureFlyable()
 	{
 		return this.getCreature().isFlyingCreature();
 	}
 
+	/** Sets the number of required ticks to start flying. */
 	public void setMaximumTakeOffTime(int maxTime)
 	{
 		this.MAX_TAKEOFF_TIME = maxTime;
 	}
 
+	/** Returns the number of required ticks to start flying. Override this to set a new value different from default. */
 	protected int getMaximumTakeOffTime()
 	{
 		return MAX_TAKEOFF_TIME;
@@ -271,6 +288,21 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 		return result * result;
 	}
 
+	private void setFlapDelay(int time)
+	{
+		this.flapDelay = time;
+	}
+
+	private void decreaseFlapDelay()
+	{
+		this.flapDelay--;
+	}
+
+	public int getFlapDelay()
+	{
+		return this.flapDelay;
+	}
+	
 	@Override
 	public void collideWithEntity(Entity target)
 	{
