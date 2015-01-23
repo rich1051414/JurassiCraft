@@ -198,10 +198,6 @@ public class ModelCarnotaurus extends MowzieModelBase
         footRight.rotationPointY += 0.88;
         footLeft.rotateAngleZ -= 0.05;
         footRight.rotateAngleZ -= 0.05;
-        rightHand.rotationPointZ -= 1;
-        leftHand.rotationPointZ -= 1;
-        rightHand.rotationPointY += 1;
-        leftHand.rotationPointY += 1;
 
 		this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
 		this.bodyParts = new MowzieModelRenderer[] { this.head, this.neck, this.body2, this.body1, this.bodyMain };
