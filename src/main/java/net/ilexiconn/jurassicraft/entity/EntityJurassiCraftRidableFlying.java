@@ -13,6 +13,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 	private static int MAX_TAKEOFF_TIME = 60;
 	private int takeOffTimer;
 	private int flapDelay;
+	public float adjustYaw = 0;
 
 	public EntityJurassiCraftRidableFlying(World world, Creature creature)
 	{
@@ -164,15 +165,16 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 
 	private void onUpdateFlyingClient()
 	{
-		float adjustYaw = 0.0F;
 		this.stepHeight = 0.0F;
-		if (Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed())
+		if (adjustYaw > 0) adjustYaw -= 0.1;
+		if (adjustYaw < 0) adjustYaw += 0.1;
+		if (Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed() && adjustYaw < 2.4F)
 		{
-			adjustYaw += 2.5F;
+			adjustYaw += 0.2F;
 		}
-		if (Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed())
+		if (Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed() && adjustYaw > -2.4F)
 		{
-			adjustYaw -= 2.5F;
+			adjustYaw -= 0.2F;
 		}
 		this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw + adjustYaw);
 		this.prevRotationYaw = this.rotationYaw;
