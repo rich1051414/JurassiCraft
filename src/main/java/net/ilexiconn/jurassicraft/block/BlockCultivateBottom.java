@@ -49,7 +49,7 @@ public class BlockCultivateBottom extends BlockContainer
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        return this.icons[metadata % this.icons.length];
+        return this.icons[metadata];
     }
 
     @Override
@@ -60,17 +60,12 @@ public class BlockCultivateBottom extends BlockContainer
             list.add(new ItemStack(item, 1, i));
     }
 
-    public static int getColor(int metadata)
-    {
-        return ~metadata & 15;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         for (int i = 0; i < this.icons.length; i++)
-            this.icons[i] = iconRegister.registerIcon(this.getTextureName() + "_" + ItemDye.field_150921_b[this.getColor(i)]);
+            this.icons[i] = iconRegister.registerIcon(this.getTextureName() + "_" + ItemDye.field_150921_b[i]);
     }
 
     @Override

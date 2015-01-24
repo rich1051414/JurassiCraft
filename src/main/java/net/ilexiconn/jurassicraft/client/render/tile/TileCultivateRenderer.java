@@ -11,6 +11,7 @@ import net.ilexiconn.jurassicraft.tile.TileCultivate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemDye;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +29,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         this.embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
         this.cultivateTextures = new ResourceLocation[BlockCultivateBottom.icons.length];
         for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
-        	this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + BlockCultivateBottom.icons[i] + ".png");
+        	this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + ItemDye.field_150921_b[i] + ".png");
     }
 
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float meta)
