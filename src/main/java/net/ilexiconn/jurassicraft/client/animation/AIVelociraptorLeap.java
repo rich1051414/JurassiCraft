@@ -84,11 +84,11 @@ public class AIVelociraptorLeap extends AIAnimation
 
                 if (I >= 0.5D)
                 {
-                    entityRaptor.playSound("jurassicraft:RapCall01", 1.0F, 1.0F);
+                    entityRaptor.playSound("jurassicraft:velociraptorCall01", 1.0F, 1.0F);
                 }
                 else
                 {
-                    entityRaptor.playSound("jurassicraft:RapCall02", 1.0F, 1.0F);
+                    entityRaptor.playSound("jurassicraft:velociraptorCall02", 1.0F, 1.0F);
                 }
             }
         }

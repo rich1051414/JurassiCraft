@@ -106,6 +106,17 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     }
 
     @Override
+    public String getLivingSound()
+    {
+        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
+        int I = rand.nextInt(4) + 1;
+        if (I == 1) return "jurassicraft:velociraptorHiss01";
+        if (I == 2) return "jurassicraft:velociraptorHiss02";
+        if (I == 3) return "jurassicraft:velociraptorHiss03";
+        else return "jurassicraft:velociraptorBark03";
+    }
+    
+    @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;
