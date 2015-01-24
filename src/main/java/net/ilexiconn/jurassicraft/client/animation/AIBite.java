@@ -33,7 +33,7 @@ public class AIBite extends AIAnimation {
 			attackTarget = entityDino.getAttackTarget();
 		}
 		public void updateTask() {
-			if(entityDino.getAnimationTick() < 10)
+			if(entityDino.getAnimationTick() < 10 && attackTarget != null)
 				entityDino.getLookHelper().setLookPositionWithEntity(attackTarget, 30F, 30F);
 			if(entityDino.getAnimationTick() == 10 && attackTarget != null)
 				attackTarget.attackEntityFrom(DamageSource.causeMobDamage(entityDino), (float) entityDino.getCreatureAttack());
