@@ -86,7 +86,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 30, 0.2F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 10, 0.1F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 40, 0.3F));
-        this.setCreatureExperiencePoints(6000);
+        this.setCreatureExperiencePoints(5500);
     }
 
     @Override
@@ -98,19 +98,18 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         	{
 				this.riddenByEntity.rotationYaw = this.rotationYaw - 150.0F;
 				((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
-				double extraX = (double) (0.42F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
-				double extraZ = (double) (0.42F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
+				double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
+				double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
 				double extraY = 0.0D;
-				//System.out.println("this.animID " + this.animID + ", this.animTick: " + this.animTick);
-
+				
 				if (this.animTick > 13 && this.animTick <= 18)
 				{
-					extraY += (double) (((this.animTick - 14) / 5.0D) * (-this.riddenByEntity.height / 2.0D + this.getMountedYOffset()));
+					extraY += (double) (this.height * 0.4F * (this.animTick - 14) / 5.0D);
 				}
 				else if (this.animTick > 18 && this.animTick < 50)
 				{
 					//MISSING XZ MOTION
-					extraY += (double) (-this.riddenByEntity.height / 2.0D + this.getMountedYOffset());
+					extraY += (double) (this.height * 0.4F);
 				}
         		this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
         	}
@@ -136,8 +135,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         this.stepCount -= this.moveForward * 9.5;
         
-        //Breathing Sound
-        if (this.frame % 62 == 28) this.playSound("jurassicraft:trexbreath", 1.0F, this.getSoundPitch());
+        //Breathing Sound MISSING SOUND
+        //if (this.frame % 62 == 28) this.playSound("jurassicraft:trexbreath", 1.0F, this.getSoundPitch());
 
 
         //Sitting Animation

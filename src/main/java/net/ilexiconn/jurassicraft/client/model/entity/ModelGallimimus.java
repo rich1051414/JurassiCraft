@@ -506,7 +506,7 @@ public class ModelGallimimus extends MowzieModelBase
         this.animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
         this.animator.rotate(this.Head, -0.3F, 0.0F, 0.0F);
         this.animator.endPhase();
-        this.animator.setStationaryPhase(40);
-        this.animator.resetPhase(15);
+        this.animator.setStationaryPhase(41);
+        this.animator.resetPhase(0);
     }
 }

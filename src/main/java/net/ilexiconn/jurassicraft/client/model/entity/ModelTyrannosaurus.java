@@ -492,6 +492,6 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.startPhase(2);
         this.animator.rotate(LowerJaw, 0.0F, 0.0F, 0.0F);
         this.animator.endPhase();
-        this.animator.resetPhase(15);
+        this.animator.resetPhase(2);
     }
 }

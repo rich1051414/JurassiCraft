@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -50,10 +51,10 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 30, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(4, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(4, new AIGallimimusBeingEaten(this));
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 30, 0.7D * this.getCreatureSpeed()));
         //Removed for now.
         //this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
-        this.tasks.addTask(5, new AIGallimimusBeingEaten(this));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new JurassiCraftAIHerdBehavior(this, 128, 2500, 24, this.getCreatureSpeed()));
@@ -94,12 +95,14 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         if ((this.getHealth() - damage) <= 0.0F && damageSource.getEntity() instanceof EntityTyrannosaurus)
         {
 			EntityTyrannosaurus tyrannosaurus = (EntityTyrannosaurus) damageSource.getEntity();
-			if (tyrannosaurus.getAnimationId() == 0)
+			if (this.riddenByEntity == null && tyrannosaurus.getAnimationId() == 0 && this.rand.nextBoolean())
 			{
 				this.setHealth(1.0F);
 				this.mountEntity(tyrannosaurus);
 				tyrannosaurus.setAttackTarget((EntityLivingBase) null);
 				this.setAttackTarget((EntityLivingBase) null);
+				AnimationHandler.sendAnimationPacket(tyrannosaurus, 3);
+				AnimationHandler.sendAnimationPacket(this, 1);
 				return false;
 			}
         }

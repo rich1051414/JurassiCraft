@@ -24,7 +24,7 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 
     public int getDuration()
     {
-        return 60;
+        return 50;
     }
 	
     public boolean isAutomatic()
@@ -37,13 +37,7 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 		if (this.tyrannosaurus.riddenByEntity != null && this.tyrannosaurus.riddenByEntity instanceof EntityGallimimus)
 		{
 			EntityGallimimus gallimimus = (EntityGallimimus) this.tyrannosaurus.riddenByEntity;
-			if (gallimimus.getHealth() <= 1.0F)
-			{
-				this.tyrannosaurus.setDrinking(false);
-				AnimationHandler.sendAnimationPacket(this.tyrannosaurus, this.getAnimationId());
-				AnimationHandler.sendAnimationPacket(gallimimus, 1);
-				return this.tyrannosaurus.getAnimationId() == this.getAnimationId();
-			}
+			return this.tyrannosaurus.getAnimationId() == this.getAnimationId();
 		}
 		return false;
 	}
@@ -68,8 +62,9 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
     	super.resetTask();
     	if (this.gallimimus != null)
 		{
-        	this.gallimimus.dismountEntity(this.tyrannosaurus);
-        	//this.gallimimus.setDead(); LATER
+        	this.tyrannosaurus.dismountEntity(this.gallimimus);
+			this.gallimimus.setHealth(0.0F);
+        	this.gallimimus.setDead();
 		}
     }
 }
