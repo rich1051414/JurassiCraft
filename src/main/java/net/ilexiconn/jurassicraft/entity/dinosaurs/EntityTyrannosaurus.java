@@ -120,51 +120,6 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         	}
         }
     }
-    
-    public String getLivingSound()
-    {
-        int I = rand.nextInt(4) + 1;
-        if (I == 1 && this.getCreatureAgeInDays() >= 25)
-        {
-            this.playSound("jurassicraft:trex1", 5.0F, this.getSoundPitch());
-            if (animID == 0)
-            {
-				if (this.moveForward == 0)
-				{
-					if (!this.isSitting())
-						if (this.animID == 0)
-							AnimationHandler.sendAnimationPacket(this, 1);
-				}
-				else
-				{
-					if (this.animID == 0)
-						AnimationHandler.sendAnimationPacket(this, 2);
-				}
-            }
-            return null;
-        }
-        else if (I == 2)
-        {
-            this.playSound("jurassicraft:trex2", 5.0F, this.getSoundPitch());
-            return null;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public String getHurtSound()
-    {
-        this.playSound("jurassicraft:trex3", 5.0F, this.getSoundPitch());
-        return null;
-    }
-
-    public String getDeathSound()
-    {
-        this.playSound("jurassicraft:trex3", 5.0F, this.getSoundPitch());
-        return null;
-    }
 
     public void onUpdate()
     {

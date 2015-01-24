@@ -56,35 +56,6 @@ public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMam
     {
         return 350;
     }
-
-	@Override
-	public String getLivingSound()
-	{
-		switch (this.rand.nextInt(2))
-		{
-			case 0:
-				this.playSound("jurassicraft:LeptictidiumSay1", this.getSoundVolume(), this.getSoundPitch());
-				break;
-			case 1:
-				this.playSound("jurassicraft:LeptictidiumSay2", this.getSoundVolume(), this.getSoundPitch());
-				break;
-		}
-		return null;
-	}
-
-	@Override
-	public String getHurtSound()
-	{
-		this.playSound("jurassicraft:LeptictidiumHit", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
-	@Override
-	public String getDeathSound()
-	{
-		this.playSound("jurassicraft:LeptictidiumDeath", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
     
     @Override
     public void onUpdate()

@@ -79,24 +79,6 @@ public class EntityTitanis extends EntityJurassiCraftGroupAggressive implements 
     }
 
     @Override
-    public String getLivingSound()
-    {
-        return this.getCreature().pickLivingSound();
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        return this.getCreature().getHurtSound();
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        return this.getCreature().getDeathSound();
-    }
-
-    @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;

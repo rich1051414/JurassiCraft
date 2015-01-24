@@ -2,7 +2,15 @@ package net.ilexiconn.jurassicraft.entity;
 
 import io.netty.buffer.ByteBuf;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
@@ -17,6 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import org.apache.commons.lang3.StringUtils;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -795,21 +804,21 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     @Override
     public String getLivingSound()
     {
-        this.playSound(this.getCreature().pickLivingSound(), this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
     @Override
     public String getHurtSound()
     {
-        this.playSound(this.getCreature().getHurtSound(), this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
     @Override
     public String getDeathSound()
     {
-        this.playSound(this.getCreature().getDeathSound(), this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 

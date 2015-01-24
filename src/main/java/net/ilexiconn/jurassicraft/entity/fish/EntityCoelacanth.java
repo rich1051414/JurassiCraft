@@ -33,24 +33,6 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     }
 
     @Override
-    public String getLivingSound()
-    {
-        return null;
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        return null;
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        return null;
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();

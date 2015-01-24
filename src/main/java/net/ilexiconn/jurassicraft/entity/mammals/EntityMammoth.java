@@ -65,35 +65,6 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         return 400;
     }
 
-	@Override
-	public String getLivingSound()
-	{
-		switch (this.rand.nextInt(2))
-		{
-			case 0:
-				this.playSound("jurassicraft:MammothSay1", this.getSoundVolume(), this.getSoundPitch());
-				break;
-			case 1:
-				this.playSound("jurassicraft:MammothSay2", this.getSoundVolume(), this.getSoundPitch());
-				break;
-		}
-		return null;
-	}
-
-	@Override
-	public String getHurtSound()
-	{
-		this.playSound("jurassicraft:MammothHit", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
-	@Override
-	public String getDeathSound()
-	{
-		this.playSound("jurassicraft:MammothDeath", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

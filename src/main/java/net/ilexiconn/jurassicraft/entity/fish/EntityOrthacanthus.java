@@ -28,26 +28,6 @@ public class EntityOrthacanthus extends EntitySwimmingBase implements IFish, IPi
         this.setCreatureExperiencePoints(50);
     }
 
-  
-
-    @Override
-    public String getLivingSound()
-    {
-        return null;
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        return null;
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        return null;
-    }
-
     @Override
     public void onUpdate()
     {

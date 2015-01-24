@@ -1,3 +1,6 @@
+@Grab( 'commons-lang:commons-lang:2.6' )
+import org.apache.commons.lang.StringUtils
+
 buildscript {
     repositories {
         mavenCentral()
@@ -35,7 +38,6 @@ processResources {
         include 'mcmod.info'
         include 'changelog.info'
         include 'json/*.json'
-        include 'soundList.txt'
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 
@@ -43,28 +45,11 @@ processResources {
         exclude 'mcmod.info'
         exclude 'changelog.info'
         exclude 'json/*.json'
-        exclude 'soundList.txt'
     }
 }
 
 jar {
     classifier = 'universal'
-}
-
-task assetRefresh << {
-    if (System.properties['os.name'].toLowerCase().contains('windows')) {
-        new File("src/main/resources/soundList.txt").delete()
-        new File("src/main/resources/assets/jurassicraft/sounds").eachFileRecurse() { file ->
-            println file.getPath().minus("src\\main\\resources\\")
-            new File("src/main/resources/soundList.txt").append(file.getPath().minus("src\\main\\resources\\") + System.getProperty("line.separator"))
-        }
-    } else {
-        new File("src/main/resources/soundList.txt").delete()
-        new File("src/main/resources/assets/jurassicraft/sounds").eachFileRecurse() { file->
-            println file.getPath().minus("src/main/resources/")
-            new File("src/main/resources/soundList.txt").append(file.getPath().minus("src/main/resources/") + System.getProperty("line.separator"))
-        }
-    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

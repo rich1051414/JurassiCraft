@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.ilexiconn.jurassicraft.dinoconfig.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
@@ -29,9 +28,6 @@ public class Creature
     private byte addItemTypes;
 
     private String creatureName;
-    private ArrayList<String> livingSounds;
-    private String hurtSound;
-    private String deathSound;
 
     private double minHealth;
     private double minStrength;
@@ -94,11 +90,8 @@ public class Creature
         this.creatureID = def.creatureID;
         this.creatureName = def.creatureName;
         this.cultivateSpeed = def.cultivateSpeed;
-        this.deathSound = def.deathSound;
         this.favoriteFoodList = def.favoriteFoodList;
-        this.hurtSound = def.hurtSound;
         this.isRidable = def.isRidable;
-        this.livingSounds = def.livingSounds;
         this.maxHealth = def.maxHealth;
         this.maxHeight = def.maxHeight;
         this.maxKnockback = def.maxKnockback;
@@ -279,23 +272,6 @@ public class Creature
     	GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
     }
 
-    public String pickLivingSound()
-    {
-        Random rand = new Random();
-
-        return getLivingSound(rand.nextInt(livingSounds.size()));
-    }
-
-    public String getDeathSound()
-    {
-        return this.deathSound;
-    }
-
-    public String getHurtSound()
-    {
-        return this.hurtSound;
-    }
-
     public String getCreatureName()
     {
         return this.creatureName;
@@ -412,25 +388,6 @@ public class Creature
     public int getInfoPageCount()
     {
         return this.numberOfInfoPages;
-    }
-
-    public String getLivingSound(int soundIndex)
-    {
-        if (soundIndex >= this.livingSounds.size())
-        {
-            soundIndex = this.livingSounds.size() - 1;
-        }
-
-        String sound = this.livingSounds.get(soundIndex);
-
-        if (sound == "")
-        {
-            return null;
-        }
-        else
-        {
-            return sound;
-        }
     }
 
     public float getMaxLength()

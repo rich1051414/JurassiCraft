@@ -81,22 +81,6 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
     }
 
     @Override
-    public String getLivingSound()
-    {
-        int I = this.rand.nextInt(3);
-
-        if (I <= 1)
-        {
-            return this.getCreature().getLivingSound(I);
-        }
-        else
-        {
-            if (timeUntilCanCall == 0 && animID == 0) AnimationHandler.sendAnimationPacket(this, 1);
-            return null;
-        }
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();

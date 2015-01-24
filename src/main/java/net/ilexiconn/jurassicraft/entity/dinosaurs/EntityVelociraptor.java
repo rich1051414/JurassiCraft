@@ -105,23 +105,6 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.leaping = l;
     }
 
-    public String getLivingSound()
-    {
-        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
-        int I = rand.nextInt(4) + 1;
-        if (I == 1) return "jurassicraft:RapHiss01";
-        if (I == 2) return "jurassicraft:RapHiss02";
-        if (I == 3) return "jurassicraft:RapHiss03";
-        else return "jurassicraft:RapBark03";
-    }
-
-    public String getDeathSound()
-    {
-        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
-
-        return super.getDeathSound();
-    }
-
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

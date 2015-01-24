@@ -60,28 +60,6 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
         return 350;
 	}
 
-	@Override
-	public String getLivingSound()
-	{
-		this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
-	@Override
-	public String getHurtSound()
-	{
-		if (this.rand.nextBoolean())
-			this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
-	@Override
-	public String getDeathSound()
-	{
-		this.playSound("jurassicraft:CearadactylusCall1", this.getSoundVolume(), this.getSoundPitch());
-		return null;
-	}
-
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttag)
     {
