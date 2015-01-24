@@ -22,16 +22,16 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
         }
         else
         {
-            Entity attacker = damageSource.getEntity();
-            if (attacker != (Entity) null && this.checkTargetBeforeAttacking(attacker))
+            Entity entity = damageSource.getEntity();
+            if (entity != (Entity) null && entity instanceof EntityLivingBase)
             {
-                this.setCreatureAngry(this, attacker);
-                return super.attackEntityFrom(damageSource, damage);
+            	EntityLivingBase attacker = (EntityLivingBase) entity;
+            	if (this.checkTargetBeforeAttacking(attacker))
+                {
+                    this.setCreatureAngry(this, attacker);
+                }
             }
-            else
-            {
-                return super.attackEntityFrom(damageSource, damage);
-            }
+            return super.attackEntityFrom(damageSource, damage);
         }
     }
 

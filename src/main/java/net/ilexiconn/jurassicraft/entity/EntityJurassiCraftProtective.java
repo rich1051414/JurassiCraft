@@ -28,70 +28,74 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
             List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0D, 8.0D, 16.0D));
             ArrayList<EntityJurassiCraftProtective> listChildren = new ArrayList<EntityJurassiCraftProtective>();
             ArrayList<EntityJurassiCraftProtective> listAdult = new ArrayList<EntityJurassiCraftProtective>();
-            Entity attacker = damageSource.getEntity();
-            int count = 0;
-            if (this.isCreatureAdult())
+            Entity entity = damageSource.getEntity();
+            if (entity instanceof EntityLivingBase)
             {
-                listAdult.add(this);
-            }
-            else
-            {
-                listChildren.add(this);
-            }
-            for (Entity entityNeighbor : list)
-            {
-                if (entityNeighbor.getClass() == this.getClass())
+            	EntityLivingBase attacker = (EntityLivingBase) entity;
+            	int count = 0;
+                if (this.isCreatureAdult())
                 {
-                    EntityJurassiCraftProtective validEntityNeighbor = (EntityJurassiCraftProtective) entityNeighbor;
-                    if (validEntityNeighbor.isCreatureAdult())
-                    {
-                        listAdult.add(validEntityNeighbor);
-                        count++;
-                    }
-                    else
-                    {
-                        listChildren.add(validEntityNeighbor);
-                    }
+                    listAdult.add(this);
                 }
-            }
-            if (!listChildren.isEmpty())
-            {
-                for (EntityJurassiCraftProtective children : listChildren)
+                else
                 {
-                	children.startFleeing();
+                    listChildren.add(this);
                 }
-            }
-            if (!this.isCreatureAdult())
-            {
-                if (!listAdult.isEmpty())
+                for (Entity entityNeighbor : list)
                 {
-                    for (EntityJurassiCraftProtective adult : listAdult)
+                    if (entityNeighbor.getClass() == this.getClass())
                     {
-                    	adult.becomeAngry(attacker, 0.0F);
-                    }
-                }
-            }
-            else
-            {
-                if (attacker != this.getOwner())
-                {
-                    if (count >= this.numberOfAllies)
-                    {
-                        if (!listAdult.isEmpty())
+                        EntityJurassiCraftProtective validEntityNeighbor = (EntityJurassiCraftProtective) entityNeighbor;
+                        if (validEntityNeighbor.isCreatureAdult())
                         {
-                            for (EntityJurassiCraftProtective adult : listAdult)
-                            {
-                            	adult.becomeAngry(attacker, 0.0F);
-                            }
+                            listAdult.add(validEntityNeighbor);
+                            count++;
+                        }
+                        else
+                        {
+                            listChildren.add(validEntityNeighbor);
                         }
                     }
-                    else
+                }
+                if (!listChildren.isEmpty())
+                {
+                    for (EntityJurassiCraftProtective children : listChildren)
                     {
-                        if (!listAdult.isEmpty())
+                    	children.startFleeing();
+                    }
+                }
+                if (!this.isCreatureAdult())
+                {
+                    if (!listAdult.isEmpty())
+                    {
+                        for (EntityJurassiCraftProtective adult : listAdult)
                         {
-                            for (EntityJurassiCraftProtective adult : listAdult)
+                        	adult.becomeAngry(attacker, 0.0F);
+                        }
+                    }
+                }
+                else
+                {
+                    if (attacker != this.getOwner())
+                    {
+                        if (count >= this.numberOfAllies)
+                        {
+                            if (!listAdult.isEmpty())
                             {
-                            	adult.startFleeing();
+                                for (EntityJurassiCraftProtective adult : listAdult)
+                                {
+                                	adult.becomeAngry(attacker, 0.0F);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (!listAdult.isEmpty())
+                            {
+                                for (EntityJurassiCraftProtective adult : listAdult)
+                                {
+                                	adult.startFleeing();
+                                }
                             }
                         }
                     }

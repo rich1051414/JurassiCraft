@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -9,12 +12,17 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIStegosaurusTailWhip;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.client.animation.AIStegosaurusTailWhip;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -23,10 +31,12 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntityStegosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
+	public EntityLivingBase creatureToAttack;
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public EntityStegosaurus(World world)
@@ -36,6 +46,8 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
+        this.tasks.addTask(2, new JurassiCraftAIStegosaurusTailWhip(this));
+        this.tasks.addTask(2, new AIStegosaurusTailWhip(this));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
@@ -68,10 +80,81 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
     public void onUpdate()
     {
         super.onUpdate();
+        if (this.rand.nextInt(35) == 0 && !this.isDefending() && this.isCreatureOlderThan(0.5F))
+        {
+        	this.creatureToAttack = this.findClosestTyrannosaurus(this, 20, 8, 20);
+        	if (this.creatureToAttack != null)
+        	{
+        		if (this.creatureToAttack instanceof EntityTyrannosaurus)
+            	{
+            		this.setDefending(((EntityTyrannosaurus) this.creatureToAttack).isCreatureOlderThan(0.5F));
+            	}
+        		else
+        		{
+            		this.setDefending(true);
+        		}
+        	}
+        }
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
 
-    @Override
+	@Override
+	public void collideWithEntity(Entity target)
+	{
+		if (this.isDefending() && this.getAnimationId() == JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+		{
+			target.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (2.0D * this.getCreatureAttack()));
+			double deltaX = target.posX - target.posX;
+			double deltaZ = target.posZ - target.posZ;
+			double angleYaw = (float) Math.atan2(deltaZ, deltaX);
+			target.motionX += 1.1D * Math.cos(angleYaw);
+			target.motionZ += 1.1D * Math.sin(angleYaw);
+			target.motionY += 0.4D;
+		}
+		else
+		{
+			super.collideWithEntity(target);
+		}
+	}
+
+	public EntityTyrannosaurus findClosestTyrannosaurus(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityTyrannosaurus> listOfTargets = new ArrayList<EntityTyrannosaurus>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityTyrannosaurus)
+			{
+				listOfTargets.add((EntityTyrannosaurus) entity);
+			}
+		}
+		if (!listOfTargets.isEmpty())
+		{
+			EntityTyrannosaurus closestTyrannosaurus = null;
+			double distanceSq = 864.0D;
+			for (EntityTyrannosaurus closeTarget : listOfTargets)
+			{
+				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
+				if (nextDistance < distanceSq)
+				{
+					distanceSq = nextDistance;
+					closestTyrannosaurus = closeTarget;
+				}
+			}
+			return closestTyrannosaurus;
+		}
+		return null;
+	}
+
+	public EntityLivingBase getCreatureToAttack() {
+		return this.creatureToAttack;
+	}
+
+	public EntityLivingBase setCreatureToAttack(EntityLivingBase creature) {
+		return this.creatureToAttack = creature;
+	}
+	
+	@Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
     	float developmentFraction = this.getGrowthStage() / 120.0F;

@@ -2,21 +2,21 @@ package net.ilexiconn.jurassicraft.client.animation;
 
 public enum JurassiCraftAnimationIDs
 {
-	ANIMATION_BITE((byte) 1),
-	ANIMATION_HEADBUTT((byte) 2),
-	ANIMATION_PECK((byte) 3),
-	ANIMATION_TAIL_SLAM((byte) 4),
-	ANIMATION_TAIL_WHIP((byte) 5),
-	ANIMATION_SCRATCH((byte) 6),
-	ANIMATION_TRUMPET((byte) 7),
-	ANIMATION_CHARGE((byte) 8),
-	ANIMATION_LEAP((byte) 9),
-	ANIMATION_TWITCH_HEAD((byte) 10),
-	ANIMATION_WALK_ROAR((byte) 11),
-	ANIMATION_ROAR((byte) 12),
-	ANIMATION_BEING_EATEN((byte) 13),
-	ANIMATION_EATING((byte) 14),
-	ANIMATION_PLAYING((byte) 15);
+	BITE((byte) 1),
+	HEADBUTT((byte) 2),
+	PECK((byte) 3),
+	TAIL_SLAM((byte) 4),
+	TAIL_WHIP((byte) 5),
+	SCRATCH((byte) 6),
+	TRUMPET((byte) 7),
+	CHARGE((byte) 8),
+	LEAP((byte) 9),
+	TWITCH_HEAD((byte) 10),
+	WALK_ROAR((byte) 11),
+	ROAR((byte) 12),
+	BEING_EATEN((byte) 13),
+	EATING((byte) 14),
+	PLAYING((byte) 15);
 
 	private JurassiCraftAnimationIDs(byte id)
 	{

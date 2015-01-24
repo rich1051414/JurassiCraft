@@ -420,14 +420,15 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	 * Sets the angry level of this creature.
 	 */
     protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity attacker) {
-    		creature.becomeAngry(attacker, 0.0F);
+    	if (attacker instanceof EntityLivingBase)
+    		creature.becomeAngry((EntityLivingBase) attacker, 0.0F);
 	}
 
 	/**
 	 * Sets this creature to attack a target if it has a proper age. If it is also tamed, this will
 	 * check if the target is tamed by the owner of this creature.
 	 */
-    protected void becomeAngry(Entity target, float agePercentage)
+    protected void becomeAngry(EntityLivingBase target, float agePercentage)
     {
         if (this.isCreatureOlderThan(agePercentage))
         {
@@ -437,7 +438,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
                 {
             		if (this.isSitting())
             			this.setSitting(false, null);
-                	this.setAttackTarget((EntityLivingBase) target);
+                	this.setAttackTarget(target);
             		this.setAngry(true);
                 }
             }
@@ -445,7 +446,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             {
         		if (this.isSitting())
         			this.setSitting(false, null);
-            	this.setAttackTarget((EntityLivingBase) target);
+            	this.setAttackTarget(target);
         		this.setAngry(true);
             }
         }
@@ -659,7 +660,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 	 * Returns true if the target of this creature is not the owner or other creature from the same
 	 * owner or same species.
 	 */
-	public boolean checkTargetBeforeAttacking(Entity target) {
+	public boolean checkTargetBeforeAttacking(EntityLivingBase target) {
 		if (target == (Entity) null || target == this || target == this.getOwner()) {
 			if (target instanceof EntityJurassiCraftSmart) {
 				return !this.isOwner(((EntityJurassiCraftSmart) target).getOwner());
@@ -668,15 +669,6 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 			}
 		}
 		return false;
-	}
-
-	/** This can be used to check if the flags are working properly. */
-	public void testFlags() {
-		System.out.println("========================================================");
-		System.out.println("TESTING FLAG OPERATIONS");
-		System.out.println("Before adding anything: " + Integer.toBinaryString(this.getStatus()) + " = " + this.getStatus());
-		System.out.println("this.isHungry(): " + this.isHungry() + ", this.isEating(): " + this.isEating() + ", this.isSitting(): " + this.isSitting());
-		System.out.println("After addition: " + Integer.toBinaryString(this.getStatus()) + " = " + this.getStatus());
 	}
 
 	@Override

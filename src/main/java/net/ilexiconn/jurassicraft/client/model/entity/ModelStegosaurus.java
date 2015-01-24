@@ -1,17 +1,18 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityStegosaurus;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
-import net.minecraft.client.model.ModelBase;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
 public class ModelStegosaurus extends MowzieModelBase 
 {
-	
+    private Animator animator;
     MowzieModelRenderer waist;
     MowzieModelRenderer legleftthigh;
     MowzieModelRenderer legrightthigh;
@@ -56,6 +57,7 @@ public class ModelStegosaurus extends MowzieModelBase
 
     public ModelStegosaurus()
     {
+        animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 128;
         
@@ -289,7 +291,7 @@ public class ModelStegosaurus extends MowzieModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
     	super.render(entity, f, f1, f2, f3, f4, f5);
-    	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaurus) entity);
+        this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.waist.render(f5);
         this.legleftthigh.render(f5);
         this.legrightthigh.render(f5);
@@ -301,69 +303,141 @@ public class ModelStegosaurus extends MowzieModelBase
         modelRenderer.rotateAngleZ = z;
     }
     
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaurus stego)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaurus stegosaurus)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, stego);
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, stegosaurus);
         this.setToInitPose();
 
 		/*
-		f = stego.frame; 
+		f = stegosaurus.frame; 
 		f1 = (float) Math.cos(f/50)*0.5F + 1F;
 		*/
-
+        
         float scaleFactor = 0.5F;
         float height = 0.8F;
         float frontOffset = -2F;
 
-        faceTarget(head, 3, f3, f4);
-        faceTarget(headback, 3, f3, f4);
-        faceTarget(neck, 3, f3, f4);
+        this.faceTarget(this.head, 3, f3, f4);
+        this.faceTarget(this.headback, 3, f3, f4);
+        this.faceTarget(this.neck, 3, f3, f4);
         
-        bob(waist, 2 * scaleFactor, height, false, f, f1);
-        bob(legleftthigh, 2 * scaleFactor, height, false, f, f1);
-        bob(legrightthigh, 2 * scaleFactor, height, false, f, f1);
-        walk(waist, 2 * scaleFactor, 0.1F * height, true, -1.5F, 0F, f, f1);
-        walk(neck, 2 * scaleFactor, 0.07F * height, false, -0.5F, 0F, f, f1);
-        walk(headback, 2 * scaleFactor, 0.07F * height, false, 0.5F, 0F, f, f1);
-        walk(head, 2 * scaleFactor, 0.07F * height, true, 1.5F, 0F, f, f1);
+        this.bob(this.waist, 2 * scaleFactor, height, false, f, f1);
+        this.bob(this.legleftthigh, 2 * scaleFactor, height, false, f, f1);
+        this.bob(this.legrightthigh, 2 * scaleFactor, height, false, f, f1);
+        this.walk(this.waist, 2 * scaleFactor, 0.1F * height, true, -1.5F, 0F, f, f1);
+        this.walk(this.neck, 2 * scaleFactor, 0.07F * height, false, -0.5F, 0F, f, f1);
+        this.walk(this.headback, 2 * scaleFactor, 0.07F * height, false, 0.5F, 0F, f, f1);
+        this.walk(this.head, 2 * scaleFactor, 0.07F * height, true, 1.5F, 0F, f, f1);
 
-        walk(legleftthigh, 1F * scaleFactor, 0.8F, false, 0F, 0F, f, f1);
-        walk(legleftcalf, 1F * scaleFactor, 0.8F, true, 1F, 0F, f, f1);
-        walk(legleftfoot, 1F * scaleFactor, 0.8F, false, 1.5F, 0F, f, f1);
+        this.walk(this.legleftthigh, 1F * scaleFactor, 0.8F, false, 0F, 0F, f, f1);
+        this.walk(this.legleftcalf, 1F * scaleFactor, 0.8F, true, 1F, 0F, f, f1);
+        this.walk(this.legleftfoot, 1F * scaleFactor, 0.8F, false, 1.5F, 0F, f, f1);
 
-        walk(legrightthigh, 1F * scaleFactor, 0.8F, true, 0F, 0F, f, f1);
-        walk(legrightcalf, 1F * scaleFactor, 0.8F, false, 1F, 0F, f, f1);
-        walk(legrightfoot, 1F * scaleFactor, 0.8F, true, 1.5F, 0F, f, f1);
+        this.walk(this.legrightthigh, 1F * scaleFactor, 0.8F, true, 0F, 0F, f, f1);
+        this.walk(this.legrightcalf, 1F * scaleFactor, 0.8F, false, 1F, 0F, f, f1);
+        this.walk(this.legrightfoot, 1F * scaleFactor, 0.8F, true, 1.5F, 0F, f, f1);
 
-        walk(armrightthigh, 1F * scaleFactor, 0.8F, true, frontOffset + 0F, -0.1F, f, f1);
-        walk(armrightcalf, 1F * scaleFactor, 0.6F, true, frontOffset + 1F, -0.2F, f, f1);
-        walk(armrightfoot, 1F * scaleFactor, 0.8F, false, frontOffset + 1.5F, 0F, f, f1);
+        this.walk(this.armrightthigh, 1F * scaleFactor, 0.8F, true, frontOffset + 0F, -0.1F, f, f1);
+        this.walk(this.armrightcalf, 1F * scaleFactor, 0.6F, true, frontOffset + 1F, -0.2F, f, f1);
+        this.walk(this.armrightfoot, 1F * scaleFactor, 0.8F, false, frontOffset + 1.5F, 0F, f, f1);
 
-        walk(armleftthigh, 1F * scaleFactor, 0.8F, false, frontOffset+ 0F, -0.1F, f, f1);
-        walk(armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
-        walk(armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
-
-        chainWave(tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
-
+        this.walk(this.armleftthigh, 1F * scaleFactor, 0.8F, false, frontOffset+ 0F, -0.1F, f, f1);
+        this.walk(this.armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
+        this.walk(this.armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
+        
         //Idling
-        walk(neck, 0.1F, 0.04F, false, -1F, 0F, stego.frame, 1F);
-        walk(head, 0.1F, 0.07F, true, 0F, 0F, stego.frame, 1F);
-        walk(headback, 0.1F, 0.03F, false, 0F, 0F, stego.frame, 1F);
-        walk(waist, 0.1F, 0.025F, false, 0F, 0F, stego.frame, 1F);
+        this.walk(this.neck, 0.1F, 0.04F, false, -1F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.head, 0.1F, 0.07F, true, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.headback, 0.1F, 0.03F, false, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.waist, 0.1F, 0.025F, false, 0F, 0F, stegosaurus.frame, 1F);
 
         float inverseKinematicsConstant = 0.6F;
-        walk(armrightthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
-        walk(armrightcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stego.frame, 1F);
-        walk(armrightfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
-        walk(armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
-        walk(armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stego.frame, 1F);
-        walk(armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stego.frame, 1F);
-        this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
-        this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stego.frame * 0.1F);
-
-        chainSwing(this.tailParts, 0.1F, 0.2F, 3, stego.frame, 1F);
-        chainWave(this.tailParts, 0.1F, -0.05F, 1, stego.frame, 1F);
+        this.walk(this.armrightthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.armrightcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.armrightfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
+        this.walk(this.armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+        this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
+        this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
         
-        stego.tailBuffer.applyChainSwingBuffer(this.tailParts);
+        if (stegosaurus.isDefending())
+        {
+        	/* Rotation yaw fix not working yet
+        	EntityLivingBase target = stegosaurus.getCreatureToAttack();
+        	if (target != null)
+        	{
+        		stegosaurus.rotationYaw = target.rotationYaw + 3.14159265359F;
+        	}
+        	*/
+        	
+            this.legrightthigh.rotateAngleZ += 0.25F;
+            this.legleftthigh.rotateAngleZ -= 0.25F;
+            
+            this.legrightcalf.rotateAngleZ -= 0.05F;
+            this.legleftcalf.rotateAngleZ += 0.05F;
+            
+            this.legrightfoot.rotateAngleZ -= 0.15F;
+            this.legleftfoot.rotateAngleZ += 0.15F;
+            
+            this.armrightthigh.rotationPointY -= 1.2F;
+            this.armleftthigh.rotationPointY -= 1.2F;
+
+            this.armrightthigh.rotateAngleZ += 0.6F;
+            this.armleftthigh.rotateAngleZ -= 0.6F;
+
+            this.armrightcalf.rotateAngleX -= 0.7F;
+            this.armleftcalf.rotateAngleX -= 0.7F;
+            this.armrightcalf.rotateAngleZ -= 0.3F;
+            this.armleftcalf.rotateAngleZ += 0.3F;
+
+            this.armrightfoot.rotateAngleX += 0.5F;
+            this.armleftfoot.rotateAngleX += 0.5F;
+            this.armrightfoot.rotateAngleZ -= 0.3F;
+            this.armleftfoot.rotateAngleZ += 0.3F;
+
+            this.waist.rotateAngleX += 0.35F;
+            this.chest.rotateAngleX -= 0.2F;
+            this.neck.rotateAngleX -= 0.1F;
+            this.tail1.rotateAngleX -= 0.1F;
+            
+        	if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+        	{
+            	this.chainSwing(this.tailParts, 0.4F, 0.4F, 3.0F, stegosaurus.frame, 1F);
+            	this.chainWave(this.tailParts, 0.1F, -0.3F, 1.5F, stegosaurus.frame, 1F);
+        	}
+        }
+        else
+        {
+            this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
+            this.chainSwing(this.tailParts, 0.1F, 0.2F, 3, stegosaurus.frame, 1F);
+            this.chainWave(this.tailParts, 0.1F, -0.05F, 1, stegosaurus.frame, 1F);
+            stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
+        }
+    }
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        this.animator.update(entity);
+    	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaurus) entity);
+    	EntityStegosaurus stegosaurus = (EntityStegosaurus) entity;
+    	
+        this.animator.setAnimation(JurassiCraftAnimationIDs.TAIL_WHIP.animID());
+        this.animator.startPhase(10);
+        this.animator.rotate(this.tail1, 0.0F, 0.3F, 0.0F);
+        this.animator.rotate(this.tail2, 0.0F, 0.3F, 0.0F);
+        this.animator.rotate(this.tail3, 0.0F, 0.3F, 0.0F);
+        this.animator.rotate(this.tail4, 0.0F, 0.3F, 0.0F);
+        this.animator.rotate(this.tail5, 0.0F, 0.3F, 0.0F);
+        this.animator.endPhase();
+        this.animator.startPhase(10);
+        this.animator.rotate(this.tail1, 0.0F, -0.6F, 0.0F);
+        this.animator.rotate(this.tail2, 0.0F, -0.6F, 0.0F);
+        this.animator.rotate(this.tail3, 0.0F, -0.6F, 0.0F);
+        this.animator.rotate(this.tail4, 0.0F, -0.6F, 0.0F);
+        this.animator.rotate(this.tail5, 0.0F, -0.6F, 0.0F);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(10);
+        this.animator.resetPhase(0);
     }
 }
