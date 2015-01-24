@@ -67,6 +67,7 @@ public class JurassiCraftAIStegosaurusTailWhip extends EntityAIBase
 	@Override
 	public void resetTask()
 	{
+		this.stegosaurus.setCreatureToAttack(null);
 		this.stegosaurus.setDefending(false);
 		this.distanceSqFromAttacker = 0;
 		this.attacker = null;

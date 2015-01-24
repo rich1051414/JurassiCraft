@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.ai.JCPathNavigate;
 import net.ilexiconn.jurassicraft.ai.States;
 import net.ilexiconn.jurassicraft.item.ItemDinoPad;
@@ -576,6 +579,64 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		this.setStatus(this.getStatus() & ~States.PLAYING);
 		this.setStatus(this.getStatus() & ~States.STALKING);
 		this.setStatus(this.getStatus() & ~States.INLOVE);
+	}
+
+	public EntityJurassiCraftAggressive findClosestEntityAggressive(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftAggressive> listOfTargets = new ArrayList<EntityJurassiCraftAggressive>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftAggressive)
+			{
+				listOfTargets.add((EntityJurassiCraftAggressive) entity);
+			}
+		}
+		if (!listOfTargets.isEmpty())
+		{
+			EntityJurassiCraftAggressive closestAggressive = null;
+			double distanceSq = 864.0D;
+			for (EntityJurassiCraftAggressive closeTarget : listOfTargets)
+			{
+				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
+				if (nextDistance < distanceSq)
+				{
+					distanceSq = nextDistance;
+					closestAggressive = closeTarget;
+				}
+			}
+			return closestAggressive;
+		}
+		return null;
+	}
+
+	public EntityJurassiCraftProtective findClosestEntityProtective(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftProtective> listOfTargets = new ArrayList<EntityJurassiCraftProtective>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftProtective)
+			{
+				listOfTargets.add((EntityJurassiCraftProtective) entity);
+			}
+		}
+		if (!listOfTargets.isEmpty())
+		{
+			EntityJurassiCraftProtective closestProtective = null;
+			double distanceSq = 864.0D;
+			for (EntityJurassiCraftProtective closeTarget : listOfTargets)
+			{
+				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
+				if (nextDistance < distanceSq)
+				{
+					distanceSq = nextDistance;
+					closestProtective = closeTarget;
+				}
+			}
+			return closestProtective;
+		}
+		return null;
 	}
 
 	@Override

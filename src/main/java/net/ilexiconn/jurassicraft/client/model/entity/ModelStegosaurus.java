@@ -363,48 +363,48 @@ public class ModelStegosaurus extends MowzieModelBase
         
         if (stegosaurus.isDefending())
         {
-        	/* Rotation yaw fix not working yet
+        	float whipPosProgress = stegosaurus.tailWhip.getAnimationProgressSinSqrt();
         	EntityLivingBase target = stegosaurus.getCreatureToAttack();
         	if (target != null)
         	{
-        		stegosaurus.rotationYaw = target.rotationYaw + 3.14159265359F;
+        		float variation = 
+        		stegosaurus.rotationYaw += whipPosProgress * (target.rotationYaw + 3.14159265359F) - stegosaurus.rotationYaw;
         	}
-        	*/
         	
-            this.legrightthigh.rotateAngleZ += 0.25F;
-            this.legleftthigh.rotateAngleZ -= 0.25F;
+            this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
+            this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
             
-            this.legrightcalf.rotateAngleZ -= 0.05F;
-            this.legleftcalf.rotateAngleZ += 0.05F;
+            this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
+            this.legleftcalf.rotateAngleZ += 0.05F * whipPosProgress;
             
-            this.legrightfoot.rotateAngleZ -= 0.15F;
-            this.legleftfoot.rotateAngleZ += 0.15F;
+            this.legrightfoot.rotateAngleZ -= 0.15F * whipPosProgress;
+            this.legleftfoot.rotateAngleZ += 0.15F * whipPosProgress;
             
-            this.armrightthigh.rotationPointY -= 1.2F;
-            this.armleftthigh.rotationPointY -= 1.2F;
+            this.armrightthigh.rotationPointY -= 1.2F * whipPosProgress;
+            this.armleftthigh.rotationPointY -= 1.2F * whipPosProgress;
 
-            this.armrightthigh.rotateAngleZ += 0.6F;
-            this.armleftthigh.rotateAngleZ -= 0.6F;
+            this.armrightthigh.rotateAngleZ += 0.6F * whipPosProgress;
+            this.armleftthigh.rotateAngleZ -= 0.6F * whipPosProgress;
 
-            this.armrightcalf.rotateAngleX -= 0.7F;
-            this.armleftcalf.rotateAngleX -= 0.7F;
-            this.armrightcalf.rotateAngleZ -= 0.3F;
-            this.armleftcalf.rotateAngleZ += 0.3F;
+            this.armrightcalf.rotateAngleX -= 0.7F * whipPosProgress;
+            this.armleftcalf.rotateAngleX -= 0.7F * whipPosProgress;
+            this.armrightcalf.rotateAngleZ -= 0.3F * whipPosProgress;
+            this.armleftcalf.rotateAngleZ += 0.3F * whipPosProgress;
 
-            this.armrightfoot.rotateAngleX += 0.5F;
-            this.armleftfoot.rotateAngleX += 0.5F;
-            this.armrightfoot.rotateAngleZ -= 0.3F;
-            this.armleftfoot.rotateAngleZ += 0.3F;
+            this.armrightfoot.rotateAngleX += 0.5F * whipPosProgress;
+            this.armleftfoot.rotateAngleX += 0.5F * whipPosProgress;
+            this.armrightfoot.rotateAngleZ -= 0.3F * whipPosProgress;
+            this.armleftfoot.rotateAngleZ += 0.3F * whipPosProgress;
 
-            this.waist.rotateAngleX += 0.35F;
-            this.chest.rotateAngleX -= 0.2F;
-            this.neck.rotateAngleX -= 0.1F;
-            this.tail1.rotateAngleX -= 0.1F;
+            this.waist.rotateAngleX += 0.35F * whipPosProgress;
+            this.chest.rotateAngleX -= 0.2F * whipPosProgress;
+            this.neck.rotateAngleX -= 0.1F * whipPosProgress;
+            this.tail1.rotateAngleX -= 0.1F * whipPosProgress;
             
         	if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
         	{
-            	this.chainSwing(this.tailParts, 0.4F, 0.4F, 3.0F, stegosaurus.frame, 1F);
-            	this.chainWave(this.tailParts, 0.1F, -0.3F, 1.5F, stegosaurus.frame, 1F);
+            	this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
+            	this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
         	}
         }
         else

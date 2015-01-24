@@ -1,8 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -17,7 +14,9 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIStegosaurusTailWhip;
 import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftAggressive;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
@@ -37,6 +36,7 @@ import net.minecraft.world.World;
 public class EntityStegosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
 	public EntityLivingBase creatureToAttack;
+	public ControlledAnimation tailWhip = new ControlledAnimation(30);
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	
     public EntityStegosaurus(World world)
@@ -80,20 +80,29 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
     public void onUpdate()
     {
         super.onUpdate();
-        if (this.rand.nextInt(35) == 0 && !this.isDefending() && this.isCreatureOlderThan(0.5F))
+        
+        if (this.isDefending())
         {
-        	this.creatureToAttack = this.findClosestTyrannosaurus(this, 20, 8, 20);
-        	if (this.creatureToAttack != null)
-        	{
-        		if (this.creatureToAttack instanceof EntityTyrannosaurus)
+        	this.tailWhip.increaseTimer();
+        }
+        else
+        {
+        	this.tailWhip.decreaseTimer();
+        	if (this.rand.nextInt(35) == 0 && this.isCreatureOlderThan(0.5F))
+            {
+            	this.creatureToAttack = this.findClosestEntityAggressive(this, 20, 8, 20);
+            	if (this.creatureToAttack != null)
             	{
-            		this.setDefending(((EntityTyrannosaurus) this.creatureToAttack).isCreatureOlderThan(0.5F));
+            		if (this.creatureToAttack instanceof EntityJurassiCraftAggressive)
+                	{
+                		this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
+                	}
+            		else
+            		{
+                		this.setDefending(true);
+            		}
             	}
-        		else
-        		{
-            		this.setDefending(true);
-        		}
-        	}
+            }
         }
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
@@ -115,35 +124,6 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
 		{
 			super.collideWithEntity(target);
 		}
-	}
-
-	public EntityTyrannosaurus findClosestTyrannosaurus(EntityLivingBase creature, double x, double y, double z)
-	{
-		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
-		ArrayList<EntityTyrannosaurus> listOfTargets = new ArrayList<EntityTyrannosaurus>();
-		for (Entity entity : list)
-		{
-			if (entity instanceof EntityTyrannosaurus)
-			{
-				listOfTargets.add((EntityTyrannosaurus) entity);
-			}
-		}
-		if (!listOfTargets.isEmpty())
-		{
-			EntityTyrannosaurus closestTyrannosaurus = null;
-			double distanceSq = 864.0D;
-			for (EntityTyrannosaurus closeTarget : listOfTargets)
-			{
-				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
-				if (nextDistance < distanceSq)
-				{
-					distanceSq = nextDistance;
-					closestTyrannosaurus = closeTarget;
-				}
-			}
-			return closestTyrannosaurus;
-		}
-		return null;
 	}
 
 	public EntityLivingBase getCreatureToAttack() {
