@@ -136,7 +136,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.stepCount -= this.moveForward * 9.5;
         
         //Breathing Sound MISSING SOUND
-        //if (this.frame % 62 == 28) this.playSound("jurassicraft:trexbreath", 1.0F, this.getSoundPitch());
+        if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusBreath", 1.0F, this.getSoundPitch());
 
 
         //Sitting Animation

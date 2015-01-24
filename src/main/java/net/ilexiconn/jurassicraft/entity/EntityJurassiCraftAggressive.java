@@ -76,5 +76,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
             EnchantmentHelper.func_151385_b(this, entity);
         }
         return flag;
+   /* 	if(animID == 0) AnimationAPI.sendAnimPacket(this, 1);
+		return true;*/
     }
 }

@@ -24,7 +24,7 @@ public class AIGallimimusBeingEaten extends AIAnimation
 
     public int getDuration()
     {
-        return 55;
+        return 50;
     }
 
     public boolean isAutomatic()
