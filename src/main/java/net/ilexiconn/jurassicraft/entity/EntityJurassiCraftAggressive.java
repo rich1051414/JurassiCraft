@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.AnimationHandler;
+import net.ilexiconn.jurassicraft.client.animation.AIBite;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,6 +13,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
 
 	public EntityJurassiCraftAggressive(World world, Creature creature) {
 		super(world, creature);
+        this.tasks.addTask(1, new AIBite(this));
     }
 
     @Override
@@ -48,7 +51,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        float attackDamage = (float) this.getCreatureAttack();
+ /*       float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
@@ -75,8 +78,8 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
             }
             EnchantmentHelper.func_151385_b(this, entity);
         }
-        return flag;
-   /* 	if(animID == 0) AnimationAPI.sendAnimPacket(this, 1);
-		return true;*/
+        return flag;*/
+    	if(animID == 0) AnimationHandler.sendAnimationPacket(this, 5);
+		return true;
     }
 }
