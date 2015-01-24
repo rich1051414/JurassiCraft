@@ -14,7 +14,7 @@ Setup workspace
 
 Run in console:
 ```
-gradle setDecompWorkspace assetRefresh
+gradle setDecompWorkspace
 ```
 
 Then for Eclipse:

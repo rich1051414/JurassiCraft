@@ -1,6 +1,3 @@
-@Grab( 'commons-lang:commons-lang:2.6' )
-import org.apache.commons.lang.StringUtils
-
 buildscript {
     repositories {
         mavenCentral()
