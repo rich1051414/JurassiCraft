@@ -92,6 +92,23 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         this.tailBuffer.calculateChainSwingBuffer(48.0F, 3, 5.0F, this);
     }
     
+    @Override
+    public String getLivingSound()
+    {
+        int I = this.rand.nextInt(3);
+
+        if (I <= 1)
+        {
+        	this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
+            return null;
+        }
+        else
+        {
+            if (timeUntilCanCall == 0 && animID == 0) AnimationHandler.sendAnimationPacket(this, 1);
+            return null;
+        }
+    }
+    
     public List<EntityParasaurolophus> getParasaurolophusNearby(int distanceX, int distanceY, int distanceZ)
     {
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));

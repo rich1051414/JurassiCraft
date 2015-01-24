@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.animation.BygoneAgeAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
@@ -420,7 +419,7 @@ public class ModelUintatherium extends ModelBase
         animator.update((IAnimatedEntity) entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        animator.setAnimation(BygoneAgeAnimationIDs.ANIMATION_HEADBUTT.getAnimationID());
+       /* animator.setAnimation(BygoneAgeAnimationIDs.ANIMATION_HEADBUTT.getAnimationID());
         animator.startPhase(7);
         animator.rotate(head, PI / 3F, 0F, 0F);
         animator.rotate(snout, PI / 3F, 0F, 0F);
@@ -452,7 +451,7 @@ public class ModelUintatherium extends ModelBase
         animator.rotate(leftear, -PI / 2F, 0F, 0F);
         animator.rotate(rightear, -PI / 2F, 0F, 0F);
         animator.endPhase();
-        animator.resetPhase(2);
+        animator.resetPhase(2);*/
     }
 
 }

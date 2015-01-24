@@ -46,15 +46,15 @@ public class AIParasaurolophusTrumpet extends AIAnimation
             double I = Math.random();
             if (I <= 0.3)
             {
-                entityPara.playSound("jurassicraft:ParaCall03", 5.0F, 1.0F);
+                entityPara.playSound("jurassicraft:parasaurolophusCall03", 5.0F, 1.0F);
             }
             else if (I <= 0.6 && I > 0.3)
             {
-                entityPara.playSound("jurassicraft:ParaCall04", 5.0F, 1.0F);
+                entityPara.playSound("jurassicraft:parasaurolophusCall04", 5.0F, 1.0F);
             }
             else
             {
-                entityPara.playSound("jurassicraft:ParaCall05", 5.0F, 1.0F);
+                entityPara.playSound("jurassicraft:parasaurolophusCall05", 5.0F, 1.0F);
             }
         }
         if (entityPara.getAnimationTick() == 50) {
