@@ -62,19 +62,20 @@ public class JurassiCraft
         logger = event.getModLog();
         
         entityParser = new JsonEntityParser();
+        
+        entityParser.parseServerEntities();
+        
         contentLoader = new ContentLoader();
 
         contentLoader.addContentHandler(new ModCreativeTabs());
-        contentLoader.addContentHandler(new ModBlocks());
         contentLoader.addContentHandler(new ModEntities());
+        contentLoader.addContentHandler(new ModBlocks());
         contentLoader.addContentHandler(new ModItems());
         contentLoader.addContentHandler(new ModRecipes());
         
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) contentLoader.addContentHandler(new ModRenderers());
         contentLoader.addContentHandler(new ModTileEntities());
 
-        entityParser.parseServerEntities();
-        
         contentLoader.init();
         ConfigHandler.init(event.getSuggestedConfigurationFile());
 
