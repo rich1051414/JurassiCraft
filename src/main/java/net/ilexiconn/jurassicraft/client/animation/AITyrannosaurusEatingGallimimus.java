@@ -10,13 +10,11 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 {
     private EntityTyrannosaurus tyrannosaurus;
     private EntityGallimimus gallimimus;
-	private Class targetClass;
 
-    public AITyrannosaurusEatingGallimimus(EntityTyrannosaurus tyrannosaurus, Class targetClass)
+    public AITyrannosaurusEatingGallimimus(EntityTyrannosaurus tyrannosaurus)
     {
         super(tyrannosaurus);
         this.tyrannosaurus = tyrannosaurus;
-		this.targetClass = targetClass;
     }
 
     public int getAnimationId()
@@ -26,23 +24,24 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 
     public int getDuration()
     {
-        return 75;
+        return 60;
     }
 	
     public boolean isAutomatic()
     {
-        return true;
+        return false;
     }
 	
 	public boolean shouldExecute()
 	{
-		if (this.tyrannosaurus.riddenByEntity != null && this.tyrannosaurus.riddenByEntity instanceof EntityLivingBase)
+		if (this.tyrannosaurus.riddenByEntity != null && this.tyrannosaurus.riddenByEntity instanceof EntityGallimimus)
 		{
-			EntityLivingBase entityLivingBase = (EntityLivingBase) this.tyrannosaurus.riddenByEntity;
-			if (entityLivingBase.getClass() == this.targetClass && entityLivingBase.getHealth() <= 1.0F)
+			EntityGallimimus gallimimus = (EntityGallimimus) this.tyrannosaurus.riddenByEntity;
+			if (gallimimus.getHealth() <= 1.0F)
 			{
 				this.tyrannosaurus.setDrinking(false);
 				AnimationHandler.sendAnimationPacket(this.tyrannosaurus, this.getAnimationId());
+				AnimationHandler.sendAnimationPacket(gallimimus, 1);
 				return this.tyrannosaurus.getAnimationId() == this.getAnimationId();
 			}
 		}
@@ -61,10 +60,7 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 
     public void updateTask()
     {
-		if (this.gallimimus != null)
-		{
-			//Do more stuff
-		}
+    	
 	}
     
     public void resetTask()
@@ -72,8 +68,8 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
     	super.resetTask();
     	if (this.gallimimus != null)
 		{
-        	this.tyrannosaurus.dismountEntity(this.gallimimus);
-        	//this.gallimimus.setDead();
+        	this.gallimimus.dismountEntity(this.tyrannosaurus);
+        	//this.gallimimus.setDead(); LATER
 		}
     }
 }

@@ -1,56 +1,61 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelGallimimus extends MowzieModelBase
 {
-    MowzieModelRenderer Left_Upper_Foot;
-    MowzieModelRenderer Right_Upper_Foot;
-    MowzieModelRenderer Left_Calf_1;
-    MowzieModelRenderer Right_Calf_1;
-    MowzieModelRenderer Left_Thigh;
-    MowzieModelRenderer Right_Thigh;
-    MowzieModelRenderer Body_1;
-    MowzieModelRenderer Body_2;
-    MowzieModelRenderer Head;
-    MowzieModelRenderer Upper_Jaw;
-    MowzieModelRenderer Lower_Jaw;
-    MowzieModelRenderer Tail_1;
-    MowzieModelRenderer Tail_2;
-    MowzieModelRenderer Tail_3;
-    MowzieModelRenderer Tail_4;
-    MowzieModelRenderer Tail_5;
-    MowzieModelRenderer Upper_Arm_Right;
-    MowzieModelRenderer Upper_Arm_Left;
-    MowzieModelRenderer Lower_Arm_Left;
-    MowzieModelRenderer Lower_Arm_Right;
-    MowzieModelRenderer Hand_Left;
-    MowzieModelRenderer Hand_Right;
-    MowzieModelRenderer Hand_Left_Claw_Left;
-    MowzieModelRenderer Hand_Left_Claw_Right;
-    MowzieModelRenderer Hand_Left_Claw_Middle;
-    MowzieModelRenderer Hand_Right_Claw_Right;
-    MowzieModelRenderer Hand_Right_Claw_Left;
-    MowzieModelRenderer Hand_Right_Claw_Middle;
-    MowzieModelRenderer Foot_Left;
-    MowzieModelRenderer Foot_Right;
-    MowzieModelRenderer Neck_1;
-    MowzieModelRenderer Neck_2;
-    MowzieModelRenderer Neck_3;
-    MowzieModelRenderer Neck_4;
-    MowzieModelRenderer Neck_5;
-    MowzieModelRenderer HeadJoint;
-    MowzieModelRenderer[] NeckParts;
-    MowzieModelRenderer[] TailParts;
-    MowzieModelRenderer[] RightArmParts;
-    MowzieModelRenderer[] LeftArmParts;
+    public Animator animator;
+    public MowzieModelRenderer Left_Upper_Foot;
+    public MowzieModelRenderer Right_Upper_Foot;
+    public MowzieModelRenderer Left_Calf_1;
+    public MowzieModelRenderer Right_Calf_1;
+    public MowzieModelRenderer Left_Thigh;
+    public MowzieModelRenderer Right_Thigh;
+    public MowzieModelRenderer Body_1;
+    public MowzieModelRenderer Body_2;
+    public MowzieModelRenderer Head;
+    public MowzieModelRenderer Upper_Jaw;
+    public MowzieModelRenderer Lower_Jaw;
+    public MowzieModelRenderer Tail_1;
+    public MowzieModelRenderer Tail_2;
+    public MowzieModelRenderer Tail_3;
+    public MowzieModelRenderer Tail_4;
+    public MowzieModelRenderer Tail_5;
+    public MowzieModelRenderer Upper_Arm_Right;
+    public MowzieModelRenderer Upper_Arm_Left;
+    public MowzieModelRenderer Lower_Arm_Left;
+    public MowzieModelRenderer Lower_Arm_Right;
+    public MowzieModelRenderer Hand_Left;
+    public MowzieModelRenderer Hand_Right;
+    public MowzieModelRenderer Hand_Left_Claw_Left;
+    public MowzieModelRenderer Hand_Left_Claw_Right;
+    public MowzieModelRenderer Hand_Left_Claw_Middle;
+    public MowzieModelRenderer Hand_Right_Claw_Right;
+    public MowzieModelRenderer Hand_Right_Claw_Left;
+    public MowzieModelRenderer Hand_Right_Claw_Middle;
+    public MowzieModelRenderer Foot_Left;
+    public MowzieModelRenderer Foot_Right;
+    public MowzieModelRenderer Neck_1;
+    public MowzieModelRenderer Neck_2;
+    public MowzieModelRenderer Neck_3;
+    public MowzieModelRenderer Neck_4;
+    public MowzieModelRenderer Neck_5;
+    public MowzieModelRenderer HeadJoint;
+    public MowzieModelRenderer[] NeckParts;
+    public MowzieModelRenderer[] TailParts;
+    public MowzieModelRenderer[] RightArmParts;
+    public MowzieModelRenderer[] LeftArmParts;
 
     public ModelGallimimus()
     {
+    	this.animator = new Animator(this);
         textureWidth = 256;
         textureHeight = 256;
 
@@ -362,7 +367,7 @@ public class ModelGallimimus extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
+        this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
@@ -476,5 +481,32 @@ public class ModelGallimimus extends MowzieModelBase
         chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         
         galli.tailBuffer.applyChainSwingBuffer(TailParts);
+    }
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+    	this.animator.update(entity);
+    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
+    	
+        this.animator.setAnimation(1);
+        this.animator.setStationaryPhase(10);
+        this.animator.startPhase(4);
+        this.animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
+        this.animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
+        this.animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
+        this.animator.rotate(Tail_4, -0.2F, 0.0F, 0.0F);
+        this.animator.rotate(Tail_5, -0.2F, 0.0F, 0.0F);
+        this.animator.rotate(Body_1, 0.0F, 0.0F, 0.0F);
+        this.animator.rotate(Body_2, 0.5F, 0.0F, 0.0F);
+        this.animator.rotate(this.Neck_1, 0.8F, 0.0F, 0.0F);
+        this.animator.rotate(this.Neck_2, 0.5F, 0.0F, 0.0F);
+        this.animator.rotate(this.Neck_3, 0.5F, 0.0F, 0.0F);
+        this.animator.rotate(this.Neck_4, 0.4F, 0.0F, 0.0F);
+        this.animator.rotate(this.Neck_5, -0.3F, 0.0F, 0.0F);
+        this.animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
+        this.animator.rotate(this.Head, -0.3F, 0.0F, 0.0F);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(40);
+        this.animator.resetPhase(15);
     }
 }

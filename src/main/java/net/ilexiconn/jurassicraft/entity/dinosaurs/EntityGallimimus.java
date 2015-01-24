@@ -13,6 +13,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.client.animation.AIGallimimusBeingEaten;
+import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
@@ -49,7 +51,9 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(4, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 30, 0.7D * this.getCreatureSpeed()));
-        this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
+        //Removed for now.
+        //this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(5, new AIGallimimusBeingEaten(this));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new JurassiCraftAIHerdBehavior(this, 128, 2500, 24, this.getCreatureSpeed()));
@@ -90,16 +94,16 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         if ((this.getHealth() - damage) <= 0.0F && damageSource.getEntity() instanceof EntityTyrannosaurus)
         {
 			EntityTyrannosaurus tyrannosaurus = (EntityTyrannosaurus) damageSource.getEntity();
-			this.setHealth(1.0F);
-			this.mountEntity(tyrannosaurus);
-			tyrannosaurus.setAttackTarget((EntityLivingBase) null);
-			this.setAttackTarget((EntityLivingBase) null);
-			return false;
+			if (tyrannosaurus.getAnimationId() == 0)
+			{
+				this.setHealth(1.0F);
+				this.mountEntity(tyrannosaurus);
+				tyrannosaurus.setAttackTarget((EntityLivingBase) null);
+				this.setAttackTarget((EntityLivingBase) null);
+				return false;
+			}
         }
-        else
-        {
-            return super.attackEntityFrom(damageSource, damage);
-        }
+        return super.attackEntityFrom(damageSource, damage);
     }
 
     @Override
