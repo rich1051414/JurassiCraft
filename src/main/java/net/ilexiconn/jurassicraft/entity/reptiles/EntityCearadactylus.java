@@ -1,17 +1,14 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ai.EntityAICearadactylus;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlying;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidableFlying;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -19,20 +16,19 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCearadactylus extends EntityJurassiCraftRidableFlying implements IReptile, IPiscivore
+public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implements IReptile, IPiscivore
 {
 
     public EntityCearadactylus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityCearadactylus.class));
+        super(world, CreatureManager.classToCreature(EntityCearadactylus.class), "grassandleaves");
         this.getNavigator().setAvoidsWater(true);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
-        this.tasks.addTask(2, new JurassiCraftAISit(this));
+        this.tasks.addTask(0, new JurassiCraftAIFlying(this));
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
+        this.tasks.addTask(3, new JurassiCraftAISit(this));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(5, new JurassiCraftAIFollowFood(this, 60, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(5, new JurassiCraftAIEatDroppedFood(this, 16.0D));
@@ -71,7 +67,6 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
     public void writeEntityToNBT(NBTTagCompound nbttag)
     {
         super.writeEntityToNBT(nbttag);
-        nbttag.setByte("Flying", this.dataWatcher.getWatchableObjectByte(17));
     }
 
     @Override

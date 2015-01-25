@@ -55,6 +55,24 @@ public class EntityJurassiCraftFlyingCreature extends EntityJurassiCraftRidable
 	}
 
 	@Override
+	public boolean isOnLadder()
+	{
+		return false;
+	}
+
+	@Override
+	protected void fall(float f)
+	{
+
+	}
+
+	@Override
+	protected void updateFallState(double distanceFallen, boolean onGround)
+	{
+
+	}
+
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
