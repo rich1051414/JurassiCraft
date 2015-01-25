@@ -24,14 +24,42 @@ public class JurassiCraftAIAngry extends EntityAIBase
 	@Override
 	public void startExecuting()
 	{
-		this.creature.setPlaying(false);
-		this.creature.setSocializing(false);
-		this.creature.setEating(false);
-		this.creature.setDrinking(false);
-		this.creature.setDefending(false);
-		this.creature.setBreeding(false);
-		this.creature.setInLove(false);
-		this.creature.setSitting(false, null);
+		if (this.creature.isTakingOff())
+			this.creature.setTakingOff(false);
+
+		if (this.creature.isFlying())
+			this.creature.setFlying(false);
+
+		if (this.creature.isPlaying())
+			this.creature.setPlaying(false);
+
+		if (this.creature.isSocializing())
+			this.creature.setSocializing(false);
+
+		if (this.creature.isEating())
+			this.creature.setEating(false);
+
+		if (this.creature.isDrinking())
+			this.creature.setDrinking(false);
+
+		if (this.creature.isFleeing())
+			this.creature.setFleeing(false);
+
+		if (this.creature.isDefending())
+			this.creature.setDefending(false);
+
+		if (this.creature.isBreeding())
+			this.creature.setBreeding(false);
+
+		if (this.creature.isInLove())
+			this.creature.setInLove(false);
+
+		if (this.creature.isSitting())
+			this.creature.setSitting(false, null);
+
+		if (this.creature.isSleeping())
+			this.creature.setSleeping(false);
+
 		this.creature.setAngerLevel(this.angryTime + (int) (this.angryTime * 0.6F * this.creature.getRNG().nextFloat()));
 		this.creature.setAttacking(true);
 	}

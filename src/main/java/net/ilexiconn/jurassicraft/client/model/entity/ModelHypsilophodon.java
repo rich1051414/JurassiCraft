@@ -336,77 +336,86 @@ public class ModelHypsilophodon extends MowzieModelBase
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        animator.update(entity);
+        this.animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHypsilophodon) entity);
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
 
-        animator.setAnimation(JurassiCraftAnimationIDs.SCRATCH.animID());
-        animator.startPhase(5);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(neck, 0.9F, -0.35F, 0);
-        animator.rotate(head, -0.8F, -0.15F, 0.7F);
-        animator.rotate(shoulderleft, -0.5F, 0, 0);
-        animator.rotate(armleft, -0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(neck, 0.9F, -0.35F, 0);
-        animator.rotate(head, -0.8F, -0.15F, 0.7F);
-        animator.rotate(shoulderleft, -0.5F, 0, 0);
-        animator.rotate(armleft, -0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(neck, 0.9F, -0.35F, 0);
-        animator.rotate(head, -0.8F, -0.15F, 0.7F);
-        animator.rotate(shoulderleft, -0.5F, 0, 0);
-        animator.rotate(armleft, -0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(neck, 0.9F, -0.35F, 0);
-        animator.rotate(head, -0.8F, -0.15F, 0.7F);
-        animator.rotate(shoulderleft, -0.5F, 0, 0);
-        animator.rotate(armleft, -0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(neck, 0.9F, -0.35F, 0);
-        animator.rotate(head, -0.8F, -0.15F, 0.7F);
-        animator.rotate(shoulderleft, -0.5F, 0, 0);
-        animator.rotate(armleft, -0.5F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(neck, 0.9F, -0.4F, 0);
-        animator.rotate(head, -0.8F, -0.25F, 0.7F);
-        animator.rotate(shoulderleft, -2.6F, 0, 0);
-        animator.rotate(armleft, 0.5F, 0, 0);
-        animator.endPhase();
-        animator.resetPhase(5);
-    }
+		if (hysilophodon.getAnimationId() == JurassiCraftAnimationIDs.SCRATCH.animID())
+		{
+			this.animator.setAnimation(JurassiCraftAnimationIDs.SCRATCH.animID());
+			this.animator.startPhase(5);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(2);
+			this.animator.rotate(neck, 0.9F, -0.35F, 0);
+			this.animator.rotate(head, -0.8F, -0.15F, 0.7F);
+			this.animator.rotate(shoulderleft, -0.5F, 0, 0);
+			this.animator.rotate(armleft, -0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(3);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(2);
+			this.animator.rotate(neck, 0.9F, -0.35F, 0);
+			this.animator.rotate(head, -0.8F, -0.15F, 0.7F);
+			this.animator.rotate(shoulderleft, -0.5F, 0, 0);
+			this.animator.rotate(armleft, -0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(3);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(2);
+			this.animator.rotate(neck, 0.9F, -0.35F, 0);
+			this.animator.rotate(head, -0.8F, -0.15F, 0.7F);
+			this.animator.rotate(shoulderleft, -0.5F, 0, 0);
+			this.animator.rotate(armleft, -0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(3);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(2);
+			this.animator.rotate(neck, 0.9F, -0.35F, 0);
+			this.animator.rotate(head, -0.8F, -0.15F, 0.7F);
+			this.animator.rotate(shoulderleft, -0.5F, 0, 0);
+			this.animator.rotate(armleft, -0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(3);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(2);
+			this.animator.rotate(neck, 0.9F, -0.35F, 0);
+			this.animator.rotate(head, -0.8F, -0.15F, 0.7F);
+			this.animator.rotate(shoulderleft, -0.5F, 0, 0);
+			this.animator.rotate(armleft, -0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.startPhase(3);
+			this.animator.rotate(neck, 0.9F, -0.4F, 0);
+			this.animator.rotate(head, -0.8F, -0.25F, 0.7F);
+			this.animator.rotate(shoulderleft, -2.6F, 0, 0);
+			this.animator.rotate(armleft, 0.5F, 0, 0);
+			this.animator.endPhase();
+			this.animator.resetPhase(5);
+		}
+		
+		if (hysilophodon.getAnimationId() == JurassiCraftAnimationIDs.PLAYING.animID())
+		{
+			this.animator.setAnimation(JurassiCraftAnimationIDs.PLAYING.animID());
+			this.animator.resetPhase(5);
+		}
+	}
 }

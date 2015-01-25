@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -7,14 +10,17 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPlayfulBaby;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIHypsilophodonScratchHead;
+import net.ilexiconn.jurassicraft.client.animation.AIPlayfulBaby;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -36,6 +42,8 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(2, new AIHypsilophodonScratchHead(this));
+        this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 200, 0.3F));
+        this.tasks.addTask(2, new AIPlayfulBaby(this, 50));
         this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 6.5F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaurus.class, 12.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 40, 1.1D * this.getCreatureSpeed()));
@@ -61,6 +69,18 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(60.0F, 5, 3.8F, this);
+    }
+    
+    public List<EntityHypsilophodon> getHypsilophodonsNearby(double distanceX, double distanceY, double distanceZ)
+    {
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
+		ArrayList<EntityHypsilophodon> listParasaurolophus = new ArrayList<EntityHypsilophodon>();
+		for (Entity entityNeighbor : list)
+		{
+			if (entityNeighbor instanceof EntityHypsilophodon && entityNeighbor != this)
+				listParasaurolophus.add((EntityHypsilophodon) entityNeighbor);
+		}
+		return listParasaurolophus;
     }
 
     @Override

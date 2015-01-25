@@ -32,7 +32,8 @@ public class JurassiCraftAIEating extends EntityAIBase
 	@Override
 	public void startExecuting()
 	{
-		this.creature.setDrinking(false);
+		if (this.creature.isDrinking())
+			this.creature.setDrinking(false);
 		this.timer = this.duration;
 	}
 

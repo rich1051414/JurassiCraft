@@ -10,12 +10,12 @@ import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 public class AIParasaurolophusTrumpet extends AIAnimation
 {
 
-    private EntityParasaurolophus entityPara;
+    private EntityParasaurolophus parasaurolophus;
 
     public AIParasaurolophusTrumpet(IAnimatedEntity entity)
     {
         super(entity);
-        entityPara = (EntityParasaurolophus) entity;
+        this.parasaurolophus = (EntityParasaurolophus) entity;
     }
 
     public int getAnimationId()
@@ -36,32 +36,32 @@ public class AIParasaurolophusTrumpet extends AIAnimation
     public void resetTask()
     {
     	super.resetTask();
-    	entityPara.timeUntilCanCall = 300;
+    	this.parasaurolophus.timeUntilCanCall = 300;
     }
 
     public void updateTask()
     {
-        if (entityPara.getAnimationTick() == 3)
+        if (this.parasaurolophus.getAnimationTick() == 3)
         {
             double I = Math.random();
             if (I <= 0.3)
             {
-                entityPara.playSound("jurassicraft:parasaurolophusCall03", 5.0F, 1.0F);
+            	this.parasaurolophus.playSound("jurassicraft:parasaurolophusCall03", 5.0F, 1.0F);
             }
             else if (I <= 0.6 && I > 0.3)
             {
-                entityPara.playSound("jurassicraft:parasaurolophusCall04", 5.0F, 1.0F);
+            	this.parasaurolophus.playSound("jurassicraft:parasaurolophusCall04", 5.0F, 1.0F);
             }
             else
             {
-                entityPara.playSound("jurassicraft:parasaurolophusCall05", 5.0F, 1.0F);
+            	this.parasaurolophus.playSound("jurassicraft:parasaurolophusCall05", 5.0F, 1.0F);
             }
         }
-        if (entityPara.getAnimationTick() == 50) {
-        	List<EntityParasaurolophus> recipients = entityPara.getParasaurolophusNearby(20, 10, 20);
-        	for (int i = 0; i < recipients.size(); i++) {
-        		if (recipients.get(i).timeUntilCanCall == 0 && recipients.get(i).getAnimationId() == 0) 
-        			AnimationHandler.sendAnimationPacket(recipients.get(i), JurassiCraftAnimationIDs.TRUMPET.animID());
+        if (this.parasaurolophus.getAnimationTick() == 50) {
+        	List<EntityParasaurolophus> recipients = this.parasaurolophus.getParasaurolophusNearby(20.0D, 10.0D, 20.0D);
+        	for (EntityParasaurolophus nearbyParasaurolophus : recipients) {
+        		if (nearbyParasaurolophus.timeUntilCanCall == 0 && nearbyParasaurolophus.getAnimationId() == 0) 
+        			AnimationHandler.sendAnimationPacket(nearbyParasaurolophus, JurassiCraftAnimationIDs.TRUMPET.animID());
         	}
         }
     }

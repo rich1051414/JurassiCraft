@@ -9,13 +9,6 @@ public class JurassiCraftAISit extends EntityAIBase {
 
 	private EntityJurassiCraftSmart creature;
 
-	/**
-	 * This AI handles the sitting state of the creature. It can only be set by the creature owner.
-	 * 
-	 * @param creature is the entity that will sit;
-	 * 
-	 * @author RafaMv
-	 */
 	public JurassiCraftAISit(EntityJurassiCraftSmart creature) {
 		this.creature = creature;
 		this.setMutexBits(5);
@@ -31,15 +24,33 @@ public class JurassiCraftAISit extends EntityAIBase {
 	}
 
 	@Override
-	public void startExecuting() {
+	public void startExecuting()
+	{
 		this.creature.getNavigator().clearPathEntity();
-		this.creature.setTakingOff(false);
-		this.creature.setFlying(false);
-		this.creature.setEating(false);
-		this.creature.setDrinking(false);
-		this.creature.setDefending(false);
-		this.creature.setPlaying(false);
-		this.creature.setBreeding(false);
+		if (this.creature.isTakingOff())
+			this.creature.setTakingOff(false);
+
+		if (this.creature.isFlying())
+			this.creature.setFlying(false);
+
+		if (this.creature.isEating())
+			this.creature.setEating(false);
+
+		if (this.creature.isDrinking())
+			this.creature.setDrinking(false);
+
+		if (this.creature.isFleeing())
+			this.creature.setFleeing(false);
+
+		if (this.creature.isDefending())
+			this.creature.setDefending(false);
+
+		if (this.creature.isAttacking())
+			this.creature.setAttacking(false);
+
+		if (this.creature.isBreeding())
+			this.creature.setBreeding(false);
+
 		this.creature.setSitting(true, (EntityPlayer) this.creature.getOwner());
 	}
 

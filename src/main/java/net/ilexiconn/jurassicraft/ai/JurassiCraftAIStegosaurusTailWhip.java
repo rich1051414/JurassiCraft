@@ -13,6 +13,9 @@ public class JurassiCraftAIStegosaurusTailWhip extends EntityAIBase
 	private double distanceSqFromAttacker;
 	private Class targetClass;
 
+	/**
+	 * @author RafaMv
+	 */
 	public JurassiCraftAIStegosaurusTailWhip(EntityStegosaurus stegosaurus)
 	{
 		this.stegosaurus = stegosaurus;
@@ -34,18 +37,43 @@ public class JurassiCraftAIStegosaurusTailWhip extends EntityAIBase
 	public void startExecuting()
 	{
 		this.stegosaurus.getNavigator().clearPathEntity();
-		this.stegosaurus.setTakingOff(false);
-		this.stegosaurus.setFlying(false);
-		this.stegosaurus.setSitting(false, null);
-		this.stegosaurus.setSleeping(false);
-		this.stegosaurus.setAttacking(false);
-		this.stegosaurus.setFleeing(false);
-		this.stegosaurus.setStalking(false);
-		this.stegosaurus.setEating(false);
-		this.stegosaurus.setDrinking(false);
-		this.stegosaurus.setPlaying(false);
-		this.stegosaurus.setBreeding(false);
-		this.stegosaurus.setInLove(false);
+
+		if (this.stegosaurus.isTakingOff())
+			this.stegosaurus.setTakingOff(false);
+
+		if (this.stegosaurus.isFlying())
+			this.stegosaurus.setFlying(false);
+
+		if (this.stegosaurus.isDefending())
+			this.stegosaurus.setDefending(false);
+
+		if (this.stegosaurus.isAttacking())
+			this.stegosaurus.setAttacking(false);
+
+		if (this.stegosaurus.isFleeing())
+			this.stegosaurus.setFleeing(false);
+
+		if (this.stegosaurus.isEating())
+			this.stegosaurus.setEating(false);
+
+		if (this.stegosaurus.isDrinking())
+			this.stegosaurus.setDrinking(false);
+
+		if (this.stegosaurus.isSleeping())
+			this.stegosaurus.setSleeping(false);
+
+		if (this.stegosaurus.isSitting())
+			this.stegosaurus.setSitting(false, null);
+
+		if (this.stegosaurus.isBreeding())
+			this.stegosaurus.setBreeding(false);
+
+		if (this.stegosaurus.isInLove())
+			this.stegosaurus.setInLove(false);
+
+		if (this.stegosaurus.isStalking())
+			this.stegosaurus.setStalking(false);
+
 		this.attacker = this.stegosaurus.getCreatureToAttack();
 		this.distanceSqFromAttacker = this.stegosaurus.getDistanceSqToEntity(this.attacker);
 	}

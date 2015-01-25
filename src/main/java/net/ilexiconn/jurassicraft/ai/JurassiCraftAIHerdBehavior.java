@@ -21,6 +21,9 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
     private int timeTryingToMove;
     private int maxTimeTryingToMove;
 
+	/**
+	 * @author RafaMv
+	 */
     public JurassiCraftAIHerdBehavior(EntityJurassiCraftSmart creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
     {
         this.lostCreature = creature;

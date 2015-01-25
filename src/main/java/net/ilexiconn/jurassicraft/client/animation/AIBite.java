@@ -63,11 +63,11 @@ public class AIBite extends AIAnimation {
 				{
 					this.entityTarget.mountEntity(this.entityBiting);
 					this.entityBiting.setAttackTarget((EntityLivingBase) null);
-					this.entityBiting.setPathToEntity(null);
+					this.entityBiting.getNavigator().clearPathEntity();
 					AnimationHandler.sendAnimationPacket(this.entityBiting, JurassiCraftAnimationIDs.EATING.animID());
 					EntityGallimimus gallimimus = (EntityGallimimus) this.entityTarget;
 					gallimimus.setAttackTarget((EntityLivingBase) null);
-					gallimimus.setPathToEntity(null);
+					gallimimus.getNavigator().clearPathEntity();
 					AnimationHandler.sendAnimationPacket((IAnimatedEntity) this.entityTarget, JurassiCraftAnimationIDs.BEING_EATEN.animID());
 				}
 				else

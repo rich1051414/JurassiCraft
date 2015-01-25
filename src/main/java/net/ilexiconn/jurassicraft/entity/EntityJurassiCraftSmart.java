@@ -581,7 +581,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		this.setStatus(this.getStatus() & ~States.INLOVE);
 	}
 
-	public EntityJurassiCraftAggressive findClosestEntityAggressive(EntityLivingBase creature, double x, double y, double z)
+	public EntityJurassiCraftAggressive getClosestEntityAggressive(EntityLivingBase creature, double x, double y, double z)
 	{
 		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
 		ArrayList<EntityJurassiCraftAggressive> listOfTargets = new ArrayList<EntityJurassiCraftAggressive>();
@@ -610,7 +610,19 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		return null;
 	}
 
-	public EntityJurassiCraftProtective findClosestEntityProtective(EntityLivingBase creature, double x, double y, double z)
+	public ArrayList<EntityJurassiCraftAggressive> getClosestEntityAggressiveList(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftAggressive> listOfTargets = new ArrayList<EntityJurassiCraftAggressive>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftAggressive)
+				listOfTargets.add((EntityJurassiCraftAggressive) entity);
+		}
+		return listOfTargets;
+	}
+
+	public EntityJurassiCraftProtective getClosestEntityProtective(EntityLivingBase creature, double x, double y, double z)
 	{
 		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
 		ArrayList<EntityJurassiCraftProtective> listOfTargets = new ArrayList<EntityJurassiCraftProtective>();
@@ -637,6 +649,58 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 			return closestProtective;
 		}
 		return null;
+	}
+
+	public ArrayList<EntityJurassiCraftProtective> getClosestEntityProtectiveList(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftProtective> listOfTargets = new ArrayList<EntityJurassiCraftProtective>();
+		System.out.println("list " + list);
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftProtective)
+				listOfTargets.add((EntityJurassiCraftProtective) entity);
+		}
+		return listOfTargets;
+	}
+
+	public EntityJurassiCraftCoward getClosestEntityCoward(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftCoward> listOfTargets = new ArrayList<EntityJurassiCraftCoward>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftCoward)
+				listOfTargets.add((EntityJurassiCraftCoward) entity);
+		}
+		if (!listOfTargets.isEmpty())
+		{
+			EntityJurassiCraftCoward closestCoward = null;
+			double distanceSq = 864.0D;
+			for (EntityJurassiCraftCoward closeTarget : listOfTargets)
+			{
+				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
+				if (nextDistance < distanceSq)
+				{
+					distanceSq = nextDistance;
+					closestCoward = closeTarget;
+				}
+			}
+			return closestCoward;
+		}
+		return null;
+	}
+
+	public ArrayList<EntityJurassiCraftCoward> getClosestEntityCowardList(EntityLivingBase creature, double x, double y, double z)
+	{
+		List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
+		ArrayList<EntityJurassiCraftCoward> listOfTargets = new ArrayList<EntityJurassiCraftCoward>();
+		for (Entity entity : list)
+		{
+			if (entity instanceof EntityJurassiCraftCoward)
+				listOfTargets.add((EntityJurassiCraftCoward) entity);
+		}
+		return listOfTargets;
 	}
 
 	@Override

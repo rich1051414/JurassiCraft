@@ -111,17 +111,14 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         }
     }
     
-    public List<EntityParasaurolophus> getParasaurolophusNearby(int distanceX, int distanceY, int distanceZ)
+    public List<EntityParasaurolophus> getParasaurolophusNearby(double distanceX, double distanceY, double distanceZ)
     {
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
 		ArrayList<EntityParasaurolophus> listParasaurolophus = new ArrayList<EntityParasaurolophus>();
-		for (int i = 0; i < list.size(); i++)
+		for (Entity entityNeighbor : list)
 		{
-			Entity entityNeighbor = (Entity) list.get(i);
-			if (entityNeighbor instanceof EntityParasaurolophus && entityNeighbor!= this)
-			{
+			if (entityNeighbor instanceof EntityParasaurolophus && entityNeighbor != this)
 				listParasaurolophus.add((EntityParasaurolophus) entityNeighbor);
-			}
 		}
 		return listParasaurolophus;
     }

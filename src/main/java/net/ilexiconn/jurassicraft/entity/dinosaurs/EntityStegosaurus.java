@@ -11,7 +11,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIStegosaurusTailWhip;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIStegosaurusTailWhip;
+import net.ilexiconn.jurassicraft.client.animation.AITailWhip;
 import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
@@ -47,7 +47,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAIStegosaurusTailWhip(this));
-        this.tasks.addTask(2, new AIStegosaurusTailWhip(this));
+        this.tasks.addTask(2, new AITailWhip(this, 30));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
@@ -90,7 +90,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         	this.tailWhip.decreaseTimer();
         	if (this.rand.nextInt(35) == 0 && this.isCreatureOlderThan(0.5F))
             {
-            	this.creatureToAttack = this.findClosestEntityAggressive(this, 20, 8, 20);
+            	this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
             	if (this.creatureToAttack != null)
             	{
             		if (this.creatureToAttack instanceof EntityJurassiCraftAggressive)

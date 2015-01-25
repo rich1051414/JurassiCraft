@@ -22,6 +22,9 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
     private int numberOfGallimimus;
     private int timeTryingToMove;
 
+	/**
+	 * @author RafaMv
+	 */
     public JurassiCraftAIGallimimusFlocking(EntityJurassiCraftSmart creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
     {
         this.herdCreature = creature;

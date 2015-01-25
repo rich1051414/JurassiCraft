@@ -316,6 +316,13 @@ public class ModelStegosaurus extends MowzieModelBase
         float scaleFactor = 0.5F;
         float height = 0.8F;
         float frontOffset = -2F;
+        
+    	float whipPosProgress = stegosaurus.tailWhip.getAnimationProgressSinSqrt();
+		EntityLivingBase target = stegosaurus.getCreatureToAttack();
+		if (target != null)
+		{
+			float variation = stegosaurus.rotationYaw += whipPosProgress * (target.rotationYaw + 3.14159265359F) - stegosaurus.rotationYaw;
+		}
 
         this.faceTarget(this.head, 3, f3, f4);
         this.faceTarget(this.headback, 3, f3, f4);
@@ -345,76 +352,57 @@ public class ModelStegosaurus extends MowzieModelBase
         this.walk(this.armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
         
-        //Idling
-        this.walk(this.neck, 0.1F, 0.04F, false, -1F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.head, 0.1F, 0.07F, true, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.headback, 0.1F, 0.03F, false, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.waist, 0.1F, 0.025F, false, 0F, 0F, stegosaurus.frame, 1F);
+		//Idling
+		this.walk(this.neck, 0.1F, 0.04F, false, -1F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.head, 0.1F, 0.07F, true, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.headback, 0.1F, 0.03F, false, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.waist, 0.1F, 0.025F, false, 0F, 0F, stegosaurus.frame, 1F);
 
-        float inverseKinematicsConstant = 0.6F;
-        this.walk(this.armrightthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.armrightcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.armrightfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
-        this.walk(this.armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
-        this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
-        this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
-        
-        if (stegosaurus.isDefending())
-        {
-        	float whipPosProgress = stegosaurus.tailWhip.getAnimationProgressSinSqrt();
-        	EntityLivingBase target = stegosaurus.getCreatureToAttack();
-        	if (target != null)
-        	{
-        		float variation = 
-        		stegosaurus.rotationYaw += whipPosProgress * (target.rotationYaw + 3.14159265359F) - stegosaurus.rotationYaw;
-        	}
-        	
-            this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
-            this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
-            
-            this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
-            this.legleftcalf.rotateAngleZ += 0.05F * whipPosProgress;
-            
-            this.legrightfoot.rotateAngleZ -= 0.15F * whipPosProgress;
-            this.legleftfoot.rotateAngleZ += 0.15F * whipPosProgress;
-            
-            this.armrightthigh.rotationPointY -= 1.2F * whipPosProgress;
-            this.armleftthigh.rotationPointY -= 1.2F * whipPosProgress;
+		float inverseKinematicsConstant = 0.6F;
+		this.walk(this.armrightthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.armrightcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.armrightfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
+		this.walk(this.armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
+		this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
+		this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
 
-            this.armrightthigh.rotateAngleZ += 0.6F * whipPosProgress;
-            this.armleftthigh.rotateAngleZ -= 0.6F * whipPosProgress;
 
-            this.armrightcalf.rotateAngleX -= 0.7F * whipPosProgress;
-            this.armleftcalf.rotateAngleX -= 0.7F * whipPosProgress;
-            this.armrightcalf.rotateAngleZ -= 0.3F * whipPosProgress;
-            this.armleftcalf.rotateAngleZ += 0.3F * whipPosProgress;
+		if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID()) {
+			this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
+			this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
+		}
+		this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
 
-            this.armrightfoot.rotateAngleX += 0.5F * whipPosProgress;
-            this.armleftfoot.rotateAngleX += 0.5F * whipPosProgress;
-            this.armrightfoot.rotateAngleZ -= 0.3F * whipPosProgress;
-            this.armleftfoot.rotateAngleZ += 0.3F * whipPosProgress;
-
-            this.waist.rotateAngleX += 0.35F * whipPosProgress;
-            this.chest.rotateAngleX -= 0.2F * whipPosProgress;
-            this.neck.rotateAngleX -= 0.1F * whipPosProgress;
-            this.tail1.rotateAngleX -= 0.1F * whipPosProgress;
-            
-        	if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
-        	{
-            	this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
-            	this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
-        	}
-        }
-        else
-        {
-            this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
-            this.chainSwing(this.tailParts, 0.1F, 0.2F, 3, stegosaurus.frame, 1F);
-            this.chainWave(this.tailParts, 0.1F, -0.05F, 1, stegosaurus.frame, 1F);
-            stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
-        }
-    }
+		this.chainSwing(this.tailParts, 0.1F, 0.2F, 3, stegosaurus.frame, 1.0F - whipPosProgress);
+		this.chainWave(this.tailParts, 0.1F, -0.05F, 1, stegosaurus.frame, 1.0F - whipPosProgress);
+		stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
+		
+		//Whip Position
+		this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
+		this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
+		this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
+		this.legleftcalf.rotateAngleZ += 0.05F * whipPosProgress;
+		this.legrightfoot.rotateAngleZ -= 0.15F * whipPosProgress;
+		this.legleftfoot.rotateAngleZ += 0.15F * whipPosProgress;
+		this.armrightthigh.rotationPointY -= 1.2F * whipPosProgress;
+		this.armleftthigh.rotationPointY -= 1.2F * whipPosProgress;
+		this.armrightthigh.rotateAngleZ += 0.6F * whipPosProgress;
+		this.armleftthigh.rotateAngleZ -= 0.6F * whipPosProgress;
+		this.armrightcalf.rotateAngleX -= 0.7F * whipPosProgress;
+		this.armleftcalf.rotateAngleX -= 0.7F * whipPosProgress;
+		this.armrightcalf.rotateAngleZ -= 0.3F * whipPosProgress;
+		this.armleftcalf.rotateAngleZ += 0.3F * whipPosProgress;
+		this.armrightfoot.rotateAngleX += 0.5F * whipPosProgress;
+		this.armleftfoot.rotateAngleX += 0.5F * whipPosProgress;
+		this.armrightfoot.rotateAngleZ -= 0.3F * whipPosProgress;
+		this.armleftfoot.rotateAngleZ += 0.3F * whipPosProgress;
+		this.waist.rotateAngleX += 0.35F * whipPosProgress;
+		this.chest.rotateAngleX -= 0.2F * whipPosProgress;
+		this.neck.rotateAngleX -= 0.1F * whipPosProgress;
+		this.tail1.rotateAngleX -= 0.1F * whipPosProgress;
+	}
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
