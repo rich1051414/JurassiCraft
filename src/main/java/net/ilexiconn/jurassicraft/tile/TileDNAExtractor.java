@@ -42,9 +42,9 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
     {
         this.extractionTime = 0;
 
-        for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
+        for (Creature creature : CreatureManager.getCreatures())
         {
-            ItemDNA dna = creature.getValue().getDNA();
+            ItemDNA dna = creature.getDNA();
             if (dna != null)
             {
                 this.allDNAs.add(dna);

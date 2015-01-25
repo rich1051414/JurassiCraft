@@ -16,9 +16,9 @@ import java.util.Map.Entry;
 
 public class CreatureManager
 {
-    private static Map<Class<?>, Creature> creatures = new HashMap<Class<?>, Creature>();
+    private static List<Creature> creatures = new ArrayList<Creature>();
 
-    public static Map<Class<?>, Creature> getCreatures()
+    public static List<Creature> getCreatures()
     {
         return creatures;
     }
@@ -26,17 +26,17 @@ public class CreatureManager
     public static String[] getCreatureNames()
     {
         List<String> list = new ArrayList<String>();
-        for (Creature creature : getCreatures().values()) list.add(creature.getCreatureName());
+        for (Creature creature : getCreatures()) list.add(creature.getCreatureName());
         return list.toArray(new String[list.size()]);
     }
 
     public static Creature getCreatureFromId(int creatureID)
     {
-        for (Entry<Class<?>, Creature> creature : creatures.entrySet())
+        for (Creature creature : creatures)
         {
-            if (creature.getValue().getCreatureID() == creatureID)
+            if (creature.getCreatureID() == creatureID)
             {
-                return creature.getValue();
+                return creature;
             }
         }
 
@@ -45,33 +45,40 @@ public class CreatureManager
 
     public static int getCreatureIdFromName(String name)
     {
-        for (Entry<Class<?>, Creature> creature : creatures.entrySet())
-        {
-            if (creature.getValue().getCreatureName().equalsIgnoreCase(name))
-            {
-                return creature.getValue().getCreatureID();
-            }
-        }
+    	Creature creatureFromName = getCreatureFromName(name);
+	
+    	if(creatureFromName != null)
+    	{
+    		return creatureFromName.getCreatureID();
+    	}
 
         return -1;
     }
 
-    public static Creature classToCreature(Class class1)
+    public static Creature classToCreature(Class clazz)
     {
-        return creatures.get(class1);
+    	for (Creature creature : creatures) 
+    	{
+			if(creature.getCreatureClass().equals(clazz))
+			{
+				return creature;
+			}
+		}
+    	
+        return null;
     }
 
     public static Creature getCreatureFromDNA(ItemDNA itemDNA)
     {
         if (itemDNA != null)
         {
-            for (Entry<Class<?>, Creature> creature : creatures.entrySet())
+            for (Creature creature : creatures)
             {
-                ItemDNA currentDNA = creature.getValue().getDNA();
+                ItemDNA currentDNA = creature.getDNA();
 
                 if (itemDNA.equals(currentDNA))
                 {
-                    return creature.getValue();
+                    return creature;
                 }
             }
         }
@@ -81,11 +88,11 @@ public class CreatureManager
 
     public static Creature getCreatureFromName(String name)
     {
-        for (Entry<Class<?>, Creature> creature : creatures.entrySet())
+        for (Creature creature : creatures)
         {
-            if (creature.getValue().getCreatureName().equalsIgnoreCase(name))
+            if (creature.getCreatureName().equalsIgnoreCase(name))
             {
-                return creature.getValue();
+                return creature;
             }
         }
 
@@ -94,11 +101,11 @@ public class CreatureManager
 
     public static Class getCreatureClass(String name)
     {
-        for (Entry<Class<?>, Creature> creature : creatures.entrySet())
+        for (Creature creature : creatures)
         {
-            if (creature.getValue().getCreatureName().equalsIgnoreCase(name))
+            if (creature.getCreatureName().equalsIgnoreCase(name))
             {
-                return creature.getKey();
+                return creature.getCreatureClass();
             }
         }
 
@@ -107,11 +114,11 @@ public class CreatureManager
 
     public static Class getCreatureClass(int id)
     {
-        for (Entry<Class<?>, Creature> ccreature : creatures.entrySet())
+        for (Creature ccreature : creatures)
         {
-            if (ccreature.getValue().getCreatureID() == id)
+            if (ccreature.getCreatureID() == id)
             {
-                return ccreature.getKey();
+                return ccreature.getCreatureClass();
             }
         }
 
@@ -125,7 +132,7 @@ public class CreatureManager
             String creatureName = creature.creatureName;
 
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + creatureName);
-            creatures.put(entity, new Creature(category, creature));
+            creatures.add(new Creature(category, creature, entity));
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
             EntityRegistry.registerGlobalEntityID(entity, creatureName, entityId);
             EntityRegistry.registerModEntity(entity, creatureName, entityId, JurassiCraft.instance, 64, 1, true);
@@ -135,7 +142,6 @@ public class CreatureManager
             e.printStackTrace();
         }
     }
-
 
     @SideOnly(Side.CLIENT)
     public static void addCreatureRenderer(JsonCreatureDefinition dino, String category)

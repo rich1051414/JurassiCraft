@@ -44,10 +44,8 @@ public class ModItems implements IContentHandler
 		spawnEgg = new ItemSpawnEggJurassiCraft();
 		net = new ItemNet();
 
-		for (Entry<Class<?>, Creature> creatureEntry : CreatureManager.getCreatures().entrySet()) 
+		for (Creature creature : CreatureManager.getCreatures()) 
 		{
-			Creature creature = creatureEntry.getValue();
-
 			//TODO clean this up :P
 			switch (creature.getAddedItemTypes()) 
 			{

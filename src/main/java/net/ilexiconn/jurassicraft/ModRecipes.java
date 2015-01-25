@@ -24,9 +24,9 @@ public class ModRecipes implements IContentHandler
             GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GIG", "G G", "III", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, correction));
         }
 
-        for (Entry<Class<?>, Creature> creature : CreatureManager.getCreatures().entrySet())
+        for (Creature creature : CreatureManager.getCreatures())
         {
-            ItemMeat meat = creature.getValue().getMeat();
+            ItemMeat meat = creature.getMeat();
             if (meat != null)
             {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));

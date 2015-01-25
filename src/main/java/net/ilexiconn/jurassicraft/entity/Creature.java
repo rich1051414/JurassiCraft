@@ -22,6 +22,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Creature
 {
+	private Class clazz;
+	
     private String creatureCategory;
     
     private byte creatureID;
@@ -81,8 +83,10 @@ public class Creature
     private ItemSkull skull;
     private ItemTooth tooth;
 
-    public Creature(String creatureCategory, JsonCreatureDefinition def)
+    public Creature(String creatureCategory, JsonCreatureDefinition def, Class clazz)
     {
+    	this.clazz = clazz;
+    	
         this.creatureCategory = creatureCategory;
 
         this.adultAge = def.adultAge;
@@ -202,6 +206,10 @@ public class Creature
     	GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
     }
     
+    public Class getCreatureClass()
+    {
+    	return clazz;
+    }
 
     public void addEgg()
     {
