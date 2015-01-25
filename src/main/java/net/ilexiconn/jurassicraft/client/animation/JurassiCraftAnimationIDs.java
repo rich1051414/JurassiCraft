@@ -23,11 +23,6 @@ public enum JurassiCraftAnimationIDs
 		animationID = id;
 	}
 
-	public int getAnimationID()
-	{
-		return (int) this.animationID;
-	}
-
 	public int animID()
 	{
 		return (int) this.animationID;

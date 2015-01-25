@@ -15,6 +15,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIParasaurolophusTrumpet;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
@@ -104,7 +105,8 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         }
         else
         {
-            if (timeUntilCanCall == 0 && animID == 0) AnimationHandler.sendAnimationPacket(this, 1);
+            if (timeUntilCanCall == 0 && animID == 0)
+            	AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.TRUMPET.animID());
             return null;
         }
     }

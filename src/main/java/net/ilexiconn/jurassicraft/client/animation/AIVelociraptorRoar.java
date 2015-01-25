@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 
 public class AIVelociraptorRoar extends AIAnimation
 {
@@ -15,7 +15,7 @@ public class AIVelociraptorRoar extends AIAnimation
 
     public int getAnimationId()
     {
-        return 2;
+        return JurassiCraftAnimationIDs.ROAR.animID();
     }
 
     public boolean isAutomatic()

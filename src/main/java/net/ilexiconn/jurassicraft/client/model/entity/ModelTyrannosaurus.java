@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
@@ -385,7 +386,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
     	this.animator.update(entity);
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
 
-        this.animator.setAnimation(1);
+        this.animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
         this.animator.startPhase(15);
         this.animator.move(Waist, 0, -3, -5);
         this.animator.move(RightThigh, 0, -3, -5);
@@ -423,7 +424,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.setStationaryPhase(35);
         this.animator.resetPhase(15);
 
-        this.animator.setAnimation(2);
+        this.animator.setAnimation(JurassiCraftAnimationIDs.WALK_ROAR.animID());
         this.animator.startPhase(15);
         this.animator.rotate(Neck, -0.4F, 0, 0);
         this.animator.rotate(Head, 0.8F, 0, 0);
@@ -436,7 +437,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.setStationaryPhase(35);
         this.animator.resetPhase(15);
 
-        this.animator.setAnimation(3);
+        this.animator.setAnimation(JurassiCraftAnimationIDs.EATING.animID());
         this.animator.startPhase(8);
         this.animator.rotate(Waist, -0.35F, 0.0F, 0.0F);
         this.animator.rotate(Tail1, 0.15F, 0.0F, 0.0F);
@@ -494,7 +495,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.animator.endPhase();
         this.animator.resetPhase(2);
         
-        this.animator.setAnimation(5);
+        this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
         this.animator.startPhase(6);
         this.animator.rotate(Neck, -0.3F, 0, 0);
         this.animator.rotate(Head, 0.5F, 0, 0);

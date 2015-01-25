@@ -1,12 +1,13 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
-import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 
 public class ModelVelociraptor extends MowzieModelBase
 {
@@ -652,8 +653,7 @@ public class ModelVelociraptor extends MowzieModelBase
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityVelociraptor) entity);
         EntityVelociraptor raptor = (EntityVelociraptor) entity;
 
-        //Head twitch
-        animator.setAnimation(1);
+        animator.setAnimation(JurassiCraftAnimationIDs.TWITCH_HEAD.animID());
         animator.startPhase(3);
         if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == 1) TwitchAngle = (float) (Math.random() - 0.5);
         animator.rotate(Head, 0, 0, TwitchAngle);
@@ -661,8 +661,7 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.setStationaryPhase(24);
         animator.resetPhase(3);
 
-        //Roar
-        animator.setAnimation(2);
+        animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
         animator.startPhase(3);
         animator.rotate(Neck, -0.1F, 0, 0);
         animator.rotate(Head, 0.1F, 0, 0);
@@ -675,15 +674,13 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.setStationaryPhase(9);
         animator.resetPhase(5);
 
-        //Leap
-        animator.setAnimation(3);
+        animator.setAnimation(JurassiCraftAnimationIDs.LEAP.animID());
         animator.startPhase(5);
         animator.move(Body_1, 0, 3, 0);
         animator.rotate(Body_1, 0.5F, 0, 0);
         animator.rotate(Tail_1, 0.4F, 0, 0);
         animator.move(Tail_1, 0, 0, -2);
         animator.rotate(Neck, -0.5F, 0, 0);
-
         animator.move(Right_Thigh, 0, 3, 0);
         animator.move(Left_Thigh, 0, 3, 0);
         animator.rotate(Right_Thigh, -0.2F, 0.4F, 0);
@@ -700,7 +697,6 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.move(Body_1, 0, -3, 0);
         animator.move(Tail_1, 0, 0, 0);
         animator.rotate(Tail_1, -0.4F, 0, 0);
-
         animator.move(Right_Thigh, 0, -3, 0);
         animator.move(Left_Thigh, 0, -3, 0);
         animator.rotate(Right_Thigh, 1F, 0, 0);
@@ -712,7 +708,6 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.rotate(Foot_Right, -1F, 0, 0);
         animator.rotate(Foot_Left, -1F, 0, 0);
         animator.endPhase();
-
         animator.startPhase(2);
         animator.rotate(Body_1, -0.8F, 0, 0);
         animator.rotate(Neck, 0.8F, 0, 0);
@@ -721,7 +716,6 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.move(Tail_1, 0, 0, -2);
         animator.rotate(Tail_1, 0.7F, 0, 0);
         animator.move(Neck, 0, -2, -3);
-
         animator.rotate(Right_Thigh, -1.2F, 0, 0);
         animator.rotate(Left_Thigh, -1.2F, 0, 0);
         animator.rotate(Right_Calf_1, -0.3F, 0, 0);
@@ -730,7 +724,6 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.rotate(Left_Upper_Foot, 0.3F, 0, 0);
         animator.rotate(Foot_Right, -0.3F, 0, 0);
         animator.rotate(Foot_Left, -0.3F, 0, 0);
-
         animator.rotate(Upper_Arm_Right, -0.5F, 0, 1);
         animator.rotate(Upper_Arm_Left, -0.5F, 0, -1);
         animator.rotate(Lower_Arm_Right, 0.5F, 1.5F, 0);

@@ -25,7 +25,7 @@ public class AITriceratopsCharge extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.CHARGE.animID();
     }
 
     public boolean isAutomatic()

@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityAnkylosaurus;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.DamageSource;
-import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AIAnkylosaurTailWhip extends AIAnimation
 {
@@ -20,7 +20,7 @@ public class AIAnkylosaurTailWhip extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.TAIL_WHIP.animID();
     }
 
     public boolean isAutomatic()

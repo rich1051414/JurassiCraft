@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
-import net.minecraft.entity.EntityLiving;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.minecraft.entity.EntityLiving;
 
 public class AIVelociraptorTwitchHead extends AIAnimation
 {
@@ -17,7 +17,7 @@ public class AIVelociraptorTwitchHead extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.TWITCH_HEAD.animID();
     }
 
     public boolean isAutomatic()

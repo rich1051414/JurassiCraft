@@ -14,7 +14,7 @@ public class AIHypsilophodonScratchHead extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.SCRATCH.animID();
     }
 
     public boolean isAutomatic()

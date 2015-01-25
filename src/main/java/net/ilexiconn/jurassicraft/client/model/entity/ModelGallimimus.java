@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -488,7 +488,7 @@ public class ModelGallimimus extends MowzieModelBase
     	this.animator.update(entity);
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
     	
-        this.animator.setAnimation(1);
+        this.animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
         this.animator.startPhase(0);
         this.animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
         this.animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);

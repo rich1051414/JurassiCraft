@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.client.animation.AIBite;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,10 +14,10 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
 
 	public EntityJurassiCraftAggressive(World world, Creature creature) {
 		super(world, creature);
-        this.tasks.addTask(2, new AIBite(this));
+        this.tasks.addTask(2, new AIBite(this, this.getBiteAnimationDuration()));
     }
 
-    @Override
+	@Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
         if (this.isEntityInvulnerable())
@@ -38,20 +39,14 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
         }
     }
 
-	@Override
-    protected void attackEntity(Entity entity, float par2)
-    {
-        if (this.attackTime <= 0 && par2 < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
-        {
-            this.attackTime = 20;
-            this.attackEntityAsMob(entity);
-        }
-    }
+    protected int getBiteAnimationDuration() {
+		return 20;
+	}
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
- /*       float attackDamage = (float) this.getCreatureAttack();
+    	float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
@@ -78,8 +73,18 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
             }
             EnchantmentHelper.func_151385_b(this, entity);
         }
-        return flag;*/
-    	if(animID == 0) AnimationHandler.sendAnimationPacket(this, 5);
-		return true;
+    	if(flag && animID == 0)
+    		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
+        return flag;
+    }
+
+	@Override
+    protected void attackEntity(Entity entity, float par2)
+    {
+        if (this.attackTime <= 0 && par2 < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
+        {
+            this.attackTime = 20;
+            this.attackEntityAsMob(entity);
+        }
     }
 }

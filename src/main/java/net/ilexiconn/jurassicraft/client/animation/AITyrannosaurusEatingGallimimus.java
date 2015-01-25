@@ -1,10 +1,7 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
-import net.minecraft.entity.EntityLivingBase;
 
 public class AITyrannosaurusEatingGallimimus extends AIAnimation
 {
@@ -18,7 +15,7 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 
     public int getAnimationId()
     {
-        return 3;
+        return JurassiCraftAnimationIDs.EATING.animID();
     }
 
     public int getDuration()

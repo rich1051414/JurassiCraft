@@ -1,9 +1,8 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
-import net.ilexiconn.jurassicraft.ai.AIAnimation;
 
 public class AIVelociraptorLeap extends AIAnimation
 {
@@ -24,7 +23,7 @@ public class AIVelociraptorLeap extends AIAnimation
 
     public int getAnimationId()
     {
-        return 3;
+        return JurassiCraftAnimationIDs.LEAP.animID();
     }
 
     public boolean isAutomatic()

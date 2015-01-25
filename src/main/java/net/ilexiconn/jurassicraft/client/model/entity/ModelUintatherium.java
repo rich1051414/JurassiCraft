@@ -420,7 +420,7 @@ public class ModelUintatherium extends ModelBase
         animator.update((IAnimatedEntity) entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        animator.setAnimation(JurassiCraftAnimationIDs.HEADBUTT.getAnimationID());
+        animator.setAnimation(JurassiCraftAnimationIDs.HEADBUTT.animID());
         animator.startPhase(7);
         animator.rotate(head, PI / 3F, 0F, 0F);
         animator.rotate(snout, PI / 3F, 0F, 0F);

@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.animation;
 
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 
 
 public class AITyrannosaurusRoar extends AIAnimation
@@ -16,7 +16,7 @@ public class AITyrannosaurusRoar extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.ROAR.animID();
     }
 
     public boolean isAutomatic()

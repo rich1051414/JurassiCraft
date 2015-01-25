@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITriceratopsCharge;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
@@ -110,7 +111,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
         if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isFleeing() && this.getCreatureAgeInDays() >= 17)
-            AnimationHandler.sendAnimationPacket(this, 1);
+            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
         if (timeSinceCharge != 0) timeSinceCharge--;
     }
 

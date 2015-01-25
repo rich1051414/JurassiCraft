@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
@@ -339,7 +340,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHypsilophodon) entity);
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
 
-        animator.setAnimation(1);
+        animator.setAnimation(JurassiCraftAnimationIDs.SCRATCH.animID());
         animator.startPhase(5);
         animator.rotate(neck, 0.9F, -0.4F, 0);
         animator.rotate(head, -0.8F, -0.25F, 0.7F);

@@ -3,8 +3,8 @@ package net.ilexiconn.jurassicraft.client.animation;
 import java.util.List;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 
 public class AIParasaurolophusTrumpet extends AIAnimation
@@ -20,7 +20,7 @@ public class AIParasaurolophusTrumpet extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.TRUMPET.animID();
     }
 
     public boolean isAutomatic()
@@ -60,7 +60,8 @@ public class AIParasaurolophusTrumpet extends AIAnimation
         if (entityPara.getAnimationTick() == 50) {
         	List<EntityParasaurolophus> recipients = entityPara.getParasaurolophusNearby(20, 10, 20);
         	for (int i = 0; i < recipients.size(); i++) {
-        		if (recipients.get(i).timeUntilCanCall == 0 && recipients.get(i).getAnimationId() == 0)AnimationHandler.sendAnimationPacket(recipients.get(i), 1);
+        		if (recipients.get(i).timeUntilCanCall == 0 && recipients.get(i).getAnimationId() == 0) 
+        			AnimationHandler.sendAnimationPacket(recipients.get(i), JurassiCraftAnimationIDs.TRUMPET.animID());
         	}
         }
     }

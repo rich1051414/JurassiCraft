@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusRoar;
 import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusWalkRoar;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -21,8 +22,6 @@ import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -122,13 +121,11 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 				if (this.moveForward == 0)
 				{
 					if (!this.isSitting())
-						if (this.animID == 0)
-							AnimationHandler.sendAnimationPacket(this, 1);
+							AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
 				}
 				else
 				{
-					if (this.animID == 0)
-						AnimationHandler.sendAnimationPacket(this, 2);
+						AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.WALK_ROAR.animID());
 				}
             }
             return null;

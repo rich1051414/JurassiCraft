@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
@@ -511,7 +512,7 @@ public class ModelTriceratops extends MowzieModelBase
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTriceratops) entity);
 
-        animator.setAnimation(1);
+        animator.setAnimation(JurassiCraftAnimationIDs.CHARGE.animID());
         animator.startPhase(4);
         animator.rotate(Waist, 0.25F, 0, 0);
         animator.rotate(FrontThighLeft, 0.125F, 0, 0);

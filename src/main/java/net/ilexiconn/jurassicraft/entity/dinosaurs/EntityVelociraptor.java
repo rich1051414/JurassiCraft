@@ -12,6 +12,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
 import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
@@ -85,7 +86,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
         else distanceFromTarget = -1;
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0 && animID == 0)
-            AnimationHandler.sendAnimationPacket(this, 3);
+            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.LEAP.animID());
         if (onGround == true) setLeaping(false);
         if (timeSinceLeap != 0) timeSinceLeap--;
 
@@ -108,7 +109,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     @Override
     public String getLivingSound()
     {
-        if (animID == 0) AnimationHandler.sendAnimationPacket(this, 2);
+        if (animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
         int I = rand.nextInt(4) + 1;
         if (I == 1) return "jurassicraft:velociraptorHiss01";
         if (I == 2) return "jurassicraft:velociraptorHiss02";

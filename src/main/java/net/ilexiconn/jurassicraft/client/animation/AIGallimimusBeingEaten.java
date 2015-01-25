@@ -19,7 +19,7 @@ public class AIGallimimusBeingEaten extends AIAnimation
 
     public int getAnimationId()
     {
-        return 1;
+        return JurassiCraftAnimationIDs.BEING_EATEN.animID();
     }
 
     public int getDuration()

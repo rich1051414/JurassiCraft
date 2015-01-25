@@ -13,7 +13,7 @@ public class AIAnkylosaurTailSlam extends AIAnimation
 
     public int getAnimationId()
     {
-        return 2;
+        return JurassiCraftAnimationIDs.TAIL_SLAM.animID();
     }
 
     public boolean isAutomatic()
