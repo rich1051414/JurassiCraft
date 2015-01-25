@@ -413,8 +413,6 @@ public class ModelTriceratops extends MowzieModelBase
         float animationDegree = 2 - sprintModifier * 0.2F;
         
     	float defPosProgress = triceratops.defendingPosition.getAnimationProgressSinSqrt();
-		float sideMotion = 0.3F * defPosProgress * MathHelper.cos(0.075F * triceratops.frame);
-		float upMotion = 0.15F * defPosProgress * MathHelper.abs(MathHelper.cos(0.3F * triceratops.frame));
 
         faceTarget(Head, 2, f3, f4);
         faceTarget(Neck, 2, f3, f4);
@@ -444,7 +442,6 @@ public class ModelTriceratops extends MowzieModelBase
         walk(LeftFrontFoot, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, true, frontOffset + 1.5F + sprintModifier * legOffsetModifier, 0F, f, f1);
 
         chainWave(tailParts, bobBase * scaleFactor, 0.03F, 1F, f, f1);
-
         
         //Idling
         walk(Neck, 0.1F, 0.07F, false, -1F, 0F, triceratops.frame, 1F);
@@ -465,7 +462,6 @@ public class ModelTriceratops extends MowzieModelBase
         chainWave(tailParts, 0.1F, -0.05F, 1, triceratops.frame, 1F);
 
         triceratops.tailBuffer.applyChainSwingBuffer(this.tailParts);
-
         
         //Specialized animations
         Head.rotateAngleZ += Math.cos(triceratops.frame) * triceratops.flailDegree.value / 3;
@@ -478,45 +474,18 @@ public class ModelTriceratops extends MowzieModelBase
         
         
         //Defending Animation
-		this.Neck.rotationPointY += 0.5F * defPosProgress;
-		this.Waist.rotationPointY += 5.25F * defPosProgress;
-		this.Waist.rotateAngleX -= 0.25F * defPosProgress;
-				
-		this.Waist.rotateAngleX -= upMotion;
-
-		this.Waist.rotateAngleY += sideMotion;
-		this.BackThighLeft.rotateAngleY += sideMotion;
-		this.BackThighRight.rotateAngleY += sideMotion;
-		
-		this.Tail1.rotateAngleX += 0.325F * defPosProgress;
-		this.Neck.rotateAngleX += 0.2F * defPosProgress + upMotion;
-		this.Head.rotateAngleX += 0.4F * defPosProgress;
-
-		this.BackThighLeft.rotationPointY += 3.0F * defPosProgress;
-		this.BackThighRight.rotationPointY += 3.0F * defPosProgress;
-		this.BackThighLeft.rotateAngleX += 0.3F * defPosProgress;
-		this.BackCalfLeft.rotateAngleX += 0.15F * defPosProgress;
-		this.LeftBackFoot.rotateAngleX -= 0.45F * defPosProgress;
-		this.BackThighRight.rotateAngleX += 0.3F * defPosProgress;
-		this.BackCalfRight.rotateAngleX += 0.15F * defPosProgress;
-		this.RightBackFoot.rotateAngleX -= 0.45F * defPosProgress;
-
-		this.FrontThighLeft.rotationPointY += 1.6F * defPosProgress;
-		this.FrontThighRight.rotationPointY += 1.6F * defPosProgress;
-		this.FrontThighLeft.rotationPointZ -= 1.75F * defPosProgress;
-		this.FrontThighRight.rotationPointZ -= 1.75F * defPosProgress;
-		this.FrontThighLeft.rotateAngleX += 0.5F * defPosProgress;
-		this.FrontCalfLeft.rotateAngleX -= 0.15F * defPosProgress + 2.0F * upMotion;
-		this.FrontThighRight.rotateAngleX += 0.5F * defPosProgress;
-		this.FrontCalfRight.rotateAngleX -= 0.15F * defPosProgress + 2.0F * upMotion;
-		
-		this.bob(this.Neck, 0.15F, 1.0F, true, triceratops.frame, defPosProgress);
-		
-		this.walk(this.Neck, 0.3F, 0.2F, false, 0.0F, 0.0F, triceratops.frame, defPosProgress);
-		this.flap(this.Neck, 0.15F, 0.4F, false, 0.0F, 0.0F, triceratops.frame, defPosProgress);
-		
-		this.chainSwing(this.tailParts, 0.1F, 0.1F, 2.0F, triceratops.frame, defPosProgress);
-		this.chainWave(this.tailParts, 0.1F, 0.05F, 1.0F, triceratops.frame, defPosProgress);
+		Waist.rotateAngleX += 0.25F * defPosProgress;
+		Head.rotateAngleX -= 0.25F * defPosProgress;
+		FrontThighLeft.rotateAngleX += 0.125F * defPosProgress;
+		FrontThighRight.rotateAngleX += 0.125F * defPosProgress;
+		FrontCalfLeft.rotateAngleX -= 0.55F * defPosProgress;
+		FrontCalfRight.rotateAngleX -= 0.55F * defPosProgress;
+		LeftFrontFoot.rotateAngleX += 0.25F * defPosProgress;
+		RightFrontFoot.rotateAngleX += 0.25F * defPosProgress;
+		Tail1.rotateAngleX -= 0.2F * defPosProgress;
+		FrontThighLeft.rotateAngleX += 0.2 * defPosProgress * (Math.cos(0.3*triceratops.frame + Math.sin(0.3*triceratops.frame)) + 1);
+		FrontCalfLeft.rotateAngleX -= 0.2 * defPosProgress * (Math.cos(0.3*triceratops.frame - 1 + Math.sin(0.3*triceratops.frame - 1)) + 1);
+		LeftFrontFoot.rotateAngleX += 0.1 * defPosProgress * (Math.cos(0.3*triceratops.frame + Math.sin(0.3*triceratops.frame)) + 1);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
