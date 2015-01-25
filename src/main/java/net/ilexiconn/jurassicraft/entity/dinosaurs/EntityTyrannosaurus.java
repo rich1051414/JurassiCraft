@@ -152,8 +152,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
             stepCount = 65;
         }
-        if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         this.stepCount -= this.moveForward * 9.5;
         
         //Breathing Sound MISSING SOUND

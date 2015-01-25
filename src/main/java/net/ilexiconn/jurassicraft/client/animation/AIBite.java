@@ -51,13 +51,15 @@ public class AIBite extends AIAnimation {
 
 	public void updateTask()
 	{
+		System.out.println(this.entityBiting.getAnimationTick());
 		if (this.entityTarget != null)
 		{
-			if (this.entityBiting.getAnimationTick() < 10)
+			if (this.entityBiting.getAnimationTick() < duration/2)
 				this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
 
-			if (this.entityBiting.getAnimationTick() == 10)
+			if (this.entityBiting.getAnimationTick() == duration/2)
 			{
+				System.out.println("Bite!");
 				float damage = (float) this.entityBiting.getCreatureAttack();
 				if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
 				{

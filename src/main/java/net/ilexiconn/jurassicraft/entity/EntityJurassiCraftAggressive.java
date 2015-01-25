@@ -3,6 +3,8 @@ package net.ilexiconn.jurassicraft.entity;
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.client.animation.AIBite;
 import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,13 +42,15 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
     }
 
     protected int getBiteAnimationDuration() {
-		return 20;
+		if (this instanceof EntityTyrannosaurus) return 20;
+		if (this instanceof EntityVelociraptor) return 10;
+		else return 10;
 	}
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-    	float attackDamage = (float) this.getCreatureAttack();
+/*    	float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
@@ -72,10 +76,10 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
                 EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
             }
             EnchantmentHelper.func_151385_b(this, entity);
-        }
-    	if(flag && animID == 0)
+        }*/
+    	if(/*flag && */animID == 0)
     		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
-        return flag;
+        return true;//flag;
     }
 
 	@Override

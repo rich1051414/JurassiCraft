@@ -575,7 +575,7 @@ public class ModelVelociraptor extends MowzieModelBase
 		 * f = raptor.frame; f1 = 1F;
 		 */
         if (raptor.leaping) f1 = 0;
-        if (raptor.getAnimationId() == 3 && raptor.getAnimationTick() >= 6) f1 = 0;
+        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID() && raptor.getAnimationTick() >= 6) f1 = 0;
         float scaleFactor = 0.75F;
         float height = 2F * f1;
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
@@ -613,7 +613,7 @@ public class ModelVelociraptor extends MowzieModelBase
         
         raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);
         
-        if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == 3) raptor.setLeaping(true);
+        if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()) raptor.setLeaping(true);
         if (raptor.leaping == true)
         {
             Body_1.rotateAngleX -= 0.8;
@@ -655,7 +655,7 @@ public class ModelVelociraptor extends MowzieModelBase
 
         animator.setAnimation(JurassiCraftAnimationIDs.TWITCH_HEAD.animID());
         animator.startPhase(3);
-        if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == 1) TwitchAngle = (float) (Math.random() - 0.5);
+        if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID()) TwitchAngle = (float) (Math.random() - 0.5);
         animator.rotate(Head, 0, 0, TwitchAngle);
         animator.endPhase();
         animator.setStationaryPhase(24);

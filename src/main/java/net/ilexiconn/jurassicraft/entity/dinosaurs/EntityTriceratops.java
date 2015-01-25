@@ -120,7 +120,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     {
         super.onUpdate();
         this.flailDegree.update();
-        if (this.animID == 1 && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        if (this.animID == JurassiCraftAnimationIDs.CHARGE.animID() && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
         if (this.stepCount <= 0 && this.charging)
         {
             this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
@@ -151,7 +151,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     public void ridingPlayerRightClick() {
     	if (onGround && timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem())) {
             this.decreaseHeldItemDurability(20);
-    		AnimationHandler.sendAnimationPacket(this, 1);
+    		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
     	}
     }
 
