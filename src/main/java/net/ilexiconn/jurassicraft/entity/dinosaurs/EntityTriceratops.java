@@ -56,7 +56,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(2, new AnimationAITriceratopsCharge(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
-        this.tasks.addTask(4, new JurassiCraftAIDefensiveReaction(this, 250.0D, 550.0D, true, JurassiCraftAnimationIDs.CHARGE.animID(), true));
+        this.tasks.addTask(4, new JurassiCraftAIDefensiveReaction(this, 300.0D, 870.0D, true, JurassiCraftAnimationIDs.CHARGE.animID(), true));
         this.tasks.addTask(5, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
@@ -141,10 +141,10 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         }
         else
         {
-        	this.defendingPosition.decreaseTimer();
+        	this.defendingPosition.decreaseTimer(2);
         	if (this.rand.nextInt(40) == 0 && this.isCreatureOlderThan(0.6F))
             {
-            	this.creatureToAttack = this.getClosestEntityAggressive(this, 16, 6, 16);
+            	this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
             	if (this.creatureToAttack != null)
             		this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
             }
@@ -171,8 +171,8 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     
     @Override
     public void ridingPlayerRightClick() {
-    	if (onGround && timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem())) {
-            this.decreaseHeldItemDurability(20);
+    	if (this.onGround && this.timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem())) {
+            this.decreaseHeldItemDurability(40);
     		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
     	}
     }

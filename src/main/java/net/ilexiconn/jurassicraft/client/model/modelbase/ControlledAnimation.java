@@ -1,9 +1,8 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
+import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.MathHelper;
 
 /**
  * This is a timer that can be used to easily animate models between poses. You
@@ -64,7 +63,7 @@ public class ControlledAnimation
     @SideOnly(Side.CLIENT)
 	public void increaseTimer()
 	{
-		if (!Minecraft.getMinecraft().isGamePaused() && this.timer < this.limitTime)
+		if (this.timer < this.limitTime)
 			this.timer++;
 	}
 
@@ -76,15 +75,21 @@ public class ControlledAnimation
     @SideOnly(Side.CLIENT)
 	public void increaseTimer(int time)
 	{
-		if (!Minecraft.getMinecraft().isGamePaused() && this.timer + (double) time < this.limitTime)
+		if (this.timer + (double) time < this.limitTime)
+		{
 			this.timer += (double) time;
+		}
+		else
+		{
+			this.timer = this.limitTime;
+		}
 	}
 
 	/** Decreases the timer by 1. */
     @SideOnly(Side.CLIENT)
 	public void decreaseTimer()
 	{
-		if (!Minecraft.getMinecraft().isGamePaused() && this.timer > 0)
+		if (this.timer > 0.0D)
 			this.timer--;
 	}
 
@@ -96,8 +101,14 @@ public class ControlledAnimation
     @SideOnly(Side.CLIENT)
 	public void decreaseTimer(int time)
 	{
-		if (!Minecraft.getMinecraft().isGamePaused() && this.timer - (double) time > 0)
+		if (this.timer - (double) time > 0.0D)
+		{
 			this.timer -= (double) time;
+		}
+		else
+		{
+			this.timer = 0.0D;
+		}
 	}
 
 	/**
