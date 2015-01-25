@@ -11,7 +11,7 @@ public abstract class AIAnimation extends EntityAIBase
 
 	public AIAnimation(IAnimatedEntity entity)
 	{
-		animatedEntity = entity;
+		this.animatedEntity = entity;
 		setMutexBits(7);
 	}
 	
@@ -19,7 +19,7 @@ public abstract class AIAnimation extends EntityAIBase
 	
 	public <T extends EntityLiving> T getEntity()
 	{
-		return (T) animatedEntity;
+		return (T) this.animatedEntity;
 	}
 	
 	public abstract boolean isAutomatic();
@@ -33,23 +33,23 @@ public abstract class AIAnimation extends EntityAIBase
 	
 	public boolean shouldExecute()
 	{
-		if(isAutomatic()) return animatedEntity.getAnimationId() == getAnimationId();
+		if(isAutomatic()) return this.animatedEntity.getAnimationId() == getAnimationId();
 		return shouldAnimate();
 	}
 	
 	public void startExecuting()
 	{
-		if(!isAutomatic()) AnimationHandler.sendAnimationPacket(animatedEntity, getAnimationId());
-		animatedEntity.setAnimationTick(0);
+		if(!isAutomatic()) AnimationHandler.sendAnimationPacket(this.animatedEntity, getAnimationId());
+		this.animatedEntity.setAnimationTick(0);
 	}
 	
 	public boolean continueExecuting()
 	{
-		return animatedEntity.getAnimationTick() < getDuration();
+		return this.animatedEntity.getAnimationTick() < getDuration();
 	}
 	
 	public void resetTask()
 	{
-		AnimationHandler.sendAnimationPacket(animatedEntity, 0);
+		AnimationHandler.sendAnimationPacket(this.animatedEntity, 0);
 	}
 }

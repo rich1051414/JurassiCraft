@@ -34,12 +34,13 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
 	protected int angryTicks;
 	protected int numberOfAllies;
+	public EntityLivingBase creatureToAttack;
 
 	public EntityJurassiCraftSmart(World world, Creature creature) {
 		super(world, creature);
 		this.numberOfAllies = 0;
 		JCPathNavigate nav = new JCPathNavigate(this, world);
-        ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6); // Rewrites the navigator
+        ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6);
 	}
 
 	@Override
@@ -595,7 +596,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		if (!listOfTargets.isEmpty())
 		{
 			EntityJurassiCraftAggressive closestAggressive = null;
-			double distanceSq = 864.0D;
+			double distanceSq = x * x + y * y + z * z;
 			for (EntityJurassiCraftAggressive closeTarget : listOfTargets)
 			{
 				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
@@ -636,7 +637,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		if (!listOfTargets.isEmpty())
 		{
 			EntityJurassiCraftProtective closestProtective = null;
-			double distanceSq = 864.0D;
+			double distanceSq = x * x + y * y + z * z;
 			for (EntityJurassiCraftProtective closeTarget : listOfTargets)
 			{
 				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
@@ -676,7 +677,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 		if (!listOfTargets.isEmpty())
 		{
 			EntityJurassiCraftCoward closestCoward = null;
-			double distanceSq = 864.0D;
+			double distanceSq = x * x + y * y + z * z;
 			for (EntityJurassiCraftCoward closeTarget : listOfTargets)
 			{
 				double nextDistance = creature.getDistanceSqToEntity(closeTarget);
@@ -794,6 +795,23 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * This is a separated entity living base that can be set in order to add attacks or animations.
+	 * 
+	 * @param creature is the target;
+	 */
+	public void setCreatureToAttack(EntityLivingBase creature)
+	{
+		if (creature != this)
+			this.creatureToAttack = creature;
+	}
+
+	/** This is a separated entity living base that can be set in order to add attacks or animations */
+	public EntityLivingBase getCreatureToAttack()
+	{
+		return this.creatureToAttack;
 	}
 
 	@Override

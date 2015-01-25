@@ -1,17 +1,16 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
-import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
-import net.minecraft.entity.EntityLivingBase;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 
-public class AIGallimimusBeingEaten extends AIAnimation
+public class AnimationAIGallimimusBeingEaten extends AIAnimation
 {
     private EntityTyrannosaurus tyrannosaurus;
     private EntityGallimimus gallimimus;
 
-    public AIGallimimusBeingEaten(EntityGallimimus gallimimus)
+    public AnimationAIGallimimusBeingEaten(EntityGallimimus gallimimus)
     {
         super(gallimimus);
         this.gallimimus = gallimimus;

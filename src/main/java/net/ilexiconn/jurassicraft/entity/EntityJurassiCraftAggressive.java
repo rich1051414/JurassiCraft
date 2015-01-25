@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.client.animation.AIBite;
-import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIBite;
 import net.ilexiconn.jurassicraft.entity.birds.EntityTitanis;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityCarnotaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +19,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
 
 	public EntityJurassiCraftAggressive(World world, Creature creature) {
 		super(world, creature);
-        this.tasks.addTask(2, new AIBite(this, this.getBiteAnimationDuration()));
+        this.tasks.addTask(2, new AnimationAIBite(this, this.getBiteAnimationDuration()));
     }
 
 	@Override
@@ -56,7 +56,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-/*    	float attackDamage = (float) this.getCreatureAttack();
+    	float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
@@ -82,10 +82,10 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
                 EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
             }
             EnchantmentHelper.func_151385_b(this, entity);
-        }*/
-    	if(/*flag && */animID == 0)
+        }
+    	if(this.animID == 0)
     		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
-        return true;//flag;
+        return this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
 
 	@Override

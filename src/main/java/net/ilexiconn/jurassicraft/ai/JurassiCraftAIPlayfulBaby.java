@@ -3,9 +3,9 @@ package net.ilexiconn.jurassicraft.ai;
 import java.util.ArrayList;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class JurassiCraftAIPlayfulBaby extends EntityAIBase

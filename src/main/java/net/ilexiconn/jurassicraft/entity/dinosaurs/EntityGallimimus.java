@@ -1,9 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
@@ -14,8 +10,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIGallimimusBeingEaten;
-import net.ilexiconn.jurassicraft.client.animation.AITyrannosaurusEatingGallimimus;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIGallimimusBeingEaten;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
@@ -24,16 +19,13 @@ import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 public class EntityGallimimus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
@@ -51,7 +43,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 30, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(4, new JurassiCraftAIEating(this, 20));
-        this.tasks.addTask(4, new AIGallimimusBeingEaten(this));
+        this.tasks.addTask(4, new AnimationAIGallimimusBeingEaten(this));
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 30, 0.7D * this.getCreatureSpeed()));
         //Removed for now.
         //this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));

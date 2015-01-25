@@ -1,26 +1,22 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftAggressive;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 
-public class AIBite extends AIAnimation {
-
+public class AnimationAIBite extends AIAnimation
+{
 	private EntityJurassiCraftAggressive entityBiting;
 	private EntityLivingBase entityTarget;
 	private int duration;
-
-	public AIBite(EntityJurassiCraftAggressive dino)
-	{
-		this(dino, 20);
-	}
 	
-	public AIBite(EntityJurassiCraftAggressive dino, int duration)
+	public AnimationAIBite(EntityJurassiCraftAggressive dino, int duration)
 	{
 		super(dino);
 		this.entityBiting = dino;
@@ -53,10 +49,10 @@ public class AIBite extends AIAnimation {
 	{
 		if (this.entityTarget != null)
 		{
-			if (this.entityBiting.getAnimationTick() < (duration/2 - 2))
+			if (this.entityBiting.getAnimationTick() < (this.duration/2 - 2))
 				this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
 
-			if (this.entityBiting.getAnimationTick() == (duration/2 - 2))
+			if (this.entityBiting.getAnimationTick() == (this.duration/2 - 2))
 			{
 				float damage = (float) this.entityBiting.getCreatureAttack();
 				if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
@@ -81,11 +77,12 @@ public class AIBite extends AIAnimation {
 	@Override
 	public void resetTask()
 	{
-		if (this.entityTarget instanceof EntityGallimimus) {
+		/** Eating animations, should not use super.resetTask, or the eating animation ID will be replaced */
+		if (this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus) {
 			this.entityTarget = null;
 			return;
 		}
-		super.resetTask();
 		this.entityTarget = null;
+		super.resetTask();
 	}
 }

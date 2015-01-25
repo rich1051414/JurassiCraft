@@ -39,7 +39,7 @@ public class JurassiCraftAIWander extends EntityAIBase
 	}
 
 	public boolean shouldExecute() {
-		if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping())
+		if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping() || this.creature.isAngry() || this.creature.isFleeing())
 		{
 			return false;
 		}
