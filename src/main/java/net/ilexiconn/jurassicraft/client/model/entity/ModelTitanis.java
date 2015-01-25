@@ -1,13 +1,18 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.birds.EntityTitanis;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelTitanis extends MowzieModelBase
 {
+	public Animator animator;
     MowzieModelRenderer Beak_1;
     MowzieModelRenderer Front_Beak_Ridge;
     MowzieModelRenderer Jaw;
@@ -44,6 +49,7 @@ public class ModelTitanis extends MowzieModelBase
 
     public ModelTitanis()
     {
+    	this.animator = new Animator(this);
         textureWidth = 128;
         textureHeight = 64;
 
@@ -338,7 +344,7 @@ public class ModelTitanis extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
 /*    Beak_1.render(f5);
     Front_Beak_Ridge.render(f5);
     Jaw.render(f5);
@@ -456,5 +462,25 @@ public class ModelTitanis extends MowzieModelBase
         walk(Neck_2, 0.1F, 0.03F, false, -0.5F, 0F, titanis.frame, 1F);
         walk(Head, 0.1F, 0.06F, true, 0F, 0F, titanis.frame, 1F);
         walk(Rear, 0.1F, 0.05F, false, 0F, 0F, titanis.frame, 1F);
+    }
+    
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    	this.animator.update(entity);
+    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTitanis) entity);
+    	
+    	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+        this.animator.startPhase(3);
+        this.animator.rotate(Neck, -0.2F, 0, 0);
+        this.animator.rotate(Neck_2, -0.2F, 0, 0);
+        this.animator.rotate(Head, 0.4F, 0, 0);
+        this.animator.rotate(Jaw, 1F, 0, 0);
+        this.animator.endPhase();
+        this.animator.startPhase(2);
+        this.animator.rotate(Neck, 0.3F, 0, 0);
+        this.animator.rotate(Neck_2, 0.3F, 0, 0);
+        this.animator.rotate(Head, -0.6F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(1);
+        this.animator.resetPhase(4);
     }
 }

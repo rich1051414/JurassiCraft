@@ -733,5 +733,18 @@ public class ModelVelociraptor extends MowzieModelBase
         animator.endPhase();
         animator.setStationaryPhase(4);
         animator.resetPhase(0);
+        
+        animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+        animator.startPhase(3);
+        animator.rotate(Neck, -0.3F, 0, 0);
+        animator.rotate(Head, 0.3F, 0, 0);
+        animator.rotate(Lower_Jaw, 0.4F, 0, 0);
+        animator.endPhase();
+        animator.startPhase(2);
+        animator.rotate(Neck, 0.6F, 0, 0);
+        animator.rotate(Head, -0.6F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(1);
+        animator.resetPhase(4);
     }
 }

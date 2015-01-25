@@ -1,14 +1,18 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
 public class ModelHerrerasaurus extends MowzieModelBase
 {
+	public Animator animator;
     MowzieModelRenderer Left_Upper_Foot;
     MowzieModelRenderer Right_Upper_Foot;
     MowzieModelRenderer Left_Calf_1;
@@ -47,6 +51,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
     
     public ModelHerrerasaurus()
     {
+    	this.animator = new Animator(this);
         textureWidth = 256;
         textureHeight = 256;
 
@@ -335,7 +340,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
+        animate((EntityHerrerasaurus) entity, f, f1, f2, f3, f4, f5);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
@@ -434,5 +439,23 @@ public class ModelHerrerasaurus extends MowzieModelBase
         chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
         
         herrera.tailBuffer.applyChainSwingBuffer(this.tailParts);
+    }
+    
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    	this.animator.update(entity);
+    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
+    	
+    	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+        this.animator.startPhase(3);
+        this.animator.rotate(Neck, -0.5F, 0, 0);
+        this.animator.rotate(Head, 0.5F, 0, 0);
+        this.animator.rotate(Lower_Jaw, 0.7F, 0, 0);
+        this.animator.endPhase();
+        this.animator.startPhase(2);
+        this.animator.rotate(Neck, 0.1F, 0, 0);
+        this.animator.rotate(Head, -0.1F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(1);
+        this.animator.resetPhase(4);
     }
 }

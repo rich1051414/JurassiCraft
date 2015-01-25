@@ -57,7 +57,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
+        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
         this.tasks.addTask(3, new AITyrannosaurusWalkRoar(this));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));

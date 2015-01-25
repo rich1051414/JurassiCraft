@@ -1,12 +1,16 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityCarnotaurus;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 
 public class ModelCarnotaurus extends MowzieModelBase 
 {
+	public Animator animator;
 	public MowzieModelRenderer bodyMain;
 	public MowzieModelRenderer upperArmRight;
 	public MowzieModelRenderer upperArmLeft;
@@ -40,6 +44,7 @@ public class ModelCarnotaurus extends MowzieModelBase
 
 	public ModelCarnotaurus() 
 	{
+    	this.animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 256;
         
@@ -236,7 +241,7 @@ public class ModelCarnotaurus extends MowzieModelBase
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) 
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCarnotaurus) entity);
+		this.animate((EntityCarnotaurus) entity, f, f1, f2, f3, f4, f5);
 		this.bodyMain.render(f5);
 		this.leftThigh.render(f5);
 		this.rightThigh.render(f5);
@@ -332,5 +337,24 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.footRight.setCurrentPoseToInitValues();
         this.rightHand.setCurrentPoseToInitValues();
         this.leftHand.setCurrentPoseToInitValues();
+    }
+    
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    	this.animator.update(entity);
+    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCarnotaurus) entity);
+    	
+    	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+        this.animator.startPhase(6);
+        this.animator.rotate(neck, -0.3F, 0, 0);
+        this.animator.rotate(head, 0.5F, 0, 0);
+        this.animator.rotate(lowerJaw, 1F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(1);
+        this.animator.startPhase(3);
+        this.animator.rotate(neck, 0.8F, 0, 0);
+        this.animator.rotate(head, -0.5F, 0, 0);
+        this.animator.endPhase();
+        this.animator.setStationaryPhase(2);
+        this.animator.resetPhase(8);
     }
 }

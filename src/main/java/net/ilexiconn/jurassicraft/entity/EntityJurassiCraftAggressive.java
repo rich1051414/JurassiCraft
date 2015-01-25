@@ -3,6 +3,9 @@ package net.ilexiconn.jurassicraft.entity;
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.client.animation.AIBite;
 import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.entity.birds.EntityTitanis;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityCarnotaurus;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -43,7 +46,10 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
 
     protected int getBiteAnimationDuration() {
 		if (this instanceof EntityTyrannosaurus) return 20;
-		if (this instanceof EntityVelociraptor) return 10;
+		else if (this instanceof EntityCarnotaurus) return 20;
+		else if (this instanceof EntityVelociraptor) return 10;
+		else if (this instanceof EntityHerrerasaurus) return 10;
+		else if (this instanceof EntityTitanis) return 10;
 		else return 10;
 	}
 

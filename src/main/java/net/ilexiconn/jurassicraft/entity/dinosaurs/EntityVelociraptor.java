@@ -47,7 +47,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         super(world, CreatureManager.classToCreature(EntityVelociraptor.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
+        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(1, new AIVelociraptorLeap(this));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAISit(this));
