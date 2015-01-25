@@ -24,6 +24,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
@@ -57,10 +58,20 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
     }
 
     @Override
-    public double getMountedYOffset()
+    public void updateRiderPosition()
     {
-        return 0.7D * (double) this.getYBouningBox();
-    }
+		if (this.riddenByEntity != null)
+		{
+			double halfLength = 0.55F * this.getCreatureLength();
+			double xRotation = (double) MathHelper.sin(3.14159265359F + 0.01745329251F * this.renderYawOffset);
+			double zRotation = (double) MathHelper.cos(0.01745329251F * this.renderYawOffset);
+			
+			double extraX = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * xRotation;
+			double extraZ = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * zRotation;
+			double extraY = 1.03D * this.getCreatureHeight() + 0.5D * Math.cos(0.05D * (double) this.getTotalTicksLived() -0.5D);
+			this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
+		}
+	}
 
 	@Override
 	public int getNumberOfAllies()
