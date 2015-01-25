@@ -46,7 +46,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(1, new JurassiCraftAIWander(this, 45, 0.7D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new AnimationAITailWhip(this, 30));
-        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 40.0D, 864.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID()));
+        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 1.5D * this.getCreatureLength(), 870.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID(), false));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(5, new JurassiCraftAISit(this));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
@@ -90,32 +90,11 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
             {
             	this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
             	if (this.creatureToAttack != null)
-            	{
             		this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
-            	}
             }
         }
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
-
-	@Override
-	public void collideWithEntity(Entity target)
-	{
-		if (this.isDefending() && this.getAnimationId() == JurassiCraftAnimationIDs.TAIL_WHIP.animID())
-		{
-			target.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (2.0D * this.getCreatureAttack()));
-			double deltaX = target.posX - target.posX;
-			double deltaZ = target.posZ - target.posZ;
-			double angleYaw = (float) Math.atan2(deltaZ, deltaX);
-			target.motionX += 1.1D * Math.cos(angleYaw);
-			target.motionZ += 1.1D * Math.sin(angleYaw);
-			target.motionY += 0.4D;
-		}
-		else
-		{
-			super.collideWithEntity(target);
-		}
-	}
 	
 	@Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)

@@ -8,20 +8,28 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class AnimationAITriceratopsCharge extends AIAnimation
 {
-    private EntityTriceratops entityTric;
-    private EntityLivingBase attackTarget = null;
-    private float chargeAcceleration = 0.2F;
-    private float chargeSpeed = 1;
-    private float angleYaw = 0.0F;
+    private EntityTriceratops entityTriceratops;
+    private EntityLivingBase attackTarget;
+    private float chargeAcceleration;
+    private float chargeSpeed;
+    private float angleYaw;
     private float startX;
     private float startZ;
     private float distanceTravelled;
     private float distanceOfTargetFromStart;
 
-    public AnimationAITriceratopsCharge(EntityTriceratops tric)
+    public AnimationAITriceratopsCharge(EntityTriceratops triceratops)
     {
-        super(tric);
-        this.entityTric = tric;
+        super(triceratops);
+        this.entityTriceratops = triceratops;
+        this.attackTarget = null;
+        this.chargeAcceleration = 0.2F;
+        this.chargeSpeed = 1;
+        this.angleYaw = 0.0F;
+        this.startX = 0.0F;
+        this.startZ = 0.0F;
+        this.distanceTravelled = 0.0F;
+        this.distanceOfTargetFromStart = 0.0F;
     }
 
     public int getAnimationId()
@@ -42,58 +50,58 @@ public class AnimationAITriceratopsCharge extends AIAnimation
     public void startExecuting()
     {
         super.startExecuting();
-        this.attackTarget = this.entityTric.getAttackTarget();
-        startX = (float) entityTric.posX;
-        startZ = (float) entityTric.posZ;
-    	if (attackTarget != null) distanceOfTargetFromStart = (float) Math.sqrt((startX - attackTarget.posX) * (startX - attackTarget.posX) + (startZ - attackTarget.posZ) * (startZ - attackTarget.posZ));
+        this.attackTarget = this.entityTriceratops.getAttackTarget();
+        this.startX = (float) this.entityTriceratops.posX;
+        this.startZ = (float) this.entityTriceratops.posZ;
+    	if (this.attackTarget != null) this.distanceOfTargetFromStart = (float) Math.sqrt((this.startX - this.attackTarget.posX) * (this.startX - this.attackTarget.posX) + (this.startZ - this.attackTarget.posZ) * (this.startZ - this.attackTarget.posZ));
     }
 
     public void resetTask()
     {
         super.resetTask();
-        this.entityTric.timeSinceCharge = 150;
-        this.entityTric.charging = false;
-        this.entityTric.setAttackTarget(null);
+        this.entityTriceratops.timeSinceCharge = 150;
+        this.entityTriceratops.charging = false;
+        this.entityTriceratops.setAttackTarget(null);
     }
 
     public void updateTask()
     {
-    	distanceTravelled = (float) Math.sqrt((startX - entityTric.posX) * (startX - entityTric.posX) + (startZ - entityTric.posZ) * (startZ - entityTric.posZ));    	
-        if (this.entityTric.getAnimationTick() == 1) entityTric.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
+    	this.distanceTravelled = (float) Math.sqrt((this.startX - this.entityTriceratops.posX) * (this.startX - this.entityTriceratops.posX) + (this.startZ - this.entityTriceratops.posZ) * (this.startZ - this.entityTriceratops.posZ));    	
+        if (this.entityTriceratops.getAnimationTick() == 1) this.entityTriceratops.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
 
-        if (this.entityTric.getAnimationTick() < 40 && this.attackTarget != null) this.entityTric.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
+        if (this.entityTriceratops.getAnimationTick() < 40 && this.attackTarget != null) this.entityTriceratops.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
 
-        if (this.entityTric.getAnimationTick() >= 35 && this.entityTric.getAnimationTick() <= 40 && this.attackTarget != null)
+        if (this.entityTriceratops.getAnimationTick() >= 35 && this.entityTriceratops.getAnimationTick() <= 40 && this.attackTarget != null)
         {
-                double deltaX = this.attackTarget.posX - this.entityTric.posX;
-                double deltaZ = this.attackTarget.posZ - this.entityTric.posZ;
+                double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
+                double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
                 this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
         }
         
-        if (this.entityTric.getAnimationTick() > 40)
+        if (this.entityTriceratops.getAnimationTick() > 40)
         {
-            if (this.attackTarget != null || this.entityTric.riddenByEntity != null)
+            if (this.attackTarget != null || this.entityTriceratops.riddenByEntity != null)
             {
-            	if (this.entityTric.riddenByEntity != null && this.entityTric.riddenByEntity instanceof EntityPlayer) {
-            		this.angleYaw = (float) (entityTric.riddenByEntity.rotationYaw * Math.PI/180 + Math.PI/2);
-            		entityTric.rotationYaw = entityTric.riddenByEntity.rotationYaw;
+            	if (this.entityTriceratops.riddenByEntity != null && this.entityTriceratops.riddenByEntity instanceof EntityPlayer) {
+            		this.angleYaw = this.entityTriceratops.riddenByEntity.rotationYaw * 0.01745329251F + 1.57079632679F;
+            		this.entityTriceratops.rotationYaw = this.entityTriceratops.riddenByEntity.rotationYaw;
             		this.chargeAcceleration = 0.3F;
             	}
-            	this.entityTric.charging = true;
+            	this.entityTriceratops.charging = true;
             	if (attackTarget != null && distanceOfTargetFromStart > distanceTravelled) {
-            		double deltaX = this.attackTarget.posX - this.entityTric.posX;
-                    double deltaZ = this.attackTarget.posZ - this.entityTric.posZ;
-            		angleYaw = (float) Math.atan2(deltaZ, deltaX);
+            		double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
+                    double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
+                    this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
             	}
-                if (Math.sqrt(this.entityTric.motionX * this.entityTric.motionX + this.entityTric.motionZ * this.entityTric.motionZ) < this.chargeSpeed - 0.2)
+                if (Math.sqrt(this.entityTriceratops.motionX * this.entityTriceratops.motionX + this.entityTriceratops.motionZ * this.entityTriceratops.motionZ) < this.chargeSpeed - 0.2)
                 {
-                	this.entityTric.motionX += this.chargeAcceleration * Math.cos(angleYaw);
-                    this.entityTric.motionZ += this.chargeAcceleration * Math.sin(angleYaw);
+                	this.entityTriceratops.motionX += this.chargeAcceleration * Math.cos(this.angleYaw);
+                    this.entityTriceratops.motionZ += this.chargeAcceleration * Math.sin(this.angleYaw);
                 }
                 else
                 {
-                	this.entityTric.motionX = this.chargeSpeed * Math.cos(angleYaw);
-                	this.entityTric.motionZ = this.chargeSpeed * Math.sin(angleYaw);
+                	this.entityTriceratops.motionX = this.chargeSpeed * Math.cos(this.angleYaw);
+                	this.entityTriceratops.motionZ = this.chargeSpeed * Math.sin(this.angleYaw);
                 }
             }
         }

@@ -12,6 +12,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	private double distanceSqFromAttacker;
 	private double minimumSquaredDistance;
 	private double maximumSquaredDistance;
+	private boolean resetStateWhenTriggered;
 	private boolean sendAnimation;
 	private int animationID;
 
@@ -23,14 +24,15 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	 * @param creature is the entity creature;
 	 * @param minimumSquaredDistance is the minimum distance from the attacker. Smaller distances will trigger an attack;
 	 * @param maximumSquaredDistance is the maximum distance from the attacker. Larger distances will reset this AI;
+	 * @param resetStateWhenTriggered checks if there is a attack target, if so this AI is reset;
 	 * 
 	 * @see EntityJurassiCraftSmart
 	 * 
 	 * @author RafaMv
 	 */
-	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance)
+	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean resetStateWhenTriggered)
 	{
-		this(creature, minimumSquaredDistance, maximumSquaredDistance, false, 0);
+		this(creature, minimumSquaredDistance, maximumSquaredDistance, false, 0, resetStateWhenTriggered);
 	}
 
 	/**
@@ -43,12 +45,13 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	 * @param maximumSquaredDistance is the maximum distance from the attacker. Larger distances will reset this AI;
 	 * @param sendAnimation checks if the entity should receive the animation ID;
 	 * @param animationID is the ID from the animation that will be trigger if the attack is too close.
+	 * @param resetStateWhenTriggered checks if there is a attack target, if so this AI is reset;
 	 * 
 	 * @see EntityJurassiCraftSmart
 	 * 
 	 * @author RafaMv
 	 */
-	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean sendAnimation, int animationID)
+	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean sendAnimation, int animationID, boolean resetStateWhenTriggered)
 	{
 		this.creature = creature;
 		this.distanceSqFromAttacker = 0;
@@ -57,12 +60,13 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 		this.maximumSquaredDistance = maximumSquaredDistance;
 		this.sendAnimation = sendAnimation;
 		this.animationID = animationID;
+		this.resetStateWhenTriggered = resetStateWhenTriggered;
 	}
 
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.creature.isDefending() && !this.creature.isSitting() && !this.creature.isSleeping() && !this.creature.isTakingOff() && !this.creature.isFlying() && !this.creature.isFleeing())
+		if (this.creature.isDefending() && !this.creature.isSleeping() && !this.creature.isTakingOff() && !this.creature.isFlying() && !this.creature.isFleeing())
 		{
 			return this.creature.getCreatureToAttack() != null;
 		}
@@ -129,7 +133,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 
 	public boolean continueExecuting()
 	{
-		return this.attacker.isEntityAlive() && this.creature.isDefending() && this.distanceSqFromAttacker < this.maximumSquaredDistance && !this.creature.isSitting() && this.creature.riddenByEntity == null;
+		return this.attacker.isEntityAlive() && this.creature.isDefending() && this.distanceSqFromAttacker < this.maximumSquaredDistance && (this.resetStateWhenTriggered ? this.creature.getAttackTarget() == null : true) && !this.creature.isSitting() && this.creature.riddenByEntity == null;
 	}
 
 	@Override

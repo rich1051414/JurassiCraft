@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIDefensiveReaction;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
@@ -13,7 +14,9 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITriceratopsCharge;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftAggressive;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -34,12 +37,13 @@ import net.minecraft.world.World;
 
 public class EntityTriceratops extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
+    public ControlledParam flailDegree = new ControlledParam(0.0F, 0.0F, 1.0F, 0.0F);
+	public ControlledAnimation defendingPosition = new ControlledAnimation(40);
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
-	
-    public int timeSinceCharge = 0;
     public boolean charging = false;
-    public ControlledParam flailDegree = new ControlledParam(0F, 0F, 1F, 0F);
-    int stepCount = 0;
+    public float distanceFromTarget;
+    public int timeSinceCharge = 0;
+    public int stepCount = 0;
 
     public EntityTriceratops(World world)
     {
@@ -48,17 +52,18 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
+        this.tasks.addTask(1, new JurassiCraftAIWander(this, 45, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(2, new AnimationAITriceratopsCharge(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
-        this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
-        this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
-        this.tasks.addTask(4, new JurassiCraftAIEating(this, 20));
-        this.tasks.addTask(5, new JurassiCraftAIWander(this, 45, 0.8D * this.getCreatureSpeed()));
-        this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.tasks.addTask(7, new JurassiCraftAIHerdBehavior(this, 96, 2000, 20, 0.7D * this.getCreatureSpeed()));
+        this.tasks.addTask(4, new JurassiCraftAIDefensiveReaction(this, 250.0D, 550.0D, true, JurassiCraftAnimationIDs.CHARGE.animID(), true));
+        this.tasks.addTask(5, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
+        this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(7, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 12.0F, this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.tasks.addTask(10, new JurassiCraftAIHerdBehavior(this, 96, 2000, 20, 0.7D * this.getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
@@ -105,13 +110,15 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        //Charge AI
-        float distanceFromTarget;
+        
         if (getAttackTarget() != null)
-            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-        else distanceFromTarget = -1;
-        if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isFleeing() && this.getCreatureAgeInDays() >= 17)
-            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
+        {
+            this.distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2.0D) + Math.pow((posZ - getAttackTarget().posZ), 2.0D));
+        }
+        else
+        {
+        	this.distanceFromTarget = -1.0F;
+        }
         if (timeSinceCharge != 0) timeSinceCharge--;
     }
 
@@ -127,6 +134,21 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
             this.stepCount = 10;
         }
         this.stepCount -= 1;
+        
+        if (this.isDefending())
+        {
+        	this.defendingPosition.increaseTimer();
+        }
+        else
+        {
+        	this.defendingPosition.decreaseTimer();
+        	if (this.rand.nextInt(40) == 0 && this.isCreatureOlderThan(0.6F))
+            {
+            	this.creatureToAttack = this.getClosestEntityAggressive(this, 16, 6, 16);
+            	if (this.creatureToAttack != null)
+            		this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
+            }
+        }
         
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
     }

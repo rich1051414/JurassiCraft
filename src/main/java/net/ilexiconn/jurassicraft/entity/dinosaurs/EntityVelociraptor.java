@@ -80,7 +80,6 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     @Override
     public void onLivingUpdate()
     {
-    	System.out.println("id " + this.getAnimationId() + " tick " + this.getAnimationTick());
         // Leap AI
         float distanceFromTarget;
         if (getAttackTarget() != null)

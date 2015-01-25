@@ -105,14 +105,6 @@ public class ModelVelociraptor extends MowzieModelBase
         Right_Thigh.setTextureSize(256, 256);
         Right_Thigh.mirror = true;
         setRotation(Right_Thigh, 0.6252203F, 0F, 0F);
-        /*
-        Body_1 = new MowzieModelRenderer(this, 118, 0);
-      	Body_1.addBox(-4.5F, 0F, 0F, 9, 9, 21);
-      	Body_1.setRotationPoint(0F, -0.5F, -7F);
-      	Body_1.setTextureSize(256, 256);
-      	Body_1.mirror = true;
-      	setRotation(Body_1, -0.0743572F, 0F, 0F);
-      	*/
         Body_1 = new MowzieModelRenderer(this, 118, 0);
         Body_1.addBox(-4.5F, 0F, -17F, 9, 9, 21);
         Body_1.setRotationPoint(0F, 0.5F, 10F);
