@@ -64,17 +64,12 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(3, new AnimationAIWalkRoar(this, 75));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
-<<<<<<< HEAD
-        this.tasks.addTask(1, new AITyrannosaurusEatingGallimimus(this));
+        this.tasks.addTask(1, new AnimationAITyrannosaurusEatingGallimimus(this));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-=======
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(7, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(7, new JurassiCraftAIEatDroppedFood(this, 16.0D));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
->>>>>>> FETCH_HEAD
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
