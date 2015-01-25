@@ -87,26 +87,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource damageSource, float damage)
-    {
-        if ((this.getHealth() - damage) <= 0.0F && damageSource.getEntity() instanceof EntityTyrannosaurus)
-        {
-			EntityTyrannosaurus tyrannosaurus = (EntityTyrannosaurus) damageSource.getEntity();
-			if (this.riddenByEntity == null && tyrannosaurus.getAnimationId() == 0 && this.rand.nextBoolean())
-			{
-				this.setHealth(1.0F);
-				this.mountEntity(tyrannosaurus);
-				tyrannosaurus.setAttackTarget((EntityLivingBase) null);
-				this.setAttackTarget((EntityLivingBase) null);
-				AnimationHandler.sendAnimationPacket(tyrannosaurus, 3);
-				AnimationHandler.sendAnimationPacket(this, 1);
-				return false;
-			}
-        }
-        return super.attackEntityFrom(damageSource, damage);
+        if (this.getAttackTarget() == this.riddenByEntity) setAttackTarget(null);
     }
 
     @Override

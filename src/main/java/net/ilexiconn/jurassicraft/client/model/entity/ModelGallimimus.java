@@ -489,8 +489,7 @@ public class ModelGallimimus extends MowzieModelBase
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
     	
         this.animator.setAnimation(1);
-        this.animator.setStationaryPhase(10);
-        this.animator.startPhase(4);
+        this.animator.startPhase(0);
         this.animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
         this.animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
         this.animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
@@ -504,9 +503,8 @@ public class ModelGallimimus extends MowzieModelBase
         this.animator.rotate(this.Neck_4, 0.4F, 0.0F, 0.0F);
         this.animator.rotate(this.Neck_5, -0.3F, 0.0F, 0.0F);
         this.animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
-        this.animator.rotate(this.Head, -0.3F, 0.0F, 0.0F);
         this.animator.endPhase();
-        this.animator.setStationaryPhase(41);
+        this.animator.setStationaryPhase(50);
         this.animator.resetPhase(0);
     }
 }

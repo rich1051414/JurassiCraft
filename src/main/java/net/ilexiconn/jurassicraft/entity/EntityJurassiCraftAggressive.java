@@ -13,7 +13,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
 
 	public EntityJurassiCraftAggressive(World world, Creature creature) {
 		super(world, creature);
-        this.tasks.addTask(1, new AIBite(this));
+        this.tasks.addTask(2, new AIBite(this));
     }
 
     @Override

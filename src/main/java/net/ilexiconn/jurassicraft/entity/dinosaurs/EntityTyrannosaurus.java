@@ -67,7 +67,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
-        this.tasks.addTask(6, new AITyrannosaurusEatingGallimimus(this));
+        this.tasks.addTask(0, new AITyrannosaurusEatingGallimimus(this));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
@@ -100,17 +100,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 				((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
 				double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
 				double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
-				double extraY = 0.0D;
-				
-				if (this.animTick > 13 && this.animTick <= 18)
-				{
-					extraY += (double) (this.height * 0.4F * (this.animTick - 14) / 5.0D);
-				}
-				else if (this.animTick > 18 && this.animTick < 50)
-				{
-					//MISSING XZ MOTION
-					extraY += (double) (this.height * 0.4F);
-				}
+				double extraY = this.getCreatureHeight() * 0.5;
         		this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
         	}
         	else
@@ -163,7 +153,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
-            stepCount = 60;
+            stepCount = 65;
         }
         if (animID == 1 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         if (animID == 2 && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
@@ -191,21 +181,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 		if (!restingHead) restHeadProgress.decreaseTimer();
 		
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-		if (this.riddenByEntity instanceof EntityGallimimus)
-    	{
-			if (this.getAttackTarget() == this.riddenByEntity)
-				this.setAttackTarget((EntityLivingBase) null);
-			return false;
-    	}
-		else
-		{
-			return super.attackEntityAsMob(entity);
-		}
+        
+        if (this.getAttackTarget() == this.riddenByEntity) setAttackTarget(null);
     }
 
     @Override

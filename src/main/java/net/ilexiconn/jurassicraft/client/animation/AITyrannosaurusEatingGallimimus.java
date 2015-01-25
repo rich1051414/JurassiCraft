@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityLivingBase;
 public class AITyrannosaurusEatingGallimimus extends AIAnimation
 {
     private EntityTyrannosaurus tyrannosaurus;
-    private EntityGallimimus gallimimus;
 
     public AITyrannosaurusEatingGallimimus(EntityTyrannosaurus tyrannosaurus)
     {
@@ -29,42 +28,12 @@ public class AITyrannosaurusEatingGallimimus extends AIAnimation
 	
     public boolean isAutomatic()
     {
-        return false;
+        return true;
     }
-	
-	public boolean shouldExecute()
-	{
-		if (this.tyrannosaurus.riddenByEntity != null && this.tyrannosaurus.riddenByEntity instanceof EntityGallimimus)
-		{
-			EntityGallimimus gallimimus = (EntityGallimimus) this.tyrannosaurus.riddenByEntity;
-			return this.tyrannosaurus.getAnimationId() == this.getAnimationId();
-		}
-		return false;
-	}
 
     public void startExecuting()
     {
 		super.startExecuting();
 		this.tyrannosaurus.setDrinking(false);
-		if (this.tyrannosaurus.riddenByEntity instanceof EntityGallimimus)
-		{
-			this.gallimimus = (EntityGallimimus) this.tyrannosaurus.riddenByEntity;
-		}
 	}
-
-    public void updateTask()
-    {
-    	
-	}
-    
-    public void resetTask()
-    {
-    	super.resetTask();
-    	if (this.gallimimus != null)
-		{
-        	this.tyrannosaurus.dismountEntity(this.gallimimus);
-			this.gallimimus.setHealth(0.0F);
-        	this.gallimimus.setDead();
-		}
-    }
 }
