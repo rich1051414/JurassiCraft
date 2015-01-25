@@ -1,18 +1,19 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
 import java.util.List;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 
-public class AIParasaurolophusTrumpet extends AIAnimation
+public class AnimationAIParasaurolophusTrumpet extends AIAnimation
 {
 
     private EntityParasaurolophus parasaurolophus;
 
-    public AIParasaurolophusTrumpet(IAnimatedEntity entity)
+    public AnimationAIParasaurolophusTrumpet(IAnimatedEntity entity)
     {
         super(entity);
         this.parasaurolophus = (EntityParasaurolophus) entity;

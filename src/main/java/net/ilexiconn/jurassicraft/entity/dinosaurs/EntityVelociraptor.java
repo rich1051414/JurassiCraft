@@ -9,15 +9,15 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorLeap;
-import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorRoar;
-import net.ilexiconn.jurassicraft.client.animation.AIVelociraptorTwitchHead;
-import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorLeap;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorTwitchHead;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -48,7 +48,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
-        this.tasks.addTask(1, new AIVelociraptorLeap(this));
+        this.tasks.addTask(1, new AnimationAIVelociraptorLeap(this));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAISit(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
@@ -57,8 +57,8 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.tasks.addTask(7, new AIVelociraptorTwitchHead(this));
-        this.tasks.addTask(7, new AIVelociraptorRoar(this));
+        this.tasks.addTask(7, new AnimationAIVelociraptorTwitchHead(this));
+        this.tasks.addTask(7, new AnimationAIRoar(this, 20));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
@@ -80,6 +80,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     @Override
     public void onLivingUpdate()
     {
+    	System.out.println("id " + this.getAnimationId() + " tick " + this.getAnimationTick());
         // Leap AI
         float distanceFromTarget;
         if (getAttackTarget() != null)

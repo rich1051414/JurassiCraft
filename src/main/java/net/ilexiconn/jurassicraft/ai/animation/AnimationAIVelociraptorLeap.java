@@ -1,10 +1,11 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.EntityLivingBase;
 
-public class AIVelociraptorLeap extends AIAnimation
+public class AnimationAIVelociraptorLeap extends AIAnimation
 {
     private EntityVelociraptor entityRaptor;
     private EntityLivingBase attackTarget;
@@ -15,7 +16,7 @@ public class AIVelociraptorLeap extends AIAnimation
     private double targetPrevPosX;
     private double targetPrevPosZ;
 
-    public AIVelociraptorLeap(EntityVelociraptor raptor)
+    public AnimationAIVelociraptorLeap(EntityVelociraptor raptor)
     {
         super(raptor);
         entityRaptor = raptor;

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.enums;
 
 public enum JurassiCraftAnimationIDs
 {

@@ -1,11 +1,12 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class AITriceratopsCharge extends AIAnimation
+public class AnimationAITriceratopsCharge extends AIAnimation
 {
     private EntityTriceratops entityTric;
     private EntityLivingBase attackTarget = null;
@@ -17,7 +18,7 @@ public class AITriceratopsCharge extends AIAnimation
     private float distanceTravelled;
     private float distanceOfTargetFromStart;
 
-    public AITriceratopsCharge(EntityTriceratops tric)
+    public AnimationAITriceratopsCharge(EntityTriceratops tric)
     {
         super(tric);
         this.entityTric = tric;

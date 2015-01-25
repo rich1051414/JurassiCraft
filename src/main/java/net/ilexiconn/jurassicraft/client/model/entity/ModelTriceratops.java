@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.animation.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTriceratops;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.Entity;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;

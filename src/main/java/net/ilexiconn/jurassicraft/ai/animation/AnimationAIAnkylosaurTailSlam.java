@@ -1,12 +1,13 @@
-package net.ilexiconn.jurassicraft.client.animation;
+package net.ilexiconn.jurassicraft.ai.animation;
 
-import net.minecraft.entity.EntityLiving;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.minecraft.entity.EntityLiving;
 
-public class AIAnkylosaurTailSlam extends AIAnimation
+public class AnimationAIAnkylosaurTailSlam extends AIAnimation
 {
-    public AIAnkylosaurTailSlam(IAnimatedEntity entity)
+    public AnimationAIAnkylosaurTailSlam(IAnimatedEntity entity)
     {
         super(entity);
     }

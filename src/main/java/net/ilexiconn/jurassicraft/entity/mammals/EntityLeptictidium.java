@@ -9,7 +9,6 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.client.animation.AIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
@@ -36,7 +35,6 @@ public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMam
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
-        this.tasks.addTask(2, new AIHypsilophodonScratchHead(this));
         this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 6.5F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaurus.class, 12.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 40, 1.1D * this.getCreatureSpeed()));
