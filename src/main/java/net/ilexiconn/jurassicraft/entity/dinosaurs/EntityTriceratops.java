@@ -113,7 +113,12 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         
         if (getAttackTarget() != null)
         {
-            this.distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2.0D) + Math.pow((posZ - getAttackTarget().posZ), 2.0D));
+        	//Charge AI            
+            if (getAttackTarget() != null)
+                distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
+            else distanceFromTarget = -1;
+            if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isFleeing() && this.getCreatureAgeInDays() >= 17)
+                AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
         }
         else
         {
