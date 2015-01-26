@@ -279,14 +279,18 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         {
                         	EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
                         	baby.setGenetics(this.quality, this.getDNASequence());
-                        	if (dinoToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning()) {
+                        	
+                        	if (dinoToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning()) 
+                        	{
                         		EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
-                            	if (owner != null) {
+                            	if (owner != null)
+                            	{
                             		((EntityJurassiCraftSmart) baby).setTamed(true, owner);
                         			((EntityJurassiCraftSmart) baby).setOwner(owner.getCommandSenderName());
                                     this.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
                                 }
                             }
+                        	
                             baby.setPosition(this.posX, this.posY, this.posZ);
                             this.worldObj.spawnEntityInWorld(baby);
                             this.currentSpawnTime = 0;

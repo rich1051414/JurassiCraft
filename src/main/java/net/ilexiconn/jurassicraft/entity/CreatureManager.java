@@ -111,7 +111,7 @@ public class CreatureManager
         try
         {
             RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.entity.render." + category + ".Render" + dino.creatureName).getDeclaredConstructor(Creature.class).newInstance(getCreatureFromId(dino.creatureID));
-            Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + dino.creatureName);
+            Class entity = Class.forName("net.ilexiconn.jurassicraft.client.entity." + category + ".Entity" + dino.creatureName);
             JurassiCraft.proxy.renderEntity(entity, renderer);
         }
         catch (Exception e)
