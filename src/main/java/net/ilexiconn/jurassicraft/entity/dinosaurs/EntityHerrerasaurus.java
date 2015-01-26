@@ -13,6 +13,7 @@ import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -45,7 +46,7 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
-        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));

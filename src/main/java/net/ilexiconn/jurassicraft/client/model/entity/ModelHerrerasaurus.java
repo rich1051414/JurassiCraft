@@ -8,7 +8,6 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
 public class ModelHerrerasaurus extends MowzieModelBase
 {
@@ -445,17 +444,20 @@ public class ModelHerrerasaurus extends MowzieModelBase
     	this.animator.update(entity);
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
     	
-    	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
-        this.animator.startPhase(3);
-        this.animator.rotate(Neck, -0.5F, 0, 0);
-        this.animator.rotate(Head, 0.5F, 0, 0);
-        this.animator.rotate(Lower_Jaw, 0.7F, 0, 0);
-        this.animator.endPhase();
-        this.animator.startPhase(2);
-        this.animator.rotate(Neck, 0.1F, 0, 0);
-        this.animator.rotate(Head, -0.1F, 0, 0);
-        this.animator.endPhase();
-        this.animator.setStationaryPhase(1);
-        this.animator.resetPhase(4);
+    	if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+    	{
+        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, -0.5F, 0, 0);
+            this.animator.rotate(Head, 0.5F, 0, 0);
+            this.animator.rotate(Lower_Jaw, 0.7F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Neck, 0.1F, 0, 0);
+            this.animator.rotate(Head, -0.1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.resetPhase(4);
+    	}
     }
 }

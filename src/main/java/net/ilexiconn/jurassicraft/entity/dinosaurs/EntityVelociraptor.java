@@ -40,7 +40,6 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
 	public ChainBuffer tailBuffer = new ChainBuffer(6);
     public boolean leaping = false;
     public int timeSinceLeap;
-    public int texid;
 
     public EntityVelociraptor(World world)
     {
@@ -54,7 +53,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
-        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(7, new AnimationAIVelociraptorTwitchHead(this));
@@ -83,12 +82,21 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         // Leap AI
         float distanceFromTarget;
         if (getAttackTarget() != null)
+        {
             distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-        else distanceFromTarget = -1;
-        if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && onGround && timeSinceLeap == 0 && animID == 0)
+        }
+        else
+        {
+        	distanceFromTarget = -1;
+        }
+        if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && this.onGround && this.timeSinceLeap == 0 && this.animID == 0)
             AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.LEAP.animID());
-        if (onGround == true) setLeaping(false);
-        if (timeSinceLeap != 0) timeSinceLeap--;
+        
+        if (onGround == true) 
+        	setLeaping(false);
+        
+        if (timeSinceLeap != 0) 
+        	timeSinceLeap--;
 
         // Misc
         super.onLivingUpdate();
@@ -109,12 +117,22 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     @Override
     public String getLivingSound()
     {
-        if (animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
-        int I = rand.nextInt(4) + 1;
-        if (I == 1) return "jurassicraft:velociraptorHiss01";
-        if (I == 2) return "jurassicraft:velociraptorHiss02";
-        if (I == 3) return "jurassicraft:velociraptorHiss03";
-        else return "jurassicraft:velociraptorBark03";
+        if (this.animID == 0) 
+        	AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
+        int i = rand.nextInt(4);
+        switch(i)
+        {
+        	case 0:
+            	return "jurassicraft:velociraptorHiss01";
+        	case 1:
+            	return "jurassicraft:velociraptorHiss02";
+        	case 2:
+            	return "jurassicraft:velociraptorHiss03";
+			case 3:
+				return "jurassicraft:velociraptorBark03";
+			default:
+				return "jurassicraft:velociraptorHiss01";
+		}
     }
     
     @Override

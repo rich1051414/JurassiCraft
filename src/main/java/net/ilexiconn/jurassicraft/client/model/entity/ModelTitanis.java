@@ -467,20 +467,23 @@ public class ModelTitanis extends MowzieModelBase
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
     	this.animator.update(entity);
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTitanis) entity);
-    	
-    	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
-        this.animator.startPhase(3);
-        this.animator.rotate(Neck, -0.2F, 0, 0);
-        this.animator.rotate(Neck_2, -0.2F, 0, 0);
-        this.animator.rotate(Head, 0.4F, 0, 0);
-        this.animator.rotate(Jaw, 1F, 0, 0);
-        this.animator.endPhase();
-        this.animator.startPhase(2);
-        this.animator.rotate(Neck, 0.3F, 0, 0);
-        this.animator.rotate(Neck_2, 0.3F, 0, 0);
-        this.animator.rotate(Head, -0.6F, 0, 0);
-        this.animator.endPhase();
-        this.animator.setStationaryPhase(1);
-        this.animator.resetPhase(4);
+
+    	if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+    	{
+        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, -0.2F, 0, 0);
+            this.animator.rotate(Neck_2, -0.2F, 0, 0);
+            this.animator.rotate(Head, 0.4F, 0, 0);
+            this.animator.rotate(Jaw, 1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Neck, 0.3F, 0, 0);
+            this.animator.rotate(Neck_2, 0.3F, 0, 0);
+            this.animator.rotate(Head, -0.6F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.resetPhase(4);
+    	}
     }
 }

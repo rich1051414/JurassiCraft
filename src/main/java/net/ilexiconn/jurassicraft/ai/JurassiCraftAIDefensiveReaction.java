@@ -13,7 +13,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	private double minimumSquaredDistance;
 	private double maximumSquaredDistance;
 	private boolean resetStateWhenTriggered;
-	private boolean sendAnimation;
+	private boolean shouldAnimate;
 	private int animationID;
 
 	/**
@@ -43,7 +43,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	 * @param creature is the entity creature;
 	 * @param minimumSquaredDistance is the minimum distance from the attacker. Smaller distances will trigger an attack;
 	 * @param maximumSquaredDistance is the maximum distance from the attacker. Larger distances will reset this AI;
-	 * @param sendAnimation checks if the entity should receive the animation ID;
+	 * @param shouldAnimate checks if the entity should receive the animation ID;
 	 * @param animationID is the ID from the animation that will be trigger if the attack is too close.
 	 * @param resetStateWhenTriggered checks if there is a attack target, if so this AI is reset;
 	 * 
@@ -51,14 +51,14 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 	 * 
 	 * @author RafaMv
 	 */
-	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean sendAnimation, int animationID, boolean resetStateWhenTriggered)
+	public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean shouldAnimate, int animationID, boolean resetStateWhenTriggered)
 	{
 		this.creature = creature;
 		this.distanceSqFromAttacker = 0;
 		this.attacker = null;
 		this.minimumSquaredDistance = minimumSquaredDistance;
 		this.maximumSquaredDistance = maximumSquaredDistance;
-		this.sendAnimation = sendAnimation;
+		this.shouldAnimate = shouldAnimate;
 		this.animationID = animationID;
 		this.resetStateWhenTriggered = resetStateWhenTriggered;
 	}
@@ -126,7 +126,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 		if (this.distanceSqFromAttacker < this.minimumSquaredDistance)
 		{
 			this.creature.setAttackTarget(this.attacker);
-			if (this.sendAnimation && this.creature.getAnimationId() == 0)
+			if (this.shouldAnimate && this.creature.getAnimationId() == 0)
 				AnimationHandler.sendAnimationPacket(this.creature, this.animationID);
 		}
 	}

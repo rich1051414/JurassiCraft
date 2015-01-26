@@ -73,7 +73,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     @Override
     public double getMountedYOffset()
     {
-    	if (this.getAnimationId() == 1)
+    	if (this.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
     	{
     		if (this.getAnimationTick() < 5)
         	{

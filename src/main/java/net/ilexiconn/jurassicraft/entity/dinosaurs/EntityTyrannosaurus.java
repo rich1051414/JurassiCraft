@@ -40,8 +40,6 @@ import net.minecraft.world.World;
 
 public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements IDinosaur, ICarnivore
 {
-    private int stepCount = 0;
-    private float shakeCount = 0;
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
 	public ControlledAnimation sittingProgress = new ControlledAnimation(50);
@@ -49,8 +47,10 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
 	private boolean restingHead = false;
 	private int restHeadSwitchTimer = 300;
-	private double entityRiderYawDelta;
 	private double entityRiderPitchDelta;
+	private double entityRiderYawDelta;
+    private float shakeCount = 0;
+    private int stepCount = 0;
 
     public EntityTyrannosaurus(World world)
     {
@@ -63,7 +63,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
         this.tasks.addTask(3, new AnimationAIWalkRoar(this, 75));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
-        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
+        this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
         this.tasks.addTask(1, new AnimationAITyrannosaurusEatingGallimimus(this));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -148,20 +148,23 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         super.onUpdate();
         this.roarCount.update();
         this.roarTiltDegree.update();
-        System.out.println(this.getAnimationId());
+        
         //Step Sound
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
             stepCount = 65;
         }
-        if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22) this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22) 
+        	this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        
+        if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22) 
+        	this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+        
         this.stepCount -= this.moveForward * 9.5;
         
         //Breathing Sound MISSING SOUND
         if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
-
 
         //Sitting Animation
 		if (this.isSitting()) 
@@ -177,8 +180,12 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 			restingHead = false;
 			restHeadSwitchTimer = 300;
 		}
-		if (restingHead) restHeadProgress.increaseTimer();
-		if (!restingHead) restHeadProgress.decreaseTimer();
+		
+		if (restingHead) 
+			restHeadProgress.increaseTimer();
+		
+		if (!restingHead) 
+			restHeadProgress.decreaseTimer();
 		
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
         

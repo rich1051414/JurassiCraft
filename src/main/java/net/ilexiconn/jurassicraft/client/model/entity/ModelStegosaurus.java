@@ -409,23 +409,26 @@ public class ModelStegosaurus extends MowzieModelBase
         this.animator.update(entity);
     	setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaurus) entity);
     	EntityStegosaurus stegosaurus = (EntityStegosaurus) entity;
-    	
-        this.animator.setAnimation(JurassiCraftAnimationIDs.TAIL_WHIP.animID());
-        this.animator.startPhase(10);
-        this.animator.rotate(this.tail1, 0.0F, 0.3F, 0.0F);
-        this.animator.rotate(this.tail2, 0.0F, 0.3F, 0.0F);
-        this.animator.rotate(this.tail3, 0.0F, 0.3F, 0.0F);
-        this.animator.rotate(this.tail4, 0.0F, 0.3F, 0.0F);
-        this.animator.rotate(this.tail5, 0.0F, 0.3F, 0.0F);
-        this.animator.endPhase();
-        this.animator.startPhase(10);
-        this.animator.rotate(this.tail1, 0.0F, -0.6F, 0.0F);
-        this.animator.rotate(this.tail2, 0.0F, -0.6F, 0.0F);
-        this.animator.rotate(this.tail3, 0.0F, -0.6F, 0.0F);
-        this.animator.rotate(this.tail4, 0.0F, -0.6F, 0.0F);
-        this.animator.rotate(this.tail5, 0.0F, -0.6F, 0.0F);
-        this.animator.endPhase();
-        this.animator.setStationaryPhase(10);
-        this.animator.resetPhase(0);
+
+		if (entity.getAnimationId() == JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+		{
+			this.animator.setAnimation(JurassiCraftAnimationIDs.TAIL_WHIP.animID());
+			this.animator.startPhase(10);
+			this.animator.rotate(this.tail1, 0.0F, 0.3F, 0.0F);
+			this.animator.rotate(this.tail2, 0.0F, 0.3F, 0.0F);
+			this.animator.rotate(this.tail3, 0.0F, 0.3F, 0.0F);
+			this.animator.rotate(this.tail4, 0.0F, 0.3F, 0.0F);
+			this.animator.rotate(this.tail5, 0.0F, 0.3F, 0.0F);
+			this.animator.endPhase();
+			this.animator.startPhase(10);
+			this.animator.rotate(this.tail1, 0.0F, -0.6F, 0.0F);
+			this.animator.rotate(this.tail2, 0.0F, -0.6F, 0.0F);
+			this.animator.rotate(this.tail3, 0.0F, -0.6F, 0.0F);
+			this.animator.rotate(this.tail4, 0.0F, -0.6F, 0.0F);
+			this.animator.rotate(this.tail5, 0.0F, -0.6F, 0.0F);
+			this.animator.endPhase();
+			this.animator.setStationaryPhase(10);
+			this.animator.resetPhase(0);
+        }
     }
 }

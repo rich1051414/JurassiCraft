@@ -641,102 +641,115 @@ public class ModelVelociraptor extends MowzieModelBase
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        animator.update(entity);
+        this.animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityVelociraptor) entity);
         EntityVelociraptor raptor = (EntityVelociraptor) entity;
 
-        animator.setAnimation(JurassiCraftAnimationIDs.TWITCH_HEAD.animID());
-        animator.startPhase(3);
-        if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID()) TwitchAngle = (float) (Math.random() - 0.5);
-        animator.rotate(Head, 0, 0, TwitchAngle);
-        animator.endPhase();
-        animator.setStationaryPhase(24);
-        animator.resetPhase(3);
+        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID())
+        {
+            if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID()) 
+            	TwitchAngle = (float) (Math.random() - 0.5);
+            this.animator.setAnimation(JurassiCraftAnimationIDs.TWITCH_HEAD.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(Head, 0, 0, TwitchAngle);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(24);
+            this.animator.resetPhase(3);
+        }
 
-        animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
-        animator.startPhase(3);
-        animator.rotate(Neck, -0.1F, 0, 0);
-        animator.rotate(Head, 0.1F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(3);
-        animator.rotate(Neck, 0.4F, 0, 0);
-        animator.rotate(Head, -0.4F, 0, 0);
-        animator.rotate(Lower_Jaw, 0.3F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(9);
-        animator.resetPhase(5);
+        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.ROAR.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, -0.1F, 0, 0);
+            this.animator.rotate(Head, 0.1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, 0.4F, 0, 0);
+            this.animator.rotate(Head, -0.4F, 0, 0);
+            this.animator.rotate(Lower_Jaw, 0.3F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(9);
+            this.animator.resetPhase(5);
+        }
 
-        animator.setAnimation(JurassiCraftAnimationIDs.LEAP.animID());
-        animator.startPhase(5);
-        animator.move(Body_1, 0, 3, 0);
-        animator.rotate(Body_1, 0.5F, 0, 0);
-        animator.rotate(Tail_1, 0.4F, 0, 0);
-        animator.move(Tail_1, 0, 0, -2);
-        animator.rotate(Neck, -0.5F, 0, 0);
-        animator.move(Right_Thigh, 0, 3, 0);
-        animator.move(Left_Thigh, 0, 3, 0);
-        animator.rotate(Right_Thigh, -0.2F, 0.4F, 0);
-        animator.rotate(Left_Thigh, -0.2F, -0.4F, 0);
-        animator.rotate(Right_Calf_1, 0.2F, 0, 0);
-        animator.rotate(Left_Calf_1, 0.2F, 0, 0);
-        animator.rotate(Right_Upper_Foot, -0.2F, 0, 0);
-        animator.rotate(Left_Upper_Foot, -0.2F, 0, 0);
-        animator.rotate(Foot_Right, 0.2F, 0, 0);
-        animator.rotate(Foot_Left, 0.2F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(5);
-        animator.startPhase(4);
-        animator.move(Body_1, 0, -3, 0);
-        animator.move(Tail_1, 0, 0, 0);
-        animator.rotate(Tail_1, -0.4F, 0, 0);
-        animator.move(Right_Thigh, 0, -3, 0);
-        animator.move(Left_Thigh, 0, -3, 0);
-        animator.rotate(Right_Thigh, 1F, 0, 0);
-        animator.rotate(Left_Thigh, 1F, 0, 0);
-        animator.rotate(Right_Calf_1, -1F, 0, 0);
-        animator.rotate(Left_Calf_1, -1F, 0, 0);
-        animator.rotate(Right_Upper_Foot, 1F, 0, 0);
-        animator.rotate(Left_Upper_Foot, 1F, 0, 0);
-        animator.rotate(Foot_Right, -1F, 0, 0);
-        animator.rotate(Foot_Left, -1F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(Body_1, -0.8F, 0, 0);
-        animator.rotate(Neck, 0.8F, 0, 0);
-        animator.rotate(Head, 0.5F, 0, 0);
-        animator.rotate(Lower_Jaw, 0.7F, 0, 0);
-        animator.move(Tail_1, 0, 0, -2);
-        animator.rotate(Tail_1, 0.7F, 0, 0);
-        animator.move(Neck, 0, -2, -3);
-        animator.rotate(Right_Thigh, -1.2F, 0, 0);
-        animator.rotate(Left_Thigh, -1.2F, 0, 0);
-        animator.rotate(Right_Calf_1, -0.3F, 0, 0);
-        animator.rotate(Left_Calf_1, -0.3F, 0, 0);
-        animator.rotate(Right_Upper_Foot, 0.3F, 0, 0);
-        animator.rotate(Left_Upper_Foot, 0.3F, 0, 0);
-        animator.rotate(Foot_Right, -0.3F, 0, 0);
-        animator.rotate(Foot_Left, -0.3F, 0, 0);
-        animator.rotate(Upper_Arm_Right, -0.5F, 0, 1);
-        animator.rotate(Upper_Arm_Left, -0.5F, 0, -1);
-        animator.rotate(Lower_Arm_Right, 0.5F, 1.5F, 0);
-        animator.rotate(Lower_Arm_Left, 0.5F, -1.5F, 0);
-        animator.rotate(Hand_Right, -1, 0, 0);
-        animator.rotate(Hand_Left, -1, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(4);
-        animator.resetPhase(0);
+        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.LEAP.animID());
+            this.animator.startPhase(5);
+            this.animator.move(Body_1, 0, 3, 0);
+            this.animator.rotate(Body_1, 0.5F, 0, 0);
+            this.animator.rotate(Tail_1, 0.4F, 0, 0);
+            this.animator.move(Tail_1, 0, 0, -2);
+            this.animator.rotate(Neck, -0.5F, 0, 0);
+            this.animator.move(Right_Thigh, 0, 3, 0);
+            this.animator.move(Left_Thigh, 0, 3, 0);
+            this.animator.rotate(Right_Thigh, -0.2F, 0.4F, 0);
+            this.animator.rotate(Left_Thigh, -0.2F, -0.4F, 0);
+            this.animator.rotate(Right_Calf_1, 0.2F, 0, 0);
+            this.animator.rotate(Left_Calf_1, 0.2F, 0, 0);
+            this.animator.rotate(Right_Upper_Foot, -0.2F, 0, 0);
+            this.animator.rotate(Left_Upper_Foot, -0.2F, 0, 0);
+            this.animator.rotate(Foot_Right, 0.2F, 0, 0);
+            this.animator.rotate(Foot_Left, 0.2F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(5);
+            this.animator.startPhase(4);
+            this.animator.move(Body_1, 0, -3, 0);
+            this.animator.move(Tail_1, 0, 0, 0);
+            this.animator.rotate(Tail_1, -0.4F, 0, 0);
+            this.animator.move(Right_Thigh, 0, -3, 0);
+            this.animator.move(Left_Thigh, 0, -3, 0);
+            this.animator.rotate(Right_Thigh, 1F, 0, 0);
+            this.animator.rotate(Left_Thigh, 1F, 0, 0);
+            this.animator.rotate(Right_Calf_1, -1F, 0, 0);
+            this.animator.rotate(Left_Calf_1, -1F, 0, 0);
+            this.animator.rotate(Right_Upper_Foot, 1F, 0, 0);
+            this.animator.rotate(Left_Upper_Foot, 1F, 0, 0);
+            this.animator.rotate(Foot_Right, -1F, 0, 0);
+            this.animator.rotate(Foot_Left, -1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Body_1, -0.8F, 0, 0);
+            this.animator.rotate(Neck, 0.8F, 0, 0);
+            this.animator.rotate(Head, 0.5F, 0, 0);
+            this.animator.rotate(Lower_Jaw, 0.7F, 0, 0);
+            this.animator.move(Tail_1, 0, 0, -2);
+            this.animator.rotate(Tail_1, 0.7F, 0, 0);
+            this.animator.move(Neck, 0, -2, -3);
+            this.animator.rotate(Right_Thigh, -1.2F, 0, 0);
+            this.animator.rotate(Left_Thigh, -1.2F, 0, 0);
+            this.animator.rotate(Right_Calf_1, -0.3F, 0, 0);
+            this.animator.rotate(Left_Calf_1, -0.3F, 0, 0);
+            this.animator.rotate(Right_Upper_Foot, 0.3F, 0, 0);
+            this.animator.rotate(Left_Upper_Foot, 0.3F, 0, 0);
+            this.animator.rotate(Foot_Right, -0.3F, 0, 0);
+            this.animator.rotate(Foot_Left, -0.3F, 0, 0);
+            this.animator.rotate(Upper_Arm_Right, -0.5F, 0, 1);
+            this.animator.rotate(Upper_Arm_Left, -0.5F, 0, -1);
+            this.animator.rotate(Lower_Arm_Right, 0.5F, 1.5F, 0);
+            this.animator.rotate(Lower_Arm_Left, 0.5F, -1.5F, 0);
+            this.animator.rotate(Hand_Right, -1, 0, 0);
+            this.animator.rotate(Hand_Left, -1, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(4);
+            this.animator.resetPhase(0);
+        }
         
-        animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
-        animator.startPhase(3);
-        animator.rotate(Neck, -0.3F, 0, 0);
-        animator.rotate(Head, 0.3F, 0, 0);
-        animator.rotate(Lower_Jaw, 0.4F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(2);
-        animator.rotate(Neck, 0.6F, 0, 0);
-        animator.rotate(Head, -0.6F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(1);
-        animator.resetPhase(4);
+        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, -0.3F, 0, 0);
+            this.animator.rotate(Head, 0.3F, 0, 0);
+            this.animator.rotate(Lower_Jaw, 0.4F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Neck, 0.6F, 0, 0);
+            this.animator.rotate(Head, -0.6F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.resetPhase(4);
+        }
     }
 }
