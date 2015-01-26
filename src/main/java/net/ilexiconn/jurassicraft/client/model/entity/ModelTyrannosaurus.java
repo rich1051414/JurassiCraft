@@ -511,14 +511,16 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		{
 			this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
 			this.animator.startPhase(6);
-			this.animator.rotate(Neck, -0.3F, 0, 0);
-			this.animator.rotate(Head, 0.5F, 0, 0);
+			this.animator.rotate(Neck, -0.1F, -0.2F, 0);
+			this.animator.rotate(Head, -0.2F, -0.3F, 0);
+			this.animator.rotate(Waist, -0.1F, -0.2F, 0);
 			this.animator.rotate(LowerJaw, 1F, 0, 0);
 			this.animator.endPhase();
 			this.animator.setStationaryPhase(1);
 			this.animator.startPhase(3);
-			this.animator.rotate(Neck, 0.8F, 0, 0);
-			this.animator.rotate(Head, -0.5F, 0, 0);
+			this.animator.rotate(Neck, 0.8F, 0.2F, 0);
+			this.animator.rotate(Head, -0.8F, 0.4F, 0);
+			this.animator.rotate(Waist, 0.2F, 0.2F, 0);
 			this.animator.endPhase();
 			this.animator.setStationaryPhase(2);
 			this.animator.resetPhase(8);

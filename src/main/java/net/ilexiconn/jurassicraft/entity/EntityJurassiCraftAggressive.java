@@ -56,7 +56,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-    	float attackDamage = (float) this.getCreatureAttack();
+/*    	float attackDamage = (float) this.getCreatureAttack();
         int i = 0;
         if (entity instanceof EntityLivingBase)
         {
@@ -82,10 +82,10 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
                 EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
             }
             EnchantmentHelper.func_151385_b(this, entity);
-        }
+        }*/
     	if(this.animID == 0)
     		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
-        return this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
+        return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
 
 	@Override

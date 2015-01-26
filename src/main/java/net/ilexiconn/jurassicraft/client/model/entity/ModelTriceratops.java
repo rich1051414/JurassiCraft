@@ -476,7 +476,9 @@ public class ModelTriceratops extends MowzieModelBase
         //Defending Animation
 		Waist.rotateAngleX += 0.25F * defPosProgress;
 		Neck.rotateAngleX -= 0.1F * defPosProgress;
+		Neck.rotationPointZ += 1F * defPosProgress;
 		Head.rotateAngleX -= 0.15F * defPosProgress;
+		Head.rotationPointZ += 1F * defPosProgress;
 		FrontThighLeft.rotateAngleX += 0.125F * defPosProgress;
 		FrontThighRight.rotateAngleX += 0.125F * defPosProgress;
 		FrontCalfLeft.rotateAngleX -= 0.55F * defPosProgress;
