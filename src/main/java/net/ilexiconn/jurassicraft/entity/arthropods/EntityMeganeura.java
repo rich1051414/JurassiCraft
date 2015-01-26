@@ -115,12 +115,13 @@ public class EntityMeganeura extends EntityJurassiCraftFlyingCreature
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
-    	else
-    	{
-    		if (!this.isBurning())
+        }
+        else
+        {
+            if (!this.isBurning())
             {
                 this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat()));
             }
@@ -128,6 +129,6 @@ public class EntityMeganeura extends EntityJurassiCraftFlyingCreature
             {
                 this.dropItem(this.getCreature().getSteak(), 1);
             }
-    	}
+        }
     }
 }

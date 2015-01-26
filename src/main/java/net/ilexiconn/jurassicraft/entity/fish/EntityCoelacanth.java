@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 
 public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(4);
-	public ControlledAnimation droppingTimer = new ControlledAnimation(35);
-	
+    public ChainBuffer tailBuffer = new ChainBuffer(4);
+    public ControlledAnimation droppingTimer = new ControlledAnimation(35);
+
     public EntityCoelacanth(World world)
     {
         super(world, CreatureManager.classToCreature(EntityCoelacanth.class));
@@ -36,21 +36,21 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
     public void onUpdate()
     {
         super.onUpdate();
-		if (this.isAirBorne || this.isInWater())
-		{
-			this.droppingTimer.decreaseTimer();
-		}
-		else
-		{
-			this.droppingTimer.increaseTimer();
-		}
+        if (this.isAirBorne || this.isInWater())
+        {
+            this.droppingTimer.decreaseTimer();
+        }
+        else
+        {
+            this.droppingTimer.increaseTimer();
+        }
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 3, 4.0F, this);
     }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
         }

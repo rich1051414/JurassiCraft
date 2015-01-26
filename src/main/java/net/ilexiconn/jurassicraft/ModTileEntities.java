@@ -1,16 +1,12 @@
 package net.ilexiconn.jurassicraft;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
-import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
-import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
-import net.ilexiconn.jurassicraft.tile.TileDinoPad;
-import net.ilexiconn.jurassicraft.tile.TileEgg;
+import net.ilexiconn.jurassicraft.tile.*;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModTileEntities implements IContentHandler
 {

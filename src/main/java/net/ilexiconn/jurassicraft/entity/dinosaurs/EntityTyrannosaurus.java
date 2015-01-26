@@ -1,14 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIWalkRoar;
@@ -22,17 +15,8 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -42,13 +26,13 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 {
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
-	public ControlledAnimation sittingProgress = new ControlledAnimation(50);
-	public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
-	public ChainBuffer tailBuffer = new ChainBuffer(5);
-	private boolean restingHead = false;
-	private int restHeadSwitchTimer = 300;
-	private double entityRiderPitchDelta;
-	private double entityRiderYawDelta;
+    public ControlledAnimation sittingProgress = new ControlledAnimation(50);
+    public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+    private boolean restingHead = false;
+    private int restHeadSwitchTimer = 300;
+    private double entityRiderPitchDelta;
+    private double entityRiderYawDelta;
     private float shakeCount = 0;
     private int stepCount = 0;
 
@@ -94,22 +78,22 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
     {
         if (this.riddenByEntity != null)
         {
-        	if (this.riddenByEntity instanceof EntityGallimimus)
-        	{
-				this.riddenByEntity.rotationYaw = this.rotationYaw - 150.0F;
-				((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
-				double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
-				double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
-				double extraY = this.getCreatureHeight() * 0.425;
-        		this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
-        	}
-        	else
-        	{
+            if (this.riddenByEntity instanceof EntityGallimimus)
+            {
+                this.riddenByEntity.rotationYaw = this.rotationYaw - 150.0F;
+                ((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
+                double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
+                double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
+                double extraY = this.getCreatureHeight() * 0.425;
+                this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
+            }
+            else
+            {
                 this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ);
-        	}
+            }
         }
     }
-    
+
     @Override
     public String getLivingSound()
     {
@@ -119,15 +103,15 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             this.playSound("jurassicraft:tyrannosaurus1", 5.0F, this.getSoundPitch());
             if (animID == 0)
             {
-				if (this.moveForward == 0)
-				{
-					if (!this.isSitting())
-							AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
-				}
-				else
-				{
-						AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.WALK_ROAR.animID());
-				}
+                if (this.moveForward == 0)
+                {
+                    if (!this.isSitting())
+                        AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
+                }
+                else
+                {
+                    AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.WALK_ROAR.animID());
+                }
             }
             return null;
         }
@@ -154,50 +138,56 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
             stepCount = 65;
         }
-        if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22) 
-        	this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        
-        if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22) 
-        	this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        
+        if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22)
+            this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+
+        if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22)
+            this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
+
         this.stepCount -= this.moveForward * 9.5;
 
         /** Breathing Sound MISSING SOUND */
         if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
 
         /** Sitting Animation */
-		if (this.isSitting()) 
-		{
-			this.sittingProgress.increaseTimer();
-			if (!restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0) {restingHead = true; restHeadSwitchTimer = 300;}
-			if (restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0) {restingHead = false; restHeadSwitchTimer = 300;}
-			if(restHeadSwitchTimer > 0) restHeadSwitchTimer--;
-		}
-		else
-		{
-			this.sittingProgress.decreaseTimer();
-			restingHead = false;
-			restHeadSwitchTimer = 300;
-		}
-		
-		if (restingHead) 
-			restHeadProgress.increaseTimer();
-		
-		if (!restingHead) 
-			restHeadProgress.decreaseTimer();
-		
+        if (this.isSitting())
+        {
+            this.sittingProgress.increaseTimer();
+            if (!restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0)
+            {
+                restingHead = true;
+                restHeadSwitchTimer = 300;
+            }
+            if (restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0)
+            {
+                restingHead = false;
+                restHeadSwitchTimer = 300;
+            }
+            if (restHeadSwitchTimer > 0) restHeadSwitchTimer--;
+        }
+        else
+        {
+            this.sittingProgress.decreaseTimer();
+            restingHead = false;
+            restHeadSwitchTimer = 300;
+        }
+
+        if (restingHead) restHeadProgress.increaseTimer();
+
+        if (!restingHead) restHeadProgress.decreaseTimer();
+
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
-        
+
         if (this.getAttackTarget() == this.riddenByEntity) setAttackTarget(null);
     }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int countMeat = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (3.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
         int countTeeth = Math.round(1.5F * developmentFraction + this.rand.nextInt(1 + (int) (2.0F * developmentFraction)));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), countMeat));
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getTooth(), countTeeth));
@@ -207,11 +197,13 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             this.dropItem(this.getCreature().getSteak(), countMeat);
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getTooth(), countTeeth));
         }
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        }
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

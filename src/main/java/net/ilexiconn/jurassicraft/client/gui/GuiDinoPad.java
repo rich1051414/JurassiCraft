@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import java.util.HashMap;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
@@ -12,12 +12,10 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class GuiDinoPad extends GuiContainer
@@ -39,16 +37,16 @@ public class GuiDinoPad extends GuiContainer
             this.creature = (EntityJurassiCraftSmart) container.creatureToAnalyze;
             this.xSize = 256;
             this.ySize = 176;
-        } 
-        else 
+        }
+        else
         {
             this.mc.thePlayer.closeScreen();
-		}
-		
-		if (this.creature == null) 
-		{
+        }
+
+        if (this.creature == null)
+        {
             this.mc.thePlayer.closeScreen();
-		}
+        }
     }
 
     @Override
@@ -56,9 +54,9 @@ public class GuiDinoPad extends GuiContainer
     {
         this.buttonList.clear();
         this.dinoInfo.clear();
-        if (this.creature != null) 
+        if (this.creature != null)
         {
-        	for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
+            for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
             {
                 this.dinoInfo.put(numberOfPages, this.getCreatureInformation(numberOfPages));
             }
@@ -82,7 +80,7 @@ public class GuiDinoPad extends GuiContainer
     @Override
     public void onGuiClosed()
     {
-    	this.creature = null;
+        this.creature = null;
         super.onGuiClosed();
     }
 
@@ -101,7 +99,7 @@ public class GuiDinoPad extends GuiContainer
         if (this.creature == null)
         {
             this.mc.thePlayer.closeScreen();
-        } 
+        }
         else if (!this.creature.isEntityAlive())
         {
             this.mc.thePlayer.closeScreen();
@@ -112,8 +110,9 @@ public class GuiDinoPad extends GuiContainer
     @Override
     public void actionPerformed(GuiButton button)
     {
-    	if (this.creature != null) {
-    		if (button.id == 0)
+        if (this.creature != null)
+        {
+            if (button.id == 0)
             {
                 this.pageNumber = 0;
             }
@@ -139,17 +138,17 @@ public class GuiDinoPad extends GuiContainer
                     this.pageNumber = 0;
                 }
             }
-    	}
+        }
     }
-    
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
-	{
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
+    {
         if (this.creature != null)
         {
-        	this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
+            this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
             this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-    		switch (this.pageNumber)
+            switch (this.pageNumber)
             {
                 case 0:
                     this.renderEmptyBars();
@@ -173,7 +172,7 @@ public class GuiDinoPad extends GuiContainer
                     break;
             }
         }
-	}
+    }
 
     private void renderEmptyBars()
     {
@@ -191,14 +190,14 @@ public class GuiDinoPad extends GuiContainer
 
     private void renderNameGenderStrings()
     {
-    	if (this.creature.hasCustomNameTag())
-    	{
+        if (this.creature.hasCustomNameTag())
+        {
             this.fontRendererObj.drawString(this.creature.getCustomNameTag() + " (" + this.creature.getCreatureName() + ")", this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCustomNameTag() + "(" + this.creature.getCreatureName() + ")") / 2, this.guiTop + 11, 14737632);
-    	}
-    	else
-    	{
+        }
+        else
+        {
             this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName()) / 2, this.guiTop + 11, 14737632);
-    	}
+        }
         this.fontRendererObj.drawString(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString()) / 2, this.guiTop + 19, 14737632);
     }
 

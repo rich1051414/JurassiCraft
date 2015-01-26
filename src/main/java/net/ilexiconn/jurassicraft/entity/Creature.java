@@ -1,31 +1,21 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.dinoconfig.JsonCreatureDefinition;
-import net.ilexiconn.jurassicraft.item.ItemDNA;
-import net.ilexiconn.jurassicraft.item.ItemEgg;
-import net.ilexiconn.jurassicraft.item.ItemMammalSyringe;
-import net.ilexiconn.jurassicraft.item.ItemMeat;
-import net.ilexiconn.jurassicraft.item.ItemSteak;
-import net.ilexiconn.jurassicraft.item.drops.ItemBristles;
-import net.ilexiconn.jurassicraft.item.drops.ItemFeather;
-import net.ilexiconn.jurassicraft.item.drops.ItemFur;
-import net.ilexiconn.jurassicraft.item.drops.ItemScale;
-import net.ilexiconn.jurassicraft.item.drops.ItemSkin;
-import net.ilexiconn.jurassicraft.item.drops.ItemSkull;
-import net.ilexiconn.jurassicraft.item.drops.ItemTooth;
+import net.ilexiconn.jurassicraft.item.*;
+import net.ilexiconn.jurassicraft.item.drops.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
 
 public class Creature
 {
-	private Class clazz;
-	
+    private Class clazz;
+
     private String creatureCategory;
-    
+
     private byte creatureID;
     private byte addItemTypes;
 
@@ -85,8 +75,8 @@ public class Creature
 
     public Creature(String creatureCategory, JsonCreatureDefinition def, Class clazz)
     {
-    	this.clazz = clazz;
-    	
+        this.clazz = clazz;
+
         this.creatureCategory = creatureCategory;
 
         this.adultAge = def.adultAge;
@@ -126,158 +116,159 @@ public class Creature
         this.yBoxDelta = def.yBoxDelta;
         this.yBoxMin = def.yBoxMin;
         this.addItemTypes = def.addItemTypes;
-        
-//        switch (def.addItemTypes) 
-//		{
-//			case 0:
-//				/** Creature not implemented yet  */
-//				break;
-//			case 1:
-//				/** DNA + Egg */
-//				this.addDNA();
-//				this.addEgg();
-//				break;
-//			case 2:
-//				/** DNA + Syringe */
-//				this.addDNA();
-//				this.addSyringe();
-//				break;
-//			case 3:
-//				/** DNA + Egg + Meat */
-//				this.addDNA();
-//				this.addEgg();
-//				this.addMeat();
-//				break;
-//			case 4:
-//				/** DNA + Syringe + Meat */
-//				this.addDNA();
-//				this.addSyringe();
-//				this.addMeat();
-//				break;
-//			case 5:
-//				/** DNA + Egg + Meat + Skull */
-//				this.addDNA();
-//				this.addEgg();
-//				this.addMeat();
-//				this.addSkull();
-//				break;
-//			case 6:
-//				/** DNA + Syringe + Meat + Skull */
-//				this.addDNA();
-//				this.addSyringe();
-//				this.addMeat();
-//				this.addSkull();
-//				break;
-//			case 7:
-//				/** DNA + Egg + Meat + Skin */
-//				this.addDNA();
-//				this.addEgg();
-//				this.addMeat();
-//				this.addSkin();
-//				break;
-//			case 8:
-//				/** DNA + Syringe + Meat + Fur */
-//				this.addDNA();
-//				this.addSyringe();
-//				this.addMeat();
-//				this.addFur();
-//				break;
-//			case 9:
-//				/** DNA + Egg + Meat + Skull + Skin */
-//				this.addDNA();
-//				this.addEgg();
-//				this.addMeat();
-//				this.addSkull();
-//				this.addSkin();
-//				break;
-//			case 10:
-//				/** DNA + Syringe + Meat + Skin */
-//				this.addDNA();
-//				this.addSyringe();
-//				this.addMeat();
-//				this.addSkin();
-//				break;
-//        }
+
+        //        switch (def.addItemTypes)
+        //		{
+        //			case 0:
+        //				/** Creature not implemented yet  */
+        //				break;
+        //			case 1:
+        //				/** DNA + Egg */
+        //				this.addDNA();
+        //				this.addEgg();
+        //				break;
+        //			case 2:
+        //				/** DNA + Syringe */
+        //				this.addDNA();
+        //				this.addSyringe();
+        //				break;
+        //			case 3:
+        //				/** DNA + Egg + Meat */
+        //				this.addDNA();
+        //				this.addEgg();
+        //				this.addMeat();
+        //				break;
+        //			case 4:
+        //				/** DNA + Syringe + Meat */
+        //				this.addDNA();
+        //				this.addSyringe();
+        //				this.addMeat();
+        //				break;
+        //			case 5:
+        //				/** DNA + Egg + Meat + Skull */
+        //				this.addDNA();
+        //				this.addEgg();
+        //				this.addMeat();
+        //				this.addSkull();
+        //				break;
+        //			case 6:
+        //				/** DNA + Syringe + Meat + Skull */
+        //				this.addDNA();
+        //				this.addSyringe();
+        //				this.addMeat();
+        //				this.addSkull();
+        //				break;
+        //			case 7:
+        //				/** DNA + Egg + Meat + Skin */
+        //				this.addDNA();
+        //				this.addEgg();
+        //				this.addMeat();
+        //				this.addSkin();
+        //				break;
+        //			case 8:
+        //				/** DNA + Syringe + Meat + Fur */
+        //				this.addDNA();
+        //				this.addSyringe();
+        //				this.addMeat();
+        //				this.addFur();
+        //				break;
+        //			case 9:
+        //				/** DNA + Egg + Meat + Skull + Skin */
+        //				this.addDNA();
+        //				this.addEgg();
+        //				this.addMeat();
+        //				this.addSkull();
+        //				this.addSkin();
+        //				break;
+        //			case 10:
+        //				/** DNA + Syringe + Meat + Skin */
+        //				this.addDNA();
+        //				this.addSyringe();
+        //				this.addMeat();
+        //				this.addSkin();
+        //				break;
+        //        }
     }
-    
+
     public void addDNA()
     {
-    	this.dna = new ItemDNA(this.creatureName);
-    	GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
+        this.dna = new ItemDNA(this.creatureName);
+        GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
     }
-    
+
     public Class getCreatureClass()
     {
-    	return clazz;
+        return clazz;
     }
 
     public void addEgg()
     {
-    	this.egg = new ItemEgg(this.creatureName);
-    	GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
+        this.egg = new ItemEgg(this.creatureName);
+        GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
     }
 
     public void addSyringe()
     {
-    	this.syringe = new ItemMammalSyringe(this.creatureName);
-    	GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
+        this.syringe = new ItemMammalSyringe(this.creatureName);
+        GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
     }
-    
+
     public void addMeat()
     {
-		this.meat = new ItemMeat(this.creatureName);
-		this.steak = new ItemSteak(this.creatureName);
-		GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
-		GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
-		GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
+        this.meat = new ItemMeat(this.creatureName);
+        this.steak = new ItemSteak(this.creatureName);
+        GameRegistry.registerItem(this.meat, this.meat.getUnlocalizedName());
+        GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
+        GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
     }
 
     public void addFur()
     {
-    	this.fur = new ItemFur(this.creatureName);
-    	GameRegistry.registerItem(this.fur, this.fur.getUnlocalizedName());
-    	if (this.creatureName.equals("Leptictidium")) {
-	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet, 1), "FFF", "F F", 'F', new ItemStack(this.fur));
-	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate, 1), "F F", "FFF", "FFF", 'F', new ItemStack(this.fur));
-	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings, 1), "FFF", "F F", "F F", 'F', new ItemStack(this.fur));
-	        GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots, 1), "F F", "F F", 'F', new ItemStack(this.fur));
-		}
+        this.fur = new ItemFur(this.creatureName);
+        GameRegistry.registerItem(this.fur, this.fur.getUnlocalizedName());
+        if (this.creatureName.equals("Leptictidium"))
+        {
+            GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet, 1), "FFF", "F F", 'F', new ItemStack(this.fur));
+            GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate, 1), "F F", "FFF", "FFF", 'F', new ItemStack(this.fur));
+            GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings, 1), "FFF", "F F", "F F", 'F', new ItemStack(this.fur));
+            GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots, 1), "F F", "F F", 'F', new ItemStack(this.fur));
+        }
     }
-    
+
     public void addSkin()
     {
-    	this.skin = new ItemSkin(this.creatureName);
-    	GameRegistry.registerItem(this.skin, this.skin.getUnlocalizedName());
+        this.skin = new ItemSkin(this.creatureName);
+        GameRegistry.registerItem(this.skin, this.skin.getUnlocalizedName());
     }
-    
+
     public void addScale()
     {
-    	this.scale = new ItemScale(this.creatureName);
-    	GameRegistry.registerItem(this.scale, this.scale.getUnlocalizedName());
+        this.scale = new ItemScale(this.creatureName);
+        GameRegistry.registerItem(this.scale, this.scale.getUnlocalizedName());
     }
-    
+
     public void addFeather()
     {
-    	this.feather = new ItemFeather(this.creatureName);
-    	GameRegistry.registerItem(this.feather, this.feather.getUnlocalizedName());
+        this.feather = new ItemFeather(this.creatureName);
+        GameRegistry.registerItem(this.feather, this.feather.getUnlocalizedName());
     }
-    
+
     public void addBristles()
     {
-    	this.bristles = new ItemBristles(this.creatureName);
-    	GameRegistry.registerItem(this.bristles, this.bristles.getUnlocalizedName());
+        this.bristles = new ItemBristles(this.creatureName);
+        GameRegistry.registerItem(this.bristles, this.bristles.getUnlocalizedName());
     }
-    
+
     public void addSkull()
     {
-    	this.skull = new ItemSkull(this.creatureName);
-    	GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
+        this.skull = new ItemSkull(this.creatureName);
+        GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
     }
-    
+
     public void addTooth()
     {
-    	this.tooth = new ItemTooth(this.creatureName);
-    	GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
+        this.tooth = new ItemTooth(this.creatureName);
+        GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
     }
 
     public String getCreatureName()

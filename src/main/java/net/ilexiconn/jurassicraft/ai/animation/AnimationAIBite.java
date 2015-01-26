@@ -12,77 +12,78 @@ import net.minecraft.util.DamageSource;
 
 public class AnimationAIBite extends AIAnimation
 {
-	private EntityJurassiCraftAggressive entityBiting;
-	private EntityLivingBase entityTarget;
-	private int duration;
-	
-	public AnimationAIBite(EntityJurassiCraftAggressive dino, int duration)
-	{
-		super(dino);
-		this.entityBiting = dino;
-		this.entityTarget = null;
-		this.duration = duration;
-	}
+    private EntityJurassiCraftAggressive entityBiting;
+    private EntityLivingBase entityTarget;
+    private int duration;
 
-	public int getAnimationId()
-	{
-		return JurassiCraftAnimationIDs.BITE.animID();
-	}
+    public AnimationAIBite(EntityJurassiCraftAggressive dino, int duration)
+    {
+        super(dino);
+        this.entityBiting = dino;
+        this.entityTarget = null;
+        this.duration = duration;
+    }
 
-	public boolean isAutomatic()
-	{
-		return true;
-	}
+    public int getAnimationId()
+    {
+        return JurassiCraftAnimationIDs.BITE.animID();
+    }
 
-	public int getDuration()
-	{
-		return this.duration;
-	}
+    public boolean isAutomatic()
+    {
+        return true;
+    }
 
-	public void startExecuting()
-	{
-		super.startExecuting();
-		this.entityTarget = this.entityBiting.getAttackTarget();
-	}
+    public int getDuration()
+    {
+        return this.duration;
+    }
 
-	public void updateTask()
-	{
-		if (this.entityTarget != null)
-		{
-			if (this.entityBiting.getAnimationTick() < (this.duration/2 - 2))
-				this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
+    public void startExecuting()
+    {
+        super.startExecuting();
+        this.entityTarget = this.entityBiting.getAttackTarget();
+    }
 
-			if (this.entityBiting.getAnimationTick() == (this.duration/2 - 2))
-			{
-				float damage = (float) this.entityBiting.getCreatureAttack();
-				if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
-				{
-					this.entityTarget.mountEntity(this.entityBiting);
-					this.entityBiting.setAttackTarget((EntityLivingBase) null);
-					this.entityBiting.getNavigator().clearPathEntity();
-					AnimationHandler.sendAnimationPacket(this.entityBiting, JurassiCraftAnimationIDs.EATING.animID());
-					EntityGallimimus gallimimus = (EntityGallimimus) this.entityTarget;
-					gallimimus.setAttackTarget((EntityLivingBase) null);
-					gallimimus.getNavigator().clearPathEntity();
-					AnimationHandler.sendAnimationPacket((IAnimatedEntity) this.entityTarget, JurassiCraftAnimationIDs.BEING_EATEN.animID());
-				}
-				else
-				{
-					this.entityTarget.attackEntityFrom(DamageSource.causeMobDamage(this.entityBiting), damage);
-				}
-			}
-		}
-	}
-	
-	@Override
-	public void resetTask()
-	{
-		/** Eating animations, should not use super.resetTask, or the eating animation ID will be replaced */
-		if (this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus) {
-			this.entityTarget = null;
-			return;
-		}
-		this.entityTarget = null;
-		super.resetTask();
-	}
+    public void updateTask()
+    {
+        if (this.entityTarget != null)
+        {
+            if (this.entityBiting.getAnimationTick() < (this.duration / 2 - 2))
+                this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
+
+            if (this.entityBiting.getAnimationTick() == (this.duration / 2 - 2))
+            {
+                float damage = (float) this.entityBiting.getCreatureAttack();
+                if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
+                {
+                    this.entityTarget.mountEntity(this.entityBiting);
+                    this.entityBiting.setAttackTarget((EntityLivingBase) null);
+                    this.entityBiting.getNavigator().clearPathEntity();
+                    AnimationHandler.sendAnimationPacket(this.entityBiting, JurassiCraftAnimationIDs.EATING.animID());
+                    EntityGallimimus gallimimus = (EntityGallimimus) this.entityTarget;
+                    gallimimus.setAttackTarget((EntityLivingBase) null);
+                    gallimimus.getNavigator().clearPathEntity();
+                    AnimationHandler.sendAnimationPacket((IAnimatedEntity) this.entityTarget, JurassiCraftAnimationIDs.BEING_EATEN.animID());
+                }
+                else
+                {
+                    this.entityTarget.attackEntityFrom(DamageSource.causeMobDamage(this.entityBiting), damage);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void resetTask()
+    {
+        /** Eating animations, should not use super.resetTask, or the eating animation ID will be replaced */
+        if (this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
+        {
+            this.entityTarget = null;
+            return;
+        }
+        this.entityTarget = null;
+        super.resetTask();
+    }
 }

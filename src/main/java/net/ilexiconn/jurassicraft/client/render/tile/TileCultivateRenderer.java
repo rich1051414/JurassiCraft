@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemDye;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class TileCultivateRenderer extends TileEntitySpecialRenderer
@@ -29,7 +28,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         this.embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
         this.cultivateTextures = new ResourceLocation[BlockCultivateBottom.icons.length];
         for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
-        	this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + ItemDye.field_150921_b[i] + ".png");
+            this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + ItemDye.field_150921_b[i] + ".png");
     }
 
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float meta)
@@ -37,7 +36,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         GL11.glEnable(GL11.GL_BLEND);
         TileCultivate tile = (TileCultivate) tileEntity;
         int metadata = 0;
-        if (tile.getWorldObj() != null) {
+        if (tile.getWorldObj() != null)
+        {
             metadata = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         }
 

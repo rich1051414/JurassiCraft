@@ -11,7 +11,7 @@ import net.minecraft.entity.Entity;
 
 public class ModelHerrerasaurus extends MowzieModelBase
 {
-	public Animator animator;
+    public Animator animator;
     MowzieModelRenderer Left_Upper_Foot;
     MowzieModelRenderer Right_Upper_Foot;
     MowzieModelRenderer Left_Calf_1;
@@ -47,10 +47,10 @@ public class ModelHerrerasaurus extends MowzieModelBase
     MowzieModelRenderer[] rightArmParts;
     MowzieModelRenderer[] leftArmParts;
     MowzieModelRenderer[] tailParts;
-    
+
     public ModelHerrerasaurus()
     {
-    	this.animator = new Animator(this);
+        this.animator = new Animator(this);
         textureWidth = 256;
         textureHeight = 256;
 
@@ -298,9 +298,9 @@ public class ModelHerrerasaurus extends MowzieModelBase
 
         Tail_1.setRotationPoint(0, -4.7F, 7);
 
-		rightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
-		leftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
-		tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
+        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
 
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
@@ -391,16 +391,16 @@ public class ModelHerrerasaurus extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHerrerasaurus herrera)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, herrera);
-		resetPose();
-		
+        resetPose();
+
 		/*
 		f = herrera.frame; 
 		f1 = 1F;
 		*/
-		
+
         float scaleFactor = 0.77F;
         float height = 2F * f1;
-        
+
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
@@ -436,17 +436,18 @@ public class ModelHerrerasaurus extends MowzieModelBase
         chainWave(rightArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1F);
         chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1F);
-        
+
         herrera.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-    
-    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    	this.animator.update(entity);
-    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
-    	
-    	if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
-    	{
-        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
             this.animator.startPhase(3);
             this.animator.rotate(Neck, -0.5F, 0, 0);
             this.animator.rotate(Head, 0.5F, 0, 0);
@@ -458,6 +459,6 @@ public class ModelHerrerasaurus extends MowzieModelBase
             this.animator.endPhase();
             this.animator.setStationaryPhase(1);
             this.animator.resetPhase(4);
-    	}
+        }
     }
 }

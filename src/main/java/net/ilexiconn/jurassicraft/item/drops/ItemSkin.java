@@ -16,17 +16,17 @@ import java.util.List;
 
 public class ItemSkin extends ItemGenericDNASource
 {
-	@SideOnly(Side.CLIENT)
-	public IIcon maleIcon;
+    @SideOnly(Side.CLIENT)
+    public IIcon maleIcon;
 
-	@SideOnly(Side.CLIENT)
-	public IIcon femaleIcon;
-	
+    @SideOnly(Side.CLIENT)
+    public IIcon femaleIcon;
+
     public ItemSkin(String name)
     {
         super(name, "Skin");
         this.setCreativeTab(ModCreativeTabs.items);
-		this.setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     public ItemDNA getCorrespondingDNA()
@@ -34,32 +34,32 @@ public class ItemSkin extends ItemGenericDNASource
         return this.getCorrespondingDNA("Skin");
     }
 
-	@Override
-	public String getItemStackDisplayName(ItemStack itemStack) 
-	{
-		return StatCollector.translateToLocal(itemStack.getUnlocalizedName() + (itemStack.getItemDamage() == 0 ? "_Male.name" : "_Female.name")).trim();
-	}
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack)
+    {
+        return StatCollector.translateToLocal(itemStack.getUnlocalizedName() + (itemStack.getItemDamage() == 0 ? "_Male.name" : "_Female.name")).trim();
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int i)
-	{
-		return i == 0 ? this.maleIcon : this.femaleIcon;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, List list) 
-	{
-		list.add(new ItemStack(item, 1, 0));
-		//list.add(new ItemStack(item, 1, 1));
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int i)
+    {
+        return i == 0 ? this.maleIcon : this.femaleIcon;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        list.add(new ItemStack(item, 1, 0));
+        //list.add(new ItemStack(item, 1, 1));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iIconRegister)
     {
-		this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
-		//this.femaleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
+        this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
+        //this.femaleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
     }
 }

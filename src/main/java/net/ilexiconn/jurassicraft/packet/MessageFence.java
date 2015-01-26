@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.packet;
 
-import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 
 public class MessageFence implements IMessage
 {
@@ -19,7 +19,7 @@ public class MessageFence implements IMessage
 
     public MessageFence()
     {
-    	
+
     }
 
     public MessageFence(int id, int xCoord, int yCoord, int zCoord, int side)
@@ -60,37 +60,37 @@ public class MessageFence implements IMessage
             {
                 if (!ctx.getServerHandler().playerEntity.worldObj.isRemote)
                 {
-                	if (message.id > -1 && message.id < 4)
-                	{
-                		TileEntity tileEntity = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
+                    if (message.id > -1 && message.id < 4)
+                    {
+                        TileEntity tileEntity = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
                         switch (message.id)
                         {
-                        	/** Build Low Security */
-                        	case 0:
-                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
+                            /** Build Low Security */
+                            case 0:
+                                if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowCorner) tileEntity).tryToBuildFence(message.side);
+                                        ((TileSecurityFenceLowCorner) tileEntity).tryToBuildFence(message.side);
                                 }
-                        		break;
+                                break;
                             /** Turn On of Off Low Security */
-                        	case 1:
-                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
+                            case 1:
+                                if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowCorner) tileEntity).tryToTurnOnTheFence(message.side);
+                                        ((TileSecurityFenceLowCorner) tileEntity).tryToTurnOnTheFence(message.side);
                                 }
-                        		break;
+                                break;
                             /** Fix Low Security */
-                        	case 2:
-                        		if (tileEntity instanceof TileSecurityFenceLowCorner)
+                            case 2:
+                                if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {
                                     if (message.side > -1 && message.side < 4)
-                                    	((TileSecurityFenceLowCorner) tileEntity).tryToFixFence(message.side);
+                                        ((TileSecurityFenceLowCorner) tileEntity).tryToFixFence(message.side);
                                 }
-                        		break;
+                                break;
                         }
-                	}
+                    }
                 }
             }
             return null;

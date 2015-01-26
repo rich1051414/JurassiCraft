@@ -27,24 +27,24 @@ public class BlockSecurityFence extends Block implements ITileEntityProvider
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
         int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        switch (direction) 
+        switch (direction)
         {
-			/** South */
-        	case 0:
+            /** South */
+            case 0:
                 world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-        		break;
-    		/** West */
-        	case 1:
+                break;
+            /** West */
+            case 1:
                 world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-        		break;
-        	/** North */
-        	case 2:
+                break;
+            /** North */
+            case 2:
                 world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        		break;
-        	/** East */
-        	case 3:
-        		world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        		break;
+                break;
+            /** East */
+            case 3:
+                world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+                break;
         }
     }
 

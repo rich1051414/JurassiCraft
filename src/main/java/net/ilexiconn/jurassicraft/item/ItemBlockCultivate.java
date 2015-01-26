@@ -25,7 +25,7 @@ public class ItemBlockCultivate extends ItemBlock
     {
         String displayName = "";
         for (String color : colors[itemStack.getItemDamage()].split(" "))
-        	displayName = "tile." + color + "_cultivate" + ".name";
+            displayName = "tile." + color + "_cultivate" + ".name";
         return StatCollector.translateToLocal(displayName);
     }
 

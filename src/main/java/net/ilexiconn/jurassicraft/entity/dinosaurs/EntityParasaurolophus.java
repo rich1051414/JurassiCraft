@@ -1,19 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIParasaurolophusTrumpet;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -23,19 +11,17 @@ import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityParasaurolophus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(6);
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);
     public int timeUntilCanCall = 0;
 
@@ -69,11 +55,11 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         return 1.1D * (double) this.getYBouningBox();
     }
 
-	@Override
-	public int getNumberOfAllies()
-	{
-		return 1;
-	}
+    @Override
+    public int getNumberOfAllies()
+    {
+        return 1;
+    }
 
     @Override
     public int getTalkInterval()
@@ -88,11 +74,11 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         if (this.moveForward != 0) this.walkLean.change = 0.1F;
         if (this.moveForward == 0) this.walkLean.change = -0.1F;
         this.walkLean.update();
-        if(timeUntilCanCall > 0) timeUntilCanCall--;
+        if (timeUntilCanCall > 0) timeUntilCanCall--;
 
         this.tailBuffer.calculateChainSwingBuffer(48.0F, 3, 5.0F, this);
     }
-    
+
     @Override
     public String getLivingSound()
     {
@@ -100,35 +86,35 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
 
         if (I <= 1)
         {
-        	this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
+            this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
             return null;
         }
         else
         {
             if (timeUntilCanCall == 0 && animID == 0)
-            	AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.TRUMPET.animID());
+                AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.TRUMPET.animID());
             return null;
         }
     }
-    
+
     public List<EntityParasaurolophus> getParasaurolophusNearby(double distanceX, double distanceY, double distanceZ)
     {
-		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
-		ArrayList<EntityParasaurolophus> listParasaurolophus = new ArrayList<EntityParasaurolophus>();
-		for (Entity entityNeighbor : list)
-		{
-			if (entityNeighbor instanceof EntityParasaurolophus && entityNeighbor != this)
-				listParasaurolophus.add((EntityParasaurolophus) entityNeighbor);
-		}
-		return listParasaurolophus;
+        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
+        ArrayList<EntityParasaurolophus> listParasaurolophus = new ArrayList<EntityParasaurolophus>();
+        for (Entity entityNeighbor : list)
+        {
+            if (entityNeighbor instanceof EntityParasaurolophus && entityNeighbor != this)
+                listParasaurolophus.add((EntityParasaurolophus) entityNeighbor);
+        }
+        return listParasaurolophus;
     }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (4.0F * developmentFraction) + this.rand.nextInt(1 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -136,11 +122,13 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        }
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

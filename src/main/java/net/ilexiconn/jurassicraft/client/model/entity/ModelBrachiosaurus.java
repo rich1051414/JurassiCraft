@@ -302,10 +302,10 @@ public class ModelBrachiosaurus extends MowzieModelBase
         tail4.setRotationPoint(0, -6, 15);
         tail5.setRotationPoint(0, 1, 20);
 
-        this.neckParts = new MowzieModelRenderer[] {this.head, this.neck7, this.neck6, this.neck5, this.neck4, this.neck3, this.neck2, this.neck1};
-        this.tailParts = new MowzieModelRenderer[] {this.tail5, this.tail4, this.tail3};
-        this.tailParts2 = new MowzieModelRenderer[] {this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
-        
+        this.neckParts = new MowzieModelRenderer[]{this.head, this.neck7, this.neck6, this.neck5, this.neck4, this.neck3, this.neck2, this.neck1};
+        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3};
+        this.tailParts2 = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+
         hips.setInitValuesToCurrentPose();
         body_1.setInitValuesToCurrentPose();
         body_2.setInitValuesToCurrentPose();
@@ -344,39 +344,39 @@ public class ModelBrachiosaurus extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityBrachiosaurus) entity);
-		//        hips.render(f5);
-		body_1.render(f5);
-		//        body_2.render(f5);
-		//        body_3.render(f5);
-		top_leg_left.render(f5);
-		//    bottom_leg_left.render(f5);
-		//    left_back_foot.render(f5);
-		//        front_left_top_leg.render(f5);
-		//    bottom_front_left_leg.render(f5);
-		//    front_left_foot.render(f5);
-		//        tail1.render(f5);
-		//        tail2.render(f5);
-		//        tail3.render(f5);
-		//        tail4.render(f5);
-		//        tail5.render(f5);
-//		        neck1.render(f5);
-//		        neck2.render(f5);
-//		       neck3.render(f5);
-//		       neck4.render(f5);
-//		       neck5.render(f5);
-//		       neck6.render(f5);
-//		        neck7.render(f5);
-		//       head.render(f5);
-		//        snout.render(f5);
-		//        jaw.render(f5);
-		//        front_right_top_leg.render(f5);
-		//    bottom_front_right_leg.render(f5);
-		//    front_right_foot.render(f5);
-		top_leg_right.render(f5);
-		//    bottom_leg_right.render(f5);
-		//    right_back_foot.render(f5);
-		//        nose.render(f5);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityBrachiosaurus) entity);
+        //        hips.render(f5);
+        body_1.render(f5);
+        //        body_2.render(f5);
+        //        body_3.render(f5);
+        top_leg_left.render(f5);
+        //    bottom_leg_left.render(f5);
+        //    left_back_foot.render(f5);
+        //        front_left_top_leg.render(f5);
+        //    bottom_front_left_leg.render(f5);
+        //    front_left_foot.render(f5);
+        //        tail1.render(f5);
+        //        tail2.render(f5);
+        //        tail3.render(f5);
+        //        tail4.render(f5);
+        //        tail5.render(f5);
+        //		        neck1.render(f5);
+        //		        neck2.render(f5);
+        //		       neck3.render(f5);
+        //		       neck4.render(f5);
+        //		       neck5.render(f5);
+        //		       neck6.render(f5);
+        //		        neck7.render(f5);
+        //       head.render(f5);
+        //        snout.render(f5);
+        //        jaw.render(f5);
+        //        front_right_top_leg.render(f5);
+        //    bottom_front_right_leg.render(f5);
+        //    front_right_foot.render(f5);
+        top_leg_right.render(f5);
+        //    bottom_leg_right.render(f5);
+        //    right_back_foot.render(f5);
+        //        nose.render(f5);
     }
 
     private void resetPose()
@@ -429,20 +429,20 @@ public class ModelBrachiosaurus extends MowzieModelBase
         this.resetPose();
         /*f = brachObama.frame;
         f1 = 0.2F;*/
-        
+
         float scaleFactor = 0.2F;
         float height = 1.7F;
         float frontOffset = -2F;
         float animationDegree = 0.5F;
-        
+
         bob(body_1, 2 * scaleFactor, height * animationDegree, false, f, f1);
         bob(top_leg_left, 2 * scaleFactor, height * animationDegree, false, f, f1);
         bob(top_leg_right, 2 * scaleFactor, height * animationDegree, false, f, f1);
         walk(body_1, 2 * scaleFactor, 0.15F * height * animationDegree, true, -1.5F, 0F, f, f1);
         chainWave(tailParts2, 2 * scaleFactor, 0.08F * animationDegree, 2, f, f1);
         chainWave(neckParts, 2 * scaleFactor, 0.3F * animationDegree, 4, f, f1);
-        tail1.rotateAngleX += 0.1*f1;
-        
+        tail1.rotateAngleX += 0.1 * f1;
+
         walk(top_leg_left, 1F * scaleFactor, 1F * animationDegree, false, 0F, 0F, f, f1);
         walk(bottom_leg_left, 1F * scaleFactor, 1F * animationDegree, true, 1F, 0F, f, f1);
         walk(left_back_foot, 1F * scaleFactor, 1F * animationDegree, false, 1.5F, 0F, f, f1);
@@ -455,7 +455,7 @@ public class ModelBrachiosaurus extends MowzieModelBase
         walk(bottom_front_right_leg, 1F * scaleFactor, 1.5F * animationDegree, true, frontOffset + 2F, -0.2F, f, f1);
         walk(front_right_foot, 1F * scaleFactor, 1.3F * animationDegree, false, frontOffset + 1.5F, 0F, f, f1);
 
-        walk(front_left_top_leg, 1F * scaleFactor, 2F * animationDegree, false, frontOffset+ 0F, -0.1F, f, f1);
+        walk(front_left_top_leg, 1F * scaleFactor, 2F * animationDegree, false, frontOffset + 0F, -0.1F, f, f1);
         walk(bottom_front_left_leg, 1F * scaleFactor, 1.5F * animationDegree, false, frontOffset + 2F, -0.2F, f, f1);
         walk(front_left_foot, 1F * scaleFactor, 1.3F * animationDegree, true, frontOffset + 1.5F, 0F, f, f1);
 
@@ -470,7 +470,7 @@ public class ModelBrachiosaurus extends MowzieModelBase
         chainWave(neckParts, 0.05F, -0.05F, -4, brachObama.frame, 1);
         chainWave(tailParts, 0.05F, -0.05F, 1, brachObama.frame, 1);
         chainSwing(tailParts, 0.05F, 0.2F, 2, brachObama.frame, 1);
-        
+
         brachObama.tailBuffer.applyChainSwingBuffer(tailParts2);
     }
 }

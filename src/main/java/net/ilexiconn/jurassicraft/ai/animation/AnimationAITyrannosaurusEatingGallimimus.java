@@ -23,7 +23,7 @@ public class AnimationAITyrannosaurusEatingGallimimus extends AIAnimation
     {
         return 50;
     }
-	
+
     public boolean isAutomatic()
     {
         return true;
@@ -31,7 +31,7 @@ public class AnimationAITyrannosaurusEatingGallimimus extends AIAnimation
 
     public void startExecuting()
     {
-		super.startExecuting();
-		this.tyrannosaurus.setDrinking(false);
-	}
+        super.startExecuting();
+        this.tyrannosaurus.setDrinking(false);
+    }
 }

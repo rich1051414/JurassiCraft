@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
@@ -8,50 +10,48 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelCarnotaurus extends MowzieModelBase 
+public class ModelCarnotaurus extends MowzieModelBase
 {
-	public Animator animator;
-	public MowzieModelRenderer bodyMain;
-	public MowzieModelRenderer upperArmRight;
-	public MowzieModelRenderer upperArmLeft;
-	public MowzieModelRenderer tail1;
-	public MowzieModelRenderer body2;
-	public MowzieModelRenderer leftThigh;
-	public MowzieModelRenderer rightThigh;
-	public MowzieModelRenderer tail2;
-	public MowzieModelRenderer tail3;
-	public MowzieModelRenderer tail4;
-	public MowzieModelRenderer tail5;
-	public MowzieModelRenderer tail6;
-	public MowzieModelRenderer body1;
-	public MowzieModelRenderer neck;
-	public MowzieModelRenderer head;
-	public MowzieModelRenderer hornLeft;
-	public MowzieModelRenderer hornRight;
-	public MowzieModelRenderer upperJaw;
-	public MowzieModelRenderer teeth;
-	public MowzieModelRenderer lowerJaw;
-	public MowzieModelRenderer leftCalf1;
-	public MowzieModelRenderer leftUpperFoot;
-	public MowzieModelRenderer footLeft;
-	public MowzieModelRenderer rightCalf1;
-	public MowzieModelRenderer rightUpperFoot;
-	public MowzieModelRenderer footRight;
-	public MowzieModelRenderer rightHand;
-	public MowzieModelRenderer leftHand;
-	public MowzieModelRenderer[] tailParts;
-	public MowzieModelRenderer[] bodyParts;
+    public Animator animator;
+    public MowzieModelRenderer bodyMain;
+    public MowzieModelRenderer upperArmRight;
+    public MowzieModelRenderer upperArmLeft;
+    public MowzieModelRenderer tail1;
+    public MowzieModelRenderer body2;
+    public MowzieModelRenderer leftThigh;
+    public MowzieModelRenderer rightThigh;
+    public MowzieModelRenderer tail2;
+    public MowzieModelRenderer tail3;
+    public MowzieModelRenderer tail4;
+    public MowzieModelRenderer tail5;
+    public MowzieModelRenderer tail6;
+    public MowzieModelRenderer body1;
+    public MowzieModelRenderer neck;
+    public MowzieModelRenderer head;
+    public MowzieModelRenderer hornLeft;
+    public MowzieModelRenderer hornRight;
+    public MowzieModelRenderer upperJaw;
+    public MowzieModelRenderer teeth;
+    public MowzieModelRenderer lowerJaw;
+    public MowzieModelRenderer leftCalf1;
+    public MowzieModelRenderer leftUpperFoot;
+    public MowzieModelRenderer footLeft;
+    public MowzieModelRenderer rightCalf1;
+    public MowzieModelRenderer rightUpperFoot;
+    public MowzieModelRenderer footRight;
+    public MowzieModelRenderer rightHand;
+    public MowzieModelRenderer leftHand;
+    public MowzieModelRenderer[] tailParts;
+    public MowzieModelRenderer[] bodyParts;
 
-	public ModelCarnotaurus() 
-	{
-    	this.animator = new Animator(this);
+    public ModelCarnotaurus()
+    {
+        this.animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 256;
-        
+
         this.hornLeft = new MowzieModelRenderer(this, 1, 110);
         this.hornLeft.setRotationPoint(1.0F, -1.0F, -1.0F);
         this.hornLeft.addBox(-1.25F, -3.25F, -0.5F, 2, 3, 1);
@@ -177,14 +177,14 @@ public class ModelCarnotaurus extends MowzieModelBase
 
         this.body2.addChild(this.upperArmLeft);
         this.upperArmLeft.addChild(this.leftHand);
-        
+
         this.body2.addChild(this.upperArmRight);
         this.upperArmRight.addChild(this.rightHand);
 
         this.leftThigh.addChild(this.leftCalf1);
         this.leftCalf1.addChild(this.leftUpperFoot);
         this.leftUpperFoot.addChild(this.footLeft);
-        
+
         this.rightThigh.addChild(this.rightCalf1);
         this.rightCalf1.addChild(this.rightUpperFoot);
         this.rightUpperFoot.addChild(this.footRight);
@@ -207,10 +207,10 @@ public class ModelCarnotaurus extends MowzieModelBase
         footRight.rotationPointY += 0.88;
         footLeft.rotateAngleZ -= 0.05;
         footRight.rotateAngleZ -= 0.05;
-        
-		this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
-		this.bodyParts = new MowzieModelRenderer[] { this.head, this.neck, this.body2, this.body1, this.bodyMain };
-		
+
+        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+        this.bodyParts = new MowzieModelRenderer[]{this.head, this.neck, this.body2, this.body1, this.bodyMain};
+
         this.bodyMain.setInitValuesToCurrentPose();
         this.upperArmRight.setInitValuesToCurrentPose();
         this.upperArmLeft.setInitValuesToCurrentPose();
@@ -241,177 +241,179 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.leftHand.setInitValuesToCurrentPose();
     }
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) 
-	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.animate((EntityCarnotaurus) entity, f, f1, f2, f3, f4, f5);
-		this.bodyMain.render(f5);
-		this.leftThigh.render(f5);
-		this.rightThigh.render(f5);
-	}
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        this.animate((EntityCarnotaurus) entity, f, f1, f2, f3, f4, f5);
+        this.bodyMain.render(f5);
+        this.leftThigh.render(f5);
+        this.rightThigh.render(f5);
+    }
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityCarnotaurus carnotaurus) 
-	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, carnotaurus);
-		this.resetPose();
-		
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityCarnotaurus carnotaurus)
+    {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, carnotaurus);
+        this.resetPose();
+
 		/*
 			f = carnotaurus.frame;
 			f1 = 0.8F;
 		*/
-		
-		if(!carnotaurus.isSitting())
-		{
-			//Walking-dependent animation
-		    float globalSpeed = 0.55F;
-	        float globalDegree = 0.5F;
-	        float height = 1F;
-			float walkSpeed = 0.275F;
-			float armRotation = this.rotateBox(globalSpeed, 0.25F, true, 2F, 0F, f, f1);
-			float bodyWeight = this.moveBox(globalSpeed, height, false, f, f1);
-			float legRotation = f1 * MathHelper.cos(f * 0.5F * globalSpeed);
-			
-			//Idle
-			this.faceTarget(this.body1, 6.0F, f3, f4);
-			this.faceTarget(this.body2, 6.0F, f3, f4);
-			this.faceTarget(this.neck, 3F, f3, f4);
-			this.faceTarget(this.head, 3F, f3, f4);
-			
-			this.chainWave(bodyParts, globalSpeed, 0.08F, 3, f, f1);
-			this.bodyMain.rotationPointY += bodyWeight;
-			this.leftThigh.rotationPointY += bodyWeight;
-			this.rightThigh.rotationPointY += bodyWeight;
-	        this.leftThigh.rotationPointY += legRotation;
-	        this.rightThigh.rotationPointY -= legRotation;
-	        this.bodyMain.rotateAngleZ += 0.05 * f1;
-	        this.walk(neck, globalSpeed, 0.25F, true, 3.1F, 0.4F, f, f1);
-	        this.walk(head, globalSpeed, 0.25F, false, 3.1F, -0.4F, f, f1);
 
-	        this.walk(this.leftThigh, walkSpeed, 1.25F * globalDegree, false, 0.0F, 0.5F, f, f1);
-	        this.walk(this.leftCalf1, walkSpeed, globalDegree, true, 1F, 0.4F, f, f1);
-	        this.walk(this.leftUpperFoot, walkSpeed, globalDegree, false, 0.0F, 0.0F, f, f1);
-	        this.walk(this.footLeft, walkSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+        if (!carnotaurus.isSitting())
+        {
+            //Walking-dependent animation
+            float globalSpeed = 0.55F;
+            float globalDegree = 0.5F;
+            float height = 1F;
+            float walkSpeed = 0.275F;
+            float armRotation = this.rotateBox(globalSpeed, 0.25F, true, 2F, 0F, f, f1);
+            float bodyWeight = this.moveBox(globalSpeed, height, false, f, f1);
+            float legRotation = f1 * MathHelper.cos(f * 0.5F * globalSpeed);
 
-	        this.walk(this.rightThigh, walkSpeed, 1.25F * globalDegree, true, 0.0F, 0.5F, f, f1);
-	        this.walk(this.rightCalf1, walkSpeed, globalDegree, false, 1.0F, 0.4F, f, f1);
-	        this.walk(this.rightUpperFoot, walkSpeed, globalDegree, true, 0.0F, 0.0F, f, f1);
-	        this.walk(this.footRight, walkSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+            //Idle
+            this.faceTarget(this.body1, 6.0F, f3, f4);
+            this.faceTarget(this.body2, 6.0F, f3, f4);
+            this.faceTarget(this.neck, 3F, f3, f4);
+            this.faceTarget(this.head, 3F, f3, f4);
 
-			this.upperArmRight.rotateAngleX += armRotation;
-			this.upperArmLeft.rotateAngleX += armRotation;
+            this.chainWave(bodyParts, globalSpeed, 0.08F, 3, f, f1);
+            this.bodyMain.rotationPointY += bodyWeight;
+            this.leftThigh.rotationPointY += bodyWeight;
+            this.rightThigh.rotationPointY += bodyWeight;
+            this.leftThigh.rotationPointY += legRotation;
+            this.rightThigh.rotationPointY -= legRotation;
+            this.bodyMain.rotateAngleZ += 0.05 * f1;
+            this.walk(neck, globalSpeed, 0.25F, true, 3.1F, 0.4F, f, f1);
+            this.walk(head, globalSpeed, 0.25F, false, 3.1F, -0.4F, f, f1);
 
-	        this.chainSwing(tailParts, 0.5F * globalSpeed, -0.07F, 2, f, f1);
-	        this.chainWave(tailParts, globalSpeed, 0.05F, 2, f, f1);
-		}
+            this.walk(this.leftThigh, walkSpeed, 1.25F * globalDegree, false, 0.0F, 0.5F, f, f1);
+            this.walk(this.leftCalf1, walkSpeed, globalDegree, true, 1F, 0.4F, f, f1);
+            this.walk(this.leftUpperFoot, walkSpeed, globalDegree, false, 0.0F, 0.0F, f, f1);
+            this.walk(this.footLeft, walkSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
 
-		float sittingProgress = carnotaurus.sittingProgress.getAnimationProgressSin();
-		
-		if (sittingProgress > 0) {
-			//Sitting Pose
-			float restHeadProgress = carnotaurus.restHeadProgress.getAnimationProgressSinSqrt();
-			float sittingProgressTemporary = carnotaurus.sittingProgress.getAnimationProgressTemporaryFS();
-			
-			if (restHeadProgress > 0)
-			{
-				this.body1.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 6.0F;
-				this.neck.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 5.0F;
-				this.head.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 4.0F;
-			}
-			else
-			{
-				this.faceTarget(this.body1, 8.0F, f3, f4);
-				this.faceTarget(this.body2, 8.0F, f3, f4);
-				this.faceTarget(this.neck, 6.0F, f3, f4);
-				this.faceTarget(this.head, 6.0F, f3, f4);
-			}
-			
-			this.head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
-			this.neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
+            this.walk(this.rightThigh, walkSpeed, 1.25F * globalDegree, true, 0.0F, 0.5F, f, f1);
+            this.walk(this.rightCalf1, walkSpeed, globalDegree, false, 1.0F, 0.4F, f, f1);
+            this.walk(this.rightUpperFoot, walkSpeed, globalDegree, true, 0.0F, 0.0F, f, f1);
+            this.walk(this.footRight, walkSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
 
-			this.bodyMain.rotationPointY += 11.0F * sittingProgress;
-			this.rightThigh.rotationPointY += 11.0F * sittingProgress;
-			this.leftThigh.rotationPointY += 11.0F * sittingProgress;
+            this.upperArmRight.rotateAngleX += armRotation;
+            this.upperArmLeft.rotateAngleX += armRotation;
 
-			this.body1.rotateAngleX += 0.1F * sittingProgressTemporary;
-			this.body2.rotateAngleX += 0.25F * sittingProgressTemporary;
-			this.neck.rotateAngleX += 0.25F * sittingProgressTemporary;
+            this.chainSwing(tailParts, 0.5F * globalSpeed, -0.07F, 2, f, f1);
+            this.chainWave(tailParts, globalSpeed, 0.05F, 2, f, f1);
+        }
 
-			this.upperArmRight.rotateAngleX += 0.25F * sittingProgress;
-			this.upperArmLeft.rotateAngleX += 0.25F * sittingProgress;
-			this.leftHand.rotateAngleX -= 1.2F * sittingProgress;
-			this.rightHand.rotateAngleX -= 1.2F * sittingProgress;
+        float sittingProgress = carnotaurus.sittingProgress.getAnimationProgressSin();
 
-			this.rightThigh.rotateAngleX -= 1.2F * sittingProgress;
-			this.leftThigh.rotateAngleX -= 1.2F * sittingProgress;
+        if (sittingProgress > 0)
+        {
+            //Sitting Pose
+            float restHeadProgress = carnotaurus.restHeadProgress.getAnimationProgressSinSqrt();
+            float sittingProgressTemporary = carnotaurus.sittingProgress.getAnimationProgressTemporaryFS();
 
-			this.rightCalf1.rotationPointZ -= 0.5F * sittingProgress;
-			this.leftCalf1.rotationPointZ -= 0.5F * sittingProgress;
-			this.rightCalf1.rotationPointY += 1.0F * sittingProgress;
-			this.leftCalf1.rotationPointY += 1.0F * sittingProgress;
-			this.rightCalf1.rotateAngleX += 1.2F * sittingProgress;
-			this.leftCalf1.rotateAngleX += 1.2F * sittingProgress;
+            if (restHeadProgress > 0)
+            {
+                this.body1.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 6.0F;
+                this.neck.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 5.0F;
+                this.head.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 4.0F;
+            }
+            else
+            {
+                this.faceTarget(this.body1, 8.0F, f3, f4);
+                this.faceTarget(this.body2, 8.0F, f3, f4);
+                this.faceTarget(this.neck, 6.0F, f3, f4);
+                this.faceTarget(this.head, 6.0F, f3, f4);
+            }
 
-			this.rightUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
-			this.leftUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
-			this.rightUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
-			this.leftUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
+            this.head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
+            this.neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
 
-			this.footRight.rotateAngleX += 1.0F * sittingProgress;
-			this.footLeft.rotateAngleX += 1.0F * sittingProgress;
+            this.bodyMain.rotationPointY += 11.0F * sittingProgress;
+            this.rightThigh.rotationPointY += 11.0F * sittingProgress;
+            this.leftThigh.rotationPointY += 11.0F * sittingProgress;
 
-			this.tail1.rotationPointZ -= 0.75F * sittingProgress;
-			this.tail1.rotateAngleX -= 0.3F * sittingProgress;
-			this.tail2.rotateAngleX += 0.1F * sittingProgress;
-			this.tail3.rotateAngleX += 0.15F * sittingProgress;
-			this.tail4.rotateAngleX += 0.15F * sittingProgress;
-			this.tail4.rotationPointY += 0.5F * sittingProgress;
-			this.walk(this.tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, carnotaurus.frame, 0.4F);
+            this.body1.rotateAngleX += 0.1F * sittingProgressTemporary;
+            this.body2.rotateAngleX += 0.25F * sittingProgressTemporary;
+            this.neck.rotateAngleX += 0.25F * sittingProgressTemporary;
 
-			this.upperArmRight.rotationPointZ -= 2.0F * restHeadProgress;
-			this.upperArmLeft.rotationPointZ -= 2.0F * restHeadProgress;
-			this.bodyMain.rotationPointY += 2.25F * restHeadProgress;
-			this.body2.rotationPointY += 0.25F * restHeadProgress;
-			this.body1.rotationPointY += 1.25F * restHeadProgress;
-			this.neck.rotationPointY += 0.6F * restHeadProgress;
-			this.head.rotationPointY -= 0.6F * restHeadProgress;
-			
-			this.body2.rotateAngleX += 0.175F * restHeadProgress;
-			this.neck.rotateAngleX += 0.55F * restHeadProgress;
-			this.head.rotateAngleX -= 0.825F * restHeadProgress;
-			this.upperArmRight.rotateAngleX += 0.5F * restHeadProgress;
-			this.upperArmLeft.rotateAngleX += 0.5F * restHeadProgress;
-			this.rightHand.rotateAngleX -= 0.3F * restHeadProgress;
-			this.leftHand.rotateAngleX -= 0.3F * restHeadProgress;
-			this.tail1.rotationPointY += (0.2F * restHeadProgress) * MathHelper.cos((carnotaurus.frame + 1.0F) * 0.08F);
-			this.walk(this.bodyMain, 0.08F, 0.02F * restHeadProgress, false, 0.0F, 0.0F, carnotaurus.frame, 1.0F);
-			this.walk(this.body2, 0.08F, 0.02F * restHeadProgress, true, 0.0F, 0.0F, carnotaurus.frame, 1.0F);
-	        this.chainWave(this.bodyParts, 0.07F, -0.03F, 3, carnotaurus.frame, 1.0F - restHeadProgress);
-			this.chainSwing(this.tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F - 0.3F * sittingProgress - 0.5F * restHeadProgress);
-			this.chainWave(this.tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F - 0.3F * sittingProgress - 0.5F * restHeadProgress);
-		}
-		else
-		{
-	        this.chainWave(this.bodyParts, 0.07F, -0.03F, 3, carnotaurus.frame, 1.0F);
-			this.chainSwing(this.tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F);
-			this.chainWave(this.tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F);
-		}
+            this.upperArmRight.rotateAngleX += 0.25F * sittingProgress;
+            this.upperArmLeft.rotateAngleX += 0.25F * sittingProgress;
+            this.leftHand.rotateAngleX -= 1.2F * sittingProgress;
+            this.rightHand.rotateAngleX -= 1.2F * sittingProgress;
 
-        
-		this.walk(this.upperArmRight, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
-		this.walk(this.upperArmLeft, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
+            this.rightThigh.rotateAngleX -= 1.2F * sittingProgress;
+            this.leftThigh.rotateAngleX -= 1.2F * sittingProgress;
 
-		this.walk(this.lowerJaw, 0.03F, 0.1F, false, 0F, 0.0F, carnotaurus.frame, 1.0F);
-		
-        
-		carnotaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
-	}
-	
-	public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
+            this.rightCalf1.rotationPointZ -= 0.5F * sittingProgress;
+            this.leftCalf1.rotationPointZ -= 0.5F * sittingProgress;
+            this.rightCalf1.rotationPointY += 1.0F * sittingProgress;
+            this.leftCalf1.rotationPointY += 1.0F * sittingProgress;
+            this.rightCalf1.rotateAngleX += 1.2F * sittingProgress;
+            this.leftCalf1.rotateAngleX += 1.2F * sittingProgress;
+
+            this.rightUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
+            this.leftUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
+            this.rightUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
+            this.leftUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
+
+            this.footRight.rotateAngleX += 1.0F * sittingProgress;
+            this.footLeft.rotateAngleX += 1.0F * sittingProgress;
+
+            this.tail1.rotationPointZ -= 0.75F * sittingProgress;
+            this.tail1.rotateAngleX -= 0.3F * sittingProgress;
+            this.tail2.rotateAngleX += 0.1F * sittingProgress;
+            this.tail3.rotateAngleX += 0.15F * sittingProgress;
+            this.tail4.rotateAngleX += 0.15F * sittingProgress;
+            this.tail4.rotationPointY += 0.5F * sittingProgress;
+            this.walk(this.tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, carnotaurus.frame, 0.4F);
+
+            this.upperArmRight.rotationPointZ -= 2.0F * restHeadProgress;
+            this.upperArmLeft.rotationPointZ -= 2.0F * restHeadProgress;
+            this.bodyMain.rotationPointY += 2.25F * restHeadProgress;
+            this.body2.rotationPointY += 0.25F * restHeadProgress;
+            this.body1.rotationPointY += 1.25F * restHeadProgress;
+            this.neck.rotationPointY += 0.6F * restHeadProgress;
+            this.head.rotationPointY -= 0.6F * restHeadProgress;
+
+            this.body2.rotateAngleX += 0.175F * restHeadProgress;
+            this.neck.rotateAngleX += 0.55F * restHeadProgress;
+            this.head.rotateAngleX -= 0.825F * restHeadProgress;
+            this.upperArmRight.rotateAngleX += 0.5F * restHeadProgress;
+            this.upperArmLeft.rotateAngleX += 0.5F * restHeadProgress;
+            this.rightHand.rotateAngleX -= 0.3F * restHeadProgress;
+            this.leftHand.rotateAngleX -= 0.3F * restHeadProgress;
+            this.tail1.rotationPointY += (0.2F * restHeadProgress) * MathHelper.cos((carnotaurus.frame + 1.0F) * 0.08F);
+            this.walk(this.bodyMain, 0.08F, 0.02F * restHeadProgress, false, 0.0F, 0.0F, carnotaurus.frame, 1.0F);
+            this.walk(this.body2, 0.08F, 0.02F * restHeadProgress, true, 0.0F, 0.0F, carnotaurus.frame, 1.0F);
+            this.chainWave(this.bodyParts, 0.07F, -0.03F, 3, carnotaurus.frame, 1.0F - restHeadProgress);
+            this.chainSwing(this.tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F - 0.3F * sittingProgress - 0.5F * restHeadProgress);
+            this.chainWave(this.tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F - 0.3F * sittingProgress - 0.5F * restHeadProgress);
+        }
+        else
+        {
+            this.chainWave(this.bodyParts, 0.07F, -0.03F, 3, carnotaurus.frame, 1.0F);
+            this.chainSwing(this.tailParts, 0.07F, 0.05F, 1, carnotaurus.frame, 1.0F);
+            this.chainWave(this.tailParts, 0.07F, -0.03F, 2, carnotaurus.frame, 1.0F);
+        }
+
+
+        this.walk(this.upperArmRight, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
+        this.walk(this.upperArmLeft, 0.07F, 0.05F, false, 1F, 0.0F, carnotaurus.frame, 1.0F);
+
+        this.walk(this.lowerJaw, 0.03F, 0.1F, false, 0F, 0.0F, carnotaurus.frame, 1.0F);
+
+
+        carnotaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
+    }
+
+    public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
+    {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
 
     public void resetPose()
     {
@@ -444,14 +446,15 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.rightHand.setCurrentPoseToInitValues();
         this.leftHand.setCurrentPoseToInitValues();
     }
-    
-    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    	this.animator.update(entity);
-    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCarnotaurus) entity);
 
-    	if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
-    	{
-        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCarnotaurus) entity);
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
             this.animator.startPhase(6);
             this.animator.rotate(neck, -0.3F, 0, 0);
             this.animator.rotate(head, 0.5F, 0, 0);
@@ -464,6 +467,6 @@ public class ModelCarnotaurus extends MowzieModelBase
             this.animator.endPhase();
             this.animator.setStationaryPhase(2);
             this.animator.resetPhase(8);
-    	}
+        }
     }
 }

@@ -69,9 +69,9 @@ public class ContainerCultivate extends Container
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
-        for (int i = 0; i < this.crafters.size(); i++)
+        for (Object crafter : crafters)
         {
-            ICrafting iCrafting = (ICrafting) this.crafters.get(i);
+            ICrafting iCrafting = (ICrafting) crafter;
             if (this.lastWaterStored != this.cultivator.getWaterStored())
             {
                 iCrafting.sendProgressBarUpdate(this, 0, this.cultivator.getWaterStored());

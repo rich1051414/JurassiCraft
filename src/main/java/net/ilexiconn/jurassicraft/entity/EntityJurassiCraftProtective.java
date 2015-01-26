@@ -1,8 +1,5 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,11 +7,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
+import java.util.ArrayList;
+import java.util.List;
 
-	public EntityJurassiCraftProtective(World world, Creature creature) {
-		super(world, creature);
-	}
+public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable
+{
+
+    public EntityJurassiCraftProtective(World world, Creature creature)
+    {
+        super(world, creature);
+    }
 
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
@@ -31,8 +33,8 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
             Entity entity = damageSource.getEntity();
             if (entity instanceof EntityLivingBase)
             {
-            	EntityLivingBase attacker = (EntityLivingBase) entity;
-            	int count = 0;
+                EntityLivingBase attacker = (EntityLivingBase) entity;
+                int count = 0;
                 if (this.isCreatureAdult())
                 {
                     listAdult.add(this);
@@ -61,7 +63,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
                 {
                     for (EntityJurassiCraftProtective children : listChildren)
                     {
-                    	children.startFleeing();
+                        children.startFleeing();
                     }
                 }
                 if (!this.isCreatureAdult())
@@ -70,7 +72,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
                     {
                         for (EntityJurassiCraftProtective adult : listAdult)
                         {
-                        	adult.becomeAngry(attacker, 0.0F);
+                            adult.becomeAngry(attacker, 0.0F);
                         }
                     }
                 }
@@ -84,7 +86,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
                             {
                                 for (EntityJurassiCraftProtective adult : listAdult)
                                 {
-                                	adult.becomeAngry(attacker, 0.0F);
+                                    adult.becomeAngry(attacker, 0.0F);
                                 }
                             }
                         }
@@ -94,7 +96,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
                             {
                                 for (EntityJurassiCraftProtective adult : listAdult)
                                 {
-                                	adult.startFleeing();
+                                    adult.startFleeing();
                                 }
                             }
                         }
@@ -105,7 +107,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable {
         }
     }
 
-	@Override
+    @Override
     public boolean attackEntityAsMob(Entity target)
     {
         if (this.attackTime <= 0 && target.boundingBox.maxY > this.boundingBox.minY && target.boundingBox.minY < this.boundingBox.maxY)

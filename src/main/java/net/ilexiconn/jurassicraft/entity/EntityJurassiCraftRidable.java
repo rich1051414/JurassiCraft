@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.entity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -31,14 +30,16 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         super.onLivingUpdate();
         if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && Minecraft.getMinecraft().gameSettings.keyBindUseItem.getIsKeyPressed())
         {
-        	this.ridingPlayerRightClick();
+            this.ridingPlayerRightClick();
         }
     }
 
-	/**
-	 * Called in the onLivingUpdate() when this entity is being ridden by a player that is right clicking;
-	 */
-    public void ridingPlayerRightClick() {}
+    /**
+     * Called in the onLivingUpdate() when this entity is being ridden by a player that is right clicking;
+     */
+    public void ridingPlayerRightClick()
+    {
+    }
 
     @Override
     public boolean interact(EntityPlayer player)
@@ -55,47 +56,47 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             {
                 if (!this.isCreatureRidable())
                 {
-                	if (this.hasCustomNameTag()) 
-                	{
+                    if (this.hasCustomNameTag())
+                    {
                         player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notRidable")));
-                	}
-                	else
-                	{
+                    }
+                    else
+                    {
                         player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notRidable")));
-                	}
+                    }
                 }
                 else if (!this.isTamed())
                 {
-                	if (this.hasCustomNameTag()) 
-                	{
+                    if (this.hasCustomNameTag())
+                    {
                         player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notTamed")));
-                	}
-                	else
-                	{
+                    }
+                    else
+                    {
                         player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notTamed")));
-                	}
+                    }
                 }
                 else if (!this.isCreatureAdult())
                 {
-                	if (this.hasCustomNameTag()) 
-                	{
+                    if (this.hasCustomNameTag())
+                    {
                         player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.notAdult")));
-                	}
-                	else
-                	{
+                    }
+                    else
+                    {
                         player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.notAdult")));
-                	}
+                    }
                 }
                 else if (this.isSitting())
                 {
-                	if (this.hasCustomNameTag()) 
-                	{
+                    if (this.hasCustomNameTag())
+                    {
                         player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.riding.sitting")));
-                	}
-                	else
-                	{
+                    }
+                    else
+                    {
                         player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.riding.sitting")));
-                	}
+                    }
                 }
                 else if (this.riddenByEntity != null)
                 {
@@ -106,11 +107,12 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         return super.interact(player);
     }
 
-    protected boolean checkRidingItem(ItemStack ridingItem) {
-    	return ridingItem != null && this.getCreature().isRidingItem(ridingItem.getItem());
-	}
+    protected boolean checkRidingItem(ItemStack ridingItem)
+    {
+        return ridingItem != null && this.getCreature().isRidingItem(ridingItem.getItem());
+    }
 
-	public float getMountingSpeed()
+    public float getMountingSpeed()
     {
         return this.mountingSpeed;
     }
@@ -223,7 +225,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
     {
         if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.checkRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem()))
         {
-        	EntityPlayer player = (EntityPlayer) this.riddenByEntity;
+            EntityPlayer player = (EntityPlayer) this.riddenByEntity;
             switch (this.getCreature().getRidingStyle())
             {
                 case 0:
@@ -241,7 +243,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
                 default:
                     this.handleSlowItemControlledRiding();
             }
-            this.stepHeight = 1.0F; 
+            this.stepHeight = 1.0F;
             movementStrafing = 0.25F * player.moveStrafing * this.getMountingSpeed();
             if (Minecraft.getMinecraft().gameSettings.keyBindBack.getIsKeyPressed())
             {
@@ -253,11 +255,11 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             }
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed() && this.onGround && !this.isJumping)
             {
-            	if (!this.isAirBorne)
-            	{
-                	this.decreaseHeldItemDurability(20);
+                if (!this.isAirBorne)
+                {
+                    this.decreaseHeldItemDurability(20);
                     this.jump();
-            	}
+                }
             }
             this.decreaseHeldItemDurability(1);
             if (!this.worldObj.isRemote)
@@ -274,20 +276,22 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         }
     }
 
-	/** Makes corrections to the limbSwing. */
-	protected void handleLimbMovement()
-	{
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double pointX = this.posX - this.prevPosX;
-		double pointZ = this.posZ - this.prevPosZ;
-		float distance = MathHelper.sqrt_double(pointX * pointX + pointZ * pointZ) * 4.0F;
-		if (distance > 1.0F)
-		{
-			distance = 1.0F;
-		}
-		this.limbSwingAmount += (distance - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
-	}
+    /**
+     * Makes corrections to the limbSwing.
+     */
+    protected void handleLimbMovement()
+    {
+        this.prevLimbSwingAmount = this.limbSwingAmount;
+        double pointX = this.posX - this.prevPosX;
+        double pointZ = this.posZ - this.prevPosZ;
+        float distance = MathHelper.sqrt_double(pointX * pointX + pointZ * pointZ) * 4.0F;
+        if (distance > 1.0F)
+        {
+            distance = 1.0F;
+        }
+        this.limbSwingAmount += (distance - this.limbSwingAmount) * 0.4F;
+        this.limbSwing += this.limbSwingAmount;
+    }
 
     /**
      * Decreases the held item durability and destroys the item if stack size is 0 or less.

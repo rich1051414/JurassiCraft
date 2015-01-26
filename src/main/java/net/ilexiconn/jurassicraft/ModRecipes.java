@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -8,7 +9,6 @@ import net.ilexiconn.jurassicraft.item.ItemMeat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModRecipes implements IContentHandler
 {
@@ -18,7 +18,7 @@ public class ModRecipes implements IContentHandler
 
         for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
         {
-        	int correction = BlockCultivateBottom.icons.length - i - 1;
+            int correction = BlockCultivateBottom.icons.length - i - 1;
             GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GIG", "G G", "III", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, correction));
         }
 
@@ -32,7 +32,7 @@ public class ModRecipes implements IContentHandler
         }
 
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowCorner, 1), "SSS", "SIS", "SSS", 'I', Blocks.iron_block, 'S', Blocks.stone);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowBase, 1), "SSS", "III",  'I', Items.iron_ingot, 'S', Blocks.stone);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowBase, 1), "SSS", "III", 'I', Items.iron_ingot, 'S', Blocks.stone);
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceLowPole, 1), "SIS", "SIS", "SIS", 'I', Items.iron_ingot, 'S', Blocks.stone);
         /*
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.securityFenceMediumCorner, 1), "ISI", "SBS", "ISI", 'B', ModBlocks.securityFenceLowCorner, 'I', Items.iron_ingot, 'S', Blocks.stone);

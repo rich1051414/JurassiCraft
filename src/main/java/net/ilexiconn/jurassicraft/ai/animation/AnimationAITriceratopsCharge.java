@@ -53,7 +53,8 @@ public class AnimationAITriceratopsCharge extends AIAnimation
         this.attackTarget = this.entityTriceratops.getAttackTarget();
         this.startX = (float) this.entityTriceratops.posX;
         this.startZ = (float) this.entityTriceratops.posZ;
-    	if (this.attackTarget != null) this.distanceOfTargetFromStart = (float) Math.sqrt((this.startX - this.attackTarget.posX) * (this.startX - this.attackTarget.posX) + (this.startZ - this.attackTarget.posZ) * (this.startZ - this.attackTarget.posZ));
+        if (this.attackTarget != null)
+            this.distanceOfTargetFromStart = (float) Math.sqrt((this.startX - this.attackTarget.posX) * (this.startX - this.attackTarget.posX) + (this.startZ - this.attackTarget.posZ) * (this.startZ - this.attackTarget.posZ));
     }
 
     public void resetTask()
@@ -66,42 +67,46 @@ public class AnimationAITriceratopsCharge extends AIAnimation
 
     public void updateTask()
     {
-    	this.distanceTravelled = (float) Math.sqrt((this.startX - this.entityTriceratops.posX) * (this.startX - this.entityTriceratops.posX) + (this.startZ - this.entityTriceratops.posZ) * (this.startZ - this.entityTriceratops.posZ));    	
-        if (this.entityTriceratops.getAnimationTick() == 1) this.entityTriceratops.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
+        this.distanceTravelled = (float) Math.sqrt((this.startX - this.entityTriceratops.posX) * (this.startX - this.entityTriceratops.posX) + (this.startZ - this.entityTriceratops.posZ) * (this.startZ - this.entityTriceratops.posZ));
+        if (this.entityTriceratops.getAnimationTick() == 1)
+            this.entityTriceratops.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
 
-        if (this.entityTriceratops.getAnimationTick() < 40 && this.attackTarget != null) this.entityTriceratops.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
+        if (this.entityTriceratops.getAnimationTick() < 40 && this.attackTarget != null)
+            this.entityTriceratops.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
 
         if (this.entityTriceratops.getAnimationTick() >= 35 && this.entityTriceratops.getAnimationTick() <= 40 && this.attackTarget != null)
         {
-                double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
-                double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
-                this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
+            double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
+            double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
+            this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
         }
-        
+
         if (this.entityTriceratops.getAnimationTick() > 40)
         {
             if (this.attackTarget != null || this.entityTriceratops.riddenByEntity != null)
             {
-            	if (this.entityTriceratops.riddenByEntity != null && this.entityTriceratops.riddenByEntity instanceof EntityPlayer) {
-            		this.angleYaw = this.entityTriceratops.riddenByEntity.rotationYaw * 0.01745329251F + 1.57079632679F;
-            		this.entityTriceratops.rotationYaw = this.entityTriceratops.riddenByEntity.rotationYaw;
-            		this.chargeAcceleration = 0.3F;
-            	}
-            	this.entityTriceratops.charging = true;
-            	if (attackTarget != null && distanceOfTargetFromStart > distanceTravelled) {
-            		double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
+                if (this.entityTriceratops.riddenByEntity != null && this.entityTriceratops.riddenByEntity instanceof EntityPlayer)
+                {
+                    this.angleYaw = this.entityTriceratops.riddenByEntity.rotationYaw * 0.01745329251F + 1.57079632679F;
+                    this.entityTriceratops.rotationYaw = this.entityTriceratops.riddenByEntity.rotationYaw;
+                    this.chargeAcceleration = 0.3F;
+                }
+                this.entityTriceratops.charging = true;
+                if (attackTarget != null && distanceOfTargetFromStart > distanceTravelled)
+                {
+                    double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
                     double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
                     this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
-            	}
+                }
                 if (Math.sqrt(this.entityTriceratops.motionX * this.entityTriceratops.motionX + this.entityTriceratops.motionZ * this.entityTriceratops.motionZ) < this.chargeSpeed - 0.2)
                 {
-                	this.entityTriceratops.motionX += this.chargeAcceleration * Math.cos(this.angleYaw);
+                    this.entityTriceratops.motionX += this.chargeAcceleration * Math.cos(this.angleYaw);
                     this.entityTriceratops.motionZ += this.chargeAcceleration * Math.sin(this.angleYaw);
                 }
                 else
                 {
-                	this.entityTriceratops.motionX = this.chargeSpeed * Math.cos(this.angleYaw);
-                	this.entityTriceratops.motionZ = this.chargeSpeed * Math.sin(this.angleYaw);
+                    this.entityTriceratops.motionX = this.chargeSpeed * Math.cos(this.angleYaw);
+                    this.entityTriceratops.motionZ = this.chargeSpeed * Math.sin(this.angleYaw);
                 }
             }
         }

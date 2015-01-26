@@ -14,19 +14,19 @@ public class AnimationAIPlayfulBaby extends AIAnimation
         this.duration = duration;
     }
 
-	@Override
+    @Override
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.PLAYING.animID();
     }
 
-	@Override
+    @Override
     public int getDuration()
     {
         return this.duration;
     }
 
-	@Override
+    @Override
     public boolean isAutomatic()
     {
         return true;

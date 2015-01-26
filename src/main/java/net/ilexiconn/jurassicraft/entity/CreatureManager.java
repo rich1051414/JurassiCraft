@@ -9,10 +9,7 @@ import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.minecraft.client.renderer.entity.RenderLiving;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class CreatureManager
 {
@@ -45,14 +42,14 @@ public class CreatureManager
 
     public static Creature classToCreature(Class clazz)
     {
-    	for (Creature creature : creatures) 
-    	{
-			if(creature.getCreatureClass().equals(clazz))
-			{
-				return creature;
-			}
-		}
-    	
+        for (Creature creature : creatures)
+        {
+            if (creature.getCreatureClass().equals(clazz))
+            {
+                return creature;
+            }
+        }
+
         return null;
     }
 

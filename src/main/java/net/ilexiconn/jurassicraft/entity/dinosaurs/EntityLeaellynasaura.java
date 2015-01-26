@@ -1,24 +1,12 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -56,9 +44,9 @@ public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements ID
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (1.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }

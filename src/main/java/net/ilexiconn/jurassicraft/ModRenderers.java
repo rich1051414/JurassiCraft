@@ -9,13 +9,19 @@ import net.ilexiconn.jurassicraft.client.render.item.ItemCultivateRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNACombinatorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDinoPadRenderer;
-import net.ilexiconn.jurassicraft.client.render.tile.*;
+import net.ilexiconn.jurassicraft.client.render.tile.TileCultivateRenderer;
+import net.ilexiconn.jurassicraft.client.render.tile.TileDNACombinatorRenderer;
+import net.ilexiconn.jurassicraft.client.render.tile.TileDNAExtractorRenderer;
+import net.ilexiconn.jurassicraft.client.render.tile.TileDinoPadRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowBaseRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowGridRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowPoleRenderer;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
-import net.ilexiconn.jurassicraft.tile.*;
+import net.ilexiconn.jurassicraft.tile.TileCultivate;
+import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
+import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
+import net.ilexiconn.jurassicraft.tile.TileDinoPad;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
@@ -40,7 +46,7 @@ public class ModRenderers implements IContentHandler
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowBase.class, new TileSecurityFenceLowBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowGrid.class, new TileSecurityFenceLowGridRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowPole.class, new TileSecurityFenceLowPoleRenderer());
-        
+
         RenderingRegistry.registerEntityRenderingHandler(EntityDinoEgg.class, new RenderDinoEgg());
     }
 }

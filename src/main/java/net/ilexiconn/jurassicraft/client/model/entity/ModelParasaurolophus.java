@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
-import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 
 public class ModelParasaurolophus extends MowzieModelBase
 {
@@ -49,7 +49,7 @@ public class ModelParasaurolophus extends MowzieModelBase
     MowzieModelRenderer Foot_Right;
     MowzieModelRenderer[] tailParts;
     MowzieModelRenderer[] bodyParts;
-    
+
     public ModelParasaurolophus()
     {
         textureWidth = 256;
@@ -314,8 +314,8 @@ public class ModelParasaurolophus extends MowzieModelBase
         Upper_Arm_Left.rotateAngleX += 0.5F;
         Upper_Arm_Right.rotateAngleX += 0.5F;
 
-		tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
-		bodyParts = new MowzieModelRenderer[] { this.Body_3, this.Body_1, this.Body_2, this.Neck, this.Head };
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
+        bodyParts = new MowzieModelRenderer[]{this.Body_3, this.Body_1, this.Body_2, this.Neck, this.Head};
 
         Left_Lower_Foot.setInitValuesToCurrentPose();
         Left_Upper_Foot.setInitValuesToCurrentPose();
@@ -443,8 +443,8 @@ public class ModelParasaurolophus extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityParasaurolophus para)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, para);
-		this.resetPose();
-		/*
+        this.resetPose();
+        /*
 		 * f = para.frame; 
 		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
 		 */
@@ -515,7 +515,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         walk(Left_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
 
         chainWave(this.tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
-        
+
         para.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
 

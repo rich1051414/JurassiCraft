@@ -6,66 +6,65 @@ import net.minecraft.world.World;
 
 public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggressive
 {
-	public FlyingParameters flyingParameters;
-	private String landingMaterial;
+    public FlyingParameters flyingParameters;
+    private String landingMaterial;
 
-	public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
-	{
-		super(world, creature);
-		this.setLandingMaterial(landingMaterial);
-		this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
-		this.setFlying(false);
-	}
+    public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
+    {
+        super(world, creature);
+        this.setLandingMaterial(landingMaterial);
+        this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
+        this.setFlying(false);
+    }
 
-	@Override
-	public void onLivingUpdate()
-	{
-		if (this.isFlyingCreature())
-		{
-			if (this.riddenByEntity == null)
-			{
-				this.motionY += 0.04F + 0.06F * this.flyingParameters.flySpeedModifier / 500.0F;
-				this.setFlying(true);
-			}
+    @Override
+    public void onLivingUpdate()
+    {
+        if (this.isFlyingCreature())
+        {
+            if (this.riddenByEntity == null)
+            {
+                this.motionY += 0.04F + 0.06F * this.flyingParameters.flySpeedModifier / 500.0F;
+                this.setFlying(true);
+            }
 
-			if (this.onGround && this.isFlying())
-				this.setFlying(false);
-		}
-		super.onLivingUpdate();
-	}
+            if (this.onGround && this.isFlying()) this.setFlying(false);
+        }
+        super.onLivingUpdate();
+    }
 
-	public FlyingParameters getFlyingParameters()
-	{
-		return flyingParameters;
-	}
+    public FlyingParameters getFlyingParameters()
+    {
+        return flyingParameters;
+    }
 
-	public void setFlyingParameters(FlyingParameters flyingParameters)
-	{
-		this.flyingParameters = flyingParameters;
-	}
+    public void setFlyingParameters(FlyingParameters flyingParameters)
+    {
+        this.flyingParameters = flyingParameters;
+    }
 
-	public String getLandingMaterial()
-	{
-		return landingMaterial;
-	}
+    public String getLandingMaterial()
+    {
+        return landingMaterial;
+    }
 
-	public void setLandingMaterial(String landingMaterial)
-	{
-		this.landingMaterial = landingMaterial;
-	}
+    public void setLandingMaterial(String landingMaterial)
+    {
+        this.landingMaterial = landingMaterial;
+    }
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound)
-	{
-		super.writeEntityToNBT(compound);
-		compound.setString("LandingMaterial", this.landingMaterial);
-	}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setString("LandingMaterial", this.landingMaterial);
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound)
-	{
-		super.readEntityFromNBT(compound);
-		this.setLandingMaterial(compound.getString("LandingMaterial"));
-		this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, compound.getString("LandingMaterial")));
-	}
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        super.readEntityFromNBT(compound);
+        this.setLandingMaterial(compound.getString("LandingMaterial"));
+        this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, compound.getString("LandingMaterial")));
+    }
 }

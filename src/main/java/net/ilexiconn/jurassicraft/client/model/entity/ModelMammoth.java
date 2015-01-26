@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMammoth;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -332,7 +332,7 @@ public class ModelMammoth extends MowzieModelBase
         setToInitPose();
 
         /*
-		f = mammoth.frame;
+        f = mammoth.frame;
 		f1 = (float) Math.cos(f/50)*0.5F + 1F;
 		*/
 

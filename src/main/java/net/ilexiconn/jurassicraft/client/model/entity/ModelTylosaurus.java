@@ -61,7 +61,7 @@ public class ModelTylosaurus extends MowzieModelBase
     public MowzieModelRenderer Lower_Knob_9_Fluke_6_Bottom;
     public MowzieModelRenderer Teeth;
     public MowzieModelRenderer[] bodyParts;
-    
+
 
     public ModelTylosaurus()
     {
@@ -446,7 +446,7 @@ public class ModelTylosaurus extends MowzieModelBase
         Upper_Jaw.rotationPointY -= 5;
         Upper_Jaw.rotationPointZ -= 14;
 
-		this.bodyParts = new MowzieModelRenderer[] { this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6 };
+        this.bodyParts = new MowzieModelRenderer[]{this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6};
 
         Head.setInitValuesToCurrentPose();
         Upper_Jaw.setInitValuesToCurrentPose();
@@ -564,16 +564,16 @@ public class ModelTylosaurus extends MowzieModelBase
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, tylo);
         this.resetPose();
-        
+
         float scaleFactor = 0.3F;
-        
+
         chainSwing(this.bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
         Head.rotationPointX -= 6 * f1 * Math.sin(f * scaleFactor);
         walk(Right_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
-        
-		tylo.tailBuffer.applyChainSwingBuffer(this.bodyParts);
+
+        tylo.tailBuffer.applyChainSwingBuffer(this.bodyParts);
     }
 }

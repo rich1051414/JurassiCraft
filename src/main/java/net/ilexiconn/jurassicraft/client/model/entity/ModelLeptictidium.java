@@ -9,16 +9,18 @@ import net.minecraft.entity.Entity;
  * ModelLeptictidium - RafaMv
  * Created using Tabula 4.0.2
  */
-public class ModelLeptictidium extends MowzieModelBase {
-	
+public class ModelLeptictidium extends MowzieModelBase
+{
+
     public MowzieModelRenderer body1, body2, neck, head1, earLeft, earRight, head2, snout1, snout2, mouth1, mouth2, mouth3;
     public MowzieModelRenderer leftLeg1, leftLeg2, leftLeg3, leftFoot, rightLeg1, rightLeg2, rightLeg3, rightFoot;
     public MowzieModelRenderer rightHand, rightHand2, leftHand, leftHand2;
     public MowzieModelRenderer tail1, tail2, tail3, tail4, tail5;
     private MowzieModelRenderer[] tailParts;
     private MowzieModelRenderer[] noseParts;
-    
-    public ModelLeptictidium() {
+
+    public ModelLeptictidium()
+    {
         this.textureWidth = 64;
         this.textureHeight = 32;
 
@@ -168,13 +170,13 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.tail3.addChild(this.tail4);
         this.tail4.addChild(this.tail5);
 
-		this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
-		this.noseParts = new MowzieModelRenderer[] { this.snout2, this.snout1 };
-        
+        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+        this.noseParts = new MowzieModelRenderer[]{this.snout2, this.snout1};
+
         //Corrections
         rightLeg2.rotationPointX = 0;
         leftLeg2.rotationPointX = 0;
-        
+
         this.body1.setInitValuesToCurrentPose();
         this.body2.setInitValuesToCurrentPose();
         this.neck.setInitValuesToCurrentPose();
@@ -207,7 +209,8 @@ public class ModelLeptictidium extends MowzieModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityLeptictidium) entity);
         this.body1.render(f5);
@@ -217,10 +220,10 @@ public class ModelLeptictidium extends MowzieModelBase {
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.resetPose();
-        
+
         float globalSpeed = 0.6F;
         float height = 12F * f1;
-        
+
         this.faceTarget(this.head1, 2, f3, f4);
         this.faceTarget(this.neck, 2, f3, f4);
 
@@ -244,12 +247,12 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.walk(this.leftHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
         this.walk(this.rightHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
         this.walk(this.leftHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
-        
+
         this.chainWave(this.tailParts, 1F * globalSpeed, 0.2F, 2.7F, f, f1);
         this.chainWave(this.noseParts, 1F * globalSpeed, -0.5F, 0F, f, f1);
         this.flap(this.earLeft, 1F * globalSpeed, 0.5F, true, 1.0F, 0.8F, f, f1);
         this.flap(this.earRight, 1F * globalSpeed, 0.5F, false, 1.0F, -0.8F, f, f1);
-        
+
         //Idle
         this.chainWave(this.tailParts, 0.2F, -0.05F, 2, entity.frame, 1F);
         this.chainSwing(this.tailParts, 0.3F, 0.05F, 3, entity.frame, 1F);
@@ -302,10 +305,11 @@ public class ModelLeptictidium extends MowzieModelBase {
         this.tail4.setCurrentPoseToInitValues();
         this.tail5.setCurrentPoseToInitValues();
     }
-    
-    public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z) {
-    	modelRenderer.rotateAngleX = x;
-    	modelRenderer.rotateAngleY = y;
-    	modelRenderer.rotateAngleZ = z;
+
+    public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
+    {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 }

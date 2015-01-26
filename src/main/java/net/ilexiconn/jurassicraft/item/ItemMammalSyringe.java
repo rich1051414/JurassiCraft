@@ -1,9 +1,5 @@
 package net.ilexiconn.jurassicraft.item;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
@@ -11,11 +7,7 @@ import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantSheep;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,6 +16,10 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 public class ItemMammalSyringe extends Item
 {
@@ -185,86 +181,110 @@ public class ItemMammalSyringe extends Item
         return false;
     }
 
-	private boolean setBaby(World world, EntityPlayer player, EntityLivingBase creature, ItemStack syringe) {
-		if (syringe.hasTagCompound() && syringe.getTagCompound().hasKey("SyringeQuality") && syringe.getTagCompound().getInteger("SyringeQuality") >= 50) 
-		{
-			if (creature instanceof EntityCow)
-	        {
-	        	if (!this.creaturesFromCow.contains(this.mammalName)) {
-	    			return false;
-	        	} else {
-	            	EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creature));
-	            	if (cow != null && cow.getMammalName().equals("noEmbryo")) {
-	                	cow.setMammalName(this.mammalName);
-	                	cow.setDNAQuality(this.getSyringeQuality(syringe));
-	                	cow.setDNASequence(this.getSyringeDNASequence(syringe));
-	        			cow.setPregnancySpeed(2048);
-	        			if (!world.isRemote) {
-	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
-	        			}
-	        			return true;
-	            	}
-	        	}
-	        }
-	    	else if (creature instanceof EntityPig)
-	        {
-	        	if (!this.creaturesFromPig.contains(this.mammalName)) {
-	    			return false;
-	        	} else {
-	            	EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creature));
-	                if (pig != null && pig.getMammalName().equals("noEmbryo")) {
-	                	pig.setMammalName(this.mammalName);
-	                	pig.setDNAQuality(this.getSyringeQuality(syringe));
-	                	pig.setDNASequence(this.getSyringeDNASequence(syringe));
-	                	pig.setPregnancySpeed(2048);
-	        			if (!world.isRemote) {
-	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
-	        			}
-	        			return true;
-	            	}
-	        	}
-	        }
-	        else if (creature instanceof EntityHorse)
-	        {
-	        	if (!this.creaturesFromHorse.contains(this.mammalName)) {
-	    			return false;
-	        	} else {
-	            	EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creature));
-	                if (horse != null && horse.getMammalName().equals("noEmbryo")) {
-	                	horse.setMammalName(this.mammalName);
-	                	horse.setDNAQuality(this.getSyringeQuality(syringe));
-	                	horse.setDNASequence(this.getSyringeDNASequence(syringe));
-	                	horse.setPregnancySpeed(2048);
-	        			if (!world.isRemote) {
-	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
-	        			}
-	        			return true;
-	            	}
-	        	}
-	        }
-	        else if (creature instanceof EntitySheep)
-	        {
-	        	if (!this.creaturesFromSheep.contains(this.mammalName)) {
-	    			return false;
-	        	} else {
-	            	EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creature));
-	                if (sheep != null && sheep.getMammalName().equals("noEmbryo")) {
-	                	sheep.setMammalName(this.mammalName);
-	                	sheep.setDNAQuality(this.getSyringeQuality(syringe));
-	                	sheep.setDNASequence(this.getSyringeDNASequence(syringe));
-	                	sheep.setPregnancySpeed(2048);
-	        			if (!world.isRemote) {
-	        				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
-	        			}
-	        			return true;
-	            	}
-	        	}
-	        }
-		} else {
-			if (!world.isRemote) {
-				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.errorQuality")));
-			}
-		}
-		return false;
-	}
+    private boolean setBaby(World world, EntityPlayer player, EntityLivingBase creature, ItemStack syringe)
+    {
+        if (syringe.hasTagCompound() && syringe.getTagCompound().hasKey("SyringeQuality") && syringe.getTagCompound().getInteger("SyringeQuality") >= 50)
+        {
+            if (creature instanceof EntityCow)
+            {
+                if (!this.creaturesFromCow.contains(this.mammalName))
+                {
+                    return false;
+                }
+                else
+                {
+                    EntityPregnantCow cow = EntityPregnantCow.get(((EntityCow) creature));
+                    if (cow != null && cow.getMammalName().equals("noEmbryo"))
+                    {
+                        cow.setMammalName(this.mammalName);
+                        cow.setDNAQuality(this.getSyringeQuality(syringe));
+                        cow.setDNASequence(this.getSyringeDNASequence(syringe));
+                        cow.setPregnancySpeed(2048);
+                        if (!world.isRemote)
+                        {
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+                        }
+                        return true;
+                    }
+                }
+            }
+            else if (creature instanceof EntityPig)
+            {
+                if (!this.creaturesFromPig.contains(this.mammalName))
+                {
+                    return false;
+                }
+                else
+                {
+                    EntityPregnantPig pig = EntityPregnantPig.get(((EntityPig) creature));
+                    if (pig != null && pig.getMammalName().equals("noEmbryo"))
+                    {
+                        pig.setMammalName(this.mammalName);
+                        pig.setDNAQuality(this.getSyringeQuality(syringe));
+                        pig.setDNASequence(this.getSyringeDNASequence(syringe));
+                        pig.setPregnancySpeed(2048);
+                        if (!world.isRemote)
+                        {
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+                        }
+                        return true;
+                    }
+                }
+            }
+            else if (creature instanceof EntityHorse)
+            {
+                if (!this.creaturesFromHorse.contains(this.mammalName))
+                {
+                    return false;
+                }
+                else
+                {
+                    EntityPregnantHorse horse = EntityPregnantHorse.get(((EntityHorse) creature));
+                    if (horse != null && horse.getMammalName().equals("noEmbryo"))
+                    {
+                        horse.setMammalName(this.mammalName);
+                        horse.setDNAQuality(this.getSyringeQuality(syringe));
+                        horse.setDNASequence(this.getSyringeDNASequence(syringe));
+                        horse.setPregnancySpeed(2048);
+                        if (!world.isRemote)
+                        {
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+                        }
+                        return true;
+                    }
+                }
+            }
+            else if (creature instanceof EntitySheep)
+            {
+                if (!this.creaturesFromSheep.contains(this.mammalName))
+                {
+                    return false;
+                }
+                else
+                {
+                    EntityPregnantSheep sheep = EntityPregnantSheep.get(((EntitySheep) creature));
+                    if (sheep != null && sheep.getMammalName().equals("noEmbryo"))
+                    {
+                        sheep.setMammalName(this.mammalName);
+                        sheep.setDNAQuality(this.getSyringeQuality(syringe));
+                        sheep.setDNASequence(this.getSyringeDNASequence(syringe));
+                        sheep.setPregnancySpeed(2048);
+                        if (!world.isRemote)
+                        {
+                            player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.embryoInseminated")));
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (!world.isRemote)
+            {
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.syringe.info.errorQuality")));
+            }
+        }
+        return false;
+    }
 }

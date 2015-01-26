@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 
 public class AnimationAIWalkRoar extends AIAnimation
 {
-	private int duration;
+    private int duration;
 
     public AnimationAIWalkRoar(EntityJurassiCraftSmart creature, int duration)
     {

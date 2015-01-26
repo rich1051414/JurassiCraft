@@ -1,14 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorTwitchHead;
@@ -20,24 +13,15 @@ import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(6);
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
     public boolean leaping = false;
     public int timeSinceLeap;
 
@@ -87,16 +71,14 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         }
         else
         {
-        	distanceFromTarget = -1;
+            distanceFromTarget = -1;
         }
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && this.onGround && this.timeSinceLeap == 0 && this.animID == 0)
             AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.LEAP.animID());
-        
-        if (onGround == true) 
-        	setLeaping(false);
-        
-        if (timeSinceLeap != 0) 
-        	timeSinceLeap--;
+
+        if (onGround == true) setLeaping(false);
+
+        if (timeSinceLeap != 0) timeSinceLeap--;
 
         // Misc
         super.onLivingUpdate();
@@ -117,30 +99,29 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     @Override
     public String getLivingSound()
     {
-        if (this.animID == 0) 
-        	AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
+        if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
         int i = rand.nextInt(4);
-        switch(i)
+        switch (i)
         {
-        	case 0:
-            	return "jurassicraft:velociraptorHiss01";
-        	case 1:
-            	return "jurassicraft:velociraptorHiss02";
-        	case 2:
-            	return "jurassicraft:velociraptorHiss03";
-			case 3:
-				return "jurassicraft:velociraptorBark03";
-			default:
-				return "jurassicraft:velociraptorHiss01";
-		}
+            case 0:
+                return "jurassicraft:velociraptorHiss01";
+            case 1:
+                return "jurassicraft:velociraptorHiss02";
+            case 2:
+                return "jurassicraft:velociraptorHiss03";
+            case 3:
+                return "jurassicraft:velociraptorBark03";
+            default:
+                return "jurassicraft:velociraptorHiss01";
+        }
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (3.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -148,8 +129,9 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

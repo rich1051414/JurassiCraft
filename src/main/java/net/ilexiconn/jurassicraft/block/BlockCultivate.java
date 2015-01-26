@@ -8,15 +8,14 @@ import net.minecraft.world.World;
 
 public class BlockCultivate
 {
-    public static AxisAlignedBB[][] boxes = {{
-            AxisAlignedBB.getBoundingBox(0.0f, -1.0f, 0.0f, 1.0f, -0.6215f, 1.0f),
+    public static AxisAlignedBB[][] boxes = {{AxisAlignedBB.getBoundingBox(0.0f, -1.0f, 0.0f, 1.0f, -0.6215f, 1.0f),
 
             AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.0f, 0.062f, 0.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.0f, 1.0f, 0.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.0f, -0.6215f, 0.938f, 0.062f, 0.93f, 1.0f), AxisAlignedBB.getBoundingBox(0.938f, -0.6215f, 0.938f, 1.0f, 0.93f, 1.0f),
 
             AxisAlignedBB.getBoundingBox(0.062f, -0.6215f, 0.062f, 0.938f, 0.93f, 0.938f),
 
             AxisAlignedBB.getBoundingBox(0.0f, 0.93f, 0.0f, 1.0f, 1.0f, 1.0f)}, {
-            	
+
             AxisAlignedBB.getBoundingBox(0.0f, 0.0f, 0.0f, 1.0f, 0.3785f, 1.0f),
 
             AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.0f, 0.062f, 1.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.0f, 1.0f, 1.93f, 0.062f), AxisAlignedBB.getBoundingBox(0.0f, 0.3785f, 0.938f, 0.062f, 1.93f, 1.0f), AxisAlignedBB.getBoundingBox(0.938f, 0.3785f, 0.938f, 1.0f, 1.93f, 1.0f),

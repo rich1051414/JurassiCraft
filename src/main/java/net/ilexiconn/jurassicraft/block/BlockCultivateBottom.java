@@ -1,8 +1,7 @@
 package net.ilexiconn.jurassicraft.block;
 
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
@@ -25,8 +24,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockCultivateBottom extends BlockContainer
 {
@@ -113,7 +113,7 @@ public class BlockCultivateBottom extends BlockContainer
                 }
                 else
                 {
-                	player.openGui(JurassiCraft.instance, 1, world, x, y, z);
+                    player.openGui(JurassiCraft.instance, 1, world, x, y, z);
                     return true;
                 }
             }

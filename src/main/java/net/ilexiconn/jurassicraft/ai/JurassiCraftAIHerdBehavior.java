@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JurassiCraftAIHerdBehavior extends EntityAIBase
 {
@@ -21,9 +21,9 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
     private int timeTryingToMove;
     private int maxTimeTryingToMove;
 
-	/**
-	 * @author RafaMv
-	 */
+    /**
+     * @author RafaMv
+     */
     public JurassiCraftAIHerdBehavior(EntityJurassiCraftSmart creature, double distance, int maxNumberOfTicksTrying, double distanceToConsiderHerd, double speed)
     {
         this.lostCreature = creature;

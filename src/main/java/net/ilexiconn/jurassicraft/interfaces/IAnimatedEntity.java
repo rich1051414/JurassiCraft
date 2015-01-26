@@ -2,11 +2,11 @@ package net.ilexiconn.jurassicraft.interfaces;
 
 public interface IAnimatedEntity
 {
-	void setAnimationId(int id);
+    void setAnimationId(int id);
 
-	void setAnimationTick(int tick);
+    void setAnimationTick(int tick);
 
-	int getAnimationId();
+    int getAnimationId();
 
-	int getAnimationTick();
+    int getAnimationTick();
 }

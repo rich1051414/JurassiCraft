@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import java.util.Random;
-
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -10,6 +8,8 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
+import java.util.Random;
 
 public class JurassiCraftAIFlying extends EntityAIBase
 {
@@ -22,7 +22,8 @@ public class JurassiCraftAIFlying extends EntityAIBase
     private long nextOwnerCheckTime;
     private long sittingSpotAbortTime;
 
-    public JurassiCraftAIFlying(EntityJurassiCraftFlyingCreature entity) {
+    public JurassiCraftAIFlying(EntityJurassiCraftFlyingCreature entity)
+    {
         creature = entity;
         rand = entity.getRNG();
         nextOwnerCheckTime = System.currentTimeMillis();
@@ -31,49 +32,55 @@ public class JurassiCraftAIFlying extends EntityAIBase
     }
 
     @Override
-    public boolean shouldExecute() {
-        if(!creature.onGround || creature.flyingParameters == null)
-            return false;
+    public boolean shouldExecute()
+    {
+        if (!creature.onGround || creature.flyingParameters == null) return false;
         return checkTakeOffConditions();
     }
 
     @Override
-    public boolean continueExecuting() {
+    public boolean continueExecuting()
+    {
         return !creature.onGround;
     }
 
     @Override
-    public void startExecuting() {
+    public void startExecuting()
+    {
         takeOff();
     }
 
     @Override
-    public void resetTask() {
+    public void resetTask()
+    {
         super.resetTask();
     }
 
     private boolean takingOff = false;
 
     @Override
-    public void updateTask() {
+    public void updateTask()
+    {
         flightTicks++;
-        if (flightTicks > 30 && takingOff || (takingOff && creature.posY >= targetHeight)) {
+        if (flightTicks > 30 && takingOff || (takingOff && creature.posY >= targetHeight))
+        {
             takingOff = false;
             flightTicks = 0;
         }
-        if (takingOff) {
+        if (takingOff)
+        {
             creature.moveEntityWithHeading(creature.flyingParameters.flySpeedModifier / 500f, 0);
             creature.motionY = takeOffSpeed;
         }
         checkForLandingSpot();
-        MovingObjectPosition mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.minY, creature.posZ),
-                Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.minY, creature.posZ + creature.motionZ * 100));
+        MovingObjectPosition mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.minY, creature.posZ), Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.minY, creature.posZ + creature.motionZ * 100));
         if (mop == null)
-            mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.maxY, creature.posZ),
-                    Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.maxY, creature.posZ + creature.motionZ * 100));
+            mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.maxY, creature.posZ), Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.maxY, creature.posZ + creature.motionZ * 100));
 
-        if (hasLandingSpot()) {
-            if (mop == null) {
+        if (hasLandingSpot())
+        {
+            if (mop == null)
+            {
                 double d0;
                 double d1;
                 double d2;
@@ -88,44 +95,48 @@ public class JurassiCraftAIFlying extends EntityAIBase
                 creature.setMoveForward(0.5F);
                 creature.rotationYaw += f1;
             }
-        } else {
+        }
+        else
+        {
             maintainFlight(mop != null);
         }
 
         super.updateTask();
     }
 
-    private void checkForLandingSpot() {
-        if (this.currentFlightTarget != null
-                && (!creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1)) {
+    private void checkForLandingSpot()
+    {
+        if (this.currentFlightTarget != null && (!creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1))
+        {
             this.currentFlightTarget = null;
         }
 
-        if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0) {
-            this.currentFlightTarget = new ChunkCoordinates((int) (creature.posX + creature.motionX * 200 + this.rand.nextInt(10) - 5), 0, (int) (creature.posZ + creature.motionZ * 200
-                    + this.rand.nextInt(10) - 5));
+        if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0)
+        {
+            this.currentFlightTarget = new ChunkCoordinates((int) (creature.posX + creature.motionX * 200 + this.rand.nextInt(10) - 5), 0, (int) (creature.posZ + creature.motionZ * 200 + this.rand.nextInt(10) - 5));
 
             currentFlightTarget.posY = creature.worldObj.getTopSolidOrLiquidBlock(currentFlightTarget.posX, currentFlightTarget.posZ) + 1;
             Material m = creature.worldObj.getBlock(currentFlightTarget.posX, currentFlightTarget.posY - 1, currentFlightTarget.posZ).getMaterial();
-            if (creature.flyingParameters != null && !creature.flyingParameters.willLandInMaterial(m)
-                    || !creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ))
+            if (creature.flyingParameters != null && !creature.flyingParameters.willLandInMaterial(m) || !creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ))
                 this.currentFlightTarget = null;
         }
     }
 
-    private boolean hasLandingSpot() {
+    private boolean hasLandingSpot()
+    {
         return currentFlightTarget != null;
     }
 
     private int nextWingBeat = 10;
     private int wingBeatTick = 0;
 
-    private void maintainFlight(boolean hasObstacle) {
+    private void maintainFlight(boolean hasObstacle)
+    {
         wingBeatTick++;
-        if (hasObstacle || wingBeatTick >= nextWingBeat) {
+        if (hasObstacle || wingBeatTick >= nextWingBeat)
+        {
             pickDirection(hasObstacle);
-            nextWingBeat = creature.flyingParameters.flapRate
-                    + (int) (Math.random() * 0.4 * creature.flyingParameters.flapRate - 0.2 * creature.flyingParameters.flapRate);
+            nextWingBeat = creature.flyingParameters.flapRate + (int) (Math.random() * 0.4 * creature.flyingParameters.flapRate - 0.2 * creature.flyingParameters.flapRate);
             creature.moveEntityWithHeading(0, 4.0f + creature.flyingParameters.flySpeedModifier / 100f * creature.flyingParameters.flySpeedModifier);
             creature.motionY = (creature.flyingParameters.flapRate + 1) * 0.01;
             wingBeatTick = 0;
@@ -134,41 +145,46 @@ public class JurassiCraftAIFlying extends EntityAIBase
 
     boolean lastChangeDirection;
 
-    public void pickDirection(boolean useLastChangeDirection) {
+    public void pickDirection(boolean useLastChangeDirection)
+    {
         double rotAmt;
-        if (useLastChangeDirection) {
+        if (useLastChangeDirection)
+        {
             rotAmt = creature.getRNG().nextInt(5) + 5;
-            if (lastChangeDirection)
-                rotAmt *= -1;
+            if (lastChangeDirection) rotAmt *= -1;
             String extra = creature.getAttackTarget() != null ? " has target" : " no target";
-        } else {
+        }
+        else
+        {
             rotAmt = creature.getRNG().nextInt(10) - 5;
-            if (rotAmt > 0)
-                lastChangeDirection = true;
-            else
-                lastChangeDirection = false;
+            if (rotAmt > 0) lastChangeDirection = true;
+            else lastChangeDirection = false;
         }
         creature.rotationYaw += rotAmt;
 
     }
 
-    private void lookForOwnerEntity() {
-        if (System.currentTimeMillis() > nextOwnerCheckTime) {
+    private void lookForOwnerEntity()
+    {
+        if (System.currentTimeMillis() > nextOwnerCheckTime)
+        {
             nextOwnerCheckTime = System.currentTimeMillis() + OWNER_FIND_INTERVAL;
         }
     }
 
-    private boolean checkTakeOffConditions() {
+    private boolean checkTakeOffConditions()
+    {
         EntityPlayer nearest = creature.worldObj.getClosestPlayerToEntity(creature, 6.0D);
-        if (nearest != null) {
+        if (nearest != null)
+        {
             return true;
         }
-        if (Math.random() < 0.015)
-            return true;
+        if (Math.random() < 0.015) return true;
         return false;
     }
 
-    private void land() {
+    private void land()
+    {
         sittingSpotAbortTime = -1L;
         creature.setPosition(currentFlightTarget.posX + 0.5D, currentFlightTarget.posY + 0.5D, currentFlightTarget.posZ + 0.5D);
     }
@@ -177,12 +193,12 @@ public class JurassiCraftAIFlying extends EntityAIBase
     double takeOffSpeed = 0;
     int targetHeight = 0;
 
-    private void takeOff() {
+    private void takeOff()
+    {
         creature.setFlying(true);
         takingOff = true;
         flightTicks = 0;
-        targetHeight = (int) creature.posY + (int) (Math.random() * (creature.flyingParameters.flyHeightMax - creature.flyingParameters.flyHeightMin))
-                + creature.flyingParameters.flyHeightMin;
+        targetHeight = (int) creature.posY + (int) (Math.random() * (creature.flyingParameters.flyHeightMax - creature.flyingParameters.flyHeightMin)) + creature.flyingParameters.flyHeightMin;
         creature.setPosition(creature.posX, creature.posY - 1D, creature.posZ);
         creature.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1015, (int) creature.posX, (int) creature.posY, (int) creature.posZ, 0);
         takeOffSpeed = 0.22 + creature.flyingParameters.flySpeedModifier / 300f;

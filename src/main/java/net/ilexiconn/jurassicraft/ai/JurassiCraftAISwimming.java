@@ -17,31 +17,31 @@ public class JurassiCraftAISwimming extends EntityAIBase
         entity.getNavigator().setCanSwim(true);
         this.setMutexBits(4);
     }
-    
+
     public boolean shouldExecute()
     {
         return this.creature.isInWater() || this.creature.handleLavaMovement();
     }
 
-	@Override
-	public void startExecuting()
-	{
-		this.creature.setSitting(false, null);
-    	this.creature.stepHeight = this.bBoxPercentage * this.creature.getYBouningBox();
-	}
+    @Override
+    public void startExecuting()
+    {
+        this.creature.setSitting(false, null);
+        this.creature.stepHeight = this.bBoxPercentage * this.creature.getYBouningBox();
+    }
 
-	@Override
+    @Override
     public void updateTask()
     {
-    	if (!this.creature.worldObj.isAirBlock((int) (this.creature.posX + 0.5D), (int) (this.creature.posY + this.bBoxPercentage * this.creature.getYBouningBox()), (int) (this.creature.posZ + 0.5D)))
+        if (!this.creature.worldObj.isAirBlock((int) (this.creature.posX + 0.5D), (int) (this.creature.posY + this.bBoxPercentage * this.creature.getYBouningBox()), (int) (this.creature.posZ + 0.5D)))
         {
             this.creature.motionY = 0.06D;
         }
     }
 
-	@Override
-	public void resetTask()
-	{
-    	this.creature.stepHeight = this.creatureStepHeight;
-	}
+    @Override
+    public void resetTask()
+    {
+        this.creature.stepHeight = this.creatureStepHeight;
+    }
 }

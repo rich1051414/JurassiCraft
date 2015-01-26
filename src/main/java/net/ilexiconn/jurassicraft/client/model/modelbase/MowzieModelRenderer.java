@@ -60,69 +60,105 @@ public class MowzieModelRenderer extends ModelRenderer
         rotateAngleZ = z;
     }
 
-	/** Resets all rotation points. */
-	public void resetAllRotationPoints() {
-		this.rotationPointX = this.initRotationPointX;
-		this.rotationPointY = this.initRotationPointY;
-		this.rotationPointZ = this.initRotationPointZ;
-	}
+    /**
+     * Resets all rotation points.
+     */
+    public void resetAllRotationPoints()
+    {
+        this.rotationPointX = this.initRotationPointX;
+        this.rotationPointY = this.initRotationPointY;
+        this.rotationPointZ = this.initRotationPointZ;
+    }
 
-	/** Resets X rotation point. */
-	public void resetXRotationPoints() {
-		this.rotationPointX = this.initRotationPointX;
-	}
+    /**
+     * Resets X rotation point.
+     */
+    public void resetXRotationPoints()
+    {
+        this.rotationPointX = this.initRotationPointX;
+    }
 
-	/** Resets Y rotation point. */
-	public void resetYRotationPoints() {
-		this.rotationPointY = this.initRotationPointY;
-	}
+    /**
+     * Resets Y rotation point.
+     */
+    public void resetYRotationPoints()
+    {
+        this.rotationPointY = this.initRotationPointY;
+    }
 
-	/** Resets Z rotation point. */
-	public void resetZRotationPoints() {
-		this.rotationPointZ = this.initRotationPointZ;
-	}
+    /**
+     * Resets Z rotation point.
+     */
+    public void resetZRotationPoints()
+    {
+        this.rotationPointZ = this.initRotationPointZ;
+    }
 
-	/** Resets all rotations. */
-	public void resetAllRotations() {
-		this.rotateAngleX = this.initRotateAngleX;
-		this.rotateAngleY = this.initRotateAngleY;
-		this.rotateAngleZ = this.initRotateAngleZ;
-	}
+    /**
+     * Resets all rotations.
+     */
+    public void resetAllRotations()
+    {
+        this.rotateAngleX = this.initRotateAngleX;
+        this.rotateAngleY = this.initRotateAngleY;
+        this.rotateAngleZ = this.initRotateAngleZ;
+    }
 
-	/** Resets X rotation. */
-	public void resetXRotations() {
-		this.rotateAngleX = this.initRotateAngleX;
-	}
+    /**
+     * Resets X rotation.
+     */
+    public void resetXRotations()
+    {
+        this.rotateAngleX = this.initRotateAngleX;
+    }
 
-	/** Resets Y rotation. */
-	public void resetYRotations() {
-		this.rotateAngleY = this.initRotateAngleY;
-	}
+    /**
+     * Resets Y rotation.
+     */
+    public void resetYRotations()
+    {
+        this.rotateAngleY = this.initRotateAngleY;
+    }
 
-	/** Resets Z rotation. */
-	public void resetZRotations() {
-		this.rotateAngleZ = this.initRotateAngleZ;
-	}
+    /**
+     * Resets Z rotation.
+     */
+    public void resetZRotations()
+    {
+        this.rotateAngleZ = this.initRotateAngleZ;
+    }
 
-	/** Copies the rotation point coordinates. */
-	public void copyAllRotationPoints(ResettableModelRenderer target) {
-		this.rotationPointX = target.rotationPointX;
-		this.rotationPointY = target.rotationPointY;
-		this.rotationPointZ = target.rotationPointZ;
-	}
+    /**
+     * Copies the rotation point coordinates.
+     */
+    public void copyAllRotationPoints(ResettableModelRenderer target)
+    {
+        this.rotationPointX = target.rotationPointX;
+        this.rotationPointY = target.rotationPointY;
+        this.rotationPointZ = target.rotationPointZ;
+    }
 
-	/** Copies X rotation point. */
-	public void copyXRotationPoint(ResettableModelRenderer target) {
-		this.rotationPointX = target.rotationPointX;
-	}
+    /**
+     * Copies X rotation point.
+     */
+    public void copyXRotationPoint(ResettableModelRenderer target)
+    {
+        this.rotationPointX = target.rotationPointX;
+    }
 
-	/** Copies Y rotation point. */
-	public void copyYRotationPoint(ResettableModelRenderer target) {
-		this.rotationPointY = target.rotationPointY;
-	}
+    /**
+     * Copies Y rotation point.
+     */
+    public void copyYRotationPoint(ResettableModelRenderer target)
+    {
+        this.rotationPointY = target.rotationPointY;
+    }
 
-	/** Copies Z rotation point. */
-	public void copyZRotationPoint(ResettableModelRenderer target) {
-		this.rotationPointZ = target.rotationPointZ;
-	}
+    /**
+     * Copies Z rotation point.
+     */
+    public void copyZRotationPoint(ResettableModelRenderer target)
+    {
+        this.rotationPointZ = target.rotationPointZ;
+    }
 }

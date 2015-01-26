@@ -4,7 +4,6 @@ import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.birds.EntityTitanis;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
@@ -12,7 +11,7 @@ import net.minecraft.entity.Entity;
 
 public class ModelTitanis extends MowzieModelBase
 {
-	public Animator animator;
+    public Animator animator;
     MowzieModelRenderer Beak_1;
     MowzieModelRenderer Front_Beak_Ridge;
     MowzieModelRenderer Jaw;
@@ -49,7 +48,7 @@ public class ModelTitanis extends MowzieModelBase
 
     public ModelTitanis()
     {
-    	this.animator = new Animator(this);
+        this.animator = new Animator(this);
         textureWidth = 128;
         textureHeight = 64;
 
@@ -463,14 +462,15 @@ public class ModelTitanis extends MowzieModelBase
         walk(Head, 0.1F, 0.06F, true, 0F, 0F, titanis.frame, 1F);
         walk(Rear, 0.1F, 0.05F, false, 0F, 0F, titanis.frame, 1F);
     }
-    
-    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    	this.animator.update(entity);
-    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTitanis) entity);
 
-    	if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
-    	{
-        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTitanis) entity);
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
             this.animator.startPhase(3);
             this.animator.rotate(Neck, -0.2F, 0, 0);
             this.animator.rotate(Neck_2, -0.2F, 0, 0);
@@ -484,6 +484,6 @@ public class ModelTitanis extends MowzieModelBase
             this.animator.endPhase();
             this.animator.setStationaryPhase(1);
             this.animator.resetPhase(4);
-    	}
+        }
     }
 }

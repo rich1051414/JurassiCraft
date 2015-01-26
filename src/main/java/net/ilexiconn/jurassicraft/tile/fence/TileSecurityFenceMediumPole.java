@@ -9,40 +9,41 @@ import net.minecraft.tileentity.TileEntity;
 public class TileSecurityFenceMediumPole extends TileEntity
 {
     private boolean[] builtFences = new boolean[4];
-    
+
     public TileSecurityFenceMediumPole()
     {
-    	for (int i = 0; i < builtFences.length; i++)
-    		builtFences[i] = false;
+        for (int i = 0; i < builtFences.length; i++)
+            builtFences[i] = false;
     }
-    
-    public void setGridAtSide(int side, boolean flag) {
-    	this.builtFences[side] = flag;
-    	if (this.worldObj != null)
-    		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+
+    public void setGridAtSide(int side, boolean flag)
+    {
+        this.builtFences[side] = flag;
+        if (this.worldObj != null) this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
-    
-    public boolean getGridAtSide(int side) {
-    	return this.builtFences[side];
+
+    public boolean getGridAtSide(int side)
+    {
+        return this.builtFences[side];
     }
 
     @Override
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-    	for (int i = 0; i < builtFences.length; i++)
-    		compound.setBoolean("GridAtSide" + i, this.getGridAtSide(i));
+        for (int i = 0; i < builtFences.length; i++)
+            compound.setBoolean("GridAtSide" + i, this.getGridAtSide(i));
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-    	for (int i = 0; i < builtFences.length; i++)
-    		this.setGridAtSide(i, compound.getBoolean("GridAtSide" + i));
+        for (int i = 0; i < builtFences.length; i++)
+            this.setGridAtSide(i, compound.getBoolean("GridAtSide" + i));
     }
 
-	@Override
+    @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound compound = new NBTTagCompound();

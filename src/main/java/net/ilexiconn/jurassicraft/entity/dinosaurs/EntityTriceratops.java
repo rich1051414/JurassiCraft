@@ -1,17 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIDefensiveReaction;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITriceratopsCharge;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
@@ -23,12 +13,7 @@ import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -38,8 +23,8 @@ import net.minecraft.world.World;
 public class EntityTriceratops extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
     public ControlledParam flailDegree = new ControlledParam(0.0F, 0.0F, 1.0F, 0.0F);
-	public ControlledAnimation defendingPosition = new ControlledAnimation(40);
-	public ChainBuffer tailBuffer = new ChainBuffer(5);
+    public ControlledAnimation defendingPosition = new ControlledAnimation(40);
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
     public boolean charging = false;
     public float distanceFromTarget;
     public int timeSinceCharge = 0;
@@ -73,32 +58,32 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     @Override
     public double getMountedYOffset()
     {
-    	if (this.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
-    	{
-    		if (this.getAnimationTick() < 5)
-        	{
-        		float animationProgress = (float) this.getAnimationTick() / 5.0F;
-        		return 0.91D * (double) this.getYBouningBox() - (0.3F * MathHelper.sin(animationProgress));
-        	}
-    		else if (this.getAnimationTick() < 18)
-        	{
-        		float animationProgress = (float) (this.getAnimationTick() - 5) / 13.0F;
-        		return 0.91D * (double) this.getYBouningBox() + (0.6F * MathHelper.sin(animationProgress));
-        	}
-        	else if (this.getAnimationTick() < 39)
-        	{
-        		float animationProgress = (float) (this.getAnimationTick() - 18) / 21.0F;
-        		return 0.91D * (double) this.getYBouningBox() - (0.5F * MathHelper.sin(animationProgress));
-        	}
-    	}
+        if (this.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
+        {
+            if (this.getAnimationTick() < 5)
+            {
+                float animationProgress = (float) this.getAnimationTick() / 5.0F;
+                return 0.91D * (double) this.getYBouningBox() - (0.3F * MathHelper.sin(animationProgress));
+            }
+            else if (this.getAnimationTick() < 18)
+            {
+                float animationProgress = (float) (this.getAnimationTick() - 5) / 13.0F;
+                return 0.91D * (double) this.getYBouningBox() + (0.6F * MathHelper.sin(animationProgress));
+            }
+            else if (this.getAnimationTick() < 39)
+            {
+                float animationProgress = (float) (this.getAnimationTick() - 18) / 21.0F;
+                return 0.91D * (double) this.getYBouningBox() - (0.5F * MathHelper.sin(animationProgress));
+            }
+        }
         return 0.91D * (double) this.getYBouningBox();
     }
 
-	@Override
-	public int getNumberOfAllies()
-	{
-		return 1;
-	}
+    @Override
+    public int getNumberOfAllies()
+    {
+        return 1;
+    }
 
     @Override
     public int getTalkInterval()
@@ -110,10 +95,10 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        
+
         if (getAttackTarget() != null)
         {
-        	//Charge AI            
+            //Charge AI
             if (getAttackTarget() != null)
                 distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
             else distanceFromTarget = -1;
@@ -122,7 +107,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         }
         else
         {
-        	this.distanceFromTarget = -1.0F;
+            this.distanceFromTarget = -1.0F;
         }
         if (timeSinceCharge != 0) timeSinceCharge--;
     }
@@ -132,29 +117,30 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
     {
         super.onUpdate();
         this.flailDegree.update();
-        if (this.animID == JurassiCraftAnimationIDs.CHARGE.animID() && this.animTick == 1) this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
+        if (this.animID == JurassiCraftAnimationIDs.CHARGE.animID() && this.animTick == 1)
+            this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
         if (this.stepCount <= 0 && this.charging)
         {
             this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
             this.stepCount = 10;
         }
         this.stepCount -= 1;
-        
+
         if (this.isDefending())
         {
-        	this.defendingPosition.increaseTimer();
+            this.defendingPosition.increaseTimer();
         }
         else
         {
-        	this.defendingPosition.decreaseTimer(2);
-        	if (this.rand.nextInt(40) == 0 && this.isCreatureOlderThan(0.6F))
+            this.defendingPosition.decreaseTimer(2);
+            if (this.rand.nextInt(40) == 0 && this.isCreatureOlderThan(0.6F))
             {
-            	this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
-            	if (this.creatureToAttack != null)
-            		this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
+                this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
+                if (this.creatureToAttack != null)
+                    this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
     }
 
@@ -173,21 +159,23 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
             victim.motionY += 0.3;
         }
     }
-    
+
     @Override
-    public void ridingPlayerRightClick() {
-    	if (this.onGround && this.timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem())) {
+    public void ridingPlayerRightClick()
+    {
+        if (this.onGround && this.timeSinceCharge < 75 && this.getCreatureAgeInDays() >= 17 && ((EntityPlayer) this.riddenByEntity).getHeldItem() != (ItemStack) null && this.getCreature().isRidingItem(((EntityPlayer) this.riddenByEntity).getHeldItem().getItem()))
+        {
             this.decreaseHeldItemDurability(40);
-    		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
-    	}
+            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
+        }
     }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (4.0F * developmentFraction) + this.rand.nextInt(1 + (int) (4.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -195,11 +183,13 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        }
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

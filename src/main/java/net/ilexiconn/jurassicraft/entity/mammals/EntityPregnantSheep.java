@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.entity.mammals;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
@@ -18,87 +17,87 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
     private int pregnancySpeed;
     private int dnaQuality;
 
-	public EntityPregnantSheep(EntitySheep sheep) 
-	{
-		this.sheep = sheep;
-		this.mammalName = "noEmbryo";
-		this.dnaQuality = 0;
-		this.dnaSequence = "";
-		this.pregnancySpeed = 0;
-	}
+    public EntityPregnantSheep(EntitySheep sheep)
+    {
+        this.sheep = sheep;
+        this.mammalName = "noEmbryo";
+        this.dnaQuality = 0;
+        this.dnaSequence = "";
+        this.pregnancySpeed = 0;
+    }
 
-	@Override
-	public void init(Entity entity, World world) 
-	{
-		
-	}
+    @Override
+    public void init(Entity entity, World world)
+    {
 
-	public static final void register(EntitySheep entity) 
-	{
-		entity.registerExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY, new EntityPregnantSheep(entity));
-	}
+    }
 
-	public static final EntityPregnantSheep get(EntitySheep entity) 
-	{
-		return (EntityPregnantSheep) entity.getExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY);
-	}
-    
-	public String getDNASequence() 
-	{
-		return dnaSequence;
-	}
+    public static final void register(EntitySheep entity)
+    {
+        entity.registerExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY, new EntityPregnantSheep(entity));
+    }
 
-	public void setDNASequence(String dna) 
-	{
-		this.dnaSequence = dna;
-	}
+    public static final EntityPregnantSheep get(EntitySheep entity)
+    {
+        return (EntityPregnantSheep) entity.getExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY);
+    }
 
-	public String getMammalName() 
-	{
-		return mammalName;
-	}
+    public String getDNASequence()
+    {
+        return dnaSequence;
+    }
 
-	public void setMammalName(String mammal) 
-	{
-		this.mammalName = mammal;
-	}
+    public void setDNASequence(String dna)
+    {
+        this.dnaSequence = dna;
+    }
 
-	public int getPregnancyProgress() 
-	{
-		return pregnancyProgress;
-	}
+    public String getMammalName()
+    {
+        return mammalName;
+    }
 
-	public void increasePregnancyProgress() 
-	{
-		this.pregnancyProgress = this.getPregnancyProgress() + 1;
-	}
+    public void setMammalName(String mammal)
+    {
+        this.mammalName = mammal;
+    }
 
-	public void setPregnancyProgress(int progress) 
-	{
-		this.pregnancyProgress = progress;
-	}
+    public int getPregnancyProgress()
+    {
+        return pregnancyProgress;
+    }
 
-	public int getPregnancySpeed() 
-	{
-		return pregnancySpeed;
-	}
+    public void increasePregnancyProgress()
+    {
+        this.pregnancyProgress = this.getPregnancyProgress() + 1;
+    }
 
-	public void setPregnancySpeed(int speed) 
-	{
-		this.pregnancySpeed = speed;
-	}
+    public void setPregnancyProgress(int progress)
+    {
+        this.pregnancyProgress = progress;
+    }
 
-	public int getDNAQuality() 
-	{
-		return dnaQuality;
-	}
+    public int getPregnancySpeed()
+    {
+        return pregnancySpeed;
+    }
 
-	public void setDNAQuality(int quality) 
-	{
-		this.dnaQuality = quality;
-	}
-	
-	public int getPregnancyProgressScaled(int barSize)
+    public void setPregnancySpeed(int speed)
+    {
+        this.pregnancySpeed = speed;
+    }
+
+    public int getDNAQuality()
+    {
+        return dnaQuality;
+    }
+
+    public void setDNAQuality(int quality)
+    {
+        this.dnaQuality = quality;
+    }
+
+    public int getPregnancyProgressScaled(int barSize)
     {
         if (this.getPregnancySpeed() <= 0)
         {
@@ -123,15 +122,10 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
     public void loadNBTData(NBTTagCompound compound)
     {
         NBTTagCompound properties = (NBTTagCompound) compound.getTag(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY);
-		if (properties.hasKey("DNASequence"))
-			this.dnaSequence = properties.getString("DNASequence");
-		if (properties.hasKey("MammalName"))
-			this.mammalName = properties.getString("MammalName");
-		if (properties.hasKey("PregnancyProgress"))
-			this.pregnancyProgress = properties.getInteger("PregnancyProgress");
-		if (properties.hasKey("PregnancySpeed"))
-			this.pregnancySpeed = properties.getInteger("PregnancySpeed");
-		if (properties.hasKey("DNAQuality"))
-			this.dnaQuality = properties.getInteger("DNAQuality");
+        if (properties.hasKey("DNASequence")) this.dnaSequence = properties.getString("DNASequence");
+        if (properties.hasKey("MammalName")) this.mammalName = properties.getString("MammalName");
+        if (properties.hasKey("PregnancyProgress")) this.pregnancyProgress = properties.getInteger("PregnancyProgress");
+        if (properties.hasKey("PregnancySpeed")) this.pregnancySpeed = properties.getInteger("PregnancySpeed");
+        if (properties.hasKey("DNAQuality")) this.dnaQuality = properties.getInteger("DNAQuality");
     }
 }

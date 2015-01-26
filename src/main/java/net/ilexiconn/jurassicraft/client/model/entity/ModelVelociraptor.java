@@ -60,7 +60,7 @@ public class ModelVelociraptor extends MowzieModelBase
     MowzieModelRenderer HeadJoint;
     MowzieModelRenderer[] rightArmParts;
     MowzieModelRenderer[] leftArmParts;
-	MowzieModelRenderer[] tailParts;
+    MowzieModelRenderer[] tailParts;
 
     public ModelVelociraptor()
     {
@@ -354,7 +354,7 @@ public class ModelVelociraptor extends MowzieModelBase
         addChildTo(Head, HeadJoint);
         addChildTo(HeadJoint, Neck);
         /*   
-     	addChildTo(Quill_2, Head);
+         addChildTo(Quill_2, Head);
       	addChildTo(Quill_3, Head);
       	addChildTo(Quill_4, Head);
       	addChildTo(Quill_5, Head);
@@ -405,9 +405,9 @@ public class ModelVelociraptor extends MowzieModelBase
         Hand_Right_Claw_Middle.setRotationPoint(0F, -0.2F, -0.1F);
         Hand_Right_Claw_Right.setRotationPoint(-0.2F, -0.2F, -0.1F);
 
-		rightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
-		leftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
-		tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
+        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
 
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
@@ -562,7 +562,7 @@ public class ModelVelociraptor extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityVelociraptor raptor)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-		this.resetPose();
+        this.resetPose();
 		/*
 		 * f = raptor.frame; f1 = 1F;
 		 */
@@ -602,10 +602,11 @@ public class ModelVelociraptor extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
         chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
-        
+
         raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);
-        
-        if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()) raptor.setLeaping(true);
+
+        if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID())
+            raptor.setLeaping(true);
         if (raptor.leaping == true)
         {
             Body_1.rotateAngleX -= 0.8;
@@ -647,8 +648,8 @@ public class ModelVelociraptor extends MowzieModelBase
 
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID())
         {
-            if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID()) 
-            	TwitchAngle = (float) (Math.random() - 0.5);
+            if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID())
+                TwitchAngle = (float) (Math.random() - 0.5);
             this.animator.setAnimation(JurassiCraftAnimationIDs.TWITCH_HEAD.animID());
             this.animator.startPhase(3);
             this.animator.rotate(Head, 0, 0, TwitchAngle);
@@ -735,10 +736,10 @@ public class ModelVelociraptor extends MowzieModelBase
             this.animator.setStationaryPhase(4);
             this.animator.resetPhase(0);
         }
-        
+
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
-        	this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
             this.animator.startPhase(3);
             this.animator.rotate(Neck, -0.3F, 0, 0);
             this.animator.rotate(Head, 0.3F, 0, 0);

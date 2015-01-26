@@ -1,17 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.item.JurassiCraftDNAHandler;
@@ -24,8 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import org.apache.commons.lang3.StringUtils;
+
+import java.util.HashSet;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -33,7 +23,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected float geneticQuality;
     protected boolean gender;
     protected byte texture;
-    
+
     private float heightParameter, lengthParameter;
     private float bBoxXZ, bBoxY;
     protected final HashSet<Integer> growthStageList = new HashSet<Integer>();
@@ -42,7 +32,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected int animTick;
     public int frame;
     public int expParameter;
-    
+
     public EntityJurassiCraftCreature(World world, Creature creature)
     {
         super(world);
@@ -80,18 +70,22 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         return false;
     }
 
-    /** Sets the creature. */
+    /**
+     * Sets the creature.
+     */
     public void setCreature(Creature creature)
     {
         this.creature = creature;
     }
 
-    /** Returns the creature. */
+    /**
+     * Returns the creature.
+     */
     public Creature getCreature()
     {
         return this.creature;
     }
-    
+
     /**
      * Sets the creature genetic quality. Genetic quality is how much the
      * creature varies in status. 1.0F is the base value.
@@ -109,13 +103,17 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         return this.geneticQuality;
     }
 
-    /** Sets the creature DNA sequence. */
+    /**
+     * Sets the creature DNA sequence.
+     */
     public void setDNASequence(String dna)
     {
         this.dataWatcher.updateObject(14, String.valueOf(dna));
     }
 
-    /** Returns the creature DNA sequence. */
+    /**
+     * Returns the creature DNA sequence.
+     */
     public String getDNASequence()
     {
         return this.dataWatcher.getWatchableObjectString(14);
@@ -128,14 +126,13 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
-	@Override
-	public void onUpdate()
-	{
-		super.onUpdate();
-		if (this.animID != 0)
-			this.animTick++;
-		this.frame++;
-	}
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        if (this.animID != 0) this.animTick++;
+        this.frame++;
+    }
 
     @Override
     public void onLivingUpdate()
@@ -154,73 +151,77 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     @Override
     public boolean interact(EntityPlayer player)
     {
-    	/** DEBUG INFO */
-    	//this.showDebugInfo(player);
-    	
+        /** DEBUG INFO */
+        //this.showDebugInfo(player);
+
         if (player != null && player.getHeldItem() != (ItemStack) null)
         {
             if (player.getHeldItem().getItem() instanceof ItemGrowthSerum)
             {
-            	if (this.forceCreatureGrowth(player, (byte) 10) && !player.capabilities.isCreativeMode)
+                if (this.forceCreatureGrowth(player, (byte) 10) && !player.capabilities.isCreativeMode)
                 {
-            		player.getHeldItem().stackSize--;
-            	}
+                    player.getHeldItem().stackSize--;
+                }
             }
         }
         return super.interact(player);
     }
-    
-    public void showDebugInfo(EntityPlayer player) {
+
+    public void showDebugInfo(EntityPlayer player)
+    {
         System.out.println("");
-    	System.out.println("=============== UPDATE DATA ===============");
+        System.out.println("=============== UPDATE DATA ===============");
         if (this.worldObj.isRemote)
         {
-        System.out.println("================= Client ==================");
-        if (player != null && player.getHeldItem() != (ItemStack) null)
-        System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
-        if (this instanceof EntityJurassiCraftSmart)
-        System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
-        System.out.println("Health: " + this.getCreatureHealth());
-        System.out.println("Attack: " + this.getCreatureAttack());
-        System.out.println("Speed: " + this.getCreatureSpeed());
-        System.out.println("Knockback: " + this.getCreatureKnockback());
-        System.out.println("Length: " + this.getCreatureLength());
-        System.out.println("Height: " + this.getCreatureHeight());
-        System.out.println("Scale: " + this.getCreatureScale());
-        System.out.println("Genetic Quality: " + this.getGeneticQuality() + ", DNASequence: " + this.getDNASequence() + ". Revised DNA for 50% " + JurassiCraftDNAHandler.reviseDNA(this.getDNASequence(), 50));
-        System.out.println("Gender: " + this.getCreatureGenderString() + ". Genetic for gender: " + JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()));
-        System.out.println("Texture number: " + this.getCreatureTexture() + ". Genetic for texture: " + JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
-        System.out.println("Adult: " + this.isCreatureAdult());
-        System.out.println("===========================================");
+            System.out.println("================= Client ==================");
+            if (player != null && player.getHeldItem() != (ItemStack) null)
+                System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
+            if (this instanceof EntityJurassiCraftSmart)
+                System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
+            System.out.println("Health: " + this.getCreatureHealth());
+            System.out.println("Attack: " + this.getCreatureAttack());
+            System.out.println("Speed: " + this.getCreatureSpeed());
+            System.out.println("Knockback: " + this.getCreatureKnockback());
+            System.out.println("Length: " + this.getCreatureLength());
+            System.out.println("Height: " + this.getCreatureHeight());
+            System.out.println("Scale: " + this.getCreatureScale());
+            System.out.println("Genetic Quality: " + this.getGeneticQuality() + ", DNASequence: " + this.getDNASequence() + ". Revised DNA for 50% " + JurassiCraftDNAHandler.reviseDNA(this.getDNASequence(), 50));
+            System.out.println("Gender: " + this.getCreatureGenderString() + ". Genetic for gender: " + JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()));
+            System.out.println("Texture number: " + this.getCreatureTexture() + ". Genetic for texture: " + JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
+            System.out.println("Adult: " + this.isCreatureAdult());
+            System.out.println("===========================================");
         }
         else
         {
-        System.out.println("================= Server ==================");
-        if (player != null && player.getHeldItem() != (ItemStack) null)
-        System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
-        if (this instanceof EntityJurassiCraftSmart)
-        System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
-        System.out.println("Health: " + this.getCreatureHealth());
-        System.out.println("Attack: " + this.getCreatureAttack());
-        System.out.println("Speed: " + this.getCreatureSpeed());
-        System.out.println("Knockback: " + this.getCreatureKnockback());
-        System.out.println("Length: " + this.getCreatureLength());
-        System.out.println("Height: " + this.getCreatureHeight());
-        System.out.println("Scale: " + this.getCreatureScale());
-        System.out.println("Genetic Quality: " + this.getGeneticQuality() + ", DNASequence: " + this.getDNASequence() + ". Revised DNA for 50% " + JurassiCraftDNAHandler.reviseDNA(this.getDNASequence(), 50));
-        System.out.println("Gender: " + this.getCreatureGenderString() + ". Genetic for gender: " + JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()));
-        System.out.println("Texture number: " + this.getCreatureTexture() + ". Genetic for texture: " + JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
-        System.out.println("Adult: " + this.isCreatureAdult());
-        System.out.println("===========================================");
-        System.out.println("");
+            System.out.println("================= Server ==================");
+            if (player != null && player.getHeldItem() != (ItemStack) null)
+                System.out.println("Held item = " + player.getHeldItem().getUnlocalizedName());
+            if (this instanceof EntityJurassiCraftSmart)
+                System.out.println("Owner: " + ((EntityJurassiCraftSmart) this).getOwnerName() + ", isTamed: " + ((EntityJurassiCraftSmart) this).isTamed());
+            System.out.println("Health: " + this.getCreatureHealth());
+            System.out.println("Attack: " + this.getCreatureAttack());
+            System.out.println("Speed: " + this.getCreatureSpeed());
+            System.out.println("Knockback: " + this.getCreatureKnockback());
+            System.out.println("Length: " + this.getCreatureLength());
+            System.out.println("Height: " + this.getCreatureHeight());
+            System.out.println("Scale: " + this.getCreatureScale());
+            System.out.println("Genetic Quality: " + this.getGeneticQuality() + ", DNASequence: " + this.getDNASequence() + ". Revised DNA for 50% " + JurassiCraftDNAHandler.reviseDNA(this.getDNASequence(), 50));
+            System.out.println("Gender: " + this.getCreatureGenderString() + ". Genetic for gender: " + JurassiCraftDNAHandler.getDefaultGenderDNAQuality(this.getDNASequence()));
+            System.out.println("Texture number: " + this.getCreatureTexture() + ". Genetic for texture: " + JurassiCraftDNAHandler.getDefaultTextureDNAQuality(this.getDNASequence()));
+            System.out.println("Adult: " + this.isCreatureAdult());
+            System.out.println("===========================================");
+            System.out.println("");
         }
     }
 
-    /** Updates the creature status. */
+    /**
+     * Updates the creature status.
+     */
     protected void updateCreatureData(int ticks)
     {
-    	if (ticks > 0) {
-    		double ticksToAdulthood = this.getCreature().getTicksToAdulthood();
+        if (ticks > 0)
+        {
+            double ticksToAdulthood = this.getCreature().getTicksToAdulthood();
             double minHealth = this.getCreature().getMinHealth();
             double minStrength = this.getCreature().getMinStrength();
             double minSpeed = this.getCreature().getMinSpeed();
@@ -242,7 +243,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
                 this.setCreatureScale();
             }
             this.heal((float) (this.getCreatureHealth() - this.prevHealth));
-    	}
+        }
     }
 
     /**
@@ -270,32 +271,42 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         return (byte) this.dataWatcher.getWatchableObjectByte(13);
     }
 
-    /** Sets what is the growth stage of the creature. */
+    /**
+     * Sets what is the growth stage of the creature.
+     */
     private void setGrowthStage(byte stage)
     {
         this.dataWatcher.updateObject(13, Byte.valueOf((byte) (stage)));
     }
 
-    /** Sets the creature xz and y hit box using genetic quality and growth stage. */
+    /**
+     * Sets the creature xz and y hit box using genetic quality and growth stage.
+     */
     public void setBoundingBox(float xz, float y)
     {
         this.bBoxXZ = xz;
         this.bBoxY = y;
     }
 
-    /** Sets a new bounding box for the creature depending on its status. */
+    /**
+     * Sets a new bounding box for the creature depending on its status.
+     */
     protected final void setCreatureSize(float xzBoundingBox, float yBouningBox)
     {
         super.setSize(xzBoundingBox, yBouningBox);
     }
 
-    /** Returns the scale of the this.creature. */
+    /**
+     * Returns the scale of the this.creature.
+     */
     public float getCreatureScale()
     {
         return (float) this.dataWatcher.getWatchableObjectFloat(12) * this.getCreature().getScaleAdjustment();
     }
 
-    /** Sets the scale of the this.creature depending on the age and genetic quality. */
+    /**
+     * Sets the scale of the this.creature depending on the age and genetic quality.
+     */
     private void setCreatureScale()
     {
         if (this.getTotalTicksLived() < this.getCreature().getTicksToAdulthood())
@@ -312,7 +323,9 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
     }
 
-    /** Sets the scale of the this.creature depending on the age and genetic quality. */
+    /**
+     * Sets the scale of the this.creature depending on the age and genetic quality.
+     */
     private void setCreatureScale(float scale)
     {
         if (scale > 0.0F)
@@ -325,19 +338,25 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
     }
 
-    /** Returns how many ticks this entity has lived. */
+    /**
+     * Returns how many ticks this entity has lived.
+     */
     public int getTotalTicksLived()
     {
         return this.ticksExisted;
     }
 
-    /** Resets the ticks that this entity has lived (Client only). */
+    /**
+     * Resets the ticks that this entity has lived (Client only).
+     */
     private void setTicksExisted(int ticks)
     {
         this.ticksExisted = ticks;
     }
 
-    /** Force the creature to grow a specific value if it is possible. */
+    /**
+     * Force the creature to grow a specific value if it is possible.
+     */
     public boolean forceCreatureGrowth(EntityPlayer player, byte growthIncrease)
     {
         if (this.getGrowthStage() + growthIncrease <= 120)
@@ -351,20 +370,22 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             if (player != null && !player.worldObj.isRemote)
             {
-            	if (this.hasCustomNameTag()) 
-            	{
-                	player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
-            	}
-            	else
-            	{
-                	player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
-            	}
+                if (this.hasCustomNameTag())
+                {
+                    player.addChatMessage(new ChatComponentText(this.getCustomNameTag() + " (" + StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + ") " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
+                }
+                else
+                {
+                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("entity." + this.getCreature().getCreatureName() + ".name") + " " + StatCollector.translateToLocal("entity.interaction.fullGrown")));
+                }
             }
             return false;
         }
     }
 
-    /** Force the creature to grow to its maximum size. */
+    /**
+     * Force the creature to grow to its maximum size.
+     */
     public void setFullGrowth()
     {
         if (!this.isCreatureAdult())
@@ -374,8 +395,10 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
         }
     }
-    
-    /** Force the creature to grow to its minimum size. */
+
+    /**
+     * Force the creature to grow to its minimum size.
+     */
     public void setNoGrowth()
     {
         if (this.getGrowthStage() != 0)
@@ -386,26 +409,34 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
     }
 
-    /** Returns the creature Name. */
+    /**
+     * Returns the creature Name.
+     */
     public String getCreatureName()
     {
         return this.getCreature().getCreatureName();
     }
 
-    /** Checks if the creature has a genetic code. */
+    /**
+     * Checks if the creature has a genetic code.
+     */
     public boolean hasDNASequence()
     {
         return !(this.getDNASequence() == null || this.getDNASequence() == "");
     }
 
-    /** Sets the creature genetic data depending on the dna quality and code. */
+    /**
+     * Sets the creature genetic data depending on the dna quality and code.
+     */
     public void setGenetics(int dnaQuality, String dna)
     {
         this.setDNASequence(JurassiCraftDNAHandler.reviseDNA(dna, dnaQuality));
         this.setGeneticQuality(JurassiCraftDNAHandler.getDefaultGeneticDNAQuality(dna));
     }
 
-    /** Sets the creature genetic data randomly. */
+    /**
+     * Sets the creature genetic data randomly.
+     */
     public void setRandomGenetics()
     {
         String dna = JurassiCraftDNAHandler.createDefaultDNA();
@@ -413,13 +444,17 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.setDNASequence(dna);
     }
 
-    /** Returns how many ticks this creature requires to reach adulthood. */
+    /**
+     * Returns how many ticks this creature requires to reach adulthood.
+     */
     public float getAdultAge()
     {
         return (float) this.getCreature().getTicksToAdulthood();
     }
 
-    /** Returns true if the creature is considered an adult. */
+    /**
+     * Returns true if the creature is considered an adult.
+     */
     public boolean isCreatureAdult()
     {
         return this.getTotalTicksLived() >= this.getCreature().getAdultAge() * this.getAdultAge();
@@ -595,8 +630,9 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     private void setNewCreatureTexture(float textureFromGenetics)
     {
         int textureCount = this.getCreature().getTextureCount();
-        if (textureCount > 0) {
-        	float texturesInterval = (float) (0.8F / textureCount);
+        if (textureCount > 0)
+        {
+            float texturesInterval = (float) (0.8F / textureCount);
             for (int i = 1; i <= textureCount; i++)
             {
                 if (textureFromGenetics <= 0.2F + texturesInterval * i)
@@ -822,24 +858,29 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         return null;
     }
 
-	protected EntityItem dropItemStackWithGenetics(ItemStack itemStack) {
-		if (itemStack.getItem() != null) {
-			NBTTagCompound compound = new NBTTagCompound();
-			if (this.hasDNASequence()) {
-				compound.setString("DNA", this.getDNASequence());
-			} else {
-				compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
-			}
-			compound.setInteger("Quality", 100);
-			itemStack.setTagCompound(compound);
-		}
-		return this.entityDropItem(itemStack, 0.0F);
-	}
+    protected EntityItem dropItemStackWithGenetics(ItemStack itemStack)
+    {
+        if (itemStack.getItem() != null)
+        {
+            NBTTagCompound compound = new NBTTagCompound();
+            if (this.hasDNASequence())
+            {
+                compound.setString("DNA", this.getDNASequence());
+            }
+            else
+            {
+                compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
+            }
+            compound.setInteger("Quality", 100);
+            itemStack.setTagCompound(compound);
+        }
+        return this.entityDropItem(itemStack, 0.0F);
+    }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
         }
@@ -848,7 +889,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.dropItem(this.getCreature().getSteak(), 1);
         }
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {

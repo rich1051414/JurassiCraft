@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.events;
 
-import java.lang.reflect.InvocationTargetException;
-
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
@@ -18,7 +17,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class JurassiCraftLivingEvent
 {
@@ -134,58 +134,58 @@ public class JurassiCraftLivingEvent
 
     public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event)
     {
-		Class mammalToSpawnClass = CreatureManager.getCreatureFromName(mammalName).getCreatureClass();
-		
-		if(mammalToSpawnClass != null)
-		{
-			try
-	        {
-	            Entity mammalToSpawn = (Entity) mammalToSpawnClass.getConstructor(World.class).newInstance(event.entityLiving.worldObj);
-	            if (mammalToSpawn instanceof EntityJurassiCraftCreature)
-	            {
-	                EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) mammalToSpawn;
-	                baby.setGenetics(quality, dnaSequence);
-	                if (mammalToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning())
-	                {
-	                    EntityPlayer owner = event.entityLiving.worldObj.getClosestPlayerToEntity(event.entityLiving, 6.0F);
-	                    if (owner != null)
-	                    {
-	                        ((EntityJurassiCraftSmart) baby).setTamed(true, owner);
-	                        ((EntityJurassiCraftSmart) baby).setOwner(owner.getCommandSenderName());
-	                        event.entityLiving.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
-	                    }
-	                }
-	                baby.setPosition(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
-	                if (!event.entityLiving.worldObj.isRemote)
-	                {
-	                    event.entityLiving.worldObj.spawnEntityInWorld(baby);
-	                }
-	            }
-	        }
-	        catch (InstantiationException e)
-	        {
-	            e.printStackTrace();
-	        }
-	        catch (IllegalAccessException e)
-	        {
-	            e.printStackTrace();
-	        }
-	        catch (IllegalArgumentException e)
-	        {
-	            e.printStackTrace();
-	        }
-	        catch (InvocationTargetException e)
-	        {
-	            e.printStackTrace();
-	        }
-	        catch (NoSuchMethodException e)
-	        {
-	            e.printStackTrace();
-	        }
-	        catch (SecurityException e)
-	        {
-	            e.printStackTrace();
-	        }
-		}
+        Class mammalToSpawnClass = CreatureManager.getCreatureFromName(mammalName).getCreatureClass();
+
+        if (mammalToSpawnClass != null)
+        {
+            try
+            {
+                Entity mammalToSpawn = (Entity) mammalToSpawnClass.getConstructor(World.class).newInstance(event.entityLiving.worldObj);
+                if (mammalToSpawn instanceof EntityJurassiCraftCreature)
+                {
+                    EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) mammalToSpawn;
+                    baby.setGenetics(quality, dnaSequence);
+                    if (mammalToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning())
+                    {
+                        EntityPlayer owner = event.entityLiving.worldObj.getClosestPlayerToEntity(event.entityLiving, 6.0F);
+                        if (owner != null)
+                        {
+                            ((EntityJurassiCraftSmart) baby).setTamed(true, owner);
+                            ((EntityJurassiCraftSmart) baby).setOwner(owner.getCommandSenderName());
+                            event.entityLiving.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
+                        }
+                    }
+                    baby.setPosition(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
+                    if (!event.entityLiving.worldObj.isRemote)
+                    {
+                        event.entityLiving.worldObj.spawnEntityInWorld(baby);
+                    }
+                }
+            }
+            catch (InstantiationException e)
+            {
+                e.printStackTrace();
+            }
+            catch (IllegalAccessException e)
+            {
+                e.printStackTrace();
+            }
+            catch (IllegalArgumentException e)
+            {
+                e.printStackTrace();
+            }
+            catch (InvocationTargetException e)
+            {
+                e.printStackTrace();
+            }
+            catch (NoSuchMethodException e)
+            {
+                e.printStackTrace();
+            }
+            catch (SecurityException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -8,8 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-/** 
- * Inherithed from Animals+ by Click_Me 
+/**
+ * Inherithed from Animals+ by Click_Me
  */
 
 public abstract class EntitySwimming extends EntityJurassiCraftRidable

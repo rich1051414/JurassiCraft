@@ -1,27 +1,12 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatLeaves;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -29,15 +14,15 @@ import net.minecraft.world.World;
 
 public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(5);
-	
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+
     public EntityBrachiosaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityBrachiosaurus.class));
         this.getNavigator().setAvoidsWater(true);
-        
+
         this.tasks.addTask(10, new JurassiCraftAIEatLeaves(this, getCreatureSpeed()));
-        
+
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
@@ -60,24 +45,24 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
     @Override
     public void updateRiderPosition()
     {
-		if (this.riddenByEntity != null)
-		{
-			double halfLength = 0.55F * this.getCreatureLength();
-			double xRotation = (double) MathHelper.sin(3.14159265359F + 0.01745329251F * this.renderYawOffset);
-			double zRotation = (double) MathHelper.cos(0.01745329251F * this.renderYawOffset);
-			
-			double extraX = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * xRotation;
-			double extraZ = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * zRotation;
-			double extraY = 1.03D * this.getCreatureHeight() + 0.5D * Math.cos(0.05D * (double) this.getTotalTicksLived() -0.5D);
-			this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
-		}
-	}
+        if (this.riddenByEntity != null)
+        {
+            double halfLength = 0.55F * this.getCreatureLength();
+            double xRotation = (double) MathHelper.sin(3.14159265359F + 0.01745329251F * this.renderYawOffset);
+            double zRotation = (double) MathHelper.cos(0.01745329251F * this.renderYawOffset);
 
-	@Override
-	public int getNumberOfAllies()
-	{
-		return 1;
-	}
+            double extraX = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * xRotation;
+            double extraZ = (1.0D + 0.075D * Math.sin(0.04D * (double) this.getTotalTicksLived() + 1.5D)) * halfLength * zRotation;
+            double extraY = 1.03D * this.getCreatureHeight() + 0.5D * Math.cos(0.05D * (double) this.getTotalTicksLived() - 0.5D);
+            this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
+        }
+    }
+
+    @Override
+    public int getNumberOfAllies()
+    {
+        return 1;
+    }
 
     @Override
     public int getTalkInterval()
@@ -95,9 +80,9 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (6.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -105,11 +90,13 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        }
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

@@ -1,9 +1,6 @@
 package net.ilexiconn.jurassicraft.item.drops;
 
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.interfaces.IDNASource;
@@ -17,6 +14,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemGenericDNASource extends Item implements IDNASource
 {
@@ -73,7 +72,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
             {
                 list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.drop.info.dna") + ": " + drop.getTagCompound().getString("DNA"));
             }
-            else 
+            else
             {
                 list.add(StatCollector.translateToLocal("item.drop.info.dna.none"));
             }
@@ -82,7 +81,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
                 list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.drop.info.quality") + ": " + drop.getTagCompound().getInteger("Quality") + "%");
             }
         }
-        else 
+        else
         {
             list.add(StatCollector.translateToLocal("item.drop.info.dna.none"));
         }

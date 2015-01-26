@@ -4,8 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.annotation.IgnoreRegistration;
 import net.ilexiconn.jurassicraft.block.*;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
-import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
+import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
@@ -57,7 +57,7 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceHighBase;
     public static Block securityFenceHighGrid;
     */
-    
+
     public void init()
     {
         cultivateBottomOff = new BlockCultivateBottom(false);

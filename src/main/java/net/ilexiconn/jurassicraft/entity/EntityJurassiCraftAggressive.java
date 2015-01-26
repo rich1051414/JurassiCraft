@@ -8,21 +8,21 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
+public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
+{
 
-	public EntityJurassiCraftAggressive(World world, Creature creature) {
-		super(world, creature);
+    public EntityJurassiCraftAggressive(World world, Creature creature)
+    {
+        super(world, creature);
         this.tasks.addTask(2, new AnimationAIBite(this, this.getBiteAnimationDuration()));
     }
 
-	@Override
+    @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
         if (this.isEntityInvulnerable())
@@ -34,8 +34,8 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
             Entity entity = damageSource.getEntity();
             if (entity != (Entity) null && entity instanceof EntityLivingBase)
             {
-            	EntityLivingBase attacker = (EntityLivingBase) entity;
-            	if (this.checkTargetBeforeAttacking(attacker))
+                EntityLivingBase attacker = (EntityLivingBase) entity;
+                if (this.checkTargetBeforeAttacking(attacker))
                 {
                     this.setCreatureAngry(this, attacker);
                 }
@@ -44,14 +44,15 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
         }
     }
 
-    protected int getBiteAnimationDuration() {
-		if (this instanceof EntityTyrannosaurus) return 20;
-		else if (this instanceof EntityCarnotaurus) return 20;
-		else if (this instanceof EntityVelociraptor) return 10;
-		else if (this instanceof EntityHerrerasaurus) return 10;
-		else if (this instanceof EntityTitanis) return 10;
-		else return 10;
-	}
+    protected int getBiteAnimationDuration()
+    {
+        if (this instanceof EntityTyrannosaurus) return 20;
+        else if (this instanceof EntityCarnotaurus) return 20;
+        else if (this instanceof EntityVelociraptor) return 10;
+        else if (this instanceof EntityHerrerasaurus) return 10;
+        else if (this instanceof EntityTitanis) return 10;
+        else return 10;
+    }
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
@@ -83,12 +84,11 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable {
             }
             EnchantmentHelper.func_151385_b(this, entity);
         }*/
-    	if(this.animID == 0)
-    		AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
+        if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
         return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
 
-	@Override
+    @Override
     protected void attackEntity(Entity entity, float par2)
     {
         if (this.attackTime <= 0 && par2 < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)

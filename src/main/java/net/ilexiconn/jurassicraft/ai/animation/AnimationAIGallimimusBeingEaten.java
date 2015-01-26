@@ -30,10 +30,11 @@ public class AnimationAIGallimimusBeingEaten extends AIAnimation
     {
         return true;
     }
-    
-    public void resetTask() {
-    	super.resetTask();
-    	gallimimus.setHealth(0);
-    	gallimimus.setDead();
+
+    public void resetTask()
+    {
+        super.resetTask();
+        gallimimus.setHealth(0);
+        gallimimus.setDead();
     }
 }

@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.client.entity.render.reptiles;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.entity.render.RenderReptile;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelDeinosuchus;
@@ -7,8 +9,6 @@ import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.reptiles.EntityDeinosuchus;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderDeinosuchus extends RenderReptile
@@ -24,11 +24,11 @@ public class RenderDeinosuchus extends RenderReptile
         EntityDeinosuchus reptile = (EntityDeinosuchus) entity;
         if (reptile.isMale())
         {
-        	return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Deinosuchus_Male_1.png");
+            return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Deinosuchus_Male_1.png");
         }
         else
         {
-        	return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Deinosuchus_Female_1.png");
+            return new ResourceLocation(JurassiCraft.getModId() + "textures/entity/Deinosuchus_Female_1.png");
         }
     }
 }

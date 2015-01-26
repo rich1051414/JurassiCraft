@@ -1,36 +1,34 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiButtonFenceSwitch extends GuiButton
 {
-	private int xTexPos;
+    private int xTexPos;
     private int yTexPos;
     private boolean state;
 
     public GuiButtonFenceSwitch(int id, int xPos, int yPos, int xguiPosition, int yguiPosition, int width, int height, boolean state)
     {
         super(id, xPos, yPos, width, height, "");
-    	this.xTexPos = xguiPosition;
-    	this.yTexPos = yguiPosition;
+        this.xTexPos = xguiPosition;
+        this.yTexPos = yguiPosition;
         this.state = state;
     }
 
     @Override
     public void drawButton(Minecraft mc, int x, int y)
     {
-    	mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiSecurityFenceWidgets.png"));
+        mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiSecurityFenceWidgets.png"));
         if (this.enabled)
         {
             FontRenderer fontrenderer = mc.fontRenderer;
@@ -62,11 +60,11 @@ public class GuiButtonFenceSwitch extends GuiButton
 
     public void setState(boolean onORoff)
     {
-    	this.state = onORoff;
+        this.state = onORoff;
     }
-    
+
     public void toggleState()
     {
-    	this.state = !this.state;
+        this.state = !this.state;
     }
 }

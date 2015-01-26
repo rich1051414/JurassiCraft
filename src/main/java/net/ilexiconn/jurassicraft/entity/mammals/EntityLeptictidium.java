@@ -1,33 +1,21 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHerrerasaurus;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMammal, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(5);
-	
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+
     public EntityLeptictidium(World world)
     {
         super(world, CreatureManager.classToCreature(EntityLeptictidium.class));
@@ -54,18 +42,18 @@ public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMam
     {
         return 350;
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(60.0F, 3, 4.0F, this);
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int countMeath = Math.round(1 + (2.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
         int countFur = Math.round(1.6F * developmentFraction + this.rand.nextInt(1 + (int) (1.6F * developmentFraction)));
         if (!this.isBurning())

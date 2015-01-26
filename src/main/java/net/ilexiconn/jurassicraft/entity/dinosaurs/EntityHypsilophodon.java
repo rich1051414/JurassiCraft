@@ -1,18 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPlayfulBaby;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIPlayfulBaby;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -21,19 +9,18 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDinosaur, IHerbivore
 {
-	public ChainBuffer tailBuffer = new ChainBuffer(3);
-	
+    public ChainBuffer tailBuffer = new ChainBuffer(3);
+
     public EntityHypsilophodon(World world)
     {
         super(world, CreatureManager.classToCreature(EntityHypsilophodon.class));
@@ -70,25 +57,25 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(60.0F, 5, 3.8F, this);
     }
-    
+
     public List<EntityHypsilophodon> getHypsilophodonsNearby(double distanceX, double distanceY, double distanceZ)
     {
-		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
-		ArrayList<EntityHypsilophodon> listParasaurolophus = new ArrayList<EntityHypsilophodon>();
-		for (Entity entityNeighbor : list)
-		{
-			if (entityNeighbor instanceof EntityHypsilophodon && entityNeighbor != this)
-				listParasaurolophus.add((EntityHypsilophodon) entityNeighbor);
-		}
-		return listParasaurolophus;
+        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
+        ArrayList<EntityHypsilophodon> listParasaurolophus = new ArrayList<EntityHypsilophodon>();
+        for (Entity entityNeighbor : list)
+        {
+            if (entityNeighbor instanceof EntityHypsilophodon && entityNeighbor != this)
+                listParasaurolophus.add((EntityHypsilophodon) entityNeighbor);
+        }
+        return listParasaurolophus;
     }
 
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (1.5F * developmentFraction) + this.rand.nextInt(1 + (int) (2.0F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -96,8 +83,9 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F) {
+        if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
-    	}
+        }
     }
 }

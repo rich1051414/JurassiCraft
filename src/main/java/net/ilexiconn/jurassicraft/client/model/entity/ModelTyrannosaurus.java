@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
@@ -7,8 +9,6 @@ import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelTyrannosaurus extends MowzieModelBase
@@ -50,11 +50,12 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public MowzieModelRenderer[] leftArmParts;
     public MowzieModelRenderer[] rightArmParts;
 
-    public ModelTyrannosaurus() {
-    	this.animator = new Animator(this);
+    public ModelTyrannosaurus()
+    {
+        this.animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 256;
-        
+
         this.HandRightClawLeft = new MowzieModelRenderer(this, 81, 45);
         this.HandRightClawLeft.setRotationPoint(-4.5F, 14.5F, -10.0F);
         this.HandRightClawLeft.addBox(-0.8F, 0.5F, -1.0F, 1, 2, 1);
@@ -193,7 +194,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.addChildTo(this.HandRight, this.LowerArmRight);
         this.addChildTo(this.LowerArmRight, this.UpperArmRight);
         this.addChildTo(this.UpperArmRight, this.Chest);
-        
+
         this.addChildTo(this.Chest, this.Body);
         this.addChildTo(this.Body, this.Waist);
 
@@ -230,13 +231,13 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.FootRight.rotationPointZ -= 2;
         this.FootLeft.rotationPointY += 1.75;
         this.FootRight.rotationPointY += 1.75;
-        
+
         this.parts = new MowzieModelRenderer[]{this.LeftCalf1, this.RightCalf1, this.LeftThigh, this.RightThigh, this.Waist, this.Chest, this.Neck, this.Head, this.LowerJaw, this.Tail1, this.Tail2, this.Tail3, this.Tail4, this.Tail5, this.LowerArmLeft, this.LowerArmRight, this.HandLeft, this.HandRight, this.HandLeftClawLeft, this.HandLeftClawRight, this.HandRightClawRight, this.HandRightClawLeft, this.LeftCalf2, this.RightCalf2, this.FootLeft, this.FootRight, this.UpperArmRight, this.UpperArmLeft, this.UpperJaw, this.Teeth, this.Body};
         this.tailParts = new MowzieModelRenderer[]{this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1};
         this.bodyParts = new MowzieModelRenderer[]{this.Head, this.Neck, this.Chest, this.Body, this.Waist};
         this.leftArmParts = new MowzieModelRenderer[]{this.HandLeft, this.LowerArmLeft, this.UpperArmLeft};
         this.rightArmParts = new MowzieModelRenderer[]{this.HandRight, this.LowerArmRight, this.UpperArmRight};
-        
+
         this.setInitPose();
     }
 
@@ -259,135 +260,136 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTyrannosaurus trex)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, trex);
-		this.setToInitPose();
-		
+        this.setToInitPose();
+
 		/*
 		f = trex.frame;
 		f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
 		f1 = 0.5F;
 		*/
-		
-		if (!trex.isSitting())
-		{
-			//Walking-dependent animation
-			float globalSpeed = 0.45F;
-			float globalDegree = 0.4F;
-			float height = 1.0F;
 
-			this.faceTarget(this.Body, 6.0F, f3, f4);
-			this.faceTarget(this.Chest, 6.0F, f3, f4);
-			this.faceTarget(this.Head, 3.0F, f3, f4);
-			this.faceTarget(this.Neck, 3.0F, f3, f4);
+        if (!trex.isSitting())
+        {
+            //Walking-dependent animation
+            float globalSpeed = 0.45F;
+            float globalDegree = 0.4F;
+            float height = 1.0F;
 
-			this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
-			this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
-			this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
-			this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-			this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-			this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
-			this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
+            this.faceTarget(this.Body, 6.0F, f3, f4);
+            this.faceTarget(this.Chest, 6.0F, f3, f4);
+            this.faceTarget(this.Head, 3.0F, f3, f4);
+            this.faceTarget(this.Neck, 3.0F, f3, f4);
 
-			this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
-			this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-			this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-			this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+            this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
+            this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
+            this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
+            this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+            this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+            this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
+            this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
 
-			this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
-			this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-			this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-			this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+            this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+            this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+            this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+            this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
 
-			this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
-			this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
-			this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-			this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-		}
-		
-		//Sitting Pose
-		float sittingProgress = trex.sittingProgress.getAnimationProgressSinSqrt();
-		float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
-		float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
-		
-		Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2)*restHeadProgress);
-		Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2)*restHeadProgress);
-		
-		this.Waist.rotationPointY += 11.5F * sittingProgress;
-		this.RightThigh.rotationPointY += 11.5F * sittingProgress;
-		this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
-		this.RightThigh.rotationPointZ += 5F * sittingProgress;
-		this.LeftThigh.rotationPointZ += 5F * sittingProgress;
+            this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+            this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+            this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+            this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
 
-		this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
-		this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
-		this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
-		this.LowerArmLeft.rotateAngleX -= 1.2F * sittingProgress;
-		this.LowerArmRight.rotationPointY -= 1F * sittingProgress;
-		this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
-		this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
-		this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
+            this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+            this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
+            this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+            this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+        }
 
-		this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
-		this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
+        //Sitting Pose
+        float sittingProgress = trex.sittingProgress.getAnimationProgressSinSqrt();
+        float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
+        float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
 
-		this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
-		this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
-		this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
-		this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
+        Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
+        Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
 
-		this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
-		this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
-		this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
-		this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
+        this.Waist.rotationPointY += 11.5F * sittingProgress;
+        this.RightThigh.rotationPointY += 11.5F * sittingProgress;
+        this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
+        this.RightThigh.rotationPointZ += 5F * sittingProgress;
+        this.LeftThigh.rotationPointZ += 5F * sittingProgress;
 
-		this.FootRight.rotateAngleX += 0.7F * sittingProgress;
-		this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
-		
-		this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
-		this.Tail2.rotateAngleX += 0.1F * sittingProgress;
-		this.Tail3.rotateAngleX += 0.15F * sittingProgress;
-		this.Tail4.rotateAngleX += 0.15F * sittingProgress;
-		this.Tail4.rotationPointY += 0.5F * sittingProgress;
-		walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
-		Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
-		
-		this.Neck.rotateAngleX += 0.55F * restHeadProgress;
-		this.Head.rotateAngleX -= 0.75F * restHeadProgress;
-		this.Chest.rotateAngleX += 0.15F * restHeadProgress;
-		this.UpperArmRight.rotateAngleX += 0.3F * restHeadProgress;
-		this.UpperArmLeft.rotateAngleX += 0.3F * restHeadProgress;
-		this.LowerArmRight.rotateAngleX -= 0.3F * restHeadProgress;
-		this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
-		walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-		walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
-		Tail1.rotationPointY += (0.2F * restHeadProgress) * Math.cos((trex.frame + 1) * 0.08);
-		walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
-		walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-		walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+        this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
+        this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
+        this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
+        this.LowerArmLeft.rotateAngleX -= 1.2F * sittingProgress;
+        this.LowerArmRight.rotationPointY -= 1F * sittingProgress;
+        this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
+        this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
+        this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
 
-		this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
-		for (int i = 0; i < this.tailParts.length; i++) {
-			this.tailParts[i].rotateAngleX += 0.15F * (sittingProgress - sittingProgressFast);
-		}
-		
-		//Idling
-		this.chainWave(bodyParts, 0.1F, -0.03F - (-0.03F * restHeadProgress), 3, trex.frame, 1.0F - 0.6F * sittingProgress);
-		this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
-		this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+        this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
+        this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
 
-		this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
-		this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
+        this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
+        this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
+        this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
+        this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
 
-		trex.tailBuffer.applyChainSwingBuffer(tailParts);
+        this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
+        this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
+        this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
+        this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
 
-		//Specialized animations
-		this.Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
-		this.LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
+        this.FootRight.rotateAngleX += 0.7F * sittingProgress;
+        this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
+
+        this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
+        this.Tail2.rotateAngleX += 0.1F * sittingProgress;
+        this.Tail3.rotateAngleX += 0.15F * sittingProgress;
+        this.Tail4.rotateAngleX += 0.15F * sittingProgress;
+        this.Tail4.rotationPointY += 0.5F * sittingProgress;
+        walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
+        Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
+
+        this.Neck.rotateAngleX += 0.55F * restHeadProgress;
+        this.Head.rotateAngleX -= 0.75F * restHeadProgress;
+        this.Chest.rotateAngleX += 0.15F * restHeadProgress;
+        this.UpperArmRight.rotateAngleX += 0.3F * restHeadProgress;
+        this.UpperArmLeft.rotateAngleX += 0.3F * restHeadProgress;
+        this.LowerArmRight.rotateAngleX -= 0.3F * restHeadProgress;
+        this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
+        walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+        walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+        Tail1.rotationPointY += (0.2F * restHeadProgress) * Math.cos((trex.frame + 1) * 0.08);
+        walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+        walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+        walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+
+        this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
+        for (int i = 0; i < this.tailParts.length; i++)
+        {
+            this.tailParts[i].rotateAngleX += 0.15F * (sittingProgress - sittingProgressFast);
+        }
+
+        //Idling
+        this.chainWave(bodyParts, 0.1F, -0.03F - (-0.03F * restHeadProgress), 3, trex.frame, 1.0F - 0.6F * sittingProgress);
+        this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+        this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+
+        this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
+        this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
+
+        trex.tailBuffer.applyChainSwingBuffer(tailParts);
+
+        //Specialized animations
+        this.Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
+        this.LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-    	this.animator.update(entity);
-    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
 
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.ROAR.animID())
         {
@@ -446,87 +448,87 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.animator.resetPhase(15);
         }
 
-		if (entity.getAnimationId() == JurassiCraftAnimationIDs.EATING.animID())
-		{
-			this.animator.setAnimation(JurassiCraftAnimationIDs.EATING.animID());
-			this.animator.startPhase(0);
-			this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
-			this.animator.startPhase(8);
-			this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
-			this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
-			this.animator.rotate(Waist, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Body, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Chest, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Neck, 0.0F, -0.2F, 0.0F);
-			this.animator.rotate(Head, 0.0F, -0.2F, 0.0F);
-			this.animator.endPhase();
-			this.animator.startPhase(2);
-			this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
-			this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
-			this.animator.rotate(Waist, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Body, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Chest, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Neck, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Head, 0.0F, 0.1F, 0.0F);
-			this.animator.endPhase();
-			this.animator.startPhase(8);
-			this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
-			this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
-			this.animator.rotate(Waist, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Body, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Chest, 0.0F, 0.1F, 0.0F);
-			this.animator.rotate(Neck, 0.0F, 0.2F, 0.0F);
-			this.animator.rotate(Head, 0.0F, 0.2F, 0.0F);
-			this.animator.endPhase();
-			this.animator.startPhase(2);
-			this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
-			this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
-			this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
-			this.animator.rotate(Waist, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Body, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Chest, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Neck, 0.0F, -0.1F, 0.0F);
-			this.animator.rotate(Head, 0.0F, -0.1F, 0.0F);
-			this.animator.endPhase();
-			this.animator.resetPhase(30);
-		}
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.EATING.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.EATING.animID());
+            this.animator.startPhase(0);
+            this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+            this.animator.startPhase(8);
+            this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
+            this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+            this.animator.rotate(Waist, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Body, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Chest, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Neck, 0.0F, -0.2F, 0.0F);
+            this.animator.rotate(Head, 0.0F, -0.2F, 0.0F);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
+            this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+            this.animator.rotate(Waist, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Body, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Chest, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Neck, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Head, 0.0F, 0.1F, 0.0F);
+            this.animator.endPhase();
+            this.animator.startPhase(8);
+            this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
+            this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+            this.animator.rotate(Waist, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Body, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Chest, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(Neck, 0.0F, 0.2F, 0.0F);
+            this.animator.rotate(Head, 0.0F, 0.2F, 0.0F);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(Waist, 0.15F, 0.0F, 0.0F);
+            this.animator.rotate(Tail1, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail2, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail3, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail4, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(Tail5, -0.02F, 0.0F, 0.0F);
+            this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
+            this.animator.rotate(Waist, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Body, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Chest, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Neck, 0.0F, -0.1F, 0.0F);
+            this.animator.rotate(Head, 0.0F, -0.1F, 0.0F);
+            this.animator.endPhase();
+            this.animator.resetPhase(30);
+        }
 
-		if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
-		{
-			this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
-			this.animator.startPhase(6);
-			this.animator.rotate(Neck, -0.1F, -0.2F, 0);
-			this.animator.rotate(Head, -0.2F, -0.3F, 0);
-			this.animator.rotate(Waist, -0.1F, -0.2F, 0);
-			this.animator.rotate(LowerJaw, 1F, 0, 0);
-			this.animator.endPhase();
-			this.animator.setStationaryPhase(1);
-			this.animator.startPhase(3);
-			this.animator.rotate(Neck, 0.8F, 0.2F, 0);
-			this.animator.rotate(Head, -0.8F, 0.4F, 0);
-			this.animator.rotate(Waist, 0.2F, 0.2F, 0);
-			this.animator.endPhase();
-			this.animator.setStationaryPhase(2);
-			this.animator.resetPhase(8);
-		}
-	}
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(6);
+            this.animator.rotate(Neck, -0.1F, -0.2F, 0);
+            this.animator.rotate(Head, -0.2F, -0.3F, 0);
+            this.animator.rotate(Waist, -0.1F, -0.2F, 0);
+            this.animator.rotate(LowerJaw, 1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.startPhase(3);
+            this.animator.rotate(Neck, 0.8F, 0.2F, 0);
+            this.animator.rotate(Head, -0.8F, 0.4F, 0);
+            this.animator.rotate(Waist, 0.2F, 0.2F, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(2);
+            this.animator.resetPhase(8);
+        }
+    }
 }

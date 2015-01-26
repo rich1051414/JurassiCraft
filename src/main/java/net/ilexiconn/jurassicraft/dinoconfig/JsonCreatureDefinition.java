@@ -10,7 +10,7 @@ public class JsonCreatureDefinition
     public byte creatureID = currentCreatureID++;
 
     public String creatureName;
-    public ArrayList<String> livingSounds;
+    public ArrayList<String> livingSounds; //todo: can we remove these vars?
     public String hurtSound;
     public String deathSound;
 

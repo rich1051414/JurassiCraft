@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.tile.fence;
 
-import java.util.HashMap;
-
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.interfaces.IFenceBase;
 import net.ilexiconn.jurassicraft.interfaces.IFenceGrid;
@@ -19,6 +17,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class TileSecurityFence extends TileEntity implements ISidedInventory
 {
@@ -1146,7 +1146,7 @@ public class TileSecurityFence extends TileEntity implements ISidedInventory
         int blockMetadata = 0;
         switch (security)
         {
-        	/*
+            /*
             case 0:
                 fenceBase = ModBlocks.securityFenceLowBase;
                 fenceGrid = ModBlocks.securityFenceLowFence;

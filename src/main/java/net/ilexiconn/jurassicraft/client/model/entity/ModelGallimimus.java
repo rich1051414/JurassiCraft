@@ -55,7 +55,7 @@ public class ModelGallimimus extends MowzieModelBase
 
     public ModelGallimimus()
     {
-    	this.animator = new Animator(this);
+        this.animator = new Animator(this);
         textureWidth = 256;
         textureHeight = 256;
 
@@ -321,10 +321,10 @@ public class ModelGallimimus extends MowzieModelBase
         Foot_Left.offsetY += 0.15;
         Foot_Right.offsetY += 0.15;
 
-		NeckParts = new MowzieModelRenderer[] { this.Head, this.Neck_5, this.Neck_4, this.Neck_3, this.Neck_2, this.Neck_1 };
-		TailParts = new MowzieModelRenderer[] { this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2 };
-		RightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
-		LeftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
+        NeckParts = new MowzieModelRenderer[]{this.Head, this.Neck_5, this.Neck_4, this.Neck_3, this.Neck_2, this.Neck_1};
+        TailParts = new MowzieModelRenderer[]{this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2};
+        RightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        LeftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
 
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
@@ -423,8 +423,8 @@ public class ModelGallimimus extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityGallimimus galli)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-		this.resetPose();
-		/*
+        this.resetPose();
+        /*
 		f = galli.frame; 
 		f1 = 1F;
 		*/
@@ -479,15 +479,15 @@ public class ModelGallimimus extends MowzieModelBase
         walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, galli.frame, 1F);
         chainWave(RightArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
         chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
-        
+
         galli.tailBuffer.applyChainSwingBuffer(TailParts);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-    	this.animator.update(entity);
-    	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
-    	
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
+
         this.animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
         this.animator.startPhase(0);
         this.animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);

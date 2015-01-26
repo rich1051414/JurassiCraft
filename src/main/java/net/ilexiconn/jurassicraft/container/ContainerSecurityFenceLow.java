@@ -16,7 +16,7 @@ public class ContainerSecurityFenceLow extends Container
     public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowCorner tileEntity)
     {
         this.fence = tileEntity;
-        
+
         this.addSlotToContainer(new SlotFence(this.fence, 0, 128, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 1, 146, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 2, 164, 43));

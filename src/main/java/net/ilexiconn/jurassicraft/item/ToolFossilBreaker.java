@@ -32,7 +32,7 @@ public class ToolFossilBreaker extends ItemPickaxe
                 if (world.getBlock(x, y, z) instanceof BlockFossilOre)
                 {
                     /*
-					 * TileEntity tileentity = world.getTileEntity(x, y, z); if
+                     * TileEntity tileentity = world.getTileEntity(x, y, z); if
 					 * (tileentity instanceof TileEntityEncasedFossilBlock) {
 					 * TileEntityEncasedFossilBlock tileEntityfossil =
 					 * (TileEntityEncasedFossilBlock) tileentity; ItemStack

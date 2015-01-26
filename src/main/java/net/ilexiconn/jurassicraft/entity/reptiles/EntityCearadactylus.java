@@ -1,10 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlying;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
@@ -54,7 +50,7 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implem
     public int getTalkInterval()
     {
         return 350;
-	}
+    }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttag)
@@ -72,9 +68,9 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implem
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
-    	float developmentFraction = this.getGrowthStage() / 120.0F;
+        float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (3.0F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-    	if (!this.isBurning())
+        if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
         }
@@ -82,8 +78,9 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implem
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
-    	if (this.worldObj.rand.nextFloat() < 0.1F) {
+        if (this.worldObj.rand.nextFloat() < 0.1F)
+        {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
-    	}
+        }
     }
 }

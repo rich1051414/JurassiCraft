@@ -6,7 +6,7 @@ import net.minecraft.inventory.Container;
 
 public class ContainerDinoPadPregnancy extends Container
 {
-	public Entity creatureToAnalyze;
+    public Entity creatureToAnalyze;
 
     public ContainerDinoPadPregnancy(Entity creatureToAnalyze)
     {

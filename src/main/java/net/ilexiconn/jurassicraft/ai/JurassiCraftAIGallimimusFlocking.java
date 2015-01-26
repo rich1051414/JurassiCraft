@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
 {
@@ -22,9 +22,9 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
     private int numberOfGallimimus;
     private int timeTryingToMove;
 
-	/**
-	 * @author RafaMv
-	 */
+    /**
+     * @author RafaMv
+     */
     public JurassiCraftAIGallimimusFlocking(EntityJurassiCraftSmart creature, int minimumNumberOfGallimimus, double distanceToSearch, int distanceToFlock, int distanceToFlockVariation, double speed)
     {
         this.herdCreature = creature;

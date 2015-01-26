@@ -51,7 +51,7 @@ public class ModelOviraptor extends MowzieModelBase
         textureWidth = 128;
         textureHeight = 128;
 
-        
+
         Head = new MowzieModelRenderer(this, 0, 33);
         Head.addBox(0F, 0F, 0F, 5, 5, 7);
         Head.setRotationPoint(-2.5F, -3F, -9F);
@@ -268,13 +268,13 @@ public class ModelOviraptor extends MowzieModelBase
         Finger4.setTextureSize(textureWidth, textureHeight);
         Finger4.mirror = true;
         setRotation(Finger4, 0F, -0.5235988F, 0.8726646F);
-        
+
         addChildTo(Beak, Head);
         addChildTo(Crest, Head);
         addChildTo(Jaw, Head);
         addChildTo(Head, Neck);
         addChildTo(Neck, UpperBody);
-        
+
         addChildTo(FeatherArm1, forearmLeft);
         addChildTo(Finger3, forearmLeft);
         addChildTo(Finger4, forearmLeft);
@@ -285,9 +285,9 @@ public class ModelOviraptor extends MowzieModelBase
         addChildTo(forearmRight, shoulderRight);
         addChildTo(shoulderRight, LowerBody);
         addChildTo(shoulderLeft, LowerBody);
-        
+
         addChildTo(UpperBody, LowerBody);
-        
+
         addChildTo(TailFeather1, Tail4);
         addChildTo(TailFeather2, Tail4);
         addChildTo(TailFeather3, Tail4);
@@ -299,79 +299,79 @@ public class ModelOviraptor extends MowzieModelBase
         addChildTo(Tail3, Tail2);
         addChildTo(Tail2, Tail1);
         addChildTo(Tail1, LowerBody);
-        
+
         addChildTo(Foot1, Ankle1);
         addChildTo(Ankle1, Calves1);
         addChildTo(Calves1, Thigh1);
         addChildTo(Foot2, Ankle2);
         addChildTo(Ankle2, Calves2);
         addChildTo(Calves2, Thigh2);
-        
+
         //Corrections
         Crest.rotationPointZ -= 3;
         Crest.rotationPointY -= 3;
-    	Head.rotationPointZ -= 6;
-    	Head.rotationPointY -= 6;
-    	Neck.rotationPointY -= 13;
-    	Neck.rotationPointZ -= 11;
-    	UpperBody.rotationPointY -= 1;
-    	UpperBody.rotationPointZ -= 10;
-    	forearmLeft.rotationPointX -= 0.6;
-    	forearmRight.rotationPointX += 0.6;
-    	Finger1.rotateAngleZ += 0.5;
-    	Finger2.rotateAngleZ += 0.5;
-    	Finger1.rotationPointY += 0.5;
-    	Finger2.rotationPointY += 0.5;
-    	Finger3.rotateAngleZ -= 0.5;
-    	Finger4.rotateAngleZ -= 0.5;
-    	Finger3.rotationPointY += 0.5;
-    	Finger4.rotationPointY += 0.5;
-    	
-        this.parts = new MowzieModelRenderer[]{Head, Beak, Crest, Jaw, Neck, UpperBody, LowerBody, Tail1, Tail2, Tail3, Tail4, Thigh1, Thigh2, Calves1, Calves2, Foot1, Foot2, shoulderLeft, shoulderRight, forearmLeft, forearmRight, FeatherArm1, FeatherArm2, TailFeather1, TailFeather2, TailFeather3, TailFeather4, TailFeather5, TailFeather6, TailFeather7, Ankle1, Ankle2, Finger1, Finger2, Finger3, Finger4 };
-        
+        Head.rotationPointZ -= 6;
+        Head.rotationPointY -= 6;
+        Neck.rotationPointY -= 13;
+        Neck.rotationPointZ -= 11;
+        UpperBody.rotationPointY -= 1;
+        UpperBody.rotationPointZ -= 10;
+        forearmLeft.rotationPointX -= 0.6;
+        forearmRight.rotationPointX += 0.6;
+        Finger1.rotateAngleZ += 0.5;
+        Finger2.rotateAngleZ += 0.5;
+        Finger1.rotationPointY += 0.5;
+        Finger2.rotationPointY += 0.5;
+        Finger3.rotateAngleZ -= 0.5;
+        Finger4.rotateAngleZ -= 0.5;
+        Finger3.rotationPointY += 0.5;
+        Finger4.rotationPointY += 0.5;
+
+        this.parts = new MowzieModelRenderer[]{Head, Beak, Crest, Jaw, Neck, UpperBody, LowerBody, Tail1, Tail2, Tail3, Tail4, Thigh1, Thigh2, Calves1, Calves2, Foot1, Foot2, shoulderLeft, shoulderRight, forearmLeft, forearmRight, FeatherArm1, FeatherArm2, TailFeather1, TailFeather2, TailFeather3, TailFeather4, TailFeather5, TailFeather6, TailFeather7, Ankle1, Ankle2, Finger1, Finger2, Finger3, Finger4};
+
         this.setInitPose();
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityOviraptor)entity);
-//        Head.render(f5);
-//        Crest.render(f5);
-//        Beak.render(f5);
-//        Jaw.render(f5);
-//        Neck.render(f5);
-//        UpperBody.render(f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityOviraptor) entity);
+        //        Head.render(f5);
+        //        Crest.render(f5);
+        //        Beak.render(f5);
+        //        Jaw.render(f5);
+        //        Neck.render(f5);
+        //        UpperBody.render(f5);
         LowerBody.render(f5);
-//        Tail1.render(f5);
-//        Tail2.render(f5);
-//        Tail3.render(f5);
-//        Tail4.render(f5);
+        //        Tail1.render(f5);
+        //        Tail2.render(f5);
+        //        Tail3.render(f5);
+        //        Tail4.render(f5);
         Thigh1.render(f5);
         Thigh2.render(f5);
-//        Calves1.render(f5);
-//        Calves2.render(f5);
-//        Foot1.render(f5);
-//        Foot2.render(f5);
-//        shoulderLeft.render(f5);
-//        shoulderRight.render(f5);
-//        forearmLeft.render(f5);
-//        forearmRight.render(f5);
-//        FeatherArm1.render(f5);
-//        FeatherArm2.render(f5);
-//        TailFeather1.render(f5);
-//        TailFeather2.render(f5);
-//        TailFeather3.render(f5);
-//        TailFeather4.render(f5);
-//        TailFeather5.render(f5);
-//        TailFeather6.render(f5);
-//        TailFeather7.render(f5);
-//        Ankle1.render(f5);
-//        Ankle2.render(f5);
-//        Finger1.render(f5);
-//        Finger2.render(f5);
-//        Finger3.render(f5);
-//        Finger4.render(f5);
+        //        Calves1.render(f5);
+        //        Calves2.render(f5);
+        //        Foot1.render(f5);
+        //        Foot2.render(f5);
+        //        shoulderLeft.render(f5);
+        //        shoulderRight.render(f5);
+        //        forearmLeft.render(f5);
+        //        forearmRight.render(f5);
+        //        FeatherArm1.render(f5);
+        //        FeatherArm2.render(f5);
+        //        TailFeather1.render(f5);
+        //        TailFeather2.render(f5);
+        //        TailFeather3.render(f5);
+        //        TailFeather4.render(f5);
+        //        TailFeather5.render(f5);
+        //        TailFeather6.render(f5);
+        //        TailFeather7.render(f5);
+        //        Ankle1.render(f5);
+        //        Ankle2.render(f5);
+        //        Finger1.render(f5);
+        //        Finger2.render(f5);
+        //        Finger3.render(f5);
+        //        Finger4.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -384,23 +384,23 @@ public class ModelOviraptor extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityOviraptor ovi)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-       
-    	this.setToInitPose();  
-    	f = ovi.frame;
-        f1 = 0.5F;
-    	float globalSpeed = 0.5F, globalDegree = 1;
-    	this.bob(LowerBody, 1F*globalSpeed, 1F, false, f, f1);
-    	this.bob(Thigh1, 1F*globalSpeed, 1F, false, f, f1);
-    	this.bob(Thigh2, 1F*globalSpeed, 1F, false, f, f1);
-    	this.walk(Thigh1, 0.5F*globalSpeed, 0.8F*globalDegree, false, 0, 0.4F, f, f1);
-    	this.walk(Thigh2, 0.5F*globalSpeed, 0.8F*globalDegree, true, 0, 0.4F, f, f1);
-    	this.walk(Calves1, 0.5F*globalSpeed, 0.5F*globalDegree, true, 1F, 0F, f, f1);
-    	this.walk(Calves2, 0.5F*globalSpeed, 0.5F*globalDegree, false, 1F, 0F, f, f1);
-    	this.walk(Ankle1, 0.5F*globalSpeed, 0.5F*globalDegree, false, 0F, 0F, f, f1);
-    	this.walk(Ankle2, 0.5F*globalSpeed, 0.5F*globalDegree, true, 0F, 0F, f, f1);
-    	this.walk(Foot1, 0.5F*globalSpeed, 0.5F*globalDegree, true, 0F, 0F, f, f1);
-    	this.walk(Foot2, 0.5F*globalSpeed, 0.5F*globalDegree, false, 0F, 0F, f, f1);
 
-    	this.walk(Neck, 1F*globalSpeed, 0.25F*globalDegree, false, 1F, 0.4F, f, f1);
+        this.setToInitPose();
+        f = ovi.frame;
+        f1 = 0.5F;
+        float globalSpeed = 0.5F, globalDegree = 1;
+        this.bob(LowerBody, 1F * globalSpeed, 1F, false, f, f1);
+        this.bob(Thigh1, 1F * globalSpeed, 1F, false, f, f1);
+        this.bob(Thigh2, 1F * globalSpeed, 1F, false, f, f1);
+        this.walk(Thigh1, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0, 0.4F, f, f1);
+        this.walk(Thigh2, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0, 0.4F, f, f1);
+        this.walk(Calves1, 0.5F * globalSpeed, 0.5F * globalDegree, true, 1F, 0F, f, f1);
+        this.walk(Calves2, 0.5F * globalSpeed, 0.5F * globalDegree, false, 1F, 0F, f, f1);
+        this.walk(Ankle1, 0.5F * globalSpeed, 0.5F * globalDegree, false, 0F, 0F, f, f1);
+        this.walk(Ankle2, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
+        this.walk(Foot1, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
+        this.walk(Foot2, 0.5F * globalSpeed, 0.5F * globalDegree, false, 0F, 0F, f, f1);
+
+        this.walk(Neck, 1F * globalSpeed, 0.25F * globalDegree, false, 1F, 0.4F, f, f1);
     }
 }
