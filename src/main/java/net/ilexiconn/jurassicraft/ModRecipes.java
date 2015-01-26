@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft;
 
-import java.util.Map.Entry;
-
 import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.Creature;
