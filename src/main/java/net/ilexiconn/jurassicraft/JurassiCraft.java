@@ -40,81 +40,90 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.config.ConfigFactory")
 public class JurassiCraft
 {
-    @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy")
-    public static ServerProxy proxy;
-    @Mod.Instance("jurassicraft")
-    public static JurassiCraft instance;
+	@SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy")
+	public static ServerProxy proxy;
+	@Mod.Instance("jurassicraft")
+	public static JurassiCraft instance;
 
-    public static boolean isChristmas;
-    public static boolean enableDebugging;
+	public static boolean isChristmas;
+	public static boolean enableDebugging;
 
-    public static JsonEntityParser entityParser;
-    public static ContentLoader contentLoader;
-    public static SimpleNetworkWrapper network;
+	public static JsonEntityParser entityParser;
+	public static ContentLoader contentLoader;
+	public static SimpleNetworkWrapper network;
 
-    public static final String[] fTimer = new String[] {"field_71428_T", "S", "timer"};
-    
-    public Logger logger;
+	public static final String[] fTimer = new String[] {"field_71428_T", "S", "timer"};
 
-    @Mod.EventHandler
-    public void init(FMLPreInitializationEvent event)
-    {
-        logger = event.getModLog();
-        
-        entityParser = new JsonEntityParser();
-        
-        entityParser.parseServerEntities();
-        
-        contentLoader = new ContentLoader();
+	public Logger logger;
 
-        contentLoader.addContentHandler(new ModCreativeTabs());
-        contentLoader.addContentHandler(new ModEntities());
-        contentLoader.addContentHandler(new ModBlocks());
-        contentLoader.addContentHandler(new ModItems());
-        contentLoader.addContentHandler(new ModRecipes());
-        
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) contentLoader.addContentHandler(new ModRenderers());
-        contentLoader.addContentHandler(new ModTileEntities());
+	@Mod.EventHandler
+	public void init(FMLPreInitializationEvent event)
+	{
+		logger = event.getModLog();
 
-        contentLoader.init();
-        ConfigHandler.init(event.getSuggestedConfigurationFile());
+		entityParser = new JsonEntityParser();
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		entityParser.parseServerEntities();
 
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
-        network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
-        network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
+		contentLoader = new ContentLoader();
 
-        GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
-        GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
-        GameRegistry.registerWorldGenerator(new WorldGenGypsum(), 1);
+		contentLoader.addContentHandler(new ModCreativeTabs());
+		contentLoader.addContentHandler(new ModEntities());
+		contentLoader.addContentHandler(new ModBlocks());
+		contentLoader.addContentHandler(new ModItems());
+		contentLoader.addContentHandler(new ModRecipes());
 
-        EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) 
+		{
+			contentLoader.addContentHandler(new ModRenderers());
+		}
+		
+		contentLoader.addContentHandler(new ModTileEntities());
 
-        Calendar calendar = Calendar.getInstance();
+		contentLoader.init();
+		ConfigHandler.init(event.getSuggestedConfigurationFile());
 
-        isChristmas = (calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27);
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        if (isChristmas)
-            EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.beach, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.frozenRiver, BiomeGenBase.jungle, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.extremeHills, BiomeGenBase.iceMountains, BiomeGenBase.icePlains, BiomeGenBase.mesa, BiomeGenBase.birchForest, BiomeGenBase.coldBeach, BiomeGenBase.savanna, BiomeGenBase.desert);
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
+		network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
+		network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
 
-        MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
-        MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
+		GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
+		GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
+		GameRegistry.registerWorldGenerator(new WorldGenGypsum(), 1);
 
-        proxy.init();
-    }
+		EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
 
-    @Mod.EventHandler
-    public void serverStart(FMLServerStartingEvent event)
-    {
-        MinecraftServer server = MinecraftServer.getServer();
-        ICommandManager command = server.getCommandManager();
-        ServerCommandManager manager = (ServerCommandManager) command;
-        manager.registerCommand(new CommandSpawnDino());
-    }
+		Calendar calendar = Calendar.getInstance();
 
-    public static String getModId()
-    {
-        return "jurassicraft:";
-    }
+		isChristmas = (calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27);
+
+		if (isChristmas)
+		{
+			EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.beach, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.frozenRiver, BiomeGenBase.jungle, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.extremeHills, BiomeGenBase.iceMountains, BiomeGenBase.icePlains, BiomeGenBase.mesa, BiomeGenBase.birchForest, BiomeGenBase.coldBeach, BiomeGenBase.savanna, BiomeGenBase.desert);
+		}
+		
+		MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
+		MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
+
+		proxy.init();
+	}
+
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event)
+	{
+		MinecraftServer server = MinecraftServer.getServer();
+		
+		ICommandManager command = server.getCommandManager();
+		
+		ServerCommandManager manager = (ServerCommandManager) command;
+		
+		manager.registerCommand(new CommandSpawnDino());
+	}
+
+	public static String getModId()
+	{
+		return "jurassicraft:";
+	}
 }

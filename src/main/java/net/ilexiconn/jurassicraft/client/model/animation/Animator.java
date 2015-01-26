@@ -99,7 +99,9 @@ public class Animator
 	private void endPhase(boolean stationary)
 	{
 		if(!currentAnimation) return;
+		
 		int animationTick = animatedEntity.getAnimationTick();
+		
 		if(animationTick >= prevTempTick && animationTick < tempTick)
 		{
 			if(stationary)
@@ -119,6 +121,7 @@ public class Animator
 			{
 				float tick = (animationTick - prevTempTick + JurassiCraft.proxy.getPartialTick()) / (tempTick - prevTempTick);
 				float inc = MathHelper.sin(tick * PI / 2f), dec = 1f - inc;
+				
 				for(ModelRenderer box : prevTransformMap.keySet())
 				{
 					Transform transform = prevTransformMap.get(box);
@@ -129,6 +132,7 @@ public class Animator
 					box.rotationPointY += dec * transform.offsetY;
 					box.rotationPointZ += dec * transform.offsetZ;
 				}
+				
 				for(ModelRenderer box : transformMap.keySet())
 				{
 					Transform transform = transformMap.get(box);
@@ -141,6 +145,7 @@ public class Animator
 				}
 			}
 		}
+		
 		if(!stationary)
 		{
 			prevTransformMap.clear();

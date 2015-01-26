@@ -18,44 +18,56 @@ public class ModCreativeTabs implements IContentHandler
     
     public void init()
     {
-		this.items = new CreativeTabs("jurassicraft.items") {
+		this.items = new CreativeTabs("jurassicraft.items")
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem() 
+			{
 				return ModItems.amber;
 			}
 		};
 
-		this.blocks = new CreativeTabs("jurassicraft.blocks") {
+		this.blocks = new CreativeTabs("jurassicraft.blocks") 
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem() 
+			{
 				return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
 			}
 		};
 
-		this.dnas = new CreativeTabs("jurassicraft.dnas") {
+		this.dnas = new CreativeTabs("jurassicraft.dnas")
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem() 
+			{
 				return CreatureManager.getCreatureFromName("Tyrannosaurus").getDNA();
 			}
 		};
 
-		this.syringesEggs = new CreativeTabs("jurassicraft.syringesEggs") {
+		this.syringesEggs = new CreativeTabs("jurassicraft.syringesEggs") 
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem()
+			{
 				return CreatureManager.getCreatureFromName("Tyrannosaurus").getEgg();
 			}
 		};
 
-		this.spawnEggs = new CreativeTabs("jurassicraft.spawnEggs") {
+		this.spawnEggs = new CreativeTabs("jurassicraft.spawnEggs")
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem() 
+			{
 				return ModItems.spawnEgg;
 			}
 		};
 
-		this.itemsFood = new CreativeTabs("jurassicraft.itemsFood") {
+		this.itemsFood = new CreativeTabs("jurassicraft.itemsFood")
+		{
 			@SideOnly(Side.CLIENT)
-			public Item getTabIconItem() {
+			public Item getTabIconItem() 
+			{
 				return CreatureManager.getCreatureFromName("Tyrannosaurus").getMeat();
 			}
 		};

@@ -46,7 +46,6 @@ public class ModItems implements IContentHandler
 
 		for (Creature creature : CreatureManager.getCreatures()) 
 		{
-			//TODO clean this up :P
 			switch (creature.getAddedItemTypes()) 
 			{
 			case 0:

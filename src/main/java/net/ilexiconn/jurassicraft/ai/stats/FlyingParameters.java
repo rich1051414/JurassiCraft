@@ -15,7 +15,8 @@ public class FlyingParameters
 	public int flapRate;
 	public Material[] landingMaterial;
 
-	public FlyingParameters(int heightMin, int heightMax, float speedMod, int rateY, int rateXZ, int rateSpeed, int flightTimeMin, int flightTimeMax, int flapRate, String landingMaterial) {
+	public FlyingParameters(int heightMin, int heightMax, float speedMod, int rateY, int rateXZ, int rateSpeed, int flightTimeMin, int flightTimeMax, int flapRate, String landingMaterial)
+	{
 		flyHeightMin = heightMin;
 		flyHeightMax = heightMax;
 		flySpeedModifier = speedMod;
