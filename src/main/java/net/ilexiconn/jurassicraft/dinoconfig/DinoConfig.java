@@ -4,7 +4,6 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import net.ilexiconn.jurassicraft.entity.JsonEntityParser;
 
-import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Collection;
 
@@ -12,8 +11,6 @@ public class DinoConfig
 {
     public static void loadDinoConfig(JsonEntityParser parser)
     {
-        File file = new File("json");
-
         try
         {
             parser.dinos = new Gson().fromJson(new InputStreamReader(DinoConfig.class.getResourceAsStream("/json/dinos.json")), new TypeToken<Collection<JsonCreatureDefinition>>()
