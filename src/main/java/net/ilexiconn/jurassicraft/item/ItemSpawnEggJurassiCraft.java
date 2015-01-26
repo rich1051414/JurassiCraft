@@ -195,7 +195,7 @@ public class ItemSpawnEggJurassiCraft extends Item
 
 	public static EntityJurassiCraftCreature spawnCreature(World world, EntityPlayer player, ItemStack egg, double x, double y, double z)
 	{
-		Class creatureClass = CreatureManager.getCreatureClass(egg.getItemDamage());
+		Class creatureClass = CreatureManager.getCreatureFromId(egg.getItemDamage()).getCreatureClass();
 
 		try 
 		{

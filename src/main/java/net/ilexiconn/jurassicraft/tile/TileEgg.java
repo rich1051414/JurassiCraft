@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.tile;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,104 +14,115 @@ import java.lang.reflect.InvocationTargetException;
 
 public class TileEgg extends TileEntity
 {
-    private String dinoName;
-    private int hatchTime;
-    private int totalHatchTime;
+	private int dinoID;
+	private int hatchTime;
+	private int totalHatchTime;
 
-    public TileEgg(String dinoName)
-    {
-        setDinoName(dinoName);
-        setHatchTime(0);
-        totalHatchTime = 1024;
-    }
+	private Creature creature;
 
-    public void setDinoName(String dinoName)
-    {
-        this.dinoName = dinoName;
-    }
+	public TileEgg(int dinoID)
+	{
+		setDinoID(dinoID);
+		setHatchTime(0);
+		totalHatchTime = 1024;
+	}
 
-    public String getDinoName()
-    {
-        return dinoName;
-    }
+	public void setDinoID(int dinoID)
+	{
+		if(this.dinoID != dinoID)
+		{
+			creature = CreatureManager.getCreatureFromId(dinoID);
+		}
+		this.dinoID = dinoID;
+	}
 
-    public void setHatchTime(int hatchTime)
-    {
-        this.hatchTime = hatchTime;
-    }
+	public int getDinoID()
+	{
+		return dinoID;
+	}
 
-    public int getHatchTime()
-    {
-        return hatchTime;
-    }
+	public void setHatchTime(int hatchTime)
+	{
+		this.hatchTime = hatchTime;
+	}
 
-    public Packet getDescriptionPacket()
-    {
-        NBTTagCompound tag = new NBTTagCompound();
-        writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
-    }
+	public int getHatchTime()
+	{
+		return hatchTime;
+	}
 
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
-    {
-        readFromNBT(packet.func_148857_g());
-    }
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+	}
 
-    public void writeToNBT(NBTTagCompound tag)
-    {
-        super.writeToNBT(tag);
-        tag.setString("name", dinoName);
-        tag.setInteger("hatchTime", hatchTime);
-    }
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		readFromNBT(packet.func_148857_g());
+	}
 
-    public void readFromNBT(NBTTagCompound tag)
-    {
-        super.readFromNBT(tag);
-        dinoName = tag.getString("name");
-        hatchTime = tag.getInteger("hatchTime");
-    }
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		super.writeToNBT(tag);
+		tag.setInteger("id", dinoID);
+		tag.setInteger("hatchTime", hatchTime);
+	}
 
-    public void updateEntity()
-    {
-        hatchTime++;
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		super.readFromNBT(tag);
+		setDinoID(tag.getInteger("id"));
+		hatchTime = tag.getInteger("hatchTime");
+	}
 
-        if (!worldObj.isRemote)
-        {
-            if (hatchTime >= totalHatchTime)
-            {
-                Class dinoToSpawnClass = CreatureManager.getCreatureClass(dinoName);
-                try
-                {
-                    Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(worldObj);
-                    dinoToSpawn.setPosition(xCoord, yCoord, zCoord);
-                    worldObj.spawnEntityInWorld(dinoToSpawn);
-                    worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-                }
-                catch (InstantiationException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (IllegalAccessException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (IllegalArgumentException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (InvocationTargetException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (NoSuchMethodException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (SecurityException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+	public void updateEntity()
+	{
+		hatchTime++;
+
+		if (!worldObj.isRemote)
+		{
+			if (hatchTime >= totalHatchTime)
+			{
+				Class dinoToSpawnClass = creature.getCreatureClass();
+				try
+				{
+					Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(worldObj);
+					dinoToSpawn.setPosition(xCoord, yCoord, zCoord);
+					worldObj.spawnEntityInWorld(dinoToSpawn);
+					worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+				}
+				catch (InstantiationException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IllegalArgumentException e)
+				{
+					e.printStackTrace();
+				}
+				catch (InvocationTargetException e)
+				{
+					e.printStackTrace();
+				}
+				catch (NoSuchMethodException e)
+				{
+					e.printStackTrace();
+				}
+				catch (SecurityException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public Creature getCreature()
+	{
+		return creature;
+	}
 }

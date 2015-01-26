@@ -22,7 +22,7 @@ public class TileEggRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) x + 0.5f, (float) y + translation, (float) z + 0.5f);
         GL11.glScalef(scale, scale, scale);
 
-        texture = new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + egg.getDinoName() + ".png");
+        texture = new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + egg.getCreature().getCreatureName() + ".png");
         bindTexture(texture);
         GL11.glRotatef(180f, 0f, 0f, 1f);
         model.render();

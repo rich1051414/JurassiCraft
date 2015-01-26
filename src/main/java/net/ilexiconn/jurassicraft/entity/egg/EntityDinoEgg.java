@@ -270,7 +270,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
                 if (this.currentSpawnTime >= this.spawnTime)
                 {
-                    Class dinoToSpawnClass = CreatureManager.getCreatureClass(this.creature.getCreatureID());
+                    Class dinoToSpawnClass = this.creature.getCreatureClass();
 
                     try
                     {

@@ -43,18 +43,6 @@ public class CreatureManager
         return null;
     }
 
-    public static int getCreatureIdFromName(String name)
-    {
-    	Creature creatureFromName = getCreatureFromName(name);
-	
-    	if(creatureFromName != null)
-    	{
-    		return creatureFromName.getCreatureID();
-    	}
-
-        return -1;
-    }
-
     public static Creature classToCreature(Class clazz)
     {
     	for (Creature creature : creatures) 
@@ -99,32 +87,6 @@ public class CreatureManager
         return null;
     }
 
-    public static Class getCreatureClass(String name)
-    {
-        for (Creature creature : creatures)
-        {
-            if (creature.getCreatureName().equalsIgnoreCase(name))
-            {
-                return creature.getCreatureClass();
-            }
-        }
-
-        return null;
-    }
-
-    public static Class getCreatureClass(int id)
-    {
-        for (Creature ccreature : creatures)
-        {
-            if (ccreature.getCreatureID() == id)
-            {
-                return ccreature.getCreatureClass();
-            }
-        }
-
-        return null;
-    }
-
     public static void addCreature(JsonCreatureDefinition creature, String category)
     {
         try
@@ -148,7 +110,7 @@ public class CreatureManager
     {
         try
         {
-            RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.entity.render." + category + ".Render" + dino.creatureName).getDeclaredConstructor(Creature.class).newInstance(getCreatureFromName(dino.creatureName));
+            RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.entity.render." + category + ".Render" + dino.creatureName).getDeclaredConstructor(Creature.class).newInstance(getCreatureFromId(dino.creatureID));
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + dino.creatureName);
             JurassiCraft.proxy.renderEntity(entity, renderer);
         }

@@ -4,6 +4,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.client.entity.render.RenderDinoEgg;
 import net.ilexiconn.jurassicraft.client.render.item.ItemCultivateRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNACombinatorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;
@@ -14,7 +15,6 @@ import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowG
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowPoleRenderer;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
-import net.ilexiconn.jurassicraft.entity.render.RenderDinoEgg;
 import net.ilexiconn.jurassicraft.tile.*;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;

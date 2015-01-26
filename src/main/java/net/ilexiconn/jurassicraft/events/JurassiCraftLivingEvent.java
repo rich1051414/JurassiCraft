@@ -134,7 +134,7 @@ public class JurassiCraftLivingEvent
 
     public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event)
     {
-		Class mammalToSpawnClass = CreatureManager.getCreatureClass(mammalName);
+		Class mammalToSpawnClass = CreatureManager.getCreatureFromName(mammalName).getCreatureClass();
 		
 		if(mammalToSpawnClass != null)
 		{

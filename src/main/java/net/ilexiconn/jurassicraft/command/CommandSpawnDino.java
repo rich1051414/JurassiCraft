@@ -66,7 +66,7 @@ public class CommandSpawnDino extends CommandBase
 
     public void spawnCreature(World world, int x, int y, int z, String name, boolean adult)
     {
-        Class creatureClass = CreatureManager.getCreatureClass(name);
+        Class creatureClass = CreatureManager.getCreatureFromName(name).getCreatureClass();
         try
         {
             Entity creatureToSpawn = (Entity) creatureClass.getConstructor(World.class).newInstance(world);
