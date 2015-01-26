@@ -64,7 +64,6 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(3, new AnimationAIWalkRoar(this, 75));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
-        this.tasks.addTask(1, new AnimationAITyrannosaurusEatingGallimimus(this));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
@@ -101,7 +100,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 				((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
 				double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
 				double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
-				double extraY = this.getCreatureHeight() * 0.5;
+				double extraY = this.getCreatureHeight() * 0.425;
         		this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
         	}
         	else
