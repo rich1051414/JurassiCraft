@@ -113,7 +113,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(4-8*x)). It
+	 * of the animation (limitTime). It reaches 1.0F using 1/(1 + e^(4-8*x)). It
 	 * is quite uniform but slow, and needs if statements.
 	 */
     @SideOnly(Side.CLIENT)
@@ -135,7 +135,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using 1/(1 + e^(6-12*x)). It
+	 * of the animation (limitTime). It reaches 1.0F using 1/(1 + e^(6-12*x)). It
 	 * is quite uniform, but fast.
 	 */
     @SideOnly(Side.CLIENT)
@@ -146,7 +146,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using a sine function. It is
+	 * of the animation (limitTime). It reaches 1.0F using a sine function. It is
 	 * fast in the beginning and slow in the end.
 	 */
     @SideOnly(Side.CLIENT)
@@ -157,7 +157,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using a sine function
+	 * of the animation (limitTime). It reaches 1.0F using a sine function
 	 * squared. It is very smooth.
 	 */
     @SideOnly(Side.CLIENT)
@@ -169,7 +169,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using a sine function to the
+	 * of the animation (limitTime). It reaches 1.0F using a sine function to the
 	 * power of ten. It is slow in the beginning and fast in the end.
 	 */
     @SideOnly(Side.CLIENT)
@@ -180,7 +180,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using a sine function to a
+	 * of the animation (limitTime). It reaches 1.0F using a sine function to a
 	 * specific power "i."
 	 * 
 	 * @param i is the power of the sine function.
@@ -193,7 +193,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
+	 * of the animation (limitTime). It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
 	 * It is smooth.
 	 */
     @SideOnly(Side.CLIENT)
@@ -206,7 +206,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
+	 * of the animation (limitTime). It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
 	 * It is steep.
 	 */
     @SideOnly(Side.CLIENT)
@@ -219,7 +219,7 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using x^n / (x^n + (1-x)^n).
+	 * of the animation (limitTime). It reaches 1.0F using x^n / (x^n + (1-x)^n).
 	 * It is steeper when n increases.
 	 * 
 	 * @param n is the power of the polynomial function.
@@ -234,12 +234,48 @@ public class ControlledAnimation
 
 	/**
 	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
-	 * of the animation (limitTime).It reaches 1.0F using 0.5 + arctan(PI * (x -
+	 * of the animation (limitTime). It reaches 1.0F using 0.5 + arctan(PI * (x -
 	 * 0.5)) / 2.00776964. It is super smooth.
 	 */
     @SideOnly(Side.CLIENT)
 	public float getAnimationProgressArcTan()
 	{
 		return (float) (0.5F + 0.49806510671F * Math.atan(3.14159265359D * ((double) (this.timer / this.limitTime) - 0.5D)));
+	}
+    
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation
+	 * (limitTime). This value starts at 1.0F and ends at 1.0F. 
+	 * The equation used is 0.5 - 0.5 * cos(2 * PI * x + sin(2 * PI * x)). It is smooth.
+	 */
+	@SideOnly(Side.CLIENT)
+	public float getAnimationProgressTemporary()
+	{
+		float x = 6.28318530718F * (float) (this.timer / this.limitTime);
+		return 0.5F - 0.5F * MathHelper.cos(x + MathHelper.sin(x));
+	}
+
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration
+	 * of the animation (limitTime). This value starts at 0.0F and ends at 0.0F. 
+	 * The equation used is sin(x * PI + sin(x * PI)). It is fast in the beginning and slow in the end.
+	 */
+	@SideOnly(Side.CLIENT)
+	public float getAnimationProgressTemporaryFS()
+	{
+		float x = 3.14159265359F * (float) (this.timer / this.limitTime);
+		return MathHelper.sin(x + MathHelper.sin(x));
+	}
+
+	/**
+	 * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation
+	 * (limitTime). This value starts at 1.0F and ends at 1.0F. 
+	 * The equation used is 0.5 + 0.5 * cos(2 PI * x + sin(2 * PI * x)). It is smooth.
+	 */
+    @SideOnly(Side.CLIENT)
+	public float getAnimationProgressTemporaryInvesed()
+    {
+		float x = 6.28318530718F * (float) (this.timer / this.limitTime);
+		return 0.5F + 0.5F * MathHelper.cos(x + MathHelper.sin(x));
 	}
 }

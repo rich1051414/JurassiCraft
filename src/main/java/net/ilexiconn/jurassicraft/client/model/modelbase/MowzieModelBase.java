@@ -1,9 +1,7 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -94,6 +92,49 @@ public class MowzieModelBase extends ModelBase
 	{
 		box.rotateAngleY += (f3 / (180f / (float) Math.PI)) / f;
 		box.rotateAngleX += (f4 / (180f / (float) Math.PI)) / f;
+	}
+
+	/**
+	 * Returns a float that can be used to rotate boxes. 
+	 * 
+	 * Note: Just keep f and f1 from the setRotationAngles() method.
+	 * 
+	 * @param box is the ModelRenderer to be animated;
+	 * @param speed is how fast the animation runs;
+	 * @param degree is how far the box will rotate;
+	 * @param invert will invert the rotation;
+	 * @param offset will offset the timing of the animation;
+	 * @param weight will make the animation favor one direction 
+	 * more based on how fast the mob is moving;
+	 * @param f is the walked distance;
+	 * @param f1 is the walk speed.
+	 */
+	public float rotateBox(float speed, float degree, boolean invert, float offset, float weight, float f, float f1)
+	{
+		if (invert)
+			return -MathHelper.cos(f * speed + offset) * degree * f1 + weight * f1;
+		else
+			return MathHelper.cos(f * speed + offset) * degree * f1 + weight * f1;
+	}
+	
+	/**
+	 * Returns a float that can be used to move boxes.
+	 * 
+	 * Note: Just keep f and f1 from the setRotationAngles() method.
+	 * 
+	 * @param box is the ModelRenderer to be animated;
+	 * @param speed is how fast the animation runs;
+	 * @param degree is how far the box will move;
+	 * @param bounce will make the box bounce;
+	 * @param f is the walked distance;
+	 * @param f1 is the walk speed.
+	 */
+	public float moveBox(float speed, float degree, boolean bounce, float f, float f1)
+	{
+		if (bounce)
+			return -MathHelper.abs((MathHelper.sin(f * speed) * f1 * degree));
+		else
+			return MathHelper.sin(f * speed) * f1 * degree - f1 * degree;
 	}
 
 	/**

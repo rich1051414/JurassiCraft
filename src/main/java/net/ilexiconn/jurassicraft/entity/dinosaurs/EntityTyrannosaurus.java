@@ -62,7 +62,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
         this.tasks.addTask(3, new AnimationAIWalkRoar(this, 75));
-        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 10, 125, 300));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 800, 125, 400));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -147,8 +147,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         super.onUpdate();
         this.roarCount.update();
         this.roarTiltDegree.update();
-        
-        //Step Sound
+
+        /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
             this.playSound("jurassicraft:footstep", 5.0F, this.getSoundPitch());
@@ -161,11 +161,11 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         	this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
         
         this.stepCount -= this.moveForward * 9.5;
-        
-        //Breathing Sound MISSING SOUND
+
+        /** Breathing Sound MISSING SOUND */
         if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
 
-        //Sitting Animation
+        /** Sitting Animation */
 		if (this.isSitting()) 
 		{
 			this.sittingProgress.increaseTimer();

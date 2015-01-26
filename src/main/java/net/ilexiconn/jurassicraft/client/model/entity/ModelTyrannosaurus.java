@@ -267,37 +267,40 @@ public class ModelTyrannosaurus extends MowzieModelBase
 		f1 = 0.5F;
 		*/
 		
-		if(!trex.isSitting()) {
-		//Walking-dependent animation
-		float globalSpeed = 0.45F;
-		float globalDegree = 0.4F;
-		float height = 1.0F;
-		
-		this.faceTarget(Head, 2, f3, f4);
-		this.faceTarget(Neck, 2, f3, f4);
-		
-		this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
-		this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
-		this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
-		this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-		this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-		this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
-		this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
+		if (!trex.isSitting())
+		{
+			//Walking-dependent animation
+			float globalSpeed = 0.45F;
+			float globalDegree = 0.4F;
+			float height = 1.0F;
 
-		this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
-		this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-		this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-		this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+			this.faceTarget(this.Body, 6.0F, f3, f4);
+			this.faceTarget(this.Chest, 6.0F, f3, f4);
+			this.faceTarget(this.Head, 3.0F, f3, f4);
+			this.faceTarget(this.Neck, 3.0F, f3, f4);
 
-		this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
-		this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-		this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-		this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+			this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
+			this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
+			this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
+			this.LeftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+			this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+			this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
+			this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
 
-		this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
-		this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
-		this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-		this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+			this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+			this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+			this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+			this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
+
+			this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+			this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+			this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+			this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
+
+			this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+			this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
+			this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+			this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
 		}
 		
 		//Sitting Pose

@@ -5,10 +5,11 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
@@ -31,22 +32,26 @@ import net.minecraft.world.World;
 
 public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
+	public ControlledAnimation sittingProgress = new ControlledAnimation(40);
+	public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
 	public ChainBuffer tailBuffer = new ChainBuffer(5);
+	private boolean restingHead = false;
+	private int restHeadSwitchTimer = 300;
 
     public EntityCarnotaurus(World world)
     {
         super(world, CreatureManager.classToCreature(EntityCarnotaurus.class));
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
-        this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
-        this.tasks.addTask(4, new JurassiCraftAISit(this));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 800, 125, 400));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
-        this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
-        this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20, true, JurassiCraftAnimationIDs.BITE.animID()));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.tasks.addTask(7, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
+        this.tasks.addTask(7, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
@@ -70,6 +75,36 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
+
+		/** Sitting Animation */
+		if (this.isSitting())
+		{
+			this.sittingProgress.increaseTimer();
+			if (!this.restingHead && getRNG().nextInt(100) == 0 && this.restHeadSwitchTimer == 0)
+			{
+				this.restingHead = true;
+				this.restHeadSwitchTimer = 300;
+			}
+			if (this.restingHead && getRNG().nextInt(100) == 0 && this.restHeadSwitchTimer == 0)
+			{
+				this.restingHead = false;
+				this.restHeadSwitchTimer = 300;
+			}
+			if (this.restHeadSwitchTimer > 0)
+				this.restHeadSwitchTimer--;
+		}
+		else
+		{
+			this.sittingProgress.decreaseTimer();
+			this.restingHead = false;
+			this.restHeadSwitchTimer = 300;
+		}
+
+		if (this.restingHead)
+			this.restHeadProgress.increaseTimer();
+
+		if (!this.restingHead)
+			this.restHeadProgress.decreaseTimer();
     }
     
     @Override
