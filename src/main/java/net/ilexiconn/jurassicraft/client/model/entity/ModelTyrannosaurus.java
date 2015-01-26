@@ -386,7 +386,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
     	this.animator.update(entity);
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
 
-        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.ROAR.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
             this.animator.startPhase(15);
@@ -427,7 +427,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.animator.resetPhase(15);
         }
 
-        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.WALK_ROAR.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.WALK_ROAR.animID());
             this.animator.startPhase(15);
@@ -443,7 +443,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.animator.resetPhase(15);
         }
 
-		if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+		if (entity.getAnimationId() == JurassiCraftAnimationIDs.EATING.animID())
 		{
 			this.animator.setAnimation(JurassiCraftAnimationIDs.EATING.animID());
 			this.animator.startPhase(0);
