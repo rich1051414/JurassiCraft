@@ -14,7 +14,7 @@ public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements 
 {
     public EntityAnkylosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityAnkylosaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));

@@ -33,10 +33,10 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public int frame;
     public int expParameter;
 
-    public EntityJurassiCraftCreature(World world, Creature creature)
+    public EntityJurassiCraftCreature(World world)
     {
         super(world);
-        this.setCreature(creature);
+        this.setCreature(CreatureManager.classToCreature(getClass()));
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
             this.setRandomGenetics();

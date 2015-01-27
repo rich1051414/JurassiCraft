@@ -19,9 +19,10 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
-    public EntityHerrerasaurus(World par1World)
+    public EntityHerrerasaurus(World world)
     {
-        super(par1World, CreatureManager.classToCreature(EntityHerrerasaurus.class));
+        super(world);
+        
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
@@ -46,6 +47,7 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 30, 0.6F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 20, 0.2F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 60, 0.5F));
+    
         this.setCreatureExperiencePoints(1600);
     }
 
@@ -59,6 +61,7 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
     public void onUpdate()
     {
         super.onUpdate();
+        
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 3.0F, this);
     }
 
@@ -67,6 +70,7 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
     {
         float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (2.5F * developmentFraction) + this.rand.nextInt(1 + (int) (2.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+     
         if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
@@ -75,6 +79,7 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
         {
             this.dropItem(this.getCreature().getSteak(), count);
         }
+        
         if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));

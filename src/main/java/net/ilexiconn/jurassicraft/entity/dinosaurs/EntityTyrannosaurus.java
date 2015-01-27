@@ -38,7 +38,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 
     public EntityTyrannosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityTyrannosaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(0, new AnimationAITyrannosaurusEatingGallimimus(this));

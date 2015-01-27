@@ -15,10 +15,9 @@ import net.minecraft.world.World;
 
 public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
 {
-
-    public EntityJurassiCraftAggressive(World world, Creature creature)
+    public EntityJurassiCraftAggressive(World world)
     {
-        super(world, creature);
+        super(world);
         this.tasks.addTask(2, new AnimationAIBite(this, this.getBiteAnimationDuration()));
     }
 
@@ -35,11 +34,13 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
             if (entity != (Entity) null && entity instanceof EntityLivingBase)
             {
                 EntityLivingBase attacker = (EntityLivingBase) entity;
+              
                 if (this.checkTargetBeforeAttacking(attacker))
                 {
                     this.setCreatureAngry(this, attacker);
                 }
             }
+            
             return super.attackEntityFrom(damageSource, damage);
         }
     }

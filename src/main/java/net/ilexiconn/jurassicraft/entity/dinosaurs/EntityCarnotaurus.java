@@ -28,7 +28,7 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
 
     public EntityCarnotaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityCarnotaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));

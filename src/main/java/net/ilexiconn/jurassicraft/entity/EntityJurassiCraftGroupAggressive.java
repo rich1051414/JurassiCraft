@@ -9,9 +9,9 @@ import java.util.List;
 public class EntityJurassiCraftGroupAggressive extends EntityJurassiCraftAggressive
 {
 
-    public EntityJurassiCraftGroupAggressive(World world, Creature creature)
+    public EntityJurassiCraftGroupAggressive(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     @Override

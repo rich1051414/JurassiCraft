@@ -15,7 +15,7 @@ public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements ID
 {
     public EntityLeaellynasaura(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityLeaellynasaura.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));

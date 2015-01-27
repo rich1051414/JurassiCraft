@@ -17,7 +17,7 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
 
     public EntityCoelacanth(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityCoelacanth.class));
+        super(world);
         this.swimRadius = 8.0F;
         this.swimRadiusHeight = 4.0F;
         this.swimSpeed = 0.4F;

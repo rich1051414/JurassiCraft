@@ -17,10 +17,9 @@ import net.minecraft.world.World;
 
 public class EntityTitanis extends EntityJurassiCraftGroupAggressive implements IBird, ICarnivore
 {
-
-    public EntityTitanis(World par1World)
+    public EntityTitanis(World world)
     {
-        super(par1World, CreatureManager.classToCreature(EntityTitanis.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));

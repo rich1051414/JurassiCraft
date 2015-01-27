@@ -15,9 +15,9 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
     private int flapDelay;
     public float adjustYaw = 0;
 
-    public EntityJurassiCraftRidableFlying(World world, Creature creature)
+    public EntityJurassiCraftRidableFlying(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     @Override

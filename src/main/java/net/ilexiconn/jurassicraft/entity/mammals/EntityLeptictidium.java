@@ -18,7 +18,7 @@ public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMam
 
     public EntityLeptictidium(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityLeptictidium.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));

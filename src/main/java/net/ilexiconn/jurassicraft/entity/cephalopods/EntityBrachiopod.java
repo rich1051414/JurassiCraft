@@ -15,7 +15,7 @@ public class EntityBrachiopod extends EntityWaterCreature
 
     public EntityBrachiopod(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityBrachiopod.class));
+        super(world);
     }
 
     protected void applyEntityAttributes()

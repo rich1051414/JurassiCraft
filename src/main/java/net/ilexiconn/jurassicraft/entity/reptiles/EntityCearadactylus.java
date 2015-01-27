@@ -16,10 +16,10 @@ import net.minecraft.world.World;
 
 public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implements IReptile, IPiscivore
 {
-
     public EntityCearadactylus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityCearadactylus.class), "grassandleaves");
+        super(world, "grassandleaves");
+        
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new JurassiCraftAIFlying(this));
         this.tasks.addTask(1, new EntityAISwimming(this));

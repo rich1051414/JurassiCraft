@@ -6,9 +6,9 @@ import net.minecraft.world.World;
 
 public class EntityWaterCreature extends EntityJurassiCraftSmart
 {
-    public EntityWaterCreature(World world, Creature creature)
+    public EntityWaterCreature(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     public boolean canBreatheUnderwater()

@@ -20,7 +20,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
 
     public EntityGallimimus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityGallimimus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 150));

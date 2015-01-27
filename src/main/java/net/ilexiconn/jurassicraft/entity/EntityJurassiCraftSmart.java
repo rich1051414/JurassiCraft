@@ -37,9 +37,9 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     protected int numberOfAllies;
     public EntityLivingBase creatureToAttack;
 
-    public EntityJurassiCraftSmart(World world, Creature creature)
+    public EntityJurassiCraftSmart(World world)
     {
-        super(world, creature);
+        super(world);
         this.numberOfAllies = 0;
         JCPathNavigate nav = new JCPathNavigate(this, world);
         ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6);

@@ -22,7 +22,7 @@ public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, IC
 
     public EntityTylosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityTylosaurus.class));
+        super(world);
 
         this.swimSpeed = 2.2F;
         huntingInterval = 600;

@@ -6,11 +6,9 @@ import net.minecraft.world.World;
 
 public class EntityAmmonite extends NewEntitySwimming
 {
-    Class class1 = this.getClass();
-
     public EntityAmmonite(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityAmmonite.class));
+        super(world);
         this.swimRadius = 16.0F;
         this.swimRadiusHeight = 10.0F;
         this.swimSpeed = 0.6F;

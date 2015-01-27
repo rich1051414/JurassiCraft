@@ -31,9 +31,9 @@ public abstract class EntitySwimming extends EntityJurassiCraftRidable
     protected float swimSpeed = 0.5F;
     protected boolean jumpOnLand = true;
 
-    public EntitySwimming(World world, Creature creature)
+    public EntitySwimming(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     @Override

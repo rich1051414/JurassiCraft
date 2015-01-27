@@ -18,7 +18,7 @@ public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements
 
     public EntityBrachiosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityBrachiosaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
 
         this.tasks.addTask(10, new JurassiCraftAIEatLeaves(this, getCreatureSpeed()));

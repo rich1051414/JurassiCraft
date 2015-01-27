@@ -17,7 +17,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
 {
     public EntityDilophosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityDilophosaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));

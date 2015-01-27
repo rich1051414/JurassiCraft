@@ -9,9 +9,9 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
     public FlyingParameters flyingParameters;
     private String landingMaterial;
 
-    public EntityJurassiCraftFlyingAggressive(World world, Creature creature, String landingMaterial)
+    public EntityJurassiCraftFlyingAggressive(World world, String landingMaterial)
     {
-        super(world, creature);
+        super(world);
         this.setLandingMaterial(landingMaterial);
         this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
         this.setFlying(false);

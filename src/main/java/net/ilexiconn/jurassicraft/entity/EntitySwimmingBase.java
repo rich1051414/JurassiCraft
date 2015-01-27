@@ -18,7 +18,6 @@ import java.util.Random;
 
 public class EntitySwimmingBase extends EntityJurassiCraftRidable
 {
-
     private Vec3 currentSwimTarget;
     protected float swimSpeed = 1;
     Entity hungryTarget;
@@ -28,9 +27,9 @@ public class EntitySwimmingBase extends EntityJurassiCraftRidable
     private int newTarget = 500;
     public Vec3 territory;
 
-    public EntitySwimmingBase(World par1World, Creature creature)
+    public EntitySwimmingBase(World world)
     {
-        super(par1World, creature);
+        super(world);
     }
 
 

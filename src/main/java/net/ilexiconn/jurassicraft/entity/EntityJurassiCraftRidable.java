@@ -13,9 +13,9 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
 {
     private float mountingSpeed;
 
-    public EntityJurassiCraftRidable(World world, Creature creature)
+    public EntityJurassiCraftRidable(World world)
     {
-        super(world, creature);
+        super(world);
         this.setMountingSpeed((float) (this.getCreature().getRidingSpeed()));
     }
 

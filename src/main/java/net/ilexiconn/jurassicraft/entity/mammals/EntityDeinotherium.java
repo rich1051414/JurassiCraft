@@ -14,7 +14,7 @@ public class EntityDeinotherium extends EntityJurassiCraftProtective implements 
 {
     public EntityDeinotherium(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityDeinotherium.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));

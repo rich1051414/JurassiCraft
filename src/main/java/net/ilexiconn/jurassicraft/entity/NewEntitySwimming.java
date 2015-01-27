@@ -36,9 +36,9 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
     private int timeUntilDeltaAngleChange = 0;
     public float distanceFromTarget = 100;
 
-    public NewEntitySwimming(World world, Creature creature)
+    public NewEntitySwimming(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     @Override

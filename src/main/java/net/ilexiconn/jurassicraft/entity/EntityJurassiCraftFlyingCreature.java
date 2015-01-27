@@ -9,9 +9,9 @@ public class EntityJurassiCraftFlyingCreature extends EntityJurassiCraftRidable
     public FlyingParameters flyingParameters;
     private String landingMaterial;
 
-    public EntityJurassiCraftFlyingCreature(World world, Creature creature, String landingMaterial)
+    public EntityJurassiCraftFlyingCreature(World world, String landingMaterial)
     {
-        super(world, creature);
+        super(world);
         this.setLandingMaterial(landingMaterial);
         this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
         this.setFlying(false);

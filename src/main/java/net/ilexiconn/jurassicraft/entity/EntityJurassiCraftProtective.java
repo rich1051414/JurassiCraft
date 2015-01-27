@@ -13,9 +13,9 @@ import java.util.List;
 public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable
 {
 
-    public EntityJurassiCraftProtective(World world, Creature creature)
+    public EntityJurassiCraftProtective(World world)
     {
-        super(world, creature);
+        super(world);
     }
 
     @Override

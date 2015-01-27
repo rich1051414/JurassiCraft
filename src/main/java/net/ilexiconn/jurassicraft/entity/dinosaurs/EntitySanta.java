@@ -17,7 +17,7 @@ public class EntitySanta extends EntityJurassiCraftRidable
 {
     public EntitySanta(World world)
     {
-        super(world, CreatureManager.classToCreature(EntitySanta.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));

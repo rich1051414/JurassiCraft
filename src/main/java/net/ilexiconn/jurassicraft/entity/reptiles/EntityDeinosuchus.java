@@ -23,7 +23,8 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
 
     public EntityDeinosuchus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityDeinosuchus.class));
+        super(world);
+        
         this.getNavigator().setAvoidsWater(false);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));

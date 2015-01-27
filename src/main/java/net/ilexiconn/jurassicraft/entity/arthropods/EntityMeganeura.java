@@ -19,7 +19,7 @@ public class EntityMeganeura extends EntityJurassiCraftFlyingCreature
 
     public EntityMeganeura(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityMeganeura.class), "grassandleaves");
+        super(world, "grassandleaves");
         this.tasks.addTask(0, new JurassiCraftAIFlying(this));
         this.setCreatureExperiencePoints(20);
     }

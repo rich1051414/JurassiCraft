@@ -18,10 +18,9 @@ import net.minecraft.world.World;
 
 public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, ICarnivore
 {
-
     public EntityBasilosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityBasilosaurus.class));
+        super(world);
         this.swimRadius = 16.0F;
         this.swimRadiusHeight = 10.0F;
         this.swimSpeed = (float) this.getCreatureSpeed();

@@ -17,7 +17,7 @@ public class EntityOrthacanthus extends EntitySwimmingBase implements IFish, IPi
 
     public EntityOrthacanthus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityOrthacanthus.class));
+        super(world);
 
         this.swimSpeed = 2.2F;
         huntingInterval = 200;

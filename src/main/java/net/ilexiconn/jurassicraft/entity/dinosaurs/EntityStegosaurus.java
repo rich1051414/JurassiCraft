@@ -23,7 +23,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
 
     public EntityStegosaurus(World world)
     {
-        super(world, CreatureManager.classToCreature(EntityStegosaurus.class));
+        super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
