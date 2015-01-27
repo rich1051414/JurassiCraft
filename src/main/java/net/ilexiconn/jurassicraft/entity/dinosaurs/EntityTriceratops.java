@@ -13,6 +13,7 @@ import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -129,6 +130,8 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         if (this.isDefending())
         {
             this.defendingPosition.increaseTimer();
+            if (this.creatureToAttack != null)
+            	this.renderYawOffset = this.rotationYaw = this.creatureToAttack.rotationYaw + 3.14159265359F;
         }
         else
         {

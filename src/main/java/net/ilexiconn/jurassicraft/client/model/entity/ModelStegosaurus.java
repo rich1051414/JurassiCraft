@@ -319,13 +319,6 @@ public class ModelStegosaurus extends MowzieModelBase
         float height = 0.8F;
         float frontOffset = -2F;
 
-        float whipPosProgress = stegosaurus.tailWhipPosition.getAnimationProgressSinSqrt();
-        EntityLivingBase target = stegosaurus.getCreatureToAttack();
-        if (target != null)
-        {
-            float variation = stegosaurus.rotationYaw += whipPosProgress * (target.rotationYaw + 3.14159265359F) - stegosaurus.rotationYaw;
-        }
-
         this.faceTarget(this.head, 3, f3, f4);
         this.faceTarget(this.headback, 3, f3, f4);
         this.faceTarget(this.neck, 3, f3, f4);
@@ -370,41 +363,48 @@ public class ModelStegosaurus extends MowzieModelBase
         this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
         this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
 
-
-        if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+        float whipPosProgress = stegosaurus.tailWhipPosition.getAnimationProgressSinSqrt();
+        
+        if (whipPosProgress > 0) 
         {
-            this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
-            this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
+            //Whip Position
+        	if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+            {
+                this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
+                this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
+            }
+            this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
+
+            this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
+            this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
+            this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
+            this.legleftcalf.rotateAngleZ += 0.05F * whipPosProgress;
+            this.legrightfoot.rotateAngleZ -= 0.15F * whipPosProgress;
+            this.legleftfoot.rotateAngleZ += 0.15F * whipPosProgress;
+            this.armrightthigh.rotationPointY -= 1.2F * whipPosProgress;
+            this.armleftthigh.rotationPointY -= 1.2F * whipPosProgress;
+            this.armrightthigh.rotateAngleZ += 0.6F * whipPosProgress;
+            this.armleftthigh.rotateAngleZ -= 0.6F * whipPosProgress;
+            this.armrightcalf.rotateAngleX -= 0.7F * whipPosProgress;
+            this.armleftcalf.rotateAngleX -= 0.7F * whipPosProgress;
+            this.armrightcalf.rotateAngleZ -= 0.3F * whipPosProgress;
+            this.armleftcalf.rotateAngleZ += 0.3F * whipPosProgress;
+            this.armrightfoot.rotateAngleX += 0.5F * whipPosProgress;
+            this.armleftfoot.rotateAngleX += 0.5F * whipPosProgress;
+            this.armrightfoot.rotateAngleZ -= 0.3F * whipPosProgress;
+            this.armleftfoot.rotateAngleZ += 0.3F * whipPosProgress;
+            this.waist.rotateAngleX += 0.35F * whipPosProgress;
+            this.chest.rotateAngleX -= 0.2F * whipPosProgress;
+            this.neck.rotateAngleX -= 0.1F * whipPosProgress;
+            this.tail1.rotateAngleX -= 0.1F * whipPosProgress;
         }
-        this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
+        else
+        {
+            stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
+        }
 
         this.chainSwing(this.tailParts, 0.1F, 0.2F, 3, stegosaurus.frame, 1.0F - whipPosProgress);
         this.chainWave(this.tailParts, 0.1F, -0.05F, 1, stegosaurus.frame, 1.0F - whipPosProgress);
-        stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
-
-        //Whip Position
-        this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
-        this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
-        this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
-        this.legleftcalf.rotateAngleZ += 0.05F * whipPosProgress;
-        this.legrightfoot.rotateAngleZ -= 0.15F * whipPosProgress;
-        this.legleftfoot.rotateAngleZ += 0.15F * whipPosProgress;
-        this.armrightthigh.rotationPointY -= 1.2F * whipPosProgress;
-        this.armleftthigh.rotationPointY -= 1.2F * whipPosProgress;
-        this.armrightthigh.rotateAngleZ += 0.6F * whipPosProgress;
-        this.armleftthigh.rotateAngleZ -= 0.6F * whipPosProgress;
-        this.armrightcalf.rotateAngleX -= 0.7F * whipPosProgress;
-        this.armleftcalf.rotateAngleX -= 0.7F * whipPosProgress;
-        this.armrightcalf.rotateAngleZ -= 0.3F * whipPosProgress;
-        this.armleftcalf.rotateAngleZ += 0.3F * whipPosProgress;
-        this.armrightfoot.rotateAngleX += 0.5F * whipPosProgress;
-        this.armleftfoot.rotateAngleX += 0.5F * whipPosProgress;
-        this.armrightfoot.rotateAngleZ -= 0.3F * whipPosProgress;
-        this.armleftfoot.rotateAngleZ += 0.3F * whipPosProgress;
-        this.waist.rotateAngleX += 0.35F * whipPosProgress;
-        this.chest.rotateAngleX -= 0.2F * whipPosProgress;
-        this.neck.rotateAngleX -= 0.1F * whipPosProgress;
-        this.tail1.rotateAngleX -= 0.1F * whipPosProgress;
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -418,17 +418,17 @@ public class ModelStegosaurus extends MowzieModelBase
             this.animator.setAnimation(JurassiCraftAnimationIDs.TAIL_WHIP.animID());
             this.animator.startPhase(10);
             this.animator.rotate(this.tail1, 0.0F, 0.3F, 0.0F);
-            this.animator.rotate(this.tail2, 0.0F, 0.3F, 0.0F);
-            this.animator.rotate(this.tail3, 0.0F, 0.3F, 0.0F);
-            this.animator.rotate(this.tail4, 0.0F, 0.3F, 0.0F);
-            this.animator.rotate(this.tail5, 0.0F, 0.3F, 0.0F);
+            this.animator.rotate(this.tail2, 0.0F, 0.2F, 0.0F);
+            this.animator.rotate(this.tail3, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(this.tail4, 0.0F, 0.1F, 0.0F);
+            this.animator.rotate(this.tail5, 0.0F, 0.1F, 0.0F);
             this.animator.endPhase();
             this.animator.startPhase(10);
             this.animator.rotate(this.tail1, 0.0F, -0.6F, 0.0F);
-            this.animator.rotate(this.tail2, 0.0F, -0.6F, 0.0F);
-            this.animator.rotate(this.tail3, 0.0F, -0.6F, 0.0F);
-            this.animator.rotate(this.tail4, 0.0F, -0.6F, 0.0F);
-            this.animator.rotate(this.tail5, 0.0F, -0.6F, 0.0F);
+            this.animator.rotate(this.tail2, 0.0F, -0.4F, 0.0F);
+            this.animator.rotate(this.tail3, 0.0F, -0.2F, 0.0F);
+            this.animator.rotate(this.tail4, 0.0F, -0.2F, 0.0F);
+            this.animator.rotate(this.tail5, 0.0F, -0.2F, 0.0F);
             this.animator.endPhase();
             this.animator.setStationaryPhase(10);
             this.animator.resetPhase(0);

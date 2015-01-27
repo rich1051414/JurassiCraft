@@ -41,10 +41,10 @@ public class AnimationAITailWhip extends AIAnimation
     {
         if (this.creature.getAttackTarget() != null)
         {
-            if (this.creature.getAnimationTick() < (this.duration / 2 - 2))
+            if (this.creature.getAnimationTick() == (this.duration / 2 - 2))
             {
                 EntityLivingBase target = this.creature.getAttackTarget();
-                target.attackEntityFrom(DamageSource.causeMobDamage(this.getEntity()), (float) (1.6D * this.creature.getCreatureAttack()));
+                target.attackEntityFrom(DamageSource.causeMobDamage(this.getEntity()), (float) (1.25D * this.creature.getCreatureAttack()));
                 double deltaX = target.posX - target.posX;
                 double deltaZ = target.posZ - target.posZ;
                 double angleYaw = (float) Math.atan2(deltaZ, deltaX);

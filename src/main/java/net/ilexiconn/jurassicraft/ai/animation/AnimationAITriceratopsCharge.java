@@ -67,12 +67,12 @@ public class AnimationAITriceratopsCharge extends AIAnimation
 
     public void updateTask()
     {
+        if (this.attackTarget != null)
+            this.entityTriceratops.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
+        
         this.distanceTravelled = (float) Math.sqrt((this.startX - this.entityTriceratops.posX) * (this.startX - this.entityTriceratops.posX) + (this.startZ - this.entityTriceratops.posZ) * (this.startZ - this.entityTriceratops.posZ));
         if (this.entityTriceratops.getAnimationTick() == 1)
             this.entityTriceratops.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
-
-        if (this.entityTriceratops.getAnimationTick() < 40 && this.attackTarget != null)
-            this.entityTriceratops.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
 
         if (this.entityTriceratops.getAnimationTick() >= 35 && this.entityTriceratops.getAnimationTick() <= 40 && this.attackTarget != null)
         {

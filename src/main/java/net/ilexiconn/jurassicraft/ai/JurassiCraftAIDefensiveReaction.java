@@ -78,8 +78,6 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
 
         if (this.creature.isFlying()) this.creature.setFlying(false);
 
-        if (this.creature.isDefending()) this.creature.setDefending(false);
-
         if (this.creature.isAttacking()) this.creature.setAttacking(false);
 
         if (this.creature.isFleeing()) this.creature.setFleeing(false);
@@ -106,7 +104,7 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
     {
         if (this.creature.getRNG().nextInt(5) == 0)
             this.distanceSqFromAttacker = this.creature.getDistanceSqToEntity(this.attacker);
-
+    	
         if (this.distanceSqFromAttacker < this.minimumSquaredDistance)
         {
             this.creature.setAttackTarget(this.attacker);

@@ -10,6 +10,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(1, new JurassiCraftAIWander(this, 45, 0.7D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new AnimationAITailWhip(this, 30));
-        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 1.5D * this.getCreatureLength(), 870.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID(), false));
+        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 40.0D, 870.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID(), false));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(5, new JurassiCraftAISit(this));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
@@ -62,9 +63,20 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
     {
         super.onUpdate();
 
-        if (this.isDefending())
+        if (this.isDefending() && this.creatureToAttack != null)
         {
             this.tailWhipPosition.increaseTimer();
+            if (this.creatureToAttack != null && this.getAnimationId() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+            {
+				this.rotationYaw += (this.creatureToAttack.rotationYaw - this.rotationYaw) / 10.0F;
+				this.renderYawOffset = this.rotationYaw + 3.14159265359F;
+            }
+            if (this.rand.nextInt(60) == 0)
+            {
+                this.creatureToAttack = this.getClosestEntityAggressive(this, 20, 8, 20);
+                if (this.creatureToAttack != null)
+                    this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
+            }
         }
         else
         {
