@@ -306,84 +306,97 @@ public class ModelTyrannosaurus extends MowzieModelBase
 
         //Sitting Pose
         float sittingProgress = trex.sittingProgress.getAnimationProgressSinSqrt();
-        float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
-        float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
 
-        Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
-        Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
-
-        this.Waist.rotationPointY += 11.5F * sittingProgress;
-        this.RightThigh.rotationPointY += 11.5F * sittingProgress;
-        this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
-        this.RightThigh.rotationPointZ += 5F * sittingProgress;
-        this.LeftThigh.rotationPointZ += 5F * sittingProgress;
-
-        this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
-        this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
-        this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
-        this.LowerArmLeft.rotateAngleX -= 1.2F * sittingProgress;
-        this.LowerArmRight.rotationPointY -= 1F * sittingProgress;
-        this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
-        this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
-        this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
-
-        this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
-        this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
-
-        this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
-        this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
-        this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
-        this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
-
-        this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
-        this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
-        this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
-        this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
-
-        this.FootRight.rotateAngleX += 0.7F * sittingProgress;
-        this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
-
-        this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
-        this.Tail2.rotateAngleX += 0.1F * sittingProgress;
-        this.Tail3.rotateAngleX += 0.15F * sittingProgress;
-        this.Tail4.rotateAngleX += 0.15F * sittingProgress;
-        this.Tail4.rotationPointY += 0.5F * sittingProgress;
-        walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
-        Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
-
-        this.Neck.rotateAngleX += 0.55F * restHeadProgress;
-        this.Head.rotateAngleX -= 0.75F * restHeadProgress;
-        this.Chest.rotateAngleX += 0.15F * restHeadProgress;
-        this.UpperArmRight.rotateAngleX += 0.3F * restHeadProgress;
-        this.UpperArmLeft.rotateAngleX += 0.3F * restHeadProgress;
-        this.LowerArmRight.rotateAngleX -= 0.3F * restHeadProgress;
-        this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
-        walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-        walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
-        Tail1.rotationPointY += (0.2F * restHeadProgress) * Math.cos((trex.frame + 1) * 0.08);
-        walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
-        walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-        walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-
-        this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
-        for (int i = 0; i < this.tailParts.length; i++)
+        if (sittingProgress > 0.001F)
         {
-            this.tailParts[i].rotateAngleX += 0.15F * (sittingProgress - sittingProgressFast);
+            //Sitting Pose
+        	float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
+            float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
+
+            Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
+            Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
+
+            this.Waist.rotationPointY += 11.5F * sittingProgress;
+            this.RightThigh.rotationPointY += 11.5F * sittingProgress;
+            this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
+            this.RightThigh.rotationPointZ += 5F * sittingProgress;
+            this.LeftThigh.rotationPointZ += 5F * sittingProgress;
+
+            this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
+            this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
+            this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
+            this.LowerArmLeft.rotateAngleX -= 1.2F * sittingProgress;
+            this.LowerArmRight.rotationPointY -= 1F * sittingProgress;
+            this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
+            this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
+            this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
+
+            this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
+            this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
+
+            this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
+            this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
+            this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
+            this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
+
+            this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
+            this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
+            this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
+            this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
+
+            this.FootRight.rotateAngleX += 0.7F * sittingProgress;
+            this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
+
+            this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
+            this.Tail2.rotateAngleX += 0.1F * sittingProgress;
+            this.Tail3.rotateAngleX += 0.15F * sittingProgress;
+            this.Tail4.rotateAngleX += 0.15F * sittingProgress;
+            this.Tail4.rotationPointY += 0.5F * sittingProgress;
+            walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
+            Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
+
+            this.Neck.rotateAngleX += 0.55F * restHeadProgress;
+            this.Head.rotateAngleX -= 0.75F * restHeadProgress;
+            this.Chest.rotateAngleX += 0.15F * restHeadProgress;
+            this.UpperArmRight.rotateAngleX += 0.3F * restHeadProgress;
+            this.UpperArmLeft.rotateAngleX += 0.3F * restHeadProgress;
+            this.LowerArmRight.rotateAngleX -= 0.3F * restHeadProgress;
+            this.LowerArmLeft.rotateAngleX -= 0.3F * restHeadProgress;
+            walk(Waist, 0.08F, 0.04F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+            walk(Tail1, 0.08F, 0.04F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+            Tail1.rotationPointY += (0.2F * restHeadProgress) * Math.cos((trex.frame + 1) * 0.08);
+            walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
+            walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+            walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
+
+            this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
+            for (int i = 0; i < this.tailParts.length; i++)
+            {
+                this.tailParts[i].rotateAngleX += 0.15F * (sittingProgress - sittingProgressFast);
+            }
+            
+            this.chainWave(bodyParts, 0.1F, -0.03F + (0.03F * restHeadProgress), 3, trex.frame, 1.0F - 0.6F * sittingProgress);
+            this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+            this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
+            this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
+            this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
         }
+        else
+        {
+            //Idling
+            this.chainWave(bodyParts, 0.1F, -0.03F, 3, trex.frame, 1.0F);
+            this.chainWave(rightArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F);
+            this.chainWave(leftArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F);
 
-        //Idling
-        this.chainWave(bodyParts, 0.1F, -0.03F - (-0.03F * restHeadProgress), 3, trex.frame, 1.0F - 0.6F * sittingProgress);
-        this.chainWave(rightArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
-        this.chainWave(leftArmParts, -0.1F, 0.2F - (0.2F * restHeadProgress), 4, trex.frame, 1.0F - 0.6F * sittingProgress);
-
-        this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
-        this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
-
-        trex.tailBuffer.applyChainSwingBuffer(tailParts);
+            this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
+            this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
+        }
 
         //Specialized animations
         this.Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
         this.LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
+        
+        trex.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)

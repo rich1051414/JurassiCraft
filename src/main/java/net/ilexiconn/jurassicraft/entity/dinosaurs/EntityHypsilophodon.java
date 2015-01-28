@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIPlayfulBaby;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDinosaur, IHerbivore
 {
+    public ControlledAnimation sittingProgress = new ControlledAnimation(30);
 	public ChainBuffer tailBuffer = new ChainBuffer(3);
 
 	public EntityHypsilophodon(World world)
@@ -29,8 +31,7 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
 		this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));
 		this.tasks.addTask(2, new JurassiCraftAISit(this));
 		this.tasks.addTask(2, new AnimationAIHypsilophodonScratchHead(this));
-		this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 200, 0.3F));
-		//this.tasks.addTask(2, new AnimationAIPlayfulBaby(this, 50));
+		this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 300, 0.3F));
 		this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 6.5F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
 		this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaurus.class, 12.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
 		this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 40, 1.1D * this.getCreatureSpeed()));
@@ -55,23 +56,35 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
 	public void onUpdate()
 	{
 		super.onUpdate();
+
+        /** Sitting Animation */
+        if (this.isSitting())
+        {
+            this.sittingProgress.increaseTimer();
+        }
+        else
+        {
+            this.sittingProgress.decreaseTimer();
+        }
+
+        
 		this.tailBuffer.calculateChainSwingBuffer(60.0F, 5, 3.8F, this);
 	}
 
 	public List<EntityHypsilophodon> getHypsilophodonsNearby(double distanceX, double distanceY, double distanceZ)
 	{
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
-		ArrayList<EntityHypsilophodon> listParasaurolophus = new ArrayList<EntityHypsilophodon>();
+		ArrayList<EntityHypsilophodon> listHypsilophodons = new ArrayList<EntityHypsilophodon>();
 
 		for (Entity entityNeighbor : list)
 		{
 			if (entityNeighbor instanceof EntityHypsilophodon && entityNeighbor != this)
 			{
-				listParasaurolophus.add((EntityHypsilophodon) entityNeighbor);
+				listHypsilophodons.add((EntityHypsilophodon) entityNeighbor);
 			}
 		}
 
-		return listParasaurolophus;
+		return listHypsilophodons;
 	}
 
 	@Override

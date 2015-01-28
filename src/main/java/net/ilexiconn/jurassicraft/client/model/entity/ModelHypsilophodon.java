@@ -286,15 +286,15 @@ public class ModelHypsilophodon extends MowzieModelBase
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHypsilophodon hypster)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
+        
         /*
 		 * f = hypster.frame;
 		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
 		 */
+        
         resetPose();
         float scaleFactor = 0.6F;
         float height = 12F * f1;
-
-        faceTarget(head, 1, f3, f4);
 
         bob(body2, 0.5F * scaleFactor, height, true, f, f1);
         bob(upperlegright, 0.5F * scaleFactor, height, true, f, f1);
@@ -319,15 +319,95 @@ public class ModelHypsilophodon extends MowzieModelBase
         walk(armright, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
         walk(armleft, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
 
-        chainWave(tailParts, 0.2F, -0.05F, 2, hypster.frame, 1F);
-        walk(neck, 0.2F, 0.1F, false, -1F, 0F, hypster.frame, 1F);
-        walk(head, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
-        walk(body1, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
-        walk(body2, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
-        walk(shoulderright, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
-        walk(shoulderleft, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
-        walk(armright, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
-        walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
+
+        float sittingProgress = hypster.sittingProgress.getAnimationProgressSin();
+
+        if (sittingProgress > 0.001F)
+        {
+            //Sitting Pose
+            float sittingProgressTemporary = hypster.sittingProgress.getAnimationProgressTemporaryFS();
+
+            faceTarget(head, 5, f3, f4);
+            faceTarget(neck, 4, f3, f4);
+            
+            this.body2.rotationPointY += 6.0F * sittingProgress;
+            this.upperlegright.rotationPointY += 6.5F * sittingProgress;
+            this.upperlegleft.rotationPointY += 6.5F * sittingProgress;
+            this.upperlegright.rotationPointZ += 0.8F * sittingProgress;
+            this.upperlegleft.rotationPointZ += 0.8F * sittingProgress;
+            this.armright.rotateAngleX -= 0.6F * sittingProgress;
+            this.armleft.rotateAngleX -= 0.6F * sittingProgress;
+            
+            if (sittingProgressTemporary > 0.001F)
+            {
+                faceTarget(head, 2, f3, f4);
+                
+                this.body2.rotateAngleX += 0.1F * sittingProgressTemporary;
+                this.neck.rotateAngleX += 0.4F * sittingProgressTemporary;
+                this.head.rotateAngleX += 0.2F * sittingProgressTemporary;
+                this.armright.rotateAngleX += 0.5F * sittingProgressTemporary;
+                this.armleft.rotateAngleX += 0.5F * sittingProgressTemporary;
+                
+                if (hypster.isSitting())
+                {
+                    this.tail1.rotateAngleX += 0.15F * sittingProgressTemporary;
+                    this.tail2.rotateAngleX += 0.15F * sittingProgressTemporary;
+                    this.tail3.rotateAngleX += 0.15F * sittingProgressTemporary;
+                }
+                else
+                {
+                    this.tail1.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                    this.tail2.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                    this.tail3.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                }
+            }
+
+            this.body2.rotateAngleX -= 0.075F * sittingProgress;
+            
+            this.upperlegright.rotateAngleX -= 1.1F * sittingProgress;
+            this.upperlegleft.rotateAngleX -= 1.1F * sittingProgress;
+
+            this.midlegright.rotationPointZ += 0.5F * sittingProgress;
+            this.midlegleft.rotationPointZ += 0.5F * sittingProgress;
+            this.midlegright.rotationPointY -= 0.1F * sittingProgress;
+            this.midlegleft.rotationPointY -= 0.1F * sittingProgress;
+            this.midlegright.rotateAngleX += 0.8F * sittingProgress;
+            this.midlegleft.rotateAngleX += 0.8F * sittingProgress;
+
+            this.lowerlegright.rotateAngleX -= 0.75F * sittingProgress;
+            this.lowerlegleft.rotateAngleX -= 0.75F * sittingProgress;
+
+            this.feetright.rotationPointZ -= 0.5F * sittingProgress;
+            this.feetleft.rotationPointZ -= 0.5F * sittingProgress;
+            this.feetright.rotateAngleX += 1.0F * sittingProgress;
+            this.feetleft.rotateAngleX += 1.0F * sittingProgress;
+            
+            //Idling
+            chainWave(tailParts, 0.2F, -0.05F, 2, hypster.frame, 1.0F - 0.6F * sittingProgress);
+            walk(neck, 0.2F, 0.1F, false, -1F, 0F, hypster.frame, 1.0F - 0.6F * sittingProgress);
+            walk(head, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1.0F - 0.6F * sittingProgress);
+            walk(body1, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1.0F - 0.75F * sittingProgress);
+            walk(body2, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1.0F - 0.75F * sittingProgress);
+            walk(shoulderright, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1.0F - 0.5F * sittingProgress);
+            walk(shoulderleft, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1.0F - 0.5F * sittingProgress);
+            walk(armright, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1.0F - 0.6F * sittingProgress);
+            walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1.0F - 0.6F * sittingProgress);
+        }
+        else
+        {
+            faceTarget(head, 1, f3, f4);
+
+            //Idling
+            chainWave(tailParts, 0.2F, -0.05F, 2, hypster.frame, 1F);
+            walk(neck, 0.2F, 0.1F, false, -1F, 0F, hypster.frame, 1F);
+            walk(head, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
+            walk(body1, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
+            walk(body2, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
+            walk(shoulderright, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
+            walk(shoulderleft, 0.2F, 0.1F, true, 0F, 0F, hypster.frame, 1F);
+            walk(armright, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
+            walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
+        }
 
         chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
 

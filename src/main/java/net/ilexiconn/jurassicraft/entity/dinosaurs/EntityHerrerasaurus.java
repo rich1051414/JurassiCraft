@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
@@ -17,6 +18,7 @@ import net.minecraft.world.World;
 
 public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
+    public ControlledAnimation sittingProgress = new ControlledAnimation(35);
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public EntityHerrerasaurus(World world)
@@ -61,7 +63,17 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
     public void onUpdate()
     {
         super.onUpdate();
-        
+
+        /** Sitting Animation */
+        if (this.isSitting())
+        {
+            this.sittingProgress.increaseTimer();
+        }
+        else
+        {
+            this.sittingProgress.decreaseTimer();
+        }
+
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 3.0F, this);
     }
 

@@ -347,9 +347,9 @@ public class ModelCarnotaurus extends MowzieModelBase
             this.head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
             this.neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
 
-            this.bodyMain.rotationPointY += 11.0F * sittingProgress;
-            this.rightThigh.rotationPointY += 11.0F * sittingProgress;
-            this.leftThigh.rotationPointY += 11.0F * sittingProgress;
+            this.bodyMain.rotationPointY += 10.0F * sittingProgress;
+            this.rightThigh.rotationPointY += 10.0F * sittingProgress;
+            this.leftThigh.rotationPointY += 10.0F * sittingProgress;
 
             this.upperArmRight.rotateAngleX += 0.25F * sittingProgress;
             this.upperArmLeft.rotateAngleX += 0.25F * sittingProgress;
@@ -366,11 +366,15 @@ public class ModelCarnotaurus extends MowzieModelBase
             this.rightCalf1.rotateAngleX += 1.2F * sittingProgress;
             this.leftCalf1.rotateAngleX += 1.2F * sittingProgress;
 
-            this.rightUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
-            this.leftUpperFoot.rotationPointZ -= 0.5F * sittingProgress;
+            this.rightUpperFoot.rotationPointY -= 0.25F * sittingProgress;
+            this.leftUpperFoot.rotationPointY -= 0.25F * sittingProgress;
             this.rightUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
             this.leftUpperFoot.rotateAngleX -= 1.0F * sittingProgress;
 
+            this.footRight.rotationPointY += 1.25F * sittingProgress;
+            this.footLeft.rotationPointY += 1.25F * sittingProgress;
+            this.footRight.rotationPointZ += 1.0F * sittingProgress;
+            this.footLeft.rotationPointZ += 1.0F * sittingProgress;
             this.footRight.rotateAngleX += 1.0F * sittingProgress;
             this.footLeft.rotateAngleX += 1.0F * sittingProgress;
 
@@ -384,7 +388,7 @@ public class ModelCarnotaurus extends MowzieModelBase
 
             this.upperArmRight.rotationPointZ -= 2.0F * restHeadProgress;
             this.upperArmLeft.rotationPointZ -= 2.0F * restHeadProgress;
-            this.bodyMain.rotationPointY += 2.25F * restHeadProgress;
+            this.bodyMain.rotationPointY += 2.75F * restHeadProgress;
             this.body2.rotationPointY += 0.25F * restHeadProgress;
             this.body1.rotationPointY += 1.25F * restHeadProgress;
             this.neck.rotationPointY += 0.6F * restHeadProgress;

@@ -596,7 +596,7 @@ public class ModelVelociraptor extends MowzieModelBase
         
         float sittingProgress = raptor.sittingProgress.getAnimationProgressSin();
 
-        if (sittingProgress > 0.0F)
+        if (sittingProgress > 0.001F)
         {
             //Sitting Pose
             float sittingProgressTemporary = raptor.sittingProgress.getAnimationProgressTemporaryFS();
