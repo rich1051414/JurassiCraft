@@ -601,15 +601,15 @@ public class ModelVelociraptor extends MowzieModelBase
             //Sitting Pose
             float sittingProgressTemporary = raptor.sittingProgress.getAnimationProgressTemporaryFS();
 
-            faceTarget(Head, 5, f3, f4);
-            faceTarget(Neck, 4, f3, f4);
+            this.faceTarget(Head, 5, f3, f4);
+            this.faceTarget(Neck, 4, f3, f4);
             
             this.Body_1.rotationPointY += 13.25F * sittingProgress;
             this.Right_Thigh.rotationPointY += 14.25F * sittingProgress;
             this.Left_Thigh.rotationPointY += 14.25F * sittingProgress;
             this.Right_Thigh.rotationPointZ += 0.5F * sittingProgress;
             this.Left_Thigh.rotationPointZ += 0.5F * sittingProgress;
-            
+
             if (sittingProgressTemporary > 0.001F)
             {
                 this.Body_1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -665,25 +665,25 @@ public class ModelVelociraptor extends MowzieModelBase
             this.Left_Claw_1.rotateAngleX += 0.7F * sittingProgress;
 
             //Idling
-            chainWave(tailParts, 0.1F, -0.05F, 2, raptor.frame, 1.0F - 0.5F * sittingProgress);
-            walk(Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
-            walk(Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
-            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1.0F - 0.7F * sittingProgress);
-            chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
-            chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
+            this.chainWave(this.tailParts, 0.1F, -0.05F, 2, raptor.frame, 1.0F - 0.5F * sittingProgress);
+            this.walk(this.Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
+            this.walk(this.Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
+            this.walk(this.Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1.0F - 0.7F * sittingProgress);
+            this.chainWave(this.rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
+            this.chainWave(this.leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
         }
         else
         {
-            faceTarget(Head, 2, f3, f4);
-            faceTarget(Neck, 2, f3, f4);
+        	this.faceTarget(this.Head, 2, f3, f4);
+        	this.faceTarget(this.Neck, 2, f3, f4);
 
             //Idling
-            chainWave(tailParts, 0.1F, -0.05F, 2, raptor.frame, 1F);
-            walk(Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F);
-            walk(Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F);
-            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
-            chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
-            chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+        	this.chainWave(this.tailParts, 0.1F, -0.05F, 2, raptor.frame, 1F);
+        	this.walk(this.Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F);
+        	this.walk(this.Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F);
+            this.walk(this.Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
+            this.chainWave(this.rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+            this.chainWave(this.leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         }
         
         raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);

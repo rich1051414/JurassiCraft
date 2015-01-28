@@ -1,14 +1,26 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
@@ -20,8 +32,8 @@ import net.minecraft.world.World;
 
 public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
+    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
-    public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private boolean restingHead = false;
     private int restHeadSwitchTimer = 300;
@@ -62,34 +74,23 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
     public void onUpdate()
     {
         super.onUpdate();
-        this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
 
         /** Sitting Animation */
-        if (this.isSitting())
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
-            if (!this.restingHead && getRNG().nextInt(100) == 0 && this.restHeadSwitchTimer == 0)
+            if (this.isSitting())
             {
-                this.restingHead = true;
-                this.restHeadSwitchTimer = 300;
+                this.sittingProgress.increaseTimer();
+                this.restingHeadProgress.runAnimation();
             }
-            if (this.restingHead && getRNG().nextInt(100) == 0 && this.restHeadSwitchTimer == 0)
+            else
             {
-                this.restingHead = false;
-                this.restHeadSwitchTimer = 300;
+                this.sittingProgress.decreaseTimer();
+                this.restingHeadProgress.runAnimation();
             }
-            if (this.restHeadSwitchTimer > 0) this.restHeadSwitchTimer--;
         }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
-            this.restingHead = false;
-            this.restHeadSwitchTimer = 300;
-        }
-
-        if (this.restingHead) this.restHeadProgress.increaseTimer();
-
-        if (!this.restingHead) this.restHeadProgress.decreaseTimer();
+        
+        this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
     }
 
     @Override

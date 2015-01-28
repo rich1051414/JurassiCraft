@@ -8,7 +8,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIGallimimusBeingEaten;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -41,7 +41,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 150));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 80, 1.1D * this.getCreatureSpeed()));
-        this.tasks.addTask(2, new JurassiCraftAISit(this));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 900, 175, 375));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 30, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
@@ -85,13 +85,17 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     {
         super.onUpdate();
 
-        if (this.isSitting())
+        /** Sitting Animation */
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
-        }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
+            if (this.isSitting())
+            {
+                this.sittingProgress.increaseTimer();
+            }
+            else
+            {
+                this.sittingProgress.decreaseTimer();
+            }
         }
 
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);

@@ -310,7 +310,7 @@ public class ModelCarnotaurus extends MowzieModelBase
         if (sittingProgress > 0)
         {
             //Sitting Pose
-            float restHeadProgress = carnotaurus.restHeadProgress.getAnimationProgressSinSqrt();
+            float restHeadProgress = carnotaurus.restingHeadProgress.getAnimationProgressSinSqrt();
             float sittingProgressTemporary = carnotaurus.sittingProgress.getAnimationProgressTemporaryFS();
 
             if (restHeadProgress > 0)

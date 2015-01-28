@@ -1,13 +1,20 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIWalkRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftAggressive;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
@@ -15,8 +22,17 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -26,8 +42,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 {
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
+    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(50);
-    public ControlledAnimation restHeadProgress = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private boolean restingHead = false;
     private int restHeadSwitchTimer = 300;
@@ -150,31 +166,19 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
 
         /** Sitting Animation */
-        if (this.isSitting())
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
-            if (!restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0)
+        	if (this.isSitting())
             {
-                restingHead = true;
-                restHeadSwitchTimer = 300;
+                this.sittingProgress.increaseTimer();
+                this.restingHeadProgress.runAnimation();
             }
-            if (restingHead && getRNG().nextInt(100) == 0 && restHeadSwitchTimer == 0)
+            else
             {
-                restingHead = false;
-                restHeadSwitchTimer = 300;
+                this.sittingProgress.decreaseTimer();
+                this.restingHeadProgress.runAnimation();
             }
-            if (restHeadSwitchTimer > 0) restHeadSwitchTimer--;
         }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
-            restingHead = false;
-            restHeadSwitchTimer = 300;
-        }
-
-        if (restingHead) restHeadProgress.increaseTimer();
-
-        if (!restingHead) restHeadProgress.decreaseTimer();
 
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
 

@@ -65,15 +65,18 @@ public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive imple
         super.onUpdate();
 
         /** Sitting Animation */
-        if (this.isSitting())
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
+            if (this.isSitting())
+            {
+                this.sittingProgress.increaseTimer();
+            }
+            else
+            {
+                this.sittingProgress.decreaseTimer();
+            }
         }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
-        }
-
+        
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 3.0F, this);
     }
 

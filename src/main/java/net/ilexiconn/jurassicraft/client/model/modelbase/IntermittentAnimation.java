@@ -1,34 +1,69 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
+import java.util.Random;
+
+import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.MathHelper;
 
 /**
- * This is a timer that can be used to easily animate models between poses. You
- * have to set the number of ticks between poses, increase or decrease the
- * timer, and get the percentage using a specific function.
- *
+ * This is a timer that can be used to easily animate models with intermittent poses. You have to
+ * set the number of ticks between poses, a number of ticks that represents the interval of the pose
+ * change, increase or decrease the timer, and get the percentage using a specific function.
+ * 
  * @author RafaMv
  */
 @SideOnly(Side.CLIENT)
-public class ControlledAnimation
+public class IntermittentAnimation
 {
     /**
-     * It is the timer used to animate
+     * It is the timer used to animate.
      */
     private double timer;
     
     /**
      * It is the limit time, the maximum value that the timer can be. I
-     * represents the duration of the animation
+     * represents the duration of the animation.
      */
     private double duration;
 
-    public ControlledAnimation(int duration)
+    /**
+     * It is a boolean that shows if the animation is already in the new pose.
+     */
+    private boolean runInterval;
+    /**
+     * It is an inverter for the timer.
+     */
+    private int inverter;
+    
+    /**
+     * It is the timer used for the interval.
+     */
+    private double timerInterval;
+
+	/**
+	 * It is the interval to return to the first animation.
+	 */
+    private double intervalDuration;
+    
+    /**
+     * It is the chance to change the animation.
+     */
+    private int chance;
+    
+    /**
+     * It is the random used to randomize the movement.
+     */
+    Random rand = new Random();
+
+    public IntermittentAnimation(int duration, int intervalDuration, int chance)
     {
         this.timer = 0;
         this.duration = (double) duration;
+        this.intervalDuration = (double) intervalDuration;
+        this.runInterval = true;
+        this.chance = chance;
+        this.inverter = -1;
     }
 
     /**
@@ -84,36 +119,72 @@ public class ControlledAnimation
      * Increases the timer by 1.
      */
     @SideOnly(Side.CLIENT)
-    public void increaseTimer()
+    public void runAnimation()
     {
-        if (this.timer < this.duration) this.timer++;
-    }
-
-    /**
-     * Increases the timer by a specific value.
-     *
-     * @param time is the number of ticks to be increased in the timer
-     */
-    @SideOnly(Side.CLIENT)
-    public void increaseTimer(int time)
-    {
-        if (this.timer + (double) time < this.duration)
-        {
-            this.timer += (double) time;
-        }
-        else
-        {
-            this.timer = this.duration;
-        }
+        System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
+        
+    	if (!this.runInterval)
+    	{
+            if (this.timer < this.duration && this.timer > 0.0D)
+            {
+        		this.timer += this.inverter;
+            }
+        	else
+        	{
+                if (this.timer >= this.duration)
+                {
+            		this.timer = this.duration;
+                }
+                else if (this.timer <= 0.0D)
+                {
+            		this.timer = 0.0D;
+                }
+        		this.timerInterval = 0.0D;
+        		this.runInterval = true;
+        	}
+    	}
+    	else
+    	{
+    		if (this.timerInterval < this.intervalDuration)
+    		{
+        		this.timerInterval++;
+    		}
+    		else
+    		{
+    			if (this.rand.nextInt(this.chance) == 0)
+    			{
+            		if (this.inverter > 0)
+            		{
+                		this.inverter = -1;
+            		}
+            		else
+            		{
+                		this.inverter = 1;
+            		}
+            		this.timer += this.inverter;
+            		this.runInterval = false;
+    			}
+    		}
+    	}
     }
 
     /**
      * Decreases the timer by 1.
      */
     @SideOnly(Side.CLIENT)
-    public void decreaseTimer()
+    public void stopAnimation()
     {
-        if (this.timer > 0.0D) this.timer--;
+		if (this.timer > 0.0D)
+		{
+			this.timer--;
+		}
+		else
+		{
+			this.timer = 0.0D;
+			this.runInterval = true;
+			this.timerInterval = 0.0D;
+			this.inverter = 1;
+		}
     }
 
     /**
@@ -122,16 +193,19 @@ public class ControlledAnimation
      * @param time is the number of ticks to be decreased in the timer
      */
     @SideOnly(Side.CLIENT)
-    public void decreaseTimer(int time)
+    public void stopAnimation(int time)
     {
-        if (this.timer - (double) time > 0.0D)
-        {
-            this.timer -= (double) time;
-        }
-        else
-        {
-            this.timer = 0.0D;
-        }
+		if (this.timer - time > 0.0D)
+		{
+			this.timer -= time;
+		}
+		else
+		{
+			this.timer = 0.0D;
+			this.runInterval = false;
+			this.timerInterval = 0.0D;
+			this.inverter = 1;
+		}
     }
 
 	/**
@@ -309,5 +383,5 @@ public class ControlledAnimation
     {
         float x = 6.28318530718F * (float) (this.timer / this.duration);
         return 0.5F + 0.5F * MathHelper.cos(x + MathHelper.sin(x));
-	}
+    }
 }

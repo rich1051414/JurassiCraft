@@ -1,22 +1,33 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAvoidEntityIfNotTamed;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerHurtsTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFleeOwnerIsHurtByTarget;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIPlayfulBaby;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
-import net.ilexiconn.jurassicraft.ai.animation.AnimationAIPlayfulBaby;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDinosaur, IHerbivore
 {
@@ -29,7 +40,7 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.25D * this.getCreatureSpeed()));
-		this.tasks.addTask(2, new JurassiCraftAISit(this));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 1000, 150, 350));
 		this.tasks.addTask(2, new AnimationAIHypsilophodonScratchHead(this));
 		this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 300, 0.3F));
 		this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 6.5F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
@@ -58,15 +69,17 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
 		super.onUpdate();
 
         /** Sitting Animation */
-        if (this.isSitting())
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
+            if (this.isSitting())
+            {
+                this.sittingProgress.increaseTimer();
+            }
+            else
+            {
+                this.sittingProgress.decreaseTimer();
+            }
         }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
-        }
-
         
 		this.tailBuffer.calculateChainSwingBuffer(60.0F, 5, 3.8F, this);
 	}

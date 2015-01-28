@@ -311,7 +311,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
         {
             //Sitting Pose
         	float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
-            float restHeadProgress = trex.restHeadProgress.getAnimationProgressSinSqrt();
+            float restHeadProgress = trex.restingHeadProgress.getAnimationProgressSinSqrt();
 
             Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
             Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);

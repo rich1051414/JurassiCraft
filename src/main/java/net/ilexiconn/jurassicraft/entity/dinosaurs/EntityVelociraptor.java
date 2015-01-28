@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
@@ -50,7 +50,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.tasks.addTask(1, new AnimationAIVelociraptorLeap(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
-        this.tasks.addTask(4, new JurassiCraftAISit(this));
+        this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 1000, 150, 350));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));
@@ -107,15 +107,17 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         super.onUpdate();
 
         /** Sitting Animation */
-        if (this.isSitting())
+        if (this.worldObj.isRemote)
         {
-            this.sittingProgress.increaseTimer();
+            if (this.isSitting())
+            {
+                this.sittingProgress.increaseTimer();
+            }
+            else
+            {
+                this.sittingProgress.decreaseTimer();
+            }
         }
-        else
-        {
-            this.sittingProgress.decreaseTimer();
-        }
-        
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 
