@@ -327,16 +327,29 @@ public class ModelCarnotaurus extends MowzieModelBase
                 this.faceTarget(this.head, 6.0F, f3, f4);
             }
 
+            if (sittingProgressTemporary > 0.001F)
+            {
+                this.body1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                this.body2.rotateAngleX += 0.25F * sittingProgressTemporary;
+                this.neck.rotateAngleX += 0.25F * sittingProgressTemporary;
+                
+                if (carnotaurus.isSitting())
+                {
+                    this.tail1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.tail2.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.tail3.rotateAngleX += 0.075F * sittingProgressTemporary;
+                    this.tail4.rotateAngleX += 0.075F * sittingProgressTemporary;
+                    this.tail5.rotateAngleX += 0.05F * sittingProgressTemporary;
+                    this.tail6.rotateAngleX += 0.05F * sittingProgressTemporary;
+                }
+            }
+            
             this.head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
             this.neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
 
             this.bodyMain.rotationPointY += 11.0F * sittingProgress;
             this.rightThigh.rotationPointY += 11.0F * sittingProgress;
             this.leftThigh.rotationPointY += 11.0F * sittingProgress;
-
-            this.body1.rotateAngleX += 0.1F * sittingProgressTemporary;
-            this.body2.rotateAngleX += 0.25F * sittingProgressTemporary;
-            this.neck.rotateAngleX += 0.25F * sittingProgressTemporary;
 
             this.upperArmRight.rotateAngleX += 0.25F * sittingProgress;
             this.upperArmLeft.rotateAngleX += 0.25F * sittingProgress;

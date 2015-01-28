@@ -570,6 +570,7 @@ public class ModelVelociraptor extends MowzieModelBase
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID() && raptor.getAnimationTick() >= 6) f1 = 0;
         float scaleFactor = 0.75F;
         float height = 2F * f1;
+        
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
@@ -588,25 +589,108 @@ public class ModelVelociraptor extends MowzieModelBase
         walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, f, f1);
         walk(Foot_Right, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
 
-        faceTarget(Head, 2, f3, f4);
-        faceTarget(Neck, 2, f3, f4);
-
         chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
         chainWave(tailParts, 1F * scaleFactor, -0.05F, 2, f, f1);
         chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-        //Idling
-        chainWave(tailParts, 0.1F, -0.05F, 2, raptor.frame, 1F);
-        walk(Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F);
-        walk(Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F);
-        walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
-        chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
-        chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+        
+        float sittingProgress = raptor.sittingProgress.getAnimationProgressSin();
 
+        if (sittingProgress > 0.0F)
+        {
+            //Sitting Pose
+            float sittingProgressTemporary = raptor.sittingProgress.getAnimationProgressTemporaryFS();
+
+            faceTarget(Head, 5, f3, f4);
+            faceTarget(Neck, 4, f3, f4);
+            
+            this.Body_1.rotationPointY += 13.25F * sittingProgress;
+            this.Right_Thigh.rotationPointY += 14.25F * sittingProgress;
+            this.Left_Thigh.rotationPointY += 14.25F * sittingProgress;
+            this.Right_Thigh.rotationPointZ += 0.5F * sittingProgress;
+            this.Left_Thigh.rotationPointZ += 0.5F * sittingProgress;
+            
+            if (sittingProgressTemporary > 0.001F)
+            {
+                this.Body_1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                this.Neck.rotateAngleX += 0.4F * sittingProgressTemporary;
+                this.Head.rotateAngleX += 0.2F * sittingProgressTemporary;
+                this.Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
+                this.Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
+                
+                if (raptor.isSitting())
+                {
+                    this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.Tail_2.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.Tail_3.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.Tail_4.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.Tail_5.rotateAngleX += 0.1F * sittingProgressTemporary;
+                }
+                else
+                {
+                    this.Tail_1.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                    this.Tail_2.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                    this.Tail_3.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                    this.Tail_4.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                    this.Tail_5.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                }
+            }
+
+            this.Body_1.rotateAngleX -= 0.075F * sittingProgress;
+            
+            this.Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
+            this.Upper_Arm_Left.rotateAngleX -= 0.8F * sittingProgress;
+            
+            this.Right_Thigh.rotateAngleX -= 0.75F * sittingProgress;
+            this.Left_Thigh.rotateAngleX -= 0.75F * sittingProgress;
+
+            this.Right_Calf_1.rotationPointZ += 0.5F * sittingProgress;
+            this.Left_Calf_1.rotationPointZ += 0.5F * sittingProgress;
+            this.Right_Calf_1.rotationPointY += 1.5F * sittingProgress;
+            this.Left_Calf_1.rotationPointY += 1.5F * sittingProgress;
+            this.Right_Calf_1.rotateAngleX += 1.2F * sittingProgress;
+            this.Left_Calf_1.rotateAngleX += 1.2F * sittingProgress;
+
+            this.Right_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
+            this.Left_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
+            this.Right_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
+            this.Left_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
+
+            this.Foot_Right.rotationPointZ -= 0.5F * sittingProgress;
+            this.Foot_Left.rotationPointZ -= 0.5F * sittingProgress;
+            this.Foot_Right.rotateAngleX += 1.0F * sittingProgress;
+            this.Foot_Left.rotateAngleX += 1.0F * sittingProgress;
+
+            this.Right_Claw_1.rotateAngleX += 0.7F * sittingProgress;
+            this.Left_Claw_1.rotateAngleX += 0.7F * sittingProgress;
+
+            //Idling
+            chainWave(tailParts, 0.1F, -0.05F, 2, raptor.frame, 1.0F - 0.5F * sittingProgress);
+            walk(Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
+            walk(Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
+            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1.0F - 0.7F * sittingProgress);
+            chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
+            chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1.0F - 0.5F * sittingProgress);
+        }
+        else
+        {
+            faceTarget(Head, 2, f3, f4);
+            faceTarget(Neck, 2, f3, f4);
+
+            //Idling
+            chainWave(tailParts, 0.1F, -0.05F, 2, raptor.frame, 1F);
+            walk(Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F);
+            walk(Head, 0.1F, 0.07F, true, 0F, 0F, raptor.frame, 1F);
+            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, raptor.frame, 1F);
+            chainWave(rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+            chainWave(leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
+        }
+        
         raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);
 
         if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID())
             raptor.setLeaping(true);
+        
         if (raptor.leaping == true)
         {
             Body_1.rotateAngleX -= 0.8;

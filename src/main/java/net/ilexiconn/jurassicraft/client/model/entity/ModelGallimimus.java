@@ -502,13 +502,25 @@ public class ModelGallimimus extends MowzieModelBase
                 this.Neck_4.rotateAngleX -= 0.2F * sittingProgressTemporary;
                 this.Neck_5.rotateAngleX -= 0.2F * sittingProgressTemporary;
                 this.Head.rotateAngleX -= 0.2F * sittingProgressTemporary;
-                this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
-                this.Tail_2.rotateAngleX += 0.15F * sittingProgressTemporary;
-                this.Tail_3.rotateAngleX += 0.2F * sittingProgressTemporary;
-                this.Tail_4.rotateAngleX += 0.15F * sittingProgressTemporary;
-                this.Tail_5.rotateAngleX += 0.1F * sittingProgressTemporary;
                 this.Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
                 this.Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
+                
+                if (gallimimus.isSitting())
+                {
+                    this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                    this.Tail_2.rotateAngleX += 0.15F * sittingProgressTemporary;
+                    this.Tail_3.rotateAngleX += 0.2F * sittingProgressTemporary;
+                    this.Tail_4.rotateAngleX += 0.15F * sittingProgressTemporary;
+                    this.Tail_5.rotateAngleX += 0.1F * sittingProgressTemporary;
+                }
+                else
+                {
+                    this.Tail_1.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                    this.Tail_2.rotateAngleX -= 0.15F * sittingProgressTemporary;
+                    this.Tail_3.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                    this.Tail_4.rotateAngleX -= 0.15F * sittingProgressTemporary;
+                    this.Tail_5.rotateAngleX -= 0.1F * sittingProgressTemporary;
+                }
             }
             
             this.Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
