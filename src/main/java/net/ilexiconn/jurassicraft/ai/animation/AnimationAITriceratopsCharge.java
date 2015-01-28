@@ -92,7 +92,7 @@ public class AnimationAITriceratopsCharge extends AIAnimation
                     this.chargeAcceleration = 0.3F;
                 }
                 this.entityTriceratops.charging = true;
-                if (attackTarget != null && distanceOfTargetFromStart > distanceTravelled)
+                if (attackTarget != null && this.distanceOfTargetFromStart > distanceTravelled)
                 {
                     double deltaX = this.attackTarget.posX - this.entityTriceratops.posX;
                     double deltaZ = this.attackTarget.posZ - this.entityTriceratops.posZ;
