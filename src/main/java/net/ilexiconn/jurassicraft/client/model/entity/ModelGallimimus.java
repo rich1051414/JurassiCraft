@@ -420,14 +420,16 @@ public class ModelGallimimus extends MowzieModelBase
         HeadJoint.setCurrentPoseToInitValues();
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityGallimimus galli)
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityGallimimus gallimimus)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         this.resetPose();
+        
         /*
-		f = galli.frame; 
+		f = gallimimus.frame; 
 		f1 = 1F;
 		*/
+        
         float scaleFactor = 0.9F;
         float height = 2.5F * f1;
         float legDelay = -0.1F;
@@ -435,8 +437,6 @@ public class ModelGallimimus extends MowzieModelBase
         Body_1.rotationPointY -= 2;
         Left_Thigh.rotationPointY -= 2;
         Right_Thigh.rotationPointY -= 2;
-
-        faceTarget(Head, 1, f3, f4);
 
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
@@ -472,15 +472,87 @@ public class ModelGallimimus extends MowzieModelBase
 
         chainWave(TailParts, 1 * scaleFactor, 0.1F, 1, f, f1);
         chainSwing(TailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
+        
+        float sittingProgress = gallimimus.sittingProgress.getAnimationProgressSin();
 
-        //Idling
-        chainWave(TailParts, 0.1F, -0.05F, 1, galli.frame, 1F);
-        chainWave(NeckParts, 0.1F, -0.1F, 4, galli.frame, 1F);
-        walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, galli.frame, 1F);
-        chainWave(RightArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
-        chainWave(LeftArmParts, 0.1F, -0.15F, 4, galli.frame, 1F);
+        if (sittingProgress > 0.0F)
+        {
+            //Sitting Pose
+            float sittingProgressTemporary = gallimimus.sittingProgress.getAnimationProgressTemporaryFS();
 
-        galli.tailBuffer.applyChainSwingBuffer(TailParts);
+            this.faceTarget(Neck_1, 8.0F, f3, f4);
+            this.faceTarget(Neck_2, 8.0F, f3, f4);
+            this.faceTarget(Neck_3, 7.0F, f3, f4);
+            this.faceTarget(Neck_4, 7.0F, f3, f4);
+            this.faceTarget(Neck_5, 6.0F, f3, f4);
+            this.faceTarget(Head, 3.0F, f3, f4);
+
+            this.Body_1.rotationPointY += 15.0F * sittingProgress;
+            this.Right_Thigh.rotationPointY += 15.0F * sittingProgress;
+            this.Left_Thigh.rotationPointY += 15.0F * sittingProgress;
+            this.Right_Thigh.rotationPointZ += 0.6F * sittingProgress;
+            this.Left_Thigh.rotationPointZ += 0.6F * sittingProgress;
+            
+            if (sittingProgressTemporary > 0.001F)
+            {
+                this.Body_2.rotateAngleX += 0.25F * sittingProgressTemporary;
+                this.Neck_1.rotateAngleX += 0.4F * sittingProgressTemporary;
+                this.Neck_2.rotateAngleX += 0.2F * sittingProgressTemporary;
+                this.Neck_3.rotateAngleX += 0.2F * sittingProgressTemporary;
+                this.Neck_4.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                this.Neck_5.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                this.Head.rotateAngleX -= 0.2F * sittingProgressTemporary;
+                this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
+                this.Tail_2.rotateAngleX += 0.15F * sittingProgressTemporary;
+                this.Tail_3.rotateAngleX += 0.2F * sittingProgressTemporary;
+                this.Tail_4.rotateAngleX += 0.15F * sittingProgressTemporary;
+                this.Tail_5.rotateAngleX += 0.1F * sittingProgressTemporary;
+                this.Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
+                this.Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
+            }
+            
+            this.Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
+            this.Upper_Arm_Left.rotateAngleX -= 0.8F * sittingProgress;
+            
+            this.Right_Thigh.rotateAngleX -= 1.2F * sittingProgress;
+            this.Left_Thigh.rotateAngleX -= 1.2F * sittingProgress;
+
+            this.Right_Calf_1.rotationPointZ -= 0.65F * sittingProgress;
+            this.Left_Calf_1.rotationPointZ -= 0.65F * sittingProgress;
+            this.Right_Calf_1.rotationPointY += 1.5F * sittingProgress;
+            this.Left_Calf_1.rotationPointY += 1.5F * sittingProgress;
+            this.Right_Calf_1.rotateAngleX += 1.2F * sittingProgress;
+            this.Left_Calf_1.rotateAngleX += 1.2F * sittingProgress;
+
+            this.Right_Upper_Foot.rotationPointZ -= 0.5F * sittingProgress;
+            this.Left_Upper_Foot.rotationPointZ -= 0.5F * sittingProgress;
+            this.Right_Upper_Foot.rotateAngleX -= 1.0F * sittingProgress;
+            this.Left_Upper_Foot.rotateAngleX -= 1.0F * sittingProgress;
+
+            this.Foot_Right.rotationPointZ -= 0.5F * sittingProgress;
+            this.Foot_Left.rotationPointZ -= 0.5F * sittingProgress;
+            this.Foot_Right.rotateAngleX += 1.0F * sittingProgress;
+            this.Foot_Left.rotateAngleX += 1.0F * sittingProgress;
+
+            chainWave(TailParts, 0.1F, -0.05F, 1, gallimimus.frame, 1F - 0.6F * sittingProgress);
+            chainWave(NeckParts, 0.1F, -0.1F, 4, gallimimus.frame, 1F - 0.6F * sittingProgress);
+            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, gallimimus.frame, 1F - 0.7F * sittingProgress);
+            chainWave(RightArmParts, 0.1F, -0.15F, 4, gallimimus.frame, 1F - 0.8F * sittingProgress);
+            chainWave(LeftArmParts, 0.1F, -0.15F, 4, gallimimus.frame, 1F - 0.8F * sittingProgress);
+        }
+        else
+        {
+            faceTarget(Head, 1, f3, f4);
+            
+            //Idling
+            chainWave(TailParts, 0.1F, -0.05F, 1, gallimimus.frame, 1.0F);
+            chainWave(NeckParts, 0.1F, -0.1F, 4, gallimimus.frame, 1.0F);
+            walk(Body_1, 0.1F, 0.05F, false, 0F, 0F, gallimimus.frame, 1.0F);
+            chainWave(RightArmParts, 0.1F, -0.15F, 4, gallimimus.frame, 1.0F);
+            chainWave(LeftArmParts, 0.1F, -0.15F, 4, gallimimus.frame, 1.0F);
+        }
+
+        gallimimus.tailBuffer.applyChainSwingBuffer(TailParts);
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
