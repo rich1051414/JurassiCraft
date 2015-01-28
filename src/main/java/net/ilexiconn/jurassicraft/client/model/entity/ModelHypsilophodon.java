@@ -495,7 +495,11 @@ public class ModelHypsilophodon extends MowzieModelBase
         if (hysilophodon.getAnimationId() == JurassiCraftAnimationIDs.PLAYING.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.PLAYING.animID());
-            this.animator.resetPhase(5);
+            this.animator.startPhase(5);
+            this.animator.rotate(this.lowerlegright, 3.0F, 0.0F, 0.0F);
+            this.animator.rotate(this.lowerlegleft, 3.0F, 0.0F, 0.0F);
+            this.animator.endPhase();
+            this.animator.resetPhase(0);
         }
     }
 }

@@ -19,7 +19,7 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
     public AnimationAIVelociraptorLeap(EntityVelociraptor raptor)
     {
         super(raptor);
-        entityRaptor = raptor;
+        this.entityRaptor = raptor;
     }
 
     public int getAnimationId()
@@ -40,7 +40,7 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
     public void startExecuting()
     {
         super.startExecuting();
-        attackTarget = entityRaptor.getAttackTarget();
+        this.attackTarget = entityRaptor.getAttackTarget();
     }
 
     public void resetTask()
@@ -50,36 +50,36 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
 
     public void updateTask()
     {
-        if (entityRaptor.getAnimationTick() < 10)
+        if (this.entityRaptor.getAnimationTick() < 10)
         {
-            if (attackTarget != null)
+            if (this.attackTarget != null)
             {
-                entityRaptor.getLookHelper().setLookPositionWithEntity(attackTarget, 30F, 30F);
+            	this.entityRaptor.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
             }
         }
 
-        if (entityRaptor.getAnimationTick() == 9)
+        if (this.entityRaptor.getAnimationTick() == 9)
         {
-            targetPrevPosX = attackTarget.posX;
-            targetPrevPosZ = attackTarget.posZ;
+        	this.targetPrevPosX = attackTarget.posX;
+        	this.targetPrevPosZ = attackTarget.posZ;
         }
 
         if (entityRaptor.getAnimationTick() == 10)
         {
-            if (attackTarget != null)
+            if (this.attackTarget != null)
             {
-                targetSpeedX = attackTarget.posX - targetPrevPosX;
-                targetSpeedZ = attackTarget.posZ - targetPrevPosZ;
+            	this.targetSpeedX = attackTarget.posX - targetPrevPosX;
+            	this.targetSpeedZ = attackTarget.posZ - targetPrevPosZ;
                 double leapDuration = 6;
-                destX = attackTarget.posX + targetSpeedX * leapDuration * 2;
-                destZ = attackTarget.posZ + targetSpeedZ * leapDuration * 2;
+                this.destX = attackTarget.posX + targetSpeedX * leapDuration * 2;
+                this.destZ = attackTarget.posZ + targetSpeedZ * leapDuration * 2;
                 double d = Math.sqrt((destX - entityRaptor.posX) * (destX - entityRaptor.posX) + (destZ - entityRaptor.posZ) * (destZ - entityRaptor.posZ));
                 double a = Math.atan2((destZ - entityRaptor.posZ), (destX - entityRaptor.posX));
 
-                entityRaptor.motionX = (d / leapDuration) * Math.cos(a);
-                entityRaptor.motionZ = (d / leapDuration) * Math.sin(a);
-                entityRaptor.motionY = 0.6D;
-                entityRaptor.timeSinceLeap = 150;
+                this.entityRaptor.motionX = (d / leapDuration) * Math.cos(a);
+                this.entityRaptor.motionZ = (d / leapDuration) * Math.sin(a);
+                this.entityRaptor.motionY = 0.6D;
+                this.entityRaptor.timeSinceLeap = 150;
 
                 double I = Math.random();
 
