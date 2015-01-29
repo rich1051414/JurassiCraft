@@ -1,44 +1,132 @@
 package net.ilexiconn.jurassicraft.ai;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.command.IEntitySelector;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAITarget;
 
 /**
  * This AI makes an EntityJurassiCraftSmart attack a desirable mob when the creature is not tamed
- * and has enough age.
- *
+ * and has enough age. It will also check if the target is younger than a minimum age.
+ * 
  * @author RafaMv
  */
-public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAINearestAttackableTarget
+public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 {
-    private EntityJurassiCraftSmart creature;
-    private float age;
 
-    public JurassiCraftAITargetIfHasAgeAndNonTamed(EntityJurassiCraftSmart entity, Class targetClass, int chanceToAttack, float ageToAttack)
-    {
-        super(entity, targetClass, chanceToAttack, false);
-        this.creature = entity;
-        this.age = ageToAttack;
-    }
+	private EntityJurassiCraftSmart creature;
+	private EntityLivingBase target;
+	private float minimumCreatureAge;
+	private float maximumTargetAge;
+	private final Class targetClass;
+	private final int targetChance;
+	private final JurassiCraftAITargetIfHasAgeAndNonTamed.Sorter theNearestAttackableTargetSorter;
+	private final IEntitySelector targetEntitySelector;
 
-    @Override
-    public boolean shouldExecute()
-    {
-        return !this.creature.isTamed() && this.creature.isCreatureOlderThan(this.age) && !this.creature.isSleeping() && super.shouldExecute();
-    }
+	public JurassiCraftAITargetIfHasAgeAndNonTamed(EntityJurassiCraftSmart creature, Class targetClass, int chanceToAttack, float minimumCreatureAge, float maximumTargetAge)
+	{
+		super(creature, true, false);
+		this.creature = creature;
+		this.minimumCreatureAge = minimumCreatureAge;
+		this.maximumTargetAge = maximumTargetAge;
+		this.targetClass = targetClass;
+		this.targetChance = chanceToAttack;
+		this.theNearestAttackableTargetSorter = new JurassiCraftAITargetIfHasAgeAndNonTamed.Sorter(creature);
+		this.targetEntitySelector = new IEntitySelector()
+		{
+			@Override
+			public boolean isEntityApplicable(Entity creature)
+			{
+				return !(creature instanceof EntityLivingBase) ? false : JurassiCraftAITargetIfHasAgeAndNonTamed.this.isSuitableTarget((EntityLivingBase) creature, false);
+			}
+		};
+		this.setMutexBits(1);
+	}
 
-    @Override
-    public void startExecuting()
-    {
-        super.startExecuting();
-        this.creature.setSitting(false, null);
-        this.creature.setAttacking(true);
-    }
+	@Override
+	public boolean shouldExecute()
+	{
+		if (this.taskOwner.getRNG().nextInt(this.targetChance) != 0 || this.creature.isTamed() || this.creature.isAttacking() || !this.creature.isCreatureOlderThan(this.minimumCreatureAge))
+		{
+			return false;
+		}
+		else
+		{
+			double searchDistance = this.getTargetDistance();
+			List list = this.taskOwner.worldObj.selectEntitiesWithinAABB(this.targetClass, this.taskOwner.boundingBox.expand(searchDistance, 5.0D, searchDistance), this.targetEntitySelector);
+			Collections.sort(list, this.theNearestAttackableTargetSorter);
+			if (list.isEmpty())
+			{
+				return false;
+			}
+			else
+			{
+				this.target = (EntityLivingBase) list.get(0);
+				if (this.target instanceof EntityJurassiCraftSmart)
+				{
+					return !((EntityJurassiCraftSmart) this.target).isCreatureOlderThan(this.maximumTargetAge);
+				}
+				else
+				{
+					return true;
+				}
+			}
+		}
+	}
 
-    @Override
-    public void resetTask()
-    {
-        super.resetTask();
-        this.creature.setAttacking(false);
-    }
+	@Override
+	public void startExecuting()
+	{
+		if (this.creature.isSitting())
+			this.creature.setSitting(false, null);
+		if (this.creature.isSleeping())
+			this.creature.setSleeping(false);
+		if (this.creature.isBreeding())
+			this.creature.setBreeding(false);
+		if (this.creature.isSocializing())
+			this.creature.setSocializing(false);
+		if (this.creature.isStalking())
+			this.creature.setStalking(false);
+		if (this.creature.isEating())
+			this.creature.setEating(false);
+		if (this.creature.isDrinking())
+			this.creature.setDrinking(false);
+		this.creature.setAttacking(true);
+		this.taskOwner.setAttackTarget(this.target);
+		super.startExecuting();
+	}
+
+	@Override
+	public void resetTask()
+	{
+		super.resetTask();
+		this.creature.setAttacking(false);
+	}
+
+	public static class Sorter implements Comparator
+	{
+		private final Entity entity;
+
+		public Sorter(Entity entity)
+		{
+			this.entity = entity;
+		}
+
+		public int compare(Entity entity1, Entity entity2)
+		{
+			double distance1 = this.entity.getDistanceSqToEntity(entity1);
+			double distance2 = this.entity.getDistanceSqToEntity(entity2);
+			return distance1 < distance2 ? -1 : (distance1 > distance2 ? 1 : 0);
+		}
+
+		public int compare(Object obj1, Object obj2)
+		{
+			return this.compare((Entity) obj1, (Entity) obj2);
+		}
+	}
 }

@@ -36,8 +36,8 @@ public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, IC
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySquid.class, 100, 0.2F));
-        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 100, 0.3F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySquid.class, 100, 0.2F, 1.0F));
+        this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 100, 0.3F, 1.0F));
         this.setCreatureExperiencePoints(5000);
     }
 

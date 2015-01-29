@@ -233,15 +233,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.setBoundingBox((float) (this.getGeneticQuality() * (this.getCreature().getXzBoxMin() + this.getCreature().getXzBoxDelta() * (((float) this.getGrowthStage()) / 120))), (float) (this.getGeneticQuality() * (this.getCreature().getYBoxMin() + this.getCreature().getYBoxDelta() * (((float) this.getGrowthStage()) / 120))));
             this.setCreatureLength();
             this.setCreatureHeight();
-            if (this.worldObj.isRemote)
-            {
-                this.setCreatureSize(this.getXZBoundingBox(), this.getYBouningBox());
-            }
-            else
-            {
-                this.setCreatureSize(0.5F * this.getXZBoundingBox(), 0.5F * this.getYBouningBox());
-                this.setCreatureScale();
-            }
+            this.setCreatureSize(this.getXZBoundingBox(), this.getYBouningBox());
+            this.setCreatureScale();
             this.heal((float) (this.getCreatureHealth() - this.prevHealth));
         }
     }

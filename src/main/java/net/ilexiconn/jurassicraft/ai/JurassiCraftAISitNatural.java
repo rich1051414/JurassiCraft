@@ -62,7 +62,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.creature.isInWater() || !this.creature.onGround || this.creature.isTakingOff() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isDefending() || this.creature.isBreeding())
+        if (this.creature.isInWater() || !this.creature.onGround || this.creature.isTakingOff() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isAttacking() || this.creature.isDefending() || this.creature.isBreeding())
             return false;
 
         if (!this.creature.isTamed())
@@ -70,7 +70,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase
             this.nonTamedTimer++;
             if (this.nonTamedTimer > this.nonTamedStartingTime)
             {
-                return this.creature.getRNG().nextInt(this.nonTamedChance) == 0 && !this.creature.isDefending();
+                return this.creature.getRNG().nextInt(this.nonTamedChance) == 0;
             }
             else
             {

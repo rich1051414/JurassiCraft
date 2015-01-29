@@ -46,7 +46,7 @@ public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDi
 		this.tasks.addTask(2, new AnimationAIHypsilophodonScratchHead(this));
 		this.tasks.addTask(2, new AnimationAIHypsilophodonPlaying(this));
 		this.tasks.addTask(2, new AnimationAIHypsilophodonSocializing(this));
-		this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 300, 5.0D, 10.0D, 0.3F));
+		this.tasks.addTask(2, new JurassiCraftAIPlayfulBaby(this, 300, 3.5D, 10.0D, 0.3F));
 		this.tasks.addTask(3, new JurassiCraftAIAvoidEntityIfNotTamed(this, EntityPlayer.class, 6.5F, 0.9D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
 		this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityHerrerasaurus.class, 12.0F, 1.0D * this.getCreatureSpeed(), 1.2D * this.getCreatureSpeed()));
 		this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 40, 1.1D * this.getCreatureSpeed()));

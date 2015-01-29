@@ -31,7 +31,7 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.creature.getRNG().nextInt(this.chance) > 0 || this.creature.isCreatureOlderThan(this.maxAge) || this.creature.isPlaying() || this.creature.isSocializing() || this.creature.isSitting() || this.creature.isSleeping() || this.creature.isFleeing() || this.creature.isEating() || this.creature.isDrinking() || this.creature.isAttacking() || this.creature.isDefending())
+        if (this.creature.getRNG().nextInt(this.chance) > 0 || this.creature.isCreatureOlderThan(this.maxAge) || this.creature.isPlaying() || this.creature.isSocializing() || this.creature.getAnimationId() != 0  || this.creature.isSitting() || this.creature.isSleeping() || this.creature.isFleeing() || this.creature.isEating() || this.creature.isDrinking() || this.creature.isAttacking() || this.creature.isDefending())
         {
             return false;
         }
@@ -44,13 +44,13 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
             {
                 for (EntityJurassiCraftCoward entity : closeCowardList)
                 {
-                    if (entity != null && entity.getClass() == this.creature.getClass())
+                    if (entity != null && entity.getClass() == this.creature.getClass() && entity != this.creature)
                     {
                     	double distance = this.creature.getDistanceSqToEntity(entity);
                     	if (distance >= this.minimumDistance && distance <= this.maximumDistance)
                     	{
                     	    this.otherCreature = (EntityJurassiCraftSmart) entity;
-                            return !this.otherCreature.isCreatureOlderThan(this.maxAge) && !this.otherCreature.isPlaying() && this.otherCreature.getAnimationId() == 0 && this.otherCreature.getAnimationId() == 0 && !this.otherCreature.isSocializing() && !this.otherCreature.isSitting() && !this.otherCreature.isSleeping() && !this.otherCreature.isFleeing() && !this.otherCreature.isEating() && !this.otherCreature.isDrinking() && !this.otherCreature.isAttacking() && !this.otherCreature.isDefending();
+                            return !this.otherCreature.isCreatureOlderThan(this.maxAge) && !this.otherCreature.isPlaying() && this.otherCreature.getAnimationId() == 0 && !this.otherCreature.isSocializing() && !this.otherCreature.isSitting() && !this.otherCreature.isSleeping() && !this.otherCreature.isFleeing() && !this.otherCreature.isEating() && !this.otherCreature.isDrinking() && !this.otherCreature.isAttacking() && !this.otherCreature.isDefending();
                     	}
                     }
                 }
@@ -84,11 +84,10 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
         if (this.otherCreature.isDrinking()) this.otherCreature.setDrinking(false);
         if (this.otherCreature.isSleeping()) this.otherCreature.setSleeping(false);
         if (this.otherCreature.isBreeding()) this.otherCreature.setBreeding(false);
-        if (this.otherCreature.isSitting()) this.otherCreature.setSitting(true, null);
-
-        this.creature.setPlaying(true);
+        if (this.otherCreature.isSitting()) this.otherCreature.setSitting(false, null);
 
         this.otherCreature.setSocializing(true);
+        this.creature.setPlaying(true);
     }
 
     @Override
@@ -110,13 +109,16 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
         if (this.creature.getAnimationId() == 0)
             AnimationHandler.sendAnimationPacket(this.creature, JurassiCraftAnimationIDs.PLAYING.animID());
 
+        this.creature.getNavigator().clearPathEntity();
+        this.creature.setCreatureToAttack(this.otherCreature);
+        this.creature.setPlaying(false);
+        
         if (this.otherCreature.getAnimationId() == 0)
             AnimationHandler.sendAnimationPacket(this.otherCreature, JurassiCraftAnimationIDs.SOCIALIZING.animID());
 
+        this.otherCreature.getNavigator().clearPathEntity();
         this.otherCreature.setCreatureToAttack(this.creature);
-        this.creature.setCreatureToAttack(this.otherCreature);
         this.otherCreature.setSocializing(false);
-        this.creature.setPlaying(false);
         this.otherCreature = null;
     }
 }

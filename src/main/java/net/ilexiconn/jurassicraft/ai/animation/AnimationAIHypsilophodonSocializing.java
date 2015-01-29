@@ -45,6 +45,10 @@ public class AnimationAIHypsilophodonSocializing extends AIAnimation
         if (this.hypsilophodon.getCreatureToAttack() != null && this.hypsilophodon.getCreatureToAttack() instanceof EntityHypsilophodon)
         {
         	EntityHypsilophodon friend = (EntityHypsilophodon) this.hypsilophodon.getCreatureToAttack();
+        	if (this.hypsilophodon.getAnimationTick() < 5)
+            {
+                this.hypsilophodon.getLookHelper().setLookPositionWithEntity(friend, 30F, 30F);
+            }
         	//Do stuff
         }
     }
