@@ -14,13 +14,12 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author RafaMv
  */
 @SideOnly(Side.CLIENT)
-public class IntermittentAnimation
-{
+public class IntermittentAnimation {
     /**
      * It is the timer used to animate.
      */
     private double timer;
-    
+
     /**
      * It is the limit time, the maximum value that the timer can be. I
      * represents the duration of the animation.
@@ -35,17 +34,17 @@ public class IntermittentAnimation
      * It is an inverter for the timer.
      */
     private int inverter;
-    
+
     /**
      * It is the timer used for the interval.
      */
     private double timerInterval;
 
-	/**
-	 * It is the interval to return to the first animation.
-	 */
+    /**
+     * It is the interval to return to the first animation.
+     */
     private double intervalDuration;
-    
+
     /**
      * It is the chance to go to the new animation.
      */
@@ -55,14 +54,13 @@ public class IntermittentAnimation
      * It is the chance to return to the original animation.
      */
     private int returnChance;
-    
+
     /**
      * It is the random used to randomize the movement.
      */
     Random rand = new Random();
 
-    public IntermittentAnimation(int duration, int intervalDuration, int goChance, int returnChance)
-    {
+    public IntermittentAnimation(int duration, int intervalDuration, int goChance, int returnChance) {
         this.timer = 0;
         this.duration = (double) duration;
         this.intervalDuration = (double) intervalDuration;
@@ -78,17 +76,15 @@ public class IntermittentAnimation
      * @param duration is the maximum number of ticks that the timer can reach.
      */
     @SideOnly(Side.CLIENT)
-    public void setDuration(int duration)
-    {
+    public void setDuration(int duration) {
         this.timer = 0;
         this.duration = (double) duration;
     }
 
-	/**
-	 * Returns the timer of this animation. Useful to save the progress of the animation.
-	 */
-    public double getTimer()
-    {
+    /**
+     * Returns the timer of this animation. Useful to save the progress of the animation.
+     */
+    public double getTimer() {
         return this.timer;
     }
 
@@ -98,26 +94,21 @@ public class IntermittentAnimation
      * @param time is the number of ticks to be set.
      */
     @SideOnly(Side.CLIENT)
-	public void setTimer(int time)
-    {
-		this.timer = (double) time;
+    public void setTimer(int time) {
+        this.timer = (double) time;
 
-		if (this.timer > this.duration)
-		{
-			this.timer = this.duration;
-		}
-		else if (this.timer < 0)
-		{
-			this.timer = 0;
-		}
-	}
+        if (this.timer > this.duration) {
+            this.timer = this.duration;
+        } else if (this.timer < 0) {
+            this.timer = 0;
+        }
+    }
 
     /**
      * Sets the timer to 0.
      */
     @SideOnly(Side.CLIENT)
-    public void resetTimer()
-    {
+    public void resetTimer() {
         this.timer = 0;
     }
 
@@ -126,13 +117,7 @@ public class IntermittentAnimation
      */
     @SideOnly(Side.CLIENT)
     public void runAnimation()
-<<<<<<< HEAD
     {
- //       System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
-        
-=======
-    {        
->>>>>>> FETCH_HEAD
     	if (!this.runInterval)
     	{
             if (this.timer < this.duration && this.timer > 0.0D)
