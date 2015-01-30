@@ -37,6 +37,7 @@ public class EntityCearadactylus extends EntityJurassiCraftFlyingCreature implem
     protected void entityInit()
     {
         super.entityInit();
+        
         this.dataWatcher.addObject(17, new Byte((byte) 0));
     }
 

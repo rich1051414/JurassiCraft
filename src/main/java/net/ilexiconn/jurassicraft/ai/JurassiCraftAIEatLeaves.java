@@ -168,7 +168,9 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         {
             damage += 0.025;
             world.destroyBlockInWorldPartially(creature.getEntityId(), leavesX, leavesY, leavesZ, (int) (damage * 10));
-            JurassiCraft.instance.logger.info("damage: " + damage);
+            
+            //JurassiCraft.instance.logger.info("damage: " + damage);
+            
             if (damage >= 1.0)
             {
                 damage = 0.0;

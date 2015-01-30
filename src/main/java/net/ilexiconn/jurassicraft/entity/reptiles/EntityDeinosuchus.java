@@ -26,6 +26,7 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
         super(world);
         
         this.getNavigator().setAvoidsWater(false);
+        
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
@@ -36,6 +37,7 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
+        
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
@@ -49,6 +51,7 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 30, 0.2F, 1.0F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 10, 0.1F, 1.0F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 40, 0.3F, 1.0F));
+  
         this.setCreatureExperiencePoints(4000);
     }
 
@@ -62,6 +65,7 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
     public void onUpdate()
     {
         super.onUpdate();
+      
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 2.5F, this);
     }
 
@@ -70,6 +74,7 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
     {
         float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (3.5F * developmentFraction) + this.rand.nextInt(1 + (int) (3.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+      
         if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
