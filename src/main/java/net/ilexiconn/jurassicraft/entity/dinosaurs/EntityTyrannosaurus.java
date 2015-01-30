@@ -176,7 +176,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             else
             {
                 this.sittingProgress.decreaseTimer();
-                this.restingHeadProgress.runAnimation();
+                this.restingHeadProgress.stopAnimation();
             }
         }
 

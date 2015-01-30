@@ -120,9 +120,7 @@ public class IntermittentAnimation
      */
     @SideOnly(Side.CLIENT)
     public void runAnimation()
-    {
-        System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
-        
+    {        
     	if (!this.runInterval)
     	{
             if (this.timer < this.duration && this.timer > 0.0D)
