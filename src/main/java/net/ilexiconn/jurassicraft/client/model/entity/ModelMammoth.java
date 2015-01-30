@@ -341,17 +341,16 @@ public class ModelMammoth extends MowzieModelBase
 //        f = mammoth.frame;
 //		f1 = 0.5F;
 
-        if(mammoth.getCreatureGender() == false) {LeftTusk1.isHidden = true; RightTusk1.isHidden = true;}
-        else {LeftTusk1.isHidden = false; RightTusk1.isHidden = false;}
-        System.out.println(mammoth.getCreatureGender());
+        if(mammoth.getCreatureGender() == false) {LeftTusk3.isHidden = true; RightTusk3.isHidden = true;}
+        else {LeftTusk3.isHidden = false; RightTusk3.isHidden = false;}
 
         float globalSpeed = 0.5F;
         float globalDegree = 1F;
         float height = 1.3F;
         float frontOffset = -2.3F;
 
-        this.faceTarget(this.LowerHead, 2, f3, f4);
-        this.faceTarget(this.Neck, 2, f3, f4);
+        LowerHead.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 2;
+        Neck.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 2;
 
         this.bob(this.Waist, 2 * globalSpeed, height, false, f, f1);
         this.bob(this.LeftBackThigh, 2 * globalSpeed, height, false, f, f1);
@@ -421,5 +420,25 @@ public class ModelMammoth extends MowzieModelBase
         this.walk(this.FurJointNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
         this.walk(this.FurFrontLeftNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
         this.walk(this.FurFrontRightNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
+
+        //Trunk lifting animation
+        float liftTrunkProgress = mammoth.trunkLift.getAnimationProgressSinSqrt();
+        Trunk4.rotateAngleX -= 0.3 * liftTrunkProgress;
+        Trunk5.rotateAngleX -= 0.7 * liftTrunkProgress;
+        Trunk6.rotateAngleX -= 1.5 * liftTrunkProgress;
+        Trunk7.rotateAngleX += 0.3 * liftTrunkProgress;
+
+        //Trunk swinging animation
+        float swingTrunkProgress = mammoth.trunkSwing.getAnimationProgressSinSqrt();
+        chainWave(trunkParts, 0.2F, 0.1F * swingTrunkProgress, 0, mammoth.frame, 1F);
+
+        //Ear flapping
+        float earFlapProgress = mammoth.earFlap.getAnimationProgressSinSqrt();
+        RightEar.rotateAngleY += 0.5F * earFlapProgress * Math.cos(mammoth.frame * 0.4F) - earFlapProgress * 0.5;
+        LeftEar.rotateAngleY -= 0.5F * earFlapProgress * Math.cos(mammoth.frame * 0.4F) - earFlapProgress * 0.5;
+
+        //Tail Swinging
+        float tailSwingProgress = mammoth.tailSwing.getAnimationProgressSinSqrt();
+        flap(Tail, 0.3F, 0.4F * tailSwingProgress, false, 0, 0, mammoth.frame, 1F);
     }
 }

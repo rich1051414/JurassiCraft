@@ -32,7 +32,7 @@ import net.minecraft.world.World;
 
 public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
-    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100);
+    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private boolean restingHead = false;

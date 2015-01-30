@@ -47,22 +47,28 @@ public class IntermittentAnimation
     private double intervalDuration;
     
     /**
-     * It is the chance to change the animation.
+     * It is the chance to go to the new animation.
      */
-    private int chance;
+    private int goChance;
+
+    /**
+     * It is the chance to return to the original animation.
+     */
+    private int returnChance;
     
     /**
      * It is the random used to randomize the movement.
      */
     Random rand = new Random();
 
-    public IntermittentAnimation(int duration, int intervalDuration, int chance)
+    public IntermittentAnimation(int duration, int intervalDuration, int goChance, int returnChance)
     {
         this.timer = 0;
         this.duration = (double) duration;
         this.intervalDuration = (double) intervalDuration;
         this.runInterval = true;
-        this.chance = chance;
+        this.goChance = goChance;
+        this.returnChance = returnChance;
         this.inverter = -1;
     }
 
@@ -81,9 +87,9 @@ public class IntermittentAnimation
 	/**
 	 * Returns the timer of this animation. Useful to save the progress of the animation.
 	 */
-    public void getTimer()
+    public double getTimer()
     {
-        this.timer = 0;
+        return this.timer;
     }
 
     /**
@@ -121,7 +127,7 @@ public class IntermittentAnimation
     @SideOnly(Side.CLIENT)
     public void runAnimation()
     {
-        System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
+ //       System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
         
     	if (!this.runInterval)
     	{
@@ -151,19 +157,10 @@ public class IntermittentAnimation
     		}
     		else
     		{
-    			if (this.rand.nextInt(this.chance) == 0)
-    			{
-            		if (this.inverter > 0)
-            		{
-                		this.inverter = -1;
-            		}
-            		else
-            		{
-                		this.inverter = 1;
-            		}
-            		this.timer += this.inverter;
-            		this.runInterval = false;
-    			}
+    			if (this.inverter > 0 && this.rand.nextInt(this.returnChance) == 0) this.inverter = -1;
+            	if (this.inverter < 0 && this.rand.nextInt(this.goChance) == 0) this.inverter = 1;
+            	this.timer += this.inverter;
+            	this.runInterval = false;
     		}
     	}
     }

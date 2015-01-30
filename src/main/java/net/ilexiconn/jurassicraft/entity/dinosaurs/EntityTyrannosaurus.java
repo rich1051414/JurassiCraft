@@ -42,11 +42,9 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
 {
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
-    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100);
+    public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(50);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-    private boolean restingHead = false;
-    private int restHeadSwitchTimer = 300;
     private double entityRiderPitchDelta;
     private double entityRiderYawDelta;
     private float shakeCount = 0;
@@ -176,7 +174,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             else
             {
                 this.sittingProgress.decreaseTimer();
-                this.restingHeadProgress.runAnimation();
+                this.restingHeadProgress.stopAnimation();
             }
         }
 
