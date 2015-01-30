@@ -89,7 +89,7 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
             else
             {
                 this.sittingProgress.decreaseTimer();
-                this.restingHeadProgress.runAnimation();
+                this.restingHeadProgress.stopAnimation();
             }
         }
         

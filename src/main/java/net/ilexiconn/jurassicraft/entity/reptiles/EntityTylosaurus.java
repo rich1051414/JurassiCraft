@@ -2,11 +2,16 @@ package net.ilexiconn.jurassicraft.entity.reptiles;
 
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntitySwimmingBase;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
+import net.ilexiconn.jurassicraft.item.ItemMeat;
+import net.ilexiconn.jurassicraft.item.ItemSteak;
+import net.ilexiconn.jurassicraft.item.drops.ItemSkin;
+import net.ilexiconn.jurassicraft.item.drops.ItemSkull;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -49,16 +54,16 @@ public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, IC
         this.tailBuffer.calculateChainSwingBuffer(120.0F, 5, 8.0F, this);
     }
 
-    public EntityLivingBase getTargetPriority(EntityLivingBase Target, EntityLivingBase entity1)
+    public EntityLivingBase getTargetPriority(EntityLivingBase target, EntityLivingBase entity)
     {
-        if (Target != null)
+        if (target != null)
         {
-            if (Target instanceof EntityPlayer) return Target;
-            else if (Target instanceof EntityTylosaurus) //Won't go for other Tylosaurus unless nothing else around
-                return entity1;
-            else return Target;
+            if (target instanceof EntityPlayer) return target;
+            else if (target instanceof EntityTylosaurus) //Won't go for other Tylosaurus unless nothing else around
+                return entity;
+            else return target;
         }
-        else return entity1;
+        else return entity;
     }
 
     @Override
@@ -66,21 +71,62 @@ public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, IC
     {
         float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (5.0F * developmentFraction) + this.rand.nextInt(1 + (int) (5.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
+       
+        Creature creature = this.getCreature();
+
         if (!this.isBurning())
         {
-            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));
+            ItemMeat meat = creature.getMeat();
+      
+            if(meat != null)
+            {
+            	this.dropItemStackWithGenetics(new ItemStack(meat, count));
+            }
+            else
+            {
+            	System.err.println("Meat was null for Tylosaurus!");
+            }
         }
         else
         {
-            this.dropItem(this.getCreature().getSteak(), count);
+            ItemSteak steak = creature.getSteak();
+            
+            if(steak != null)
+            {
+            	this.dropItem(steak, count);
+            }
+            else
+            {
+            	System.err.println("Steak was null for Tylosaurus!");
+            }
         }
+        
         if (this.worldObj.rand.nextFloat() < 0.1F)
         {
-            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
+            ItemSkull skull = creature.getSkull();
+            
+            if(skull != null)
+            {
+            	this.dropItemStackWithGenetics(new ItemStack(skull));
+            }
+            else
+            {
+            	System.err.println("Skull was null for Tylosaurus!");
+            }
         }
+      
         if (this.isMale() && this.worldObj.rand.nextFloat() < 0.25F)
         {
-            this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
+            ItemSkin skin = creature.getSkin();
+          
+            if(skin != null)
+            {
+        		this.dropItemStackWithGenetics(new ItemStack(skin));
+            }
+            else
+            {
+            	System.err.println("Skin was null for Tylosaurus!");
+            }
         }
     }
 }

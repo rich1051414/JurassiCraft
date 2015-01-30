@@ -833,21 +833,24 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     @Override
     public String getLivingSound()
     {
-        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
+        String creatureName = this.getCreatureName().toLowerCase();
+		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
     @Override
     public String getHurtSound()
     {
-        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
+        String creatureName = this.getCreatureName().toLowerCase();
+		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
     @Override
     public String getDeathSound()
     {
-        this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
+        String creatureName = this.getCreatureName().toLowerCase();
+		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
@@ -856,6 +859,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         if (itemStack.getItem() != null)
         {
             NBTTagCompound compound = new NBTTagCompound();
+        
             if (this.hasDNASequence())
             {
                 compound.setString("DNA", this.getDNASequence());
@@ -864,9 +868,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             {
                 compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
+            
             compound.setInteger("Quality", 100);
             itemStack.setTagCompound(compound);
         }
+        
         return this.entityDropItem(itemStack, 0.0F);
     }
 

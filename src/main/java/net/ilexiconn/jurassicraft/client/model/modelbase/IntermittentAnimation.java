@@ -126,9 +126,13 @@ public class IntermittentAnimation
      */
     @SideOnly(Side.CLIENT)
     public void runAnimation()
+<<<<<<< HEAD
     {
  //       System.out.println("this.timer " + this.timer + " this.duration " + this.duration + " this.inverter " + this.inverter + " this.timerInterval " + this.timerInterval);
         
+=======
+    {        
+>>>>>>> FETCH_HEAD
     	if (!this.runInterval)
     	{
             if (this.timer < this.duration && this.timer > 0.0D)
