@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.ai.animation;
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftAggressive;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
@@ -12,11 +13,11 @@ import net.minecraft.util.DamageSource;
 
 public class AnimationAIBite extends AIAnimation
 {
-    private EntityJurassiCraftAggressive entityBiting;
+    private EntityJurassiCraftCreature entityBiting;
     private EntityLivingBase entityTarget;
     private int duration;
 
-    public AnimationAIBite(EntityJurassiCraftAggressive dino, int duration)
+    public AnimationAIBite(EntityJurassiCraftCreature dino, int duration)
     {
         super(dino);
         this.entityBiting = dino;
@@ -49,10 +50,10 @@ public class AnimationAIBite extends AIAnimation
     {
         if (this.entityTarget != null)
         {
-            if (this.entityBiting.getAnimationTick() < (this.duration / 2 - 2))
+            if (this.entityBiting.getAnimationTick() < ((this.duration / 2) - 2))
                 this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
 
-            if (this.entityBiting.getAnimationTick() == (this.duration / 2 - 2))
+            if (this.entityBiting.getAnimationTick() == ((this.duration / 2) - 2))
             {
                 float damage = (float) this.entityBiting.getCreatureAttack();
                 if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)

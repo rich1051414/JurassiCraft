@@ -1,13 +1,16 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMammoth;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelMammoth extends MowzieModelBase
 {
+    private Animator animator;
     public MowzieModelRenderer LeftBackThigh;
     public MowzieModelRenderer RightBackThigh;
     public MowzieModelRenderer Waist;
@@ -64,8 +67,10 @@ public class ModelMammoth extends MowzieModelBase
 
     public ModelMammoth()
     {
+        this.animator = new Animator(this);
         this.textureWidth = 128;
         this.textureHeight = 128;
+
         this.RightBackFoot = new MowzieModelRenderer(this, 0, 59);
         this.RightBackFoot.setRotationPoint(0.0F, 8.0F, 2.0F);
         this.RightBackFoot.addBox(-2.0F, 0.0F, -2.0F, 4, 5, 6, 0.0F);
@@ -320,7 +325,7 @@ public class ModelMammoth extends MowzieModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityMammoth)entity);
+        this.animate(f, f1, f2, f3, f4, f5, (EntityMammoth)entity);
         this.LeftBackThigh.render(f5);
         this.RightBackThigh.render(f5);
         this.Waist.render(f5);
@@ -440,5 +445,54 @@ public class ModelMammoth extends MowzieModelBase
         //Tail Swinging
         float tailSwingProgress = mammoth.tailSwing.getAnimationProgressSinSqrt();
         flap(Tail, 0.3F, 0.4F * tailSwingProgress, false, 0, 0, mammoth.frame, 1F);
+    }
+
+    public void animate(float f, float f1, float f2, float f3, float f4, float f5, EntityMammoth mammoth)
+    {
+        this.animator.update(mammoth);
+        setRotationAngles(f, f1, f2, f3, f4, f5, mammoth);
+
+        if (mammoth.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(6);
+            animator.rotate(Waist, 0.3F, 0.3F, 0);
+            animator.rotate(RightFrontThigh1, 0.3F, 0, 0);
+            animator.rotate(LeftFrontThigh1, 0.3F, 0, 0);
+            animator.rotate(RightFrontCalf, -0.8F, 0, 0);
+            animator.rotate(LeftFrontCalf, -0.8F, 0, 0);
+            animator.rotate(RightFrontFoot, 0.3F, 0, 0);
+            animator.rotate(LeftFrontFoot, 0.3F, 0, 0);
+            animator.rotate(LowerHead, 0.3F, 0.3F, 0);
+            animator.rotate(Trunk1, 0.1F, 0, 0);
+            animator.rotate(Trunk2, 0.1F, 0, 0);
+            animator.rotate(Trunk3, 0.1F, 0, 0);
+            animator.rotate(Trunk4, 0.2F, 0, 0);
+            animator.rotate(Trunk5, 0.2F, 0, 0);
+            animator.rotate(Trunk6, 0.2F, 0, 0);
+            animator.rotate(Trunk7, 0.2F, 0, 0);
+            animator.endPhase();
+            animator.setStationaryPhase(2);
+            this.animator.startPhase(4);
+            animator.rotate(Waist, 0, -0.5F, 0);
+//            animator.rotate(RightFrontThigh1, 0.3F, 0, 0);
+//            animator.rotate(LeftFrontThigh1, 0.3F, 0, 0);
+//            animator.rotate(RightFrontCalf, -0.8F, 0, 0);
+//            animator.rotate(LeftFrontCalf, -0.8F, 0, 0);
+//            animator.rotate(RightFrontFoot, 0.3F, 0, 0);
+//            animator.rotate(LeftFrontFoot, 0.3F, 0, 0);
+            animator.rotate(Neck, -0.3F, -0.3F, 0);
+            animator.rotate(LowerHead, -0.3F, -0.3F, 0);
+            animator.rotate(Trunk1, -0.1F, 0, 0);
+            animator.rotate(Trunk2, -0.1F, 0, 0);
+            animator.rotate(Trunk3, -0.1F, 0, 0);
+            animator.rotate(Trunk4, -0.1F, 0, 0);
+            animator.rotate(Trunk5, -0.1F, 0, 0);
+            animator.rotate(Trunk6, -0.1F, 0, 0);
+            animator.rotate(Trunk7, -0.1F, 0, 0);
+            animator.endPhase();
+            animator.setStationaryPhase(4);
+            this.animator.resetPhase(8);
+        }
     }
 }

@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.mammals;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAIBite;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -9,6 +10,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,6 +28,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(2, new AnimationAIBite(this, 24));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
@@ -85,5 +88,39 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         if(trunkLift.getTimer() == 0) trunkSwing.runAnimation();
         earFlap.runAnimation();
         tailSwing.runAnimation();
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+/*    	float attackDamage = (float) this.getCreatureAttack();
+        int i = 0;
+        if (entity instanceof EntityLivingBase)
+        {
+            attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
+            i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
+        }
+        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
+        if (flag)
+        {
+            if (i > 0)
+            {
+                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
+                this.motionX *= 0.6D;
+                this.motionZ *= 0.6D;
+            }
+            int j = EnchantmentHelper.getFireAspectModifier(this);
+            if (j > 0)
+            {
+                entity.setFire(j * 4);
+            }
+            if (entity instanceof EntityLivingBase)
+            {
+                EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
+            }
+            EnchantmentHelper.func_151385_b(this, entity);
+        }*/
+        if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
+        return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
 }
