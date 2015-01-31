@@ -28,6 +28,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     private boolean foundLeaves;
     private long maxTime;
     private double damage;
+    private Vec3 directionVector;
 
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed)
     {
@@ -152,7 +153,19 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             leavesX = (int) Math.floor(leavesLoc.xCoord);
             leavesY = (int) Math.floor(leavesLoc.yCoord);
             leavesZ = (int) Math.floor(leavesLoc.zCoord);
+            
+            directionVector = Vec3.createVectorHelper(leavesX, leavesY, leavesZ).subtract(Vec3.createVectorHelper(creature.posX, creature.posY, creature.posZ));
         }
+    }
+    
+    /**
+     * Returns a Vec3 instance representing the vector from the entity to the block
+     * @return
+     *        The vector from the entity to the block
+     */
+    public Vec3 getVectorToBlock()
+    {
+        return directionVector;
     }
 
     public boolean continueExecuting()
@@ -169,23 +182,25 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             damage += 0.025;
             world.destroyBlockInWorldPartially(creature.getEntityId(), leavesX, leavesY, leavesZ, (int) (damage * 10));
             
-            //JurassiCraft.instance.logger.info("damage: " + damage);
+            creature.getLookHelper().setLookPosition(leavesX, leavesY, leavesZ, 10f, creature.getVerticalFaceSpeed());
             
             if (damage >= 1.0)
             {
                 damage = 0.0;
                 world.setBlockToAir(leavesX, leavesY, leavesZ);
-                world.playSound(leavesX, leavesY, leavesZ, Blocks.leaves.stepSound.soundName, 1.0f, 1.0f, false);
+                world.playSoundEffect(leavesX, leavesY, leavesZ, Blocks.leaves.stepSound.getBreakSound(), 1.0f, 1.0f);
+                
+                return false; // We finished eating the leaves block
             }
         }
         else
         {
-            int y = getFirstSolidUnder(leavesX, leavesY, leavesZ);
+            int y = getFirstSolidUnder(leavesX, leavesY, leavesZ);  
             if (y < 0) return false;
             PathEntity path = creature.getNavigator().getPathToXYZ(leavesX, y, leavesZ);
             if (path != null)
             {
-                creature.getNavigator().setPath(path, speed * 2);
+                creature.getNavigator().setPath(path, speed);
             }
             else if (path == null && creature.onGround && !creature.isInWater())
             {
@@ -195,6 +210,17 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         return true;
     }
 
+    /**
+     * Look for the block at which to positionate the creature. The creature shouldn't stand on the tree. <br/>Brachiosuruses are way too heavy to stand on trees, ofc
+     * @param x  
+     *         The X coordinate of the block
+     * @param y
+     *         The Y coordinate of the block
+     * @param z
+     *         The Z coordinate of the block
+     * @return
+     *        The Y coordinate of the first solid block under block at (x,y,z)
+     */
     private int getFirstSolidUnder(int x, int y, int z)
     {
         for (; y >= 0; y--)
@@ -230,7 +256,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return world.getWorldTime() - lastTimeExecuted >= maxTime && Math.random() < 1.10;
+        return world.getWorldTime() - lastTimeExecuted >= maxTime && Math.random() < 0.10;
     }
 
 }
