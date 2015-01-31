@@ -1,6 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.birds;
 
 import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
@@ -31,6 +33,8 @@ public class EntityTitanis extends EntityJurassiCraftGroupAggressive implements 
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.tasks.addTask(7, new HerdAIFollowHerd(this, true, getCreatureSpeed()));
+        this.tasks.addTask(7, new HerdAIGroupAttack(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

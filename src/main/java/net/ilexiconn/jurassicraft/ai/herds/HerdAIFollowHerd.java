@@ -9,9 +9,9 @@ public class HerdAIFollowHerd extends EntityAIHerd
 
     private double speed;
 
-    public HerdAIFollowHerd(EntityJurassiCraftCreature creature, double speed)
+    public HerdAIFollowHerd(EntityJurassiCraftCreature creature, boolean groupAttack, double speed)
     {
-        super(creature);
+        super(creature, groupAttack);
         this.speed = speed;
     }
 

@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -29,6 +30,7 @@ public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements ID
         this.tasks.addTask(5, new JurassiCraftAIWander(this, 30, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 7.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.tasks.addTask(6, new HerdAIFollowHerd(this, false, getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftAIFleeOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIFleeOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

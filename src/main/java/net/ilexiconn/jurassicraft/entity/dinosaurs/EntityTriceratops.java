@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITriceratopsCharge;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
@@ -50,6 +51,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.tasks.addTask(10, new JurassiCraftAIHerdBehavior(this, 96, 2000, 20, 0.7D * this.getCreatureSpeed()));
+        this.tasks.addTask(10, new HerdAIFollowHerd(this, false, getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

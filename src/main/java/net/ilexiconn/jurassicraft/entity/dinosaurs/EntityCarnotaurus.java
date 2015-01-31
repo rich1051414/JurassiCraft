@@ -8,6 +8,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
@@ -52,6 +54,8 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
         this.tasks.addTask(7, new JurassiCraftAIEatDroppedFood(this, 16.0D));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(9, new HerdAIFollowHerd(this, true, getCreatureSpeed()));
+        this.tasks.addTask(9, new HerdAIGroupAttack(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

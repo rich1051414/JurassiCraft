@@ -8,10 +8,12 @@ public abstract class EntityAIHerd extends EntityAIBase
 
     private CreatureHerd herd;
     private EntityJurassiCraftCreature creature;
+    private boolean groupAttack;
 
-    public EntityAIHerd(EntityJurassiCraftCreature creature)
+    public EntityAIHerd(EntityJurassiCraftCreature creature, boolean groupAttack)
     {
         this.creature = creature;
+        this.groupAttack = groupAttack;
     }
 
     public EntityJurassiCraftCreature getCreature()
@@ -46,7 +48,7 @@ public abstract class EntityAIHerd extends EntityAIBase
         }
         if (herd == null)
         {
-            CreatureHerd herd = new CreatureHerd();
+            CreatureHerd herd = new CreatureHerd(groupAttack);
             herd.add(creature);
             CreatureHerd.registerHerd(herd);
         }

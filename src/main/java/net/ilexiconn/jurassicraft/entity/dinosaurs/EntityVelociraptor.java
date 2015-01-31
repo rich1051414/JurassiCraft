@@ -12,6 +12,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorLeap;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIVelociraptorTwitchHead;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
@@ -59,6 +61,8 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(7, new AnimationAIVelociraptorTwitchHead(this));
         this.tasks.addTask(7, new AnimationAIRoar(this, 20));
+        this.tasks.addTask(7, new HerdAIFollowHerd(this, true, getCreatureSpeed()));
+        this.tasks.addTask(7, new HerdAIGroupAttack(this)); // Change it by a surprise and awesome one
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

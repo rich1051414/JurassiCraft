@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIBite;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
@@ -41,6 +42,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new AnimationAIRoar(this, 40));
         this.tasks.addTask(7, new JurassiCraftAIHerdBehavior(this, 128, 2500, 24, this.getCreatureSpeed()));
+        this.tasks.addTask(7, new HerdAIFollowHerd(this, false, getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

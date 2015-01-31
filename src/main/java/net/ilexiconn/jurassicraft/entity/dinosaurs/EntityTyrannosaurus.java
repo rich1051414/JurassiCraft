@@ -12,6 +12,8 @@ import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIWalkRoar;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
+import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
@@ -67,6 +69,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(7, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
         this.tasks.addTask(7, new JurassiCraftAIEatDroppedFood(this, 16.0D));
+        this.tasks.addTask(7, new HerdAIFollowHerd(this, true, getCreatureSpeed()));
+        this.tasks.addTask(7, new HerdAIGroupAttack(this));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));

@@ -34,9 +34,10 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         herds.remove(herd);
     }
 
-    public CreatureHerd()
+    public CreatureHerd(boolean attack)
     {
         creatures = Lists.newArrayList();
+        this.groupAttack = attack;
     }
 
     /**
@@ -207,7 +208,6 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         {
             creature.setAttackTarget(target);
         }
-
         System.out.println("Herd of " + size() + " creatures now attacking " + target);
     }
 

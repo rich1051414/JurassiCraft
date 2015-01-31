@@ -7,7 +7,7 @@ public class HerdAIGroupAttack extends EntityAIHerd
 
     public HerdAIGroupAttack(EntityJurassiCraftCreature creature)
     {
-        super(creature);
+        super(creature, true);
     }
 
     public void startExecuting()
