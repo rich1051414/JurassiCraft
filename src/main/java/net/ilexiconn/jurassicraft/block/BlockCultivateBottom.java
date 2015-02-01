@@ -32,6 +32,7 @@ public class BlockCultivateBottom extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
     public static final IIcon[] icons = new IIcon[ItemDye.field_150921_b.length];
+  
     public boolean isLit;
 
     public BlockCultivateBottom(boolean lit)

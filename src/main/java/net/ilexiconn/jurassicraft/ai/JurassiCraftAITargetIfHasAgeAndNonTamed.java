@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.ai;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.minecraft.command.IEntitySelector;
@@ -18,7 +19,6 @@ import net.minecraft.entity.ai.EntityAITarget;
  */
 public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 {
-
 	private EntityJurassiCraftSmart creature;
 	private EntityLivingBase target;
 	private float minimumCreatureAge;
@@ -31,12 +31,14 @@ public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 	public JurassiCraftAITargetIfHasAgeAndNonTamed(EntityJurassiCraftSmart creature, Class targetClass, int chanceToAttack, float minimumCreatureAge, float maximumTargetAge)
 	{
 		super(creature, true, false);
+
 		this.creature = creature;
 		this.minimumCreatureAge = minimumCreatureAge;
 		this.maximumTargetAge = maximumTargetAge;
 		this.targetClass = targetClass;
 		this.targetChance = chanceToAttack;
 		this.theNearestAttackableTargetSorter = new JurassiCraftAITargetIfHasAgeAndNonTamed.Sorter(creature);
+
 		this.targetEntitySelector = new IEntitySelector()
 		{
 			@Override
@@ -45,38 +47,50 @@ public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 				return !(creature instanceof EntityLivingBase) ? false : JurassiCraftAITargetIfHasAgeAndNonTamed.this.isSuitableTarget((EntityLivingBase) creature, false);
 			}
 		};
+
 		this.setMutexBits(1);
 	}
 
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.taskOwner.getRNG().nextInt(this.targetChance) != 0 || this.creature.isTamed() || this.creature.isAttacking() || !this.creature.isCreatureOlderThan(this.minimumCreatureAge))
+		Random random = this.taskOwner.getRNG();
+		
+		boolean isTamed = this.creature.isTamed();
+		boolean isAttacking = this.creature.isAttacking();
+		boolean olderThanMinAge = this.creature.isCreatureOlderThan(this.minimumCreatureAge);
+		
+		if(this.targetChance > 0)
 		{
-			return false;
-		}
-		else
-		{
-			double searchDistance = this.getTargetDistance();
-			List list = this.taskOwner.worldObj.selectEntitiesWithinAABB(this.targetClass, this.taskOwner.boundingBox.expand(searchDistance, 5.0D, searchDistance), this.targetEntitySelector);
-			Collections.sort(list, this.theNearestAttackableTargetSorter);
-			if (list.isEmpty())
+			if (random.nextInt(this.targetChance) != 0 || isTamed || isAttacking || !olderThanMinAge)
 			{
 				return false;
 			}
 			else
 			{
-				this.target = (EntityLivingBase) list.get(0);
-				if (this.target instanceof EntityJurassiCraftSmart)
+				double searchDistance = this.getTargetDistance();
+				List list = this.taskOwner.worldObj.selectEntitiesWithinAABB(this.targetClass, this.taskOwner.boundingBox.expand(searchDistance, 5.0D, searchDistance), this.targetEntitySelector);
+				Collections.sort(list, this.theNearestAttackableTargetSorter);
+				if (list.isEmpty())
 				{
-					return !((EntityJurassiCraftSmart) this.target).isCreatureOlderThan(this.maximumTargetAge);
+					return false;
 				}
 				else
 				{
-					return true;
+					this.target = (EntityLivingBase) list.get(0);
+					if (this.target instanceof EntityJurassiCraftSmart)
+					{
+						return !((EntityJurassiCraftSmart) this.target).isCreatureOlderThan(this.maximumTargetAge);
+					}
+					else
+					{
+						return true;
+					}
 				}
 			}
 		}
+		
+		return false;
 	}
 
 	@Override
