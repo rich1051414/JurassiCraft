@@ -18,384 +18,389 @@ import java.util.Random;
 
 public class EntitySwimmingBase extends EntityJurassiCraftRidable
 {
-	private Vec3 currentSwimTarget;
-	
-	protected float swimSpeed = 1;
-	
-	protected Entity hungryTarget;
-	
-	protected int huntingInterval = 1200;
-	protected int hungry = huntingInterval;
-	
-	private int newTarget = 500;
-	
-	public Vec3 territory;
+    private Vec3 currentSwimTarget;
 
-	public EntitySwimmingBase(World world)
-	{
-		super(world);
-	}
+    protected float swimSpeed = 1;
 
-	public int getTotalArmorValue()
-	{
-		return 0;
-	}
+    protected Entity hungryTarget;
 
-	public float getDistanceToTarget()
-	{
-		return this.hungryTarget == null ? 20 : (float) this.getDistanceToEntity(hungryTarget);
-	}
+    protected int huntingInterval = 1200;
+    protected int hungry = huntingInterval;
 
-	/**
-	 * Called when the mob's health reaches 0.
-	 */
-	@Override
-	public void onDeath(DamageSource par1DamageSource)
-	{
-		super.onDeath(par1DamageSource);
-	}
+    private int newTarget = 500;
 
+    public Vec3 territory;
 
-	/**
-	 * (abstract) Protected helper method to write subclass entity data to NBT.
-	 */
-	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.writeEntityToNBT(par1NBTTagCompound);
-	}
+    public EntitySwimmingBase(World world)
+    {
+        super(world);
+    }
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
-	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.readEntityFromNBT(par1NBTTagCompound);
-	}
+    public int getTotalArmorValue()
+    {
+        return 0;
+    }
+
+    public float getDistanceToTarget()
+    {
+        return this.hungryTarget == null ? 20 : (float) this.getDistanceToEntity(hungryTarget);
+    }
+
+    /**
+     * Called when the mob's health reaches 0.
+     */
+    @Override
+    public void onDeath(DamageSource par1DamageSource)
+    {
+        super.onDeath(par1DamageSource);
+    }
 
 
-	/**
-	 * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y
-	 * offset -2 to 4) towards which it will fly. upon getting close a new
-	 * target will be selected
-	 */
-	public void setPosition(double par1, double par3, double par5)
-	{
-		super.setPosition(par1, par3, par5);
-		if (currentSwimTarget == null)
-		{
-			currentSwimTarget = Vec3.createVectorHelper(par1, par3, par5);
-		}
-	}
+    /**
+     * (abstract) Protected helper method to write subclass entity data to NBT.
+     */
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.writeEntityToNBT(par1NBTTagCompound);
+    }
 
-	public int attackTimer = 40;
-
-	@Override
-	protected void updateAITasks()
-	{
-		super.updateAITasks();
-
-		if (territory == null)
-		{
-			territory = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-			territory.xCoord = this.posX;
-			territory.yCoord = this.posY;
-			territory.zCoord = this.posZ;
-		}
-		if (this.isInWater())
-		{
-			--hungry;
-			EntityPlayer closestPlayer = null;
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readEntityFromNBT(par1NBTTagCompound);
+    }
 
 
-			currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
+    /**
+     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y
+     * offset -2 to 4) towards which it will fly. upon getting close a new
+     * target will be selected
+     */
+    public void setPosition(double par1, double par3, double par5)
+    {
+        super.setPosition(par1, par3, par5);
+        if (currentSwimTarget == null)
+        {
+            currentSwimTarget = Vec3.createVectorHelper(par1, par3, par5);
+        }
+    }
 
-			if (hungry <= -2400)
-			{
-				hungry = -1;
-				this.damageEntity(DamageSource.generic, 1.0F);
-			}
+    public int attackTimer = 40;
 
-			if (hungry <= 0)
-			{
-				--attackTimer;
-				if (hungryTarget == null) this.currentSwimTarget = this.getHungryTarget();
-				else
-				{
-					--newTarget;
-					territory = null;
-					this.currentSwimTarget = Vec3.createVectorHelper(hungryTarget.posX, hungryTarget.posY, hungryTarget.posZ);
-				}
+    @Override
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
 
-			}
-			else currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
-
-			if (newTarget <= 0 || (hungryTarget != null && this.getDistanceToEntity(hungryTarget) > 15))
-			{
-				newTarget = 500;
-				hungryTarget = null;
-			}
-			if (this.currentSwimTarget != null && territory != null && Math.sqrt(currentSwimTarget.xCoord * territory.xCoord + currentSwimTarget.yCoord * territory.yCoord + currentSwimTarget.zCoord * territory.zCoord) > 30)
-				currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, true);
-
-			if (this.currentSwimTarget != null)
-			{
-				approachTarget(this.posX, this.posY, this.posZ, swimSpeed);
-			}
-
-			if (!this.worldObj.isAirBlock((int) this.posX, (int) this.posY + 1, (int) this.posZ) && !this.worldObj.isAirBlock((int) this.posX, (int) this.posY + 2, (int) this.posZ))
-			{
-				this.motionY += 0.0110829F;
-			}
+        if (territory == null)
+        {
+            territory = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+            territory.xCoord = this.posX;
+            territory.yCoord = this.posY;
+            territory.zCoord = this.posZ;
+        }
+        if (this.isInWater())
+        {
+            --hungry;
+            EntityPlayer closestPlayer = null;
 
 
-		}
-		else
-		{
-			this.setJumping(true);
-			if (this.onGround)
-			{
-				this.motionX *= 0.031;
-				this.motionZ *= 0.031;
+            currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
 
-			}
-		}
+            if (hungry <= -2400)
+            {
+                hungry = -1;
+                this.damageEntity(DamageSource.generic, 1.0F);
+            }
 
-	}
+            if (hungry <= 0)
+            {
+                --attackTimer;
+                if (hungryTarget == null)
+                    this.currentSwimTarget = this.getHungryTarget();
+                else
+                {
+                    --newTarget;
+                    territory = null;
+                    this.currentSwimTarget = Vec3.createVectorHelper(hungryTarget.posX, hungryTarget.posY, hungryTarget.posZ);
+                }
 
-	public void setHungry(int var1)
-	{
-		hungry = var1;
-		hungryTarget = null;
-	}
+            }
+            else
+                currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, false);
 
-	public int getHungry()
-	{
-		return hungry;
-	}
+            if (newTarget <= 0 || (hungryTarget != null && this.getDistanceToEntity(hungryTarget) > 15))
+            {
+                newTarget = 500;
+                hungryTarget = null;
+            }
+            if (this.currentSwimTarget != null && territory != null && Math.sqrt(currentSwimTarget.xCoord * territory.xCoord + currentSwimTarget.yCoord * territory.yCoord + currentSwimTarget.zCoord * territory.zCoord) > 30)
+                currentSwimTarget = findRandomTarget(this.posX, this.posY, this.posZ, true);
 
-	public Vec3 getHungryTarget()
-	{
-		EntityLivingBase target = null;
-		Vec3 normalizer = Vec3.createVectorHelper(1, 1, 1).normalize();
-		List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().expand(Math.abs(normalizer.xCoord * 7.0D) + 7, Math.abs(normalizer.yCoord * 7.0D) + 7, Math.abs(normalizer.zCoord * 7.0D) + 7));
+            if (this.currentSwimTarget != null)
+            {
+                approachTarget(this.posX, this.posY, this.posZ, swimSpeed);
+            }
 
-		for (Object object : entities)
-		{
-			Entity entity = (Entity) object;
-
-			if (entity.isInWater() && entity instanceof EntityLivingBase)
-			{
-				target = getTargetPriority(target, (EntityLivingBase) entity);
-				hungryTarget = target;
-			}
-		}
-
-		if (target == null)
-		{
-			return findRandomTarget(posX, posY, posZ, false);
-		}
-		else if (attackTimer <= 0) 
-		{
-			return Vec3.createVectorHelper(target.posX, target.posY, target.posZ);
-		}
-		else 
-		{
-			return currentSwimTarget;
-		}
-	}
-
-	/*
-	 * Get a prioritized Target by comparing current target to new entity in range.
-	 * Target = current target. Null at beginning of search
-	 * entity1 = next entity in range to compare with target. Should never be null
-	 */
-	public EntityLivingBase getTargetPriority(EntityLivingBase target, EntityLivingBase entity)
-	{
-		if (target != null)
-		{
-			if (target instanceof EntityPlayer)
-			{
-				return target;
-			}
-			else 
-			{
-				return entity;
-			}
-		}
-		else 
-		{
-			return entity;
-		}
-	}
-
-	//Math converted to use more accurate and readable Vec3's
-	private void approachTarget(double x, double y, double z, float speed)
-	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.currentSwimTarget.xCoord + 0.5D - x, this.currentSwimTarget.yCoord + 0.1D - y, this.currentSwimTarget.zCoord + 0.5D - z).normalize();
-
-		this.motionX += (vec3.xCoord * 0.5D - this.motionX) * 0.05000000149011612D * speed;
-		this.motionY += (vec3.yCoord * 0.699999988079071D - this.motionY) * 0.05000000149011612D * speed;
-		this.motionZ += (vec3.zCoord * 0.5D - this.motionZ) * 0.05000000149011612D * speed;
-
-		float f = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
-		float f1 = MathHelper.wrapAngleTo180_float(f - this.rotationYaw);
-		this.moveForward = 0.15F * speed;
-		this.rotationYaw += f1;
-		this.motionY += 0.0110829F;
-
-		Block block = worldObj.getBlock(MathHelper.floor_double(this.currentSwimTarget.xCoord), MathHelper.floor_double(this.currentSwimTarget.yCoord), MathHelper.floor_double(this.currentSwimTarget.zCoord));
-
-		if (currentSwimTarget != null && (block == null || !(block instanceof BlockLiquid)))
-		{
-			currentSwimTarget = null;
-		}
-	}
-
-	int movementSkip = 0;
-	int xMovement = -1, yMovement = -1, zMovement = -1;
-
-	public Vec3 findRandomTarget(double x, double y, double z, boolean force)
-	{
-		if (isInWater())
-		{
-			movementSkip--;
-
-			if (movementSkip <= 0)
-			{
-				//Will cause server and client to produce random yet identical rolls.
-				rand.setSeed(getEntityId() + chunkCoordX + chunkCoordY + chunkCoordZ);
-				movementSkip = rand.nextInt(15);
-				int randomWaterCheck = 0;
-
-				Block block1 = Blocks.bedrock;
-				Block block2 = Blocks.bedrock;
-				Vec3 newPos = null;
-				//Give up after 20 rolls
-				//Bad luck or cannot move in the current conditions
-
-				while (randomWaterCheck < 20)
-				{
-					//reuse last movement unless a wall is there.
-					if (randomWaterCheck == 0 && xMovement != -1 && !force)
-					{
-						newPos = Vec3.createVectorHelper(x + xMovement, y + yMovement, z + zMovement);
-						block1 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord - (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord - (this.width / 2.0f)));
-						block2 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord + (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord + (this.width / 2.0f)));
-
-						if (block1 instanceof BlockLiquid)
-						{
-							if (block2 instanceof BlockLiquid)
-							{
-								break;
-							}
-						}
-
-						block1 = Blocks.bedrock;
-						block2 = Blocks.bedrock;
-					}
-
-					randomWaterCheck++;
-					xMovement = (rand.nextInt(10) - 5);
-					yMovement = (rand.nextInt(2) - 1);
-					zMovement = (rand.nextInt(10) - 5);
-					newPos = Vec3.createVectorHelper(x + xMovement, y + yMovement, z + zMovement);
-
-					block1 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord - (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord - (this.width / 2.0f)));
-					block2 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord + (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord + (this.width / 2.0f)));
-
-					if (block1 instanceof BlockLiquid)
-					{
-						if (block2 instanceof BlockLiquid) break;
-					}
-
-					block1 = Blocks.bedrock;
-					block2 = Blocks.bedrock;
-				}
+            if (!this.worldObj.isAirBlock((int) this.posX, (int) this.posY + 1, (int) this.posZ) && !this.worldObj.isAirBlock((int) this.posX, (int) this.posY + 2, (int) this.posZ))
+            {
+                this.motionY += 0.0110829F;
+            }
 
 
-				if (block1 != Blocks.bedrock)
-				{
-					this.swimSpeed = 1;
-					return newPos;
-				}
-				else 
-				{
-					return currentSwimTarget;
-				}
-			}
-		}
+        }
+        else
+        {
+            this.setJumping(true);
+            if (this.onGround)
+            {
+                this.motionX *= 0.031;
+                this.motionZ *= 0.031;
 
-		return currentSwimTarget;
-	}
+            }
+        }
 
-	float counter = 0;
+    }
 
-	@Override
-	public boolean canBeCollidedWith()
-	{
-		return true;
-	}
+    public void setHungry(int var1)
+    {
+        hungry = var1;
+        hungryTarget = null;
+    }
 
-	@Override
-	public void applyEntityCollision(Entity entity)
-	{
-		super.applyEntityCollision(entity);
+    public int getHungry()
+    {
+        return hungry;
+    }
 
-		if (hungry <= 0 && entity == hungryTarget)
-		{
-			this.attackEntityAsMob(entity);
-		}
-	}
+    public Vec3 getHungryTarget()
+    {
+        EntityLivingBase target = null;
+        Vec3 normalizer = Vec3.createVectorHelper(1, 1, 1).normalize();
+        List entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.copy().expand(Math.abs(normalizer.xCoord * 7.0D) + 7, Math.abs(normalizer.yCoord * 7.0D) + 7, Math.abs(normalizer.zCoord * 7.0D) + 7));
 
-	@Override
-	public boolean attackEntityAsMob(Entity entity)
-	{
-		float attackDamage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        for (Object object : entities)
+        {
+            Entity entity = (Entity) object;
 
-		this.attackTimer = 60;
-		//onKillEntity is not a part of JurrasicCraftEntityRidable, but I needed when this entity kills another....
-		if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getHealth() <= attackDamage)
-		{
-			this.setHungry(huntingInterval);
-		}
+            if (entity.isInWater() && entity instanceof EntityLivingBase)
+            {
+                target = getTargetPriority(target, (EntityLivingBase) entity);
+                hungryTarget = target;
+            }
+        }
 
-		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
-	}
+        if (target == null)
+        {
+            return findRandomTarget(posX, posY, posZ, false);
+        }
+        else if (attackTimer <= 0)
+        {
+            return Vec3.createVectorHelper(target.posX, target.posY, target.posZ);
+        }
+        else
+        {
+            return currentSwimTarget;
+        }
+    }
 
-	@Override
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
+    /*
+     * Get a prioritized Target by comparing current target to new entity in range.
+     * Target = current target. Null at beginning of search
+     * entity1 = next entity in range to compare with target. Should never be null
+     */
+    public EntityLivingBase getTargetPriority(EntityLivingBase target, EntityLivingBase entity)
+    {
+        if (target != null)
+        {
+            if (target instanceof EntityPlayer)
+            {
+                return target;
+            }
+            else
+            {
+                return entity;
+            }
+        }
+        else
+        {
+            return entity;
+        }
+    }
 
-		int air = this.getAir();
+    //Math converted to use more accurate and readable Vec3's
+    private void approachTarget(double x, double y, double z, float speed)
+    {
+        Vec3 vec3 = Vec3.createVectorHelper(this.currentSwimTarget.xCoord + 0.5D - x, this.currentSwimTarget.yCoord + 0.1D - y, this.currentSwimTarget.zCoord + 0.5D - z).normalize();
 
-		if (this.isEntityAlive() && !this.isInWater())
-		{
-			--air;
-			this.setAir(air);
+        this.motionX += (vec3.xCoord * 0.5D - this.motionX) * 0.05000000149011612D * speed;
+        this.motionY += (vec3.yCoord * 0.699999988079071D - this.motionY) * 0.05000000149011612D * speed;
+        this.motionZ += (vec3.zCoord * 0.5D - this.motionZ) * 0.05000000149011612D * speed;
 
-			if (this.getAir() == -20)
-			{
-				this.setAir(0);
-				this.attackEntityFrom(DamageSource.drown, 2.0F);
-			}
-		}
-		else 
-		{
-			this.setAir(300);
-		}
+        float f = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
+        float f1 = MathHelper.wrapAngleTo180_float(f - this.rotationYaw);
+        this.moveForward = 0.15F * speed;
+        this.rotationYaw += f1;
+        this.motionY += 0.0110829F;
 
-		//	        this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.5F;
-		//            this.rotationYaw = this.renderYawOffset;
-		//            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-		//            this.rotationPitch = ((float) Math.atan2(this.motionY, (double) f) * 180.0F / (float) Math.PI - this.rotationPitch);
-	}
+        Block block = worldObj.getBlock(MathHelper.floor_double(this.currentSwimTarget.xCoord), MathHelper.floor_double(this.currentSwimTarget.yCoord), MathHelper.floor_double(this.currentSwimTarget.zCoord));
 
-	/**
-	 * Determines if an entity can be despawned, used on idle far away entities
-	 */
-	protected boolean canDespawn()
-	{
-		return this.hasCustomNameTag() ? false : true;
-	}
+        if (currentSwimTarget != null && (block == null || !(block instanceof BlockLiquid)))
+        {
+            currentSwimTarget = null;
+        }
+    }
+
+    int movementSkip = 0;
+    int xMovement = -1, yMovement = -1, zMovement = -1;
+
+    public Vec3 findRandomTarget(double x, double y, double z, boolean force)
+    {
+        if (isInWater())
+        {
+            movementSkip--;
+
+            if (movementSkip <= 0)
+            {
+                //Will cause server and client to produce random yet identical rolls.
+                rand.setSeed(getEntityId() + chunkCoordX + chunkCoordY + chunkCoordZ);
+                movementSkip = rand.nextInt(15);
+                int randomWaterCheck = 0;
+
+                Block block1 = Blocks.bedrock;
+                Block block2 = Blocks.bedrock;
+                Vec3 newPos = null;
+                //Give up after 20 rolls
+                //Bad luck or cannot move in the current conditions
+
+                while (randomWaterCheck < 20)
+                {
+                    //reuse last movement unless a wall is there.
+                    if (randomWaterCheck == 0 && xMovement != -1 && !force)
+                    {
+                        newPos = Vec3.createVectorHelper(x + xMovement, y + yMovement, z + zMovement);
+                        block1 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord - (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord - (this.width / 2.0f)));
+                        block2 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord + (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord + (this.width / 2.0f)));
+
+                        if (block1 instanceof BlockLiquid)
+                        {
+                            if (block2 instanceof BlockLiquid)
+                            {
+                                break;
+                            }
+                        }
+
+                        block1 = Blocks.bedrock;
+                        block2 = Blocks.bedrock;
+                    }
+
+                    randomWaterCheck++;
+                    xMovement = (rand.nextInt(10) - 5);
+                    yMovement = (rand.nextInt(2) - 1);
+                    zMovement = (rand.nextInt(10) - 5);
+                    newPos = Vec3.createVectorHelper(x + xMovement, y + yMovement, z + zMovement);
+
+                    block1 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord - (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord - (this.width / 2.0f)));
+                    block2 = worldObj.getBlock(MathHelper.floor_double(newPos.xCoord + (this.width / 2.0f)), MathHelper.floor_double(newPos.yCoord), MathHelper.floor_double(newPos.zCoord + (this.width / 2.0f)));
+
+                    if (block1 instanceof BlockLiquid)
+                    {
+                        if (block2 instanceof BlockLiquid)
+                            break;
+                    }
+
+                    block1 = Blocks.bedrock;
+                    block2 = Blocks.bedrock;
+                }
+
+
+                if (block1 != Blocks.bedrock)
+                {
+                    this.swimSpeed = 1;
+                    return newPos;
+                }
+                else
+                {
+                    return currentSwimTarget;
+                }
+            }
+        }
+
+        return currentSwimTarget;
+    }
+
+    float counter = 0;
+
+    @Override
+    public boolean canBeCollidedWith()
+    {
+        return true;
+    }
+
+    @Override
+    public void applyEntityCollision(Entity entity)
+    {
+        super.applyEntityCollision(entity);
+
+        if (hungry <= 0 && entity == hungryTarget)
+        {
+            this.attackEntityAsMob(entity);
+        }
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        float attackDamage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+
+        this.attackTimer = 60;
+        //onKillEntity is not a part of JurrasicCraftEntityRidable, but I needed when this entity kills another....
+        if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getHealth() <= attackDamage)
+        {
+            this.setHungry(huntingInterval);
+        }
+
+        return entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
+    }
+
+    @Override
+    public void onEntityUpdate()
+    {
+        super.onEntityUpdate();
+
+        int air = this.getAir();
+
+        if (this.isEntityAlive() && !this.isInWater())
+        {
+            --air;
+            this.setAir(air);
+
+            if (this.getAir() == -20)
+            {
+                this.setAir(0);
+                this.attackEntityFrom(DamageSource.drown, 2.0F);
+            }
+        }
+        else
+        {
+            this.setAir(300);
+        }
+
+        //	        this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.5F;
+        //            this.rotationYaw = this.renderYawOffset;
+        //            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        //            this.rotationPitch = ((float) Math.atan2(this.motionY, (double) f) * 180.0F / (float) Math.PI - this.rotationPitch);
+    }
+
+    /**
+     * Determines if an entity can be despawned, used on idle far away entities
+     *
+     * We dont need to
+     * protected boolean canDespawn()
+     * {
+     *	 return this.hasCustomNameTag() ? false : true;
+     * }
+     **/
 }

@@ -53,10 +53,4 @@ public class EntityOrthacanthus extends EntitySwimmingBase implements IFish, IPi
             return entity1;
         return null;
     }
-
-    @Override
-    public boolean canDespawn()
-    {
-        return !this.isTamed();
-    }
 }
