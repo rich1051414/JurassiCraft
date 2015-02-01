@@ -1,21 +1,35 @@
 package net.ilexiconn.jurassicraft;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+
 import net.ilexiconn.jurassicraft.annotation.IgnoreRegistration;
-import net.ilexiconn.jurassicraft.block.*;
+import net.ilexiconn.jurassicraft.block.BlockAmberOre;
+import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
+import net.ilexiconn.jurassicraft.block.BlockCultivateTop;
+import net.ilexiconn.jurassicraft.block.BlockDNACombinator;
+import net.ilexiconn.jurassicraft.block.BlockDNAExtractor;
+import net.ilexiconn.jurassicraft.block.BlockDinoPad;
+import net.ilexiconn.jurassicraft.block.BlockFossilClayOre;
+import net.ilexiconn.jurassicraft.block.BlockFossilOre;
+import net.ilexiconn.jurassicraft.block.BlockFossilSandstoneOre;
+import net.ilexiconn.jurassicraft.block.BlockGypsumBlock;
+import net.ilexiconn.jurassicraft.block.BlockGypsumBrick;
+import net.ilexiconn.jurassicraft.block.BlockGypsumCobblestone;
+import net.ilexiconn.jurassicraft.block.BlockStuffFluid;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
+import net.ilexiconn.jurassicraft.dimension.core.BlockDinoPortal;
+import net.ilexiconn.jurassicraft.dimension.core.BlockKeyStone;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import java.lang.reflect.Field;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks implements IContentHandler
 {
@@ -45,7 +59,13 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
+
+    //Portal Blocks
     
+    public static Block DinoPortal;
+    
+    public static Block KeyStone;
+
     /*
     public static Block securityFenceMediumCorner;
     public static Block securityFenceMediumPole;
@@ -89,6 +109,9 @@ public class ModBlocks implements IContentHandler
         securityFenceHighBase = new BlockSecurityFenceHighBase();
         securityFenceHighGrid = new BlockSecurityFenceHighGrid();
         */
+        
+        DinoPortal = new BlockDinoPortal(0).setBlockName("portal").setBlockTextureName("jurassicraft:textures/blocks/portal.png");
+        KeyStone = new BlockKeyStone().setBlockName("KeyStone").setBlockTextureName("jurassicraft:keystone");
         gameRegistry();
     }
 

@@ -45,6 +45,8 @@ public class JurassiCraft
 
     public static boolean isChristmas;
     public static boolean enableDebugging;
+    
+    public static int dimensionID = -30;
 
     public static JsonEntityParser entityParser;
     public static ContentLoader contentLoader;
@@ -70,6 +72,7 @@ public class JurassiCraft
         contentLoader.addContentHandler(new ModBlocks());
         contentLoader.addContentHandler(new ModItems());
         contentLoader.addContentHandler(new ModRecipes());
+        contentLoader.addContentHandler(new ModBiomes());
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
