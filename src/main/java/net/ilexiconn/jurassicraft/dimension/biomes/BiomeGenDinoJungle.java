@@ -19,7 +19,7 @@ public class BiomeGenDinoJungle extends BiomeGenBase
         this.theBiomeDecorator.grassPerChunk = 25;
         this.theBiomeDecorator.flowersPerChunk = 10;
         this.setTemperatureRainfall(1.9F, 17F);
-        this.setHeight(height_MidPlains); 
+        this.setHeight(new BiomeGenBase.Height(0.2F, 0.1F)); 
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
@@ -37,18 +37,7 @@ public class BiomeGenDinoJungle extends BiomeGenBase
     {
         return (0x1E5921);
     }
-  /*  public void addFlower(Block block, int metadata, int weight)
-    {
-        this.flowers.add(new FlowerEntry(LotsOMobs.OrangeFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.WhiteFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.BlueFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.RedFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.PinkFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.YellowFlower, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.Flowers, 0, 10));
-        this.flowers.add(new FlowerEntry(LotsOMobs.PurpleFlower, 0, 10));
-    }
-  */
+
     /**
      * takes temperature, returns color
      */

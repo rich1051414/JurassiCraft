@@ -3,7 +3,11 @@ package net.ilexiconn.jurassicraft.dimension.biomes;
 import java.util.Random;
 
 import net.ilexiconn.jurassicraft.dimension.worldgen.WorldGenBigDinoTree;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenMutated;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class BiomeGenDinoMountains extends BiomeGenBase 
@@ -16,7 +20,7 @@ public class BiomeGenDinoMountains extends BiomeGenBase
         this.theBiomeDecorator.grassPerChunk = 25;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.setTemperatureRainfall(1.9F, 17F);
-        this.setHeight(height_MidHills); 
+        this.setHeight(this.height_LowHills); 
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
@@ -34,85 +38,20 @@ public class BiomeGenDinoMountains extends BiomeGenBase
     {
         return (0x1E5921);
     }
- /*   public void decorate(World par1World, Random par2Random, int par3, int par4)
+    
+    /**
+     * Creates a mutated version of the biome and places it into the biomeList with an index equal to the original plus
+     * 128
+     */
+    public BiomeGenBase createMutation()
     {
-        super.decorate(par1World, par2Random, par3, par4);
-        long time;
-
-
-        if (par2Random.nextInt(8) == 0)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.OrangeFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 1)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.Flowers.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 2)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(Block.plantRed.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 3)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(Block.plantYellow.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 4)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.PurpleFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 5)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.WhiteFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 5)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.BlueFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 6)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.PinkFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 7)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.YellowFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        if (par2Random.nextInt(8) == 8)
-        {
-            int k = par3 + par2Random.nextInt(16) + 8;
-            int l = par4 + par2Random.nextInt(16) + 8;
-            time = System.nanoTime();
-            (new WorldGenFlowers(LotsOMobs.RedFlower.blockID)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-        }
-        
+        BiomeGenDinoMountains.Mutated mutated = new BiomeGenDinoMountains.Mutated(this.biomeID + 128, this);
+        mutated.temperature = (this.temperature + 1.0F) * 0.5F;
+        mutated.rootHeight = this.rootHeight * 0.5F + 0.3F;
+        mutated.heightVariation = this.heightVariation * 0.5F + 1.2F;
+        return mutated;
     }
-   */ 
+
     /**
      * takes temperature, returns color
      */
@@ -128,4 +67,43 @@ public class BiomeGenDinoMountains extends BiomeGenBase
         double d1 = (double)this.getFloatRainfall();
         return ((ColorizerGrass.getGrassColor(d0, d1) & 16711422) + 5115470) / 2;
     }*/
+    
+    
+    public static class Mutated extends BiomeGenMutated
+    {
+        private static final String __OBFID = "CL_00000183";
+
+        public Mutated(int p_i45382_1_, BiomeGenBase p_i45382_2_)
+        {
+            super(p_i45382_1_, p_i45382_2_);
+            this.theBiomeDecorator.treesPerChunk = 2;
+            this.theBiomeDecorator.flowersPerChunk = 2;
+            this.theBiomeDecorator.grassPerChunk = 5;
+        }
+
+        public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+        {
+            this.topBlock = Blocks.grass;
+            this.field_150604_aj = 0;
+            this.fillerBlock = Blocks.dirt;
+
+            if (p_150573_7_ > 1.75D)
+            {
+                this.topBlock = Blocks.stone;
+                this.fillerBlock = Blocks.stone;
+            }
+            else if (p_150573_7_ > -0.5D)
+            {
+                this.topBlock = Blocks.dirt;
+                this.field_150604_aj = 1;
+            }
+
+            this.genBiomeTerrain(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        }
+
+        public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)
+        {
+            this.theBiomeDecorator.decorateChunk(p_76728_1_, p_76728_2_, this, p_76728_3_, p_76728_4_);
+        }
+    }
 }
