@@ -17,6 +17,8 @@ buildscript {
 
 apply plugin: 'forge'
 
+project.ext.buildnumber = "CUSTOM_BUILD"
+
 if (System.getenv().BUILD_NUMBER) // assuming jenkins ofcourse
 {
     project.buildnumber = System.getenv().BUILD_NUMBER
