@@ -17,7 +17,17 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.3.2-daily_build-" + getDate()
+if (System.getenv().BUILD_NUMBER) // assuming jenkins ofcourse
+{
+    project.buildnumber = System.getenv().BUILD_NUMBER
+    println "Using build number ${project.buildnumber}..."
+}
+else
+{
+    println "No build number set!"
+}
+
+version = "1.3.2-build-" + project.buildnumber
 group = "maven.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
@@ -66,10 +76,4 @@ task devJar(type: Jar) {
 
 artifacts {
     archives sourcesJar, javadocJar, devJar
-}
-
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('yyyy_MM_dd')
-    return formattedDate
 }
