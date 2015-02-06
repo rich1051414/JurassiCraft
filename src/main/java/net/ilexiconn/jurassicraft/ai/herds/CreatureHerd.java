@@ -1,8 +1,10 @@
 package net.ilexiconn.jurassicraft.ai.herds;
 
 import com.google.common.collect.Lists;
+
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.util.Vec3;
 
 import java.util.ArrayList;
@@ -204,11 +206,27 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
     public void attack(EntityLivingBase target)
     {
         if (!groupAttack) return;
+        for (EntityJurassiCraftCreature creature : creatures) // Check if an owner is target
+        {
+            if(creature instanceof IEntityOwnable)
+            {
+                IEntityOwnable ownable = (IEntityOwnable)creature;
+                if(ownable.getOwner() == target)
+                {
+                    return; // We're attacking the owner, abord!
+                }
+            }
+        }
         for (EntityJurassiCraftCreature creature : creatures)
         {
             creature.setAttackTarget(target);
         }
         System.out.println("Herd of " + size() + " creatures now attacking " + target);
+    }
+
+    public int indexOf(EntityJurassiCraftCreature creature)
+    {
+        return creatures.indexOf(creature);
     }
 
 }

@@ -48,10 +48,15 @@ public abstract class EntityAIHerd extends EntityAIBase
         }
         if (herd == null)
         {
-            CreatureHerd herd = new CreatureHerd(groupAttack);
+            herd = createHerd();
             herd.add(creature);
             CreatureHerd.registerHerd(herd);
         }
+    }
+
+    protected CreatureHerd createHerd()
+    {
+        return new CreatureHerd(groupAttack);
     }
 
 }
