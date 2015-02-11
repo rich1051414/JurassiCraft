@@ -203,7 +203,8 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         return this;
     }
 
-    public void attack(EntityLivingBase target) {
+    public void attack(EntityLivingBase target)
+    {
         if (!groupAttack) return;
         for (EntityJurassiCraftCreature creature : creatures) // Check if an owner is target
         {

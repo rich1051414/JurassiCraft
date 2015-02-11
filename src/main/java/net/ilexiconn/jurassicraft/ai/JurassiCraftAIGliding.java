@@ -1,5 +1,9 @@
 package net.ilexiconn.jurassicraft.ai;
 
+/*
+ * Old flying code :P
+ */
+
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -11,18 +15,17 @@ import net.minecraft.util.Vec3;
 
 import java.util.Random;
 
-public class JurassiCraftAIFlying extends EntityAIBase
-{
-    private final long OWNER_FIND_INTERVAL = 5000L;
-    private final long SITTINGSPOT_REACHTIME = 3000L;
-    private final double OWNER_DISTANCE_TO_TAKEOFF = 100D;
-    private final EntityJurassiCraftFlyingCreature creature;
-    private ChunkCoordinates currentFlightTarget;
-    private Random rand;
-    private long nextOwnerCheckTime;
-    private long sittingSpotAbortTime;
+public class JurassiCraftAIGliding extends EntityAIBase {
+private final long OWNER_FIND_INTERVAL = 5000L;
+private final long SITTINGSPOT_REACHTIME = 3000L;
+private final double OWNER_DISTANCE_TO_TAKEOFF = 100D;
+private final EntityJurassiCraftFlyingCreature creature;
+private ChunkCoordinates currentFlightTarget;
+private Random rand;
+private long nextOwnerCheckTime;
+private long sittingSpotAbortTime;
 
-    public JurassiCraftAIFlying(EntityJurassiCraftFlyingCreature entity)
+    public JurassiCraftAIGliding(EntityJurassiCraftFlyingCreature entity)
     {
         creature = entity;
         rand = entity.getRNG();
@@ -56,7 +59,7 @@ public class JurassiCraftAIFlying extends EntityAIBase
         super.resetTask();
     }
 
-    private boolean takingOff = false;
+private boolean takingOff = false;
 
     @Override
     public void updateTask()
@@ -127,8 +130,8 @@ public class JurassiCraftAIFlying extends EntityAIBase
         return currentFlightTarget != null;
     }
 
-    private int nextWingBeat = 10;
-    private int wingBeatTick = 0;
+private int nextWingBeat = 10;
+private int wingBeatTick = 0;
 
     private void maintainFlight(boolean hasObstacle)
     {
@@ -143,7 +146,7 @@ public class JurassiCraftAIFlying extends EntityAIBase
         }
     }
 
-    boolean lastChangeDirection;
+boolean lastChangeDirection;
 
     public void pickDirection(boolean useLastChangeDirection)
     {
@@ -189,9 +192,9 @@ public class JurassiCraftAIFlying extends EntityAIBase
         creature.setPosition(currentFlightTarget.posX + 0.5D, currentFlightTarget.posY + 0.5D, currentFlightTarget.posZ + 0.5D);
     }
 
-    int flightTicks = 0;
-    double takeOffSpeed = 0;
-    int targetHeight = 0;
+int flightTicks = 0;
+double takeOffSpeed = 0;
+int targetHeight = 0;
 
     private void takeOff()
     {
