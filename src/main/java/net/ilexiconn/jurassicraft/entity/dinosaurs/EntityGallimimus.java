@@ -15,6 +15,7 @@ import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
@@ -34,6 +35,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
 {
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(4);
+    public float swallowScale = 1;
 
     public EntityGallimimus(World world)
     {
@@ -101,6 +103,8 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         }
 
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
+
+        if (getAnimationId() == JurassiCraftAnimationIDs.BEING_EATEN.animID() && getAnimationTick() >= 35 && swallowScale > 0) swallowScale -= 0.1;
     }
 
     @Override

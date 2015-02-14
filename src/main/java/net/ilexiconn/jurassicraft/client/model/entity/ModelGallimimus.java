@@ -8,6 +8,7 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 public class ModelGallimimus extends MowzieModelBase
 {
@@ -368,6 +369,8 @@ public class ModelGallimimus extends MowzieModelBase
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
+        float scale = ((EntityGallimimus)entity).swallowScale;
+        GL11.glScalef(scale, scale, scale);
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         Body_1.render(f5);
@@ -438,41 +441,43 @@ public class ModelGallimimus extends MowzieModelBase
         Left_Thigh.rotationPointY -= 2;
         Right_Thigh.rotationPointY -= 2;
 
-        bob(Body_1, 1F * scaleFactor, height, false, f, f1);
-        bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
-        bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
-        Body_1.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
-        Left_Thigh.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
-        Right_Thigh.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
+        if (gallimimus.ridingEntity == null) {
+            bob(Body_1, 1F * scaleFactor, height, false, f, f1);
+            bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
+            bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
+            Body_1.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
+            Left_Thigh.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
+            Right_Thigh.rotationPointX += -f1 * height * Math.cos(f * 0.5 * scaleFactor);
 
-        Neck_1.rotateAngleZ += f1 * 0.2 * height * Math.cos(f * 0.5 * scaleFactor);
-        Neck_2.rotateAngleY += f1 * 0.2 * height * Math.cos(f * 0.5 * scaleFactor);
+            Neck_1.rotateAngleZ += f1 * 0.2 * height * Math.cos(f * 0.5 * scaleFactor);
+            Neck_2.rotateAngleY += f1 * 0.2 * height * Math.cos(f * 0.5 * scaleFactor);
 
-        walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F - legDelay, 0.2F, f, f1);
-        walk(Left_Calf_1, 0.5F * scaleFactor, 0.7F, true, 2F - legDelay, 0F, f, f1);
-        walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.5F, false, 3F - legDelay, 0F, f, f1);
-        walk(Foot_Left, 0.5F * scaleFactor, 0.5F, true, 1.5F - legDelay, 1F, f, f1);
+            walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F - legDelay, 0.2F, f, f1);
+            walk(Left_Calf_1, 0.5F * scaleFactor, 0.7F, true, 2F - legDelay, 0F, f, f1);
+            walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.5F, false, 3F - legDelay, 0F, f, f1);
+            walk(Foot_Left, 0.5F * scaleFactor, 0.5F, true, 1.5F - legDelay, 1F, f, f1);
 
-        walk(Right_Thigh, 0.5F * scaleFactor, 0.8F, true, 0F - legDelay, 0.2F, f, f1);
-        walk(Right_Calf_1, 0.5F * scaleFactor, 0.7F, false, 2F - legDelay, 0F, f, f1);
-        walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.5F, true, 3F - legDelay, 0F, f, f1);
-        walk(Foot_Right, 0.5F * scaleFactor, 0.5F, false, 1.5F - legDelay, 1F, f, f1);
+            walk(Right_Thigh, 0.5F * scaleFactor, 0.8F, true, 0F - legDelay, 0.2F, f, f1);
+            walk(Right_Calf_1, 0.5F * scaleFactor, 0.7F, false, 2F - legDelay, 0F, f, f1);
+            walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.5F, true, 3F - legDelay, 0F, f, f1);
+            walk(Foot_Right, 0.5F * scaleFactor, 0.5F, false, 1.5F - legDelay, 1F, f, f1);
 
-        walk(Upper_Arm_Right, 1 * scaleFactor, 0.3F, true, 0.3F, -0.3F, f, f1);
-        walk(Upper_Arm_Left, 1 * scaleFactor, 0.3F, true, 0.3F, -0.3F, f, f1);
-        walk(Lower_Arm_Right, 1 * scaleFactor, 0.3F, true, 0.6F, -0.7F, f, f1);
-        walk(Lower_Arm_Left, 1 * scaleFactor, 0.3F, true, 0.6F, -0.7F, f, f1);
-        walk(Hand_Right, 1 * scaleFactor, 0.3F, true, 0.9F, 1F, f, f1);
-        walk(Hand_Left, 1 * scaleFactor, 0.3F, true, 0.9F, 1F, f, f1);
+            walk(Upper_Arm_Right, 1 * scaleFactor, 0.3F, true, 0.3F, -0.3F, f, f1);
+            walk(Upper_Arm_Left, 1 * scaleFactor, 0.3F, true, 0.3F, -0.3F, f, f1);
+            walk(Lower_Arm_Right, 1 * scaleFactor, 0.3F, true, 0.6F, -0.7F, f, f1);
+            walk(Lower_Arm_Left, 1 * scaleFactor, 0.3F, true, 0.6F, -0.7F, f, f1);
+            walk(Hand_Right, 1 * scaleFactor, 0.3F, true, 0.9F, 1F, f, f1);
+            walk(Hand_Left, 1 * scaleFactor, 0.3F, true, 0.9F, 1F, f, f1);
 
-        walk(Neck_1, scaleFactor, 0.3F, true, 1.5F, -1.5F, f, f1);
-        walk(Neck_2, scaleFactor, 0.1F, false, 1.5F, 0.7F, f, f1);
-        walk(Neck_3, scaleFactor, 0.1F, false, 1.5F, 0.5F, f, f1);
-        walk(Neck_4, scaleFactor, 0.1F, false, 1.5F, 0.3F, f, f1);
+            walk(Neck_1, scaleFactor, 0.3F, true, 1.5F, -1.5F, f, f1);
+            walk(Neck_2, scaleFactor, 0.1F, false, 1.5F, 0.7F, f, f1);
+            walk(Neck_3, scaleFactor, 0.1F, false, 1.5F, 0.5F, f, f1);
+            walk(Neck_4, scaleFactor, 0.1F, false, 1.5F, 0.3F, f, f1);
 
-        chainWave(TailParts, 1 * scaleFactor, 0.1F, 1, f, f1);
-        chainSwing(TailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
-        
+            chainWave(TailParts, 1 * scaleFactor, 0.1F, 1, f, f1);
+            chainSwing(TailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
+        }
+
         float sittingProgress = gallimimus.sittingProgress.getAnimationProgressSin();
 
         if (sittingProgress > 0.0F)
@@ -569,26 +574,27 @@ public class ModelGallimimus extends MowzieModelBase
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        this.animator.update(entity);
-        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
+        animator.update(entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
 
-        this.animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
-        this.animator.startPhase(0);
-        this.animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
-        this.animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
-        this.animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
-        this.animator.rotate(Tail_4, -0.2F, 0.0F, 0.0F);
-        this.animator.rotate(Tail_5, -0.2F, 0.0F, 0.0F);
-        this.animator.rotate(Body_1, 0.0F, 0.0F, 0.0F);
-        this.animator.rotate(Body_2, 0.5F, 0.0F, 0.0F);
-        this.animator.rotate(this.Neck_1, 0.8F, 0.0F, 0.0F);
-        this.animator.rotate(this.Neck_2, 0.5F, 0.0F, 0.0F);
-        this.animator.rotate(this.Neck_3, 0.5F, 0.0F, 0.0F);
-        this.animator.rotate(this.Neck_4, 0.4F, 0.0F, 0.0F);
-        this.animator.rotate(this.Neck_5, -0.3F, 0.0F, 0.0F);
-        this.animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
-        this.animator.endPhase();
-        this.animator.setStationaryPhase(50);
-        this.animator.resetPhase(0);
+        animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
+        animator.startPhase(0);
+        animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
+        animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
+        animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
+        animator.rotate(Tail_4, -0.2F, 0.0F, 0.0F);
+        animator.rotate(Tail_5, -0.2F, 0.0F, 0.0F);
+        animator.rotate(Body_1, 0.0F, 0.0F, 0.0F);
+        animator.rotate(Body_2, 0.5F, 0.0F, 0.0F);
+        animator.rotate(Neck_1, 0.8F, 0.0F, 0.0F);
+        animator.rotate(Neck_2, 0.5F, 0.0F, 0.0F);
+        animator.rotate(Neck_3, 0.5F, 0.0F, 0.0F);
+        animator.rotate(Neck_4, 0.4F, 0.0F, 0.0F);
+        animator.rotate(Neck_5, -0.3F, 0.0F, 0.0F);
+        animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
+        animator.rotate(Foot_Left, 0.3F, 0, 0);
+        animator.rotate(Foot_Right, 0.3F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(45);
     }
 }

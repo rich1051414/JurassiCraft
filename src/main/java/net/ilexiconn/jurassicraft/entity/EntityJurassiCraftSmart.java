@@ -1016,7 +1016,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
 
     /**
      * Returns true if the target of this creature is not the owner or other creature from the same
-     * owner or same species.
+     * owner or same species or riding or being ridden by this creature.
      */
     public boolean checkTargetBeforeAttacking(EntityLivingBase target)
     {
@@ -1031,6 +1031,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
                 return true;
             }
         }
+        if (target.riddenByEntity == this || this.riddenByEntity == target) return false;
         return false;
     }
 

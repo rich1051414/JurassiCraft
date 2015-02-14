@@ -46,9 +46,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
     public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(50);
+    public ControlledAnimation shakePrey = new ControlledAnimation(10);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-    private double entityRiderPitchDelta;
-    private double entityRiderYawDelta;
     private float shakeCount = 0;
     private int stepCount = 0;
 
@@ -98,11 +97,19 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         {
             if (this.riddenByEntity instanceof EntityGallimimus)
             {
-                this.riddenByEntity.rotationYaw = this.rotationYaw - 150.0F;
                 ((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
-                double extraX = (double) (0.4F * this.getCreatureLength() * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
-                double extraZ = (double) (0.4F * this.getCreatureLength() * MathHelper.cos(0.01745329251F * this.rotationYaw));
-                double extraY = this.getCreatureHeight() * 0.425;
+                float shakeProgress = shakePrey.getAnimationProgressSinSqrt();
+                float radius = 0.4F * this.getCreatureLength();
+                float angle = (float) (0.01745329251F * this.rotationYaw + (0.05 * this.getCreatureLength() * shakeProgress * Math.cos(frame * 0.6 + 1)));
+                this.riddenByEntity.rotationYaw = (float) (angle * (180/Math.PI) - 150.0F);
+                double extraY = this.getCreatureHeight() * (0.425 - shakeProgress * 0.21);
+                if (getAnimationTick() > 30)
+                {
+                    extraY += 0.4 * Math.sin((getAnimationTick() - 30) * 0.2) * getCreatureHeight();
+                    radius -= 0.001 * (getAnimationTick() - 30) * (getAnimationTick() - 30) * this.getCreatureLength();
+                }
+                double extraX = (double) (radius * MathHelper.sin((float) (Math.PI + angle)));
+                double extraZ = (double) (radius * MathHelper.cos(angle));
                 this.riddenByEntity.setPosition(this.posX + extraX, this.posY + extraY, this.posZ + extraZ);
             }
             else
@@ -185,6 +192,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
 
         if (this.getAttackTarget() == this.riddenByEntity) setAttackTarget(null);
+        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() <= 20) shakePrey.increaseTimer();
+        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() > 20) shakePrey.decreaseTimer();
     }
 
     @Override

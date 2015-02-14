@@ -34,4 +34,9 @@ public class AnimationAITyrannosaurusEatingGallimimus extends AIAnimation
         super.startExecuting();
         this.tyrannosaurus.setDrinking(false);
     }
+
+    public void updateTask()
+    {
+
+    }
 }
