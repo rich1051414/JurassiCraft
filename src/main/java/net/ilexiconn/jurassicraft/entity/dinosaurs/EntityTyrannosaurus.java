@@ -97,15 +97,16 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         {
             if (this.riddenByEntity instanceof EntityGallimimus)
             {
+                rotationYaw = renderYawOffset;
                 ((EntityGallimimus) this.riddenByEntity).rotationYawHead = this.riddenByEntity.rotationYaw;
                 float shakeProgress = shakePrey.getAnimationProgressSinSqrt();
                 float radius = 0.4F * this.getCreatureLength();
-                float angle = (float) (0.01745329251F * this.rotationYaw + (0.05 * this.getCreatureLength() * shakeProgress * Math.cos(frame * 0.6 + 1)));
+                float angle = (float) (0.01745329251F * this.renderYawOffset + (0.05 * this.getCreatureLength() * shakeProgress * Math.cos(frame * 0.6 + 1)));
                 this.riddenByEntity.rotationYaw = (float) (angle * (180/Math.PI) - 150.0F);
                 double extraY = this.getCreatureHeight() * (0.425 - shakeProgress * 0.21);
                 if (getAnimationTick() > 30)
                 {
-                    extraY += 0.4 * Math.sin((getAnimationTick() - 30) * 0.2) * getCreatureHeight();
+                    extraY += 0.42 * Math.sin((getAnimationTick() - 30) * 0.2) * getCreatureHeight();
                     radius -= 0.001 * (getAnimationTick() - 30) * (getAnimationTick() - 30) * this.getCreatureLength();
                 }
                 double extraX = (double) (radius * MathHelper.sin((float) (Math.PI + angle)));
