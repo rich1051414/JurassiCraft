@@ -1,7 +1,10 @@
 package net.ilexiconn.jurassicraft.entity.reptiles;
 
-import net.ilexiconn.jurassicraft.ai.*;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftRidableFlying;
 import net.ilexiconn.jurassicraft.interfaces.IPiscivore;
 import net.ilexiconn.jurassicraft.interfaces.IReptile;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -15,7 +18,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCearadactylus extends EntityJurassiCraftProtective implements IReptile, IPiscivore {
+public class EntityCearadactylus extends EntityJurassiCraftRidableFlying implements IReptile, IPiscivore {
 
     private boolean isFlying;
     public ChunkCoordinates currentTarget;
