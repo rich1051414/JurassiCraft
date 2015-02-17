@@ -62,6 +62,7 @@ public class AnimationAIBite extends AIAnimation
                 }
                 else
                 {
+                    eat = false;
                     this.entityTarget.attackEntityFrom(DamageSource.causeMobDamage(this.entityBiting), damage);
                 }
             }
