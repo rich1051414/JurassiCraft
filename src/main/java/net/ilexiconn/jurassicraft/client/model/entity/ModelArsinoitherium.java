@@ -285,30 +285,73 @@ public class ModelArsinoitherium extends MowzieModelBase
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, arsinoitherium);
         this.resetPose();
-        float scaleFactor = 0.6F;
 
-        this.faceTarget(this.head, 1, f3, f4);
-        this.faceTarget(this.head, 2, f3, f4);
 
-        this.walk(this.rightbackleg1, 0.5F * scaleFactor, 0.75F, true, 0.0F, 0.3F, f, f1);
-        this.walk(this.rightbackleg2, 0.5F * scaleFactor, 0.5F, false, 2.0F, 0.0F, f, f1);
-        this.walk(this.rightbackleg3, 0.5F * scaleFactor, 0.75F, true, 0.0F, -0.4F, f, f1);
-        this.walk(this.rightbackleg4, 0.5F * scaleFactor, 0.75F, false, 0.5F, 1.0F, f, f1);
+//         f = arsinoitherium.frame;
+//		 f1 = (float) Math.cos(f/50)*0.5F + 1F;
+//		 f1 = 0.5F;
 
-        this.walk(this.leftbackleg1, 0.5F * scaleFactor, 0.75F, false, 0.0F, 0.3F, f, f1);
-        this.walk(this.leftbackleg2, 0.5F * scaleFactor, 0.5F, true, 2.0F, 0.0F, f, f1);
-        this.walk(this.leftbackleg3, 0.5F * scaleFactor, 0.75F, false, 0.0F, -0.4F, f, f1);
-        this.walk(this.leftbackleg4, 0.5F * scaleFactor, 0.75F, true, 0.5F, 1.0F, f, f1);
+        //Sprinting functionality parameters
+        float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.92))));
+        float legOffsetModifier = 2.5F;
+        float bobBase = 2F;
+        if (sprintModifier >= 0.9) bobBase = 1F;
 
-        this.walk(this.rightfrontleg1, 0.5F * scaleFactor, 0.5F, false, 0.0F, 0.3F, f, f1);
-        this.walk(this.rightfrontleg2, 0.5F * scaleFactor, 0.5F, true, 2.0F, 0.0F, f, f1);
-        this.walk(this.rightfrontleg3, 0.5F * scaleFactor, 0.25F, false, 0.0F, -0.4F, f, f1);
-        this.walk(rightfrontleg4, 0.5F * scaleFactor, 0.5F, true, 0.5F, 1.0F, f, f1);
+        float globalSpeed = 0.6F;
+        float globalDegree = 1.7F;
+        float height = 0.7F;
+        float frontOffset = -2.3F;
+        float animationDegree = 2 - sprintModifier * 0.2F;
 
-        this.walk(this.leftfrontleg1, 0.5F * scaleFactor, 0.5F, true, 0.0F, 0.3F, f, f1);
-        this.walk(this.leftfrontleg1, 0.5F * scaleFactor, 0.5F, false, 2.0F, 0.0F, f, f1);
-        this.walk(this.leftfrontleg1, 0.5F * scaleFactor, 0.25F, true, 0.0F, -0.4F, f, f1);
-        this.walk(this.leftfrontleg1, 0.5F * scaleFactor, 0.5F, false, 0.5F, 1.0F, f, f1);
+        faceTarget(head, 2, f3, f4);
+        faceTarget(neck, 2, f3, f4);
+        faceTarget(chest, 2, f3, f4);
+
+        bob(upperbackbody, bobBase * globalSpeed, height, false, f, f1);
+        walk(upperbackbody, bobBase * globalSpeed, 0.1F * height, true, -1.5F, 0.03F, f, f1);
+        walk(head, bobBase * globalSpeed, 0.1F * height, false, -0.5F, 0F, f, f1);
+        upperbackbody.rotateAngleX += 0.1 * sprintModifier;
+        head.rotateAngleX += 0.6 * sprintModifier;
+
+        walk(leftbackleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, false, 0F + sprintModifier * legOffsetModifier, 0.1F + sprintModifier * -0.1F, f, f1);
+        walk(leftbackleg3, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, 1F + sprintModifier * legOffsetModifier, 0F, f, f1);
+        walk(leftbackleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, -1.5F + sprintModifier * legOffsetModifier, 0.5F, f, f1);
+
+        walk(rightbackleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, true, 0F, 0.1F + sprintModifier * -0.1F, f, f1);
+        walk(rightbackleg3, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, 1F, 0F, f, f1);
+        walk(rightbackleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, -1.5F, 0.5F, f, f1);
+
+        walk(leftfrontleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, true, frontOffset + 0F, -0.1F + sprintModifier * 0F, f, f1);
+        walk(leftfrontleg3, 1F * globalSpeed, 0.1F * globalDegree * animationDegree, true, frontOffset + 1F, -0.2F, f, f1);
+        walk(leftfrontleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, frontOffset + 2F, 0.8F, f, f1);
+
+        walk(rightfrontleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, false, frontOffset + 0F + sprintModifier * legOffsetModifier, -0.1F + sprintModifier * 0F, f, f1);
+        walk(rightfrontleg3, 1F * globalSpeed, 0.1F * globalDegree * animationDegree, false, frontOffset + 1F + sprintModifier * legOffsetModifier, -0.2F, f, f1);
+        walk(rightfrontleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, frontOffset + 2F + sprintModifier * legOffsetModifier, 0.8F, f, f1);
+
+        walk(tail1, bobBase * globalSpeed, 0.4F * height, false, 0F, 0F, f, f1);
+
+        //Idling
+        walk(neck, 0.1F, 0.05F, false, -1F, 0F, arsinoitherium.frame, 1F);
+        walk(head, 0.1F, 0.05F, true, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(upperbackbody, 0.1F, 0.025F, false, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(rightbackleg1, 0.1F, 0.025F, true, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(leftbackleg1, 0.1F, 0.025F, true, 0F, 0F, arsinoitherium.frame, 1F);
+
+        float inverseKinematicsConstant = 0.6F;
+        walk(rightfrontleg1, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(rightfrontleg3, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(rightfrontleg4, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(leftfrontleg1, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(leftfrontleg3, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, arsinoitherium.frame, 1F);
+        walk(leftfrontleg4, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, arsinoitherium.frame, 1F);
+        //rightfrontleg1.rotationPointZ -= 1.3 * inverseKinematicsConstant * Math.cos(arsinoitherium.frame * 0.1F);
+        //leftfrontleg1.rotationPointZ -= 1.3 * inverseKinematicsConstant * Math.cos(arsinoitherium.frame * 0.1F);
+//
+//        chainSwing(tailParts, 0.1F, 0.05F, 2, arsinoitherium.frame, 1F);
+//        chainWave(tailParts, 0.1F, -0.05F, 1, arsinoitherium.frame, 1F);
+//
+//        triceratops.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
 
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
