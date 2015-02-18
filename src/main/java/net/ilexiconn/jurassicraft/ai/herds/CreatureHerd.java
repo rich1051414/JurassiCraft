@@ -221,7 +221,6 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         {
             creature.setAttackTarget(target);
         }
-        System.out.println("Herd of " + size() + " creatures now attacking " + target);
     }
 
     public int indexOf(EntityJurassiCraftCreature creature)
