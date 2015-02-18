@@ -43,7 +43,7 @@ public class EntityTriceratops extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(2, new JurassiCraftAISit(this));
         this.tasks.addTask(2, new AnimationAITriceratopsCharge(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
-        this.tasks.addTask(4, new JurassiCraftAIDefensiveReaction(this, 300.0D, 870.0D, true, JurassiCraftAnimationIDs.CHARGE.animID(), true));
+        this.tasks.addTask(4, new JurassiCraftAIDefensiveReaction(this, 16.0D, 36.0D, true, JurassiCraftAnimationIDs.CHARGE.animID(), true));
         this.tasks.addTask(5, new JurassiCraftAIEating(this, 20));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIEatDroppedFood(this, 16.0D));

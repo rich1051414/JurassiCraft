@@ -47,13 +47,13 @@ public class JurassiCraftAIDefensiveReaction extends EntityAIBase
      * @author RafaMv
      * @see EntityJurassiCraftSmart
      */
-    public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumSquaredDistance, double maximumSquaredDistance, boolean shouldAnimate, int animationID, boolean resetStateWhenTriggered)
+    public JurassiCraftAIDefensiveReaction(EntityJurassiCraftSmart creature, double minimumDistance, double maximumDistance, boolean shouldAnimate, int animationID, boolean resetStateWhenTriggered)
     {
         this.creature = creature;
         this.distanceSqFromAttacker = 0;
         this.attacker = null;
-        this.minimumSquaredDistance = minimumSquaredDistance;
-        this.maximumSquaredDistance = maximumSquaredDistance;
+        this.minimumSquaredDistance = minimumDistance * minimumDistance;
+        this.maximumSquaredDistance = maximumDistance * maximumDistance;
         this.shouldAnimate = shouldAnimate;
         this.animationID = animationID;
         this.resetStateWhenTriggered = resetStateWhenTriggered;

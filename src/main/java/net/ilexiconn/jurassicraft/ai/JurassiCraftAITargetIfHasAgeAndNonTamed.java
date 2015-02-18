@@ -28,6 +28,11 @@ public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 	private final JurassiCraftAITargetIfHasAgeAndNonTamed.Sorter theNearestAttackableTargetSorter;
 	private final IEntitySelector targetEntitySelector;
 
+	public JurassiCraftAITargetIfHasAgeAndNonTamed(EntityJurassiCraftSmart creature, Class targetClass, int chanceToAttack, float minimumCreatureAge)
+	{
+		this(creature, targetClass, chanceToAttack, minimumCreatureAge, 1.0F);
+	}
+	
 	public JurassiCraftAITargetIfHasAgeAndNonTamed(EntityJurassiCraftSmart creature, Class targetClass, int chanceToAttack, float minimumCreatureAge, float maximumTargetAge)
 	{
 		super(creature, true, false);
@@ -80,7 +85,7 @@ public class JurassiCraftAITargetIfHasAgeAndNonTamed extends EntityAITarget
 					this.target = (EntityLivingBase) list.get(0);
 					if (this.target instanceof EntityJurassiCraftSmart)
 					{
-						return !((EntityJurassiCraftSmart) this.target).isCreatureOlderThan(this.maximumTargetAge);
+						return ((EntityJurassiCraftSmart) this.target).isCreatureOlderThan(this.maximumTargetAge) ? this.maximumTargetAge >= 1.0F : true;
 					}
 					else
 					{

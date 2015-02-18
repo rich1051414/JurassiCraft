@@ -45,8 +45,8 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(1, new JurassiCraftAIWander(this, 45, 0.7D * this.getCreatureSpeed()));
-        this.tasks.addTask(2, new AnimationAITailWhip(this, 30, 45.0D));
-        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 40.0D, 870.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID(), false));
+        this.tasks.addTask(2, new AnimationAITailWhip(this, 30, 45.0D, 3.0D));
+        this.tasks.addTask(3, new JurassiCraftAIDefensiveReaction(this, 8.0D, 30.0D, true, JurassiCraftAnimationIDs.TAIL_WHIP.animID(), false));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(5, new JurassiCraftAISit(this));
         this.tasks.addTask(6, new JurassiCraftAIEating(this, 20));

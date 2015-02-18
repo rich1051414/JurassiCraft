@@ -13,13 +13,15 @@ public class AnimationAITailWhip extends AIAnimation
 {
     private EntityJurassiCraftSmart creature;
     private double maximumDistance;
+    private double searchDistance;
     private int duration;
 
-    public AnimationAITailWhip(EntityJurassiCraftSmart creature, int duration, double maximumDistance)
+    public AnimationAITailWhip(EntityJurassiCraftSmart creature, int duration, double searchDistance, double maximumDistance)
     {
         super(creature);
         this.creature = creature;
         this.duration = duration;
+        this.searchDistance = searchDistance;
         this.maximumDistance = maximumDistance;
     }
 
@@ -46,13 +48,14 @@ public class AnimationAITailWhip extends AIAnimation
 	{
 		if (this.creature.getAnimationTick() == (this.duration / 2 - 2))
 		{
-			List<Entity> entityList = this.creature.worldObj.getEntitiesWithinAABBExcludingEntity(this.creature, this.creature.boundingBox.expand(this.maximumDistance, this.maximumDistance / 2.0D, this.maximumDistance));
+			List<Entity> entityList = this.creature.worldObj.getEntitiesWithinAABBExcludingEntity(this.creature, this.creature.boundingBox.expand(this.searchDistance, this.searchDistance / 2.0D, this.searchDistance));
 			for (Entity entity : entityList)
 			{
 				if (entity instanceof EntityLivingBase)
 				{
 					double distance = this.creature.getDistanceSqToEntity(entity);
-					if (distance < this.maximumDistance)
+					double minimumDistance = (this.maximumDistance + (double) this.creature.getCreatureLength() * 0.8D) * (this.maximumDistance + (double) this.creature.getCreatureLength() * 0.8D);
+					if (distance < minimumDistance)
 					{
 						entity.attackEntityFrom(DamageSource.causeMobDamage(this.getEntity()), (float) (1.25D * this.creature.getCreatureAttack()));
 						double deltaX = entity.posX - entity.posX;
