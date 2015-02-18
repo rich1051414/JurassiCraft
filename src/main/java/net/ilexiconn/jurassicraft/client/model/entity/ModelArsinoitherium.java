@@ -1,12 +1,16 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityArsinoitherium;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 
 public class ModelArsinoitherium extends MowzieModelBase
 {
+    private Animator animator;
     public MowzieModelRenderer upperbackbody;
     public MowzieModelRenderer middlebody;
     public MowzieModelRenderer upperfrontbody;
@@ -44,9 +48,12 @@ public class ModelArsinoitherium extends MowzieModelBase
     public MowzieModelRenderer rightbottomhorn3;
     public MowzieModelRenderer tail1;
     public MowzieModelRenderer tail2;
+    public MowzieModelRenderer headShakeController;
+    public MowzieModelRenderer[] neckParts;
 
     public ModelArsinoitherium()
     {
+        this.animator = new Animator(this);
         this.textureWidth = 128;
         this.textureHeight = 128;
 
@@ -188,6 +195,9 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.rightbackleg2 = new MowzieModelRenderer(this, 32, 86);
         this.rightbackleg2.setRotationPoint(0.0F, 6.0F, 0.0F);
         this.rightbackleg2.addBox(-2.5F, -1.75F, -3.75F, 5, 5, 7);
+        this.headShakeController = new MowzieModelRenderer(this, 0, 0);
+        this.headShakeController.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.headShakeController.addBox(0, 0, 0, 0, 0, 0);
 
         this.upperbackbody.addChild(this.tail1);
         this.tail1.addChild(this.tail2);
@@ -234,6 +244,8 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.rightbottomhorn1.addChild(this.rightbottomhorn2);
         this.rightbottomhorn2.addChild(this.rightbottomhorn3);
 
+        neckParts = new MowzieModelRenderer[]{head, neck};
+
         this.upperbackbody.setInitValuesToCurrentPose();
         this.tail1.setInitValuesToCurrentPose();
         this.leftbackleg1.setInitValuesToCurrentPose();
@@ -271,13 +283,14 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.leftbottomhorn3.setInitValuesToCurrentPose();
         this.rightbottomhorn2.setInitValuesToCurrentPose();
         this.rightbottomhorn3.setInitValuesToCurrentPose();
+        headShakeController.setInitValuesToCurrentPose();
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityArsinoitherium) entity);
+        this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.upperbackbody.render(f5);
     }
 
@@ -400,5 +413,98 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.leftbottomhorn3.setCurrentPoseToInitValues();
         this.rightbottomhorn2.setCurrentPoseToInitValues();
         this.rightbottomhorn3.setCurrentPoseToInitValues();
+        headShakeController.setCurrentPoseToInitValues();
+    }
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        this.animator.update(entity);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityArsinoitherium) entity);
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.CHARGE.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(upperbackbody, 0.25F, 0, 0);
+            this.animator.rotate(leftbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(rightbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(leftfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(leftfrontleg4, 0.4F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.4F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.startPhase(4);
+            this.animator.rotate(upperbackbody, -0.2F, 0, 0);
+            this.animator.rotate(leftbackleg1, 0.2F, 0, 0);
+            this.animator.rotate(rightbackleg1, 0.2F, 0, 0);
+            this.animator.rotate(neck, 0.25F, 0, 0);
+            this.animator.rotate(head, 0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, -0.1F, 0, 0);
+            this.animator.move(leftfrontleg1, 0, 2, -1);
+            this.animator.rotate(rightfrontleg1, 0.8F, 0, 0);
+            this.animator.rotate(leftfrontleg3, 0.5F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -1.4F, 0, 0);
+            this.animator.rotate(leftfrontleg4, -0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.6F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.startPhase(4);
+            this.animator.rotate(upperbackbody, 0.25F, 0, 0);
+            this.animator.rotate(leftbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(rightbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(leftfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(leftfrontleg4, 0.4F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.4F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.startPhase(4);
+            this.animator.rotate(upperbackbody, -0.2F, 0, 0);
+            this.animator.rotate(leftbackleg1, 0.2F, 0, 0);
+            this.animator.rotate(rightbackleg1, 0.2F, 0, 0);
+            this.animator.rotate(neck, 0.25F, 0, 0);
+            this.animator.rotate(head, 0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, -0.1F, 0, 0);
+            this.animator.move(leftfrontleg1, 0, 2, -1);
+            this.animator.rotate(rightfrontleg1, 0.8F, 0, 0);
+            this.animator.rotate(leftfrontleg3, 0.5F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -1.4F, 0, 0);
+            this.animator.rotate(leftfrontleg4, -0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.6F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.startPhase(4);
+            this.animator.rotate(upperbackbody, 0.25F, 0, 0);
+            this.animator.rotate(leftbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(rightbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(leftfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(leftfrontleg4, 0.4F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.4F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(5);
+            this.animator.rotate(upperbackbody, 0.25F, 0, 0);
+            this.animator.rotate(leftbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(rightbackleg1, -0.25F, 0, 0);
+            this.animator.rotate(leftfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(rightfrontleg1, 0.3F, 0, 0);
+            this.animator.rotate(leftfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(rightfrontleg3, -0.9F, 0, 0);
+            this.animator.rotate(leftfrontleg4, 0.4F, 0, 0);
+            this.animator.rotate(rightfrontleg4, 0.4F, 0, 0);
+            animator.move(headShakeController, 1, 0, 0);
+            this.animator.endPhase();
+            animator.setStationaryPhase(10);
+            animator.resetPhase(5);
+            this.animator.setStationaryPhase(57);
+            chainSwing(neckParts, 1F, 0.2F * headShakeController.rotationPointX, 0, ((EntityArsinoitherium) entity).frame, 1F);
+        }
     }
 }

@@ -97,8 +97,8 @@ public class AnimationAICharge extends AIAnimation
                     double deltaX = this.attackTarget.posX - this.entityCharging.posX;
                     double deltaZ = this.attackTarget.posZ - this.entityCharging.posZ;
                     float destAngleYaw = (float) Math.atan2(deltaZ, deltaX);
-                    if (angleYaw - destAngleYaw >= 0.2) angleYaw -= 0.05;
-                    else if (angleYaw - destAngleYaw <= -0.2) angleYaw += 0.05;
+                    if (angleYaw - destAngleYaw >= 0.1) angleYaw -= 0.1;
+                    else if (angleYaw - destAngleYaw <= -0.1) angleYaw += 0.1;
                 }
                 if (Math.sqrt(this.entityCharging.motionX * this.entityCharging.motionX + this.entityCharging.motionZ * this.entityCharging.motionZ) < this.chargeSpeed - 0.2)
                 {
@@ -112,7 +112,6 @@ public class AnimationAICharge extends AIAnimation
                 }
                 entityCharging.rotationYaw = (float) (angleYaw * (180/Math.PI) - 90);
                 entityCharging.renderYawOffset = (float) (angleYaw * (180/Math.PI) - 90);
-                System.out.println(angleYaw + ", " + entityCharging.rotationYaw + ", " + entityCharging.renderYawOffset);
             }
         }
     }
