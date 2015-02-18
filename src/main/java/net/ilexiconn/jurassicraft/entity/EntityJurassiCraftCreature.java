@@ -145,6 +145,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
             if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
         }
+
+        if (getAttackTarget() != null && getAttackTarget().ridingEntity != null) setAttackTarget(null);
         super.onLivingUpdate();
     }
 

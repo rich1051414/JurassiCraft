@@ -108,7 +108,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
                 double extraY = this.getCreatureHeight() * (0.425 - shakeProgress * 0.21);
                 if (getAnimationTick() > 30)
                 {
-                    extraY += 0.42 * Math.sin((getAnimationTick() - 30) * 0.2) * getCreatureHeight();
+                    extraY += 0.38 * Math.sin((getAnimationTick() - 30) * 0.2) * getCreatureHeight();
                     radius -= 0.001 * (getAnimationTick() - 30) * (getAnimationTick() - 30) * this.getCreatureLength();
                 }
                 double extraX = (double) (radius * MathHelper.sin((float) (Math.PI + angle)));

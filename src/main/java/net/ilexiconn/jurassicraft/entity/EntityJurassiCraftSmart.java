@@ -1020,6 +1020,8 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
      */
     public boolean checkTargetBeforeAttacking(EntityLivingBase target)
     {
+        if (target.riddenByEntity == this || this.riddenByEntity == target || target.ridingEntity != null) return false;
+
         if (target == (Entity) null || target == this || target == this.getOwner())
         {
             if (target instanceof EntityJurassiCraftSmart)
@@ -1031,7 +1033,6 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
                 return true;
             }
         }
-        if (target.riddenByEntity == this || this.riddenByEntity == target) return false;
         return false;
     }
 
