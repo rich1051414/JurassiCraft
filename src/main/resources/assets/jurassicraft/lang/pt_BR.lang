@@ -1,0 +1,499 @@
+//pt_BR - by: Al-Myr
+//CreativeTabs
+itemGroup.jurassicraft.items=JurassiCraft: Itens
+itemGroup.jurassicraft.itemsFood=JurassiCraft: Comida
+itemGroup.jurassicraft.blocks=JurassiCraft: Blocos
+itemGroup.jurassicraft.dnas=JurassiCraft: DNA
+itemGroup.jurassicraft.syringesEggs=JurassiCraft: Seringas & Ovos
+itemGroup.jurassicraft.spawnEggs=JurassiCraft: Ovos de Invocação
+
+
+
+//Entities
+
+//Arthropods
+entity.Meganeura.name=Meganeura
+
+//Birds
+entity.Titanis.name=Titanis
+
+//Cephalopods
+entity.Ammonite.name=Amonóide
+entity.Brachiopod.name=Brachiopodo
+
+//Dinosaurs
+entity.Ankylosaurus.name=Anquilossauro
+entity.Brachiosaurus.name=Braquiossauro
+entity.Velociraptor.name=Velociráptor
+entity.Leaellynasaura.name=Leaellynasaura
+entity.Herrerasaurus.name=Herrerassauro
+entity.Parasaurolophus.name=Parassaurolofo
+entity.Dilophosaurus.name=Dilofossauro
+entity.Oviraptor.name=Oviráptor
+entity.Tyrannosaurus.name=Tiranossauro Rex
+entity.Gallimimus.name=Galimimo
+entity.Hypsilophodon.name=Hipsilofodonte
+entity.Triceratops.name=Tricerátopo
+entity.Stegosaurus.name=Estegossauro
+entity.Dilophosaurus.name=Dilofossauro
+entity.Carnotaurus.name=Carnotauro
+
+//Fish
+entity.Coelacanth.name=Celacanto
+entity.Orthacanthus.name=Orthacanthus
+
+//Mammals
+entity.Mammoth.name=Mamute
+entity.Moeritherium.name=Moeritherium
+entity.Arsinoitherium.name=Arsinoitério
+entity.Basilosaurus.name=Basilosauro
+entity.Leptictidium.name=Leptictidium
+entity.Uintatherium.name=Uintatério
+entity.Paraceratherium.name=Paraceratério
+entity.Deinotherium.name=Dinotério
+
+//Reptiles
+entity.Cearadactylus.name=Cearadáctilo
+entity.Tylosaurus.name=Tilossauro
+entity.Deinosuchus.name=Deinosuchus
+
+//Others
+entity.dino_egg.name=Ovo de Dinossauro
+entity.Santa.name=Garras de Papai Noel (´Santa Claws´)
+
+
+
+//Entity_Interaction
+entity.interaction.fullGrown=não pode crescer mais
+entity.interaction.tamed=foi domado!
+entity.interaction.isSitting=está sentado
+entity.interaction.isNotSitting=não está mais sentado
+entity.riding.notRidable=não é montável
+entity.riding.notTamed=ainda não foi domesticado
+entity.riding.notAdult=ainda não é um adulto
+entity.riding.sitting=está sentado no momento
+entity.riding.isRiding=Tem alguém montando esta criatura
+
+
+
+//Items
+
+//DNAs
+item.Ankylosaurus_DNA.name=DNA de Anquilossauro
+item.Brachiosaurus_DNA.name=DNA de Braquiossauro
+item.Velociraptor_DNA.name=DNA de Velociráptor
+item.Stegosaurus_DNA.name=DNA de Estegossauro
+item.Triceratops_DNA.name=DNA de Tricerátopo
+item.Coelacanth_DNA.name=DNA de Celacanto
+item.Tyrannosaurus_DNA.name=DNA de Tiranossauro Rex
+item.Gallimimus_DNA.name=DNA de Galimimo
+item.Leaellynasaura_DNA.name=DNA de Leaellynasaura
+item.Hypsilophodon_DNA.name=DNA de Hipsilofodonte
+item.Tylosaurus_DNA.name=DNA de Tilossauro
+item.Meganeura_DNA.name=DNA de Meganeura
+item.Herrerasaurus_DNA.name=DNA de Herrerassauro
+item.Parasaurolophus_DNA.name=DNA de Parassaurolofo
+item.Dilophosaurus_DNA.name=DNA de Dilofossauro
+item.Oviraptor_DNA.name=DNA de Oviráptor
+item.Cearadactylus_DNA.name=DNA de Cearadáctilo
+item.Sarcosuchus_DNA.name=DNA de Sarcosuco
+item.Titanis_DNA.name=DNA de Titanis
+item.Mammoth_DNA.name=DNA de Manute
+item.Arsinoitherium_DNA.name=DNA de Arsinoitério
+item.Basilosaurus_DNA.name=DNA de Basilosauro
+item.Leptictidium_DNA.name=DNA de Leptictidium
+item.Uintatherium_DNA.name=DNA de Uintatério
+item.Paraceratherium_DNA.name=DNA de Paraceratério
+item.Deinotherium_DNA.name=DNA de Dinotério
+item.Moeritherium_DNA.name=DNA de Moeritherium
+item.Deinosuchus_DNA.name=DNA de Deinosuchus
+item.Brachiopod_DNA.name=DNA de Brachiopodo
+item.Ammonite_DNA.name=DNA de Amonóide
+item.Orthacanthus_DNA.name=DNA de Orthacanthus
+item.Carnotaurus_DNA.name=DNA de Carnotauro
+
+//Eggs
+item.Brachiosaurus_Egg.name=Ovo de Braquiossauro
+item.Velociraptor_Egg.name=Ovo de Velociráptor
+item.Ankylosaurus_Egg.name=Ovo de Anquilossauro
+item.Stegosaurus_Egg.name=Ovo de Estegossauro
+item.Triceratops_Egg.name=Ovo de Tricerátopo
+item.Coelacanth_Egg.name=Ovo de Celacanto
+item.Tyrannosaurus_Egg.name=Ovo de Tiranossauro Rex
+item.Oviraptor_Egg.name=Ovo de Oviráptor
+item.Dilophosaurus_Egg.name=Ovo de Dilofossauro
+item.Parasaurolophus_Egg.name=Ovo de Paraceratério
+item.Herrerasaurus_Egg.name=Ovo de Herrerassauro
+item.Meganeura_Egg.name=Ovo de Meganeura
+item.Tylosaurus_Egg.name=Ovo de Tilossauro
+item.Hypsilophodon_Egg.name=Ovo de Hipsilofodonte
+item.Leaellynasaura_Egg.name=Ovo de Leaellynasaura
+item.Gallimimus_Egg.name=Ovo de Galimimo
+item.Cearadactylus_Egg.name=Ovo de Cearadáctilo
+item.Sarcosuchus_Egg.name=Ovo de Sarcosuco
+item.Titanis_Egg.name=Ovo de Titanis
+item.Deinosuchus_Egg.name=Ovo de Deinosuchus
+item.Brachiopod_Egg.name=Ovo de Brachiopodo
+item.Ammonite_Egg.name=Ovo de Amonóide
+item.Orthacanthus_Egg.name=Ovo de Orthacanthus
+item.Carnotaurus_Egg.name=Ovo de Carnotauro
+
+//Syringes
+item.Mammoth_Syringe.name=Seringa de Manute
+item.Arsinoitherium_Syringe.name=Seringa de Arsinoitério
+item.Basilosaurus_Syringe.name=Seringa de Basilosauro
+item.Leptictidium_Syringe.name=Seringa de Leptictidium
+item.Uintatherium_Syringe.name=Seringa de Uintatério
+item.Paraceratherium_Syringe.name=Seringa de Paraceratério
+item.Deinotherium_Syringe.name=Seringa de Dinotério
+item.Moeritherium_Syringe.name=Seringa de Moeritherium
+
+//Spawn_Eggs
+item.Brachiosaurus_SpawnEgg.name=Invocar Anquilossauro
+item.Velociraptor_SpawnEgg.name=Invocar Braquiossauro
+item.Ankylosaurus_SpawnEgg.name=Invocar Velociráptor
+item.Stegosaurus_SpawnEgg.name=Invocar Estegossauro
+item.Triceratops_SpawnEgg.name=Invocar Tricerátopo
+item.Coelacanth_SpawnEgg.name=Invocar Celacanto
+item.Tyrannosaurus_SpawnEgg.name=Invocar Tiranossauro Rex
+item.Oviraptor_SpawnEgg.name=Invocar Galimimo
+item.Dilophosaurus_SpawnEgg.name=Invocar Leaellynasaura
+item.Parasaurolophus_SpawnEgg.name=Invocar Hipsilofodonte
+item.Herrerasaurus_SpawnEgg.name=Invocar Tilossauro
+item.Meganeura_SpawnEgg.name=Invocar Meganeura
+item.Tylosaurus_SpawnEgg.name=Invocar Herrerassauro
+item.Hypsilophodon_SpawnEgg.name=Invocar Parassaurolofo
+item.Leaellynasaura_SpawnEgg.name=Invocar Dilofossauro
+item.Gallimimus_SpawnEgg.name=Invocar Oviráptor
+item.Cearadactylus_SpawnEgg.name=Invocar Cearadáctilo
+item.Sarcosuchus_SpawnEgg.name=Invocar Sarcosuco
+item.Titanis_SpawnEgg.name=Invocar Titanis
+item.Mammoth_SpawnEgg.name=Invocar Manute
+item.Arsinoitherium_SpawnEgg.name=Invocar Arsinoitério
+item.Basilosaurus_SpawnEgg.name=Invocar Basilosauro
+item.Leptictidium_SpawnEgg.name=Invocar Leptictidium
+item.Uintatherium_SpawnEgg.name=Invocar Uintatério
+item.Paraceratherium_SpawnEgg.name=Invocar Paraceratério
+item.Deinotherium_SpawnEgg.name=Invocar Dinotério
+item.Moeritherium_SpawnEgg.name=Invocar Moeritherium
+item.Deinosuchus_SpawnEgg.name=Invocar Deinosuchus
+item.Brachiopod_SpawnEgg.name=Invocar Brachiopodo
+item.Ammonite_SpawnEgg.name=Invocar Amonóide
+item.Orthacanthus_SpawnEgg.name=Invocar Orthacanthus
+item.Carnotaurus_SpawnEgg.name=Invocar Carnotauro
+
+//Meats
+item.Ankylosaurus_Meat.name=Carne de Anquilossauro
+item.Brachiosaurus_Meat.name=Carne de Braquiossauro
+item.Velociraptor_Meat.name=Carne de Velociráptor
+item.Stegosaurus_Meat.name=Carne de Estegossauro
+item.Triceratops_Meat.name=Carne de Tricerátopo
+item.Coelacanth_Meat.name=Carne de Celacanto
+item.Tyrannosaurus_Meat.name=Carne de Tiranossauro Rex
+item.Gallimimus_Meat.name=Carne de Galimimo
+item.Leaellynasaura_Meat.name=Carne de Leaellynasaura
+item.Hypsilophodon_Meat.name=Carne de Hipsilofodonte
+item.Tylosaurus_Meat.name=Carne de Tilossauro
+item.Meganeura_Meat.name=Carne de Meganeura
+item.Herrerasaurus_Meat.name=Carne de Herrerassauro
+item.Parasaurolophus_Meat.name=Carne de Parassaurolofo
+item.Dilophosaurus_Meat.name=Carne de Dilofossauro
+item.Oviraptor_Meat.name=Carne de Oviráptor
+item.Cearadactylus_Meat.name=Carne de Cearadáctilo
+item.Sarcosuchus_Meat.name=Carne de Sarcosuco
+item.Titanis_Meat.name=Carne de Titanis
+item.Mammoth_Meat.name=Carne de Manute
+item.Arsinoitherium_Meat.name=Carne de Arsinoitério
+item.Basilosaurus_Meat.name=Carne de Basilosauro
+item.Leptictidium_Meat.name=Carne de Leptictidium
+item.Uintatherium_Meat.name=Carne de Uintatério
+item.Paraceratherium_Meat.name=Carne de Paraceratério
+item.Deinotherium_Meat.name=Carne de Dinotério
+item.Moeritherium_Meat.name=Carne de Moeritherium
+item.Deinosuchus_Meat.name=Carne de Deinosuchus
+item.Brachiopod_Meat.name=Carne de Brachiopodo
+item.Ammonite_Meat.name=Carne de Amonóide
+item.Orthacanthus_Meat.name=Carne de Orthacanthus
+item.Carnotaurus_Meat.name=Carne de Carnotauro
+
+//Cooked Meats
+item.Ankylosaurus_Steak.name=Filé de Anquilossauro
+item.Brachiosaurus_Steak.name=Filé de Braquiossauro
+item.Velociraptor_Steak.name=Filé de Velociráptor
+item.Stegosaurus_Steak.name=Filé de Estegossauro
+item.Triceratops_Steak.name=Filé de Tricerátopo
+item.Coelacanth_Steak.name=Filé de Celacanto
+item.Tyrannosaurus_Steak.name=Filé de Tiranossauro Rex
+item.Gallimimus_Steak.name=Filé de Galimimo
+item.Leaellynasaura_Steak.name=Filé de Leaellynasaura
+item.Hypsilophodon_Steak.name=Filé de Hipsilofodonte
+item.Tylosaurus_Steak.name=Filé de Tilossauro
+item.Meganeura_Steak.name=Filé de Meganeura
+item.Herrerasaurus_Steak.name=Filé de Herrerassauro
+item.Parasaurolophus_Steak.name=Filé de Parassaurolofo
+item.Dilophosaurus_Steak.name=Filé de Dilofossauro
+item.Oviraptor_Steak.name=Filé de Oviráptor
+item.Cearadactylus_Steak.name=Filé de Cearadáctilo
+item.Sarcosuchus_Steak.name=Filé de Sarcosuco
+item.Titanis_Steak.name=Filé de Titanis
+item.Mammoth_Steak.name=Filé de Manute
+item.Arsinoitherium_Steak.name=Filé de Arsinoitério
+item.Basilosaurus_Steak.name=Filé de Basilosauro
+item.Leptictidium_Steak.name=Filé de Leptictidium
+item.Uintatherium_Steak.name=Filé de Uintatério
+item.Paraceratherium_Steak.name=Filé de Paraceratério
+item.Deinotherium_Steak.name=Filé de Dinotério
+item.Moeritherium_Steak.name=Filé de Moeritherium
+item.Deinosuchus_Steak.name=Filé de Deinosuchus
+item.Brachiopod_Steak.name=Filé de Brachiopodo
+item.Ammonite_Steak.name=Filé de Amonóide
+item.Orthacanthus_Steak.name=Filé de Orthacanthus
+item.Carnotaurus_Steak.name=Filé de Carnotauro
+
+//Fur
+item.Leptictidium_Fur.name=Pele de Leptictidium
+
+//Skins
+item.Ankylosaurus_Skin_Male.name=Couro de Anquilossauro
+item.Arsinoitherium_Skin_Male.name=Couro de Arsinoitério
+item.Brachiosaurus_Skin_Male.name=Couro de Braquiossauro
+item.Dilophosaurus_Skin_Male.name=Couro de Dilofossauro
+item.Herrerasaurus_Skin_Male.name=Couro de Herrerassauro
+item.Hypsilophodon_Skin_Male.name=Couro de Hipsilofodonte
+item.Parasaurolophus_Skin_Male.name=Couro de Parassaurolofo
+item.Stegosaurus_Skin_Male.name=Couro de Estegossauro
+item.Triceratops_Skin_Male.name=Couro de Tricerátopo
+item.Tylosaurus_Skin_Male.name=Couro de Tilossauro
+item.Tyrannosaurus_Skin_Male.name=Couro de Tiranossauro Rex
+item.Velociraptor_Skin_Male.name=Couro de Velociráptor
+
+//Scales
+
+//Feathers
+
+//Bristles
+item.Velociraptor_Bristles.name=Cerdas de Velociráptor
+
+//Skull
+item.Brachiosaurus_Skull.name=Crânio de Braquiossauro
+item.Stegosaurus_Skull.name=Crânio de Estegossauro
+item.Triceratops_Skull.name=Crânio de Tricerátopo
+item.Tyrannosaurus_Skull.name=Crânio de Tiranossauro Rex
+item.Parasaurolophus_Skull.name=Crânio de Parassaurolofo
+item.Dilophosaurus_Skull.name=Crânio de Dilofossauro
+item.Tylosaurus_Skull.name=Crânio de Tilossauro
+item.Cearadactylus_Skull.name=Crânio de Cearadáctilo
+item.Sarcosuchus_Skull.name=Crânio de Sarcosuco
+item.Titanis_Skull.name=Crânio de Titanis
+item.Meganeura_Skull.name=Crânio de Meganeura
+item.Carnotaurus_Skull.name=Crânio de Carnotauro
+
+//Tooth
+item.Tyrannosaurus_Tooth.name=Dente de Tiranossauro Rex
+
+//Others
+item.net.name=Rede
+item.dinopad.name=Dinopad
+item.dinoBone.name=Osso de Dinossauro
+item.dinoSteak.name=Filé de Dinossauro
+item.growthSerum.name=Soro de Crescimento
+item.gypsumPowder.name=Pó de Gesso
+item.AppleOnAStick.name=Maçã no Palito
+item.BeefOnAStick.name=Bife no Palito
+item.CarrotOnAStick.name=Cenoura no Palito
+item.FishOnAStick.name=Peixe no Palito
+item.PorkOnAStick.name=Carne de Porco no Palito
+item.WheatOnAStick.name=Trigo no Palito
+item.fossil.name=Fóssil no Palito
+item.amber.name=Âmbar
+
+//Info
+item.growthSerum.info=Usado para crescer uma criatura
+item.egg.info.spawnBaby=Invocar uma criatura bebê
+item.egg.info.spawnAdult=Invocar uma criatura adulta
+item.egg.info.changeToBaby=Botão direito do mouse para invocar um bebê
+item.egg.info.changeToAdult=Botão direito do mouse para invocar um adulto
+item.egg.info.spawnSetToBaby=Invocar definido para bebê
+item.egg.info.spawnSetToAdult=Invocar definido para adultos
+item.dinoEgg.info.dna=DNA
+item.dinoEgg.info.quality=Condição
+item.dinoEgg.info.qualityChanged=Seu trapaceiro! Nova qualidade alterada para
+item.dinoEgg.info.errorQuality=Este ovo ainda não está pronto!
+item.dna.info.dna=DNA
+item.dna.info.quality=Condição
+item.dna.info.errorQuality=ERRO! A qualidade dos ovos não ainda foi determinada!
+item.dna.info.errorCode=ERRO! Seqüência de DNA ainda não foi determinada!
+item.dna.info.qualityChanged=Seu trapaceiro! Nova qualidade alterada para
+item.dna.info.geneticCodeIs=Código genético é
+item.syringe.info.dna=DNA
+item.syringe.info.quality=Condição
+item.syringe.info.qualityChanged=Seu trapaceiro! Nova qualidade alterada para
+item.syringe.info.errorQuality=Esta seringa ainda não está pronta!
+item.syringe.info.embryoInseminated=Embrão inseminado
+item.meat.info.dna=DNA
+item.meat.info.dna.none=Sem DNA
+item.meat.info.quality=Condição
+item.meat.info.errorQuality=ERRO! A qualidade dos ovos não ainda foi determinada!
+item.meat.info.errorCode=ERRO! Seqüência de DNA ainda não foi determinada!
+item.meat.info.qualityChanged=Seu trapaceiro! Nova qualidade alterada para
+item.meat.info.geneticCodeIs=Código genético é
+item.drop.info.dna=DNA
+item.drop.info.dna.none=Sem DNA
+item.drop.info.quality=Condição
+item.drop.info.errorQuality=ERRO! A qualidade dos ovos não ainda foi determinada!
+item.drop.info.errorCode=ERRO! Seqüência de DNA ainda não foi determinada!
+item.drop.info.qualityChanged=Seu trapaceiro! Nova qualidade alterada para
+item.drop.info.geneticCodeIs=Código genético é
+
+
+
+//Blocks
+tile.cultivate_idle.name=Cultivador
+tile.black_cultivate.name=Cultivador Preto
+tile.red_cultivate.name=Cultivador Vermelho
+tile.green_cultivate.name=Cultivador Verde
+tile.brown_cultivate.name=Cultivador Marrom
+tile.blue_cultivate.name=Cultivador Azul
+tile.purple_cultivate.name=Cultivador Lilás
+tile.cyan_cultivate.name=Cultivador Ciano
+tile.light_gray_cultivate.name=Cultivador Cinza Claro
+tile.gray_cultivate.name=Cultivador Cinza
+tile.pink_cultivate.name=Cultivador Rosa
+tile.lime_cultivate.name=Cultivador Verde Limão
+tile.yellow_cultivate.name=Cultivador Amarelo
+tile.light_blue_cultivate.name=Cultivador Azul Claro
+tile.magenta_cultivate.name=Cultivador Magenta
+tile.orange_cultivate.name=Cultivador Laranja
+tile.white_cultivate.name=Cultivador Branco
+tile.dnaExtractor.name=Extrator de DNA
+tile.dnaCombinator.name=Combinador de DNA
+tile.fossil_sandstone_ore.name=Arenito com Fóssil
+tile.fossil_clay_ore.name=Argila com Fóssil
+tile.fossil_clay_ore_stained_brown.name=Argila Tingida de Marrom com Fóssil
+tile.fossil_clay_ore_stained_orange.name=Argila Tingida de Laranja com Fóssil
+tile.fossil_clay_ore_stained_red.name=Argila Tingida de Vermelho com Fóssil
+tile.fossil_clay_ore_stained_silver.name=Argila Tingida de Cinza Claro com Fóssil
+tile.fossil_clay_ore_stained_white.name=Argila Tingida de Branco com Fóssil
+tile.fossil_clay_ore_stained_yellow.name=Argila Tingida de Amarelo com Fóssil
+tile.block_Gypsum_Block.name=Bloco de Gesso
+tile.block_Gypsum_Brick.name=Tijolo de Gesso
+tile.block_Gypsum_CobbleStone.name=Pedregulho deGesso
+tile.fossil_ore.name=Minério Fóssil
+tile.amber_ore.name=Minério de Âmbar
+tile.low_Security_Fence_Main.name=Canto de Cerca de Baixa Segurança
+tile.low_Security_Fence_Base.name=Base de Cerca de Baixa Segurança
+tile.low_Security_Fence_Grid.name=Grade de Baixa Segurança
+tile.low_Security_Fence_Pole.name=Poste de Baixa Segurança
+tile.medium_Security_Fence_Main.name=Canto de Cerca de Média Segurança
+tile.medium_Security_Fence_Base.name=Base de Cerca de Média Segurança
+tile.medium_Security_Fence_Grid.name=Grade de Média Segurança
+tile.medium_Security_Fence_Pole.name=Poste de Média Segurança
+tile.high_Security_Fence_Main.name=Canto de Cerca de Alta Segurança
+tile.high_Security_Fence_Base.name=Base de Cerca de Alta Segurança
+tile.high_Security_Fence_Grid.name=Grade de Alta Segurança
+tile.high_Security_Fence_Pole.name=Poste de Alta Segurança
+
+
+
+//Containers
+container.cultivator.stopCultivating=Parar de cultivar
+container.cultivator.cultivating=Cultivando
+container.cultivator.progress=Progresso
+container.dnaExtractor=Extrator de DNA
+container.dnaCombinator=Combinador de DNA
+container.fence.security.none=Nada construído ainda
+container.fence.security.low=Cerca de Baixa Segurança
+container.fence.security.medium=Cerca de Média Segurança
+container.fence.security.high=Cerca de Alta Segurança
+container.fence.noDirection=Não definido
+container.fence.south=Sul
+container.fence.west=Oeste
+container.fence.north=Norte
+container.fence.east=Leste
+container.fence.buildFence=Montar Cerca
+container.fence.fixFence=Consertar
+container.fence.fenceOn=Desligar a cerca
+container.fence.noRedstone=Sem Redstone
+container.fence.noIronIngots=Sem Lingotes de Ferro
+container.fence.notBroken=A cerca não está quebrada
+container.fence.pathBlocked=Caminho obstruído
+container.fence.baseIsWrong=A base está errada
+container.pad.creature=Criatura
+container.pad.years=anos,
+container.pad.months=meses,
+container.pad.days=dias,
+container.pad.year=ano,
+container.pad.month=mês,
+container.pad.day=dia
+container.pad.health=Saúde
+container.pad.attack=Ataque
+container.pad.speed=Velocidade
+container.pad.height=Altura
+container.pad.length=Comprimento
+container.pad.owner=Dono
+container.pad.ridable=Domesticada
+container.pad.none=Nenhum
+container.pad.maxHealth=Saúde Máxima
+container.pad.maxLength=Comprimento Máximo
+container.pad.maxHeight=Altura Máxima
+container.pad.egg.hatching=Incubando
+container.pad.egg.notHatching=O ovo não está chocando
+container.pad.egg.dried=Muito quente
+container.pad.egg.frozen=Muito frio
+container.pad.egg.dnaCode=DNA
+container.pad.egg.dnaQuality=Condição do DNA
+container.pad.pregnancy.pregnantCow=Vaca Prenha
+container.pad.pregnancy.pregnantPig=Porca Prenha
+container.pad.pregnancy.pregnantHorse=Égua Prenha
+container.pad.pregnancy.pregnantSheep=Ovelha Prenha
+container.pad.pregnancy.cow=Vaca
+container.pad.pregnancy.pig=Porco
+container.pad.pregnancy.horse=Cavalo
+container.pad.pregnancy.sheep=Ovelha
+container.pad.pregnancy.noEmbryo=Sem embrião
+container.pad.pregnancy.dnaCode=DNA
+container.pad.pregnancy.dnaQuality=Condição do DNA
+
+//Dinopad_Info
+container.pad.info.Ankylosaurus.page1=Anquilossauro foi um dinossauro herbívoro que viveu durante o período Cretáceo no que corresponde hoje à América do Norte. Este animal pesava entre 4 e 6 toneladas (pouco mais que um elefante) e media cerca de 9,0 metros de comprimento.
+container.pad.info.Ankylosaurus.page2=O anquilossauro tinha o corpo totalmente protegido por uma armadura, sendo que a única parte vulnerável de seu corpo era a barriga.
+container.pad.info.Ankylosaurus.page3=A ponta de sua cauda tinha uma espécie de clava óssea, cujos golpes atingiam 2 toneladas de força e poderiam facilmente quebrar a perna de grandes predadores. Essa carapaça nas costas é comum a todos os dinossauros da família ankylosauridae.
+container.pad.info.Brachiosaurus.page1=O Braquiossauro cujo nome significa "lagarto braço", dado os seus membros anteriores ("braços") serem maiores que os posteriores, era um género de dinossauros saurópode que viveu durante o fim do período Jurássico. Este animal tinha mias de 12 metros de altura e cerca de 25 metros de comprimento. Estima-se que o peso do animal girava em torno de 50 toneladas.
+container.pad.info.Brachiosaurus.page2=O primeiro braquiossauro foi descoberto em 1900 no Colorado, Estados Unidos, mas também viveu na área onde se localiza hoje a Argélia e a Tunísia, há aproximadamente 144 milhões de anos, durante o período Jurássico.
+container.pad.info.Velociraptor.page1=Velociráptor
+container.pad.info.Stegosaurus.page1=O estegossauro (Stegosaurus armatus, do latim "lagarto telhado") foi uma espécie de dinossauro herbívoro e quadrúpede que viveu no fim do período Jurássico principalmente na América do Norte. Também foi encontrado um exemplar fossilizado em Portugal em 2006. Media em torno de 9 metros de comprimento, 4 metros de altura e pesava em torno de 4 toneladas.
+container.pad.info.Stegosaurus.page2=Os estegossauros possuíam enormes espigões ósseos nas costas, estes eram usados tanto para a defesa quanto para estabilizar a temperatura do corpo do dinossauro. Havia também espigões nas caudas usados apenas para a defesa. Uma característica curiosa é que há fortes indícios de que o estegossauro possuía dois centros nervosos em seu corpo, ou seja, dois cérebros, um na cabeça e outro na região lombar.
+container.pad.info.Triceratops.page1=O tricerátopo (Triceratops horridus, do latim "cabeça com três chifres") foi um tipo de dinossauro herbívoro e quadrúpede que viveu no fim do período Cretáceo, durante o Maastrichtiano, principalmente na região que é hoje a América do Norte. É um dos últimos gêneros conhecidos de dinossauros não-aviários, e extinguiu-se no evento de extinção do Cretáceo-Paleogeno a 66 milhões de anos atrás.
+container.pad.info.Triceratops.page2=Estima-se que Tricerátopos individuais atingiam entre 7,9 e 9,0 m de comprimento, e entre 2,9 e 3,0 m de altura, e pesando entre 6,1 e 12,0 toneladas. A sua característica mais distinta é o seu grande crânio, o maior de todos entre os animais terrestres. O maior crânio conhecido tinha um tamanho estimado em 2,5m de comprimento quando completo, e podia chegar a quase um terço do comprimento de todo o animal. Ele tinha um único chifre no focinho, acima das narinas, e um par de chifres de cerca de 1m de comprimento, acima de cada olho. A parte traseira do crânio era relativamente curta, adornada com um folho ósseo epoccipital.
+container.pad.info.Coelacanth.page1=Acreditava-se que os celacantos teriam sido extintos no Cretáceo Superior, porém, foram redescobertos em 1938 no litoral da África do Sul. Latimeria chalumnae e Latimeria menadoensis são as duas únicas espécies vivas do celacanto, encontradas ao longo da costa do Oceano Índico.
+container.pad.info.Tyrannosaurus.page1=Os Tiranossauros (do grego, "lagarto tirano") são um gênero de dinossauros terópodas coelurossauros que viveram durante o final do período cretáceo, há aproximadamente 65 milhões de anos atrás, em toda a região que hoje é a América do Norte.
+container.pad.info.Tyrannosaurus.page2=Os tiranossauros pertenciam à espécie dos dinossauros terópodas e, quando adultos, alcançavam 6 metros de altura e 15 metros de comprimento do crânio até o fim da cauda, com o peso estimado de 9 toneladas. Esses animais possuíam um crânio resistente, com uma circunferência média de um metro, formado por vários filamentos de ossos interligados que eram conectados à coluna vertebral por um osso grosso e longo, característica incomum entre os terópodes, que geralmente possuíam ossos mais leves. O pescoço também era grosso, musculoso e curto.
+container.pad.info.Gallimimus.page1=Galimimo
+container.pad.info.Hypsilophodon.page1=Hipsilofodonte
+container.pad.info.Leaellynasaura.page1=Leaellynasaura
+container.pad.info.Herrerasaurus.page1=O Herrerassauro foi um dos mais antigos dinossauros. Seu nome significa “lagarto de Herrera”, em homenagem ao rancheiro que descobriu o primeiro espécime. Todos os fósseis conhecidos do dinossauro carnívoro foram encontrados em rochas da era Carniana (Triássico tardio de acordo com o ICS, datado de aproximadamente 231,4 milhões de anos atrás) na região nordeste da Argentina.
+container.pad.info.Herrerasaurus.page2=O Herrerassauro era um bípede carnívoro de estrutura leve com uma longa cauda e uma cabeça relativamente pequena. Seu comprimento é estimado em 3 a 6 metros,4 e sua altura do quadril em mais de 1,1 metros. Pode ter pesado aproximadamente entre 210–350 quilogramas.
+container.pad.info.Parasaurolophus.page1=Parassaurolofo
+container.pad.info.Meganeura.page1=Meganeura
+container.pad.info.Dilophosaurus.page1=Dilofossauro
+container.pad.info.Tylosaurus.page1=Tilossauro
+container.pad.info.Oviraptor.page1=Oviráptor
+container.pad.info.Cearadactylus.page1=Cearadáctilo
+container.pad.info.Mammoth.page1=Manute
+container.pad.info.Arsinoitherium.page1=Arsinoitério
+container.pad.info.Basilosaurus.page1=Basilosauro
+container.pad.info.Leptictidium.page1=Leptictidium
+container.pad.info.Titanis.page1=Titanis
+container.pad.info.Uintatherium.page1=Uintatério
+container.pad.info.Paraceratherium.page1=Paraceratério
+container.pad.info.Deinotherium.page1=Dinotério
+container.pad.info.Deinosuchus.page1=Deinosuchus
+container.pad.info.Brachiopod.page1=Brachiopodo
+container.pad.info.Ammonite.page1=Amonóide
+container.pad.info.Orthacanthus.page1=Orthacanthus
+container.pad.info.Carnotaurus.page1=Carnotauro
+
+
+
+//Commands
+commands.spawndino.usage=/spawndino <dino> [x] [y] [z] [adult]
