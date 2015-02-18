@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
 import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAICharge;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
+import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCharges;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
 import net.minecraft.entity.ai.*;
@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityArsinoitherium extends EntityJurassiCraftProtective implements IMammal, IHerbivore
+public class EntityArsinoitherium extends EntityJurassiCraftCharges implements IMammal, IHerbivore
 {
     public EntityArsinoitherium(World world)
     {
@@ -21,6 +21,7 @@ public class EntityArsinoitherium extends EntityJurassiCraftProtective implement
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 200));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 60, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(2, new JurassiCraftAISit(this));
+        this.tasks.addTask(2, new AnimationAICharge(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.1F * this.getCreatureSpeed(), false));
         this.tasks.addTask(4, new JurassiCraftAIFollowFood(this, 50, 1.1D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAIEatDroppedFood(this, 16.0D));
