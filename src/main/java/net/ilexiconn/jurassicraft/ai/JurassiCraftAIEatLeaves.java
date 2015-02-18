@@ -1,9 +1,12 @@
 package net.ilexiconn.jurassicraft.ai;
 
 import com.google.common.collect.Lists;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.ai.herds.CreatureHerd;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
+import net.minecraft.block.Block;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathEntity;
@@ -63,7 +66,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             {
                 for (int z = -maxDist / 2 + startZ; z < maxDist / 2 + startZ; z++)
                 {
-                    if (world.getBlock(x, y, z) == Blocks.leaves || world.getBlock(x, y, z) == Blocks.leaves2)
+                    if (isEdible(world.getBlock(x, y, z)))
                     {
                         leavesBlocks.add(Vec3.createVectorHelper(x, y, z));
                     }
@@ -158,6 +161,15 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         }
     }
     
+    private boolean isEdible(Block block)
+    {
+        if(this.creature.boundingBox.maxY-this.creature.boundingBox.minY < 5f) // you're not high enough to reach for the stars, son
+        {
+            return block == Blocks.potatoes || block == Blocks.tallgrass || block == Blocks.carrots;
+        }
+        return block == Blocks.leaves || block == Blocks.leaves2;
+    }
+
     /**
      * Returns a Vec3 instance representing the vector from the entity to the block
      * @return
@@ -171,7 +183,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     public boolean continueExecuting()
     {
         if (!foundLeaves || leavesY < 0) return false;
-        if (world.getBlock(leavesX, leavesY, leavesZ) != Blocks.leaves && world.getBlock(leavesX, leavesY, leavesZ) != Blocks.leaves2)
+        if (!isEdible(world.getBlock(leavesX, leavesY, leavesZ)))
         {
             // We have eaten the block. Or an evil player destroyed it. ;-(
             return false;
@@ -201,6 +213,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             if (path != null)
             {
                 creature.getNavigator().setPath(path, speed);
+                creature.getLookHelper().setLookPosition(leavesX, leavesY, leavesZ, 10f, creature.getVerticalFaceSpeed());
             }
             else if (path == null && creature.onGround && !creature.isInWater())
             {

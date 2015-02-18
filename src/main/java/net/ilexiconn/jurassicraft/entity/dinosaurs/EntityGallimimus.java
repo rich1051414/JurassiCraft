@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
+import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatLeaves;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
@@ -41,6 +42,9 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     {
         super(world);
         this.getNavigator().setAvoidsWater(true);
+        
+        this.tasks.addTask(10, new JurassiCraftAIEatLeaves(this, getCreatureSpeed()));
+        
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 150));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 80, 1.1D * this.getCreatureSpeed()));
