@@ -58,7 +58,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(0, new AnimationAITyrannosaurusEatingGallimimus(this));
         this.tasks.addTask(2, new AnimationAIRoar(this, 75));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.3F * this.getCreatureSpeed(), false));
+        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 1.4F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, this.getCreatureSpeed()));
         this.tasks.addTask(8, new AnimationAIWalkRoar(this, 75));
         this.tasks.addTask(4, new JurassiCraftAISitNatural(this, 800, 125, 400));
