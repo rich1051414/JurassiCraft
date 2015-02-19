@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityGallimimus;
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelRenderer;
@@ -53,6 +54,8 @@ public class ModelGallimimus extends MowzieModelBase
     public MowzieModelRenderer[] TailParts;
     public MowzieModelRenderer[] RightArmParts;
     public MowzieModelRenderer[] LeftArmParts;
+    public MowzieModelRenderer[] RightLegParts;
+    public MowzieModelRenderer[] LeftLegParts;
 
     public ModelGallimimus()
     {
@@ -326,6 +329,8 @@ public class ModelGallimimus extends MowzieModelBase
         TailParts = new MowzieModelRenderer[]{this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2};
         RightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
         LeftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        RightLegParts = new MowzieModelRenderer[]{Foot_Right, Right_Upper_Foot, Right_Calf_1, Right_Thigh};
+        LeftLegParts = new MowzieModelRenderer[]{Foot_Left, Left_Upper_Foot, Left_Calf_1, Left_Thigh};
 
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
@@ -577,24 +582,39 @@ public class ModelGallimimus extends MowzieModelBase
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityGallimimus) entity);
 
-        animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
-        animator.startPhase(0);
-        animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
-        animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
-        animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
-        animator.rotate(Tail_4, -0.2F, 0.0F, 0.0F);
-        animator.rotate(Tail_5, -0.2F, 0.0F, 0.0F);
-        animator.rotate(Body_1, 0.0F, 0.0F, 0.0F);
-        animator.rotate(Body_2, 0.5F, 0.0F, 0.0F);
-        animator.rotate(Neck_1, 0.8F, 0.0F, 0.0F);
-        animator.rotate(Neck_2, 0.5F, 0.0F, 0.0F);
-        animator.rotate(Neck_3, 0.5F, 0.0F, 0.0F);
-        animator.rotate(Neck_4, 0.4F, 0.0F, 0.0F);
-        animator.rotate(Neck_5, -0.3F, 0.0F, 0.0F);
-        animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
-        animator.rotate(Foot_Left, 0.3F, 0, 0);
-        animator.rotate(Foot_Right, 0.3F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(45);
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BEING_EATEN.animID()) {
+            EntityTyrannosaurus trex = (EntityTyrannosaurus) ((EntityGallimimus) entity).ridingEntity;
+            Neck_1.rotateAngleY = 0;
+            Neck_2.rotateAngleY = 0;
+            Neck_3.rotateAngleY = 0;
+            Neck_4.rotateAngleY = 0;
+            Neck_5.rotateAngleY = 0;
+            Head.rotateAngleY = 0;
+            chainWave(NeckParts, 0.6F, -0.25F * (trex.shakePrey.getAnimationProgressSinSqrt() + 0.02F), 2, trex.frame, 1F);
+            chainWave(TailParts, 0.6F, -0.3F * trex.shakePrey.getAnimationProgressSinSqrt(), 2, trex.frame, 1F);
+            chainWave(LeftArmParts, 0.6F, -0.3F * trex.shakePrey.getAnimationProgressSinSqrt(), 2, trex.frame, 1F);
+            chainWave(RightArmParts, 0.6F, -0.3F * trex.shakePrey.getAnimationProgressSinSqrt(), 2, trex.frame, 1F);
+            chainWave(LeftLegParts, 0.6F, -0.4F * trex.shakePrey.getAnimationProgressSinSqrt(), 1, trex.frame, 1F);
+            chainWave(RightLegParts, 0.6F, -0.4F * trex.shakePrey.getAnimationProgressSinSqrt(), 1, trex.frame, 1F);
+            animator.setAnimation(JurassiCraftAnimationIDs.BEING_EATEN.animID());
+            animator.startPhase(0);
+            animator.rotate(Tail_1, -0.3F, 0.0F, 0.0F);
+            animator.rotate(Tail_2, -0.3F, 0.0F, 0.0F);
+            animator.rotate(Tail_3, -0.2F, 0.0F, 0.0F);
+            animator.rotate(Tail_4, -0.2F, 0.0F, 0.0F);
+            animator.rotate(Tail_5, -0.2F, 0.0F, 0.0F);
+            animator.rotate(Body_1, 0.0F, 0.0F, 0.0F);
+            animator.rotate(Body_2, 0.5F, 0.0F, 0.0F);
+            animator.rotate(Neck_1, 0.8F, 0.0F, 0.0F);
+            animator.rotate(Neck_2, 0.5F, 0.0F, 0.0F);
+            animator.rotate(Neck_3, 0.5F, 0.0F, 0.0F);
+            animator.rotate(Neck_4, 0.4F, 0.0F, 0.0F);
+            animator.rotate(Neck_5, -0.3F, 0.0F, 0.0F);
+            animator.rotate(HeadJoint, -0.3F, 0.0F, 0.0F);
+            animator.rotate(Foot_Left, 0.6F, 0, 0);
+            animator.rotate(Foot_Right, 0.6F, 0, 0);
+            animator.endPhase();
+            animator.setStationaryPhase(45);
+        }
     }
 }
