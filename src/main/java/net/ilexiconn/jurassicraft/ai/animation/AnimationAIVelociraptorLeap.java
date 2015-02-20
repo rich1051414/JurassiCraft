@@ -60,8 +60,10 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
 
         if (this.entityRaptor.getAnimationTick() == 9)
         {
-        	this.targetPrevPosX = attackTarget.posX;
-        	this.targetPrevPosZ = attackTarget.posZ;
+            if (this.attackTarget != null) {
+                this.targetPrevPosX = attackTarget.posX;
+                this.targetPrevPosZ = attackTarget.posZ;
+            }
         }
 
         if (entityRaptor.getAnimationTick() == 10)

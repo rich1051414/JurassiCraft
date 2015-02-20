@@ -89,15 +89,15 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     public void onLivingUpdate()
     {
         // Leap AI
-        float distanceFromTarget;
-        if (getAttackTarget() != null)
-        {
-            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-        }
-        else
-        {
-            distanceFromTarget = -1;
-        }
+//        float distanceFromTarget;
+//        if (getAttackTarget() != null)
+//        {
+//            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
+//        }
+//        else
+//        {
+//            distanceFromTarget = -1;
+//        }
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && this.onGround && this.timeSinceLeap == 0 && this.animID == 0)
             AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.LEAP.animID());
 

@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 
 public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
 {
+    public float distanceFromTarget;
+
     public EntityJurassiCraftAggressive(World world)
     {
         super(world);
@@ -43,6 +45,17 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
             
             return super.attackEntityFrom(damageSource, damage);
         }
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        if (getAttackTarget() != null)
+        {
+            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
+        }
+        else distanceFromTarget = -1;
     }
 
     protected int getBiteAnimationDuration()
@@ -85,6 +98,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
             }
             EnchantmentHelper.func_151385_b(this, entity);
         }*/
+        if (this instanceof  EntityTyrannosaurus && distanceFromTarget >= 5.5F) return false;
         if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
         return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
