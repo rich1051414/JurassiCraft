@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
-public class ServerProxy
+public class CommonProxy
 {
     public float getPartialTick()
     {

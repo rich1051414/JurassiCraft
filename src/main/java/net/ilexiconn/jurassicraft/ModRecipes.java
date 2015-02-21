@@ -16,9 +16,9 @@ public class ModRecipes implements IContentHandler
     {
         GameRegistry.addSmelting(ModBlocks.gypsumCobblestone, new ItemStack(ModBlocks.gypsumBlock, 1), 5);
 
-        for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
+        for (int i = 0; i < BlockCultivateBottom.iconVariationsNames.length; i++)
         {
-            int correction = BlockCultivateBottom.icons.length - i - 1;
+            int correction = BlockCultivateBottom.iconVariationsNames.length - i - 1;
             GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GIG", "G G", "III", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, correction));
         }
 

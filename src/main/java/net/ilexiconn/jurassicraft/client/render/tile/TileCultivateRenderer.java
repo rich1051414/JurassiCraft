@@ -26,8 +26,8 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
     public TileCultivateRenderer()
     {
         this.embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
-        this.cultivateTextures = new ResourceLocation[BlockCultivateBottom.icons.length];
-        for (int i = 0; i < BlockCultivateBottom.icons.length; i++)
+        this.cultivateTextures = new ResourceLocation[BlockCultivateBottom.iconVariationsNames.length];
+        for (int i = 0; i < BlockCultivateBottom.iconVariationsNames.length; i++)
             this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + ItemDye.field_150921_b[i] + ".png");
     }
 

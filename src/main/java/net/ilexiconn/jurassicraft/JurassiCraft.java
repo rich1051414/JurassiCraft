@@ -1,15 +1,7 @@
 package net.ilexiconn.jurassicraft;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.util.Calendar;
+
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.config.ConfigHandler;
@@ -24,22 +16,32 @@ import net.ilexiconn.jurassicraft.gen.WorldGenFossilOre;
 import net.ilexiconn.jurassicraft.gen.WorldGenGypsum;
 import net.ilexiconn.jurassicraft.packet.MessageAnimation;
 import net.ilexiconn.jurassicraft.packet.MessageFence;
-import net.ilexiconn.jurassicraft.proxy.ServerProxy;
+import net.ilexiconn.jurassicraft.proxy.CommonProxy;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
+
 import org.apache.logging.log4j.Logger;
 
-import java.util.Calendar;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.config.ConfigFactory")
 public class JurassiCraft
 {
-    @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy")
-    public static ServerProxy proxy;
+    @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy")
+    public static CommonProxy proxy;
     @Mod.Instance("jurassicraft")
     public static JurassiCraft instance;
 

@@ -18,7 +18,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
-public class ClientProxy extends ServerProxy
+public class ClientProxy extends CommonProxy
 {
     private Timer mcTimer;
 

@@ -30,14 +30,16 @@ import java.util.Random;
 
 public class BlockCultivateBottom extends BlockContainer
 {
+    public static final String[] iconVariationsNames = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
+
     @SideOnly(Side.CLIENT)
-    public static final IIcon[] icons = new IIcon[ItemDye.field_150921_b.length];
+    private IIcon[] iconVariations;
   
     public boolean isLit;
 
     public BlockCultivateBottom(boolean lit)
     {
-        super(Material.cactus); // Yes..., Cactus xD
+        super(Material.cactus); // Yes..., Cactus xD But I hate cacti :(
         this.setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
         this.setBlockTextureName(JurassiCraft.getModId() + "cultivate");
         this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);
@@ -50,14 +52,14 @@ public class BlockCultivateBottom extends BlockContainer
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        return this.icons[metadata];
+        return this.iconVariations[metadata];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < this.icons.length; i++)
+        for (int i = 0; i < this.iconVariations.length; i++)
             list.add(new ItemStack(item, 1, i));
     }
 
@@ -65,8 +67,9 @@ public class BlockCultivateBottom extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        for (int i = 0; i < this.icons.length; i++)
-            this.icons[i] = iconRegister.registerIcon(this.getTextureName() + "_" + ItemDye.field_150921_b[i]);
+        iconVariations = new IIcon[iconVariationsNames.length];
+        for (int i = 0; i < this.iconVariations.length; i++)
+            this.iconVariations[i] = iconRegister.registerIcon(this.getTextureName() + "_" + iconVariationsNames[i]);
     }
 
     @Override
