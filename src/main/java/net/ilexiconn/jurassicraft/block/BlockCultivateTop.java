@@ -12,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -27,8 +26,10 @@ import java.util.Random;
 
 public class BlockCultivateTop extends Block
 {
+    public static final String[] iconVariationsNames = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
+
     @SideOnly(Side.CLIENT)
-    public static final IIcon[] icons = new IIcon[ItemDye.field_150921_b.length];
+    private IIcon[] iconVariations;
     public boolean isLit;
 
     public BlockCultivateTop(boolean lit)
@@ -47,15 +48,16 @@ public class BlockCultivateTop extends Block
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        return this.icons[metadata];
+        return this.iconVariations[metadata];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        for (int i = 0; i < this.icons.length; i++)
-            this.icons[i] = iconRegister.registerIcon(this.getTextureName() + "_" + ItemDye.field_150921_b[i]);
+        iconVariations = new IIcon[iconVariationsNames.length];
+        for (int i = 0; i < this.iconVariations.length; i++)
+            this.iconVariations[i] = iconRegister.registerIcon(this.getTextureName() + "_" + iconVariationsNames[i]);
     }
 
     @Override
