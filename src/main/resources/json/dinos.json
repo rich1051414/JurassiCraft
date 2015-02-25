@@ -339,7 +339,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 0
     },
     {
         "creatureName":"Herrerasaurus",
@@ -415,7 +415,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 0
     },
     {
         "creatureName":"Oviraptor",
@@ -453,7 +453,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 0
     },
     {
         "creatureName":"Parasaurolophus",

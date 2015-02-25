@@ -35,7 +35,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": true,
-        "addItemTypes": 5
+        "addItemTypes": 0
     },
     {
         "creatureName":"Tylosaurus",
@@ -111,6 +111,6 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 0
     }
 ]
