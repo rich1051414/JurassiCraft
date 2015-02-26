@@ -21,8 +21,9 @@ public class WorldGenFossilOre implements IWorldGenerator
             for (int i = 0; i < 20; i++)
             {
                 x = random.nextInt(16) + (chunkX * 16);
-                y = random.nextInt(64);
                 z = random.nextInt(16) + (chunkZ * 16);
+                int worldHeight = world.getHeightValue(x, z);
+                y = random.nextInt(worldHeight);
 
                 generateOre(world, random, x, y, z);
             }

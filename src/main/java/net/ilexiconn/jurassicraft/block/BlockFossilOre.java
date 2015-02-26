@@ -51,7 +51,7 @@ public class BlockFossilOre extends Block
     public Item getItemDropped(int value, Random random, int thing)
     {
         float rand = random.nextFloat();
-        if (rand < 0.25F)
+        if (rand < 0.20F)
         {
             return Item.getItemFromBlock(Blocks.stone);
         }
@@ -59,7 +59,7 @@ public class BlockFossilOre extends Block
         {
             return Item.getItemFromBlock(Blocks.cobblestone);
         }
-        else if (rand < 0.75F)
+        else if (rand < 0.70F)
         {
             return Items.bone;
         }

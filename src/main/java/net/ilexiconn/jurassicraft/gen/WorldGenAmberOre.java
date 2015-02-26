@@ -17,10 +17,10 @@ public class WorldGenAmberOre implements IWorldGenerator
             int x, y, z;
 
             x = random.nextInt(16) + (chunkX * 16);
-            y = random.nextInt(7);
+            y = random.nextInt(20);
             z = random.nextInt(16) + (chunkZ * 16);
 
-            (new WorldGenMinable(ModBlocks.amberOre, 7)).generate(world, random, x, y, z);
+            (new WorldGenMinable(ModBlocks.amberOre, 6)).generate(world, random, x, y, z);
         }
     }
 }
