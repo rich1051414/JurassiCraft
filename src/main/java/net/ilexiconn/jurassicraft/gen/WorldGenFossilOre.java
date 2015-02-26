@@ -93,8 +93,7 @@ public class WorldGenFossilOre implements IWorldGenerator
                                         } else if (block == Blocks.sandstone || block == Blocks.sand)
                                         {
                                             toGenerate = ModBlocks.sandstoneFossilOre;
-                                            metadataToGenerate = 0;
-                                            System.out.println("Generating sandstone at: " + k2 + ", " + l2 + ", " + i3);
+                                            metadataToGenerate = random.nextInt(6);
                                         }
 
                                         world.setBlock(k2, l2, i3, toGenerate, metadataToGenerate, 2);
