@@ -86,16 +86,15 @@ public class WorldGenFossilOre implements IWorldGenerator
                                         {
                                             toGenerate = ModBlocks.clayFossilOre;
                                             metadataToGenerate = 0;
-                                        }
-                                        else if (block == Blocks.stained_hardened_clay)
+                                        } else if (block == Blocks.stained_hardened_clay)
                                         {
                                             toGenerate = ModBlocks.clayFossilOre;
                                             metadataToGenerate = convertVanillaMetadataToOre(blockMetadata);
-                                        }
-                                        else if (block == Blocks.sandstone)
+                                        } else if (block == Blocks.sandstone || block == Blocks.sand)
                                         {
                                             toGenerate = ModBlocks.sandstoneFossilOre;
                                             metadataToGenerate = 0;
+                                            System.out.println("Generating sandstone at: " + k2 + ", " + l2 + ", " + i3);
                                         }
 
                                         world.setBlock(k2, l2, i3, toGenerate, metadataToGenerate, 2);
