@@ -32,6 +32,7 @@ this.myBiomesToSpawnIn.add(ModBiomes.DinoPlains);
 this.myBiomesToSpawnIn.add(ModBiomes.DinoOcean);
 this.myBiomesToSpawnIn.add(ModBiomes.DinoMountains);
 this.myBiomesToSpawnIn.add(ModBiomes.DinoJungle);
+this.myBiomesToSpawnIn.add(ModBiomes.DinoRiver);
 }
 
 public WorldChunkManagerDino(long seed, WorldType worldtype)

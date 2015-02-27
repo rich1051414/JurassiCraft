@@ -348,6 +348,8 @@ item.drop.info.geneticCodeIs=Genetic code is
 
 //Blocks========================================================
 tile.cultivate_idle.name=Cultivate
+tile.fernplant.name=Fern Plant
+tile.heliconiaplant.name=Heliconia Plant
 tile.black_cultivate.name=Black Cultivate
 tile.red_cultivate.name=Red Cultivate
 tile.green_cultivate.name=Green Cultivate

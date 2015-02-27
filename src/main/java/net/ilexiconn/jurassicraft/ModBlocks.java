@@ -23,6 +23,8 @@ import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.dimension.core.BlockDinoPortal;
 import net.ilexiconn.jurassicraft.dimension.core.BlockKeyStone;
+import net.ilexiconn.jurassicraft.dimension.core.plants.FernPlant;
+import net.ilexiconn.jurassicraft.dimension.core.plants.HeliconiaPlant;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
 import net.minecraft.block.Block;
@@ -30,6 +32,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter;
 
 public class ModBlocks implements IContentHandler
 {
@@ -66,6 +69,11 @@ public class ModBlocks implements IContentHandler
     
     public static Block KeyStone;
 
+    //Dimension Plants
+
+    public static Block fernPlant;
+    public static Block Heliconia;
+
     /*
     public static Block securityFenceMediumCorner;
     public static Block securityFenceMediumPole;
@@ -80,6 +88,8 @@ public class ModBlocks implements IContentHandler
 
     public void init()
     {
+        fernPlant = new FernPlant("fernplant");
+        Heliconia = new HeliconiaPlant("heliconiaplant");
         cultivateBottomOff = new BlockCultivateBottom(false);
         cultivateTopOff = new BlockCultivateTop(false);
         cultivateBottomOn = new BlockCultivateBottom(true);
