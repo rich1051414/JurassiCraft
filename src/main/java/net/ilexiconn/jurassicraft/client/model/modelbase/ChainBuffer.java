@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.client.model.modelbase;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
@@ -11,7 +9,7 @@ import net.minecraft.util.MathHelper;
  *
  * @author RafaMv
  */
-@SideOnly(Side.CLIENT)
+
 public class ChainBuffer
 {
     /**
@@ -73,7 +71,7 @@ public class ChainBuffer
      *                       Try values about 5.0F.
      * @param entity         is the EntityLivingBase that will be used to animate the tail;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity)
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
@@ -131,7 +129,7 @@ public class ChainBuffer
      *                       Try values about 5.0F.
      * @param entity         is the EntityLivingBase that will be used to animate the tail;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity)
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
@@ -189,7 +187,7 @@ public class ChainBuffer
      *                       Try values about 5.0F.
      * @param entity         is the EntityLivingBase that will be used to animate the tail;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity)
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
@@ -247,7 +245,7 @@ public class ChainBuffer
      *                       Try values about 5.0F.
      * @param entity         is the EntityLivingBase that will be used to animate the tail;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity)
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
@@ -295,7 +293,7 @@ public class ChainBuffer
      *
      * @param boxes are the chain of parented boxes to be animated;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void applyChainSwingBuffer(MowzieModelRenderer[] boxes)
     {
         if (boxes.length == this.yawArray.length)
@@ -314,7 +312,7 @@ public class ChainBuffer
      *
      * @param boxes are the chain of parented boxes to be animated;
      */
-    @SideOnly(Side.CLIENT)
+    
     public void applyChainWaveBuffer(MowzieModelRenderer[] boxes)
     {
         if (boxes.length == this.pitchArray.length)

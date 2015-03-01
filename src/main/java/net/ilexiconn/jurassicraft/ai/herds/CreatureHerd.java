@@ -186,10 +186,25 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         return Vec3.createVectorHelper(x, y, z);
     }
 
+    public Vec3 getPosition(EntityJurassiCraftCreature creature, float p_70666_1_)
+    {
+        if (p_70666_1_ == 1.0F)
+        {
+            return Vec3.createVectorHelper(creature.posX, creature.posY, creature.posZ);
+        }
+        else
+        {
+            double d0 = creature.prevPosX + (creature.posX - creature.prevPosX) * (double)p_70666_1_;
+            double d1 = creature.prevPosY + (creature.posY - creature.prevPosY) * (double)p_70666_1_;
+            double d2 = creature.prevPosZ + (creature.posZ - creature.prevPosZ) * (double)p_70666_1_;
+            return Vec3.createVectorHelper(d0, d1, d2);
+        }
+    }
+
     public double getDistanceFrom(EntityJurassiCraftCreature creature)
     {
         Vec3 center = computeCenter();
-        return creature.getPosition(1f).distanceTo(center);
+        return getPosition(creature, 1f).distanceTo(center);
     }
 
     public boolean groupAttack()
