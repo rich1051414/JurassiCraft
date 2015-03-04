@@ -50,13 +50,13 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
 
-    //Portal Blocks
+    // Portal Blocks
     
     public static Block DinoPortal;
     
     public static Block KeyStone;
 
-    //Dimension Plants
+    // Dimension Plants
 
     public static Block fernPlant;
     public static Block Orontium;
