@@ -85,13 +85,19 @@ public class ModelEmbryo extends MowzieModelBase
         shapes[7].render(0.0625f);
         shapes[8].render(0.0625f);*/
 
+        for (MowzieModelRenderer shape : shapes)
+        {
+            shape.setCurrentPoseToInitValues();
+        }
+
         MowzieModelRenderer[] BodyParts = {shapes[2], shapes[1], shapes[0], shapes[3], shapes[4]};
-        shapes[0].rotationPointY -= (float) (MathHelper.cos(tile.animationTick * 0.05f) * 0.02);
-        chainWave(BodyParts, 0.05f, 0.001f, 1, tile.animationTick, 1f);
-        shapes[5].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.005;
-        shapes[6].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.005;
-        shapes[7].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.005;
-        shapes[8].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.005;
-        shapes[0].rotateAngleY += 0.001;
+        shapes[0].rotationPointY -= (float) (MathHelper.cos(tile.animationTick * 0.05f) * 1);
+        chainWave(BodyParts, 0.05f, 0.1f, 1, tile.animationTick, 1f);
+        shapes[5].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;
+        shapes[6].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;
+        shapes[7].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;
+        shapes[8].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;
+        shapes[0].rotateAngleX += -0.1 * MathHelper.cos(tile.animationTick * 0.05f);
+        shapes[0].rotateAngleY += 0.005 * tile.animationTick;
     }
 }

@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 
 public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+
     public EntityAnkylosaurus(World world)
     {
         super(world);
