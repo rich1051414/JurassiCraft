@@ -1,21 +1,8 @@
 package net.ilexiconn.jurassicraft;
 
-import java.lang.reflect.Field;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.annotation.IgnoreRegistration;
-import net.ilexiconn.jurassicraft.block.BlockAmberOre;
-import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
-import net.ilexiconn.jurassicraft.block.BlockCultivateTop;
-import net.ilexiconn.jurassicraft.block.BlockDNACombinator;
-import net.ilexiconn.jurassicraft.block.BlockDNAExtractor;
-import net.ilexiconn.jurassicraft.block.BlockDinoPad;
-import net.ilexiconn.jurassicraft.block.BlockFossilClayOre;
-import net.ilexiconn.jurassicraft.block.BlockFossilOre;
-import net.ilexiconn.jurassicraft.block.BlockFossilSandstoneOre;
-import net.ilexiconn.jurassicraft.block.BlockGypsumBlock;
-import net.ilexiconn.jurassicraft.block.BlockGypsumBrick;
-import net.ilexiconn.jurassicraft.block.BlockGypsumCobblestone;
-import net.ilexiconn.jurassicraft.block.BlockStuffFluid;
+import net.ilexiconn.jurassicraft.block.*;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowGrid;
@@ -24,15 +11,15 @@ import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.dimension.core.BlockDinoPortal;
 import net.ilexiconn.jurassicraft.dimension.core.BlockKeyStone;
 import net.ilexiconn.jurassicraft.dimension.core.plants.FernPlant;
-import net.ilexiconn.jurassicraft.dimension.core.plants.HeliconiaPlant;
+import net.ilexiconn.jurassicraft.dimension.core.plants.OrontiumPlant;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter;
+
+import java.lang.reflect.Field;
 
 public class ModBlocks implements IContentHandler
 {
@@ -72,7 +59,7 @@ public class ModBlocks implements IContentHandler
     //Dimension Plants
 
     public static Block fernPlant;
-    public static Block Heliconia;
+    public static Block Orontium;
 
     /*
     public static Block securityFenceMediumCorner;
@@ -89,7 +76,7 @@ public class ModBlocks implements IContentHandler
     public void init()
     {
         fernPlant = new FernPlant("fernplant");
-        Heliconia = new HeliconiaPlant("heliconiaplant");
+        Orontium = new OrontiumPlant("orontiumplant");
         cultivateBottomOff = new BlockCultivateBottom(false);
         cultivateTopOff = new BlockCultivateTop(false);
         cultivateBottomOn = new BlockCultivateBottom(true);

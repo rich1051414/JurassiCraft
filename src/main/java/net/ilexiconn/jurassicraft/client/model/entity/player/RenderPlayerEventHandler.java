@@ -30,7 +30,11 @@ public class RenderPlayerEventHandler
             //gegy1000
             UUID.fromString("c3ed4d52-fb4f-4964-ba1b-9cda2453741e"),
             // GinjaninjaS7
-            UUID.fromString("18eb6ad8-1656-4e41-89f6-88b708a0474c")};
+            UUID.fromString("18eb6ad8-1656-4e41-89f6-88b708a0474c"),
+            // JTGhawk137
+            UUID.fromString("54201149-1f1f-498b-98ca-50f66951a68f"),
+            // Cryrano
+             UUID.fromString("4e88e24d-f77e-436a-ac80-457365c8deaa")};
 
     public ModelSantaHat santaHat = new ModelSantaHat();
 
