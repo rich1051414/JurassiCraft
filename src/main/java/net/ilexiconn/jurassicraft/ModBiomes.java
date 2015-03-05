@@ -8,29 +8,28 @@ import net.minecraftforge.common.DimensionManager;
 
 public class ModBiomes implements IContentHandler
 {
-	public static int BiomeStartID = 70;
-	
-	public static  BiomeGenBase DinoPlains;
-	public static  BiomeGenBase DinoMountains;
-	public static  BiomeGenBase DinoOcean;
-	public static  BiomeGenBase DinoIslands;
-	public static  BiomeGenBase DinoJungle;
-    public static  BiomeGenBase DinoRiver;
-	
+	public static int biomeStartID = 70;
+
+	public static BiomeGenBase dinoPlains;
+	public static BiomeGenBase dinoMountains;
+	public static BiomeGenBase dinoOcean;
+	public static BiomeGenBase dinoIslands;
+	public static BiomeGenBase dinoJungle;
+	public static BiomeGenBase dinoRiver;
+
 	@Override
 	public void init() 
 	{
-		 DinoPlains = new BiomeGenDinoPlains(BiomeStartID).setColor(6546587).setBiomeName("Dino Plains");
-		 DinoMountains = new BiomeGenDinoMountains(BiomeStartID+1).setColor(6546587).setBiomeName("Dino Mountains");
-		 DinoOcean = new BiomeGenDinoOcean(BiomeStartID+2).setColor(6546587).setBiomeName("Dino Ocean");
-		 DinoIslands = new BiomeGenDinoIslands(BiomeStartID+3).setColor(6546587).setBiomeName("Dino Islands");
-		 DinoJungle = new BiomeGenDinoJungle(BiomeStartID+4).setColor(6546587).setBiomeName("Dino Jungle");
-         DinoRiver = new BiomeGenDinoRiver(BiomeStartID+5).setColor(6546587).setBiomeName("Dino River");
-
+		int dinoBiomeColor = 6546587;
 		
-		 
+		dinoPlains = new BiomeGenDinoPlains(biomeStartID).setColor(dinoBiomeColor).setBiomeName("Dino Plains");
+		dinoMountains = new BiomeGenDinoMountains(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Mountains");
+		dinoOcean = new BiomeGenDinoOcean(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Ocean");
+		dinoIslands = new BiomeGenDinoIslands(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Islands");
+		dinoJungle = new BiomeGenDinoJungle(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Jungle");
+		dinoRiver = new BiomeGenDinoRiver(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino River");
+
 		DimensionManager.registerProviderType(JurassiCraft.dimensionID, WorldProviderDino.class, false);
 		DimensionManager.registerDimension(JurassiCraft.dimensionID, JurassiCraft.dimensionID);
 	}
-
 }

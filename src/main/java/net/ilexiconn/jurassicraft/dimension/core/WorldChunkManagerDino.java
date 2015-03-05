@@ -18,251 +18,276 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldChunkManagerDino extends WorldChunkManager
 {
-private GenLayer myGenBiomes;
-private GenLayer myBiomeIndexLayer;
-private BiomeCache myBiomeCache;
-private List<BiomeGenBase> myBiomesToSpawnIn;
+	private GenLayer genBiomes;
+	private GenLayer biomeIndexLayer;
+	private BiomeCache biomeCache;
+	private List<BiomeGenBase> myBiomesToSpawnIn;
 
-protected WorldChunkManagerDino()
-{
-this.myBiomeCache = new BiomeCache(this);
-this.myBiomesToSpawnIn = new ArrayList<BiomeGenBase>();
-this.myBiomesToSpawnIn.add(ModBiomes.DinoIslands);
-this.myBiomesToSpawnIn.add(ModBiomes.DinoPlains);
-this.myBiomesToSpawnIn.add(ModBiomes.DinoOcean);
-this.myBiomesToSpawnIn.add(ModBiomes.DinoMountains);
-this.myBiomesToSpawnIn.add(ModBiomes.DinoJungle);
-this.myBiomesToSpawnIn.add(ModBiomes.DinoRiver);
-}
+	protected WorldChunkManagerDino()
+	{
+		this.biomeCache = new BiomeCache(this);
+		this.myBiomesToSpawnIn = new ArrayList<BiomeGenBase>();
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoIslands);
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoPlains);
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoOcean);
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoMountains);
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoJungle);
+		this.myBiomesToSpawnIn.add(ModBiomes.dinoRiver);
+	}
 
-public WorldChunkManagerDino(long seed, WorldType worldtype)
-{
-this();
-// i changed this to my GenLayerTutorial
-GenLayer[] agenlayer = GenLayerDino.makeTheWorld(seed);
-this.myGenBiomes = agenlayer[0];
-this.myBiomeIndexLayer = agenlayer[1];
-}
+	public WorldChunkManagerDino(long seed, WorldType worldtype)
+	{
+		this();
+		
+		GenLayer[] genLayer = GenLayerDino.makeTheWorld(seed);
+		
+		this.genBiomes = genLayer[0];
+		this.biomeIndexLayer = genLayer[1];
+	}
 
-public WorldChunkManagerDino(World world)
-{
-this(world.getSeed(), world.provider.terrainType);
-}
+	public WorldChunkManagerDino(World world)
+	{
+		this(world.getSeed(), world.provider.terrainType);
+	}
 
-/**
-* Gets the list of valid biomes for the player to spawn in.
-*/
-public List<BiomeGenBase> getBiomesToSpawnIn()
-{
-return this.myBiomesToSpawnIn;
-}
+	/**
+	 * Gets the list of valid biomes for the player to spawn in.
+	 */
+	public List<BiomeGenBase> getBiomesToSpawnIn()
+	{
+		return this.myBiomesToSpawnIn;
+	}
 
-/**
-* Returns the BiomeGenBase related to the x, z position on the world.
-*/
-public BiomeGenBase getBiomeGenAt(int x, int z)
-{
-BiomeGenBase biome = this.myBiomeCache.getBiomeGenAt(x, z);
-if (biome == null)
-{
-return ModBiomes.DinoJungle;
-}
+	/**
+	 * Returns the BiomeGenBase related to the x, z position on the world.
+	 */
+	public BiomeGenBase getBiomeGenAt(int x, int z)
+	{
+		BiomeGenBase biome = this.biomeCache.getBiomeGenAt(x, z);
+		
+		if (biome == null)
+		{
+			return ModBiomes.dinoJungle;
+		}
 
-return biome;
-}
+		return biome;
+	}
 
-/**
-* Returns a list of rainfall values for the specified blocks. Args:
-* listToReuse, x, z, width, length.
-*/
-public float[] getRainfall(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
-{
-IntCache.resetIntCache();
+	/**
+	 * Returns a list of rainfall values for the specified blocks. Args:
+	 * listToReuse, x, z, width, length.
+	 */
+	public float[] getRainfall(float[] rainfallMap, int x, int y, int width, int length)
+	{
+		IntCache.resetIntCache();
 
-if (par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
-{
-par1ArrayOfFloat = new float[par4 * par5];
-}
+		if (rainfallMap == null || rainfallMap.length < width * length)
+		{
+			rainfallMap = new float[width * length];
+		}
 
-int[] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
+		int[] aint = this.biomeIndexLayer.getInts(x, y, width, length);
 
-for (int i1 = 0; i1 < par4 * par5; ++i1)
-{
-float f = (float) BiomeGenBase.getBiomeGenArray()[aint[i1]].getIntRainfall() / 65536.0F;
+		for (int i1 = 0; i1 < width * length; ++i1)
+		{
+			float f = (float) BiomeGenBase.getBiomeGenArray()[aint[i1]].getIntRainfall() / 65536.0F;
 
-if (f > 1.0F) {
-f = 1.0F;
-}
+			if (f > 1.0F) 
+			{
+				f = 1.0F;
+			}
 
-par1ArrayOfFloat[i1] = f;
-}
+			rainfallMap[i1] = f;
+		}
 
-return par1ArrayOfFloat;
-}
+		return rainfallMap;
+	}
 
-/**
-* Return an adjusted version of a given temperature based on the y height
-*/
-@SideOnly(Side.CLIENT)
-public float getTemperatureAtHeight(float par1, int par2)
-{
-return par1;
-}
+	/**
+	 * Return an adjusted version of a given temperature based on the y height
+	 */
+	@SideOnly(Side.CLIENT)
+	public float getTemperatureAtHeight(float par1, int par2)
+	{
+		return par1;
+	}
 
-/**
-* Returns a list of temperatures to use for the specified blocks. Args:
-* listToReuse, x, y, width, length
-*/
-public float[] getTemperatures(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
-{
-IntCache.resetIntCache();
+	/**
+	 * Returns a list of temperatures to use for the specified blocks. Args:
+	 * listToReuse, x, y, width, length
+	 */
+	public float[] getTemperatures(float[] temperatureMap, int x, int y, int width, int length)
+	{
+		IntCache.resetIntCache();
 
-if (par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
-{
-par1ArrayOfFloat = new float[par4 * par5];
-}
+		if (temperatureMap == null || temperatureMap.length < width * length)
+		{
+			temperatureMap = new float[width * length];
+		}
 
-int[] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
+		int[] aint = this.biomeIndexLayer.getInts(x, y, width, length);
 
-for (int i1 = 0; i1 < par4 * par5; ++i1)
-{
-float f = (float) BiomeGenBase.getBiomeGenArray()[aint[i1]].temperature / 65536.0F;
+		for (int i = 0; i < width * length; ++i)
+		{
+			float f = (float) BiomeGenBase.getBiomeGenArray()[aint[i]].temperature / 65536.0F;
 
-if (f > 1.0F) {
-f = 1.0F;
-}
+			if (f > 1.0F) 
+			{
+				f = 1.0F;
+			}
 
-par1ArrayOfFloat[i1] = f;
-}
+			temperatureMap[i] = f;
+		}
 
-return par1ArrayOfFloat;
-}
+		return temperatureMap;
+	}
 
-/**
-* Returns an array of biomes for the location input.
-*/
-public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5) {
-IntCache.resetIntCache();
+	/**
+	 * Returns an array of biomes for the location input.
+	 */
+	public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] biomes, int x, int y, int width, int height)
+	{
+		IntCache.resetIntCache();
 
-if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5) {
-par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
-}
+		if (biomes == null || biomes.length < width * height)
+		{
+			biomes = new BiomeGenBase[width * height];
+		}
 
-int[] aint = this.myGenBiomes.getInts(par2, par3, par4, par5);
+		int[] aint = this.genBiomes.getInts(x, y, width, height);
 
-for (int i = 0; i < par4 * par5; ++i) {
-if (aint[i] >= 0) {
-par1ArrayOfBiomeGenBase[i] = BiomeGenBase.getBiomeGenArray()[aint[i]];
-} else {
-//Change this to a biome
-par1ArrayOfBiomeGenBase[i] = ModBiomes.DinoJungle;
-}
-}
+		for (int i = 0; i < width * height; ++i)
+		{
+			if (aint[i] >= 0) 
+			{
+				biomes[i] = BiomeGenBase.getBiomeGenArray()[aint[i]];
+			}
+			else 
+			{
+				biomes[i] = ModBiomes.dinoJungle;
+			}
+		}
 
-return par1ArrayOfBiomeGenBase;
-}
+		return biomes;
+	}
 
-/**
-* Returns biomes to use for the blocks and loads the other data like
-* temperature and humidity onto the WorldChunkManager Args: oldBiomeList,
-* x, z, width, depth
-*/
-public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5) {
-return this.getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4, par5, true);
-}
+	/**
+	 * Returns biomes to use for the blocks and loads the other data like
+	 * temperature and humidity onto the WorldChunkManager Args: oldBiomeList,
+	 * x, z, width, depth
+	 */
+	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] biomeList, int x, int y, int width, int depth)
+	{
+		return this.getBiomeGenAt(biomeList, x, y, width, depth, true);
+	}
 
-/**
-* Return a list of biomes for the specified blocks. Args: listToReuse, x,
-* y, width, length, cacheFlag (if false, don't check biomeCache to avoid
-* infinite loop in BiomeCacheBlock)
-*/
-public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] par1ArrayOfBiomeGenBase, int x, int y, int width, int length, boolean cacheFlag) {
-IntCache.resetIntCache();
+	/**
+	 * Return a list of biomes for the specified blocks. Args: listToReuse, x,
+	 * y, width, length, cacheFlag (if false, don't check biomeCache to avoid
+	 * infinite loop in BiomeCacheBlock)
+	 */
+	public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] biomes, int x, int y, int width, int length, boolean cacheFlag) 
+	{
+		IntCache.resetIntCache();
 
-if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < width * length) {
-par1ArrayOfBiomeGenBase = new BiomeGenBase[width * length];
-}
+		if (biomes == null || biomes.length < width * length)
+		{
+			biomes = new BiomeGenBase[width * length];
+		}
 
-if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (y & 15) == 0) {
-BiomeGenBase[] abiomegenbase1 = this.myBiomeCache.getCachedBiomes(x, y);
-System.arraycopy(abiomegenbase1, 0, par1ArrayOfBiomeGenBase, 0, width * length);
-return par1ArrayOfBiomeGenBase;
-} else {
-int[] aint = this.myBiomeIndexLayer.getInts(x, y, width, length);
+		if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (y & 15) == 0)
+		{
+			BiomeGenBase[] chachedBiomes = this.biomeCache.getCachedBiomes(x, y);
+			System.arraycopy(chachedBiomes, 0, biomes, 0, width * length);
+			
+			return biomes;
+		}
+		else 
+		{
+			int[] aint = this.biomeIndexLayer.getInts(x, y, width, length);
 
-for (int i = 0; i < width * length; ++i) {
-if (aint[i] >= 0) {
-par1ArrayOfBiomeGenBase[i] = BiomeGenBase.getBiomeGenArray()[aint[i]];
-} else {
-//Change this to a biome
-par1ArrayOfBiomeGenBase[i] = ModBiomes.DinoJungle;
-}
-}
+			for (int i = 0; i < width * length; ++i) 
+			{
+				if (aint[i] >= 0) 
+				{
+					biomes[i] = BiomeGenBase.getBiomeGenArray()[aint[i]];
+				} 
+				else 
+				{
+					biomes[i] = ModBiomes.dinoJungle;
+				}
+			}
 
-return par1ArrayOfBiomeGenBase;
-}
-}
+			return biomes;
+		}
+	}
 
-/**
-* checks given Chunk's Biomes against List of allowed ones
-*/
-public boolean areBiomesViable(int par1, int par2, int par3, List par4List) {
-IntCache.resetIntCache();
-int l = par1 - par3 >> 2;
-int i1 = par2 - par3 >> 2;
-int j1 = par1 + par3 >> 2;
-int k1 = par2 + par3 >> 2;
-int l1 = j1 - l + 1;
-int i2 = k1 - i1 + 1;
-int[] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
+	/**
+	 * checks given Chunk's Biomes against List of allowed ones
+	 */
+	public boolean areBiomesViable(int par1, int par2, int par3, List biomes)
+	{
+		IntCache.resetIntCache();
+		int l = par1 - par3 >> 2;
+		int i1 = par2 - par3 >> 2;
+		int j1 = par1 + par3 >> 2;
+		int k1 = par2 + par3 >> 2;
+		int l1 = j1 - l + 1;
+		int i2 = k1 - i1 + 1;
+		int[] aint = this.genBiomes.getInts(l, i1, l1, i2);
 
-for (int j2 = 0; j2 < l1 * i2; ++j2) {
-BiomeGenBase biomegenbase = BiomeGenBase.getBiomeGenArray()[aint[j2]];
+		for (int j2 = 0; j2 < l1 * i2; ++j2) 
+		{
+			BiomeGenBase biome = BiomeGenBase.getBiomeGenArray()[aint[j2]];
 
-if (!par4List.contains(biomegenbase)) {
-return false;
-}
-}
+			if (!biomes.contains(biome))
+			{
+				return false;
+			}
+		}
 
-return true;
-}
+		return true;
+	}
 
-/**
-* Finds a valid position within a range, that is in one of the listed
-* biomes. Searches {par1,par2} +-par3 blocks. Strongly favors positive y
-* positions.
-*/
-public ChunkPosition findBiomePosition(int par1, int par2, int par3, List par4List, Random par5Random) {
-IntCache.resetIntCache();
-int l = par1 - par3 >> 2;
-int i1 = par2 - par3 >> 2;
-int j1 = par1 + par3 >> 2;
-int k1 = par2 + par3 >> 2;
-int l1 = j1 - l + 1;
-int i2 = k1 - i1 + 1;
-int[] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
-ChunkPosition chunkposition = null;
-int j2 = 0;
+	/**
+	 * Finds a valid position within a range, that is in one of the listed
+	 * biomes. Searches {par1,par2} +-par3 blocks. Strongly favors positive y
+	 * positions.
+	 */
+	public ChunkPosition findBiomePosition(int par1, int par2, int par3, List biomes, Random rand) 
+	{
+		IntCache.resetIntCache();
+		int l = par1 - par3 >> 2;
+		int i1 = par2 - par3 >> 2;
+		int j1 = par1 + par3 >> 2;
+		int k1 = par2 + par3 >> 2;
+		int l1 = j1 - l + 1;
+		int i2 = k1 - i1 + 1;
+		int[] aint = this.genBiomes.getInts(l, i1, l1, i2);
+		ChunkPosition chunkposition = null;
+		int j2 = 0;
 
-for (int k2 = 0; k2 < l1 * i2; ++k2) {
-int l2 = l + k2 % l1 << 2;
-int i3 = i1 + k2 / l1 << 2;
-BiomeGenBase biomegenbase = BiomeGenBase.getBiomeGenArray()[aint[k2]];
+		for (int k2 = 0; k2 < l1 * i2; ++k2) 
+		{
+			int l2 = l + k2 % l1 << 2;
+			int i3 = i1 + k2 / l1 << 2;
+			BiomeGenBase biome = BiomeGenBase.getBiomeGenArray()[aint[k2]];
 
-if (par4List.contains(biomegenbase) && (chunkposition == null || par5Random.nextInt(j2 + 1) == 0)) {
-chunkposition = new ChunkPosition(l2, 0, i3);
-++j2;
-}
-}
+			if (biomes.contains(biome) && (chunkposition == null || rand.nextInt(j2 + 1) == 0)) 
+			{
+				chunkposition = new ChunkPosition(l2, 0, i3);
+				++j2;
+			}
+		}
 
-return chunkposition;
-}
+		return chunkposition;
+	}
 
-/**
-* Calls the WorldChunkManager's biomeCache.cleanupCache()
-*/
-public void cleanupCache()
-{
-this.myBiomeCache.cleanupCache();
-}
+	/**
+	 * Calls the WorldChunkManager's biomeCache.cleanupCache()
+	 */
+	public void cleanupCache()
+	{
+		this.biomeCache.cleanupCache();
+	}
 }

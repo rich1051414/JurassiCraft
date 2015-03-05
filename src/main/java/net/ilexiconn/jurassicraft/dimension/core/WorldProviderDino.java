@@ -10,66 +10,47 @@ import net.minecraftforge.common.DimensionManager;
 
 public class WorldProviderDino extends WorldProvider
 {
-public void registerWorldChunkManager()
-{
-/** tells Minecraft to use our new WorldChunkManager **/
-this.worldChunkMgr = new WorldChunkManagerDino(worldObj.getSeed(), terrainType);
-this.hasNoSky = false;
-}
+	public void registerWorldChunkManager()
+	{
+		this.worldChunkMgr = new WorldChunkManagerDino(worldObj.getSeed(), terrainType);
+		this.hasNoSky = false;
+	}
 
-@Override
-/** Dimension Name **/
-public String getDimensionName()
-{
-return "DinoWorld";
-}
+	@Override
+	public String getDimensionName()
+	{
+		return "DinoWorld";
+	}
 
-/** Get Provider for dimension **/
-public static WorldProvider getProviderForDimension(int id)
-{
-return DimensionManager.createProviderFor(JurassiCraft.dimensionID);
-}
+	public String getWelcomeMessage()
+	{
+		return "Entering the Dinosaur Dimension";
+	}
 
-/** Welcome message **/
-public String getWelcomeMessage()
-{
-return "Entering the Dinosaur Dimension";
-}
+	public IChunkProvider createChunkGenerator()
+	{
+		return new ChunkProviderDino(worldObj, worldObj.getSeed(), true);
+	}
 
-/** What chunk provider to use **/
-public IChunkProvider createChunkGenerator()
-{
-return new ChunkProviderDino(worldObj, worldObj.getSeed(), true);
-}
+	public boolean canRespawnHere()
+	{
+		return false;
+	}
 
-/** Can player re-spawn here **/
-public boolean canRespawnHere()
-{
-return false;
-}
+	public int getRespawnDimension(EntityPlayerMP player)
+	{
+		return 0;
+	}
 
-/** Set user message **/
-// not sure if this works any more ?
-protected synchronized String setUserMessage(String par1Str)
-{
-return "Building Dinosaur Dimension";
-}
-
-/** Determines the dimension the player will be respawned in **/
-public int getRespawnDimension(EntityPlayerMP player)
-{
-return 0;
-}
-
-/** Dimension Movement speed **/
-public double getMovementFactor()
-{
-return 10.0;
-}
-@Override
-public boolean canCoordinateBeSpawn(int par1, int par2)
-{
-    Block k = this.worldObj.getTopBlock(par1, par2);
-    return k == Blocks.grass; //change to ur grass ur wutever
-}
+	public double getMovementFactor()
+	{
+		return 10.0;
+	}
+	
+	@Override
+	public boolean canCoordinateBeSpawn(int par1, int par2)
+	{
+		Block k = this.worldObj.getTopBlock(par1, par2);
+		return k == Blocks.grass;
+	}
 }

@@ -6,9 +6,10 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class BiomeGenDinoOcean extends BiomeGenBase 
 {
     protected WorldGenBigDinoTree worldGeneratorBigDinoTree;
-    public BiomeGenDinoOcean(int par1)
+    
+    public BiomeGenDinoOcean(int id)
     {
-        super(par1);
+        super(id);
         this.theBiomeDecorator.treesPerChunk = 0;
         this.theBiomeDecorator.grassPerChunk = 0;
         this.theBiomeDecorator.flowersPerChunk = 0;
@@ -23,7 +24,8 @@ public class BiomeGenDinoOcean extends BiomeGenBase
     /**
      * takes temperature, returns color
      */
-    public int getSkyColorByTemp(float f) {
+    public int getSkyColorByTemp(float f) 
+    {
             return 0x05587E;
     }
     /**

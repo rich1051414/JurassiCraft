@@ -51,15 +51,12 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceLowGrid;
 
     // Portal Blocks
-    
-    public static Block DinoPortal;
-    
-    public static Block KeyStone;
+    public static Block dinoPortal;
+    public static Block keyStone;
 
     // Dimension Plants
-
     public static Block fernPlant;
-    public static Block Orontium;
+    public static Block orontium;
 
     /*
     public static Block securityFenceMediumCorner;
@@ -76,7 +73,7 @@ public class ModBlocks implements IContentHandler
     public void init()
     {
         fernPlant = new FernPlant("fernplant");
-        Orontium = new OrontiumPlant("orontiumplant");
+        orontium = new OrontiumPlant("orontiumplant");
         cultivateBottomOff = new BlockCultivateBottom(false);
         cultivateTopOff = new BlockCultivateTop(false);
         cultivateBottomOn = new BlockCultivateBottom(true);
@@ -107,8 +104,8 @@ public class ModBlocks implements IContentHandler
         securityFenceHighGrid = new BlockSecurityFenceHighGrid();
         */
         
-        DinoPortal = new BlockDinoPortal(0).setBlockName("portal").setBlockTextureName("jurassicraft:textures/blocks/portal.png");
-        KeyStone = new BlockKeyStone().setBlockName("KeyStone").setBlockTextureName("jurassicraft:keystone");
+        dinoPortal = new BlockDinoPortal(0).setBlockName("portal").setBlockTextureName("jurassicraft:textures/blocks/portal.png");
+        keyStone = new BlockKeyStone().setBlockName("KeyStone").setBlockTextureName("jurassicraft:keystone");
         gameRegistry();
     }
 

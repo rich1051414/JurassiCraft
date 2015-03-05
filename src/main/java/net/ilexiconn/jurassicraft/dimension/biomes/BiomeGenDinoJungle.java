@@ -12,9 +12,10 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 public class BiomeGenDinoJungle extends BiomeGenBase 
 {
     protected WorldGenBigDinoTree worldGeneratorBigDinoTree;
-    public BiomeGenDinoJungle(int par1)
+    
+    public BiomeGenDinoJungle(int id)
     {
-        super(par1);
+        super(id);
         this.theBiomeDecorator.treesPerChunk = 12;
         this.theBiomeDecorator.grassPerChunk = 25;
         this.theBiomeDecorator.flowersPerChunk = 10;
@@ -25,14 +26,17 @@ public class BiomeGenDinoJungle extends BiomeGenBase
         this.spawnableWaterCreatureList.clear();
         this.waterColorMultiplier = -12133;
     }
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    
+    public WorldGenAbstractTree func_150567_a(Random rand)
     {
-        return (WorldGenAbstractTree)((p_150567_1_.nextInt(2) == 0 ? new WorldGenBigDinoTree(true) : (p_150567_1_.nextInt(2) == 0 ? new WorldGenDinoShrub(3, 0) : ( p_150567_1_.nextInt(3) == 0 ? new WorldGenMegaDinoTree(false, 10, 20, 3, 3) : new WorldGenDinoTrees(false, 4 + p_150567_1_.nextInt(7), 3, 3, true)))));
+        return (WorldGenAbstractTree)((rand.nextInt(2) == 0 ? new WorldGenBigDinoTree(true) : (rand.nextInt(2) == 0 ? new WorldGenDinoShrub(3, 0) : ( rand.nextInt(3) == 0 ? new WorldGenMegaDinoTree(false, 10, 20, 3, 3) : new WorldGenDinoTrees(false, 4 + rand.nextInt(7), 3, 3, true)))));
     }
+    
     public int getBiomeGrassColor(int p_150558_1_, int p_150558_2_, int p_150558_3)
     {
         return (0x1E5921);
     }
+    
     public int getBiomeFoliageColor(int p_150571_1_, int p_150571_2_, int p_150571_3_)
     {
         return (0x1E5921);
@@ -41,7 +45,8 @@ public class BiomeGenDinoJungle extends BiomeGenBase
     /**
      * takes temperature, returns color
      */
-    public int getSkyColorByTemp(float f) {
+    public int getSkyColorByTemp(float temperature) 
+    {
             return 0x05587E;
     }
     /**

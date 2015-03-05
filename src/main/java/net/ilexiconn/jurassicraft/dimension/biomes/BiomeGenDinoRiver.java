@@ -4,7 +4,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeGenDinoRiver extends BiomeGenBase
 {
-
     public BiomeGenDinoRiver(int par1)
     {
         super(par1);
@@ -22,7 +21,8 @@ public class BiomeGenDinoRiver extends BiomeGenBase
     /**
      * takes temperature, returns color
      */
-    public int getSkyColorByTemp(float f) {
+    public int getSkyColorByTemp(float f) 
+    {
         return 0x05587E;
     }
     /**

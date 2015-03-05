@@ -9,26 +9,26 @@ import net.minecraft.world.World;
 
 public class BlockKeyStone extends Block
 {
-public BlockKeyStone()
-{
-         super(Material.rock);
-         this.setCreativeTab(ModCreativeTabs.blocks);
-}
-/**
- * Called whenever the block is added into the world. Args: world, x, y, z
- */
-public void onBlockAdded(World par1World, int par2, int par3, int par4)
-{
-	if ((par1World.getBlock(par2, par3 - 1, par4) != Blocks.stonebrick) || (!((BlockDinoPortal) ModBlocks.DinoPortal).tryToCreatePortal(par1World, par2, par3, par4)))
+	public BlockKeyStone()
 	{
-	if ((!par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)))
+		super(Material.rock);
+		this.setCreativeTab(ModCreativeTabs.blocks);
+	}
+	/**
+	 * Called whenever the block is added into the world. Args: world, x, y, z
+	 */
+	public void onBlockAdded(World world, int x, int y, int z)
 	{
-	par1World.setBlockToAir(par2, par3, par4);
+		if ((world.getBlock(x, y - 1, z) != Blocks.stonebrick) || (!((BlockDinoPortal) ModBlocks.dinoPortal).tryToCreatePortal(world, x, y, z)))
+		{
+			if ((!world.doesBlockHaveSolidTopSurface(world, x, y - 1, z)))
+			{
+				world.setBlockToAir(x, y, z);
+			}
+			else
+			{
+				world.scheduleBlockUpdate(x, y, z, this, tickRate(world) + world.rand.nextInt(10));
+			}
+		}
 	}
-	else
-	{
-	par1World.scheduleBlockUpdate(par2, par3, par4, this, tickRate(par1World) + par1World.rand.nextInt(10));
-	}
-	}
-}
 }

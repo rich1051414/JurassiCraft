@@ -13,9 +13,10 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 public class BiomeGenDinoMountains extends BiomeGenBase 
 {
     protected WorldGenBigDinoTree worldGeneratorBigDinoTree;
-    public BiomeGenDinoMountains(int par1)
+    
+    public BiomeGenDinoMountains(int id)
     {
-        super(par1);
+        super(id);
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.grassPerChunk = 25;
         this.theBiomeDecorator.flowersPerChunk = 4;
@@ -26,10 +27,12 @@ public class BiomeGenDinoMountains extends BiomeGenBase
         this.spawnableWaterCreatureList.clear();
         this.waterColorMultiplier = -12133;
     }
+    
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
         return (WorldGenAbstractTree)(new WorldGenBigDinoTree(true));
     }
+    
     public int getBiomeGrassColor(int p_150558_1_, int p_150558_2_, int p_150558_3)
     {
         return (0x168D16);
@@ -55,7 +58,8 @@ public class BiomeGenDinoMountains extends BiomeGenBase
     /**
      * takes temperature, returns color
      */
-    public int getSkyColorByTemp(float f) {
+    public int getSkyColorByTemp(float f)
+    {
             return 0x05587E;
     }
     /**
@@ -71,17 +75,15 @@ public class BiomeGenDinoMountains extends BiomeGenBase
     
     public static class Mutated extends BiomeGenMutated
     {
-        private static final String __OBFID = "CL_00000183";
-
-        public Mutated(int p_i45382_1_, BiomeGenBase p_i45382_2_)
+        public Mutated(int p_i45382_1_, BiomeGenBase biome)
         {
-            super(p_i45382_1_, p_i45382_2_);
+            super(p_i45382_1_, biome);
             this.theBiomeDecorator.treesPerChunk = 2;
             this.theBiomeDecorator.flowersPerChunk = 2;
             this.theBiomeDecorator.grassPerChunk = 5;
         }
 
-        public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+        public void genTerrainBlocks(World world, Random rand, Block[] blocks, byte[] p_150573_4_, int chunkX, int chunkZ, double p_150573_7_)
         {
             this.topBlock = Blocks.grass;
             this.field_150604_aj = 0;
@@ -98,12 +100,12 @@ public class BiomeGenDinoMountains extends BiomeGenBase
                 this.field_150604_aj = 1;
             }
 
-            this.genBiomeTerrain(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+            this.genBiomeTerrain(world, rand, blocks, p_150573_4_, chunkX, chunkZ, p_150573_7_);
         }
 
-        public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)
+        public void decorate(World world, Random rand, int chunkX, int chunkZ)
         {
-            this.theBiomeDecorator.decorateChunk(p_76728_1_, p_76728_2_, this, p_76728_3_, p_76728_4_);
+            this.theBiomeDecorator.decorateChunk(world, rand, this, chunkX, chunkZ);
         }
     }
 }

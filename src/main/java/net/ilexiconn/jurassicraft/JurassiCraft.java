@@ -40,93 +40,93 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.config.ConfigFactory")
 public class JurassiCraft
 {
-    @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy")
-    public static CommonProxy proxy;
-    @Mod.Instance("jurassicraft")
-    public static JurassiCraft instance;
+	@SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy")
+	public static CommonProxy proxy;
+	@Mod.Instance("jurassicraft")
+	public static JurassiCraft instance;
 
-    public static boolean isChristmas;
-    public static boolean enableDebugging;
-    
-    public static int dimensionID = -30;
+	public static boolean isChristmas;
+	public static boolean enableDebugging;
 
-    public static JsonEntityParser entityParser;
-    public static ContentLoader contentLoader;
-    public static SimpleNetworkWrapper network;
+	public static int dimensionID = -30;
 
-    public static final String[] fTimer = new String[]{"field_71428_T", "S", "timer"};
+	public static JsonEntityParser entityParser;
+	public static ContentLoader contentLoader;
+	public static SimpleNetworkWrapper network;
 
-    public Logger logger;
+	public static final String[] fTimer = new String[]{"field_71428_T", "S", "timer"};
 
-    @Mod.EventHandler
-    public void init(FMLPreInitializationEvent event)
-    {
-        logger = event.getModLog();
+	public Logger logger;
 
-        entityParser = new JsonEntityParser();
+	@Mod.EventHandler
+	public void init(FMLPreInitializationEvent event)
+	{
+		logger = event.getModLog();
 
-        entityParser.parseServerEntities();
+		entityParser = new JsonEntityParser();
 
-        contentLoader = new ContentLoader();
+		entityParser.parseServerEntities();
 
-        contentLoader.addContentHandler(new ModCreativeTabs());
-        contentLoader.addContentHandler(new ModEntities());
-        contentLoader.addContentHandler(new ModBlocks());
-        contentLoader.addContentHandler(new ModItems());
-        contentLoader.addContentHandler(new ModRecipes());
-        contentLoader.addContentHandler(new ModBiomes());
+		contentLoader = new ContentLoader();
 
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            contentLoader.addContentHandler(new ModRenderers());
-        }
+		contentLoader.addContentHandler(new ModCreativeTabs());
+		contentLoader.addContentHandler(new ModEntities());
+		contentLoader.addContentHandler(new ModBlocks());
+		contentLoader.addContentHandler(new ModItems());
+		contentLoader.addContentHandler(new ModRecipes());
+		contentLoader.addContentHandler(new ModBiomes());
 
-        contentLoader.addContentHandler(new ModTileEntities());
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+		{
+			contentLoader.addContentHandler(new ModRenderers());
+		}
 
-        contentLoader.init();
-        ConfigHandler.init(event.getSuggestedConfigurationFile());
+		contentLoader.addContentHandler(new ModTileEntities());
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		contentLoader.init();
+		ConfigHandler.init(event.getSuggestedConfigurationFile());
 
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
-        network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
-        network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
-        GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
-        GameRegistry.registerWorldGenerator(new WorldGenGypsum(), 1);
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
+		network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
+		network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
 
-        EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
+		GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
+		GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);
+		GameRegistry.registerWorldGenerator(new WorldGenGypsum(), 1);
 
-        Calendar calendar = Calendar.getInstance();
+		EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
 
-        isChristmas = (calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27);
+		Calendar calendar = Calendar.getInstance();
 
-        if (isChristmas)
-        {
-            EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.beach, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.frozenRiver, BiomeGenBase.jungle, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.extremeHills, BiomeGenBase.iceMountains, BiomeGenBase.icePlains, BiomeGenBase.mesa, BiomeGenBase.birchForest, BiomeGenBase.coldBeach, BiomeGenBase.savanna, BiomeGenBase.desert);
-        }
+		isChristmas = (calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27);
 
-        MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
-        MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
+		if (isChristmas)
+		{
+			EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.beach, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.frozenRiver, BiomeGenBase.jungle, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.extremeHills, BiomeGenBase.iceMountains, BiomeGenBase.icePlains, BiomeGenBase.mesa, BiomeGenBase.birchForest, BiomeGenBase.coldBeach, BiomeGenBase.savanna, BiomeGenBase.desert);
+		}
 
-        proxy.init();
-    }
+		MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
+		MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
 
-    @Mod.EventHandler
-    public void serverStart(FMLServerStartingEvent event)
-    {
-        MinecraftServer server = MinecraftServer.getServer();
+		proxy.init();
+	}
 
-        ICommandManager command = server.getCommandManager();
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event)
+	{
+		MinecraftServer server = MinecraftServer.getServer();
 
-        ServerCommandManager manager = (ServerCommandManager) command;
+		ICommandManager command = server.getCommandManager();
 
-        manager.registerCommand(new CommandSpawnDino());
-    }
+		ServerCommandManager manager = (ServerCommandManager) command;
 
-    public static String getModId()
-    {
-        return "jurassicraft:";
-    }
+		manager.registerCommand(new CommandSpawnDino());
+	}
+
+	public static String getModId()
+	{
+		return "jurassicraft:";
+	}
 }
