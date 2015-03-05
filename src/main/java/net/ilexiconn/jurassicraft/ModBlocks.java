@@ -104,7 +104,7 @@ public class ModBlocks implements IContentHandler
         securityFenceHighGrid = new BlockSecurityFenceHighGrid();
         */
         
-        dinoPortal = new BlockDinoPortal(0).setBlockName("portal").setBlockTextureName("jurassicraft:textures/blocks/portal.png");
+        dinoPortal = new BlockDinoPortal().setBlockName("portal").setBlockTextureName("jurassicraft:textures/blocks/portal.png");
         keyStone = new BlockKeyStone().setBlockName("KeyStone").setBlockTextureName("jurassicraft:keystone");
         gameRegistry();
     }
