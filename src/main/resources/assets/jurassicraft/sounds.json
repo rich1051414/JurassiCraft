@@ -1,256 +1,675 @@
 {
-  "bells":
-  {
-      "category":"master",
-      "sounds":
-      [
-          "bells"
-      ]
-  },
-  "ankylosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/ankylosaurus/ankylosaurusCall1",
-          "dinosaurs/ankylosaurus/ankylosaurusCall2",
-          "dinosaurs/ankylosaurus/ankylosaurusRoar1",
-          "dinosaurs/ankylosaurus/ankylosaurusRoar2",
-          "dinosaurs/ankylosaurus/ankylosaurusSay1",
-          "dinosaurs/ankylosaurus/ankylosaurusSay2"
-      ]
-  },
-  "brachiosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/brachiosaurus/brachiosaurusCall1",
-          "dinosaurs/brachiosaurus/brachiosaurusDeath",
-          "dinosaurs/brachiosaurus/brachiosaurusHit1",
-          "dinosaurs/brachiosaurus/brachiosaurusHit2"
-      ]
-  },
-  "carnotaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/carnotaurus/carnotaurusCall01",
-          "dinosaurs/carnotaurus/carnotaurusCall02",
-          "dinosaurs/carnotaurus/carnotaurusRoar01"
-      ]
-  },
-  "dilophosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/dilophosaurus/dilophosaurus1",
-          "dinosaurs/dilophosaurus/dilophosaurus2",
-          "dinosaurs/dilophosaurus/dilophosaurus3"
-      ]
-  },
-  "gallimimus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/gallimimus/gallimimus1",
-          "dinosaurs/gallimimus/gallimimus2",
-          "dinosaurs/gallimimus/gallimimus3"
-      ]
-  },
-  "herrerasaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/herrerasaurus/herrerasaurus1",
-          "dinosaurs/herrerasaurus/herrerasaurus2"
-      ]
-  },
-  "hypsilophodon":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/hypsilophodon/hypsilophodon1",
-          "dinosaurs/hypsilophodon/hypsilophodon2",
-          "dinosaurs/hypsilophodon/hypsilophodon3",
-          "dinosaurs/hypsilophodon/hypsilophodon4"
-      ]
-  },
-  "leaellynasaura":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/leaellynasaura/leaellynasaura1"
-      ]
-  },
-  "oviraptor":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/oviraptor/oviraptor1",
-          "dinosaurs/oviraptor/oviraptor2",
-          "dinosaurs/oviraptor/oviraptor3"
-      ]
-  },
-  "parasaurolophus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/parasaurolophus/parasaurolophus1",
-          "dinosaurs/parasaurolophus/parasaurolophus2",
-          "dinosaurs/parasaurolophus/parasaurolophusCall03",
-          "dinosaurs/parasaurolophus/parasaurolophusCall04",
-          "dinosaurs/parasaurolophus/parasaurolophusCall05"
-      ]
-  },
-  "stegosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/stegosaurus/stegosaurus1",
-          "dinosaurs/stegosaurus/stegosaurus2"
-      ]
-  },
-  "triceratops":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/triceratops/triceratops1",
-          "dinosaurs/triceratops/triceratops2",
-          "dinosaurs/triceratops/triceratops3",
-          "dinosaurs/triceratops/triceratopsCharge"
-      ]
-  },
-  "tyrannosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/tyrannosaurus/tyrannosaurus1",
-          "dinosaurs/tyrannosaurus/tyrannosaurus2",
-          "dinosaurs/tyrannosaurus/tyrannosaurus3",
-          "dinosaurs/tyrannosaurus/tyrannosaurusBreath"
-      ]
-  },
-  "velociraptor":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "dinosaurs/velociraptor/velociraptorAttack01",
-          "dinosaurs/velociraptor/velociraptorAttack02",
-          "dinosaurs/velociraptor/velociraptorBark01",
-          "dinosaurs/velociraptor/velociraptorBark02",
-          "dinosaurs/velociraptor/velociraptorBark03",
-          "dinosaurs/velociraptor/velociraptorCall01",
-          "dinosaurs/velociraptor/velociraptorCall02",
-          "dinosaurs/velociraptor/velociraptorHiss01",
-          "dinosaurs/velociraptor/velociraptorHiss02",
-          "dinosaurs/velociraptor/velociraptorHiss03"
-      ]
-  },
-  "footstep":
-  {
-      "category":"master",
-      "sounds":
-      [
-          "footstep"
-      ]
-  },
-  "gallop":
-  {
-      "category":"master",
-      "sounds":
-      [
-          "gallop"
-      ]
-  },
-  "deinotherium":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "mammals/deinotherium/deinotheriumGrunt1",
-          "mammals/deinotherium/deinotheriumGrunt2",
-          "mammals/deinotherium/deinotheriumGrunt3",
-          "mammals/deinotherium/deinotheriumGrunt4",
-          "mammals/deinotherium/deinotheriumHurt1",
-          "mammals/deinotherium/deinotheriumHurt2",
-          "mammals/deinotherium/deinotheriumHurt3",
-          "mammals/deinotherium/deinotheriumJawSnap1",
-          "mammals/deinotherium/deinotheriumJawSnap2",
-          "mammals/deinotherium/deinotheriumResting1",
-          "mammals/deinotherium/deinotheriumResting2"
-      ]
-  },
-  "leptictidium":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "mammals/leptictidium/leptictidiumDeath",
-          "mammals/leptictidium/leptictidiumHit",
-          "mammals/leptictidium/leptictidiumPanic",
-          "mammals/leptictidium/leptictidiumSay1",
-          "mammals/leptictidium/leptictidiumSay2"
-      ]
-  },
-  "mammoth":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "mammals/mammoth/mammothDeath",
-          "mammals/mammoth/mammothHit",
-          "mammals/mammoth/mammothSay1",
-          "mammals/mammoth/mammothSay2",
-          "mammals/mammoth/mammothSay3"
-      ]
-  },
-  "cearadactylus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "reptiles/cearadactylus/cearadactylusCall1"
-      ]
-  },
-  "deinosuchus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "reptiles/deinosuchus/deinosuchusHiss1",
-          "reptiles/deinosuchus/deinosuchusHiss2",
-          "reptiles/deinosuchus/deinosuchusHiss3",
-          "reptiles/deinosuchus/deinosuchusHiss4",
-          "reptiles/deinosuchus/deinosuchusHit1",
-          "reptiles/deinosuchus/deinosuchusHit2",
-          "reptiles/deinosuchus/deinosuchusHit3",
-          "reptiles/deinosuchus/deinosuchusRest1",
-          "reptiles/deinosuchus/deinosuchusRest2",
-          "reptiles/deinosuchus/deinosuchusSnap1"
-      ]
-  },
-  "tylosaurus":
-  {
-      "category":"hostile",
-      "sounds":
-      [
-          "reptiles/tylosaurus/tylosaurus1",
-          "reptiles/tylosaurus/tylosaurus2",
-          "reptiles/tylosaurus/tylosaurus3",
-          "reptiles/tylosaurus/tylosaurus4"
-      ]
-  }
+    "jurassicraft:ankylosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLiving01",
+            "dinosaurs/ankylosaurus/ankylosaurusLiving02",
+            "dinosaurs/ankylosaurus/ankylosaurusLiving03",
+            "dinosaurs/ankylosaurus/ankylosaurusLiving04",
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
+        ]
+    },
+    "jurassicraft:ankylosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLiving01"
+        ]
+    },
+    "jurassicraft:ankylosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLiving02"
+        ]
+    },
+    "jurassicraft:ankylosaurusLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLiving03"
+        ]
+    },
+    "jurassicraft:ankylosaurusLiving04": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLiving04"
+        ]
+    },
+    "jurassicraft:ankylosaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
+        ]
+    },
+    "jurassicraft:ankylosaurusLivingHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:ankylosaurusLivingHurt02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
+        ]
+    },
+    "jurassicraft:brachiosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurusLiving01",
+            "dinosaurs/brachiosaurus/brachiosaurusLiving02",
+            "dinosaurs/brachiosaurus/brachiosaurusLiving03",
+            "dinosaurs/brachiosaurus/brachiosaurusLiving04"
+        ]
+    },
+    "jurassicraft:brachiosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurusLiving01"
+        ]
+    },
+    "jurassicraft:brachiosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurusLiving02"
+        ]
+    },
+    "jurassicraft:brachiosaurusLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurusLiving03"
+        ]
+    },
+    "jurassicraft:brachiosaurusLiving04": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurusLiving04"
+        ]
+    },
+    "jurassicraft:carnotaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusDeath01"
+        ]
+    },
+    "jurassicraft:carnotaurusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusDeath01"
+        ]
+    },
+    "jurassicraft:carnotaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusHurt01"
+        ]
+    },
+    "jurassicraft:carnotaurusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusHurt01"
+        ]
+    },
+    "jurassicraft:carnotaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusLiving01"
+        ]
+    },
+    "jurassicraft:carnotaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurusLiving01"
+        ]
+    },
+    "jurassicraft:dilophosaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusDeath01"
+        ]
+    },
+    "jurassicraft:dilophosaurusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusDeath01"
+        ]
+    },
+    "jurassicraft:dilophosaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusHurt01",
+            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:dilophosaurusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusHurt01"
+        ]
+    },
+    "jurassicraft:dilophosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusLiving01",
+            "dinosaurs/dilophosaurus/dilophosaurusLiving02",
+            "dinosaurs/dilophosaurus/dilophosaurusLiving03",
+            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:dilophosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusLiving01"
+        ]
+    },
+    "jurassicraft:dilophosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusLiving02"
+        ]
+    },
+    "jurassicraft:dilophosaurusLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusLiving03"
+        ]
+    },
+    "jurassicraft:dilophosaurusLivingHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:gallimimus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusDeath01",
+            "dinosaurs/gallimimus/gallimimusLivingDeath01"
+        ]
+    },
+    "jurassicraft:gallimimusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusDeath01"
+        ]
+    },
+    "jurassicraft:gallimimus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusHurt01",
+            "dinosaurs/gallimimus/gallimimusLivingHurt01"
+        ]
+    },
+    "jurassicraft:gallimimusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusHurt01"
+        ]
+    },
+    "jurassicraft:gallimimus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusLiving01",
+            "dinosaurs/gallimimus/gallimimusLiving02",
+            "dinosaurs/gallimimus/gallimimusLivingDeath01",
+            "dinosaurs/gallimimus/gallimimusLivingHurt01"
+        ]
+    },
+    "jurassicraft:gallimimusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusLiving01"
+        ]
+    },
+    "jurassicraft:gallimimusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusLiving02"
+        ]
+    },
+    "jurassicraft:gallimimusLivingDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusLivingDeath01"
+        ]
+    },
+    "jurassicraft:gallimimusLivingHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimusLivingHurt01"
+        ]
+    },
+    "jurassicraft:herrerasaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurusDeath01"
+        ]
+    },
+    "jurassicraft:herrerasaurusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurusDeath01"
+        ]
+    },
+    "jurassicraft:herrerasaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:herrerasaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:herrerasaurusLivingHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
+        ]
+    },
+    "jurassicraft:hypsilophodon:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonDeath01",
+            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
+            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
+        ]
+    },
+    "jurassicraft:hypsilophodonDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonDeath01"
+        ]
+    },
+    "jurassicraft:hypsilophodon:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonHurt01",
+            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01"
+        ]
+    },
+    "jurassicraft:hypsilophodonHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonHurt01"
+        ]
+    },
+    "jurassicraft:hypsilophodonHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01"
+        ]
+    },
+    "jurassicraft:hypsilophodon:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLiving01",
+            "dinosaurs/hypsilophodon/hypsilophodonLiving02",
+            "dinosaurs/hypsilophodon/hypsilophodonLiving03",
+            "dinosaurs/hypsilophodon/hypsilophodonLiving04",
+            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
+        ]
+    },
+    "jurassicraft:hypsilophodonLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLiving01"
+        ]
+    },
+    "jurassicraft:hypsilophodonLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLiving02"
+        ]
+    },
+    "jurassicraft:hypsilophodonLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLiving03"
+        ]
+    },
+    "jurassicraft:hypsilophodonLiving04": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLiving04"
+        ]
+    },
+    "jurassicraft:hypsilophodonLivingDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
+        ]
+    },
+    "jurassicraft:leaellynasaura:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraDeath01"
+        ]
+    },
+    "jurassicraft:leaellynasauraDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraDeath01"
+        ]
+    },
+    "jurassicraft:leaellynasaura:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraHurt01"
+        ]
+    },
+    "jurassicraft:leaellynasauraHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraHurt01"
+        ]
+    },
+    "jurassicraft:leaellynasaura:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraLiving01",
+            "dinosaurs/leaellynasaura/leaellynasauraLiving02"
+        ]
+    },
+    "jurassicraft:leaellynasauraLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraLiving01"
+        ]
+    },
+    "jurassicraft:leaellynasauraLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/leaellynasaura/leaellynasauraLiving02"
+        ]
+    },
+    "jurassicraft:oviraptor:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/oviraptor/oviraptorLiving01",
+            "dinosaurs/oviraptor/oviraptorLiving02",
+            "dinosaurs/oviraptor/oviraptorLiving03"
+        ]
+    },
+    "jurassicraft:oviraptorLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/oviraptor/oviraptorLiving01"
+        ]
+    },
+    "jurassicraft:oviraptorLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/oviraptor/oviraptorLiving02"
+        ]
+    },
+    "jurassicraft:oviraptorLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/oviraptor/oviraptorLiving03"
+        ]
+    },
+    "jurassicraft:stegosaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusDeath02",
+            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
+        ]
+    },
+    "jurassicraft:stegosaurusDeath02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusDeath02"
+        ]
+    },
+    "jurassicraft:stegosaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusHurt01",
+            "dinosaurs/stegosaurus/stegosaurusHurt02",
+            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
+        ]
+    },
+    "jurassicraft:stegosaurusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusHurt01"
+        ]
+    },
+    "jurassicraft:stegosaurusHurt02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusHurt02"
+        ]
+    },
+    "jurassicraft:stegosaurusHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
+        ]
+    },
+    "jurassicraft:stegosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusLiving01",
+            "dinosaurs/stegosaurus/stegosaurusLiving02"
+        ]
+    },
+    "jurassicraft:stegosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusLiving01"
+        ]
+    },
+    "jurassicraft:stegosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurusLiving02"
+        ]
+    },
+    "jurassicraft:triceratops:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsHurtDeath01",
+            "dinosaurs/triceratops/triceratopsHurtDeath02",
+            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:triceratops:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsHurtDeath01",
+            "dinosaurs/triceratops/triceratopsHurtDeath02",
+            "dinosaurs/triceratops/triceratopslivingDeath02",
+            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:triceratopsHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsHurtDeath01"
+        ]
+    },
+    "jurassicraft:triceratopsHurtDeath02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsHurtDeath02"
+        ]
+    },
+    "jurassicraft:triceratops:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsLiving02",
+            "dinosaurs/triceratops/triceratopsLiving03",
+            "dinosaurs/triceratops/triceratopsLiving05",
+            "dinosaurs/triceratops/triceratopslivingDeath02",
+            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:triceratopsLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsLiving02"
+        ]
+    },
+    "jurassicraft:triceratopsLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsLiving03"
+        ]
+    },
+    "jurassicraft:triceratopsLiving05": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsLiving05"
+        ]
+    },
+    "jurassicraft:triceratopslivingDeath02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopslivingDeath02"
+        ]
+    },
+    "jurassicraft:triceratopsLivingHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:cearadactylus:living": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:cearadactylus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:cearadactylus:death": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:CearadactylusLivingHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+        ]
+    },
+    "jurassicraft:deinosuchus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
+            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
+            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+        ]
+    },
+    "jurassicraft:deinosuchus:death": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
+            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
+            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+        ]
+    },
+    "jurassicraft:DeinosuchusHurtDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusHurtDeath01"
+        ]
+    },
+    "jurassicraft:DeinosuchusHurtDeath02": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusHurtDeath02"
+        ]
+    },
+    "jurassicraft:DeinosuchusHurtDeath03": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+        ]
+    },
+    "jurassicraft:deinosuchus:living": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusLiving01",
+            "reptiles/deinosuchus/DeinosuchusLiving02",
+            "reptiles/deinosuchus/DeinosuchusLiving03",
+            "reptiles/deinosuchus/DeinosuchusLiving04"
+        ]
+    },
+    "jurassicraft:DeinosuchusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusLiving01"
+        ]
+    },
+    "jurassicraft:DeinosuchusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusLiving02"
+        ]
+    },
+    "jurassicraft:DeinosuchusLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusLiving03"
+        ]
+    },
+    "jurassicraft:DeinosuchusLiving04": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/deinosuchus/DeinosuchusLiving04"
+        ]
+    },
+    "jurassicraft:tylosaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusDeath01"
+        ]
+    },
+    "jurassicraft:TylosaurusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusDeath01"
+        ]
+    },
+    "jurassicraft:tylosaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusHurt01"
+        ]
+    },
+    "jurassicraft:TylosaurusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusHurt01"
+        ]
+    },
+    "jurassicraft:tylosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusLiving01",
+            "reptiles/tylosaurus/TylosaurusLiving02"
+        ]
+    },
+    "jurassicraft:TylosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusLiving01"
+        ]
+    },
+    "jurassicraft:TylosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "reptiles/tylosaurus/TylosaurusLiving02"
+        ]
+    }
 }

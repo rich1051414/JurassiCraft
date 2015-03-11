@@ -836,7 +836,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public String getLivingSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
+		this.playSound("jurassicraft:" + creatureName + ":living", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
@@ -844,7 +844,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public String getHurtSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
+		this.playSound("jurassicraft:" + creatureName + ":hurt", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
@@ -852,7 +852,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public String getDeathSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName, this.getSoundVolume(), this.getSoundPitch());
+		this.playSound("jurassicraft:" + creatureName + ":death", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
 
