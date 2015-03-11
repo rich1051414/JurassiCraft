@@ -14,9 +14,12 @@ import net.ilexiconn.jurassicraft.events.JurassiCraftLivingEvent;
 import net.ilexiconn.jurassicraft.gen.WorldGenAmberOre;
 import net.ilexiconn.jurassicraft.gen.WorldGenFossilOre;
 import net.ilexiconn.jurassicraft.gen.WorldGenGypsum;
+import net.ilexiconn.jurassicraft.network.NetworkManager;
 import net.ilexiconn.jurassicraft.packet.MessageAnimation;
 import net.ilexiconn.jurassicraft.packet.MessageFence;
 import net.ilexiconn.jurassicraft.proxy.CommonProxy;
+import net.ilexiconn.jurassicraft.utility.handlers.ConnectionHandler;
+import net.ilexiconn.jurassicraft.utility.handlers.ServerTickHandler;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.EnumCreatureType;
@@ -44,6 +47,9 @@ public class JurassiCraft
 	public static CommonProxy proxy;
 	@Mod.Instance("jurassicraft")
 	public static JurassiCraft instance;
+
+    public static NetworkManager NETWORK_MANAGER;
+    public ConnectionHandler serverTeleport;
 
 	public static boolean isChristmas;
 	public static boolean enableDebugging;
@@ -111,6 +117,8 @@ public class JurassiCraft
 		MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
 
 		proxy.init();
+
+        FMLCommonHandler.instance().bus().register(new ServerTickHandler());
 	}
 
 	@Mod.EventHandler

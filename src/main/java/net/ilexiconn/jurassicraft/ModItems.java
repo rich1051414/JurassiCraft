@@ -26,6 +26,18 @@ public class ModItems implements IContentHandler
     public static Item net;
     public static Item spawnEgg;
 
+    // Carboniferous Items
+
+    public static Item multiItems;
+    public static Item huntersBow;
+    public static Item grindingStones;
+    public static Item rawAnt;
+    public static Item cookedAnt;
+    public static Item rawDragonfly;
+    public static Item cookedDragonfly;
+    public static Item rawAmphibian;
+    public static Item cookedAmphibian;
+
     public void init()
     {
         amber = new ItemAmber();
@@ -42,6 +54,18 @@ public class ModItems implements IContentHandler
         wheatOnAStick = new ItemOnAStick("Wheat");
         spawnEgg = new ItemSpawnEggJurassiCraft();
         net = new ItemNet();
+
+        // Carboniferous Items
+
+        multiItems = new ItemMultipleItems().setUnlocalizedName("carbon.multipleItems");
+        huntersBow = new ItemHuntersBow().setUnlocalizedName("carbon.huntersBow");
+        grindingStones =  new ItemGrindingStones().setUnlocalizedName("carbon.grindingStones");
+        rawAnt = new ItemAnt(1, 0.3F).setUnlocalizedName("carbon.rawAnt");
+        cookedAnt = new ItemAnt(3, 0.4F).setUnlocalizedName("carbon.cookedAnt");
+        rawDragonfly = new ItemCustomFood(3, 0.1F, false).setUnlocalizedName("carbon.rawDragonfly");
+        cookedDragonfly = new ItemCustomFood(4, 0.2F, false).setUnlocalizedName("carbon.cookedDragonfly");
+        rawAmphibian = new ItemCustomFood(4, 0.7F, true).setUnlocalizedName("carbon.rawAmphibian");
+        cookedAmphibian = new ItemCustomFood(6, 1.1F, true).setUnlocalizedName("carbon.cookedAmphibian");
 
         for (Creature creature : CreatureManager.getCreatures())
         {

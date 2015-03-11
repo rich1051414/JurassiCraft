@@ -1,8 +1,10 @@
 package net.ilexiconn.jurassicraft;
 
+import net.ilexiconn.jurassicraft.api.Properties;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
-import net.ilexiconn.jurassicraft.dimension.biomes.*;
-import net.ilexiconn.jurassicraft.dimension.core.WorldProviderDino;
+import net.ilexiconn.jurassicraft.world.WorldProviderCarboniferous;
+import net.ilexiconn.jurassicraft.world.biome.*;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 
@@ -10,26 +12,34 @@ public class ModBiomes implements IContentHandler
 {
 	public static int biomeStartID = 70;
 
-	public static BiomeGenBase dinoPlains;
-	public static BiomeGenBase dinoMountains;
-	public static BiomeGenBase dinoOcean;
-	public static BiomeGenBase dinoIslands;
-	public static BiomeGenBase dinoJungle;
-	public static BiomeGenBase dinoRiver;
+	public static BiomeDecorator Decorator;
+	public static BiomeGenBase Carboniferous;
+	public static BiomeGenBaseCarboniferous Bog;
+	public static BiomeGenBase Swamp;
+	public static BiomeGenBaseCarboniferous CoalSwamp;
+	public static BiomeGenBase Island;
+    public static BiomeGenBase Highlands;
+    public static BiomeGenBase Ocean;
+    public static BiomeGenBase Rainforest;
+    public static BiomeGenBase river;
 
 	@Override
 	public void init() 
 	{
 		int dinoBiomeColor = 6546587;
-		
-		dinoPlains = new BiomeGenDinoPlains(biomeStartID).setColor(dinoBiomeColor).setBiomeName("Dino Plains");
-		dinoMountains = new BiomeGenDinoMountains(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Mountains");
-		dinoOcean = new BiomeGenDinoOcean(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Ocean");
-		dinoIslands = new BiomeGenDinoIslands(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Islands");
-		dinoJungle = new BiomeGenDinoJungle(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino Jungle");
-		dinoRiver = new BiomeGenDinoRiver(biomeStartID++).setColor(dinoBiomeColor).setBiomeName("Dino River");
 
-		DimensionManager.registerProviderType(JurassiCraft.dimensionID, WorldProviderDino.class, false);
-		DimensionManager.registerDimension(JurassiCraft.dimensionID, JurassiCraft.dimensionID);
+        Decorator = new BiomeDecoratorCarboniferous();
+		Carboniferous = new BiomeGenBaseCarboniferous(1);
+		Bog = new BiomeGenBog(1);
+		Swamp = new BiomeGenCalamitesSwamp(1);
+		CoalSwamp = new BiomeGenCoalSwamp(1);
+		Island = new BiomeGenIsland(1);
+        Highlands = new BiomeGenHighlands(1);
+        Ocean = new BiomeGenOceanCarboniferous(1);
+        Rainforest = new BiomeGenRainforest(1);
+        river = new BiomeGenRiverCarboniferous(1);
+
+		DimensionManager.registerProviderType(JurassiCraft.dimensionID, WorldProviderCarboniferous.class, false);
+		DimensionManager.registerDimension(Properties.dimensionID, Properties.dimensionID);
 	}
 }
