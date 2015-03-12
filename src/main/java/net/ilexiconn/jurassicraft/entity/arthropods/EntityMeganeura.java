@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.arthropods;
 
 import net.ilexiconn.jurassicraft.ai.JurassiCraftAIGliding;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftFlyingCreature;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

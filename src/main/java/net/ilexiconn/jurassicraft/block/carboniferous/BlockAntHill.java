@@ -1,14 +1,10 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.api.Properties;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,6 +13,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 /**
  * @author ProPercivalalb

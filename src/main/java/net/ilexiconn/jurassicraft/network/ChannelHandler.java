@@ -1,10 +1,8 @@
 package net.ilexiconn.jurassicraft.network;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.ByteArrayInputStream;
