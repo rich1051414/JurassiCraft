@@ -117,6 +117,8 @@ public class JurassiCraft
 		proxy.init();
 
         FMLCommonHandler.instance().bus().register(new ServerTickHandler());
+        
+        serverTeleport = new ConnectionHandler();
 	}
 
 	@Mod.EventHandler

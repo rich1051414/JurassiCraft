@@ -11,8 +11,8 @@ import java.util.Random;
 /**
  * @author ProPercivalalb
  **/
-public class TeleportServer {
-	
+public class TeleportServer
+{
 	private EntityPlayerMP player;
 	public float prevTimeInPortal;
 	public float timeInPortal;
@@ -21,23 +21,30 @@ public class TeleportServer {
 	public int timeUntilPortal = 20;
 	public byte targetDim = 0;
 	
-	public TeleportServer(EntityPlayerMP player) {
+	public TeleportServer(EntityPlayerMP player) 
+	{
 		this.player = player;
 	}
 	
-	public EntityPlayerMP getPlayer() {
+	public EntityPlayerMP getPlayer()
+	{
 		return player;
 	}
 	
-	public void onTick() {
-        if (this.inPortal) {
-        	
+	public void onTick() 
+	{
+        if (this.inPortal)
+        {
         	timeInPortal += 0.0125F;
-            if (this.timeInPortal >= 1.0F) {
+        	
+            if (this.timeInPortal >= 1.0F)
+            {
             	this.timeInPortal = 1.0F;
                 this.timeUntilPortal = 10;
                 byte dimension = (byte)Properties.dimensionID;
-                if (player.dimension == Properties.dimensionID) {
+                
+                if (player.dimension == Properties.dimensionID) 
+                {
                 	dimension = 0;
                 }
                 
@@ -45,26 +52,34 @@ public class TeleportServer {
                 player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dimension, new TeleporterCarboniferous(player.mcServer.worldServerForDimension(dimension)));
 
             }
+            
             this.inPortal = false;
         }
-        else {
-            if (this.timeInPortal > 0.0F) {
+        else 
+        {
+            if (this.timeInPortal > 0.0F) 
+            {
                 this.timeInPortal -= 0.05F;
             }
-            if (this.timeInPortal < 0.0F) {
+            if (this.timeInPortal < 0.0F) 
+            {
                 this.timeInPortal = 0.0F;
             }
         }
-        if (this.timeUntilPortal > 0) {
+        if (this.timeUntilPortal > 0) 
+        {
             --this.timeUntilPortal;
         }
 	}
 	
-    public void setInPortal() {
-        if (timeUntilPortal > 0) {
+    public void setInPortal() 
+    {
+        if (timeUntilPortal > 0)
+        {
             timeUntilPortal = 10;
         }
-        else {
+        else 
+        {
         	inPortal = true;
         }
     }
