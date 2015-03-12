@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.world.biome;
 
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.api.Properties;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.api.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.passive.EntityBat;
@@ -165,9 +165,9 @@ public class BiomeGenBaseCarboniferous extends BiomeGenBase {
             }
         }
     }
-    
+
     public BiomeDecoratorCarboniferous getBiomeDecorator() {
-    	return (BiomeDecoratorCarboniferous)this.theBiomeDecorator;
+    	return (BiomeDecoratorCarboniferous) this.theBiomeDecorator;
     }
     
     @Override
