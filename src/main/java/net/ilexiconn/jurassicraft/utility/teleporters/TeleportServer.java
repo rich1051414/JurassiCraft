@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.utility.teleporters;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.api.Properties;
 import net.ilexiconn.jurassicraft.packet.PacketTeleport;
-import net.ilexiconn.jurassicraft.world.TeleporterCarboniferous;
+import net.ilexiconn.jurassicraft.world.core.TeleporterDino;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import java.util.Random;
@@ -49,7 +49,7 @@ public class TeleportServer
                 }
                 
                 JurassiCraft.NETWORK_MANAGER.sendPacketToPlayer(new PacketTeleport(), player);
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dimension, new TeleporterCarboniferous(player.mcServer.worldServerForDimension(dimension)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dimension, new TeleporterDino(player.mcServer.worldServerForDimension(dimension)));
 
             }
             

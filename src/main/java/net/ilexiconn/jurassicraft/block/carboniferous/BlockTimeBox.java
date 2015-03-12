@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.world.TeleporterCarboniferous;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.api.Properties;
+import net.ilexiconn.jurassicraft.world.core.TeleporterDino;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,10 +35,10 @@ public class BlockTimeBox extends Block {
 		ItemStack stack = par5EntityPlayer.getCurrentEquippedItem();
 		if(stack != null && stack.getItem() == ModItems.multiItems && stack.getItemDamage() == 5) {
 			if(this.isActive(par1World, par2, par3, par4)) {
-				TeleporterCarboniferous.formPortal(par1World, par2, par3 + 1, par4, false);
+				TeleporterDino.formPortal(par1World, par2, par3 + 1, par4, false);
 			}
 			else {
-				TeleporterCarboniferous.formPortal(par1World, par2, par3 + 1, par4, true);
+				TeleporterDino.formPortal(par1World, par2, par3 + 1, par4, true);
 			}
 		}
 		return true;
