@@ -39,7 +39,7 @@ public class ModBiomes implements IContentHandler
         Rainforest = new BiomeGenRainforest(1);
         river = new BiomeGenRiverCarboniferous(1);
 
-		DimensionManager.registerProviderType(JurassiCraft.dimensionID, WorldProviderCarboniferous.class, false);
+		DimensionManager.registerProviderType(Properties.dimensionID, WorldProviderCarboniferous.class, false);
 		DimensionManager.registerDimension(Properties.dimensionID, Properties.dimensionID);
 	}
 }

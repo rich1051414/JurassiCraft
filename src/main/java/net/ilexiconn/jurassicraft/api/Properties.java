@@ -88,7 +88,7 @@ public class Properties {
 	public static int BIOME_ID_BOG = 177;
 	
 	//ID'S
-	public static int dimensionID = 76;
+	public static int dimensionID = -30;
 	
 	//NBT Data
     public static final String NBT_OWNER_KEY = "teOwner";

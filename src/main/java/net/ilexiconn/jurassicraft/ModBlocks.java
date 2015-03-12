@@ -32,6 +32,7 @@ public class ModBlocks implements IContentHandler
     public static Block cultivateBottomOff;
     @IgnoreRegistration
     public static Block cultivateBottomOn;
+    
     public static Block cultivateTopOff;
     public static Block cultivateTopOn;
     public static Block dnaExtractor;
@@ -54,7 +55,6 @@ public class ModBlocks implements IContentHandler
     public static Block orontium;
 
     // Carboniferous Blocks WIP
-
     public static Block grass;
     public static Block dirt;
     public static Block multiBlock1;
@@ -107,9 +107,8 @@ public class ModBlocks implements IContentHandler
 
     public void init()
     {
-
         // Carboniferous Blocks
-
+        woodSingleSlab = (BlockPlanksSlab)(new BlockPlanksSlab(false)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSingleSlab");
         grass = new BlockGrass().setHardness(0.6F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.grass");
         dirt = new BlockDirt().setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.dirt");
         multiBlock1 = new BlockMultipleBlocks().setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("carbon.multiBlock1");
@@ -148,7 +147,6 @@ public class ModBlocks implements IContentHandler
         tilledEarth = new BlockTilledDirt().setHardness(0.6F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.tilledDirt");
 
         // JurassiCraft Blocks
-
         fernPlant = new FernPlant("fernplant");
         orontium = new OrontiumPlant("orontiumplant");
         cultivateBottomOff = new BlockCultivateBottom(false);
