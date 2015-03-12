@@ -15,6 +15,7 @@ public class ModCreativeTabs implements IContentHandler
     public static CreativeTabs syringesEggs;
     public static CreativeTabs spawnEggs;
     public static CreativeTabs itemsFood;
+    public static CreativeTabs Carboniferous;
 
     public void init()
     {
@@ -25,6 +26,12 @@ public class ModCreativeTabs implements IContentHandler
             {
                 return ModItems.amber;
             }
+        };
+
+        this.Carboniferous = new CreativeTabs("jurassicraft.carboniferous")
+        {
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem() { return ModItems.rawAmphibian; }
         };
 
         this.blocks = new CreativeTabs("jurassicraft.blocks")

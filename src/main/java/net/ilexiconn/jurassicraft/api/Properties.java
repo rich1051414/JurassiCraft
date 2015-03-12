@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.api;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
@@ -18,7 +19,7 @@ public class Properties {
 	
 	//Texture Path
 	public static final String PACKAGE = "carboniferous";
-	public static final String TEX_PACkAGE = "carboniferous:";
+	public static final String TEX_PACkAGE = JurassiCraft.getModId();
 	public static final String TEX_LOGO = "textures/logo.png";
 	public static final String TEX_BLOCK = "textures/item/";
 	public static final String TEX_BLOCK_GRINDER = TEX_BLOCK + "grinder.png";

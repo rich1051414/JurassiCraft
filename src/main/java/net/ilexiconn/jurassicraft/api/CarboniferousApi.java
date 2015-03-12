@@ -21,13 +21,7 @@ import java.util.List;
  * @author ProPercivalalb
  */
 public class CarboniferousApi {
-	
-	//Armor
-	public static ArmorMaterial armorFlippers = ArmorMaterial.CHAIN; //EnumHelper.addArmorMaterial("Flippers", 5, new int[]{1, 1, 1, 1}, 0);
-	public static ArmorMaterial armorAmphibianSkin = ArmorMaterial.CHAIN; //EnumHelper.addArmorMaterial("AmphibianSkin", 5, new int[]{1, 3, 2, 1}, 0);
-	public static ArmorMaterial armorQuiver = ArmorMaterial.CHAIN; //EnumHelper.addArmorMaterial("Quiver", 0, new int[]{0, 0, 0, 0}, 0);
-	//Creative Tab
-	public static CreativeTabs carboniferousTab;
+
 	//Damage Sources
 	public static DamageSource brachiopodDamage;
 	
@@ -118,12 +112,6 @@ public class CarboniferousApi {
 	
 	//Private Functions (NOT TO BE USED BY OTHER MODDERS)
 	private static void setUp() {
-		try {
-			carboniferousTab = (CreativeTabs)Class.forName("carboniferous.CarboniferousMod").getField("tabsCarboniferous").get(null);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
 		try {
 			brachiopodDamage = (DamageSource)Class.forName("carboniferous.core.util.DamageSourceBrachiopod").newInstance();
 		}

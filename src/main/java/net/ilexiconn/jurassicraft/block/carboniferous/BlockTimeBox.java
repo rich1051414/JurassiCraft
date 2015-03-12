@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.world.TeleporterCarboniferous;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.api.Properties;
@@ -21,7 +22,7 @@ public class BlockTimeBox extends Block {
 	
 	public BlockTimeBox() {
 		super(Material.iron);
-		this.setCreativeTab(null);
+		this.setCreativeTab(ModCreativeTabs.Carboniferous);
 	}
 	
 	public IIcon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {

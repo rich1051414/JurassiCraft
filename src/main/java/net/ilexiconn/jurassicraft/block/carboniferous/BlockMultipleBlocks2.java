@@ -43,7 +43,7 @@ public class BlockMultipleBlocks2 extends Block {
 	
 	public BlockMultipleBlocks2() {
         super(Material.rock);
-        this.setCreativeTab(CarboniferousApi.carboniferousTab);
+        this.setCreativeTab(ModCreativeTabs.Carboniferous);
     }
 	
 	@Override

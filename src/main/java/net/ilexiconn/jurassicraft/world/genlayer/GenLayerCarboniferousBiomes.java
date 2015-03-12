@@ -40,9 +40,10 @@ public class GenLayerCarboniferousBiomes extends GenLayer {
                 else if(nextInt(10) == 0) {
                 	var5[var7 + var6 * var3] = BiomeGenBaseCarboniferous.rainforest.biomeID;
                 }
-                else {
-                	var5[var7 + var6 * var3] = this.biomes.get(this.nextInt(biomes.size())).biomeID;
-                }
+                // TODO: This is causing a crash, I have no idea what this is supposed to do xD
+                //else {
+                //	var5[var7 + var6 * var3] = this.biomes.get(this.nextInt(biomes.size())).biomeID;
+                //}
             }
         }
 
