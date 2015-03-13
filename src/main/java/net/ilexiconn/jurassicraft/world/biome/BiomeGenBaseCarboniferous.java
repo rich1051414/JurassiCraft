@@ -34,6 +34,11 @@ public class BiomeGenBaseCarboniferous extends BiomeGenBase {
 	public static final BiomeGenBaseCarboniferous rainforest = new BiomeGenRainforest(Properties.BIOME_ID_RAINFOREST);
 	public static final BiomeGenBaseCarboniferous bog = new BiomeGenBog(Properties.BIOME_ID_BOG);
 
+    /*
+     * Thanks to Carboniferous Mod for letting us merge their mod into ours.
+     * Thanks to JTGhawk137 for merging all the code
+     */
+
 	public BiomeGenBaseCarboniferous(int par1) {
 		super(par1);
 		this.theBiomeDecorator = new BiomeDecoratorCarboniferous();
