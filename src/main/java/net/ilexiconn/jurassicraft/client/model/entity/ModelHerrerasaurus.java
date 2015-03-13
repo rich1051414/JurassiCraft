@@ -432,8 +432,8 @@ public class ModelHerrerasaurus extends MowzieModelBase
             //Sitting Pose
             float sittingProgressTemporary = herrera.sittingProgress.getAnimationProgressTemporaryFS();
 
-            faceTarget(Head, 5, f3, f4);
-            faceTarget(Neck, 4, f3, f4);
+            faceTarget(Head, 2, f3, f4);
+            faceTarget(Neck, 2, f3, f4);
             
             this.Body_1.rotationPointY += 11F * sittingProgress;
             this.Right_Thigh.rotationPointY += 12.5F * sittingProgress;
@@ -515,8 +515,8 @@ public class ModelHerrerasaurus extends MowzieModelBase
         }
         else
         {
-            faceTarget(Head, 5, f3, f4);
-            faceTarget(Neck, 4, f3, f4);
+            faceTarget(Head, 2, f3, f4);
+            faceTarget(Neck, 2, f3, f4);
 
             //Idling
             chainWave(tailParts, 0.1F, -0.05F, 2, herrera.frame, 1.0F);

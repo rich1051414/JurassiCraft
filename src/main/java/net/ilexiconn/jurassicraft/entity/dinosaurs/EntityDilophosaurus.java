@@ -3,7 +3,8 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
@@ -17,6 +18,9 @@ import net.minecraft.world.World;
 
 public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+    public ControlledAnimation sittingProgress = new ControlledAnimation(35);
+
     public EntityDilophosaurus(World world)
     {
         super(world);
@@ -81,5 +85,26 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
         }
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        /** Sitting Animation */
+        if (this.worldObj.isRemote)
+        {
+            if (this.isSitting())
+            {
+                this.sittingProgress.increaseTimer();
+            }
+            else
+            {
+                this.sittingProgress.decreaseTimer();
+            }
+        }
+
+        this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 4.0F, this);
     }
 }

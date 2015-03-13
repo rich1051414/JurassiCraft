@@ -73,4 +73,12 @@ public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements 
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
         }
     }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 4.0F, this);
+    }
 }
