@@ -21,6 +21,7 @@ public class BiomeGenCoalSwamp extends BiomeGenBaseCarboniferous {
         this.waterColorMultiplier = 0x333300;
         this.setBiomeName("Coal Swamp");
         this.theBiomeDecorator.treesPerChunk = 6;
+
     }
 
 	@Override

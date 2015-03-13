@@ -19,6 +19,7 @@ public class BiomeGenRainforest extends BiomeGenBaseCarboniferous {
         this.theBiomeDecorator.grassPerChunk = 16;
         this.setBiomeName("Rainforest");
         this.setTemperatureRainfall(2.0F, 2.0F);
+
     }
 
     @Override

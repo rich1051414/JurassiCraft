@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.world.core;
 
+import net.ilexiconn.jurassicraft.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -49,6 +49,6 @@ public class WorldProviderDino extends WorldProvider
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
 		Block k = this.worldObj.getTopBlock(par1, par2);
-		return k == Blocks.grass;
+		return k == ModBlocks.grass;
 	}
 }

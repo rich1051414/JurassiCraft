@@ -19,6 +19,7 @@ public class BiomeGenIsland extends BiomeGenBaseCarboniferous {
         this.setHeight(BiomeGenBaseCarboniferous.height_island);
         this.theBiomeDecorator.treesPerChunk = 3;
         this.setBiomeName("Island");
+
     }
 
 	@Override

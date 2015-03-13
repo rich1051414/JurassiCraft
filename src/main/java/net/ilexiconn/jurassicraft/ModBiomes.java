@@ -15,7 +15,6 @@ public class ModBiomes implements IContentHandler
 	@Override
 	public void init() 
 	{
-
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.calamitesSwamp);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.highlands);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.island);
@@ -23,7 +22,7 @@ public class ModBiomes implements IContentHandler
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.rainforest);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.carboniferousOcean);
 
-		DimensionManager.registerProviderType(Properties.dimensionID, WorldProviderDino.class, false);
+        DimensionManager.registerProviderType(Properties.dimensionID, WorldProviderDino.class, false);
 		DimensionManager.registerDimension(Properties.dimensionID, Properties.dimensionID);
 	}
 }

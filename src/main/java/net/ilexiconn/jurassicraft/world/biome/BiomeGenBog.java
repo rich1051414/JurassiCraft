@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.world.feature.WorldGenCalamites;
 import net.ilexiconn.jurassicraft.world.feature.WorldGenCordaites;
 import net.ilexiconn.jurassicraft.world.feature.WorldGenLepidodendron;
 import net.ilexiconn.jurassicraft.world.feature.WorldGenSmallTrees;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.awt.*;
@@ -18,6 +19,9 @@ public class BiomeGenBog extends BiomeGenBaseCarboniferous {
         super(i);
         //this.minHeight = -0.25F;
         //this.maxHeight = -0.5F;
+        this.topBlock = Blocks.grass;
+        this.fillerBlock = Blocks.dirt;
+
         this.setHeight(BiomeGenBaseCarboniferous.height_bog);
         this.waterColorMultiplier = 0x333300;
         this.setBiomeName("Bog");

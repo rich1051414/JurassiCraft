@@ -1,8 +1,9 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.ModBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.api.IconReference;
 import net.ilexiconn.jurassicraft.api.Properties;
 import net.minecraft.block.Block;
@@ -22,7 +23,7 @@ public class BlockDirt extends Block {
 	
 	public BlockDirt() {
         super(Material.ground);
-        this.setCreativeTab(null);
+        this.setCreativeTab(ModCreativeTabs.Carboniferous);
     }
     
     public void registerBlockIcons(IIconRegister par1IconRegister) {

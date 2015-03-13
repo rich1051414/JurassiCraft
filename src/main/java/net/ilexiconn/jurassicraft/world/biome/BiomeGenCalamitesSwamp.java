@@ -20,6 +20,7 @@ public class BiomeGenCalamitesSwamp extends BiomeGenBaseCarboniferous {
 		this.setHeight(BiomeGenBaseCarboniferous.height_calamites_swamp);
 		this.waterColorMultiplier = 0x333300;
 		this.theBiomeDecorator.treesPerChunk = 6;
+
 	}
 
 	@Override

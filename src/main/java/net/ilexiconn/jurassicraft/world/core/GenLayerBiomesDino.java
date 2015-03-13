@@ -5,18 +5,10 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GenLayerBiomesDino extends GenLayer {
 
-    private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
-
-    public static void registerBiome(BiomeGenBase biome) {
-        if(!biomes.contains(biome)) {
-            biomes.add(biome);
-        }
-    }
+    public BiomeGenBase[] dimensionBiomes = {BiomeGenBaseCarboniferous.rainforest, BiomeGenBaseCarboniferous.calamitesSwamp,
+    BiomeGenBaseCarboniferous.highlands, BiomeGenBaseCarboniferous.island, BiomeGenBaseCarboniferous.coalSwamp, BiomeGenBaseCarboniferous.carboniferousOcean};
 
     public GenLayerBiomesDino(long var1, GenLayer var3) {
         super(var1);
@@ -28,24 +20,19 @@ public class GenLayerBiomesDino extends GenLayer {
     }
 
     @Override
-    public int[] getInts(int var1, int var2, int var3, int var4) {
-        int[] var5 = IntCache.getIntCache(var3 * var4);
+    public int[] getInts(int x, int z, int width, int depth)
+    {
+        int[] dest = IntCache.getIntCache(width * depth);
 
-        for (int var6 = 0; var6 < var4; ++var6) {
-            for (int var7 = 0; var7 < var3; ++var7) {
-                this.initChunkSeed((long)(var7 + var1), (long)(var6 + var2));
-                if(nextInt(28) == 0) {
-                    var5[var7 + var6 * var3] = BiomeGenBaseCarboniferous.carboniferousOcean.biomeID;
-                }
-                else if(nextInt(10) == 0) {
-                    var5[var7 + var6 * var3] = BiomeGenBaseCarboniferous.rainforest.biomeID;
-                }
-                else {
-                    var5[var7 + var6 * var3] = this.biomes.get(this.nextInt(biomes.size())).biomeID;
-                }
+        for (int dz = 0; dz < depth; dz++)
+        {
+            for (int dx = 0; dx  <width; dx++)
+            {
+                this.initChunkSeed(dx + x, dz + z);
+                dest[(dx + dz * width)] = this.dimensionBiomes[nextInt(this.dimensionBiomes.length)].biomeID;
             }
         }
 
-        return var5;
+        return dest;
     }
 }

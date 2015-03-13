@@ -1,8 +1,9 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.ModBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.api.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,6 +31,7 @@ public class BlockGrass extends Block {
     public BlockGrass() {
         super(Material.grass);
         this.setTickRandomly(true);
+        this.setCreativeTab(ModCreativeTabs.Carboniferous);
     }
 
     @Override

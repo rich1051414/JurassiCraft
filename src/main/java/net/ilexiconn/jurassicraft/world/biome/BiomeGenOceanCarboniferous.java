@@ -11,6 +11,7 @@ public class BiomeGenOceanCarboniferous extends BiomeGenBaseCarboniferous {
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.setBiomeName("Carboniferous Ocean");
+
     }
 
 	@Override

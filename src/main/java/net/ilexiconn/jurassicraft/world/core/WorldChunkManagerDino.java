@@ -33,11 +33,14 @@ public class WorldChunkManagerDino extends WorldChunkManager {
         this.biomesToSpawnIn = new ArrayList();
     }
 
-    public WorldChunkManagerDino(long par1, WorldType par3WorldType) {
+    public WorldChunkManagerDino(long seed, WorldType worldtype)
+    {
         this();
-        GenLayer[] var4 = GenLayerDino.createDim(par1, par3WorldType);
-        this.genBiomes = var4[0];
-        this.biomeIndexLayer = var4[1];
+
+        GenLayer[] genLayer = GenLayerDino.makeTheWorld(seed);
+
+        this.genBiomes = genLayer[0];
+        this.biomeIndexLayer = genLayer[1];
     }
 
     public WorldChunkManagerDino(World par1World)
