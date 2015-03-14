@@ -415,7 +415,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 4
+        "addItemTypes": 9
     },
     {
         "creatureName":"Oviraptor",
