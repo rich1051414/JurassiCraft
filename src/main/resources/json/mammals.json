@@ -35,7 +35,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 4
     },
     {
         "creatureName":"Basilosaurus",
@@ -111,7 +111,7 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 4
     },
     {
         "creatureName":"Uintatherium",
