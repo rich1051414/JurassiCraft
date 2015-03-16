@@ -6,20 +6,25 @@ import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ControlledAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
+import net.ilexiconn.jurassicraft.entity.EntitySpit;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
+public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore, IRangedAttackMob
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);
+    int timeUntilSpit = 0;
 
     public EntityDilophosaurus(World world)
     {
@@ -106,5 +111,25 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         }
 
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 4.0F, this);
+
+        if (getAttackTarget() != null)
+        {
+            if (timeUntilSpit == 0) attackEntityWithRangedAttack(getAttackTarget(), 0);
+        }
+        if (timeUntilSpit > 0) timeUntilSpit--;
+    }
+
+    //Copied from snowman
+    public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
+    {
+        EntitySpit spit = new EntitySpit(this.worldObj, this);
+        double d0 = p_82196_1_.posX - this.posX;
+        double d1 = p_82196_1_.posY + (double)p_82196_1_.getEyeHeight() - 1.100000023841858D - spit.posY;
+        double d2 = p_82196_1_.posZ - this.posZ;
+        float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
+        spit.setThrowableHeading(d0, d1 + (double)f1, d2, 1F, 0F);
+        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.worldObj.spawnEntityInWorld(spit);
+        timeUntilSpit = 20;
     }
 }

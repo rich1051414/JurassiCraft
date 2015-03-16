@@ -1,12 +1,16 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
+import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityDilophosaurus;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 
 public class ModelDilophosaurus extends MowzieModelBase
 {
+    public Animator animator;
     public MowzieModelRenderer body3;
     public MowzieModelRenderer thigh2;
     public MowzieModelRenderer thigh1;
@@ -55,6 +59,8 @@ public class ModelDilophosaurus extends MowzieModelBase
     public MowzieModelRenderer[] leftArmParts;
 
     public ModelDilophosaurus() {
+        this.animator = new Animator(this);
+
         this.textureWidth = 128;
         this.textureHeight = 64;
         this.crest2 = new MowzieModelRenderer(this, 41, -6);
@@ -122,8 +128,8 @@ public class ModelDilophosaurus extends MowzieModelBase
         this.arm2.addBox(-1.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
         this.setRotation(arm2, 0.36425021489121656F, 0.0F, 0.0F);
         this.down_jaw = new MowzieModelRenderer(this, 11, 21);
-        this.down_jaw.setRotationPoint(0.0F, 3.0F, 0.0F);
-        this.down_jaw.addBox(-1.5F, 0.0F, -7.5F, 3, 1, 4, 0.0F);
+        this.down_jaw.setRotationPoint(0.0F, 3.0F, -3.6F);
+        this.down_jaw.addBox(-1.5F, 0.0F, -4.0F, 3, 1, 4, 0.0F);
         this.tail1 = new MowzieModelRenderer(this, 64, 17);
         this.tail1.setRotationPoint(0.0F, -1.0F, 0.0F);
         this.tail1.addBox(-3.0F, 0.0F, 0.0F, 6, 6, 8, 0.0F);
@@ -277,7 +283,8 @@ public class ModelDilophosaurus extends MowzieModelBase
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        setRotationAngles(entity, f, f1, f2, f3, f4, f5);
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.thigh2.render(f5);
         this.thigh1.render(f5);
         this.body3.render(f5);
@@ -290,9 +297,9 @@ public class ModelDilophosaurus extends MowzieModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void setRotationAngles(EntityDilophosaurus dilo, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, dilo);
         setToInitPose();
 
         frill1.rotateAngleY += 1.55;
@@ -303,8 +310,6 @@ public class ModelDilophosaurus extends MowzieModelBase
         frill2.isHidden = true;
         frill3.isHidden = true;
         frill4.isHidden = true;
-
-        EntityDilophosaurus dilo = (EntityDilophosaurus) entity;
 
 //		f = dilo.frame;
 //		f1 = 1F;
@@ -319,8 +324,9 @@ public class ModelDilophosaurus extends MowzieModelBase
         faceTarget(neck3, 5, f3, f4);
         faceTarget(neck4, 5, f3, f4);
 
-        neck4.rotateAngleZ += (f3 / (180f / (float) Math.PI))/4;
-        head.rotateAngleZ += (f3 / (180f / (float) Math.PI))/4;
+        neck4.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
+        neck3.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
+        head.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
 
         bob(body3, 1F * globalSpeed, height * 0.7F, false, f, f1);
         bob(thigh2, 1F * globalSpeed, height * 0.7F, false, f, f1);
@@ -442,5 +448,32 @@ public class ModelDilophosaurus extends MowzieModelBase
             chainSwing(tailParts, 0.15F, -0.1F, 3, dilo.frame, 1.0F);
         }
         dilo.tailBuffer.applyChainSwingBuffer(this.tailParts);
+    }
+
+    private void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.animator.update(entity);
+        this.setRotationAngles((EntityDilophosaurus) entity, f, f1, f2, f3, f4, f5);
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
+        {
+            this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
+            this.animator.startPhase(3);
+            this.animator.rotate(neck1, -0.3F, 0, 0);
+            this.animator.rotate(neck2, -0.3F, 0, 0);
+            this.animator.rotate(neck3, 0.2F, 0, 0);
+            this.animator.rotate(neck4, 0.2F, 0, 0);
+            this.animator.rotate(head, 0.2F, 0, 0);
+            this.animator.rotate(down_jaw, 0.6F, 0, 0);
+            this.animator.endPhase();
+            this.animator.startPhase(2);
+            this.animator.rotate(neck1, 0.7F, 0, 0);
+            this.animator.rotate(neck2, 0.3F, 0, 0);
+            this.animator.rotate(neck3, -0.1F, 0, 0);
+            this.animator.rotate(neck4, -0.1F, 0, 0);
+            this.animator.rotate(head, -1F, 0, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(1);
+            this.animator.resetPhase(4);
+        }
     }
 }

@@ -95,6 +95,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
     @Override
     public void updateRiderPosition()
     {
+        super.updateRiderPosition();
         if (this.riddenByEntity != null)
         {
             if (this.riddenByEntity instanceof EntityGallimimus)
