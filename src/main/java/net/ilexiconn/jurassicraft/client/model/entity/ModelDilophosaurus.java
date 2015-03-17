@@ -475,5 +475,43 @@ public class ModelDilophosaurus extends MowzieModelBase
             this.animator.setStationaryPhase(1);
             this.animator.resetPhase(4);
         }
+
+        if (entity.getAnimationId() == JurassiCraftAnimationIDs.SPITTING.animID())
+        {
+            if (entity.getAnimationTick() <= 18) {
+                frill1.isHidden = false;
+                frill2.isHidden = false;
+                frill3.isHidden = false;
+                frill4.isHidden = false;
+            }
+            this.animator.setAnimation(JurassiCraftAnimationIDs.SPITTING.animID());
+            this.animator.startPhase(5);
+            this.animator.rotate(neck1, -0.3F, 0, 0);
+            this.animator.rotate(neck2, -0.3F, 0, 0);
+            this.animator.rotate(neck3, 0.2F, 0, 0);
+            this.animator.rotate(neck4, 0.2F, 0, 0);
+            this.animator.rotate(head, 0.2F, 0, 0);
+            this.animator.rotate(down_jaw, 0.6F, 0, 0);
+            animator.rotate(frill1, 0, -1.55F, 0);
+            animator.rotate(frill2, 0, 1.55F, 0);
+            animator.rotate(frill3, 0, -1.55F, 0);
+            animator.rotate(frill4, 0, 1.55F, 0);
+            this.animator.endPhase();
+            animator.setStationaryPhase(5);
+            this.animator.startPhase(2);
+            this.animator.rotate(neck1, 0.7F, 0, 0);
+            this.animator.rotate(neck2, 0.3F, 0, 0);
+            this.animator.rotate(neck3, -0.1F, 0, 0);
+            this.animator.rotate(neck4, -0.1F, 0, 0);
+            this.animator.rotate(head, -1F, 0, 0);
+            this.animator.rotate(down_jaw, 0.6F, 0, 0);
+            animator.rotate(frill1, 0, -1.55F, 0);
+            animator.rotate(frill2, 0, 1.55F, 0);
+            animator.rotate(frill3, 0, -1.55F, 0);
+            animator.rotate(frill4, 0, 1.55F, 0);
+            this.animator.endPhase();
+            this.animator.setStationaryPhase(3);
+            this.animator.resetPhase(5);
+        }
     }
 }

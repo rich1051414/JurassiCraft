@@ -17,7 +17,8 @@ public enum JurassiCraftAnimationIDs
     BEING_EATEN((byte) 13),
     EATING((byte) 14),
     PLAYING((byte) 15),
-    SOCIALIZING((byte) 15);
+    SOCIALIZING((byte) 15),
+    SPITTING((byte) 16);
 
     private JurassiCraftAnimationIDs(byte id)
     {

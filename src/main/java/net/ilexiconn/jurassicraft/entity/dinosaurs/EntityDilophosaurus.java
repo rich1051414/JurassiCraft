@@ -1,6 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
+import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.ai.*;
+import net.ilexiconn.jurassicraft.ai.animation.AnimationAISpit;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -9,6 +11,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.EntitySpit;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityMoeritherium;
+import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,6 +36,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         super(world);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new AnimationAISpit(this, 20, 10, null));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(3, new JurassiCraftAIWander(this, 40, 0.8D * this.getCreatureSpeed()));
         this.tasks.addTask(4, new JurassiCraftAISit(this));
@@ -116,7 +120,8 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
 
         if (getAttackTarget() != null)
         {
-            if (timeUntilSpit == 0 && getDistanceToEntity(getAttackTarget()) <= 15 && (getAttackTarget().getActivePotionEffect(Potion.blindness) == null || getAttackTarget().getActivePotionEffect(Potion.poison) == null)) attackEntityWithRangedAttack(getAttackTarget(), 0);
+            if (timeUntilSpit == 0 && getDistanceToEntity(getAttackTarget()) <= 15 && (getAttackTarget().getActivePotionEffect(Potion.blindness) == null || getAttackTarget().getActivePotionEffect(Potion.poison) == null)) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.SPITTING.animID());
+
         }
         if (timeUntilSpit > 0) timeUntilSpit--;
     }
@@ -125,7 +130,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
     public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
     {
         EntitySpit spit = new EntitySpit(this.worldObj, this);
-        spit.setPosition(posX + spitLocationRadius * getCreatureScale() * Math.cos((renderYawOffset + 90) * Math.PI/180), posY + 1.5 * getCreatureScale(), posZ + spitLocationRadius * getCreatureScale() * Math.sin((renderYawOffset + 90) * Math.PI/180));
+        spit.setPosition(posX + spitLocationRadius * getCreatureScale() * Math.cos((renderYawOffset + 90) * Math.PI/180), posY + 1 * getCreatureScale(), posZ + spitLocationRadius * getCreatureScale() * Math.sin((renderYawOffset + 90) * Math.PI/180));
         double d0 = p_82196_1_.posX - spit.posX;
         double d1 = p_82196_1_.posY + (double)p_82196_1_.getEyeHeight() - 1.100000023841858D - spit.posY;
         double d2 = p_82196_1_.posZ - spit.posZ;
