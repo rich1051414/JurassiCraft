@@ -2,12 +2,12 @@ package net.ilexiconn.jurassicraft.client.render.tile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.tile.TileEntityTimeBox;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityTimeBox;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityTimeboxRender extends TileEntitySpecialRenderer

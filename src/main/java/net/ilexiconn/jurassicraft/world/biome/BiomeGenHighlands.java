@@ -13,8 +13,6 @@ public class BiomeGenHighlands extends BiomeGenBaseCarboniferous {
 	
     public BiomeGenHighlands(int par1) {
         super(par1);
-        //this.minHeight = 0.1F;
-        //this.maxHeight = 1.9F;
         this.setHeight(BiomeGenBaseCarboniferous.height_highlands);
         this.setBiomeName("Highlands");
         this.theBiomeDecorator.treesPerChunk = 4;

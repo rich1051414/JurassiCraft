@@ -119,7 +119,7 @@ public class WorldChunkManagerDino extends WorldChunkManager {
 
         for (int var7 = 0; var7 < par4 * par5; ++var7)
         {
-            float var8 = (float)BiomeGenBase.getBiome(var6[var7]).getFloatTemperature(par2, 0, par3) / 65536.0F;
+            float var8 = BiomeGenBase.getBiome(var6[var7]).getFloatTemperature(par2, 0, par3) / 65536.0F;
 
             if (var8 > 1.0F)
             {

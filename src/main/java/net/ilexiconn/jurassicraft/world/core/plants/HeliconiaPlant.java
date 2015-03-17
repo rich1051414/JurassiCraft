@@ -1,9 +1,9 @@
-package net.ilexiconn.jurassicraft.dimension.core.plants;
+package net.ilexiconn.jurassicraft.world.core.plants;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.block.BlockDoublePlant;
 
-public class HeliconiaPlant extends BlockDoublePlant 
+public class HeliconiaPlant extends BlockDoublePlant
 {
 	//TODO Fix this thing!
 	
@@ -12,5 +12,6 @@ public class HeliconiaPlant extends BlockDoublePlant
         setBlockName(name);
         setBlockTextureName(JurassiCraft.getModId() + "heliconia-2");
     }
+
 }
 

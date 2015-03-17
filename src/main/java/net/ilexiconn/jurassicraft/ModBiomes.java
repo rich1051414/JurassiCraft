@@ -9,8 +9,6 @@ import net.minecraftforge.common.DimensionManager;
 
 public class ModBiomes implements IContentHandler
 {
-	public static int biomeStartID = 70;
-
 
 	@Override
 	public void init() 

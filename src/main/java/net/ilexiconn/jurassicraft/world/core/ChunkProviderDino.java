@@ -98,7 +98,7 @@ public class ChunkProviderDino implements IChunkProvider
         mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, MINESHAFT);
         scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
         ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);*/
-	}    
+	}
 
 	public ChunkProviderDino(World par1World, long par2, boolean par4)
 	{
@@ -425,7 +425,7 @@ public class ChunkProviderDino implements IChunkProvider
 		 if (this.mapFeaturesEnabled)
 		 {
 			 this.mineshaftGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
-			 flag = this.villageGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
+             flag = this.villageGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
 			 this.strongholdGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
 			 this.scatteredFeatureGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
 		 }
@@ -555,10 +555,10 @@ public class ChunkProviderDino implements IChunkProvider
 	  {
 		  if (this.mapFeaturesEnabled)
 		  {
-			  this.mineshaftGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
-			  this.villageGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
-			  this.strongholdGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
-			  this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
+			  this.mineshaftGenerator.func_151539_a(this, this.worldObj, par1, par2, null);
+			  this.villageGenerator.func_151539_a(this, this.worldObj, par1, par2, null);
+			  this.strongholdGenerator.func_151539_a(this, this.worldObj, par1, par2, null);
+			  this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, par1, par2, null);
 		  }
 	  }
 }

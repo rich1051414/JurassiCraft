@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.render.tile;
 
 import net.ilexiconn.jurassicraft.client.model.block.ModelGrinder;
 import net.ilexiconn.jurassicraft.lib.ResourceReference;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityGrinder;
+import net.ilexiconn.jurassicraft.tile.TileEntityGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

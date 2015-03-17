@@ -1,14 +1,21 @@
 package net.ilexiconn.jurassicraft.world.core;
 
-import net.ilexiconn.jurassicraft.world.biome.BiomeGenBaseCarboniferous;
+import com.google.common.collect.Lists;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
+import java.util.List;
+
 public class GenLayerBiomesDino extends GenLayer {
 
-    public BiomeGenBase[] dimensionBiomes = {BiomeGenBaseCarboniferous.rainforest, BiomeGenBaseCarboniferous.calamitesSwamp,
-    BiomeGenBaseCarboniferous.highlands, BiomeGenBaseCarboniferous.island, BiomeGenBaseCarboniferous.coalSwamp, BiomeGenBaseCarboniferous.carboniferousOcean};
+    private static List<BiomeGenBase> biomes = Lists.newArrayList();
+
+    public static void registerBiome(BiomeGenBase biome) {
+        if(!biomes.contains(biome)) {
+            biomes.add(biome);
+        }
+    }
 
     public GenLayerBiomesDino(long var1, GenLayer var3) {
         super(var1);
@@ -29,7 +36,7 @@ public class GenLayerBiomesDino extends GenLayer {
             for (int dx = 0; dx  <width; dx++)
             {
                 this.initChunkSeed(dx + x, dz + z);
-                dest[(dx + dz * width)] = this.dimensionBiomes[nextInt(this.dimensionBiomes.length)].biomeID;
+                dest[(dx + dz * width)] = this.biomes.get(this.nextInt(biomes.size())).biomeID;
             }
         }
 

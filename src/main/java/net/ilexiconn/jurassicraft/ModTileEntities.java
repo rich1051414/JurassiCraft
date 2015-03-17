@@ -21,6 +21,12 @@ public class ModTileEntities implements IContentHandler
         GameRegistry.registerTileEntity(TileSecurityFenceLowBase.class, "jurassicraft:BlockSecurityFenceLowBase");
         GameRegistry.registerTileEntity(TileSecurityFenceLowGrid.class, "jurassicraft:BlockSecurityFenceLowGrid");
         GameRegistry.registerTileEntity(TileSecurityFenceLowPole.class, "jurassicraft:BlockSecurityFenceLowPole");
+
+        GameRegistry.registerTileEntity(TileEntityCompressor.class, "jurassicraft:Compressor");
+        GameRegistry.registerTileEntity(TileEntityGrinder.class, "jurassicraft:Grinder");
+        GameRegistry.registerTileEntity(TileEntityTimeBox.class, "jurassicraft:Timebox");
+        GameRegistry.registerTileEntity(TileEntityWallShell.class, "jurassicraft:Wallshell");
+
         /*
         GameRegistry.registerTileEntity(TileSecurityFenceMediumCorner.class, "jurassicraft:BlockSecurityFenceMediumCorner");
         GameRegistry.registerTileEntity(TileSecurityFenceMediumBase.class, "jurassicraft:BlockSecurityFenceMediumBase");

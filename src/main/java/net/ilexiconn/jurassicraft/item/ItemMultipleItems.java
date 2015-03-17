@@ -1,11 +1,10 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.api.Properties;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityWallShell;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModBlocks;
+import net.ilexiconn.jurassicraft.api.Properties;
+import net.ilexiconn.jurassicraft.tile.TileEntityWallShell;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

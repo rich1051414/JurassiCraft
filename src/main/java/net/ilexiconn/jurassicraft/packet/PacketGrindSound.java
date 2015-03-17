@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.packet;
 
 import net.ilexiconn.jurassicraft.network.IPacket;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityGrinder;
+import net.ilexiconn.jurassicraft.tile.TileEntityGrinder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

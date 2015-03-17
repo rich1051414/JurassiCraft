@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.tileentity;
+package net.ilexiconn.jurassicraft.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;

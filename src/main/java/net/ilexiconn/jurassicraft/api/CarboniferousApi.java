@@ -37,7 +37,7 @@ public class CarboniferousApi {
 	 */
 	public static boolean addGrinderRecipe(Object input1, Object input2, ItemStack output) {
 		try {
-			Class cls = Class.forName("carboniferous.recipe.GrinderManager");
+			Class cls = Class.forName("net.ilexiconn.jurassicraft.recipe.GrinderManager");
 			Method meth = cls.getMethod("addGrinderRecipe", ItemStack.class, Object[].class);
 			meth.invoke(null, output, new Object[] {input1, input2});
 			return true;
@@ -56,7 +56,7 @@ public class CarboniferousApi {
 	 */
 	public static void addGrinderComponent(ItemStack component, int duration, int speedIncrement) {
 		try {
-			Class cls = Class.forName("carboniferous.recipe.CarboniferousRecipes");
+			Class cls = Class.forName("net.ilexiconn.jurassicraft.recipe.CarboniferousRecipes");
 			Method meth = cls.getMethod("addGrinderComponent", ItemStack.class, Integer.TYPE, Integer.TYPE);
 			meth.invoke(null, component, duration, speedIncrement);
 		}
@@ -77,7 +77,7 @@ public class CarboniferousApi {
 	public static List<ArrayList<Object>> getSedimentOres() {
 		return sedimentOres;
 	}
-	
+
 	/**
 	 * Registers a biome to generate in the Carboniferous dimension.
 	 * @param biome The biome you want to register.
@@ -111,7 +111,7 @@ public class CarboniferousApi {
 	//Private Functions (NOT TO BE USED BY OTHER MODDERS)
 	private static void setUp() {
 		try {
-			brachiopodDamage = (DamageSource)Class.forName("carboniferous.core.util.DamageSourceBrachiopod").newInstance();
+			brachiopodDamage = (DamageSource)Class.forName("net.ilexiconn.jurassicraft.utility.util.DamageSourceBrachiopod").newInstance();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

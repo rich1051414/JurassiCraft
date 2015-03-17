@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityGrinder;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.api.Properties;
+import net.ilexiconn.jurassicraft.tile.TileEntityGrinder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

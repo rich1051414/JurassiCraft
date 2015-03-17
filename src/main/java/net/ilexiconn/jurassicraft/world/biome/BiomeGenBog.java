@@ -17,8 +17,6 @@ public class BiomeGenBog extends BiomeGenBaseCarboniferous {
     
 	public BiomeGenBog(int i) {
         super(i);
-        //this.minHeight = -0.25F;
-        //this.maxHeight = -0.5F;
         this.topBlock = Blocks.grass;
         this.fillerBlock = Blocks.dirt;
 

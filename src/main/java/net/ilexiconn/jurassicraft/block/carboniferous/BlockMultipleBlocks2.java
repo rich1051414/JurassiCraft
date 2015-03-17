@@ -1,10 +1,9 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.api.CarboniferousApi;
-import net.ilexiconn.jurassicraft.api.Properties;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.api.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -110,16 +109,11 @@ public class BlockMultipleBlocks2 extends Block {
         this.cobbedGranite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "webbedGranite"); //13
         this.chiseledBasalt = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "chiseledBasalt"); //14
     }
-    
+
     @Override
-    public int damageDropped(int meta) {
-        if(meta == 1) {
-        	return meta - 1;
-        }
-        else if(meta == 6) {
-        	return 0;
-        }
-    	return meta;
+    public int damageDropped(int meta)
+    {
+        return meta;
     }
     
     @Override
@@ -134,7 +128,8 @@ public class BlockMultipleBlocks2 extends Block {
         }
     	return super.getItemDropped(meta, random, fortune);
     }
-    
+
+
     @Override
     public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata) {
     	return true;

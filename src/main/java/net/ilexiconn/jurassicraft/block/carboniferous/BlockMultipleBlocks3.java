@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.block.carboniferous;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.ilexiconn.jurassicraft.api.Properties;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -64,12 +64,11 @@ public class BlockMultipleBlocks3 extends Block {
         this.meteoriteRedOre = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meteoriteRedOre"); //2
         this.basaltEncrustedDiamond = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "basaltEncrustedDiamond"); //3
     }
+
     @Override
-    public int damageDropped(int meta) {
-    	if(meta == 3)
-    		return 0;
-    	
-    	return meta;
+    public int damageDropped(int meta)
+    {
+        return meta;
     }
 
     @Override

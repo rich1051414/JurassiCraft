@@ -11,6 +11,7 @@ import net.ilexiconn.jurassicraft.block.fence.BlockSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.content.IContentHandler;
 import net.ilexiconn.jurassicraft.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.item.ItemBlockFossilClayOre;
+import net.ilexiconn.jurassicraft.world.core.plants.HeliconiaPlant;
 import net.ilexiconn.jurassicraft.world.feature.FernPlant;
 import net.ilexiconn.jurassicraft.world.feature.OrontiumPlant;
 import net.minecraft.block.Block;
@@ -53,6 +54,7 @@ public class ModBlocks implements IContentHandler
     // Dimension Plants
     public static Block fernPlant;
     public static Block orontium;
+    public static Block Heliconia;
 
     // Carboniferous Blocks WIP
     public static Block grass;
@@ -147,6 +149,7 @@ public class ModBlocks implements IContentHandler
         tilledEarth = new BlockTilledDirt().setHardness(0.6F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.tilledDirt");
 
         // JurassiCraft Blocks
+        Heliconia = new HeliconiaPlant("heliconiaplant");
         fernPlant = new FernPlant("fernplant");
         orontium = new OrontiumPlant("orontiumplant");
         cultivateBottomOff = new BlockCultivateBottom(false);

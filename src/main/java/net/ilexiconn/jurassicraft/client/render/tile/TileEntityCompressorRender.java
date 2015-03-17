@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.render.tile;
 
 import net.ilexiconn.jurassicraft.client.model.block.ModelCompressor;
 import net.ilexiconn.jurassicraft.lib.ResourceReference;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityCompressor;
+import net.ilexiconn.jurassicraft.tile.TileEntityCompressor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

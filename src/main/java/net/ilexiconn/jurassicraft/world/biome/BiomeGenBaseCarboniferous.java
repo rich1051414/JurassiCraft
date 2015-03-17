@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.ilexiconn.jurassicraft.api.Properties;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -48,15 +47,10 @@ public class BiomeGenBaseCarboniferous extends BiomeGenBase {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
-        // Just Tests this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityCoelacanth.class, 4, 1, 2));
-        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBat.class, 5, 4, 4));
-       // Just Tests this.spawnableCreatureList.add(new SpawnListEntry(EntityTyrannosaurus.class, 5, 4, 4));
         this.temperature = 2.0F;
         this.rainfall = 2.0F;
         this.waterColorMultiplier = 39219;
         this.setColor(0xfa9325);
-        this.theBiomeDecorator.flowersPerChunk = 0;
-        this.theBiomeDecorator.grassPerChunk = 10;
 	}	
 	
 	@SideOnly(Side.CLIENT)

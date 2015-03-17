@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.client.gui;
 
-import net.ilexiconn.jurassicraft.container.ContainerGrinder;
-import net.ilexiconn.jurassicraft.utility.helper.GuiHelper;
-import net.ilexiconn.jurassicraft.lib.ResourceReference;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityGrinder;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.container.ContainerGrinder;
+import net.ilexiconn.jurassicraft.lib.ResourceReference;
+import net.ilexiconn.jurassicraft.tile.TileEntityGrinder;
+import net.ilexiconn.jurassicraft.utility.helper.GuiHelper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;

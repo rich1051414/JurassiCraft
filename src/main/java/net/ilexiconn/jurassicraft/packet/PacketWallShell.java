@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.packet;
 
 import net.ilexiconn.jurassicraft.network.IPacket;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityWallShell;
+import net.ilexiconn.jurassicraft.tile.TileEntityWallShell;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

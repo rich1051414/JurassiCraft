@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.tileentity.TileEntityWallShell;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.tile.TileEntityWallShell;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

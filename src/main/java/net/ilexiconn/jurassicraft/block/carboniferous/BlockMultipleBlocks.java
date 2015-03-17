@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.block.carboniferous;
 
-import net.ilexiconn.jurassicraft.ModItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.ModItems;
 import net.ilexiconn.jurassicraft.api.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -146,22 +146,11 @@ public class BlockMultipleBlocks extends Block {
             this.dropXpOnBlockBreak(par1World, par2, par3, par4, j1);
         }
     }
-    
+
     @Override
-    public int damageDropped(int meta) {
-    	if(meta == 0) {
-    		return 1;
-    	}
-    	else if(meta == 11 || meta == 7 || meta == 10 || meta == 6) {
-    		return 0;
-    	}
-    	else if(meta == 9 || meta == 13) {
-    		return 3;
-    	}
-    	else if(meta == 8 || meta == 12) {
-    		return 4;
-    	}
-    	return meta;
+    public int damageDropped(int meta)
+    {
+        return meta;
     }
     
     @Override

@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
-import net.ilexiconn.jurassicraft.tileentity.TileEntityWallShell;
+import net.ilexiconn.jurassicraft.tile.TileEntityWallShell;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;

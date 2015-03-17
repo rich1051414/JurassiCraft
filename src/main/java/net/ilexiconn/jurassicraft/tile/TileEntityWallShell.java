@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.tileentity;
+package net.ilexiconn.jurassicraft.tile;
 
 import com.google.common.base.Strings;
 import net.ilexiconn.jurassicraft.packet.PacketWallShell;

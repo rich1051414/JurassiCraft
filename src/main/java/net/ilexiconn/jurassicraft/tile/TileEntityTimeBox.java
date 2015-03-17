@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.tileentity;
+package net.ilexiconn.jurassicraft.tile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

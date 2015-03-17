@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.container;
 
-import net.ilexiconn.jurassicraft.inventory.SlotGrinder;
-import net.ilexiconn.jurassicraft.inventory.SlotGrindingStone;
-import net.ilexiconn.jurassicraft.tileentity.TileEntityGrinder;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.inventory.SlotGrinder;
+import net.ilexiconn.jurassicraft.inventory.SlotGrindingStone;
+import net.ilexiconn.jurassicraft.tile.TileEntityGrinder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
