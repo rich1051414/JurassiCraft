@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -115,7 +116,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
 
         if (getAttackTarget() != null)
         {
-            if (timeUntilSpit == 0) attackEntityWithRangedAttack(getAttackTarget(), 0);
+            if (timeUntilSpit == 0 && getDistanceToEntity(getAttackTarget()) <= 15 && (getAttackTarget().getActivePotionEffect(Potion.blindness) == null || getAttackTarget().getActivePotionEffect(Potion.poison) == null)) attackEntityWithRangedAttack(getAttackTarget(), 0);
         }
         if (timeUntilSpit > 0) timeUntilSpit--;
     }
