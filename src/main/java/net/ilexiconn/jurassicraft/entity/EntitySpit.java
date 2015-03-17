@@ -2,8 +2,6 @@ package net.ilexiconn.jurassicraft.entity;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -34,19 +32,26 @@ public class EntitySpit extends EntityThrowable {
             byte b0 = 1;
 
             p_70184_1_.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)b0);
-            ((EntityLivingBase)p_70184_1_.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 300, 1, false));
-            ((EntityLivingBase)p_70184_1_.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1, false));
+//            ((EntityLivingBase)p_70184_1_.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 300, 1, false));
+//            ((EntityLivingBase)p_70184_1_.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1, false));
 
         }
 
         for (int i = 0; i < 8; ++i)
         {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("reddust", this.posX, this.posY, this.posZ, 0.8D, 0.3D, 0.8D);
         }
 
         if (!this.worldObj.isRemote)
         {
             this.setDead();
         }
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        this.worldObj.spawnParticle("reddust", this.posX, this.posY, this.posZ, 0.7D, 0.2D, 0.7D);
+
     }
 }
