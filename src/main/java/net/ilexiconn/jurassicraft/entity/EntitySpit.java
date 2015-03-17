@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityDilophosaurus;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.Potion;
@@ -12,7 +13,7 @@ import net.minecraft.world.World;
  * Created by jnad325 on 3/14/15.
  */
 public class EntitySpit extends EntityThrowable {
-    EntityLivingBase spitter;
+    EntityDilophosaurus spitter;
 
     public EntitySpit(World world)
     {
@@ -22,7 +23,7 @@ public class EntitySpit extends EntityThrowable {
     public EntitySpit(World world, EntityLivingBase entity)
     {
         super(world, entity);
-        spitter = entity;
+        spitter = (EntityDilophosaurus) entity;
     }
 
     public EntitySpit(World p_i1775_1_, double p_i1775_2_, double p_i1775_4_, double p_i1775_6_)
@@ -32,7 +33,7 @@ public class EntitySpit extends EntityThrowable {
 
     protected void onImpact(MovingObjectPosition p_70184_1_)
     {
-        if (p_70184_1_.entityHit != null && p_70184_1_.entityHit instanceof EntityLivingBase && p_70184_1_.entityHit != spitter)
+        if (p_70184_1_.entityHit != null && p_70184_1_.entityHit instanceof EntityLivingBase && p_70184_1_.entityHit != spitter && (p_70184_1_.entityHit == spitter.getAttackTarget() || !(p_70184_1_.entityHit instanceof EntityDilophosaurus)))
         {
             byte b0 = 1;
 
@@ -42,9 +43,10 @@ public class EntitySpit extends EntityThrowable {
 
         }
 
+        float size = 3F;
         for (int i = 0; i < 8; ++i)
         {
-            this.worldObj.spawnParticle("reddust", this.posX, this.posY, this.posZ, 0.8D, 0.3D, 0.8D);
+            this.worldObj.spawnParticle("reddust", this.posX + (size * Math.random() - size/2), this.posY + (size * Math.random() - size/2), this.posZ + (size * Math.random() - size/2), 0.2D, 0.2D, 0.2D);
         }
 
         if (!this.worldObj.isRemote)
@@ -56,6 +58,9 @@ public class EntitySpit extends EntityThrowable {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        this.worldObj.spawnParticle("reddust", this.posX, this.posY, this.posZ, 0.7D, 0.2D, 0.7D);
-    }
+        float size = 0.35F;
+        for (int i = 0; i < 6; ++i)
+        {
+            this.worldObj.spawnParticle("reddust", this.posX + (size * Math.random() - size/2), this.posY + (size * Math.random() - size/2), this.posZ + (size * Math.random() - size/2), 0.2D, 0.2D, 0.2D);
+        }    }
 }

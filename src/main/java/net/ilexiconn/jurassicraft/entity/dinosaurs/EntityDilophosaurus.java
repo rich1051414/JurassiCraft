@@ -26,7 +26,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);
     int timeUntilSpit = 0;
-    float spitLocationRadius = 2.5F;
+    float spitLocationRadius = 2.2F;
 
     public EntityDilophosaurus(World world)
     {
@@ -130,7 +130,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         double d1 = p_82196_1_.posY + (double)p_82196_1_.getEyeHeight() - 1.100000023841858D - spit.posY;
         double d2 = p_82196_1_.posZ - spit.posZ;
         float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
-        spit.setThrowableHeading(d0, d1 + (double)f1, d2, 1F, 0F);
+        spit.setThrowableHeading(d0, d1 + (double)f1, d2, 1.5F, 0F);
         this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.worldObj.spawnEntityInWorld(spit);
         timeUntilSpit = 20;
