@@ -25,7 +25,7 @@ public class BiomeGenBaseCarboniferous extends BiomeGenBase {
 	
 	public static final BiomeGenBaseCarboniferous carboniferousRiver = new BiomeGenRiverCarboniferous(Properties.BIOME_ID_RIVER);
 	public static final BiomeGenBaseCarboniferous carboniferousOcean = new BiomeGenOceanCarboniferous(Properties.BIOME_ID_OCEAN);
-	
+    public static final BiomeGenBase dinoPlains = new BiomeGenDinoPlains(Properties.BIOME_ID_PLAINS);
 	public static final BiomeGenBaseCarboniferous calamitesSwamp = new BiomeGenCalamitesSwamp(Properties.BIOME_ID_CALAMITESSWAMP);
 	public static final BiomeGenBaseCarboniferous highlands = new BiomeGenHighlands(Properties.BIOME_ID_HIGHLANDS);
 	public static final BiomeGenBaseCarboniferous island = new BiomeGenIsland(Properties.BIOME_ID_ISLAND);

@@ -29,7 +29,6 @@ public class ModItems implements IContentHandler
     // Carboniferous Items
 
     public static Item multiItems;
-    public static Item huntersBow;
     public static Item grindingStones;
     public static Item rawAnt;
     public static Item cookedAnt;
@@ -58,7 +57,6 @@ public class ModItems implements IContentHandler
         // Carboniferous Items
 
         multiItems = new ItemMultipleItems().setUnlocalizedName("carbon.multipleItems");
-        huntersBow = new ItemHuntersBow().setUnlocalizedName("carbon.huntersBow");
         grindingStones =  new ItemGrindingStones().setUnlocalizedName("carbon.grindingStones");
         rawAnt = new ItemAnt(1, 0.3F).setUnlocalizedName("carbon.rawAnt");
         cookedAnt = new ItemAnt(3, 0.4F).setUnlocalizedName("carbon.cookedAnt");

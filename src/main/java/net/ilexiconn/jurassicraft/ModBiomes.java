@@ -14,6 +14,7 @@ public class ModBiomes implements IContentHandler
 	public void init() 
 	{
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.calamitesSwamp);
+        CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.dinoPlains);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.highlands);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.island);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.coalSwamp);
