@@ -36,7 +36,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public EntityJurassiCraftCreature(World world)
     {
         super(world);
-        this.setCreature(CreatureManager.classToCreature(getClass()));
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
             this.setRandomGenetics();
@@ -830,30 +829,6 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public int getAnimationTick()
     {
         return this.animTick;
-    }
-
-    @Override
-    public String getLivingSound()
-    {
-        String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":living", this.getSoundVolume(), this.getSoundPitch());
-        return null;
-    }
-
-    @Override
-    public String getHurtSound()
-    {
-        String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":hurt", this.getSoundVolume(), this.getSoundPitch());
-        return null;
-    }
-
-    @Override
-    public String getDeathSound()
-    {
-        String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":death", this.getSoundVolume(), this.getSoundPitch());
-        return null;
     }
 
     protected EntityItem dropItemStackWithGenetics(ItemStack itemStack)
