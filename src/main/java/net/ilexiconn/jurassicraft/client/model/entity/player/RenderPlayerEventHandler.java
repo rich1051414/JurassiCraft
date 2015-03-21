@@ -36,6 +36,9 @@ public class RenderPlayerEventHandler
             // Cryrano
              UUID.fromString("4e88e24d-f77e-436a-ac80-457365c8deaa")};
 
+    public UUID[] donators = new UUID[] {
+    };
+
     public ModelSantaHat santaHat = new ModelSantaHat();
 
     @SubscribeEvent
@@ -61,11 +64,22 @@ public class RenderPlayerEventHandler
         {
             ((AbstractClientPlayer) event.entityPlayer).func_152121_a(MinecraftProfileTexture.Type.CAPE, new ResourceLocation("jurassicraft", "textures/cape/awesomeCape.png"));
         }
+
+        else if (event.entityPlayer instanceof AbstractClientPlayer && isDonator(event.entityPlayer.getUniqueID()))
+        {
+            ((AbstractClientPlayer) event.entityPlayer).func_152121_a(MinecraftProfileTexture.Type.CAPE, new ResourceLocation("jurassicraft", "textures/cape/donatorCape.png"));
+        }
     }
 
     public boolean isDev(UUID id)
     {
         for (UUID uuid1 : uuid) if (id.equals(uuid1)) return true;
+        return false;
+    }
+
+    public boolean isDonator(UUID id)
+    {
+        for (UUID uuid1 : donators) if (id.equals(uuid1)) return true;
         return false;
     }
 }

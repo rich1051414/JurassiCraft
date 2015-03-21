@@ -4,14 +4,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenPlains;
 
 import java.util.Random;
 
-public class BiomeGenDinoPlains extends BiomeGenPlains {
+public class BiomeGenDinoPlains extends BiomeGenBaseCarboniferous {
 
     public BiomeGenDinoPlains(int par1) {
-        super(1);
+        super(par1);
         this.theBiomeDecorator = new BiomeDecoratorCarboniferous();
         this.topBlock = ModBlocks.grass;
         this.fillerBlock = ModBlocks.dirt;
