@@ -42,7 +42,7 @@ public class EntitySpit extends EntityThrowable {
             ((EntityLivingBase)p_70184_1_.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1, false));
 
         }
-        this.
+//        this.
 
         float size = 3F;
         for (int i = 0; i < 8; ++i)
