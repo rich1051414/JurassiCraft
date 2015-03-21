@@ -826,6 +826,96 @@
             "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
         ]
     },
+    "tyrannosaurus01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurus01"
+        ]
+    },
+    "tyrannosaurusbreath": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusbreath"
+        ]
+    },
+    "tyrannosaurus:death": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01"
+        ]
+    },
+    "tyrannosaurusDeath01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01"
+        ]
+    },
+    "tyrannosaurus:hurt": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01",
+            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02"
+        ]
+    },
+    "tyrannosaurusHurt01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01"
+        ]
+    },
+    "tyrannosaurusHurt02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02"
+        ]
+    },
+    "tyrannosaurus:living": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01",
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02",
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03",
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04",
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05",
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06"
+        ]
+    },
+    "tyrannosaurusLiving01": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01"
+        ]
+    },
+    "tyrannosaurusLiving02": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02"
+        ]
+    },
+    "tyrannosaurusLiving03": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03"
+        ]
+    },
+    "tyrannosaurusLiving04": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04"
+        ]
+    },
+    "tyrannosaurusLiving05": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05"
+        ]
+    },
+    "tyrannosaurusLiving06": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06"
+        ]
+    },
     "cearadactylus:living": {
         "category": "hostile",
         "sounds": [
