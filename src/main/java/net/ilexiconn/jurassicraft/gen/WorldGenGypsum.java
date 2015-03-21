@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.gen;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.ilexiconn.jurassicraft.ModBlocks;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
@@ -12,7 +13,7 @@ public class WorldGenGypsum implements IWorldGenerator
 {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        if (world.provider.dimensionId == 0)
+        if (world.provider instanceof WorldProviderSurface)
         {
             int x, y, z;
 
