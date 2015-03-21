@@ -262,17 +262,6 @@ public class BlockLeaves extends BlockLeavesBase implements IShearable
     }
 
     /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-     * block and l is the block's subtype/damage.
-     */
-    public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_, int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
-    {
-        {
-            super.harvestBlock(p_149636_1_, p_149636_2_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_);
-        }
-    }
-
-    /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
     public int damageDropped(int p_149692_1_)

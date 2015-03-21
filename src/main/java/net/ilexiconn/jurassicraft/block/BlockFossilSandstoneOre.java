@@ -33,7 +33,7 @@ public class BlockFossilSandstoneOre extends Block
         setResistance(5.0F);
         setCreativeTab(ModCreativeTabs.blocks);
         setStepSound(Block.soundTypeStone);
-        setHarvestLevel("pickaxe", 0);
+        setHarvestLevel("pickaxe", 2);
     }
 
     public Item getItemDropped(int value, Random random, int thing)
@@ -54,16 +54,6 @@ public class BlockFossilSandstoneOre extends Block
         else
         {
             return ModItems.fossil;
-        }
-    }
-
-    public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int h)
-    {
-        if (!world.isRemote)
-        {
-            ItemStack equippedByPlayer = player.getCurrentEquippedItem();
-            if (equippedByPlayer != null && equippedByPlayer.getItem() instanceof ItemPickaxe && Enum.valueOf(Item.ToolMaterial.class, ((ItemPickaxe) equippedByPlayer.getItem()).getToolMaterialName()).getHarvestLevel() >= 2)
-                super.harvestBlock(world, player, x, y, z, h);
         }
     }
 

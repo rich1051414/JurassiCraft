@@ -420,17 +420,6 @@ public class BlockVine extends Block implements IShearable
         return 0;
     }
 
-    /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-     * block and l is the block's subtype/damage.
-     */
-    public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_, int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
-    {
-        {
-            super.harvestBlock(p_149636_1_, p_149636_2_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_);
-        }
-    }
-
     @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
