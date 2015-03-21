@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import java.util.Random;
@@ -24,6 +23,8 @@ public class WorldGenFossilOre implements IWorldGenerator
                 x = random.nextInt(16) + (chunkX * 16);
                 z = random.nextInt(16) + (chunkZ * 16);
                 int worldHeight = world.getHeightValue(x, z);
+                if (worldHeight <= 0)
+                    worldHeight = 4;
                 y = random.nextInt(worldHeight);
 
                 generateOre(world, random, x, y, z);
