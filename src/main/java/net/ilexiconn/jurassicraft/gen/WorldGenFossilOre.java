@@ -15,7 +15,7 @@ public class WorldGenFossilOre implements IWorldGenerator
 {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        if (world.provider instanceof WorldProviderSurface)
+        if (world.provider.isSurfaceWorld())
         {
             int x, y, z;
 
