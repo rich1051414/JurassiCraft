@@ -4,7 +4,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.client.entity.render.RenderDinoEgg;
+import net.ilexiconn.jurassicraft.client.render.entity.RenderDinoEgg;
 import net.ilexiconn.jurassicraft.client.render.item.ItemCultivateRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNACombinatorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;

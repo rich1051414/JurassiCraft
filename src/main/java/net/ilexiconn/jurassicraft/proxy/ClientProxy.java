@@ -5,7 +5,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.client.entity.render.RenderSpit;
+import net.ilexiconn.jurassicraft.client.render.entity.RenderSpit;
 import net.ilexiconn.jurassicraft.client.model.entity.player.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.entity.EntitySpit;
 import net.minecraft.client.Minecraft;
