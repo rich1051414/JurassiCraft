@@ -38,7 +38,7 @@ public class BlockFossilOre extends Block
 
     public BlockFossilOre()
     {
-        super(Material.ground);
+        super(Material.rock);
         setBlockName("fossil_ore");
         setBlockTextureName(JurassiCraft.getModId() + "fossil_ore");
         setHardness(3.0F);

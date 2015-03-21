@@ -17,7 +17,7 @@ public class BlockAmberOre extends Block
 {
     public BlockAmberOre()
     {
-        super(Material.ground);
+        super(Material.rock);
         setBlockName("amber_ore");
         setBlockTextureName(JurassiCraft.getModId() + "amber_ore");
         setHardness(3.0F);
