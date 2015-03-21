@@ -17,28 +17,18 @@ public class BlockAmberOre extends Block
 {
     public BlockAmberOre()
     {
-        super(Material.ground);
+        super(Material.rock);
         setBlockName("amber_ore");
         setBlockTextureName(JurassiCraft.getModId() + "amber_ore");
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(Block.soundTypeStone);
-        setHarvestLevel("pickaxe", 1);
+        setHarvestLevel("pickaxe", 2);
         setCreativeTab(ModCreativeTabs.blocks);
     }
 
     public Item getItemDropped(int value, Random random, int thing)
     {
         return ModItems.amber;
-    }
-
-    public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int h)
-    {
-        if (!world.isRemote)
-        {
-            ItemStack equippedByPlayer = player.getCurrentEquippedItem();
-            if (equippedByPlayer != null && equippedByPlayer.getItem() instanceof ItemPickaxe && Enum.valueOf(Item.ToolMaterial.class, ((ItemPickaxe) equippedByPlayer.getItem()).getToolMaterialName()).getHarvestLevel() >= 2)
-                super.harvestBlock(world, player, x, y, z, h);
-        }
     }
 }

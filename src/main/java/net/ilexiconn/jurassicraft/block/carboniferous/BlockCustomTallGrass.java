@@ -52,11 +52,6 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
 
     @Override
-    public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6) {
-        super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
-    }
-    
-    @Override
     public int getDamageValue(World par1World, int par2, int par3, int par4) {
         return par1World.getBlockMetadata(par2, par3, par4);
     }
