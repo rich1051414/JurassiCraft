@@ -121,9 +121,9 @@ public class EntityPregnantPig implements IExtendedEntityProperties
     @Override
     public void loadNBTData(NBTTagCompound compound)
     {
-        if (compound.hasNoTags())
+        NBTTagCompound properties = (NBTTagCompound) compound.getTag(EntityPregnantPig.PREGNANT_PIG_PROPERTY);
+        if (properties != null)
         {
-            NBTTagCompound properties = (NBTTagCompound) compound.getTag(EntityPregnantPig.PREGNANT_PIG_PROPERTY);
             if (properties.hasKey("DNASequence")) this.dnaSequence = properties.getString("DNASequence");
             if (properties.hasKey("MammalName")) this.mammalName = properties.getString("MammalName");
             if (properties.hasKey("PregnancyProgress"))
