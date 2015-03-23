@@ -36,7 +36,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
 {
     public ControlledAnimation tailWhipPosition = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-
+    
     public EntityStegosaurus(World world)
     {
         super(world);
@@ -62,31 +62,31 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(4000);
     }
-
+    
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         if (this.isDefending() && this.creatureToAttack != null)
         {
             this.tailWhipPosition.increaseTimer();
             if (this.creatureToAttack != null && this.getAnimationId() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
             {
-				this.rotationYaw += (this.creatureToAttack.rotationYaw - this.rotationYaw) / 10.0F;
-				this.renderYawOffset = this.rotationYaw + 3.14159265359F;
+                this.rotationYaw += (this.creatureToAttack.rotationYaw - this.rotationYaw) / 10.0F;
+                this.renderYawOffset = this.rotationYaw + 3.14159265359F;
             }
             if (this.rand.nextInt(60) == 0)
             {
@@ -107,22 +107,22 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         }
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
-
+    
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-    	if (this.rand.nextInt(3) == 0)
-    	{
-    		if (this.animID == 0)
-    			AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.TAIL_WHIP.animID());
+        if (this.rand.nextInt(3) == 0)
+        {
+            if (this.animID == 0)
+                AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.TAIL_WHIP.animID());
             return true;
-    	}
-    	else
-    	{
+        }
+        else
+        {
             return super.attackEntityAsMob(entity);
-    	}
+        }
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -12,15 +12,15 @@ import org.lwjgl.opengl.GL11;
 
 public class TileDNACombinatorRenderer extends TileEntitySpecialRenderer
 {
-
+    
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/dnaCombinator.png");
     private ModelDnaCombiner model = new ModelDnaCombiner();
-
+    
     public TileDNACombinatorRenderer()
     {
-
+        
     }
-
+    
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {

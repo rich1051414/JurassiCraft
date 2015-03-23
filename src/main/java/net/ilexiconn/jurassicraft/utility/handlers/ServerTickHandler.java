@@ -12,14 +12,14 @@ import cpw.mods.fml.relauncher.Side;
  */
 public class ServerTickHandler
 {
-	@SubscribeEvent
-	public void playerTick(PlayerTickEvent event)
-	{
-		if(event.phase != Phase.END || event.side != Side.SERVER)
-			return;
-
-		EntityPlayer player = event.player;
-
-		JurassiCraft.instance.serverTeleport.onTick(player);
-	}
+    @SubscribeEvent
+    public void playerTick(PlayerTickEvent event)
+    {
+        if (event.phase != Phase.END || event.side != Side.SERVER)
+            return;
+        
+        EntityPlayer player = event.player;
+        
+        JurassiCraft.instance.serverTeleport.onTick(player);
+    }
 }

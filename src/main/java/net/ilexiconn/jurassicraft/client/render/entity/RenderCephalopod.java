@@ -9,37 +9,37 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class RenderCephalopod extends RenderLiving
 {
-
+    
     private Creature cephalopod;
     private float resizableShadow;
-
+    
     public RenderCephalopod(ModelBase model, Creature cephalopod, float shadow)
     {
         super(model, 1.0F);
         this.setCephalopod(cephalopod);
         this.setShadow(shadow);
     }
-
+    
     private void setShadow(float shadow)
     {
         this.resizableShadow = shadow;
     }
-
+    
     public float getShadow()
     {
         return this.resizableShadow;
     }
-
+    
     private void setCephalopod(Creature cephalopod)
     {
         this.cephalopod = cephalopod;
     }
-
+    
     public Creature getCephalopod()
     {
         return this.cephalopod;
     }
-
+    
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

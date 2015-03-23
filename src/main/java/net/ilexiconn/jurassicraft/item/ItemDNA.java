@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ItemDNA extends Item implements IDNASample
 {
-
+    
     public ItemDNA(String name)
     {
         super();
@@ -26,7 +26,7 @@ public class ItemDNA extends Item implements IDNASample
         setTextureName(JurassiCraft.getModId() + "creature/" + name + "_DNA");
         setCreativeTab(ModCreativeTabs.dnas);
     }
-
+    
     public Item getCorrespondingEggOrSyringe()
     {
         Creature creature = CreatureManager.getCreatureFromDNA(this);
@@ -43,7 +43,7 @@ public class ItemDNA extends Item implements IDNASample
             return null;
         }
     }
-
+    
     @Override
     public String getDNASequence(ItemStack dnaSample)
     {
@@ -56,7 +56,7 @@ public class ItemDNA extends Item implements IDNASample
         }
         return StatCollector.translateToLocal("item.dna.info.errorCode");
     }
-
+    
     @Override
     public int getQuality(ItemStack dnaSample)
     {
@@ -69,7 +69,7 @@ public class ItemDNA extends Item implements IDNASample
         }
         return 0;
     }
-
+    
     @Override
     public void addInformation(ItemStack dnaSample, EntityPlayer player, List list, boolean flag)
     {
@@ -85,7 +85,7 @@ public class ItemDNA extends Item implements IDNASample
             }
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack dnaSample, World world, EntityPlayer player)
     {

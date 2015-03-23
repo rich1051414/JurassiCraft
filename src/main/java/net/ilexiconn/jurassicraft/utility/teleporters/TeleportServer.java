@@ -13,74 +13,74 @@ import java.util.Random;
  **/
 public class TeleportServer
 {
-	private EntityPlayerMP player;
-	public float prevTimeInPortal;
-	public float timeInPortal;
-	public boolean inPortal = false;
-	public Random random = new Random();
-	public int timeUntilPortal = 20;
-	public byte targetDim = 0;
-	
-	public TeleportServer(EntityPlayerMP player) 
-	{
-		this.player = player;
-	}
-	
-	public EntityPlayerMP getPlayer()
-	{
-		return player;
-	}
-	
-	public void onTick() 
-	{
+    private EntityPlayerMP player;
+    public float prevTimeInPortal;
+    public float timeInPortal;
+    public boolean inPortal = false;
+    public Random random = new Random();
+    public int timeUntilPortal = 20;
+    public byte targetDim = 0;
+    
+    public TeleportServer(EntityPlayerMP player)
+    {
+        this.player = player;
+    }
+    
+    public EntityPlayerMP getPlayer()
+    {
+        return player;
+    }
+    
+    public void onTick()
+    {
         if (this.inPortal)
         {
-        	timeInPortal += 0.0125F;
-        	
+            timeInPortal += 0.0125F;
+            
             if (this.timeInPortal >= 1.0F)
             {
-            	this.timeInPortal = 1.0F;
+                this.timeInPortal = 1.0F;
                 this.timeUntilPortal = 10;
-                byte dimension = (byte)Properties.dimensionID;
+                byte dimension = (byte) Properties.dimensionID;
                 
-                if (player.dimension == Properties.dimensionID) 
+                if (player.dimension == Properties.dimensionID)
                 {
-                	dimension = 0;
+                    dimension = 0;
                 }
                 
                 JurassiCraft.NETWORK_MANAGER.sendPacketToPlayer(new PacketTeleport(), player);
                 player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dimension, new TeleporterDino(player.mcServer.worldServerForDimension(dimension)));
-
+                
             }
             
             this.inPortal = false;
         }
-        else 
+        else
         {
-            if (this.timeInPortal > 0.0F) 
+            if (this.timeInPortal > 0.0F)
             {
                 this.timeInPortal -= 0.05F;
             }
-            if (this.timeInPortal < 0.0F) 
+            if (this.timeInPortal < 0.0F)
             {
                 this.timeInPortal = 0.0F;
             }
         }
-        if (this.timeUntilPortal > 0) 
+        if (this.timeUntilPortal > 0)
         {
             --this.timeUntilPortal;
         }
-	}
-	
-    public void setInPortal() 
+    }
+    
+    public void setInPortal()
     {
         if (timeUntilPortal > 0)
         {
             timeUntilPortal = 10;
         }
-        else 
+        else
         {
-        	inPortal = true;
+            inPortal = true;
         }
     }
 }

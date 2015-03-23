@@ -7,14 +7,14 @@ import net.minecraft.util.MathHelper;
 
 public class ModelMoeritherium extends ModelBase
 {
-
+    
     ResettableModelRenderer snout1, snout2, head1, head2, earleft, earright, mouth1, mouth2, body1, body2, body3, tail1, tail2, backlegleft1, backlegleft2, backlegleft3, backlegleft4, backlegright1, backlegright2, backlegright3, backlegright4, frontlegleft1, frontlegleft2, frontlegleft3, frontlegleft4, frontlegright1, frontlegright2, frontlegright3, frontlegright4;
-
+    
     public ModelMoeritherium()
     {
         textureWidth = 128;
         textureHeight = 64;
-
+        
         snout1 = new ResettableModelRenderer(this, 110, 0);
         snout1.addBox(-2.5F, -8.2F, -12F, 5, 3, 4);
         snout1.setRotationPoint(0F, 14.5F, -8.5F);
@@ -189,7 +189,7 @@ public class ModelMoeritherium extends ModelBase
         earright.setTextureSize(128, 64);
         earright.mirror = true;
         setRotation(earright, -0.2617994F, 0.6981317F, 0.5235988F);
-
+        
         snout1.savefirstParameters();
         snout2.savefirstParameters();
         mouth2.savefirstParameters();
@@ -220,12 +220,12 @@ public class ModelMoeritherium extends ModelBase
         earleft.savefirstParameters();
         earright.savefirstParameters();
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+        
         snout1.render(f5);
         snout2.render(f5);
         mouth2.render(f5);
@@ -256,18 +256,18 @@ public class ModelMoeritherium extends ModelBase
         earleft.render(f5);
         earright.render(f5);
     }
-
+    
     private void setRotation(ResettableModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+        
         float headMovementX = f4 / (180F / (float) Math.PI);
         float headMovementY = f3 / (180F / (float) Math.PI);
         float snoutNaturalMovement = MathHelper.cos(0.10F * f2);
@@ -275,11 +275,11 @@ public class ModelMoeritherium extends ModelBase
         float legMovement2 = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
         float tailMovement1 = 0.05F * MathHelper.cos(0.10F * f2);
         float tailMovement2 = 0.05F * MathHelper.sin(0.10F * f2);
-
+        
         body1.rotateAngleX = body1.firstRotateAngleX;
         body2.rotateAngleX = body1.firstRotateAngleX;
         body3.rotateAngleX = body1.firstRotateAngleX;
-
+        
         head1.rotateAngleX = headMovementX + head1.firstRotateAngleX;
         head2.rotateAngleX = headMovementX + head2.firstRotateAngleX;
         snout1.rotateAngleX = headMovementX + 0.01F * snoutNaturalMovement + snout1.firstRotateAngleX;
@@ -288,7 +288,7 @@ public class ModelMoeritherium extends ModelBase
         mouth2.rotateAngleX = headMovementX + mouth2.firstRotateAngleX;
         earright.rotateAngleX = headMovementX + earright.firstRotateAngleX;
         earleft.rotateAngleX = headMovementX + earleft.firstRotateAngleX;
-
+        
         head1.rotateAngleY = headMovementY + head1.firstRotateAngleY;
         head2.rotateAngleY = headMovementY + head2.firstRotateAngleY;
         snout1.rotateAngleY = headMovementY + snout1.firstRotateAngleY;
@@ -297,30 +297,30 @@ public class ModelMoeritherium extends ModelBase
         mouth2.rotateAngleY = headMovementY + mouth2.firstRotateAngleY;
         earright.rotateAngleY = headMovementY + earright.firstRotateAngleY;
         earleft.rotateAngleY = headMovementY + earleft.firstRotateAngleY;
-
+        
         earright.rotateAngleZ = earright.firstRotateAngleZ;
         earleft.rotateAngleZ = earleft.firstRotateAngleZ;
-
+        
         frontlegleft1.rotateAngleX = legMovement1 + frontlegleft1.firstRotateAngleX;
         frontlegleft2.rotateAngleX = legMovement1 + frontlegleft2.firstRotateAngleX;
         frontlegleft3.rotateAngleX = legMovement1 + frontlegleft3.firstRotateAngleX;
         frontlegleft4.rotateAngleX = legMovement1 + frontlegleft4.firstRotateAngleX;
-
+        
         backlegright1.rotateAngleX = legMovement1 + backlegright1.firstRotateAngleX;
         backlegright2.rotateAngleX = legMovement1 + backlegright2.firstRotateAngleX;
         backlegright3.rotateAngleX = legMovement1 + backlegright3.firstRotateAngleX;
         backlegright4.rotateAngleX = legMovement1 + backlegright4.firstRotateAngleX;
-
+        
         frontlegright1.rotateAngleX = legMovement2 + frontlegright1.firstRotateAngleX;
         frontlegright2.rotateAngleX = legMovement2 + frontlegright2.firstRotateAngleX;
         frontlegright3.rotateAngleX = legMovement2 + frontlegright3.firstRotateAngleX;
         frontlegright4.rotateAngleX = legMovement2 + frontlegright4.firstRotateAngleX;
-
+        
         backlegleft1.rotateAngleX = legMovement2 + backlegleft1.firstRotateAngleX;
         backlegleft2.rotateAngleX = legMovement2 + backlegleft2.firstRotateAngleX;
         backlegleft3.rotateAngleX = legMovement2 + backlegleft3.firstRotateAngleX;
         backlegleft4.rotateAngleX = legMovement2 + backlegleft4.firstRotateAngleX;
-
+        
         tail1.rotateAngleZ = tailMovement1 + tail1.firstRotateAngleZ;
         tail2.rotateAngleZ = tailMovement1 + tail2.firstRotateAngleZ;
         tail1.rotateAngleY = tailMovement2 + tail1.firstRotateAngleY;
@@ -328,5 +328,5 @@ public class ModelMoeritherium extends ModelBase
         tail1.rotateAngleX = tailMovement2 + tail1.firstRotateAngleX;
         tail2.rotateAngleX = tailMovement2 + tail2.firstRotateAngleX;
     }
-
+    
 }

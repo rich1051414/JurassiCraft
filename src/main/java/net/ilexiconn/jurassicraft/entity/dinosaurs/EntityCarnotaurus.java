@@ -39,7 +39,7 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private boolean restingHead = false;
     private int restHeadSwitchTimer = 300;
-
+    
     public EntityCarnotaurus(World world)
     {
         super(world);
@@ -72,18 +72,18 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
         this.setCreatureExperiencePoints(4000);
     }
-
+    
     @Override
     public double getMountedYOffset()
     {
         return 0.95D * (double) (this.getYBouningBox() + 0.175F * (this.limbSwingAmount - this.limbSwingAmount * MathHelper.sin(0.55F * this.limbSwing)));
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -101,7 +101,7 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
         
         this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

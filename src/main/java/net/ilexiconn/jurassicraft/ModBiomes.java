@@ -9,10 +9,10 @@ import net.minecraftforge.common.DimensionManager;
 
 public class ModBiomes implements IContentHandler
 {
-
-	@Override
-	public void init() 
-	{
+    
+    @Override
+    public void init()
+    {
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.calamitesSwamp);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.dinoPlains);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.highlands);
@@ -20,8 +20,8 @@ public class ModBiomes implements IContentHandler
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.coalSwamp);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.rainforest);
         CarboniferousApi.registerBiome(BiomeGenBaseCarboniferous.carboniferousOcean);
-
+        
         DimensionManager.registerProviderType(Properties.dimensionID, WorldProviderDino.class, false);
-		DimensionManager.registerDimension(Properties.dimensionID, Properties.dimensionID);
-	}
+        DimensionManager.registerDimension(Properties.dimensionID, Properties.dimensionID);
+    }
 }

@@ -13,7 +13,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
     private double speed;
     private int stealFoodChance;
     private int stealFoodTimer;
-
+    
     public JurassiCraftAIFollowFood(EntityJurassiCraftSmart entity, int stealFoodChance, double velocity)
     {
         this.creature = entity;
@@ -21,7 +21,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
         this.stealFoodChance = stealFoodChance;
         this.setMutexBits(3);
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
@@ -43,7 +43,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
             }
         }
     }
-
+    
     @Override
     public void startExecuting()
     {
@@ -59,7 +59,7 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
         this.creature.getNavigator().setAvoidsWater(false);
         this.stealFoodTimer = 50;
     }
-
+    
     @Override
     public void updateTask()
     {
@@ -73,7 +73,8 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
                 this.stealFoodTimer = 50;
                 ItemStack heldItem = this.temptingPlayer.getHeldItem();
                 heldItem.stackSize--;
-                if (heldItem.stackSize < 1) heldItem = null;
+                if (heldItem.stackSize < 1)
+                    heldItem = null;
             }
             else
             {
@@ -85,14 +86,14 @@ public class JurassiCraftAIFollowFood extends EntityAIBase
             this.creature.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
         }
     }
-
+    
     @Override
     public boolean continueExecuting()
     {
         ItemStack itemstack = this.temptingPlayer.getCurrentEquippedItem();
         return this.creature.isEntityAlive() && this.temptingPlayer.isEntityAlive() && !this.creature.isSitting() && !this.creature.hasBeenHurt() && this.creature.riddenByEntity == null && (itemstack != null && this.creature.getCreature().isFavoriteFood(itemstack.getItem()));
     }
-
+    
     @Override
     public void resetTask()
     {

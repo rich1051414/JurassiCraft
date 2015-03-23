@@ -17,7 +17,7 @@ public class RenderDeinosuchus extends RenderReptile
     {
         super(new ModelDeinosuchus(), reptile, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

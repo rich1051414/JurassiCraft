@@ -14,7 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-
 public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implements IFenceMain
 {
     public BlockSecurityFenceMediumCorner()
@@ -22,7 +21,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
         super(10.0F, 150.0F, 2, "low_Security_Fence_Main");
         this.setCreativeTab(ModCreativeTabs.blocks);
     }
-
+    
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
@@ -37,7 +36,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
         }
         return false;
     }
-
+    
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
@@ -72,7 +71,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
                         }
                     }
                 }
-
+                
                 for (int side = 0; side < 4; side++)
                 {
                     if (fence.hasFenceAt(side))
@@ -82,7 +81,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
                         {
                             switch (side)
                             {
-                                /** South */
+                            /** South */
                                 case 0:
                                     neighborFence.setFenceAt(2, false);
                                     neighborFence.setFenceOff(2);
@@ -119,7 +118,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-
+    
     public void dropPole(World world, int x, int y, int z)
     {
         float xRand = world.rand.nextFloat() * 0.8F + 0.1F;
@@ -127,7 +126,7 @@ public class BlockSecurityFenceMediumCorner extends BlockSecurityFence implement
         float zRand = world.rand.nextFloat() * 0.8F + 0.1F;
         world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(ModBlocks.securityFenceLowPole, 1, 0)));
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

@@ -36,7 +36,7 @@ public class ChainBuffer
      * Array that contains the right rotations to be applied in the X axis.
      */
     private float[] pitchArray;
-
+    
     public ChainBuffer(int numberOfParentedBoxes)
     {
         this.yawTimer = 0;
@@ -46,7 +46,7 @@ public class ChainBuffer
         this.yawArray = new float[numberOfParentedBoxes];
         this.pitchArray = new float[numberOfParentedBoxes];
     }
-
+    
     /**
      * Sets both yaw and pitch variations to zero.
      */
@@ -55,7 +55,7 @@ public class ChainBuffer
         this.yawVariation = 0.0F;
         this.pitchVariation = 0.0F;
     }
-
+    
     /**
      * Adds a specific rotation, depending on the entity rotation, to an array that can be later
      * used to animate a chain of parented boxes. (rotateAngleY).
@@ -76,7 +76,7 @@ public class ChainBuffer
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
             this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
-
+        
         if (this.yawVariation > 0.7F * angleDecrement)
         {
             if (this.yawTimer > bufferTime)
@@ -109,11 +109,11 @@ public class ChainBuffer
                 this.yawTimer++;
             }
         }
-
+        
         for (int i = 0; i < this.yawArray.length; i++)
             this.yawArray[i] = 0.01745329251F * this.yawVariation / this.pitchArray.length;
     }
-
+    
     /**
      * Adds a specific rotation, depending on the entity rotation, to an array that can be later
      * used to animate a chain of parented boxes. (rotateAngleX).
@@ -134,7 +134,7 @@ public class ChainBuffer
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
             this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;
-
+        
         if (this.pitchVariation > 0.7F * angleDecrement)
         {
             if (this.pitchTimer > bufferTime)
@@ -167,11 +167,11 @@ public class ChainBuffer
                 this.pitchTimer++;
             }
         }
-
+        
         for (int i = 0; i < this.pitchArray.length; i++)
             this.pitchArray[i] = 0.01745329251F * this.pitchVariation / this.pitchArray.length;
     }
-
+    
     /**
      * Adds a specific rotation, depending on the entity rotation, to an array that can be later
      * used to animate a chain of parented boxes. (rotateAngleY).
@@ -192,7 +192,7 @@ public class ChainBuffer
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(this.yawVariation) < maxAngle)
             this.yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset);
-
+        
         if (this.yawVariation > 0.7F * angleDecrement)
         {
             if (this.yawTimer > bufferTime)
@@ -225,11 +225,11 @@ public class ChainBuffer
                 this.yawTimer++;
             }
         }
-
+        
         for (int i = 0; i < this.yawArray.length; i++)
             this.yawArray[i] = 0.01745329251F * this.yawVariation / this.pitchArray.length;
     }
-
+    
     /**
      * Adds a specific rotation, depending on the entity rotation, to an array that can be later
      * used to animate a chain of parented boxes. (rotateAngleX).
@@ -250,7 +250,7 @@ public class ChainBuffer
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(this.pitchVariation) < maxAngle)
             this.pitchVariation += (entity.prevRotationPitch - entity.rotationPitch);
-
+        
         if (this.pitchVariation > 0.7F * angleDecrement)
         {
             if (this.pitchTimer > bufferTime)
@@ -283,11 +283,11 @@ public class ChainBuffer
                 this.pitchTimer++;
             }
         }
-
+        
         for (int i = 0; i < this.pitchArray.length; i++)
             this.pitchArray[i] = 0.01745329251F * this.pitchVariation / this.pitchArray.length;
     }
-
+    
     /**
      * Adds a rotations in the Y axis depending on the entity rotation using a previous set array. (rotateAngleY).
      *
@@ -306,7 +306,7 @@ public class ChainBuffer
             System.out.println("Wrong array length being used in the buffer! Y axis.");
         }
     }
-
+    
     /**
      * Adds a rotations in the X axis depending on the entity rotation using a previous set array. (rotateAngleX).
      *

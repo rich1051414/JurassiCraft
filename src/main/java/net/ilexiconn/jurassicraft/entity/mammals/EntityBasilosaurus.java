@@ -27,7 +27,7 @@ public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, IC
         this.jumpOnLand = false;
         this.attackInterval = 1;
         this.isAgressive = true;
-
+        
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, 1.0F * this.getCreatureSpeed(), false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, this.getCreatureSpeed()));
         this.tasks.addTask(6, new JurassiCraftAIFollowFood(this, 100, 1.2D * this.getCreatureSpeed()));
@@ -40,18 +40,19 @@ public class EntityBasilosaurus extends NewEntitySwimming implements IMammal, IC
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 100, 0.3F, 1.0F));
         this.setCreatureExperiencePoints(5000);
     }
-
+    
     @Override
     protected Entity findEntityToAttack()
     {
         AxisAlignedBB area = this.boundingBox.expand(16.0D, 16.0D, 16.0D);
-
+        
         EntityPlayer player = (EntityPlayer) super.findEntityToAttack();
-        if (player != null) return player;
-
+        if (player != null)
+            return player;
+        
         return this.worldObj.findNearestEntityWithinAABB(EntityAnimal.class, area, this);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

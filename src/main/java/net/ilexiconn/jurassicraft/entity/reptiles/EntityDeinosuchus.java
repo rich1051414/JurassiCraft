@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements IReptile, ICarnivore, IPiscivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-
+    
     public EntityDeinosuchus(World world)
     {
         super(world);
@@ -51,30 +51,30 @@ public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements I
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 30, 0.2F, 1.0F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 10, 0.1F, 1.0F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 40, 0.3F, 1.0F));
-  
+        
         this.setCreatureExperiencePoints(4000);
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-      
+        
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 2.5F, this);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
         float developmentFraction = this.getGrowthStage() / 120.0F;
         int count = Math.round(1 + (3.5F * developmentFraction) + this.rand.nextInt(1 + (int) (3.5F * developmentFraction)) + this.rand.nextInt(1 + enchantBonus));
-      
+        
         if (!this.isBurning())
         {
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), count));

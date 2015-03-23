@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 
 public class ItemGypsumPowder extends Item
 {
-
+    
     public ItemGypsumPowder()
     {
         super();

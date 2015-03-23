@@ -5,24 +5,24 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ResettableModelRenderer extends ModelRenderer
 {
-
+    
     public float firstRotateAngleX;
     public float firstRotateAngleY;
     public float firstRotateAngleZ;
-
+    
     public float firstRotationPointX;
     public float firstRotationPointY;
     public float firstRotationPointZ;
-
+    
     public float firstOffsetX;
     public float firstOffsetY;
     public float firstOffsetZ;
-
+    
     public ResettableModelRenderer(ModelBase modelBase, int par1, int par2)
     {
         super(modelBase, par1, par2);
     }
-
+    
     public void savefirstParameters()
     {
         firstRotationPointX = this.rotationPointX;
@@ -35,7 +35,7 @@ public class ResettableModelRenderer extends ModelRenderer
         firstOffsetY = this.offsetY;
         firstOffsetZ = this.offsetZ;
     }
-
+    
     /**
      * Resets all parameters.
      */
@@ -51,7 +51,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.offsetY = this.firstOffsetY;
         this.offsetZ = this.firstOffsetZ;
     }
-
+    
     /**
      * Resets all rotation points.
      */
@@ -61,7 +61,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.rotationPointY = this.firstRotationPointY;
         this.rotationPointZ = this.firstRotationPointZ;
     }
-
+    
     /**
      * Resets X rotation point.
      */
@@ -69,7 +69,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointX = this.firstRotationPointX;
     }
-
+    
     /**
      * Resets Y rotation point.
      */
@@ -77,7 +77,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointY = this.firstRotationPointY;
     }
-
+    
     /**
      * Resets Z rotation point.
      */
@@ -85,7 +85,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointZ = this.firstRotationPointZ;
     }
-
+    
     /**
      * Resets all rotations.
      */
@@ -95,7 +95,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.rotateAngleY = this.firstRotateAngleY;
         this.rotateAngleZ = this.firstRotateAngleZ;
     }
-
+    
     /**
      * Resets X rotation.
      */
@@ -103,7 +103,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotateAngleX = this.firstRotateAngleX;
     }
-
+    
     /**
      * Resets Y rotation.
      */
@@ -111,7 +111,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotateAngleY = this.firstRotateAngleY;
     }
-
+    
     /**
      * Resets Z rotation.
      */
@@ -119,7 +119,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotateAngleZ = this.firstRotateAngleZ;
     }
-
+    
     /**
      * Resets all offsets.
      */
@@ -129,7 +129,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.offsetY = this.firstOffsetY;
         this.offsetZ = this.firstOffsetZ;
     }
-
+    
     /**
      * Resets X offset.
      */
@@ -137,7 +137,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.offsetX = this.firstOffsetX;
     }
-
+    
     /**
      * Resets Y offset.
      */
@@ -145,7 +145,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.offsetY = this.firstOffsetY;
     }
-
+    
     /**
      * Resets Z offset.
      */
@@ -153,7 +153,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.offsetZ = this.firstOffsetZ;
     }
-
+    
     /**
      * Copies all rotation points.
      */
@@ -163,7 +163,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.rotationPointY = target.rotationPointY;
         this.rotationPointZ = target.rotationPointZ;
     }
-
+    
     /**
      * Copies X rotation points.
      */
@@ -171,7 +171,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointX = target.rotationPointX;
     }
-
+    
     /**
      * Copies Y rotation points.
      */
@@ -179,7 +179,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointY = target.rotationPointY;
     }
-
+    
     /**
      * Copies Z rotation points.
      */
@@ -187,7 +187,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         this.rotationPointZ = target.rotationPointZ;
     }
-
+    
     /**
      * Pins a leg in the plane YZ. The angle used should be rotationX.
      */
@@ -196,7 +196,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.rotationPointY = parentBox.rotationPointY + radius * (float) Math.cos(rotationX);
         this.rotationPointZ = parentBox.rotationPointZ + radius * (float) Math.sin(rotationX);
     }
-
+    
     /**
      * Pins a tail in the plane YZ. The angle used should be rotationX.
      */
@@ -205,7 +205,7 @@ public class ResettableModelRenderer extends ModelRenderer
         this.rotationPointY = parentBox.rotationPointY + radius * (float) Math.cos(rotationX + Math.PI / 2);
         this.rotationPointZ = parentBox.rotationPointZ + radius * (float) Math.sin(rotationX + Math.PI / 2);
     }
-
+    
     /**
      * Calculates the distance between two origins ignoring the X rotation
      * point.
@@ -214,7 +214,7 @@ public class ResettableModelRenderer extends ModelRenderer
     {
         return (float) Math.sqrt(Math.pow((target.firstRotationPointY - this.firstRotationPointY), 2) + Math.pow((target.firstRotationPointZ - this.firstRotationPointZ), 2));
     }
-
+    
     /**
      * Calculates the distance between two origins.
      */

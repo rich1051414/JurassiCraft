@@ -32,11 +32,11 @@ import java.util.List;
  */
 public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implements IEntityOwnable
 {
-
+    
     protected int angryTicks;
     protected int numberOfAllies;
     public EntityLivingBase creatureToAttack;
-
+    
     public EntityJurassiCraftSmart(World world)
     {
         super(world);
@@ -44,7 +44,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         JCPathNavigate nav = new JCPathNavigate(this, world);
         ObfuscationReflectionHelper.setPrivateValue(EntityLiving.class, this, nav, 6);
     }
-
+    
     @Override
     protected void entityInit()
     {
@@ -52,7 +52,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.dataWatcher.addObject(15, Integer.valueOf((int) 0));
         this.dataWatcher.addObject(16, "");
     }
-
+    
     @Override
     public boolean interact(EntityPlayer player)
     {
@@ -106,7 +106,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return super.interact(player);
     }
-
+    
     /**
      * Sets the states of the creature. It uses bitwise language.
      *
@@ -116,7 +116,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         this.dataWatcher.updateObject(15, Integer.valueOf((int) states));
     }
-
+    
     /**
      * Returns the states of the creature. It uses bitwise language.
      */
@@ -124,7 +124,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (int) this.dataWatcher.getWatchableObjectInt(15);
     }
-
+    
     /**
      * Returns true if the creature is swimming.
      */
@@ -132,7 +132,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.TAKINGOFF) == States.TAKINGOFF;
     }
-
+    
     /**
      * Sets if the creature is swimming.
      */
@@ -147,7 +147,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.TAKINGOFF);
         }
     }
-
+    
     /**
      * Sets incompatible states false to set swimming state.
      */
@@ -162,7 +162,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.FLYING);
         this.setStatus(this.getStatus() | States.TAKINGOFF);
     }
-
+    
     /**
      * Returns true if the creature is flying.
      */
@@ -170,7 +170,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.FLYING) == States.FLYING;
     }
-
+    
     /**
      * Sets if the creature is flying.
      */
@@ -185,7 +185,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.FLYING);
         }
     }
-
+    
     /**
      * Sets incompatible states false to set flying state.
      */
@@ -200,7 +200,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.TAKINGOFF);
         this.setStatus(this.getStatus() | States.FLYING);
     }
-
+    
     /**
      * Returns true if the creature is tamed.
      */
@@ -208,7 +208,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.TAMED) == States.TAMED;
     }
-
+    
     /**
      * Sets if the creature is wandering.
      */
@@ -236,7 +236,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.TAMED);
         }
     }
-
+    
     /**
      * Returns true if the creature is sitting.
      */
@@ -244,7 +244,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.SITTING) == States.SITTING;
     }
-
+    
     /**
      * Sets if the creature is sitting.
      *
@@ -268,7 +268,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.handleSittingText(player);
         }
     }
-
+    
     /**
      * Sets true for the sitting state and false for the stressed and defending states.
      */
@@ -289,7 +289,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setAttackTarget((EntityLivingBase) null);
         this.handleSittingText(player);
     }
-
+    
     /**
      * Shows a text about the sitting state of the creature.
      */
@@ -321,7 +321,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             }
         }
     }
-
+    
     /**
      * Returns true if the creature is sleeping.
      */
@@ -329,7 +329,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.SLEEPING) == States.SLEEPING;
     }
-
+    
     /**
      * Sets if the creature is sleeping.
      */
@@ -344,7 +344,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.SLEEPING);
         }
     }
-
+    
     /**
      * Returns true if the creature is hungry.
      */
@@ -352,7 +352,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.HUNGRY) == States.HUNGRY;
     }
-
+    
     /**
      * Sets if the creature is hungry.
      */
@@ -367,7 +367,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.HUNGRY);
         }
     }
-
+    
     /**
      * Returns true if the creature is stressed.
      */
@@ -375,7 +375,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.EATING) == States.EATING;
     }
-
+    
     /**
      * Sets if the creature is stressed.
      */
@@ -390,7 +390,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.EATING);
         }
     }
-
+    
     /**
      * Returns true if the creature is thirsty.
      */
@@ -398,7 +398,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.THIRSTY) == States.THIRSTY;
     }
-
+    
     /**
      * Sets if the creature is thirsty.
      */
@@ -413,7 +413,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.THIRSTY);
         }
     }
-
+    
     /**
      * Returns true if the creature is stressed.
      */
@@ -421,7 +421,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.DRINKING) == States.DRINKING;
     }
-
+    
     /**
      * Sets if the creature is stressed.
      */
@@ -436,7 +436,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.DRINKING);
         }
     }
-
+    
     /**
      * Returns true if the creature is injured.
      */
@@ -444,7 +444,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.INJURED) == States.INJURED;
     }
-
+    
     /**
      * Sets if the creature is injured.
      */
@@ -459,7 +459,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.INJURED);
         }
     }
-
+    
     /**
      * Returns true if the creature is socializing.
      */
@@ -467,7 +467,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.SOCIALIZING) == States.SOCIALIZING;
     }
-
+    
     /**
      * Sets if the creature is socializing.
      */
@@ -482,7 +482,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.SOCIALIZING);
         }
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -490,7 +490,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.DEFENDING) == States.DEFENDING;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -505,7 +505,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.DEFENDING);
         }
     }
-
+    
     /**
      * Sets the required number of creature of the same type to attack as group.
      */
@@ -513,7 +513,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         this.numberOfAllies = numberOfAllies;
     }
-
+    
     /**
      * Returns the required number of creature of the same type to attack as group.
      */
@@ -521,7 +521,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.numberOfAllies;
     }
-
+    
     /**
      * Returns true if the creature is attacking.
      */
@@ -529,7 +529,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.ATTACKING) == States.ATTACKING;
     }
-
+    
     /**
      * Sets if the creature is attacking.
      */
@@ -544,7 +544,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.ATTACKING);
         }
     }
-
+    
     /**
      * Returns true if the creature is attacking.
      */
@@ -552,7 +552,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.ANGRY) == States.ANGRY;
     }
-
+    
     /**
      * Sets if the creature is attacking.
      */
@@ -567,7 +567,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.ANGRY);
         }
     }
-
+    
     /**
      * Sets the angry ticks of the creature. When it is positive, it can be reduced each tick
      * using some AI.
@@ -576,7 +576,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         this.angryTicks = angryTicks;
     }
-
+    
     /**
      * Returns the angry ticks of the creature. Higher than zero means that the creature is
      * attacking.
@@ -585,15 +585,16 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.angryTicks;
     }
-
+    
     /**
      * Sets the angry level of this creature.
      */
     protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity attacker)
     {
-        if (attacker instanceof EntityLivingBase) creature.becomeAngry((EntityLivingBase) attacker, 0.0F);
+        if (attacker instanceof EntityLivingBase)
+            creature.becomeAngry((EntityLivingBase) attacker, 0.0F);
     }
-
+    
     /**
      * Sets this creature to attack a target if it has a proper age. If it is also tamed, this will
      * check if the target is tamed by the owner of this creature.
@@ -606,20 +607,22 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             {
                 if (this.checkTargetBeforeAttacking(target))
                 {
-                    if (this.isSitting()) this.setSitting(false, null);
+                    if (this.isSitting())
+                        this.setSitting(false, null);
                     this.setAttackTarget(target);
                     this.setAngry(true);
                 }
             }
             else
             {
-                if (this.isSitting()) this.setSitting(false, null);
+                if (this.isSitting())
+                    this.setSitting(false, null);
                 this.setAttackTarget(target);
                 this.setAngry(true);
             }
         }
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -627,7 +630,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.FLEEING) == States.FLEEING;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -642,7 +645,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.FLEEING);
         }
     }
-
+    
     /**
      * Sets the fleeing tick value of the creature. When it is positive, it can be reduced each tick
      * using some AI.
@@ -651,7 +654,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         this.fleeingTick = value;
     }
-
+    
     /**
      * Returns the fleeing ticks of the creature. Higher than zero means that the creature was
      * attacked and it is fleeing.
@@ -660,17 +663,18 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return fleeingTick;
     }
-
+    
     /**
      * Sets the creature to flee.
      */
     protected void startFleeing()
     {
-        if (this.isSitting()) this.setSitting(false, null);
+        if (this.isSitting())
+            this.setSitting(false, null);
         this.setAttackTarget((EntityLivingBase) null);
         this.setFleeing(true);
     }
-
+    
     /**
      * Returns true if the creature was damaged recently.
      */
@@ -678,7 +682,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.hurtTime > 0;
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -686,7 +690,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.PLAYING) == States.PLAYING;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -694,7 +698,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         if (flag && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isDefending() && !this.isAttacking() && !this.isTakingOff())
         {
-
+            
             this.setStatus(this.getStatus() | States.PLAYING);
         }
         else
@@ -702,7 +706,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.PLAYING);
         }
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -710,7 +714,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.STALKING) == States.STALKING;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -725,7 +729,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.STALKING);
         }
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -733,7 +737,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.BREEDING) == States.BREEDING;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -748,7 +752,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.BREEDING);
         }
     }
-
+    
     /**
      * Returns true if the creature is defending itself from some threat.
      */
@@ -756,7 +760,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return (this.getStatus() & States.INLOVE) == States.INLOVE;
     }
-
+    
     /**
      * Sets if the creature is defending itself from some threat.
      */
@@ -771,7 +775,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.setStatus(this.getStatus() & ~States.INLOVE);
         }
     }
-
+    
     /**
      * Returns true if the creature can be tamed when spawning from an egg. You must call this
      * method to set the nearest player as the owner. This value is set in the json file.
@@ -780,7 +784,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.getCreature().canBeTamedUponSpawning();
     }
-
+    
     /**
      * Clear all states from this creature, except for the injury and tamed state.
      */
@@ -800,7 +804,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.STALKING);
         this.setStatus(this.getStatus() & ~States.INLOVE);
     }
-
+    
     public EntityJurassiCraftAggressive getClosestEntityAggressive(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
@@ -829,7 +833,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return null;
     }
-
+    
     public ArrayList<EntityJurassiCraftAggressive> getClosestEntityAggressiveList(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
@@ -841,7 +845,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return listOfTargets;
     }
-
+    
     public EntityJurassiCraftProtective getClosestEntityProtective(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
@@ -870,7 +874,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return null;
     }
-
+    
     public ArrayList<EntityJurassiCraftProtective> getClosestEntityProtectiveList(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
@@ -883,14 +887,15 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return listOfTargets;
     }
-
+    
     public EntityJurassiCraftCoward getClosestEntityCoward(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
         ArrayList<EntityJurassiCraftCoward> listOfTargets = new ArrayList<EntityJurassiCraftCoward>();
         for (Entity entity : list)
         {
-            if (entity instanceof EntityJurassiCraftCoward) listOfTargets.add((EntityJurassiCraftCoward) entity);
+            if (entity instanceof EntityJurassiCraftCoward)
+                listOfTargets.add((EntityJurassiCraftCoward) entity);
         }
         if (!listOfTargets.isEmpty())
         {
@@ -909,18 +914,19 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return null;
     }
-
+    
     public ArrayList<EntityJurassiCraftCoward> getClosestEntityCowardList(EntityLivingBase creature, double x, double y, double z)
     {
         List<Entity> list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(x, y, z));
         ArrayList<EntityJurassiCraftCoward> listOfTargets = new ArrayList<EntityJurassiCraftCoward>();
         for (Entity entity : list)
         {
-            if (entity instanceof EntityJurassiCraftCoward) listOfTargets.add((EntityJurassiCraftCoward) entity);
+            if (entity instanceof EntityJurassiCraftCoward)
+                listOfTargets.add((EntityJurassiCraftCoward) entity);
         }
         return listOfTargets;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte flag)
@@ -938,7 +944,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             super.handleHealthUpdate(flag);
         }
     }
-
+    
     /**
      * Spawns particles depending on the flag. It is used in vanilla creatures when they are being tamed.
      *
@@ -954,17 +960,17 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             this.worldObj.spawnParticle(flag ? "heart" : "smoke", this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
         }
     }
-
+    
     public String getOwnerName()
     {
         return this.dataWatcher.getWatchableObjectString(16);
     }
-
+    
     public void setOwner(String owner)
     {
         this.dataWatcher.updateObject(16, owner);
     }
-
+    
     /**
      * Returns true if the entity is the creature owner.
      */
@@ -972,56 +978,60 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return possibleOwner == this.getOwner();
     }
-
+    
     @Override
     public boolean allowLeashing()
     {
         return !this.getLeashed() && this.isTamed() && !this.isTakingOff() && !this.isFlying();
     }
-
+    
     @Override
     public EntityLivingBase getOwner()
     {
         return this.worldObj.getPlayerEntityByName(this.getOwnerName());
     }
-
+    
     @Override
     public Team getTeam()
     {
         if (this.isTamed())
         {
             EntityLivingBase owner = this.getOwner();
-            if (owner != null) return owner.getTeam();
+            if (owner != null)
+                return owner.getTeam();
         }
         return super.getTeam();
     }
-
+    
     @Override
     public boolean isOnSameTeam(EntityLivingBase creature)
     {
         if (this.isTamed())
         {
             EntityLivingBase owner = this.getOwner();
-            if (creature == owner) return true;
-            if (owner != null) return owner.isOnSameTeam(creature);
+            if (creature == owner)
+                return true;
+            if (owner != null)
+                return owner.isOnSameTeam(creature);
         }
         return super.isOnSameTeam(creature);
     }
-
+    
     @Override
     public String func_152113_b()
     {
         return null;
     }
-
+    
     /**
      * Returns true if the target of this creature is not the owner or other creature from the same
      * owner or same species or riding or being ridden by this creature.
      */
     public boolean checkTargetBeforeAttacking(EntityLivingBase target)
     {
-        if (target.riddenByEntity == this || this.riddenByEntity == target || target.ridingEntity != null) return false;
-
+        if (target.riddenByEntity == this || this.riddenByEntity == target || target.ridingEntity != null)
+            return false;
+        
         if (target == (Entity) null || target == this || target == this.getOwner())
         {
             if (target instanceof EntityJurassiCraftSmart)
@@ -1035,7 +1045,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         }
         return false;
     }
-
+    
     /**
      * This is a separated entity living base that can be set in order to add attacks or animations.
      *
@@ -1043,9 +1053,10 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
      */
     public void setCreatureToAttack(EntityLivingBase creature)
     {
-        if (creature != this) this.creatureToAttack = creature;
+        if (creature != this)
+            this.creatureToAttack = creature;
     }
-
+    
     /**
      * This is a separated entity living base that can be set in order to add attacks or animations
      */
@@ -1053,7 +1064,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         return this.creatureToAttack;
     }
-
+    
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
@@ -1070,14 +1081,17 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
             compound.setString("Owner", "");
         }
     }
-
+    
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        if (compound.hasKey("Status")) this.setStatus(compound.getInteger("Status"));
-        if (compound.hasKey("FleeingTick")) this.setFleeingTick(compound.getInteger("FleeingTick"));
-        if (compound.hasKey("AngerLevel")) this.setAngerLevel(compound.getInteger("AngerLevel"));
+        if (compound.hasKey("Status"))
+            this.setStatus(compound.getInteger("Status"));
+        if (compound.hasKey("FleeingTick"))
+            this.setFleeingTick(compound.getInteger("FleeingTick"));
+        if (compound.hasKey("AngerLevel"))
+            this.setAngerLevel(compound.getInteger("AngerLevel"));
         if (compound.hasKey("Owner"))
         {
             String ownerName = compound.getString("Owner");

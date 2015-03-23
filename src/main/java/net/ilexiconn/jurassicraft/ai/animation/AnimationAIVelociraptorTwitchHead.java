@@ -9,28 +9,28 @@ import net.minecraft.entity.EntityLiving;
 public class AnimationAIVelociraptorTwitchHead extends AIAnimation
 {
     private EntityVelociraptor raptor;
-
+    
     public AnimationAIVelociraptorTwitchHead(IAnimatedEntity animraptor)
     {
         super(animraptor);
         this.raptor = (EntityVelociraptor) animraptor;
     }
-
+    
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.TWITCH_HEAD.animID();
     }
-
+    
     public boolean isAutomatic()
     {
         return false;
     }
-
+    
     public int getDuration()
     {
         return 30;
     }
-
+    
     public boolean shouldAnimate()
     {
         EntityLiving living = getEntity();

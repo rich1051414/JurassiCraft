@@ -5,44 +5,50 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-public class ItemLargeRenderer implements IItemRenderer {
-
-	Minecraft mc = Minecraft.getMinecraft();
-	
-	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		if(item.getItem() instanceof ILargeItem) {
-	    	ILargeItem largeItem = (ILargeItem)item.getItem();
-	    	if(largeItem.canBeLargeItem(item)) {
-	    		return type == IItemRenderer.ItemRenderType.EQUIPPED;
-	    	}
-	    }
-		return false;
-	}
-
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		return false;
-	}
-
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		/**
-		GL11.glPushMatrix(); //Start Rendering
-		GL11.glTranslatef(-0.5F, -0.5F, 0.0F); //Move the Item Render
-	    GL11.glScalef(2.0F, 2.0F, 1.0F); //Scale the Item Render
-	    String texture = Properties.TEX_ITEM_LARGE + "#.png"; //Texture path
-	    if(item.getItem() instanceof ILargeItem) {
-	    	ILargeItem largeItem = (ILargeItem)item.getItem();
-	    	String largeItemPath = largeItem.getTexture(item);
-	    	if(largeItemPath != null) {
-	    		texture.replace("#", largeItemPath);
-	    	}
-	    }
-	    this.mc.renderEngine.bindTexture(texture); //Bind Texture
-	    int textureHeight = TextureFXManager.instance().getTextureDimensions(texture).height; //Texture Height
-	    int textureWidth = TextureFXManager.instance().getTextureDimensions(texture).width; //Texture Width
-	    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F); //Colour the Item Render
+public class ItemLargeRenderer implements IItemRenderer
+{
+    
+    Minecraft mc = Minecraft.getMinecraft();
+    
+    @Override
+    public boolean handleRenderType(ItemStack item, ItemRenderType type)
+    {
+        if (item.getItem() instanceof ILargeItem)
+        {
+            ILargeItem largeItem = (ILargeItem) item.getItem();
+            if (largeItem.canBeLargeItem(item))
+            {
+                return type == IItemRenderer.ItemRenderType.EQUIPPED;
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+    {
+        return false;
+    }
+    
+    @Override
+    public void renderItem(ItemRenderType type, ItemStack item, Object... data)
+    {
+        /**
+        GL11.glPushMatrix(); //Start Rendering
+        GL11.glTranslatef(-0.5F, -0.5F, 0.0F); //Move the Item Render
+        GL11.glScalef(2.0F, 2.0F, 1.0F); //Scale the Item Render
+        String texture = Properties.TEX_ITEM_LARGE + "#.png"; //Texture path
+        if(item.getItem() instanceof ILargeItem) {
+        	ILargeItem largeItem = (ILargeItem)item.getItem();
+        	String largeItemPath = largeItem.getTexture(item);
+        	if(largeItemPath != null) {
+        		texture.replace("#", largeItemPath);
+        	}
+        }
+        this.mc.renderEngine.bindTexture(texture); //Bind Texture
+        int textureHeight = TextureFXManager.instance().getTextureDimensions(texture).height; //Texture Height
+        int textureWidth = TextureFXManager.instance().getTextureDimensions(texture).width; //Texture Width
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F); //Colour the Item Render
         Tessellator tessellator = Tessellator.instance; //Tessellator instance
         ItemRenderer.renderItemIn2D(tessellator, 1.0F, 0.0F, 0.0F, 1.0F, textureWidth, textureHeight, 0.0625F);
 
@@ -81,6 +87,6 @@ public class ItemLargeRenderer implements IItemRenderer {
         //Stop rendering
         GL11.glPopMatrix();
         **/
-	}
-
+    }
+    
 }

@@ -8,7 +8,7 @@ public class JurassiCraftAISwimming extends EntityAIBase
     private EntityJurassiCraftSmart creature;
     private float bBoxPercentage;
     private float creatureStepHeight;
-
+    
     public JurassiCraftAISwimming(EntityJurassiCraftSmart entity, float bBoxPercentage)
     {
         this.creature = entity;
@@ -17,19 +17,19 @@ public class JurassiCraftAISwimming extends EntityAIBase
         entity.getNavigator().setCanSwim(true);
         this.setMutexBits(4);
     }
-
+    
     public boolean shouldExecute()
     {
         return this.creature.isInWater() || this.creature.handleLavaMovement();
     }
-
+    
     @Override
     public void startExecuting()
     {
         this.creature.setSitting(false, null);
         this.creature.stepHeight = this.bBoxPercentage * this.creature.getYBouningBox();
     }
-
+    
     @Override
     public void updateTask()
     {
@@ -38,7 +38,7 @@ public class JurassiCraftAISwimming extends EntityAIBase
             this.creature.motionY = 0.06D;
         }
     }
-
+    
     @Override
     public void resetTask()
     {

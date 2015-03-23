@@ -15,17 +15,17 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerDNACombinator extends Container
 {
-
+    
     private TileDNACombinator dnaCombinator;
     private short lastAnalyzeTime;
-
+    
     public ContainerDNACombinator(InventoryPlayer playerInventory, TileDNACombinator tileEntity)
     {
         this.dnaCombinator = tileEntity;
         this.addSlotToContainer(new SlotDNASample(dnaCombinator, 0, 55, 20));
         this.addSlotToContainer(new SlotDNASample(dnaCombinator, 1, 105, 20));
         this.addSlotToContainer(new SlotFurnace(playerInventory.player, dnaCombinator, 2, 81, 67));
-
+        
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
@@ -33,13 +33,13 @@ public class ContainerDNACombinator extends Container
                 this.addSlotToContainer(new Slot(playerInventory, k + i * 9 + 9, 8 + k * 18, 106 + i * 18));
             }
         }
-
+        
         for (int i = 0; i < 9; i++)
         {
             this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 164));
         }
     }
-
+    
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
@@ -49,14 +49,14 @@ public class ContainerDNACombinator extends Container
             dnaCombinator.closeInventory();
         }
     }
-
+    
     @Override
     public void addCraftingToCrafters(ICrafting iCrafting)
     {
         super.addCraftingToCrafters(iCrafting);
         iCrafting.sendProgressBarUpdate(this, 0, this.dnaCombinator.getCombinationTime());
     }
-
+    
     @Override
     public void detectAndSendChanges()
     {
@@ -71,7 +71,7 @@ public class ContainerDNACombinator extends Container
         }
         lastAnalyzeTime = dnaCombinator.getCombinationTime();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int i, int unknown)
@@ -81,13 +81,13 @@ public class ContainerDNACombinator extends Container
             this.dnaCombinator.setCombinationTime((short) unknown);
         }
     }
-
+    
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
         return dnaCombinator.isUseableByPlayer(player);
     }
-
+    
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i)
     {

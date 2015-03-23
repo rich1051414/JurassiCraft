@@ -13,13 +13,13 @@ import net.minecraft.util.StatCollector;
 @SideOnly(Side.CLIENT)
 public class GuiCultivateProcess extends GuiScreen
 {
-
+    
     private TileCultivate cultivator;
     private int xSize;
     private int ySize;
     private int guiLeft;
     private int guiTop;
-
+    
     public GuiCultivateProcess(TileCultivate entity)
     {
         super();
@@ -27,7 +27,7 @@ public class GuiCultivateProcess extends GuiScreen
         this.xSize = 176;
         this.ySize = 107;
     }
-
+    
     @Override
     public void updateScreen()
     {
@@ -36,19 +36,19 @@ public class GuiCultivateProcess extends GuiScreen
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
-
+    
     @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
-
+    
     @Override
     protected void keyTyped(char var1, int key)
     {
@@ -57,7 +57,7 @@ public class GuiCultivateProcess extends GuiScreen
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void initGui()
     {
@@ -67,7 +67,7 @@ public class GuiCultivateProcess extends GuiScreen
         this.guiTop = (int) ((this.height - this.ySize) / 2);
         this.buttonList.add(new GuiButton(0, this.guiLeft + (this.xSize - 100) / 2, this.guiTop + 70, 100, 20, StatCollector.translateToLocal("container.cultivator.stopCultivating")));
     }
-
+    
     @Override
     public void actionPerformed(GuiButton button)
     {
@@ -78,7 +78,7 @@ public class GuiCultivateProcess extends GuiScreen
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void drawScreen(int x, int y, float f)
     {
@@ -87,9 +87,9 @@ public class GuiCultivateProcess extends GuiScreen
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
         this.drawTexturedModalRect(this.guiLeft + 13, this.guiTop + 49, 0, 107, this.cultivator.getcultivateTimeProgressScaled(150), 9);
         Creature creature = this.cultivator.getCreature();
-
+        
         String name;
-
+        
         if (creature != null)
         {
             name = creature.getCreatureName();
@@ -98,10 +98,10 @@ public class GuiCultivateProcess extends GuiScreen
         {
             name = "Unknown";
         }
-
+        
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.cultivator.cultivating") + ": " + name, this.guiLeft + (this.xSize - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.cultivator.cultivating") + ": " + name)) / 2, this.guiTop + 10, 4210752);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.cultivator.progress") + ": " + this.cultivator.getcultivateTimeProgressScaled(100) + "%", this.guiLeft + (this.xSize - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.cultivator.progress") + ": " + this.cultivator.getcultivateTimeProgressScaled(100) + "%")) / 2, this.guiTop + 30, 4210752);
-
+        
         super.drawScreen(x, y, f);
     }
 }

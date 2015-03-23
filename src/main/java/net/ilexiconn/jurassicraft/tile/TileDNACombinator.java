@@ -10,41 +10,41 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileDNACombinator extends TileEntity implements ISidedInventory
 {
-
+    
     private ItemStack[] slots = new ItemStack[3];
     private static final short combinationSpeed = 100;
     private short combinationTime;
-
+    
     public TileDNACombinator()
     {
         this.combinationTime = 0;
     }
-
+    
     public short getCombinationTime()
     {
         return combinationTime;
     }
-
+    
     public void setCombinationTime(short time)
     {
         this.combinationTime = time;
     }
-
+    
     public short getCombinationSpeed()
     {
         return this.combinationSpeed;
     }
-
+    
     public int getCombinationProgressScaled(int i)
     {
         return (this.getCombinationTime() * i) / this.getCombinationSpeed();
     }
-
+    
     public boolean isCombining()
     {
         return (this.getCombinationTime() > 0);
     }
-
+    
     private boolean canCombine()
     {
         if (this.slots[0] == (ItemStack) null || this.slots[1] == (ItemStack) null)
@@ -69,7 +69,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
         }
         return (this.slots[2] == (ItemStack) null || (this.slots[0].getItem() == this.slots[2].getItem() && (slots[0].getTagCompound().getInteger("Quality") + slots[1].getTagCompound().getInteger("Quality") == slots[2].getTagCompound().getInteger("Quality")))) ? true : false;
     }
-
+    
     private void combineDNA()
     {
         ItemStack combinedDNA = new ItemStack(slots[0].getItem());
@@ -77,19 +77,19 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
         compound.setInteger("Quality", slots[0].getTagCompound().getInteger("Quality") + slots[1].getTagCompound().getInteger("Quality"));
         compound.setString("DNA", JurassiCraftDNAHandler.mixTwoDNAs(slots[0].getTagCompound().getString("DNA"), slots[1].getTagCompound().getString("DNA")));
         combinedDNA.setTagCompound(compound);
-
+        
         slots[0].stackSize--;
         if (slots[0].stackSize <= 0)
         {
             slots[0] = (ItemStack) null;
         }
-
+        
         slots[1].stackSize--;
         if (slots[1].stackSize <= 0)
         {
             slots[1] = (ItemStack) null;
         }
-
+        
         if (slots[2] != (ItemStack) null)
         {
             slots[2].stackSize++;
@@ -99,7 +99,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
             slots[2] = combinedDNA;
         }
     }
-
+    
     @Override
     public void updateEntity()
     {
@@ -120,24 +120,24 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
             }
         }
     }
-
+    
     public boolean hasItems()
     {
         return (this.slots[0] != null || this.slots[1] != null || this.slots[2] != null) ? true : false;
     }
-
+    
     @Override
     public int getSizeInventory()
     {
         return slots.length;
     }
-
+    
     @Override
     public ItemStack getStackInSlot(int i)
     {
         return slots[i];
     }
-
+    
     @Override
     public ItemStack decrStackSize(int i, int stackSize)
     {
@@ -165,7 +165,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
             return null;
         }
     }
-
+    
     @Override
     public ItemStack getStackInSlotOnClosing(int i)
     {
@@ -180,7 +180,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
             return null;
         }
     }
-
+    
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack)
     {
@@ -190,67 +190,67 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
             itemStack.stackSize = this.getInventoryStackLimit();
         }
     }
-
+    
     @Override
     public String getInventoryName()
     {
         return "DNA Combiner";
     }
-
+    
     @Override
     public boolean hasCustomInventoryName()
     {
         return true;
     }
-
+    
     @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
-
+    
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
-
+    
     @Override
     public void openInventory()
     {
-
+        
     }
-
+    
     @Override
     public void closeInventory()
     {
-
+        
     }
-
+    
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
         return false;
     }
-
+    
     @Override
     public int[] getAccessibleSlotsFromSide(int i)
     {
-        return new int[]{0};
+        return new int[] { 0 };
     }
-
+    
     @Override
     public boolean canInsertItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-
+    
     @Override
     public boolean canExtractItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
@@ -261,7 +261,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
         {
             NBTTagCompound compound = (NBTTagCompound) list.getCompoundTagAt(i);
             byte k = compound.getByte("Slot");
-
+            
             if (k >= 0 && k < this.slots.length)
             {
                 this.slots[k] = ItemStack.loadItemStackFromNBT(compound);
@@ -269,7 +269,7 @@ public class TileDNACombinator extends TileEntity implements ISidedInventory
         }
         this.setCombinationTime(nbt.getShort("CombinationTime"));
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {

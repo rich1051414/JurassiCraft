@@ -18,17 +18,17 @@ public class CommandSpawnDino extends CommandBase
     {
         return "spawndino";
     }
-
+    
     public int getRequiredPermissionLevel()
     {
         return 2;
     }
-
+    
     public String getCommandUsage(ICommandSender sender)
     {
         return "commands.spawndino.usage";
     }
-
+    
     public void processCommand(ICommandSender sender, String[] args)
     {
         if (args.length == 1)
@@ -58,12 +58,12 @@ public class CommandSpawnDino extends CommandBase
             throw new WrongUsageException("commands.spawndino.usage");
         }
     }
-
+    
     public List addTabCompletionOptions(ICommandSender sender, String[] args)
     {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, CreatureManager.getCreatureNames()) : (args.length == 5 ? getListOfStringsMatchingLastWord(args, "true", "false") : null);
     }
-
+    
     public void spawnCreature(World world, int x, int y, int z, String name, boolean adult)
     {
         Class creatureClass = CreatureManager.getCreatureFromName(name).getCreatureClass();
@@ -78,7 +78,8 @@ public class CommandSpawnDino extends CommandBase
                 creature.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 creature.rotationYawHead = creature.rotationYaw;
                 creature.renderYawOffset = creature.rotationYaw;
-                if (adult) creature.setFullGrowth();
+                if (adult)
+                    creature.setFullGrowth();
                 world.spawnEntityInWorld(creature);
             }
         }

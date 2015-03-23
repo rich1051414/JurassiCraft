@@ -9,24 +9,25 @@ import net.minecraft.tileentity.TileEntity;
 public class TileSecurityFenceMediumPole extends TileEntity
 {
     private boolean[] builtFences = new boolean[4];
-
+    
     public TileSecurityFenceMediumPole()
     {
         for (int i = 0; i < builtFences.length; i++)
             builtFences[i] = false;
     }
-
+    
     public void setGridAtSide(int side, boolean flag)
     {
         this.builtFences[side] = flag;
-        if (this.worldObj != null) this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        if (this.worldObj != null)
+            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
-
+    
     public boolean getGridAtSide(int side)
     {
         return this.builtFences[side];
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound compound)
     {
@@ -34,7 +35,7 @@ public class TileSecurityFenceMediumPole extends TileEntity
         for (int i = 0; i < builtFences.length; i++)
             compound.setBoolean("GridAtSide" + i, this.getGridAtSide(i));
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -42,7 +43,7 @@ public class TileSecurityFenceMediumPole extends TileEntity
         for (int i = 0; i < builtFences.length; i++)
             this.setGridAtSide(i, compound.getBoolean("GridAtSide" + i));
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
@@ -50,7 +51,7 @@ public class TileSecurityFenceMediumPole extends TileEntity
         this.writeToNBT(compound);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, compound);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
     {

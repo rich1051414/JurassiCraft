@@ -17,7 +17,7 @@ public class RenderTitanis extends RenderBird
     {
         super(new ModelTitanis(), bird, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

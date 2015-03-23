@@ -9,17 +9,17 @@ import net.minecraft.util.MathHelper;
 
 public class ModelParaceratherium extends ModelBase
 {
-
+    
     private Animator animator;
     public static final float PI = (float) Math.PI;
     ResettableModelRenderer legBackLeft1, legBackLeft2, legBackLeft3, legBackRight1, legBackRight2, legBackRight3, legFrontRight1, legFrontRight2, legFrontRight3, legFrontLeft1, legFrontLeft2, legFrontLeft3, bodyBack, bodyFront, bodyNeck, tail1, tail2, tail3, neck1, neck2, earRight, earLeft, head1, head2, head3, mouth;
-
+    
     public ModelParaceratherium()
     {
         animator = new Animator(this);
         textureWidth = 512;
         textureHeight = 256;
-
+        
         legBackLeft1 = new ResettableModelRenderer(this, 145, 70);
         legBackLeft1.addBox(-8F, -4F, -10F, 12, 22, 20);
         legBackLeft1.setRotationPoint(16F, -20F, 20F);
@@ -176,7 +176,7 @@ public class ModelParaceratherium extends ModelBase
         mouth.setTextureSize(512, 256);
         mouth.mirror = true;
         setRotation(mouth, 0.3490659F, 0F, 0F);
-
+        
         legBackLeft1.savefirstParameters();
         legBackLeft2.savefirstParameters();
         legBackLeft3.savefirstParameters();
@@ -204,12 +204,12 @@ public class ModelParaceratherium extends ModelBase
         head3.savefirstParameters();
         mouth.savefirstParameters();
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate(entity, f, f1, f2, f3, f4, f5);
-
+        
         legBackLeft1.render(f5);
         legBackLeft2.render(f5);
         legBackLeft3.render(f5);
@@ -237,51 +237,51 @@ public class ModelParaceratherium extends ModelBase
         head3.render(f5);
         mouth.render(f5);
     }
-
+    
     private void setRotation(ResettableModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+        
         float tailNaturalMovement = 0.15F * MathHelper.cos(0.05F * f2);
         float legsMovement1 = f1 * MathHelper.cos(f);
         float legsMovement2 = f1 * MathHelper.cos(f + this.PI);
-
+        
         legFrontLeft1.rotateAngleX = 1.2F * legsMovement1 + legFrontLeft1.firstRotateAngleX;
         legFrontLeft2.pinLegPlaneYZ(legFrontLeft1, 16.881943F, legFrontLeft1.rotateAngleX);
         legFrontLeft2.rotateAngleX = legsMovement1 * legsMovement2;
         legFrontLeft3.pinLegPlaneYZ(legFrontLeft2, 22.022715F, legFrontLeft2.rotateAngleX);
         legFrontLeft3.rotateAngleX = 0.25F * legsMovement2;
-
+        
         legFrontRight1.rotateAngleX = 1.2F * legsMovement2 + legFrontRight1.firstRotateAngleX;
         legFrontRight2.pinLegPlaneYZ(legFrontRight1, 16.881943F, legFrontRight1.rotateAngleX);
         legFrontRight2.rotateAngleX = legsMovement1 * legsMovement2;
         legFrontRight3.pinLegPlaneYZ(legFrontRight2, 22.022715F, legFrontRight2.rotateAngleX);
         legFrontRight3.rotateAngleX = 0.25F * legsMovement1;
-
+        
         legBackRight1.rotateAngleX = legsMovement1 + legBackRight1.firstRotateAngleX;
         legBackRight2.pinLegPlaneYZ(legBackRight1, 16.124516F, legBackRight1.rotateAngleX);
         legBackRight2.rotateAngleX = legsMovement1 / 2.0F + legBackRight2.firstRotateAngleX;
         legBackRight3.pinLegPlaneYZ(legBackRight2, 16.27882F, legBackRight2.rotateAngleX);
         legBackRight3.rotateAngleX = 1.25F * legsMovement1;
-
+        
         legBackLeft1.rotateAngleX = legsMovement2 + legBackLeft1.firstRotateAngleX;
         legBackLeft2.pinLegPlaneYZ(legBackLeft1, 16.124516F, legBackLeft1.rotateAngleX);
         legBackLeft2.rotateAngleX = legsMovement2 / 2.0F + legBackLeft2.firstRotateAngleX;
         legBackLeft3.pinLegPlaneYZ(legBackLeft2, 16.27882F, legBackLeft2.rotateAngleX);
         legBackLeft3.rotateAngleX = 1.25F * legsMovement2;
-
+        
         tail1.rotateAngleX = tailNaturalMovement + tail1.firstRotateAngleX;
         tail2.rotateAngleX = tailNaturalMovement / 2.0F + tail2.firstRotateAngleX;
         tail3.pinLegPlaneYZ(tail2, 14.534442F, tail2.rotateAngleX);
     }
-
+    
     public void animate(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update((IAnimatedEntity) entity);

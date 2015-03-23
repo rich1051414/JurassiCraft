@@ -10,7 +10,7 @@ import net.minecraft.util.IIcon;
 public class ItemNet extends Item
 {
     public static IIcon iconNet;
-
+    
     public ItemNet()
     {
         super();
@@ -19,18 +19,18 @@ public class ItemNet extends Item
         setTextureName(net.ilexiconn.jurassicraft.JurassiCraft.getModId() + "net");
         setCreativeTab(ModCreativeTabs.items);
     }
-
+    
     @SideOnly(Side.CLIENT)
     public void registerIcons(final IIconRegister par1IconRegister)
     {
         ItemNet.iconNet = par1IconRegister.registerIcon("jurassicraft:net");
     }
-
+    
     public IIcon getIconFromDamage(final int par1)
     {
         return ItemNet.iconNet;
     }
-
+    
     public boolean isRepairable()
     {
         return true;

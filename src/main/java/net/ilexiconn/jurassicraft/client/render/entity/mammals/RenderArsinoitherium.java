@@ -17,7 +17,7 @@ public class RenderArsinoitherium extends RenderMammal
     {
         super(new ModelArsinoitherium(), mammal, 0.8F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

@@ -32,7 +32,7 @@ public class ModRenderers implements IContentHandler
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.dnaCombinator), new ItemDNACombinatorRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.dinoPad), new ItemDinoPadRenderer());
         MinecraftForgeClient.registerItemRenderer(ModItems.dinoPad, new ItemDinoPadRenderer());
-
+        
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCompressor.class, new TileEntityCompressorRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrinder.class, new TileEntityGrinderRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTimeBox.class, new TileEntityTimeboxRender());
@@ -44,7 +44,7 @@ public class ModRenderers implements IContentHandler
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowBase.class, new TileSecurityFenceLowBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowGrid.class, new TileSecurityFenceLowGridRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowPole.class, new TileSecurityFenceLowPoleRenderer());
-
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityDinoEgg.class, new RenderDinoEgg());
     }
 }

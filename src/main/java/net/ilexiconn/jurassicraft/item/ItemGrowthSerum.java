@@ -19,7 +19,7 @@ public class ItemGrowthSerum extends Item
         setTextureName(JurassiCraft.getModId() + "growth_Serum");
         setCreativeTab(ModCreativeTabs.items);
     }
-
+    
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag)
     {

@@ -18,9 +18,9 @@ public class Animator
     private ModelBase mainModel;
     private IAnimatedEntity animatedEntity;
     private HashMap<ModelRenderer, Transform> transformMap, prevTransformMap;
-
+    
     public static final float PI = (float) Math.PI;
-
+    
     public Animator(ModelBase model)
     {
         tempTick = 0;
@@ -29,12 +29,12 @@ public class Animator
         transformMap = new HashMap<ModelRenderer, Transform>();
         prevTransformMap = new HashMap<ModelRenderer, Transform>();
     }
-
+    
     public IAnimatedEntity getEntity()
     {
         return animatedEntity;
     }
-
+    
     public void update(IAnimatedEntity entity)
     {
         tempTick = prevTempTick = 0;
@@ -50,58 +50,66 @@ public class Animator
             box.rotateAngleZ = 0F;
         }
     }
-
+    
     public boolean setAnimation(int animationId)
     {
         tempTick = prevTempTick = 0;
         currentAnimation = animatedEntity.getAnimationId() == animationId;
         return currentAnimation;
     }
-
+    
     public void startPhase(int duration)
     {
-        if (!currentAnimation) return;
+        if (!currentAnimation)
+            return;
         prevTempTick = tempTick;
         tempTick += duration;
     }
-
+    
     public void setStationaryPhase(int duration)
     {
         startPhase(duration);
         endPhase(true);
     }
-
+    
     public void resetPhase(int duration)
     {
         startPhase(duration);
         endPhase();
     }
-
+    
     public void rotate(ModelRenderer box, float x, float y, float z)
     {
-        if (!currentAnimation) return;
-        if (!transformMap.containsKey(box)) transformMap.put(box, new Transform(x, y, z));
-        else transformMap.get(box).addRot(x, y, z);
+        if (!currentAnimation)
+            return;
+        if (!transformMap.containsKey(box))
+            transformMap.put(box, new Transform(x, y, z));
+        else
+            transformMap.get(box).addRot(x, y, z);
     }
-
+    
     public void move(ModelRenderer box, float x, float y, float z)
     {
-        if (!currentAnimation) return;
-        if (!transformMap.containsKey(box)) transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
-        else transformMap.get(box).addOffset(x, y, z);
+        if (!currentAnimation)
+            return;
+        if (!transformMap.containsKey(box))
+            transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
+        else
+            transformMap.get(box).addOffset(x, y, z);
     }
-
+    
     public void endPhase()
     {
         endPhase(false);
     }
-
+    
     private void endPhase(boolean stationary)
     {
-        if (!currentAnimation) return;
-
+        if (!currentAnimation)
+            return;
+        
         int animationTick = animatedEntity.getAnimationTick();
-
+        
         if (animationTick >= prevTempTick && animationTick < tempTick)
         {
             if (stationary)
@@ -121,7 +129,7 @@ public class Animator
             {
                 float tick = (animationTick - prevTempTick + JurassiCraft.proxy.getPartialTick()) / (tempTick - prevTempTick);
                 float inc = MathHelper.sin(tick * PI / 2f), dec = 1f - inc;
-
+                
                 for (ModelRenderer box : prevTransformMap.keySet())
                 {
                     Transform transform = prevTransformMap.get(box);
@@ -132,7 +140,7 @@ public class Animator
                     box.rotationPointY += dec * transform.offsetY;
                     box.rotationPointZ += dec * transform.offsetZ;
                 }
-
+                
                 for (ModelRenderer box : transformMap.keySet())
                 {
                     Transform transform = transformMap.get(box);
@@ -145,7 +153,7 @@ public class Animator
                 }
             }
         }
-
+        
         if (!stationary)
         {
             prevTransformMap.clear();

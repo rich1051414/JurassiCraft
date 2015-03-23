@@ -12,28 +12,33 @@ import net.minecraft.client.Minecraft;
 /**
  * @author ProPercivalalb
  **/
-public class ClientTickHandler {
-	
-	public static Minecraft mc = Minecraft.getMinecraft();
-	public static boolean checkedVersion = false;
-
-	@SubscribeEvent
-	public void clientTick(ClientTickEvent event) {
-		if(event.phase != Phase.END || event.side != Side.CLIENT)
-			return;
-
-		TeleportClient.onTick(mc.thePlayer);
-		
-		if(this.mc.currentScreen != null) {
-			int setting = 0;
-
-			boolean fancyGraphics = (setting == 0 ? this.mc.gameSettings.fancyGraphics : (setting == 1 ? false : setting == 2));
-			((BlockLeaves)ModBlocks.leaves_1).setGraphicsLevel(fancyGraphics);
-		}
-		else {
-			if(!checkedVersion && this.mc.thePlayer != null) {
-          		checkedVersion = true;
-          	}	 
-		}
-	}
+public class ClientTickHandler
+{
+    
+    public static Minecraft mc = Minecraft.getMinecraft();
+    public static boolean checkedVersion = false;
+    
+    @SubscribeEvent
+    public void clientTick(ClientTickEvent event)
+    {
+        if (event.phase != Phase.END || event.side != Side.CLIENT)
+            return;
+        
+        TeleportClient.onTick(mc.thePlayer);
+        
+        if (this.mc.currentScreen != null)
+        {
+            int setting = 0;
+            
+            boolean fancyGraphics = (setting == 0 ? this.mc.gameSettings.fancyGraphics : (setting == 1 ? false : setting == 2));
+            ((BlockLeaves) ModBlocks.leaves_1).setGraphicsLevel(fancyGraphics);
+        }
+        else
+        {
+            if (!checkedVersion && this.mc.thePlayer != null)
+            {
+                checkedVersion = true;
+            }
+        }
+    }
 }

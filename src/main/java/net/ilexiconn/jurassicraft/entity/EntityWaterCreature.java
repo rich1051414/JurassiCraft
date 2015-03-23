@@ -10,42 +10,42 @@ public class EntityWaterCreature extends EntityJurassiCraftSmart
     {
         super(world);
     }
-
+    
     public boolean canBreatheUnderwater()
     {
         return true;
     }
-
+    
     public boolean getCanSpawnHere()
     {
         return this.worldObj.checkNoEntityCollision(this.boundingBox);
     }
-
+    
     public int getTalkInterval()
     {
         return 120;
     }
-
+    
     public boolean canDespawn()
     {
         return true;
     }
-
+    
     protected int getExperiencePoints(EntityPlayer p_70693_1_)
     {
         return 1 + this.worldObj.rand.nextInt(3);
     }
-
+    
     public void onEntityUpdate()
     {
         int i = this.getAir();
         super.onEntityUpdate();
-
+        
         if (this.isEntityAlive() && !this.isInWater())
         {
             --i;
             this.setAir(i);
-
+            
             if (this.getAir() == -20)
             {
                 this.setAir(0);

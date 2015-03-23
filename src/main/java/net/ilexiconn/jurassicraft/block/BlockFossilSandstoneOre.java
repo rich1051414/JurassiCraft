@@ -23,7 +23,7 @@ public class BlockFossilSandstoneOre extends Block
     protected IIcon[] topIcons = new IIcon[6];
     protected IIcon[] normalIcons = new IIcon[6];
     protected IIcon[] bottomIcons = new IIcon[6];
-
+    
     public BlockFossilSandstoneOre()
     {
         super(Material.rock);
@@ -35,7 +35,7 @@ public class BlockFossilSandstoneOre extends Block
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }
-
+    
     public Item getItemDropped(int value, Random random, int thing)
     {
         float rand = random.nextFloat();
@@ -56,30 +56,31 @@ public class BlockFossilSandstoneOre extends Block
             return ModItems.fossil;
         }
     }
-
+    
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
         world.setBlockMetadataWithNotify(x, y, z, new Random().nextInt(6), 2);
     }
-
+    
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
         for (int i = 0; i < 6; ++i)
             topIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_top");
-
+        
         for (int i = 0; i < 6; ++i)
             normalIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_normal");
-
+        
         for (int i = 0; i < 6; ++i)
             bottomIcons[i] = register.registerIcon(JurassiCraft.getModId() + "fossil_side_" + i + "_sandstone_bottom");
     }
-
+    
     @Override
     public IIcon getIcon(int side, int metadata)
     {
-        if (metadata > 5) return topIcons[0];
-
+        if (metadata > 5)
+            return topIcons[0];
+        
         switch (side)
         {
             case 0:

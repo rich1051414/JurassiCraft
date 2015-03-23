@@ -17,7 +17,7 @@ public class RenderTylosaurus extends RenderSwimming
     {
         super(new ModelTylosaurus(), reptile, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

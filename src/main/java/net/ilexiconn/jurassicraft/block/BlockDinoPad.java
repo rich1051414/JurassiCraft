@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class BlockDinoPad extends Block implements ITileEntityProvider
 {
-
+    
     public BlockDinoPad()
     {
         super(Material.iron);
@@ -29,37 +29,37 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
         this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 0.2F, 0.9F);
         this.setBlockTextureName(JurassiCraft.getModId() + "dnaExtractorBreakingParticles");
     }
-
+    
     @Override
     public boolean hasTileEntity(int metadata)
     {
         return true;
     }
-
+    
     @Override
     public int getRenderType()
     {
         return -1;
     }
-
+    
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-
+    
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-
+    
     @Override
     public int quantityDropped(int metadata, int fortune, Random random)
     {
         return 0;
     }
-
+    
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
@@ -76,7 +76,7 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-
+    
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int hitX, float hitY, float hitZ, float f)
     {
@@ -92,19 +92,19 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
             return true;
         }
     }
-
+    
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand)
     {
         this.canBlockStay(world, x, y, z);
     }
-
+    
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
         return !super.canPlaceBlockAt(world, x, y, z) ? false : this.canBlockStay(world, x, y, z);
     }
-
+    
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
@@ -115,19 +115,19 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
             world.setBlockToAir(x, y, z);
         }
     }
-
+    
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)
     {
         return world.getBlock(x, y - 1, z).getMaterial().isSolid();
     }
-
+    
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
     {
         return new ItemStack(ModItems.dinoPad, 1);
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

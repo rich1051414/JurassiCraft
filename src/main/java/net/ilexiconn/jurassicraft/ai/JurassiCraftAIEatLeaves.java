@@ -19,7 +19,7 @@ import java.util.List;
 
 public class JurassiCraftAIEatLeaves extends EntityAIBase
 {
-
+    
     private EntityJurassiCraftCreature creature;
     private double speed;
     private int maxDist;
@@ -32,17 +32,17 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     private long maxTime;
     private double damage;
     private Vec3 directionVector;
-
+    
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed)
     {
         this(creature, speed, 32);
     }
-
+    
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed, int maxDist)
     {
         this(creature, speed, maxDist, 0); // 2 (minute) times 60 (seconds) times 20 (ticks per second)
     }
-
+    
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed, int maxDist, long maxTime)
     {
         if (!(creature instanceof IHerbivore))
@@ -53,7 +53,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         this.world = creature.worldObj;
         this.maxTime = maxTime;
     }
-
+    
     public void startExecuting()
     {
         ArrayList<Vec3> leavesBlocks = Lists.newArrayList();
@@ -74,7 +74,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             }
         }
         // Now that we have all the blocks of leaves around the creature, we sort them to get blobs of leaves and then get their center
-
+        
         List<List<Vec3>> blobsList = Lists.newArrayList();
         blocksList:
         for (Vec3 leavesPos : leavesBlocks)
@@ -91,14 +91,14 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
                 }
             }
             // If we are here, that means no blocks where found near this block
-
+            
             List<Vec3> blob = Lists.newArrayList();
             blob.add(leavesPos);
             blobsList.add(blob);
         }
-
+        
         // Then we merge blobs that are next to each other because the previous algorithm might separate some
-
+        
         List<List<Vec3>> finalList = Lists.newArrayList();
         finalList.addAll(blobsList);
         blobList:
@@ -131,18 +131,18 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             double centerX = 0;
             double centerY = 0;
             double centerZ = 0;
-
+            
             for (Vec3 pos : blob)
             {
                 centerX += pos.xCoord;
                 centerY += pos.yCoord;
                 centerZ += pos.zCoord;
             }
-
+            
             centerX /= blob.size();
             centerY /= blob.size();
             centerZ /= blob.size();
-
+            
             if (creature.getDistance(centerX, centerY, centerZ) <= creature.getDistance(leavesX, leavesY, leavesZ) || leavesY <= 0)
             {
                 nearestBlob = blob;
@@ -163,13 +163,13 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     
     private boolean isEdible(Block block)
     {
-        if(this.creature.boundingBox.maxY-this.creature.boundingBox.minY < 5f) // you're not high enough to reach for the stars, son
+        if (this.creature.boundingBox.maxY - this.creature.boundingBox.minY < 5f) // you're not high enough to reach for the stars, son
         {
             return block == Blocks.potatoes || block == Blocks.tallgrass || block == Blocks.carrots;
         }
         return block == Blocks.leaves || block == Blocks.leaves2;
     }
-
+    
     /**
      * Returns a Vec3 instance representing the vector from the entity to the block
      * @return
@@ -179,10 +179,11 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     {
         return directionVector;
     }
-
+    
     public boolean continueExecuting()
     {
-        if (!foundLeaves || leavesY < 0) return false;
+        if (!foundLeaves || leavesY < 0)
+            return false;
         if (!isEdible(world.getBlock(leavesX, leavesY, leavesZ)))
         {
             // We have eaten the block. Or an evil player destroyed it. ;-(
@@ -207,8 +208,9 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         }
         else
         {
-            int y = getFirstSolidUnder(leavesX, leavesY, leavesZ);  
-            if (y < 0) return false;
+            int y = getFirstSolidUnder(leavesX, leavesY, leavesZ);
+            if (y < 0)
+                return false;
             PathEntity path = creature.getNavigator().getPathToXYZ(leavesX, y, leavesZ);
             if (path != null)
             {
@@ -222,7 +224,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         }
         return true;
     }
-
+    
     /**
      * Look for the block at which to positionate the creature. The creature shouldn't stand on the tree. <br/>Brachiosuruses are way too heavy to stand on trees, ofc
      * @param x  
@@ -237,15 +239,16 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     private int getFirstSolidUnder(int x, int y, int z)
     {
         for (; y >= 0; y--)
-            if (world.getBlock(x, y, z).isSideSolid(world, x, y, z, ForgeDirection.UP)) return y;
+            if (world.getBlock(x, y, z).isSideSolid(world, x, y, z, ForgeDirection.UP))
+                return y;
         return -1;
     }
-
+    
     public boolean isInterruptible()
     {
         return true;
     }
-
+    
     private boolean isNextTo(Vec3 a, Vec3 b)
     {
         double dx = a.xCoord - b.xCoord;
@@ -253,7 +256,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         double dz = a.zCoord - b.zCoord;
         return (dx + dy + dz) == 1f;
     }
-
+    
     @Override
     public void resetTask()
     {
@@ -265,11 +268,11 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         damage = 0.0;
         lastTimeExecuted = world.getWorldTime();
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
         return world.getWorldTime() - lastTimeExecuted >= maxTime && Math.random() < 0.10;
     }
-
+    
 }

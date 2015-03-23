@@ -10,21 +10,25 @@ import net.minecraft.util.IIcon;
 /**
  * @author ProPercivalalb
  **/
-public class BlockCarboniferousSand extends BlockSand {
-
-    public BlockCarboniferousSand() {
+public class BlockCarboniferousSand extends BlockSand
+{
+    
+    public BlockCarboniferousSand()
+    {
         super();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int metadata) {
-       return this.blockIcon;
+    public IIcon getIcon(int side, int metadata)
+    {
+        return this.blockIcon;
     }
-	
+    
     @Override
-	@SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
-		this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACkAGE + "sand");
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister iconRegister)
+    {
+        this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACkAGE + "sand");
+    }
 }

@@ -15,24 +15,25 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
     public float distanceFromTarget;
     public int timeSinceCharge = 0;
     public int stepCount = 0;
-
+    
     public EntityJurassiCraftCharges(World world)
     {
         super(world);
         this.tasks.addTask(2, new AnimationAICharge(this));
     }
-
+    
     @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-
+        
         if (getAttackTarget() != null)
         {
             //Charge AI
             if (getAttackTarget() != null)
                 distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-            else distanceFromTarget = -1;
+            else
+                distanceFromTarget = -1;
             if (this.getAttackTarget() != null && onGround && timeSinceCharge == 0 && !this.isFleeing() && this.getCreatureAgeInDays() >= 17)
                 AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.CHARGE.animID());
         }
@@ -40,19 +41,22 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
         {
             this.distanceFromTarget = -1.0F;
         }
-        if (timeSinceCharge != 0) timeSinceCharge--;
+        if (timeSinceCharge != 0)
+            timeSinceCharge--;
     }
-
+    
     @Override
-    public void onUpdate() {
+    public void onUpdate()
+    {
         super.onUpdate();
-        if (this.stepCount <= 0 && this.charging) {
+        if (this.stepCount <= 0 && this.charging)
+        {
             this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
             this.stepCount = 10;
         }
         this.stepCount -= 1;
     }
-
+    
     @Override
     public void collideWithEntity(Entity victim)
     {
@@ -68,7 +72,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
             victim.motionY += 0.3;
         }
     }
-
+    
     @Override
     public void ridingPlayerRightClick()
     {

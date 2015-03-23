@@ -26,7 +26,7 @@ public class BlockAmberOre extends Block
         setHarvestLevel("pickaxe", 2);
         setCreativeTab(ModCreativeTabs.blocks);
     }
-
+    
     public Item getItemDropped(int value, Random random, int thing)
     {
         return ModItems.amber;

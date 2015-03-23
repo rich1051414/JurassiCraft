@@ -16,14 +16,14 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerCultivate extends Container
 {
-
+    
     private TileCultivate cultivator;
     private int lastWaterStored;
     private int lastProximateValue;
     private int lastMineralsValue;
     private int lastVitaminsValue;
     private int lastLipidsValue;
-
+    
     public ContainerCultivate(InventoryPlayer playerInventory, TileCultivate tileEntity)
     {
         this.cultivator = tileEntity;
@@ -43,7 +43,7 @@ public class ContainerCultivate extends Container
             this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 164));
         }
     }
-
+    
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
@@ -53,7 +53,7 @@ public class ContainerCultivate extends Container
             cultivator.closeInventory();
         }
     }
-
+    
     @Override
     public void addCraftingToCrafters(ICrafting iCrafting)
     {
@@ -64,7 +64,7 @@ public class ContainerCultivate extends Container
         iCrafting.sendProgressBarUpdate(this, 3, this.cultivator.getVitaminValue());
         iCrafting.sendProgressBarUpdate(this, 4, this.cultivator.getLipidValue());
     }
-
+    
     @Override
     public void detectAndSendChanges()
     {
@@ -99,7 +99,7 @@ public class ContainerCultivate extends Container
         lastVitaminsValue = cultivator.getVitaminValue();
         lastLipidsValue = cultivator.getLipidValue();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int i, int unknown)
@@ -125,13 +125,13 @@ public class ContainerCultivate extends Container
             this.cultivator.setLipidValue((short) unknown);
         }
     }
-
+    
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
         return cultivator.isUseableByPlayer(player);
     }
-
+    
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i)
     {
@@ -176,7 +176,7 @@ public class ContainerCultivate extends Container
                 {
                     return null;
                 }
-
+                
                 if (stackInSlot.stackSize == 0)
                 {
                     slot.putStack((ItemStack) null);

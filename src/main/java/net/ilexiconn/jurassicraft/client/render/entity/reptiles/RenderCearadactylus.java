@@ -17,7 +17,7 @@ public class RenderCearadactylus extends RenderReptile
     {
         super(new ModelCearadactylus(), reptile, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

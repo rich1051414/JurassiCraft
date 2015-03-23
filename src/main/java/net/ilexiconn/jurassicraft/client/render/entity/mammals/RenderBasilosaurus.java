@@ -17,7 +17,7 @@ public class RenderBasilosaurus extends RenderMammal
     {
         super(new ModelBasilosaurus(), mammal, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

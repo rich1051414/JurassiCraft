@@ -30,13 +30,13 @@ import java.util.Random;
 
 public class BlockCultivateBottom extends BlockContainer
 {
-    public static final String[] iconVariationsNames = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
-
+    public static final String[] iconVariationsNames = new String[] { "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white" };
+    
     @SideOnly(Side.CLIENT)
     private IIcon[] iconVariations;
-  
+    
     public boolean isLit;
-
+    
     public BlockCultivateBottom(boolean lit)
     {
         super(Material.cactus); // Yes..., Cactus xD But I hate cacti :(
@@ -45,16 +45,17 @@ public class BlockCultivateBottom extends BlockContainer
         this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);
         this.setHardness(2.0F);
         this.setBlockBounds(0.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        if (lit) setLightLevel(1.0F);
+        if (lit)
+            setLightLevel(1.0F);
         this.isLit = lit;
     }
-
+    
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
         return this.iconVariations[metadata];
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
@@ -62,7 +63,7 @@ public class BlockCultivateBottom extends BlockContainer
         for (int i = 0; i < this.iconVariations.length; i++)
             list.add(new ItemStack(item, 1, i));
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
@@ -71,32 +72,32 @@ public class BlockCultivateBottom extends BlockContainer
         for (int i = 0; i < this.iconVariations.length; i++)
             this.iconVariations[i] = iconRegister.registerIcon(this.getTextureName() + "_" + iconVariationsNames[i]);
     }
-
+    
     @Override
     public int damageDropped(int metadata)
     {
         return metadata;
     }
-
+    
     @Override
     public int getRenderType()
     {
         return -1;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public int getRenderBlockPass()
     {
         return 1;
     }
-
+    
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-
+    
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float t, float h, float k)
     {
@@ -124,13 +125,13 @@ public class BlockCultivateBottom extends BlockContainer
         }
         return false;
     }
-
+    
     @Override
     public Item getItemDropped(int metadata, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
     }
-
+    
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
@@ -170,27 +171,27 @@ public class BlockCultivateBottom extends BlockContainer
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-
+    
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int metadata)
     {
         world.setBlockToAir(x, y + 1, z);
         world.removeTileEntity(x, y + 1, z);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z)
     {
         return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileCultivate();
     }
-
+    
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB box, List list, Entity entity)
     {
@@ -198,10 +199,11 @@ public class BlockCultivateBottom extends BlockContainer
         for (AxisAlignedBB aabb : aabbs)
         {
             AxisAlignedBB aabbTmp = aabb.getOffsetBoundingBox(x, y, z);
-            if (box.intersectsWith(aabbTmp)) list.add(aabbTmp);
+            if (box.intersectsWith(aabbTmp))
+                list.add(aabbTmp);
         }
     }
-
+    
     @Override
     public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 origin, Vec3 direction)
     {
@@ -212,8 +214,10 @@ public class BlockCultivateBottom extends BlockContainer
             MovingObjectPosition mop = aabb.getOffsetBoundingBox(x, y, z).calculateIntercept(origin, direction);
             if (mop != null)
             {
-                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin)) closest = mop;
-                else closest = mop;
+                if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin))
+                    closest = mop;
+                else
+                    closest = mop;
             }
         }
         if (closest != null)

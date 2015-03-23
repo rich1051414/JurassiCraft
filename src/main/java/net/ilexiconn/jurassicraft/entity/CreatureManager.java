@@ -16,19 +16,20 @@ import java.util.List;
 public class CreatureManager
 {
     private static List<Creature> creatures = new ArrayList<Creature>();
-
+    
     public static List<Creature> getCreatures()
     {
         return creatures;
     }
-
+    
     public static String[] getCreatureNames()
     {
         List<String> list = new ArrayList<String>();
-        for (Creature creature : getCreatures()) list.add(creature.getCreatureName());
+        for (Creature creature : getCreatures())
+            list.add(creature.getCreatureName());
         return list.toArray(new String[list.size()]);
     }
-
+    
     public static Creature getCreatureFromId(int creatureID)
     {
         for (Creature creature : creatures)
@@ -38,10 +39,10 @@ public class CreatureManager
                 return creature;
             }
         }
-
+        
         return null;
     }
-
+    
     public static Creature classToCreature(Class clazz)
     {
         for (Creature creature : creatures)
@@ -51,10 +52,10 @@ public class CreatureManager
                 return creature;
             }
         }
-
+        
         return null;
     }
-
+    
     public static Creature getCreatureFromDNA(ItemDNA itemDNA)
     {
         if (itemDNA != null)
@@ -62,17 +63,17 @@ public class CreatureManager
             for (Creature creature : creatures)
             {
                 ItemDNA currentDNA = creature.getDNA();
-
+                
                 if (itemDNA.equals(currentDNA))
                 {
                     return creature;
                 }
             }
         }
-
+        
         return null;
     }
-
+    
     public static Creature getCreatureFromName(String name)
     {
         for (Creature creature : creatures)
@@ -82,16 +83,16 @@ public class CreatureManager
                 return creature;
             }
         }
-
+        
         return null;
     }
-
+    
     public static void addCreature(JsonCreatureDefinition creature, String category)
     {
         try
         {
             String creatureName = creature.creatureName;
-
+            
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + creatureName);
             creatures.add(new Creature(category, creature, entity));
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
@@ -103,7 +104,7 @@ public class CreatureManager
             e.printStackTrace();
         }
     }
-
+    
     @SideOnly(Side.CLIENT)
     public static void addCreatureRenderer(JsonCreatureDefinition dino, String category)
     {

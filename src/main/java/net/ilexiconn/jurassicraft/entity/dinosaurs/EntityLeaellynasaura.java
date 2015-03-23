@@ -36,13 +36,13 @@ public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements ID
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(800);
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

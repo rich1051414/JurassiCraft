@@ -17,7 +17,7 @@ public class RenderAmmonite extends RenderCephalopod
     {
         super(new ModelAmmonite(), cephalopod, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

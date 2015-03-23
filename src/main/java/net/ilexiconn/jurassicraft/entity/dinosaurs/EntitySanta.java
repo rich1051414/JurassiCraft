@@ -26,29 +26,28 @@ public class EntitySanta extends EntityJurassiCraftRidable
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.setCreatureExperiencePoints(1000);
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
-
+    
     @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-
+        
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.posY);
         int k = MathHelper.floor_double(this.posZ);
-
+        
         for (int l = 0; l < 4; ++l)
         {
             i = MathHelper.floor_double(this.posX + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
             j = MathHelper.floor_double(this.posY);
             k = MathHelper.floor_double(this.posZ + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
-
+            
             if ((this.worldObj.getBlock(i, j, k).getMaterial() == Material.air || this.worldObj.getBlock(i, j, k).getMaterial() == Material.grass) && Blocks.snow_layer.canPlaceBlockAt(this.worldObj, i, j, k))
             {
                 this.worldObj.setBlock(i, j, k, Blocks.snow_layer);

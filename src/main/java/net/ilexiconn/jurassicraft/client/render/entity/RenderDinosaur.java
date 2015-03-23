@@ -11,34 +11,34 @@ public abstract class RenderDinosaur extends RenderLiving
 {
     private Creature dino;
     private float resizableShadow;
-
+    
     public RenderDinosaur(ModelBase model, Creature dino, float shadow)
     {
         super(model, 1.0F);
         this.setDino(dino);
         this.setShadow(shadow);
     }
-
+    
     private void setShadow(float shadow)
     {
         this.resizableShadow = shadow;
     }
-
+    
     public float getShadow()
     {
         return this.resizableShadow;
     }
-
+    
     private void setDino(Creature dino)
     {
         this.dino = dino;
     }
-
+    
     public Creature getDino()
     {
         return this.dino;
     }
-
+    
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

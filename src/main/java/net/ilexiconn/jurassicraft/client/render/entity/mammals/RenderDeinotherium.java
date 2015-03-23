@@ -17,7 +17,7 @@ public class RenderDeinotherium extends RenderMammal
     {
         super(new ModelDeinotherium(), mammal, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

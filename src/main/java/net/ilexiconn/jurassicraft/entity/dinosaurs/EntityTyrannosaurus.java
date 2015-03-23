@@ -50,7 +50,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private float shakeCount = 0;
     private int stepCount = 0;
-
+    
     public EntityTyrannosaurus(World world)
     {
         super(world);
@@ -91,7 +91,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 40, 0.3F));
         this.setCreatureExperiencePoints(5500);
     }
-
+    
     @Override
     public void updateRiderPosition()
     {
@@ -105,8 +105,8 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
                 float shakeProgress = shakePrey.getAnimationProgressSinSqrt();
                 float radius = 0.4F * this.getCreatureLength();
                 float angle = (float) (0.01745329251F * this.renderYawOffset + (0.05 * this.getCreatureLength() * shakeProgress * Math.cos(frame * 0.6 + 1)));
-                this.riddenByEntity.rotationYaw = (float) (angle * (180/Math.PI) - 150.0F);
-                ((EntityGallimimus) this.riddenByEntity).renderYawOffset = (float) (angle * (180/Math.PI) - 150.0F);
+                this.riddenByEntity.rotationYaw = (float) (angle * (180 / Math.PI) - 150.0F);
+                ((EntityGallimimus) this.riddenByEntity).renderYawOffset = (float) (angle * (180 / Math.PI) - 150.0F);
                 double extraY = this.getCreatureHeight() * (0.425 - shakeProgress * 0.21);
                 if (getAnimationTick() > 30)
                 {
@@ -123,7 +123,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             }
         }
     }
-
+    
     @Override
     public String getLivingSound()
     {
@@ -155,13 +155,13 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             return null;
         }
     }
-
+    
     public void onUpdate()
     {
         super.onUpdate();
         this.roarCount.update();
         this.roarTiltDegree.update();
-
+        
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
@@ -170,19 +170,20 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         }
         if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22)
             this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-
+        
         if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22)
             this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-
+        
         this.stepCount -= this.moveForward * 9.5;
-
+        
         /** Breathing Sound MISSING SOUND */
-        if (this.frame % 62 == 28) this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
-
+        if (this.frame % 62 == 28)
+            this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
+        
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
-        	if (this.isSitting())
+            if (this.isSitting())
             {
                 this.sittingProgress.increaseTimer();
                 this.restingHeadProgress.runAnimation();
@@ -193,14 +194,17 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
                 this.restingHeadProgress.stopAnimation();
             }
         }
-
+        
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
-
-        if (this.getAttackTarget() == this.riddenByEntity) setAttackTarget(null);
-        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() <= 20) shakePrey.increaseTimer();
-        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() > 20) shakePrey.decreaseTimer();
+        
+        if (this.getAttackTarget() == this.riddenByEntity)
+            setAttackTarget(null);
+        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() <= 20)
+            shakePrey.increaseTimer();
+        if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() > 20)
+            shakePrey.decreaseTimer();
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

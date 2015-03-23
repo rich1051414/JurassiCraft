@@ -18,7 +18,7 @@ public class ModelBrachiopod extends ModelBase
     ModelRenderer pearl;
     ModelRenderer backTop;
     ModelRenderer rightTop;
-
+    
     public ModelBrachiopod()
     {
         super();
@@ -80,7 +80,7 @@ public class ModelBrachiopod extends ModelBase
         this.rightTop.mirror = true;
         this.setRotation(this.rightTop, 0.0f, 0.0f, 0.0f);
     }
-
+    
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -101,14 +101,14 @@ public class ModelBrachiopod extends ModelBase
         this.backTop.render(f5);
         this.rightTop.render(f5);
     }
-
+    
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);

@@ -10,19 +10,19 @@ public class ConfigFactory implements IModGuiFactory
 {
     public void initialize(Minecraft minecraftInstance)
     {
-
+        
     }
-
+    
     public Class<? extends GuiScreen> mainConfigGuiClass()
     {
         return ConfigGui.class;
     }
-
+    
     public Set<RuntimeOptionCategoryElement> runtimeGuiCategories()
     {
         return null;
     }
-
+    
     public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
     {
         return null;

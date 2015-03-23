@@ -7,12 +7,12 @@ import net.minecraft.entity.Entity;
 public class ModelEgg extends ModelBase
 {
     public ModelRenderer[] shapes = new ModelRenderer[4];
-
+    
     public ModelEgg()
     {
         textureWidth = 64;
         textureHeight = 32;
-
+        
         shapes[0] = new ModelRenderer(this, 0, 21);
         shapes[0].addBox(-3F, 0F, -3F, 6, 5, 6);
         shapes[0].setRotationPoint(0F, 18F, 0F);
@@ -25,19 +25,19 @@ public class ModelEgg extends ModelBase
         shapes[3] = new ModelRenderer(this, 24, 18);
         shapes[3].addBox(-1.5F, 0F, -1.5F, 3, 3, 3);
         shapes[3].setRotationPoint(0F, 15F, 0F);
-
+        
         for (ModelRenderer shape : shapes)
         {
             shape.setTextureSize(64, 32);
         }
     }
-
+    
     public void render(Entity entity, float x, float y, float z, float x1, float y1, float z1)
     {
         super.render(entity, x, y, z, x1, y1, z1);
         render();
     }
-
+    
     public void render()
     {
         for (ModelRenderer shape : shapes)

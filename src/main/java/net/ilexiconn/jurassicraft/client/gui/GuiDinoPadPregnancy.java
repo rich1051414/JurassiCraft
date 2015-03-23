@@ -27,7 +27,7 @@ public class GuiDinoPadPregnancy extends GuiContainer
     private int guiTop;
     private int xSize;
     private int ySize;
-
+    
     public GuiDinoPadPregnancy(ContainerDinoPadPregnancy container)
     {
         super(container);
@@ -70,14 +70,14 @@ public class GuiDinoPadPregnancy extends GuiContainer
                 this.creature = (EntityAnimal) null;
                 this.mc.thePlayer.closeScreen();
             }
-
+            
             if (this.creature == (EntityAnimal) null)
             {
                 this.mc.thePlayer.closeScreen();
             }
         }
     }
-
+    
     @Override
     public void initGui()
     {
@@ -88,20 +88,20 @@ public class GuiDinoPadPregnancy extends GuiContainer
         this.guiTop = (int) ((this.height - this.ySize) / 2);
         this.renderRotation = 0.0F;
     }
-
+    
     @Override
     public void onGuiClosed()
     {
         this.creature = (EntityAnimal) null;
         super.onGuiClosed();
     }
-
+    
     @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
-
+    
     @Override
     protected void keyTyped(char var1, int key)
     {
@@ -111,7 +111,7 @@ public class GuiDinoPadPregnancy extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void updateScreen()
     {
@@ -130,7 +130,7 @@ public class GuiDinoPadPregnancy extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
@@ -217,7 +217,7 @@ public class GuiDinoPadPregnancy extends GuiContainer
             }
         }
     }
-
+    
     private void renderCreature(float x, float y, float scale)
     {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);

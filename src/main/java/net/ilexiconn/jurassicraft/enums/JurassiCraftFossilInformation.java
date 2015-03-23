@@ -4,28 +4,28 @@ import net.minecraft.util.EnumChatFormatting;
 
 public enum JurassiCraftFossilInformation
 {
-
-	/* Already done.
+    
+    /* Already done.
     CORONICERASROTIFORME("Coroniceras rotiforme", 	(byte) 0, "Arietitidae", 		(short) 199, 	(short) 191, 	"Carnivorous", 	1.00000D, 0.50D, 0.50D, "IconCoronicerasRotiforme", 	(byte) 1, (byte) 1, 	"Dinosaur"),
-	COMPSOGNATHUS("Compsognathus longipes", 		(byte) 1, "Compsognathidae", 	(short) 151, 	(short) 147, 	"Carnivorous", 	4.00000D, 1.00D, 0.55D, "IconCompsognathus", 			(byte) 1, (byte) 2, 	"Dinosaur"),
-	VELOCIRAPTOR("Velociraptor mongoliensis", 		(byte) 2, "Dromaeosauridae",	(short) 75, 	(short) 71, 	"Carnivorous", 	15.0000D, 2.00D, 0.80D, "IconVelociraptor", 			(byte) 1, (byte) 2, 	"Dinosaur"),
-	TYRANNOSAURUSREX("Tyrannosaurus rex", 			(byte) 3, "Tyrannosauridae", 	(short) 67, 	(short) 65, 	"Carnivorous", 	6800.00D, 12.3D, 4.00D, "IconTyrannosaurusRex", 		(byte) 3, (byte) 5, 	"Dinosaur"),
-	STEGOSAURUS("Stegosaurus armatus",				(byte) 4, "Stegosauridae", 		(short) 156, 	(short) 149, 	"Herbivorous", 	4500.00D, 8.50D, 4.20D, "IconStegosaurus", 				(byte) 2, (byte) 4, 	"Dinosaur"),
-	ANKYLOSAURUS("Ankylosaurus magniventris", 		(byte) 5, "Ankylosauridae", 	(short) 67, 	(short) 65, 	"Herbivorous", 	6000.00D, 6.25D, 1.70D, "IconAnkylosaurus", 			(byte) 2, (byte) 4, 	"Dinosaur"),
-	PLESIOSAURUS("Plesiosaurus dolichodeirus", 		(byte) 6, "Plesiosauridae", 	(short) 200, 	(short) 194, 	"Piscivorous", 	480.000D, 3.60D, 1.20D, "IconPlesiosaurus", 			(byte) 2, (byte) 4, 	"Dinosaur");
-	
-	/* Others.
-	TRICERATOPS("Triceratops horridus",				5, 		"Herbivore",	67, 	65,		9000.0,		9.0,	3.2,	"SmallCarnivore");
-	BRACHIOSAURUS("Brachiosaurus altithorax",		6, 		"Herbivore",	156, 	145,	35000.0,	26.0,	6.5,	"SmallCarnivore");
-	PARASAUROLOPHUS("Parasaurolophus walkeri",		7, 		"Herbivore",	77, 	72,		2500.0,		9.5,	3.8,	"SmallCarnivore");
-	ALLOSAURUS("Allosaurus fragilis",				8, 		"Carnivore",	156, 	150,		2200.0,		11.0,	3.5,	"SmallCarnivore");
-	SPINOSAURUS("Spinosaurus aegyptiacus",			9,	 	"Carnivore",	111, 	93,		8500.0,		17,		5.5,	"SmallCarnivore");
-	DILOPHOSAURUS("Dilophosaurus wetherilli",		10, 	"Carnivore",	196, 	191,	500.0,		6.5,	1.9,	"SmallCarnivore");
-	ARCHAEOPTERYX("Archaeopteryx lithographica",	11, 	"Carnivore",	152, 	145,	1.0,		0.5,	0.3,	"SmallCarnivore");
-	*/
-
+    COMPSOGNATHUS("Compsognathus longipes", 		(byte) 1, "Compsognathidae", 	(short) 151, 	(short) 147, 	"Carnivorous", 	4.00000D, 1.00D, 0.55D, "IconCompsognathus", 			(byte) 1, (byte) 2, 	"Dinosaur"),
+    VELOCIRAPTOR("Velociraptor mongoliensis", 		(byte) 2, "Dromaeosauridae",	(short) 75, 	(short) 71, 	"Carnivorous", 	15.0000D, 2.00D, 0.80D, "IconVelociraptor", 			(byte) 1, (byte) 2, 	"Dinosaur"),
+    TYRANNOSAURUSREX("Tyrannosaurus rex", 			(byte) 3, "Tyrannosauridae", 	(short) 67, 	(short) 65, 	"Carnivorous", 	6800.00D, 12.3D, 4.00D, "IconTyrannosaurusRex", 		(byte) 3, (byte) 5, 	"Dinosaur"),
+    STEGOSAURUS("Stegosaurus armatus",				(byte) 4, "Stegosauridae", 		(short) 156, 	(short) 149, 	"Herbivorous", 	4500.00D, 8.50D, 4.20D, "IconStegosaurus", 				(byte) 2, (byte) 4, 	"Dinosaur"),
+    ANKYLOSAURUS("Ankylosaurus magniventris", 		(byte) 5, "Ankylosauridae", 	(short) 67, 	(short) 65, 	"Herbivorous", 	6000.00D, 6.25D, 1.70D, "IconAnkylosaurus", 			(byte) 2, (byte) 4, 	"Dinosaur"),
+    PLESIOSAURUS("Plesiosaurus dolichodeirus", 		(byte) 6, "Plesiosauridae", 	(short) 200, 	(short) 194, 	"Piscivorous", 	480.000D, 3.60D, 1.20D, "IconPlesiosaurus", 			(byte) 2, (byte) 4, 	"Dinosaur");
+    
+    /* Others.
+    TRICERATOPS("Triceratops horridus",				5, 		"Herbivore",	67, 	65,		9000.0,		9.0,	3.2,	"SmallCarnivore");
+    BRACHIOSAURUS("Brachiosaurus altithorax",		6, 		"Herbivore",	156, 	145,	35000.0,	26.0,	6.5,	"SmallCarnivore");
+    PARASAUROLOPHUS("Parasaurolophus walkeri",		7, 		"Herbivore",	77, 	72,		2500.0,		9.5,	3.8,	"SmallCarnivore");
+    ALLOSAURUS("Allosaurus fragilis",				8, 		"Carnivore",	156, 	150,		2200.0,		11.0,	3.5,	"SmallCarnivore");
+    SPINOSAURUS("Spinosaurus aegyptiacus",			9,	 	"Carnivore",	111, 	93,		8500.0,		17,		5.5,	"SmallCarnivore");
+    DILOPHOSAURUS("Dilophosaurus wetherilli",		10, 	"Carnivore",	196, 	191,	500.0,		6.5,	1.9,	"SmallCarnivore");
+    ARCHAEOPTERYX("Archaeopteryx lithographica",	11, 	"Carnivore",	152, 	145,	1.0,		0.5,	0.3,	"SmallCarnivore");
+    */
+    
     EXAMPLE("Species", (byte) 0, "family", (short) 199, (short) 191, "Diet", 1.00000D, 0.50D, 0.50D, (byte) 1, (byte) 1, "Dinosaur");
-
+    
     private JurassiCraftFossilInformation(String name, byte id, String dinoFamily, short maxYear, short minYear, String dinoDiet, double dinoWeight, double dinoLength, double dinoHeight, byte xB, byte zB, String creature)
     {
         this.fossilName = name;
@@ -41,7 +41,7 @@ public enum JurassiCraftFossilInformation
         this.boundZ = zB;
         this.typeOfCreature = creature;
     }
-
+    
     /**
      * Returns the era and period of the fossil based on its year of existence
      */
@@ -172,7 +172,7 @@ public enum JurassiCraftFossilInformation
             return "Not Defined";
         }
     }
-
+    
     /**
      * Returns the right EnumChatFormatting color depending on the diet
      */
@@ -195,7 +195,7 @@ public enum JurassiCraftFossilInformation
             return EnumChatFormatting.GRAY;
         }
     }
-
+    
     /**
      * Returns the name of the fossil.
      */
@@ -203,7 +203,7 @@ public enum JurassiCraftFossilInformation
     {
         return fossilName;
     }
-
+    
     /**
      * Returns the id of the fossil.
      */
@@ -211,7 +211,7 @@ public enum JurassiCraftFossilInformation
     {
         return fossilID;
     }
-
+    
     /**
      * Returns the diet of the fossil.
      */
@@ -219,7 +219,7 @@ public enum JurassiCraftFossilInformation
     {
         return diet;
     }
-
+    
     /**
      * Returns the family of the fossil
      */
@@ -227,7 +227,7 @@ public enum JurassiCraftFossilInformation
     {
         return family;
     }
-
+    
     /**
      * Returns the initial year of existence.
      */
@@ -235,7 +235,7 @@ public enum JurassiCraftFossilInformation
     {
         return beginOfExistence;
     }
-
+    
     /**
      * Returns the final year of existence.
      */
@@ -243,7 +243,7 @@ public enum JurassiCraftFossilInformation
     {
         return endOfExistence;
     }
-
+    
     /**
      * Returns the length of the fossil.
      */
@@ -251,7 +251,7 @@ public enum JurassiCraftFossilInformation
     {
         return length;
     }
-
+    
     /**
      * Returns the length of the fossil.
      */
@@ -259,7 +259,7 @@ public enum JurassiCraftFossilInformation
     {
         return height;
     }
-
+    
     /**
      * Returns the length of the fossil.
      */
@@ -267,7 +267,7 @@ public enum JurassiCraftFossilInformation
     {
         return weight;
     }
-
+    
     /**
      * Returns the x bound of the fossil.
      */
@@ -275,7 +275,7 @@ public enum JurassiCraftFossilInformation
     {
         return boundX;
     }
-
+    
     /**
      * Returns the z bound of the fossil.
      */
@@ -283,7 +283,7 @@ public enum JurassiCraftFossilInformation
     {
         return boundZ;
     }
-
+    
     /**
      * Returns the type of creature. Dinosaur, mammal, reptile.
      */
@@ -291,7 +291,7 @@ public enum JurassiCraftFossilInformation
     {
         return typeOfCreature;
     }
-
+    
     private final String typeOfCreature;
     private final String fossilName;
     private final String family;

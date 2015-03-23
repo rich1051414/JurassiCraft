@@ -13,14 +13,14 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
     private EntityItem droppedFood;
     private double timeTryingToEat;
     private double searchDistance;
-
+    
     public JurassiCraftAIEatDroppedFood(EntityJurassiCraftSmart entity, double distance)
     {
         this.creature = entity;
         this.searchDistance = distance;
         this.timeTryingToEat = 0;
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
@@ -49,7 +49,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
         }
         return false;
     }
-
+    
     @Override
     public void startExecuting()
     {
@@ -65,7 +65,7 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
         this.timeTryingToEat = 0;
         super.startExecuting();
     }
-
+    
     @Override
     public void updateTask()
     {
@@ -82,13 +82,13 @@ public class JurassiCraftAIEatDroppedFood extends EntityAIBase
                 this.creature.getNavigator().tryMoveToXYZ(this.droppedFood.posX, this.droppedFood.posY, this.droppedFood.posZ, this.creature.getCreatureSpeed());
         }
     }
-
+    
     @Override
     public boolean continueExecuting()
     {
         return this.timeTryingToEat < 125 && this.droppedFood.isEntityAlive() && this.creature.isEntityAlive() && !this.creature.isSitting() && this.creature.riddenByEntity == null && !this.creature.isAttacking() && !this.creature.isDefending();
     }
-
+    
     @Override
     public void resetTask()
     {

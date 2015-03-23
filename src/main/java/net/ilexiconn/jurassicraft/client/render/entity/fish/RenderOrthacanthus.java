@@ -13,12 +13,12 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class RenderOrthacanthus extends RenderSwimming
 {
-
+    
     public RenderOrthacanthus(Creature fish)
     {
         super(new ModelOrthacanthus(), fish, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

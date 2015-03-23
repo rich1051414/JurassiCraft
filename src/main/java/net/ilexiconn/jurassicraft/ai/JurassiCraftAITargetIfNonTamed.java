@@ -11,26 +11,26 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 public class JurassiCraftAITargetIfNonTamed extends EntityAINearestAttackableTarget
 {
     private EntityJurassiCraftSmart creature;
-
+    
     public JurassiCraftAITargetIfNonTamed(EntityJurassiCraftSmart entity, Class targetClass, int chanceToAttack)
     {
         super(entity, targetClass, chanceToAttack, false);
         this.creature = entity;
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
         return !this.creature.isTamed() && !this.creature.isSleeping() && !this.creature.isAttacking() && super.shouldExecute();
     }
-
+    
     @Override
     public void startExecuting()
     {
         super.startExecuting();
         this.creature.setAttacking(true);
     }
-
+    
     @Override
     public void resetTask()
     {

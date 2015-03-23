@@ -16,7 +16,7 @@ public class RenderSanta extends RenderDinosaur
     {
         super(new ModelSanta(), dinosaur, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

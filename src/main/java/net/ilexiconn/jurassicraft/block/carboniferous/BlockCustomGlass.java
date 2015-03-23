@@ -12,40 +12,48 @@ import java.util.Random;
 /**
  * @author ProPercivalalb
  **/
-public class BlockCustomGlass extends BlockBreakable {
-	
-    public BlockCustomGlass() {
+public class BlockCustomGlass extends BlockBreakable
+{
+    
+    public BlockCustomGlass()
+    {
         super(Properties.TEX_PACkAGE + "clearGlass", Material.glass, false);
     }
-
+    
     @Override
-    public int quantityDropped(Random par1Random) {
+    public int quantityDropped(Random par1Random)
+    {
         return 0;
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
-    public int getRenderBlockPass() {
+    public int getRenderBlockPass()
+    {
         return 0;
     }
-
+    
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube()
+    {
         return false;
     }
-
+    
     @Override
-    public boolean renderAsNormalBlock() {
+    public boolean renderAsNormalBlock()
+    {
         return false;
     }
-
+    
     @Override
-    protected boolean canSilkHarvest() {
+    protected boolean canSilkHarvest()
+    {
         return true;
     }
     
     @Override
-    public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
-    	return true;
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    {
+        return true;
     }
 }

@@ -16,7 +16,7 @@ public class RenderJurassicraftCreature extends RenderLiving
     private float resizableShadow;
     private String creatureCat;
     private String creatureName;
-
+    
     public RenderJurassicraftCreature(String creatureName, String creatureCat, float shadow) throws ClassNotFoundException, IllegalAccessException, InstantiationException
     {
         super((ModelBase) Class.forName("net.ilexiconn.jurassicraft.client.model.entity.Model" + creatureName).newInstance(), shadow);
@@ -25,27 +25,27 @@ public class RenderJurassicraftCreature extends RenderLiving
         this.creatureCat = creatureCat;
         this.creatureName = creatureName;
     }
-
+    
     private void setShadow(float shadow)
     {
         this.resizableShadow = shadow;
     }
-
+    
     public float getShadow()
     {
         return this.resizableShadow;
     }
-
+    
     private void setCreature(Creature creature)
     {
         this.creature = creature;
     }
-
+    
     public Creature getCreature()
     {
         return this.creature;
     }
-
+    
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
@@ -53,7 +53,7 @@ public class RenderJurassicraftCreature extends RenderLiving
         this.shadowSize = scale * this.getShadow();
         GL11.glScalef(scale, scale, scale);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

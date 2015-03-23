@@ -27,74 +27,75 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
     private boolean[] builtFences = new boolean[4];
     private boolean[] fenceState = new boolean[4];
     private int plannedSide = 0;
-
+    
     private static final int REDSTONEPERGRID = 2;
     private static final int IRONPERGRID = 1;
-
+    
     public TileSecurityFenceLowCorner()
     {
         this.plannedSide = 0;
         for (int i = 0; i < builtFences.length; i++)
             builtFences[i] = false;
     }
-
+    
     public void setPlannedSide(int side)
     {
         this.plannedSide = side;
     }
-
+    
     public int getPlannedSide()
     {
         return this.plannedSide;
     }
-
+    
     public void setFenceAt(int side, boolean hasFenceAt)
     {
         this.builtFences[side] = hasFenceAt;
     }
-
+    
     public boolean hasFenceAt(int side)
     {
         return this.builtFences[side];
     }
-
+    
     public void setFenceOff(int side)
     {
         this.fenceState[side] = false;
     }
-
+    
     public void setFenceOn(int side)
     {
         this.fenceState[side] = true;
     }
-
+    
     public void setFenceOnOff(int side, boolean turnOnOrOff)
     {
         this.fenceState[side] = turnOnOrOff;
     }
-
+    
     public boolean isFenceOff(int side)
     {
         return !this.fenceState[side];
     }
-
+    
     public boolean isFenceOn(int side)
     {
         return this.fenceState[side];
     }
-
+    
     public boolean hasIronStored()
     {
         for (int i = 0; i < this.slots.length; i++)
         {
             if (this.slots[i] != null)
             {
-                if (this.slots[i].getItem().getUnlocalizedName().equals("item.ingotIron")) return true;
+                if (this.slots[i].getItem().getUnlocalizedName().equals("item.ingotIron"))
+                    return true;
             }
         }
         return false;
     }
-
+    
     public boolean hasNumberOfIronStored(int amount)
     {
         int ironStored = 0;
@@ -108,7 +109,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return ironStored >= amount;
     }
-
+    
     public void reduceIronIngots(int amount)
     {
         for (int i = 0; i < this.slots.length; i++)
@@ -120,7 +121,8 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                     if (this.slots[i].stackSize >= amount)
                     {
                         this.slots[i].stackSize -= amount;
-                        if (this.slots[i].stackSize < 1) this.slots[i] = null;
+                        if (this.slots[i].stackSize < 1)
+                            this.slots[i] = null;
                     }
                     else
                     {
@@ -131,19 +133,20 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
     }
-
+    
     public boolean hasRedstoneStored()
     {
         for (int i = 0; i < this.slots.length; i++)
         {
             if (this.slots[i] != null)
             {
-                if (this.slots[i].getItem() instanceof ItemRedstone) return true;
+                if (this.slots[i].getItem() instanceof ItemRedstone)
+                    return true;
             }
         }
         return false;
     }
-
+    
     public boolean hasNumberOfRedstoneStored(int amount)
     {
         int redstoneStored = 0;
@@ -151,12 +154,13 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         {
             if (this.slots[i] != null)
             {
-                if (this.slots[i].getItem() instanceof ItemRedstone) redstoneStored += this.slots[i].stackSize;
+                if (this.slots[i].getItem() instanceof ItemRedstone)
+                    redstoneStored += this.slots[i].stackSize;
             }
         }
         return redstoneStored >= amount;
     }
-
+    
     public void reduceRedstone(int amount)
     {
         for (int i = 0; i < this.slots.length; i++)
@@ -168,7 +172,8 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                     if (this.slots[i].stackSize >= amount)
                     {
                         this.slots[i].stackSize -= amount;
-                        if (this.slots[i].stackSize < 1) this.slots[i] = null;
+                        if (this.slots[i].stackSize < 1)
+                            this.slots[i] = null;
                     }
                     else
                     {
@@ -179,42 +184,43 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
     }
-
+    
     public boolean hasItems()
     {
         for (int i = 0; i < this.slots.length; i++)
         {
-            if (this.slots[i] != null && this.slots[i].stackSize > 0) return true;
+            if (this.slots[i] != null && this.slots[i].stackSize > 0)
+                return true;
         }
         return false;
     }
-
+    
     private boolean hasLowSecurityMainFenceBlockAt(TileSecurityFenceLowCorner mainFence, int x, int y, int z)
     {
         return mainFence.worldObj.getBlock(x, y, z) instanceof BlockSecurityFenceLowCorner;
     }
-
+    
     private boolean hasLowSecurityBaseFenceBlockAt(TileSecurityFenceLowCorner mainFence, int x, int y, int z)
     {
         return mainFence.worldObj.getBlock(x, y, z) instanceof BlockSecurityFenceLowBase;
     }
-
+    
     private boolean hasLowSecurityPoleFenceBlockAt(TileSecurityFenceLowCorner mainFence, int x, int y, int z)
     {
         return mainFence.worldObj.getBlock(x, y, z) instanceof BlockSecurityFenceLowPole;
     }
-
+    
     private boolean hasLowSecurityGridFenceBlockAt(TileSecurityFenceLowCorner mainFence, int x, int y, int z)
     {
         return mainFence.worldObj.getBlock(x, y, z) instanceof BlockSecurityFenceLowGrid;
     }
-
+    
     public TileSecurityFenceLowCorner getNextLowSecurityMainFenceBlock(TileSecurityFenceLowCorner mainFence, int side, int distance)
     {
         TileEntity tileEntity = null;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 1; i < distance; i++)
                 {
@@ -256,13 +262,13 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             return null;
         }
     }
-
+    
     public TileSecurityFenceLowCorner getNextLowSecurityMainFenceBlockDirectly(TileSecurityFenceLowCorner mainFence, int side, int distance)
     {
         TileEntity tileEntity = null;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 if (mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + distance))
                     tileEntity = mainFence.worldObj.getTileEntity(mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + distance);
@@ -292,7 +298,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             return null;
         }
     }
-
+    
     public int getFencePoleHeight(TileSecurityFenceLowCorner mainFence)
     {
         int i = 0;
@@ -303,14 +309,14 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return i;
     }
-
+    
     public int getSmallerFencePoleHeight(TileSecurityFenceLowCorner mainFence1, TileSecurityFenceLowCorner mainFence2)
     {
         int heigthFence1 = this.getFencePoleHeight(mainFence1);
         int heigthFence2 = this.getFencePoleHeight(mainFence2);
         return Math.min(heigthFence1, heigthFence2);
     }
-
+    
     public List<TileSecurityFenceLowPole> getAllFencePoles(TileSecurityFenceLowCorner mainFence)
     {
         int i = this.getFencePoleHeight(mainFence);
@@ -325,11 +331,11 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return null;
     }
-
+    
     public void setGridsToAllFencePoles(TileSecurityFenceLowCorner mainFence)
     {
         int i = this.getFencePoleHeight(mainFence);
-
+        
         for (int height = 0; height < i; height++)
         {
             for (int side = 0; side < 4; side++)
@@ -340,7 +346,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
     }
-
+    
     public int getFenceBaseLength(TileSecurityFenceLowCorner mainFence, int side)
     {
         boolean flag = true;
@@ -348,7 +354,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         int i = 0;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 while (flag)
                 {
@@ -411,34 +417,34 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return i;
     }
-
+    
     public boolean isBaseAtSideValid(TileSecurityFenceLowCorner mainFence, int side, int length)
     {
         length++;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord + length);
-            /** West */
+                /** West */
             case 1:
                 return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord - length, mainFence.yCoord, mainFence.zCoord);
-            /** North */
+                /** North */
             case 2:
                 return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord, mainFence.yCoord, mainFence.zCoord - length);
-            /** East */
+                /** East */
             case 3:
                 return mainFence.hasLowSecurityMainFenceBlockAt(mainFence, mainFence.xCoord + length, mainFence.yCoord, mainFence.zCoord);
             default:
                 return false;
         }
     }
-
+    
     public boolean hasEmptySpaceAt(TileSecurityFenceLowCorner mainFence, int side, int length, int height)
     {
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 0; i < height; i++)
                 {
@@ -487,12 +493,12 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return true;
     }
-
+    
     public boolean hasGridBetweenSpace(TileSecurityFenceLowCorner mainFence, int side, int length, int height)
     {
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 0; i < height; i++)
                 {
@@ -541,18 +547,18 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return true;
     }
-
+    
     public int getNumberOfGridsToBuild(int lengthOfTheFence, int heightOfTheFence)
     {
         return lengthOfTheFence * heightOfTheFence;
     }
-
+    
     public int getNumberOfGridsToFix(TileSecurityFenceLowCorner mainFence, int side, int length, int height)
     {
         int numberOfGridsMissing = 0;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 0; i < height; i++)
                 {
@@ -599,23 +605,23 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         return numberOfGridsMissing;
     }
-
+    
     public int getRedstoneRequiredForGrid(int numberOfGrids)
     {
         return this.REDSTONEPERGRID * numberOfGrids;
     }
-
+    
     public int getIronRequiredForGrid(int numberOfGrids)
     {
         return this.IRONPERGRID * numberOfGrids;
     }
-
+    
     private void buildFenceOff(TileSecurityFenceLowCorner mainFence1, TileSecurityFenceLowCorner mainFence2, int side, int length, int height)
     {
         Block grid = ModBlocks.securityFenceLowGrid;
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 0; i < height; i++)
                 {
@@ -673,7 +679,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                 break;
         }
     }
-
+    
     private void changeFenceState(boolean turnOnOrOff, TileSecurityFenceLowCorner mainFence1, TileSecurityFenceLowCorner mainFence2, int side, int length, int height)
     {
         int metadata = 0;
@@ -715,7 +721,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         }
         switch (side)
         {
-            /** South */
+        /** South */
             case 0:
                 for (int i = 0; i < height; i++)
                 {
@@ -777,7 +783,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                 break;
         }
     }
-
+    
     public void tryToBuildFence(int side)
     {
         if (this.worldObj.isRemote)
@@ -787,7 +793,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         else
         {
             int length = this.getFenceBaseLength(this, side);
-
+            
             if (!this.isBaseAtSideValid(this, side, length))
             {
                 return;
@@ -795,12 +801,12 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             else
             {
                 TileSecurityFenceLowCorner otherFence = this.getNextLowSecurityMainFenceBlockDirectly(this, side, length + 1);
-
+                
                 int height = this.getSmallerFencePoleHeight(this, otherFence);
                 int numberOfGrids = this.getNumberOfGridsToBuild(length, height);
-
+                
                 int ironRequired = this.getIronRequiredForGrid(numberOfGrids);
-
+                
                 if (!this.hasNumberOfIronStored(ironRequired))
                 {
                     return;
@@ -831,7 +837,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
     }
-
+    
     public void tryToFixFence(int side)
     {
         if (this.worldObj.isRemote)
@@ -841,7 +847,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         else
         {
             int length = this.getFenceBaseLength(this, side);
-
+            
             if (!this.isBaseAtSideValid(this, side, length))
             {
                 /** Missing other main base. */
@@ -850,9 +856,9 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             else
             {
                 TileSecurityFenceLowCorner otherFence = this.getNextLowSecurityMainFenceBlockDirectly(this, side, length + 1);
-
+                
                 int height = this.getSmallerFencePoleHeight(this, otherFence);
-
+                
                 if (this.hasGridBetweenSpace(this, side, length, height))
                 {
                     /** The fence does not need to be fixed. */
@@ -861,9 +867,9 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                 else
                 {
                     int numberOfGrids = this.getNumberOfGridsToFix(this, side, length, height);
-
+                    
                     int ironRequired = this.getIronRequiredForGrid(numberOfGrids);
-
+                    
                     if (!this.hasNumberOfIronStored(ironRequired))
                     {
                         /** More iron ingot is required. */
@@ -872,7 +878,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
                     else
                     {
                         int redstoneRequired = this.getRedstoneRequiredForGrid(numberOfGrids);
-
+                        
                         if (!this.hasNumberOfRedstoneStored(redstoneRequired))
                         {
                             /** More redstone is required. */
@@ -891,7 +897,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
     }
-
+    
     public void tryToTurnOnTheFence(int side)
     {
         if (this.worldObj.isRemote)
@@ -901,7 +907,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         else
         {
             int length = this.getFenceBaseLength(this, side);
-
+            
             if (!this.isBaseAtSideValid(this, side, length))
             {
                 return;
@@ -909,16 +915,16 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             else
             {
                 TileSecurityFenceLowCorner otherFence = this.getNextLowSecurityMainFenceBlockDirectly(this, side, length + 1);
-
+                
                 int height = this.getSmallerFencePoleHeight(this, otherFence);
-
+                
                 this.changeFenceState(this.isFenceOn(side), this, otherFence, side, length, height);
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 otherFence.worldObj.markBlockForUpdate(otherFence.xCoord, otherFence.yCoord, otherFence.zCoord);
             }
         }
     }
-
+    
     /**
      * Returns a HashMap<Integer, int[]> with all coordinates of every fence block between an area of 22 x 22.
      * <p/>
@@ -934,26 +940,26 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             {
                 if (this.hasLowSecurityMainFenceBlockAt(this, this.xCoord + i, this.yCoord, this.zCoord + k) || this.hasLowSecurityBaseFenceBlockAt(this, this.xCoord + i, this.yCoord, this.zCoord + k) || this.hasLowSecurityPoleFenceBlockAt(this, this.xCoord + i, this.yCoord, this.zCoord + k) || this.hasLowSecurityGridFenceBlockAt(this, this.xCoord + i, this.yCoord, this.zCoord + k))
                 {
-                    map.put(numberOfBlocks, new int[]{i, k});
+                    map.put(numberOfBlocks, new int[] { i, k });
                     numberOfBlocks++;
                 }
             }
         }
         return map;
     }
-
+    
     @Override
     public int getSizeInventory()
     {
         return slots.length;
     }
-
+    
     @Override
     public ItemStack getStackInSlot(int i)
     {
         return slots[i];
     }
-
+    
     @Override
     public ItemStack decrStackSize(int i, int stackSize)
     {
@@ -981,7 +987,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             return null;
         }
     }
-
+    
     @Override
     public ItemStack getStackInSlotOnClosing(int i)
     {
@@ -996,7 +1002,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             return null;
         }
     }
-
+    
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack)
     {
@@ -1006,67 +1012,67 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             itemStack.stackSize = this.getInventoryStackLimit();
         }
     }
-
+    
     @Override
     public String getInventoryName()
     {
         return "Security_Fence_Main_Block";
     }
-
+    
     @Override
     public boolean hasCustomInventoryName()
     {
         return true;
     }
-
+    
     @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
-
+    
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 49.0D;
     }
-
+    
     @Override
     public void openInventory()
     {
-
+        
     }
-
+    
     @Override
     public void closeInventory()
     {
-
+        
     }
-
+    
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
         return false;
     }
-
+    
     @Override
     public int[] getAccessibleSlotsFromSide(int i)
     {
-        return new int[]{0};
+        return new int[] { 0 };
     }
-
+    
     @Override
     public boolean canInsertItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-
+    
     @Override
     public boolean canExtractItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound compound)
     {
@@ -1083,16 +1089,16 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
             }
         }
         compound.setTag("Items", list);
-
+        
         for (int i = 0; i < builtFences.length; i++)
             compound.setBoolean("FenceAtSide" + i, this.hasFenceAt(i));
-
+        
         for (int i = 0; i < fenceState.length; i++)
             compound.setBoolean("FenceStateAtSide" + i, this.isFenceOn(i));
-
+        
         compound.setByte("PlannedSide", (byte) this.getPlannedSide());
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -1103,23 +1109,23 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         {
             NBTTagCompound tagCompound = (NBTTagCompound) list.getCompoundTagAt(i);
             byte j = tagCompound.getByte("Slot");
-
+            
             if (j >= 0 && j < this.slots.length)
             {
                 this.slots[j] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
-
+        
         for (int i = 0; i < builtFences.length; i++)
             this.setFenceAt(i, compound.getBoolean("FenceAtSide" + i));
-
+        
         for (int i = 0; i < fenceState.length; i++)
             this.setFenceOnOff(i, compound.getBoolean("FenceStateAtSide" + i));
-
+        
         this.setPlannedSide((int) compound.getByte("PlannedSide"));
         this.setGridsToAllFencePoles(this);
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
@@ -1127,7 +1133,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
         this.writeToNBT(compound);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, compound);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
     {

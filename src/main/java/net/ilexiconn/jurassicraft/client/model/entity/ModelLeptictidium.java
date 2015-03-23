@@ -11,19 +11,19 @@ import net.minecraft.entity.Entity;
  */
 public class ModelLeptictidium extends MowzieModelBase
 {
-
+    
     public MowzieModelRenderer body1, body2, neck, head1, earLeft, earRight, head2, snout1, snout2, mouth1, mouth2, mouth3;
     public MowzieModelRenderer leftLeg1, leftLeg2, leftLeg3, leftFoot, rightLeg1, rightLeg2, rightLeg3, rightFoot;
     public MowzieModelRenderer rightHand, rightHand2, leftHand, leftHand2;
     public MowzieModelRenderer tail1, tail2, tail3, tail4, tail5;
     private MowzieModelRenderer[] tailParts;
     private MowzieModelRenderer[] noseParts;
-
+    
     public ModelLeptictidium()
     {
         this.textureWidth = 64;
         this.textureHeight = 32;
-
+        
         this.body1 = new MowzieModelRenderer(this, 0, 0);
         this.body1.setRotationPoint(0.0F, 16.0F, 4.0F);
         this.body1.addBox(-2.5F, -2.5F, -3.6F, 5, 5, 5);
@@ -131,7 +131,7 @@ public class ModelLeptictidium extends MowzieModelBase
         this.tail5 = new MowzieModelRenderer(this, 52, 14);
         this.tail5.setRotationPoint(0.0F, 0.0F, 3.5F);
         this.tail5.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 5);
-
+        
         //Head
         this.body1.addChild(this.body2);
         this.body2.addChild(this.neck);
@@ -144,39 +144,39 @@ public class ModelLeptictidium extends MowzieModelBase
         this.head1.addChild(this.head2);
         this.head2.addChild(this.snout1);
         this.snout1.addChild(this.snout2);
-
+        
         //Arms
         this.body2.addChild(this.rightHand);
         this.rightHand.addChild(this.rightHand2);
         this.body2.addChild(this.leftHand);
         this.leftHand.addChild(this.leftHand2);
-
+        
         //Left leg
         this.body1.addChild(this.rightLeg1);
         this.rightLeg1.addChild(this.rightLeg2);
         this.rightLeg2.addChild(this.rightLeg3);
         this.rightLeg3.addChild(this.rightFoot);
-
+        
         //Right leg
         this.body1.addChild(this.leftLeg1);
         this.leftLeg1.addChild(this.leftLeg2);
         this.leftLeg2.addChild(this.leftLeg3);
         this.leftLeg3.addChild(this.leftFoot);
-
+        
         //Tail
         this.body1.addChild(this.tail1);
         this.tail1.addChild(this.tail2);
         this.tail2.addChild(this.tail3);
         this.tail3.addChild(this.tail4);
         this.tail4.addChild(this.tail5);
-
-        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
-        this.noseParts = new MowzieModelRenderer[]{this.snout2, this.snout1};
-
+        
+        this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
+        this.noseParts = new MowzieModelRenderer[] { this.snout2, this.snout1 };
+        
         //Corrections
         rightLeg2.rotationPointX = 0;
         leftLeg2.rotationPointX = 0;
-
+        
         this.body1.setInitValuesToCurrentPose();
         this.body2.setInitValuesToCurrentPose();
         this.neck.setInitValuesToCurrentPose();
@@ -207,7 +207,7 @@ public class ModelLeptictidium extends MowzieModelBase
         this.tail4.setInitValuesToCurrentPose();
         this.tail5.setInitValuesToCurrentPose();
     }
-
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -215,20 +215,20 @@ public class ModelLeptictidium extends MowzieModelBase
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityLeptictidium) entity);
         this.body1.render(f5);
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityLeptictidium entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.resetPose();
-
+        
         float globalSpeed = 0.6F;
         float height = 12F * f1;
-
+        
         this.faceTarget(this.head1, 2, f3, f4);
         this.faceTarget(this.neck, 2, f3, f4);
-
+        
         this.bob(this.body1, 0.5F * globalSpeed, height, true, f, f1);
-
+        
         this.walk(this.leftLeg1, 1F * globalSpeed, 0.75F, true, 1F, 0.2F, f, f1);
         this.walk(this.rightLeg1, 1F * globalSpeed, 0.75F, true, 0.5F, 0.2F, f, f1);
         this.walk(this.leftLeg2, 1F * globalSpeed, 0.5F, true, 1.5F, 0.1F, f, f1);
@@ -237,22 +237,22 @@ public class ModelLeptictidium extends MowzieModelBase
         this.walk(this.rightLeg3, 1F * globalSpeed, 0.5F, true, 1F, 0F, f, f1);
         this.walk(this.leftFoot, 1F * globalSpeed, 0.5F, true, 1F, 0.75F, f, f1);
         this.walk(this.rightFoot, 1F * globalSpeed, 0.5F, true, 0.5F, 0.75F, f, f1);
-
+        
         this.walk(this.body1, 1F * globalSpeed, 0.3F, false, 0.5F, 0F, f, f1);
         this.walk(this.body2, 1F * globalSpeed, 0.5F, true, 1.0F, 0.5F, f, f1);
         this.walk(this.neck, 1F * globalSpeed, 0.3F, true, 0.25F, 0.3F, f, f1);
         this.walk(this.head1, 1F * globalSpeed, 0.3F, false, 0.25F, -0.8F, f, f1);
-
+        
         this.walk(this.rightHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
         this.walk(this.leftHand, 1 * globalSpeed, 0.3F, true, 1, 0.2F, f, f1);
         this.walk(this.rightHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
         this.walk(this.leftHand2, 1 * globalSpeed, 0.3F, false, 1, -0.2F, f, f1);
-
+        
         this.chainWave(this.tailParts, 1F * globalSpeed, 0.2F, 2.7F, f, f1);
         this.chainWave(this.noseParts, 1F * globalSpeed, -0.5F, 0F, f, f1);
         this.flap(this.earLeft, 1F * globalSpeed, 0.5F, true, 1.0F, 0.8F, f, f1);
         this.flap(this.earRight, 1F * globalSpeed, 0.5F, false, 1.0F, -0.8F, f, f1);
-
+        
         //Idle
         this.chainWave(this.tailParts, 0.2F, -0.05F, 2, entity.frame, 1F);
         this.chainSwing(this.tailParts, 0.3F, 0.05F, 3, entity.frame, 1F);
@@ -269,10 +269,10 @@ public class ModelLeptictidium extends MowzieModelBase
         this.walk(this.leftHand, 0.2F, 0.1F, true, 0F, 0F, entity.frame, 1F);
         this.walk(this.rightHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
         this.walk(this.leftHand2, 0.2F, 0.1F, false, 0F, 0F, entity.frame, 1F);
-
+        
         entity.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-
+    
     public void resetPose()
     {
         this.body1.setCurrentPoseToInitValues();
@@ -305,7 +305,7 @@ public class ModelLeptictidium extends MowzieModelBase
         this.tail4.setCurrentPoseToInitValues();
         this.tail5.setCurrentPoseToInitValues();
     }
-
+    
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;

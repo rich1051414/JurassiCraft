@@ -15,10 +15,10 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerDNAExtractor extends Container
 {
-
+    
     private TileDNAExtractor dnaExtractor;
     private short lastAnalyzeTime;
-
+    
     public ContainerDNAExtractor(InventoryPlayer playerInventory, TileDNAExtractor tileEntity)
     {
         this.dnaExtractor = tileEntity;
@@ -30,7 +30,7 @@ public class ContainerDNAExtractor extends Container
         this.addSlotToContainer(new SlotFurnace(playerInventory.player, dnaExtractor, 5, 131, 29));
         this.addSlotToContainer(new SlotFurnace(playerInventory.player, dnaExtractor, 6, 113, 47));
         this.addSlotToContainer(new SlotFurnace(playerInventory.player, dnaExtractor, 7, 131, 47));
-
+        
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
@@ -38,13 +38,13 @@ public class ContainerDNAExtractor extends Container
                 this.addSlotToContainer(new Slot(playerInventory, k + i * 9 + 9, 8 + k * 18, 106 + i * 18));
             }
         }
-
+        
         for (int i = 0; i < 9; i++)
         {
             this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 164));
         }
     }
-
+    
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
@@ -54,14 +54,14 @@ public class ContainerDNAExtractor extends Container
             dnaExtractor.closeInventory();
         }
     }
-
+    
     @Override
     public void addCraftingToCrafters(ICrafting iCrafting)
     {
         super.addCraftingToCrafters(iCrafting);
         iCrafting.sendProgressBarUpdate(this, 0, this.dnaExtractor.getExtractionTime());
     }
-
+    
     @Override
     public void detectAndSendChanges()
     {
@@ -76,7 +76,7 @@ public class ContainerDNAExtractor extends Container
         }
         lastAnalyzeTime = dnaExtractor.getExtractionTime();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int i, int unknown)
@@ -86,13 +86,13 @@ public class ContainerDNAExtractor extends Container
             this.dnaExtractor.setExtractionTime((short) unknown);
         }
     }
-
+    
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
         return dnaExtractor.isUseableByPlayer(player);
     }
-
+    
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i)
     {

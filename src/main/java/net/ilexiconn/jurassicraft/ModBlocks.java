@@ -45,17 +45,17 @@ public class ModBlocks implements IContentHandler
     public static Block fossilOre;
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
-
+    
     public static Block securityFenceLowCorner;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
-
+    
     // Dimension Plants
     public static Block fernPlant;
     public static Block orontium;
     public static Block Heliconia;
-
+    
     // Carboniferous Blocks WIP
     public static Block grass;
     public static Block dirt;
@@ -94,7 +94,7 @@ public class ModBlocks implements IContentHandler
     public static Block coral;
     public static Block compressor;
     public static Block tilledEarth;
-
+    
     /*
     public static Block securityFenceMediumCorner;
     public static Block securityFenceMediumPole;
@@ -106,11 +106,11 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceHighBase;
     public static Block securityFenceHighGrid;
     */
-
+    
     public void init()
     {
         // Carboniferous Blocks
-        woodSingleSlab = (BlockPlanksSlab)(new BlockPlanksSlab(false)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSingleSlab");
+        woodSingleSlab = (BlockPlanksSlab) (new BlockPlanksSlab(false)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSingleSlab");
         grass = new BlockGrass().setHardness(0.6F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.grass");
         dirt = new BlockDirt().setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.dirt");
         multiBlock1 = new BlockMultipleBlocks().setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("carbon.multiBlock1");
@@ -119,11 +119,11 @@ public class ModBlocks implements IContentHandler
         timeBox = new BlockTimeBox().setHardness(2.0F).setResistance(5F).setBlockName("carbon.timeBox");
         portal = new BlockPortal("ph_portal").setHardness(-1.0F).setStepSound(Block.soundTypeGlass).setLightLevel(0.75F).setBlockName("carbon.portal");
         grinder = new BlockGrinder().setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.grinder");
-        logs_1 = new BlockLog(new String[] {"logLepidodendron", "logCalamites", "logCordaites", "logSigillaria"}, new String[] {"log_oak_top", "log_oak_top", "log_oak_top", "log_oak_top"}).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.wood");
-        leaves_1 = new BlockLeaves(new String[][] {{"leaves_Lepidodendron", "leaves_Calamites", "leaves_Cordaites", "leaves_Sigillaria"}, {"leaves_Lepidodendron_o", "leaves_Calamites_o", "leaves_Cordaites_o", "leaves_Sigillaria_o"}}).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("carbon.leaves.1");
+        logs_1 = new BlockLog(new String[] { "logLepidodendron", "logCalamites", "logCordaites", "logSigillaria" }, new String[] { "log_oak_top", "log_oak_top", "log_oak_top", "log_oak_top" }).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.wood");
+        leaves_1 = new BlockLeaves(new String[][] { { "leaves_Lepidodendron", "leaves_Calamites", "leaves_Cordaites", "leaves_Sigillaria" }, { "leaves_Lepidodendron_o", "leaves_Calamites_o", "leaves_Cordaites_o", "leaves_Sigillaria_o" } }).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("carbon.leaves.1");
         saplings_1 = new BlockSapling().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.sapling");
         planks_1 = new BlockPlanks().setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.planks");
-        woodDoubleSlab = (BlockPlanksSlab)(new BlockPlanksSlab(true)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSlab");
+        woodDoubleSlab = (BlockPlanksSlab) (new BlockPlanksSlab(true)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSlab");
         wallShell = new BlockWallShell().setBlockName("carbon.wallShell");
         stairsLepidodendron = new BlockCarboniferousStairs(planks_1, 0).setBlockName("carbon.stairsLepidodendron");
         stairsCalamites = new BlockCarboniferousStairs(planks_1, 1).setBlockName("carbon.stairsCalamites");
@@ -136,7 +136,7 @@ public class ModBlocks implements IContentHandler
         sand = new BlockCarboniferousSand().setHardness(0.5F).setStepSound(Block.soundTypeSand).setBlockName("carbon.sand");
         clearGlass = new BlockCustomGlass().setResistance(1.5F).setHardness(0.6F).setStepSound(Block.soundTypeGlass).setBlockName("carbon.clearGlass");
         wallsRock = new BlockWall(multiBlock1).setBlockName("carbon.wallsRock");
-        pillars = new BlockPillar(new String[] {"graniteColumn_side", "limestonePillar_side", "basaltPillar_side"}, new String[] {"graniteColumn_top", "limestonePillar_top", "basaltPillar_top"}).setBlockName("carbon.pillars").setStepSound(Block.soundTypeStone).setHardness(0.8F);
+        pillars = new BlockPillar(new String[] { "graniteColumn_side", "limestonePillar_side", "basaltPillar_side" }, new String[] { "graniteColumn_top", "limestonePillar_top", "basaltPillar_top" }).setBlockName("carbon.pillars").setStepSound(Block.soundTypeStone).setHardness(0.8F);
         fern = new BlockCustomTallGrass().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.tallgrass");
         vines = new BlockVine().setHardness(0.3F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.vine");
         doorLepidodendron = new BlockCustomDoor(0).setBlockName("carbon.doorLepidodendron").setHardness(3.0F).setStepSound(Block.soundTypeWood);
@@ -147,7 +147,7 @@ public class ModBlocks implements IContentHandler
         coral = new BlockCoral().setHardness(0.0F).setBlockName("carbon.coral");
         compressor = new BlockCompressor().setBlockName("carbon.compressor");
         tilledEarth = new BlockTilledDirt().setHardness(0.6F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.tilledDirt");
-
+        
         // JurassiCraft Blocks
         Heliconia = new HeliconiaPlant("heliconiaplant");
         fernPlant = new FernPlant("fernplant");
@@ -181,22 +181,22 @@ public class ModBlocks implements IContentHandler
         securityFenceHighBase = new BlockSecurityFenceHighBase();
         securityFenceHighGrid = new BlockSecurityFenceHighGrid();
         */
-
+        
         gameRegistry();
     }
-
+    
     public void gameRegistry()
     {
         GameRegistry.registerBlock(cultivateBottomOff, ItemBlockCultivate.class, "cultivateOff");
         GameRegistry.registerBlock(cultivateBottomOn, ItemBlockCultivate.class, "cultivateOn");
         GameRegistry.registerBlock(clayFossilOre, ItemBlockFossilClayOre.class, "clayFossilOre");
-
+        
         cultivateFluid = new Fluid("cultivate").setLuminosity(5).setViscosity(1);
         FluidRegistry.registerFluid(cultivateFluid);
-
+        
         cultivateLiquid = new BlockStuffFluid(cultivateFluid, Material.water).setBlockName("culivateFluid").setCreativeTab(null);
         GameRegistry.registerBlock(cultivateLiquid, "culivateFluid");
-
+        
         for (Field field : getClass().getFields())
         {
             try

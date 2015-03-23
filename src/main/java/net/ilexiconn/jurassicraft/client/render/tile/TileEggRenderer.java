@@ -13,22 +13,22 @@ public class TileEggRenderer extends TileEntitySpecialRenderer
     public ModelEgg model = new ModelEgg();
     public ResourceLocation texture;
     private float scale = 1.2f, translation = 1.8f;
-
+    
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float h)
     {
         TileEgg egg = (TileEgg) tileEntity;
         GL11.glPushMatrix();
-
+        
         GL11.glTranslatef((float) x + 0.5f, (float) y + translation, (float) z + 0.5f);
         GL11.glScalef(scale, scale, scale);
-
+        
         texture = new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + egg.getCreature().getCreatureName() + ".png");
         bindTexture(texture);
         GL11.glRotatef(180f, 0f, 0f, 1f);
         model.render();
         GL11.glPopMatrix();
     }
-
+    
     public TileEggRenderer setScale(float scale, float translation)
     {
         this.scale = scale;

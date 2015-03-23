@@ -42,7 +42,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
     public ChainBuffer tailBuffer = new ChainBuffer(6);
     public boolean leaping = false;
     public int timeSinceLeap;
-
+    
     public EntityVelociraptor(World world)
     {
         super(world);
@@ -61,7 +61,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.tasks.addTask(7, new AnimationAIVelociraptorTwitchHead(this));
         this.tasks.addTask(7, new AnimationAIRoar(this, 20));
         this.tasks.addTask(7, new HerdAIGroupAttack(this));
-     //   this.tasks.addTask(7, new HerdAISurprise(this)); // WIP
+        //   this.tasks.addTask(7, new HerdAISurprise(this)); // WIP
         this.tasks.addTask(7, new HerdAIVelociraptorFollowHerd(this, getCreatureSpeed()));
         this.targetTasks.addTask(1, new JurassiCraftAIOwnerIsHurtByTarget(this));
         this.targetTasks.addTask(2, new JurassiCraftAIOwnerHurtsTarget(this));
@@ -84,36 +84,38 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 50, 0.5F));
         this.setCreatureExperiencePoints(2500);
     }
-
+    
     @Override
     public void onLivingUpdate()
     {
         // Leap AI
-//        float distanceFromTarget;
-//        if (getAttackTarget() != null)
-//        {
-//            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
-//        }
-//        else
-//        {
-//            distanceFromTarget = -1;
-//        }
+        //        float distanceFromTarget;
+        //        if (getAttackTarget() != null)
+        //        {
+        //            distanceFromTarget = (float) Math.sqrt(Math.pow((posX - getAttackTarget().posX), 2) + Math.pow((posZ - getAttackTarget().posZ), 2));
+        //        }
+        //        else
+        //        {
+        //            distanceFromTarget = -1;
+        //        }
         if (distanceFromTarget >= 5 && distanceFromTarget <= 6 && this.onGround && this.timeSinceLeap == 0 && this.animID == 0)
             AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.LEAP.animID());
-
-        if (onGround == true) setLeaping(false);
-
-        if (timeSinceLeap != 0) timeSinceLeap--;
-
+        
+        if (onGround == true)
+            setLeaping(false);
+        
+        if (timeSinceLeap != 0)
+            timeSinceLeap--;
+        
         // Misc
         super.onLivingUpdate();
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -128,16 +130,17 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
         }
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
-
+    
     public void setLeaping(boolean flag)
     {
         this.leaping = flag;
     }
-
+    
     @Override
     public String getLivingSound()
     {
-        if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
+        if (this.animID == 0)
+            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.ROAR.animID());
         int i = rand.nextInt(4);
         switch (i)
         {
@@ -153,7 +156,7 @@ public class EntityVelociraptor extends EntityJurassiCraftGroupAggressive implem
                 return "jurassicraft:velociraptorHiss01";
         }
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

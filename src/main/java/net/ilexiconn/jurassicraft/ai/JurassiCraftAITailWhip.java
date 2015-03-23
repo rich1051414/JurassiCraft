@@ -14,7 +14,7 @@ public class JurassiCraftAITailWhip extends EntityAIBase
     private EntityJurassiCraftSmart creature;
     private EntityLivingBase attacker;
     private boolean sendWhipAnimation;
-
+    
     /**
      * @author RafaMv
      */
@@ -27,7 +27,7 @@ public class JurassiCraftAITailWhip extends EntityAIBase
         this.maximumSquaredDistance = maximumSquaredDistance;
         this.sendWhipAnimation = sendWhipAnimation;
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
@@ -37,45 +37,57 @@ public class JurassiCraftAITailWhip extends EntityAIBase
         }
         return false;
     }
-
+    
     @Override
     public void startExecuting()
     {
         this.creature.getNavigator().clearPathEntity();
-
-        if (this.creature.isTakingOff()) this.creature.setTakingOff(false);
-
-        if (this.creature.isFlying()) this.creature.setFlying(false);
-
-        if (this.creature.isDefending()) this.creature.setDefending(false);
-
-        if (this.creature.isAttacking()) this.creature.setAttacking(false);
-
-        if (this.creature.isFleeing()) this.creature.setFleeing(false);
-
-        if (this.creature.isEating()) this.creature.setEating(false);
-
-        if (this.creature.isDrinking()) this.creature.setDrinking(false);
-
-        if (this.creature.isSleeping()) this.creature.setSleeping(false);
-
-        if (this.creature.isSitting()) this.creature.setSitting(false, null);
-
-        if (this.creature.isBreeding()) this.creature.setBreeding(false);
-
-        if (this.creature.isInLove()) this.creature.setInLove(false);
-
-        if (this.creature.isStalking()) this.creature.setStalking(false);
-
+        
+        if (this.creature.isTakingOff())
+            this.creature.setTakingOff(false);
+        
+        if (this.creature.isFlying())
+            this.creature.setFlying(false);
+        
+        if (this.creature.isDefending())
+            this.creature.setDefending(false);
+        
+        if (this.creature.isAttacking())
+            this.creature.setAttacking(false);
+        
+        if (this.creature.isFleeing())
+            this.creature.setFleeing(false);
+        
+        if (this.creature.isEating())
+            this.creature.setEating(false);
+        
+        if (this.creature.isDrinking())
+            this.creature.setDrinking(false);
+        
+        if (this.creature.isSleeping())
+            this.creature.setSleeping(false);
+        
+        if (this.creature.isSitting())
+            this.creature.setSitting(false, null);
+        
+        if (this.creature.isBreeding())
+            this.creature.setBreeding(false);
+        
+        if (this.creature.isInLove())
+            this.creature.setInLove(false);
+        
+        if (this.creature.isStalking())
+            this.creature.setStalking(false);
+        
         this.attacker = this.creature.getCreatureToAttack();
         this.distanceSqFromAttacker = this.creature.getDistanceSqToEntity(this.attacker);
     }
-
+    
     public void updateTask()
     {
         if (this.creature.getRNG().nextInt(5) == 0)
             this.distanceSqFromAttacker = this.creature.getDistanceSqToEntity(this.attacker);
-
+        
         if (this.distanceSqFromAttacker < this.minimumSquaredDistance)
         {
             this.creature.setAttackTarget(this.attacker);
@@ -83,12 +95,12 @@ public class JurassiCraftAITailWhip extends EntityAIBase
                 AnimationHandler.sendAnimationPacket(this.creature, JurassiCraftAnimationIDs.TAIL_WHIP.animID());
         }
     }
-
+    
     public boolean continueExecuting()
     {
         return this.attacker.isEntityAlive() && this.creature.isDefending() && this.distanceSqFromAttacker < this.maximumSquaredDistance && !this.creature.isSitting() && this.creature.riddenByEntity == null;
     }
-
+    
     @Override
     public void resetTask()
     {

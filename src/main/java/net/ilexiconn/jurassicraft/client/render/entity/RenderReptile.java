@@ -11,34 +11,34 @@ public abstract class RenderReptile extends RenderLiving
 {
     private Creature reptile;
     private float resizableShadow;
-
+    
     public RenderReptile(ModelBase model, Creature reptile, float shadow)
     {
         super(model, 1.0F);
         this.setReptile(reptile);
         this.setShadow(shadow);
     }
-
+    
     private void setShadow(float shadow)
     {
         this.resizableShadow = shadow;
     }
-
+    
     public float getShadow()
     {
         return this.resizableShadow;
     }
-
+    
     private void setReptile(Creature reptile)
     {
         this.reptile = reptile;
     }
-
+    
     public Creature getReptile()
     {
         return this.reptile;
     }
-
+    
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

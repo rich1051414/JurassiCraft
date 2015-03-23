@@ -12,12 +12,12 @@ import java.util.List;
 
 public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable
 {
-
+    
     public EntityJurassiCraftProtective(World world)
     {
         super(world);
     }
-
+    
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
@@ -106,7 +106,7 @@ public class EntityJurassiCraftProtective extends EntityJurassiCraftRidable
             return super.attackEntityFrom(damageSource, damage);
         }
     }
-
+    
     @Override
     public boolean attackEntityAsMob(Entity target)
     {

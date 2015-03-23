@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemEgg extends Item
 {
     public String dinoName;
-
+    
     public ItemEgg(String dinoName)
     {
         super();
@@ -27,7 +27,7 @@ public class ItemEgg extends Item
         this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.dinoName = dinoName;
     }
-
+    
     public String getEggDNASequence(ItemStack egg)
     {
         if (egg.hasTagCompound())
@@ -39,7 +39,7 @@ public class ItemEgg extends Item
         }
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
-
+    
     public int getEggQuality(ItemStack egg)
     {
         if (egg.hasTagCompound())
@@ -51,7 +51,7 @@ public class ItemEgg extends Item
         }
         return 75;
     }
-
+    
     @Override
     public void addInformation(ItemStack egg, EntityPlayer player, List list, boolean flag)
     {
@@ -67,7 +67,7 @@ public class ItemEgg extends Item
             }
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack egg, World world, EntityPlayer player)
     {
@@ -125,7 +125,7 @@ public class ItemEgg extends Item
         }
         return egg;
     }
-
+    
     @Override
     public boolean onItemUse(ItemStack egg, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
@@ -144,7 +144,8 @@ public class ItemEgg extends Item
                 this.onItemRightClick(egg, world, player);
             }
             egg.stackSize--;
-            if (egg.stackSize <= 0) egg = (ItemStack) null;
+            if (egg.stackSize <= 0)
+                egg = (ItemStack) null;
             return true;
         }
         else

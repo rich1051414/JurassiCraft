@@ -14,28 +14,32 @@ import java.util.Random;
 
 public class WorldGenSigillaria extends WorldGenAbstractTree
 {
-    public WorldGenSigillaria(boolean par1) {
-    	super(par1);
+    public WorldGenSigillaria(boolean par1)
+    {
+        super(par1);
     }
-
+    
     @Override
-    public boolean generate(World world, Random random, int i, int j, int k) {
-    	Block soil = this.getBlockIfChunkExists(world, i, j - 1, k);
-    	boolean isSoil = (soil != null && soil.canSustainPlant(world, i, j - 1, k, ForgeDirection.UP, (BlockSapling)ModBlocks.saplings_1));
-        if (isSoil && world.isAirBlock(i, j + 12, k)) {
+    public boolean generate(World world, Random random, int i, int j, int k)
+    {
+        Block soil = this.getBlockIfChunkExists(world, i, j - 1, k);
+        boolean isSoil = (soil != null && soil.canSustainPlant(world, i, j - 1, k, ForgeDirection.UP, (BlockSapling) ModBlocks.saplings_1));
+        if (isSoil && world.isAirBlock(i, j + 12, k))
+        {
             for (int l = 0; l < 1; l++)
             {
                 for (int j1 = 0; j1 < 22; j1++)
                 {
                     for (int k1 = 0; k1 < 1; k1++)
                     {
-                    	if(this.isAirBlockIfChunkExists(world, i + l, j + j1, k + k1)) {
-                    		setBlockandMetadataIfChunkExists(world, i + l, j + j1, k + k1, ModBlocks.logs_1, 3);
-                    	}
+                        if (this.isAirBlockIfChunkExists(world, i + l, j + j1, k + k1))
+                        {
+                            setBlockandMetadataIfChunkExists(world, i + l, j + j1, k + k1, ModBlocks.logs_1, 3);
+                        }
                     }
                 }
             }
-
+            
             int i1 = random.nextInt(3);
             if (i1 == 0)
             {
@@ -53,7 +57,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
         }
         return false;
     }
-
+    
     private boolean generateBranches(World world, Random random, int i, int j, int k, int l)
     {
         if (l == 0)
@@ -69,7 +73,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                     }
                 }
             }
-
+            
             generateLeaves(world, random, i, j + 1, k);
         }
         if (l == 1)
@@ -91,7 +95,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                     }
                 }
             }
-
+            
             for (int k1 = 0; k1 < 1; k1++)
             {
                 for (int l2 = 3; l2 < 8; l2++)
@@ -103,7 +107,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                     }
                 }
             }
-
+            
             generateLeaves(world, random, i, j + 4, k + 3);
             generateLeaves(world, random, i, j + 4, k - 3);
         }
@@ -126,7 +130,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                     }
                 }
             }
-
+            
             for (int i2 = 3; i2 < 4; i2++)
             {
                 for (int j3 = 3; j3 < 8; j3++)
@@ -138,13 +142,13 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                     }
                 }
             }
-
+            
             generateLeaves(world, random, i + 3, j + 4, k);
             generateLeaves(world, random, i - 3, j + 4, k);
         }
         return true;
     }
-
+    
     private boolean generateLeaves(World world, Random random, int i, int j, int k)
     {
         for (int l = -1; l < 2; l++)
@@ -160,7 +164,7 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                 }
             }
         }
-
+        
         for (int i1 = 0; i1 < 1; i1++)
         {
             for (int k1 = 0; k1 < 4; k1++)
@@ -174,58 +178,77 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
                 }
             }
         }
-
+        
         return true;
     }
     
-    public void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata) {
-		//if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
-			try{
-				world.setBlock(x, y, z, blockId, metadata, 2);
-			}catch(Exception e){
-				//Work around to stop crash
-			}
-		//}
-	}
-	
-	public void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata, int updateFlag) {
-		//if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
-			try{
-				world.setBlock(x, y, z, blockId, metadata, updateFlag);
-			}catch(Exception e){
-				//Work around to stop crash
-			}
-		//}
-	}
-    
-    public Block getBlockIfChunkExists(World world, int x, int y, int z) {
-		//if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
-			try{
-				return world.getBlock(x, y, z);
-			}catch(Exception e){
-				//Work around to stop crash
-			}
-		//}
-		return Blocks.air;
-	}
-    
-    public boolean isAirBlockIfChunkExists(World world, int x, int y, int z) {
-    	return this.getBlockIfChunkExists(world, x, y, z) == Blocks.air;
+    public void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata)
+    {
+        //if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
+        try
+        {
+            world.setBlock(x, y, z, blockId, metadata, 2);
+        }
+        catch (Exception e)
+        {
+            //Work around to stop crash
+        }
+        //}
     }
     
-    public Material getBlockMaterialIfChunkExists(World world, int x, int y, int z) {
-    	Block block = this.getBlockIfChunkExists(world, x, y, z);
+    public void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata, int updateFlag)
+    {
+        //if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
+        try
+        {
+            world.setBlock(x, y, z, blockId, metadata, updateFlag);
+        }
+        catch (Exception e)
+        {
+            //Work around to stop crash
+        }
+        //}
+    }
+    
+    public Block getBlockIfChunkExists(World world, int x, int y, int z)
+    {
+        //if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
+        try
+        {
+            return world.getBlock(x, y, z);
+        }
+        catch (Exception e)
+        {
+            //Work around to stop crash
+        }
+        //}
+        return Blocks.air;
+    }
+    
+    public boolean isAirBlockIfChunkExists(World world, int x, int y, int z)
+    {
+        return this.getBlockIfChunkExists(world, x, y, z) == Blocks.air;
+    }
+    
+    public Material getBlockMaterialIfChunkExists(World world, int x, int y, int z)
+    {
+        Block block = this.getBlockIfChunkExists(world, x, y, z);
         return block.getMaterial();
     }
     
-    public TileEntity getTileEntityIfChunkExists(World world, int x, int y, int z) {
-    	if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
-			try{
-				return world.getTileEntity(x, y, z);
-			}catch(Exception e){
-				//Work around to stop crash
-			}
-    	}
-		return null;
+    public TileEntity getTileEntityIfChunkExists(World world, int x, int y, int z)
+    {
+        if (world.getChunkProvider().chunkExists(x >> 4, z >> 4))
+        {
+            try
+            {
+                return world.getTileEntity(x, y, z);
+            }
+            catch (Exception e)
+            {
+                //Work around to stop crash
+            }
+        }
+        return null;
     }
 }

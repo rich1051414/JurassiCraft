@@ -17,7 +17,7 @@ public class RenderMoeritherium extends RenderMammal
     {
         super(new ModelMoeritherium(), mammal, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

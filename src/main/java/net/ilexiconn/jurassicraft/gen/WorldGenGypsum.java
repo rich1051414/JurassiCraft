@@ -16,11 +16,11 @@ public class WorldGenGypsum implements IWorldGenerator
         if (world.provider.isSurfaceWorld())
         {
             int x, y, z;
-
+            
             x = random.nextInt(16) + (chunkX * 16);
             y = random.nextInt(128);
             z = random.nextInt(16) + (chunkZ * 16);
-
+            
             (new WorldGenMinable(ModBlocks.gypsumBlock, 12 + random.nextInt(4))).generate(world, random, x, y, z);
         }
     }

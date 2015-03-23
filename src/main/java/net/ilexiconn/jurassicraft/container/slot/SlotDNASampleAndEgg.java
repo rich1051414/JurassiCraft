@@ -8,18 +8,18 @@ import net.minecraft.item.ItemStack;
 
 public class SlotDNASampleAndEgg extends Slot
 {
-
+    
     public SlotDNASampleAndEgg(IInventory inventory, int number, int x, int y)
     {
         super(inventory, number, x, y);
     }
-
+    
     @Override
     public int getSlotStackLimit()
     {
         return 1;
     }
-
+    
     @Override
     public boolean isItemValid(ItemStack itemstack)
     {

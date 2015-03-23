@@ -13,43 +13,44 @@ public class ModelObjRenderer extends ModelRenderer
 {
     public IModelCustom model;
     private float theScale;
-
+    
     private int displayList;
     private boolean compiled;
-
+    
     public ModelObjRenderer(ModelBase bass)
     {
         this(bass, null, 1F);
     }
-
+    
     public ModelObjRenderer(ModelBase bass, IModelCustom shape)
     {
         this(bass, shape, 1F);
     }
-
+    
     public ModelObjRenderer(ModelBase bass, IModelCustom shape, float scale)
     {
         super(bass);
         theScale = scale;
         model = shape;
     }
-
+    
     public void setScale(float scale)
     {
         theScale = scale;
     }
-
+    
     public void render(float scale)
     {
         if (!isHidden)
         {
             if (showModel)
             {
-                if (!compiled) compileDisplayList();
-
+                if (!compiled)
+                    compileDisplayList();
+                
                 GL11.glTranslatef(offsetX, offsetY, offsetZ);
                 int i;
-
+                
                 if (rotateAngleX == 0f && rotateAngleY == 0f && rotateAngleZ == 0f)
                 {
                     if (rotationPointX == 0.0F && rotationPointY == 0.0F && rotationPointZ == 0f)
@@ -58,9 +59,10 @@ public class ModelObjRenderer extends ModelRenderer
                         GL11.glScalef(theScale, theScale, theScale);
                         GL11.glCallList(displayList);
                         GL11.glPopMatrix();
-
+                        
                         if (childModels != null)
-                            for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
+                            for (i = 0; i < childModels.size(); ++i)
+                                ((ModelRenderer) childModels.get(i)).render(scale);
                     }
                     else
                     {
@@ -69,10 +71,11 @@ public class ModelObjRenderer extends ModelRenderer
                         GL11.glScalef(theScale, theScale, theScale);
                         GL11.glCallList(displayList);
                         GL11.glPopMatrix();
-
+                        
                         if (childModels != null)
-                            for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
-
+                            for (i = 0; i < childModels.size(); ++i)
+                                ((ModelRenderer) childModels.get(i)).render(scale);
+                        
                         GL11.glTranslatef(-rotationPointX * scale, -rotationPointY * scale, -rotationPointZ * scale);
                     }
                 }
@@ -80,42 +83,50 @@ public class ModelObjRenderer extends ModelRenderer
                 {
                     GL11.glPushMatrix();
                     GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
-
-                    if (rotateAngleZ != 0.0F) GL11.glRotatef(rotateAngleZ * (180f / (float) Math.PI), 0f, 0f, 1f);
-                    if (rotateAngleY != 0.0F) GL11.glRotatef(rotateAngleY * (180f / (float) Math.PI), 0f, 1f, 0f);
-                    if (rotateAngleX != 0.0F) GL11.glRotatef(rotateAngleX * (180f / (float) Math.PI), 1f, 0f, 0f);
-
+                    
+                    if (rotateAngleZ != 0.0F)
+                        GL11.glRotatef(rotateAngleZ * (180f / (float) Math.PI), 0f, 0f, 1f);
+                    if (rotateAngleY != 0.0F)
+                        GL11.glRotatef(rotateAngleY * (180f / (float) Math.PI), 0f, 1f, 0f);
+                    if (rotateAngleX != 0.0F)
+                        GL11.glRotatef(rotateAngleX * (180f / (float) Math.PI), 1f, 0f, 0f);
+                    
                     GL11.glPushMatrix();
                     GL11.glScalef(theScale, theScale, theScale);
                     GL11.glCallList(displayList);
                     GL11.glPopMatrix();
-
+                    
                     if (childModels != null)
-                        for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
-
+                        for (i = 0; i < childModels.size(); ++i)
+                            ((ModelRenderer) childModels.get(i)).render(scale);
+                    
                     GL11.glPopMatrix();
                 }
-
+                
                 GL11.glTranslatef(-offsetX, -offsetY, -offsetZ);
             }
         }
     }
-
+    
     public void renderWithRotation(float scale)
     {
         if (!isHidden)
         {
             if (showModel)
             {
-                if (!compiled) compileDisplayList();
-
+                if (!compiled)
+                    compileDisplayList();
+                
                 GL11.glPushMatrix();
                 GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
-
-                if (rotateAngleY != 0f) GL11.glRotatef(rotateAngleY * (180f / (float) Math.PI), 0f, 1f, 0f);
-                if (rotateAngleX != 0f) GL11.glRotatef(rotateAngleX * (180f / (float) Math.PI), 1f, 0f, 0f);
-                if (rotateAngleZ != 0f) GL11.glRotatef(rotateAngleZ * (180f / (float) Math.PI), 0f, 0f, 1f);
-
+                
+                if (rotateAngleY != 0f)
+                    GL11.glRotatef(rotateAngleY * (180f / (float) Math.PI), 0f, 1f, 0f);
+                if (rotateAngleX != 0f)
+                    GL11.glRotatef(rotateAngleX * (180f / (float) Math.PI), 1f, 0f, 0f);
+                if (rotateAngleZ != 0f)
+                    GL11.glRotatef(rotateAngleZ * (180f / (float) Math.PI), 0f, 0f, 1f);
+                
                 GL11.glPushMatrix();
                 GL11.glScalef(theScale, theScale, theScale);
                 GL11.glCallList(displayList);
@@ -124,18 +135,18 @@ public class ModelObjRenderer extends ModelRenderer
             }
         }
     }
-
+    
     protected void compileDisplayList()
     {
         displayList = GLAllocation.generateDisplayLists(1);
         GL11.glNewList(displayList, GL11.GL_COMPILE);
-
+        
         GL11.glPushMatrix();
         GL11.glScalef(0.76f, 0.76f, 0.76f);
         GL11.glRotatef(180f, 1f, 0f, 0f);
         model.renderAll();
         GL11.glPopMatrix();
-
+        
         GL11.glEndList();
         compiled = true;
     }

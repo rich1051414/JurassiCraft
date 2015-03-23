@@ -16,7 +16,7 @@ public class GuiButtonFenceSwitch extends GuiButton
     private int xTexPos;
     private int yTexPos;
     private boolean state;
-
+    
     public GuiButtonFenceSwitch(int id, int xPos, int yPos, int xguiPosition, int yguiPosition, int width, int height, boolean state)
     {
         super(id, xPos, yPos, width, height, "");
@@ -24,7 +24,7 @@ public class GuiButtonFenceSwitch extends GuiButton
         this.yTexPos = yguiPosition;
         this.state = state;
     }
-
+    
     @Override
     public void drawButton(Minecraft mc, int x, int y)
     {
@@ -57,12 +57,12 @@ public class GuiButtonFenceSwitch extends GuiButton
             this.mouseDragged(mc, x, y);
         }
     }
-
+    
     public void setState(boolean onORoff)
     {
         this.state = onORoff;
     }
-
+    
     public void toggleState()
     {
         this.state = !this.state;

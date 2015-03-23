@@ -16,7 +16,7 @@ public class JsonEntityParser
     public Collection<JsonCreatureDefinition> fish;
     public Collection<JsonCreatureDefinition> reptiles;
     public Collection<JsonCreatureDefinition> birds;
-
+    
     public void parseServerEntities()
     {
         DinoConfig.loadDinoConfig(this);
@@ -24,44 +24,44 @@ public class JsonEntityParser
         {
             CreatureManager.addCreature(dino, "dinosaurs");
         }
-
+        
         DinoConfig.loadReptileConfig(this);
         for (JsonCreatureDefinition creature : reptiles)
         {
             CreatureManager.addCreature(creature, "reptiles");
         }
-
+        
         DinoConfig.loadMammalConfig(this);
         for (JsonCreatureDefinition creature : mammals)
         {
             CreatureManager.addCreature(creature, "mammals");
         }
-
+        
         DinoConfig.loadBirdConfig(this);
         for (JsonCreatureDefinition creature : birds)
         {
             CreatureManager.addCreature(creature, "birds");
         }
-
+        
         DinoConfig.loadFishConfig(this);
         for (JsonCreatureDefinition creature : fish)
         {
             CreatureManager.addCreature(creature, "fish");
         }
-
+        
         DinoConfig.loadCephalopodConfig(this);
         for (JsonCreatureDefinition creature : cephalopods)
         {
             CreatureManager.addCreature(creature, "cephalopods");
         }
-
+        
         DinoConfig.loadArthropodConfig(this);
         for (JsonCreatureDefinition creature : arthropods)
         {
             CreatureManager.addCreature(creature, "arthropods");
         }
     }
-
+    
     @SideOnly(Side.CLIENT)
     public void parseClientEntities()
     {
@@ -70,37 +70,37 @@ public class JsonEntityParser
         {
             CreatureManager.addCreatureRenderer(creature, "dinosaurs");
         }
-
+        
         DinoConfig.loadReptileConfig(this);
         for (JsonCreatureDefinition creature : reptiles)
         {
             CreatureManager.addCreatureRenderer(creature, "reptiles");
         }
-
+        
         DinoConfig.loadMammalConfig(this);
         for (JsonCreatureDefinition creature : mammals)
         {
             CreatureManager.addCreatureRenderer(creature, "mammals");
         }
-
+        
         DinoConfig.loadBirdConfig(this);
         for (JsonCreatureDefinition creature : birds)
         {
             CreatureManager.addCreatureRenderer(creature, "birds");
         }
-
+        
         DinoConfig.loadFishConfig(this);
         for (JsonCreatureDefinition creature : fish)
         {
             CreatureManager.addCreatureRenderer(creature, "fish");
         }
-
+        
         DinoConfig.loadCephalopodConfig(this);
         for (JsonCreatureDefinition creature : cephalopods)
         {
             CreatureManager.addCreatureRenderer(creature, "cephalopods");
         }
-
+        
         DinoConfig.loadArthropodConfig(this);
         for (JsonCreatureDefinition creature : arthropods)
         {

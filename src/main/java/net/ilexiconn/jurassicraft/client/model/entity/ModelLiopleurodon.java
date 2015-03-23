@@ -38,12 +38,12 @@ public class ModelLiopleurodon extends ModelBase
     ModelRenderer upperjawmid2;
     ModelRenderer lowerjawmid2;
     ModelRenderer teeth_bottom;
-
+    
     public ModelLiopleurodon()
     {
         textureWidth = 512;
         textureHeight = 256;
-
+        
         midbody = new ModelRenderer(this, 115, 102);
         midbody.addBox(2F, 0F, 0F, 24, 20, 32);
         midbody.setRotationPoint(-14F, 4F, 68F);
@@ -215,12 +215,12 @@ public class ModelLiopleurodon extends ModelBase
         teeth_bottom.mirror = true;
         setRotation(teeth_bottom, -3.141593F, -3.141593F, 0F);
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+        
         if (isChild)
         {
             float var8 = 2.0F;
@@ -292,14 +292,14 @@ public class ModelLiopleurodon extends ModelBase
             teeth_bottom.render(f5);
         }
     }
-
+    
     public void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);

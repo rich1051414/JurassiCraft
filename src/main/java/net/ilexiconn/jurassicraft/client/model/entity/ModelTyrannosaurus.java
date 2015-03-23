@@ -49,13 +49,13 @@ public class ModelTyrannosaurus extends MowzieModelBase
     public MowzieModelRenderer[] bodyParts;
     public MowzieModelRenderer[] leftArmParts;
     public MowzieModelRenderer[] rightArmParts;
-
+    
     public ModelTyrannosaurus()
     {
         this.animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 256;
-
+        
         this.HandRightClawLeft = new MowzieModelRenderer(this, 81, 45);
         this.HandRightClawLeft.setRotationPoint(-4.5F, 14.5F, -10.0F);
         this.HandRightClawLeft.addBox(-0.8F, 0.5F, -1.0F, 1, 2, 1);
@@ -176,42 +176,42 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.LeftCalf2.setRotationPoint(7.0F, 16.5F, 6.8F);
         this.LeftCalf2.addBox(-1.5F, 0.0F, -1.0F, 3, 8, 3);
         this.setRotation(LeftCalf2, -0.5576326960121882F, -0.0F, 0.0F);
-
+        
         this.addChildTo(this.Teeth, this.UpperJaw);
         this.addChildTo(this.UpperJaw, this.Head);
         this.addChildTo(this.LowerJaw, this.Head);
         this.addChildTo(this.Head, this.Neck);
         this.addChildTo(this.Neck, this.Chest);
-
+        
         this.addChildTo(this.HandLeftClawLeft, this.HandLeft);
         this.addChildTo(this.HandLeftClawRight, this.HandLeft);
         this.addChildTo(this.HandLeft, this.LowerArmLeft);
         this.addChildTo(this.LowerArmLeft, this.UpperArmLeft);
         this.addChildTo(this.UpperArmLeft, this.Chest);
-
+        
         this.addChildTo(this.HandRightClawLeft, this.HandRight);
         this.addChildTo(this.HandRightClawRight, this.HandRight);
         this.addChildTo(this.HandRight, this.LowerArmRight);
         this.addChildTo(this.LowerArmRight, this.UpperArmRight);
         this.addChildTo(this.UpperArmRight, this.Chest);
-
+        
         this.addChildTo(this.Chest, this.Body);
         this.addChildTo(this.Body, this.Waist);
-
+        
         this.addChildTo(this.FootLeft, this.LeftCalf2);
         this.addChildTo(this.LeftCalf2, this.LeftCalf1);
         this.addChildTo(this.LeftCalf1, this.LeftThigh);
-
+        
         this.addChildTo(this.FootRight, this.RightCalf2);
         this.addChildTo(this.RightCalf2, this.RightCalf1);
         this.addChildTo(this.RightCalf1, this.RightThigh);
-
+        
         this.addChildTo(this.Tail5, this.Tail4);
         this.addChildTo(this.Tail4, this.Tail3);
         this.addChildTo(this.Tail3, this.Tail2);
         this.addChildTo(this.Tail2, this.Tail1);
         this.addChildTo(this.Tail1, this.Waist);
-
+        
         //Corrections
         this.Tail1.rotationPointZ += 12;
         this.Tail1.rotationPointY -= 4;
@@ -231,16 +231,16 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.FootRight.rotationPointZ -= 2;
         this.FootLeft.rotationPointY += 1.75;
         this.FootRight.rotationPointY += 1.75;
-
-        this.parts = new MowzieModelRenderer[]{this.LeftCalf1, this.RightCalf1, this.LeftThigh, this.RightThigh, this.Waist, this.Chest, this.Neck, this.Head, this.LowerJaw, this.Tail1, this.Tail2, this.Tail3, this.Tail4, this.Tail5, this.LowerArmLeft, this.LowerArmRight, this.HandLeft, this.HandRight, this.HandLeftClawLeft, this.HandLeftClawRight, this.HandRightClawRight, this.HandRightClawLeft, this.LeftCalf2, this.RightCalf2, this.FootLeft, this.FootRight, this.UpperArmRight, this.UpperArmLeft, this.UpperJaw, this.Teeth, this.Body};
-        this.tailParts = new MowzieModelRenderer[]{this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1};
-        this.bodyParts = new MowzieModelRenderer[]{this.Head, this.Neck, this.Chest, this.Body, this.Waist};
-        this.leftArmParts = new MowzieModelRenderer[]{this.HandLeft, this.LowerArmLeft, this.UpperArmLeft};
-        this.rightArmParts = new MowzieModelRenderer[]{this.HandRight, this.LowerArmRight, this.UpperArmRight};
-
+        
+        this.parts = new MowzieModelRenderer[] { this.LeftCalf1, this.RightCalf1, this.LeftThigh, this.RightThigh, this.Waist, this.Chest, this.Neck, this.Head, this.LowerJaw, this.Tail1, this.Tail2, this.Tail3, this.Tail4, this.Tail5, this.LowerArmLeft, this.LowerArmRight, this.HandLeft, this.HandRight, this.HandLeftClawLeft, this.HandLeftClawRight, this.HandRightClawRight, this.HandRightClawLeft, this.LeftCalf2, this.RightCalf2, this.FootLeft, this.FootRight, this.UpperArmRight, this.UpperArmLeft, this.UpperJaw, this.Teeth, this.Body };
+        this.tailParts = new MowzieModelRenderer[] { this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1 };
+        this.bodyParts = new MowzieModelRenderer[] { this.Head, this.Neck, this.Chest, this.Body, this.Waist };
+        this.leftArmParts = new MowzieModelRenderer[] { this.HandLeft, this.LowerArmLeft, this.UpperArmLeft };
+        this.rightArmParts = new MowzieModelRenderer[] { this.HandRight, this.LowerArmRight, this.UpperArmRight };
+        
         this.setInitPose();
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -249,37 +249,37 @@ public class ModelTyrannosaurus extends MowzieModelBase
         this.RightThigh.render(f5);
         this.LeftThigh.render(f5);
     }
-
+    
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTyrannosaurus trex)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, trex);
         this.setToInitPose();
-
-		/*
-		f = trex.frame;
-		f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
-		f1 = 0.5F;
-		*/
-
+        
+        /*
+        f = trex.frame;
+        f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
+        f1 = 0.5F;
+        */
+        
         if (!trex.isSitting())
         {
             //Walking-dependent animation
             float globalSpeed = 0.45F;
             float globalDegree = 0.4F;
             float height = 1.0F;
-
+            
             this.faceTarget(this.Body, 6.0F, f3, f4);
             this.faceTarget(this.Chest, 6.0F, f3, f4);
             this.faceTarget(this.Head, 3.0F, f3, f4);
             this.faceTarget(this.Neck, 3.0F, f3, f4);
-
+            
             this.bob(Waist, 1F * globalSpeed, height, false, f, f1);
             this.bob(LeftThigh, 1F * globalSpeed, height, false, f, f1);
             this.bob(RightThigh, 1F * globalSpeed, height, false, f, f1);
@@ -287,41 +287,41 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.RightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
             this.walk(Neck, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
             this.walk(Head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
-
+            
             this.walk(LeftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
             this.walk(LeftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
             this.walk(LeftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
             this.walk(FootLeft, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.15F, f, f1);
-
+            
             this.walk(RightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
             this.walk(RightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
             this.walk(RightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
             this.walk(FootRight, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.15F, f, f1);
-
+            
             this.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
             this.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
             this.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
             this.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
         }
-
+        
         //Sitting Pose
         float sittingProgress = trex.sittingProgress.getAnimationProgressSinSqrt();
-
+        
         if (sittingProgress > 0.001F)
         {
             //Sitting Pose
-        	float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
+            float sittingProgressFast = trex.sittingProgress.getAnimationProgressSinToTen();
             float restHeadProgress = trex.restingHeadProgress.getAnimationProgressSinSqrt();
-
+            
             Head.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
             Neck.rotateAngleY += ((f3 / (180f / (float) Math.PI)) / 2) * sittingProgress - (((f3 / (180f / (float) Math.PI)) / 2) * restHeadProgress);
-
+            
             this.Waist.rotationPointY += 11.5F * sittingProgress;
             this.RightThigh.rotationPointY += 11.5F * sittingProgress;
             this.LeftThigh.rotationPointY += 11.5F * sittingProgress;
             this.RightThigh.rotationPointZ += 5F * sittingProgress;
             this.LeftThigh.rotationPointZ += 5F * sittingProgress;
-
+            
             this.UpperArmRight.rotateAngleX += 0.25F * sittingProgress;
             this.UpperArmLeft.rotateAngleX += 0.25F * sittingProgress;
             this.LowerArmRight.rotateAngleX -= 1.2F * sittingProgress;
@@ -330,23 +330,23 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.LowerArmLeft.rotationPointY -= 1F * sittingProgress;
             this.LowerArmRight.rotationPointZ -= 1F * sittingProgress;
             this.LowerArmLeft.rotationPointZ -= 1F * sittingProgress;
-
+            
             this.RightThigh.rotateAngleX -= 1.2F * sittingProgress;
             this.LeftThigh.rotateAngleX -= 1.2F * sittingProgress;
-
+            
             this.RightCalf1.rotationPointY += 6.0F * sittingProgress;
             this.LeftCalf1.rotationPointY += 6.0F * sittingProgress;
             this.RightCalf1.rotateAngleX += 1.7F * sittingProgress;
             this.LeftCalf1.rotateAngleX += 1.7F * sittingProgress;
-
+            
             this.RightCalf2.rotationPointY += 2.0F * sittingProgress;
             this.LeftCalf2.rotationPointY += 2.0F * sittingProgress;
             this.RightCalf2.rotateAngleX -= 1.2F * sittingProgress;
             this.LeftCalf2.rotateAngleX -= 1.2F * sittingProgress;
-
+            
             this.FootRight.rotateAngleX += 0.7F * sittingProgress;
             this.FootLeft.rotateAngleX += 0.7F * sittingProgress;
-
+            
             this.Tail1.rotateAngleX -= 0.3F * sittingProgress;
             this.Tail2.rotateAngleX += 0.1F * sittingProgress;
             this.Tail3.rotateAngleX += 0.15F * sittingProgress;
@@ -354,7 +354,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.Tail4.rotationPointY += 0.5F * sittingProgress;
             walk(Tail1, 0.1F, 0.03F * sittingProgress - (0.03F * restHeadProgress), true, 1, 0, trex.frame, 0.4F);
             Tail1.rotationPointY += (0.1F * sittingProgress - (0.1F * restHeadProgress)) * Math.cos((trex.frame + 1) * 0.1);
-
+            
             this.Neck.rotateAngleX += 0.55F * restHeadProgress;
             this.Head.rotateAngleX -= 0.75F * restHeadProgress;
             this.Chest.rotateAngleX += 0.15F * restHeadProgress;
@@ -368,7 +368,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             walk(Chest, 0.08F, 0.08F * restHeadProgress, true, 0, 0, trex.frame, 1F);
             walk(Neck, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
             walk(Head, 0.08F, 0.02F * restHeadProgress, false, 0, 0, trex.frame, 1F);
-
+            
             this.Waist.rotateAngleX += 0.38F * (sittingProgress - sittingProgressFast);
             for (int i = 0; i < this.tailParts.length; i++)
             {
@@ -387,23 +387,23 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.chainWave(bodyParts, 0.1F, -0.03F, 3, trex.frame, 1.0F);
             this.chainWave(rightArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F);
             this.chainWave(leftArmParts, -0.1F, 0.2F, 4, trex.frame, 1.0F);
-
+            
             this.chainSwing(tailParts, 0.1F, 0.05F - (0.05F * sittingProgress), 1, trex.frame, 1.0F - 0.6F * sittingProgress);
             this.chainWave(tailParts, 0.1F, -0.05F - (-0.05F * sittingProgress), 2, trex.frame, 1.0F - 0.6F * sittingProgress);
         }
-
+        
         //Specialized animations
         this.Head.rotateAngleZ += Math.cos(trex.frame / 3) * trex.roarTiltDegree.value / 3;
         this.LowerJaw.rotateAngleX += Math.cos(trex.frame) * trex.roarTiltDegree.value / 7;
         
         trex.tailBuffer.applyChainSwingBuffer(tailParts);
     }
-
+    
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTyrannosaurus) entity);
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.ROAR.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
@@ -444,7 +444,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.animator.setStationaryPhase(35);
             this.animator.resetPhase(15);
         }
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.WALK_ROAR.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.WALK_ROAR.animID());
@@ -460,14 +460,14 @@ public class ModelTyrannosaurus extends MowzieModelBase
             this.animator.setStationaryPhase(35);
             this.animator.resetPhase(15);
         }
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.EATING.animID())
         {
             float shakeProgress = ((EntityTyrannosaurus) entity).shakePrey.getAnimationProgressSinSqrt();
             chainSwing(bodyParts, 0.6F, 0.2F * shakeProgress, 1, ((EntityTyrannosaurus) entity).frame, 1F);
             chainSwing(tailParts, 0.6F, -0.2F * shakeProgress, 3, ((EntityTyrannosaurus) entity).frame, 1F);
-            Waist.rotateAngleX += 0.3*shakeProgress;
-            Head.rotateAngleX -= 0.3*shakeProgress;
+            Waist.rotateAngleX += 0.3 * shakeProgress;
+            Head.rotateAngleX -= 0.3 * shakeProgress;
             this.animator.setAnimation(JurassiCraftAnimationIDs.EATING.animID());
             this.animator.startPhase(0);
             this.animator.rotate(LowerJaw, 0.3F, 0.0F, 0.0F);
@@ -481,7 +481,7 @@ public class ModelTyrannosaurus extends MowzieModelBase
             animator.setStationaryPhase(3);
             animator.resetPhase(10);
         }
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());

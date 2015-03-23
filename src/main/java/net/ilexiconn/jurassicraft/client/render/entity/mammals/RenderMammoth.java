@@ -17,7 +17,7 @@ public class RenderMammoth extends RenderMammal
     {
         super(new ModelMammoth(), mammal, 1.4F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

@@ -12,15 +12,15 @@ import net.minecraft.world.World;
 
 public class ItemBlockCultivate extends ItemBlock
 {
-    public String[] colors = {"black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
-
+    public String[] colors = { "black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white" };
+    
     public ItemBlockCultivate(Block block)
     {
         super(block);
         setHasSubtypes(true);
         setMaxStackSize(16);
     }
-
+    
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         String displayName = "";
@@ -28,12 +28,12 @@ public class ItemBlockCultivate extends ItemBlock
             displayName = "tile." + color + "_cultivate" + ".name";
         return StatCollector.translateToLocal(displayName);
     }
-
+    
     public int getMetadata(int meta)
     {
         return meta;
     }
-
+    
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
     {
         if (world.getBlock(x, y + 1, z).isReplaceable(world, x, y, z))
@@ -44,6 +44,7 @@ public class ItemBlockCultivate extends ItemBlock
             BlockCultivate.setRotation(world, x, y, z, MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3);
             return true;
         }
-        else return false;
+        else
+            return false;
     }
 }

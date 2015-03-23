@@ -9,7 +9,7 @@ public class ModelLowSecurityFenceBase extends ModelBase
     ModelRenderer Bottom;
     ModelRenderer Bottom1;
     ModelRenderer Bottom2;
-
+    
     public ModelLowSecurityFenceBase()
     {
         Bottom = new ModelRenderer(this, 0, 1);
@@ -25,19 +25,19 @@ public class ModelLowSecurityFenceBase extends ModelBase
         Bottom2.addBox(-8F, -1F, -1F, 16, 2, 2);
         Bottom2.setRotationPoint(0F, 21F, 5F);
     }
-
+    
     public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7)
     {
         Bottom.rotateAngleX = 0F;
         Bottom.rotateAngleY = 0F;
         Bottom.rotateAngleZ = 0F;
         Bottom.renderWithRotation(par7);
-
+        
         Bottom1.rotateAngleX = 0F;
         Bottom1.rotateAngleY = 0F;
         Bottom1.rotateAngleZ = 0F;
         Bottom1.renderWithRotation(par7);
-
+        
         Bottom2.rotateAngleX = 0F;
         Bottom2.rotateAngleY = 0F;
         Bottom2.rotateAngleZ = 0F;

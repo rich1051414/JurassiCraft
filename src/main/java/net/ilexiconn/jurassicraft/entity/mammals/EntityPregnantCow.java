@@ -8,7 +8,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 public class EntityPregnantCow implements IExtendedEntityProperties
 {
-
+    
     public final static String PREGNANT_COW_PROPERTY = "EntityPregnantCowJC";
     private final EntityCow cow;
     private String dnaSequence;
@@ -16,7 +16,7 @@ public class EntityPregnantCow implements IExtendedEntityProperties
     private int pregnancyProgress;
     private int pregnancySpeed;
     private int dnaQuality;
-
+    
     public EntityPregnantCow(EntityCow cow)
     {
         this.cow = cow;
@@ -25,78 +25,78 @@ public class EntityPregnantCow implements IExtendedEntityProperties
         this.dnaSequence = "";
         this.pregnancySpeed = 0;
     }
-
+    
     @Override
     public void init(Entity entity, World world)
     {
-
+        
     }
-
+    
     public static final void register(EntityCow entity)
     {
         entity.registerExtendedProperties(EntityPregnantCow.PREGNANT_COW_PROPERTY, new EntityPregnantCow(entity));
     }
-
+    
     public static final EntityPregnantCow get(EntityCow entity)
     {
         return (EntityPregnantCow) entity.getExtendedProperties(EntityPregnantCow.PREGNANT_COW_PROPERTY);
     }
-
+    
     public String getDNASequence()
     {
         return dnaSequence;
     }
-
+    
     public void setDNASequence(String dna)
     {
         this.dnaSequence = dna;
     }
-
+    
     public String getMammalName()
     {
         return mammalName;
     }
-
+    
     public void setMammalName(String mammal)
     {
         this.mammalName = mammal;
     }
-
+    
     public int getPregnancyProgress()
     {
         return pregnancyProgress;
     }
-
+    
     public void increasePregnancyProgress()
     {
         this.pregnancyProgress = this.getPregnancyProgress() + 1;
     }
-
+    
     public void setPregnancyProgress(int progress)
     {
         this.pregnancyProgress = progress;
     }
-
+    
     public int getPregnancySpeed()
     {
         return pregnancySpeed;
     }
-
+    
     public void setPregnancySpeed(int speed)
     {
         this.pregnancySpeed = speed;
     }
-
+    
     public int getDNAQuality()
     {
         return dnaQuality;
     }
-
+    
     public void setDNAQuality(int quality)
     {
         this.dnaQuality = quality;
     }
-
+    
     public int getPregnancyProgressScaled(int barSize)
     {
         if (this.getPregnancySpeed() <= 0)
@@ -105,7 +105,7 @@ public class EntityPregnantCow implements IExtendedEntityProperties
         }
         return (this.getPregnancyProgress() * barSize) / this.getPregnancySpeed();
     }
-
+    
     @Override
     public void saveNBTData(NBTTagCompound compound)
     {
@@ -117,19 +117,23 @@ public class EntityPregnantCow implements IExtendedEntityProperties
         properties.setInteger("DNAQuality", this.dnaQuality);
         compound.setTag(EntityPregnantCow.PREGNANT_COW_PROPERTY, properties);
     }
-
+    
     @Override
     public void loadNBTData(NBTTagCompound compound)
     {
         NBTTagCompound properties = (NBTTagCompound) compound.getTag(EntityPregnantCow.PREGNANT_COW_PROPERTY);
         if (properties != null)
         {
-            if (properties.hasKey("DNASequence")) this.dnaSequence = properties.getString("DNASequence");
-            if (properties.hasKey("MammalName")) this.mammalName = properties.getString("MammalName");
+            if (properties.hasKey("DNASequence"))
+                this.dnaSequence = properties.getString("DNASequence");
+            if (properties.hasKey("MammalName"))
+                this.mammalName = properties.getString("MammalName");
             if (properties.hasKey("PregnancyProgress"))
                 this.pregnancyProgress = properties.getInteger("PregnancyProgress");
-            if (properties.hasKey("PregnancySpeed")) this.pregnancySpeed = properties.getInteger("PregnancySpeed");
-            if (properties.hasKey("DNAQuality")) this.dnaQuality = properties.getInteger("DNAQuality");
+            if (properties.hasKey("PregnancySpeed"))
+                this.pregnancySpeed = properties.getInteger("PregnancySpeed");
+            if (properties.hasKey("DNAQuality"))
+                this.dnaQuality = properties.getInteger("DNAQuality");
         }
     }
 }

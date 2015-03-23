@@ -13,7 +13,7 @@ public class ModelParasaurolophus extends MowzieModelBase
 {
     public boolean isAlarmed;
     private Animator animator;
-
+    
     MowzieModelRenderer Left_Lower_Foot;
     MowzieModelRenderer Left_Upper_Foot;
     MowzieModelRenderer Right_Lower_Foot;
@@ -49,14 +49,14 @@ public class ModelParasaurolophus extends MowzieModelBase
     MowzieModelRenderer Foot_Right;
     MowzieModelRenderer[] tailParts;
     MowzieModelRenderer[] bodyParts;
-
+    
     public ModelParasaurolophus()
     {
         textureWidth = 256;
         textureHeight = 256;
-
+        
         animator = new Animator(this);
-
+        
         Left_Lower_Foot = new MowzieModelRenderer(this, 98, 0);
         Left_Lower_Foot.addBox(-2F, 0F, 0F, 4, 2, 2);
         Left_Lower_Foot.setRotationPoint(7F, 20.8F, 7.7F);
@@ -255,44 +255,44 @@ public class ModelParasaurolophus extends MowzieModelBase
         Foot_Right.setTextureSize(256, 256);
         Foot_Right.mirror = true;
         setRotation(Foot_Right, 3.141593F, 0F, 0F);
-
+        
         addChildTo(Snout_1, Head);
         addChildTo(Snout_2, Head);
         addChildTo(Jaw, Head);
         addChildTo(Crest_1, Head);
         addChildTo(Crest_2, Head);
         addChildTo(Crest_3, Head);
-
+        
         addChildTo(Head, Neck);
         addChildTo(Neck, Body_2);
         addChildTo(Body_2, Body_1);
-
+        
         addChildTo(Left_Hand, Lower_Arm_Left);
         addChildTo(Lower_Arm_Left, Upper_Arm_Left);
         addChildTo(Upper_Arm_Left, Body_1);
         addChildTo(Right_Hand, Lower_Arm_Right);
         addChildTo(Lower_Arm_Right, Upper_Arm_Right);
         addChildTo(Upper_Arm_Right, Body_1);
-
+        
         addChildTo(Body_1, Body_3);
-
+        
         addChildTo(Tail_6, Tail_5);
         addChildTo(Tail_5, Tail_4);
         addChildTo(Tail_4, Tail_3);
         addChildTo(Tail_3, Tail_2);
         addChildTo(Tail_2, Tail_1);
         addChildTo(Tail_1, Body_3);
-
+        
         addChildTo(Foot_Right, Right_Lower_Foot);
         addChildTo(Right_Lower_Foot, Right_Upper_Foot);
         addChildTo(Right_Upper_Foot, Right_Calf_1);
         addChildTo(Right_Calf_1, Right_Thigh);
-
+        
         addChildTo(Foot_Left, Left_Lower_Foot);
         addChildTo(Left_Lower_Foot, Left_Upper_Foot);
         addChildTo(Left_Upper_Foot, Left_Calf_1);
         addChildTo(Left_Calf_1, Left_Thigh);
-
+        
         //Corrections
         Crest_3.setRotationPoint(0, Crest_3.rotationPointY, 6);
         Crest_3.offsetY -= 0.19F;
@@ -303,7 +303,7 @@ public class ModelParasaurolophus extends MowzieModelBase
         Body_1.rotationPointZ -= 15;
         Tail_1.rotationPointY -= 5;
         Tail_1.rotationPointZ += 7;
-
+        
         //Adjustments
         Body_3.rotateAngleX -= 0.25F;
         Neck.rotateAngleX += 0.25F;
@@ -313,10 +313,10 @@ public class ModelParasaurolophus extends MowzieModelBase
         Lower_Arm_Right.rotateAngleX -= 0.5F;
         Upper_Arm_Left.rotateAngleX += 0.5F;
         Upper_Arm_Right.rotateAngleX += 0.5F;
-
-        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
-        bodyParts = new MowzieModelRenderer[]{this.Body_3, this.Body_1, this.Body_2, this.Neck, this.Head};
-
+        
+        tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
+        bodyParts = new MowzieModelRenderer[] { this.Body_3, this.Body_1, this.Body_2, this.Neck, this.Head };
+        
         Left_Lower_Foot.setInitValuesToCurrentPose();
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Lower_Foot.setInitValuesToCurrentPose();
@@ -351,58 +351,58 @@ public class ModelParasaurolophus extends MowzieModelBase
         Foot_Left.setInitValuesToCurrentPose();
         Foot_Right.setInitValuesToCurrentPose();
     }
-
+    
     public boolean setAlarmed(boolean setAlarm)
     {
         return this.isAlarmed = setAlarm;
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
-/*    Left_Lower_Foot.render(f5);
-    Left_Upper_Foot.render(f5);
-    Right_Lower_Foot.render(f5);
-    Right_Upper_Foot.render(f5);
-    Left_Calf_1.render(f5);
-    Right_Calf_1.render(f5);*/
+        /*    Left_Lower_Foot.render(f5);
+            Left_Upper_Foot.render(f5);
+            Right_Lower_Foot.render(f5);
+            Right_Upper_Foot.render(f5);
+            Left_Calf_1.render(f5);
+            Right_Calf_1.render(f5);*/
         Left_Thigh.render(f5);
         Right_Thigh.render(f5);
         //    Body_1.render(f5);
         //    Body_2.render(f5);
         //    Neck.render(f5);
-/*    Tail_1.render(f5);
-    Tail_2.render(f5);
-    Tail_3.render(f5);
-    Tail_4.render(f5);
-    Tail_5.render(f5);*/
-/*    Upper_Arm_Right.render(f5);
-    Upper_Arm_Left.render(f5);
-    Lower_Arm_Left.render(f5);
-    Lower_Arm_Right.render(f5);
-    Left_Hand.render(f5);
-    Right_Hand.render(f5);*/
+        /*    Tail_1.render(f5);
+            Tail_2.render(f5);
+            Tail_3.render(f5);
+            Tail_4.render(f5);
+            Tail_5.render(f5);*/
+        /*    Upper_Arm_Right.render(f5);
+            Upper_Arm_Left.render(f5);
+            Lower_Arm_Left.render(f5);
+            Lower_Arm_Right.render(f5);
+            Left_Hand.render(f5);
+            Right_Hand.render(f5);*/
         //    Tail_6.render(f5);
-/*    Head.render(f5);
-    Snout_1.render(f5);
-    Snout_2.render(f5);
-    Jaw.render(f5);
-    Crest_1.render(f5);
-    Crest_2.render(f5);
-    Crest_3.render(f5);*/
+        /*    Head.render(f5);
+            Snout_1.render(f5);
+            Snout_2.render(f5);
+            Jaw.render(f5);
+            Crest_1.render(f5);
+            Crest_2.render(f5);
+            Crest_3.render(f5);*/
         Body_3.render(f5);
         //    Foot_Left.render(f5);
         //    Foot_Right.render(f5);
     }
-
+    
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     private void resetPose()
     {
         Left_Lower_Foot.setCurrentPoseToInitValues();
@@ -439,23 +439,24 @@ public class ModelParasaurolophus extends MowzieModelBase
         Foot_Left.setCurrentPoseToInitValues();
         Foot_Right.setCurrentPoseToInitValues();
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityParasaurolophus para)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, para);
         this.resetPose();
         /*
-		 * f = para.frame; 
-		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
-		 */
+         * f = para.frame; 
+         * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
+         */
         float scaleFactor = 0.6F;
         float height = 2F;
         float allFoursLean = (float) (Math.pow(f1, 1 / (f1 * 10)) / 4);
         faceTarget(Head, 2, f3, f4);
         faceTarget(Neck, 2, f3, f4);
-
-        if (allFoursLean > 0.15F) allFoursLean = 0.15F;
-
+        
+        if (allFoursLean > 0.15F)
+            allFoursLean = 0.15F;
+        
         //All fours behavior
         Body_3.rotateAngleX += allFoursLean * 1.5;
         Body_2.rotateAngleX -= allFoursLean / 5;
@@ -473,36 +474,36 @@ public class ModelParasaurolophus extends MowzieModelBase
         Lower_Arm_Right.rotateAngleX += allFoursLean * 4;
         Left_Hand.rotateAngleX -= allFoursLean * 12;
         Right_Hand.rotateAngleX -= allFoursLean * 12;
-
+        
         bob(Body_3, 1F * scaleFactor, 1F * height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, 1F * height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, 1F * height, false, f, f1);
-
+        
         walk(Neck, 1F * scaleFactor, 0.15F * height, false, 1F, 0F, f, f1);
         walk(Head, 1F * scaleFactor, 0.15F * height, true, 1F, 0F, f, f1);
-
+        
         walk(Left_Thigh, 0.5F * scaleFactor, 0.5F, false, 0F, 0.3F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 2F, 0F, f, f1);
         walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.7F, false, 0F, -0.4F, f, f1);
         walk(Foot_Left, 0.5F * scaleFactor, 1F, true, 0.5F, 1F, f, f1);
-
+        
         walk(Right_Thigh, 0.5F * scaleFactor, 0.5F, true, 0F, 0.3F, f, f1);
         walk(Right_Calf_1, 0.5F * scaleFactor, 0.5F, false, 2F, 0F, f, f1);
         walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.7F, true, 0F, -0.4F, f, f1);
         walk(Foot_Right, 0.5F * scaleFactor, 1F, false, 0.5F, 1F, f, f1);
-
+        
         float frontOffset = 1.3F;
         walk(Upper_Arm_Left, 0.5F * scaleFactor, 1F, false, -0.5F - frontOffset, 0F, f, f1);
         walk(Lower_Arm_Left, 0.5F * scaleFactor, 1F, true, -1F - frontOffset, 0F, f, f1);
         walk(Left_Hand, 0.5F * scaleFactor, 0.5F, false, -1F - frontOffset, 0F, f, f1);
-
+        
         walk(Upper_Arm_Right, 0.5F * scaleFactor, 1F, true, -0.5F - frontOffset, 0F, f, f1);
         walk(Lower_Arm_Right, 0.5F * scaleFactor, 1F, false, -1F - frontOffset, 0F, f, f1);
         walk(Right_Hand, 0.5F * scaleFactor, 0.5F, true, -1F - frontOffset, 0F, f, f1);
-
+        
         chainWave(tailParts, 1F * scaleFactor, -0.1F, 2, f, f1);
         chainSwing(tailParts, 0.5F * scaleFactor, 0.1F, 2, f, f1);
-
+        
         //Idle
         walk(Neck, 0.1F, 0.07F, false, -1F, 0F, para.frame, 1F);
         walk(Head, 0.1F, 0.07F, true, 0F, 0F, para.frame, 1F);
@@ -513,18 +514,18 @@ public class ModelParasaurolophus extends MowzieModelBase
         walk(Lower_Arm_Left, 0.1F, 0.1F, true, -1.5F, 0F, para.frame, 1F);
         walk(Right_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
         walk(Left_Hand, 0.1F, 0.1F, false, -2F, 0F, para.frame, 1F);
-
+        
         chainWave(this.tailParts, 0.1F, -0.02F, 2, para.frame, 1F);
-
+        
         para.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-
+    
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityParasaurolophus) entity);
         EntityParasaurolophus para = (EntityParasaurolophus) entity;
-
+        
         animator.setAnimation(JurassiCraftAnimationIDs.TRUMPET.animID());
         animator.startPhase(15);
         animator.rotate(Body_3, 0.3F, 0, 0);

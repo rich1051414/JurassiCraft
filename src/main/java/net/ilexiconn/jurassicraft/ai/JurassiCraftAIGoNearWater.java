@@ -14,7 +14,7 @@ import java.util.List;
 
 public class JurassiCraftAIGoNearWater extends EntityAIBase
 {
-
+    
     private double speed;
     private EntityJurassiCraftCreature creature;
     private World world;
@@ -25,17 +25,17 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
     private int maxDist;
     private long lastTimeExecuted;
     private float maxTime;
-
+    
     public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed)
     {
         this(creature, creatureSpeed, ((60 * 6 + 35) * 1f / 20f)); // 6 minutes and 35 seconds
     }
-
+    
     public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, float maxTime)
     {
         this(creature, creatureSpeed, 25, maxTime);
     }
-
+    
     public JurassiCraftAIGoNearWater(EntityJurassiCraftCreature creature, double creatureSpeed, int maxSearchDistance, float maxTime)
     {
         this.creature = creature;
@@ -45,13 +45,13 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
         this.poolY = -64;
         this.maxTime = maxTime;
     }
-
+    
     @Override
     public boolean continueExecuting()
     {
         return !foundPool && creature.getDistance(poolX, poolY, poolZ) > 5.0D;
     }
-
+    
     @Override
     public void startExecuting()
     {
@@ -73,7 +73,7 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
             }
         }
         // Now that we have all the blocks of water around the creature, we sort them to get blobs of water and then get their center
-
+        
         List<List<Vec3>> blobsList = Lists.newArrayList();
         blocksList:
         for (Vec3 waterPos : waterBlocks)
@@ -90,14 +90,14 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
                 }
             }
             // If we are here, that means no blocks where found near this block
-
+            
             List<Vec3> blob = Lists.newArrayList();
             blob.add(waterPos);
             blobsList.add(blob);
         }
-
+        
         // Then we merge blobs that are next to each other because the previous algorithm might separate some
-
+        
         List<List<Vec3>> finalList = Lists.newArrayList();
         finalList.addAll(blobsList);
         blobList:
@@ -129,18 +129,18 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
             double centerX = 0;
             double centerY = 0;
             double centerZ = 0;
-
+            
             for (Vec3 pos : blob)
             {
                 centerX += pos.xCoord;
                 centerY += pos.yCoord;
                 centerZ += pos.zCoord;
             }
-
+            
             centerX /= blob.size();
             centerY /= blob.size();
             centerZ /= blob.size();
-
+            
             if (creature.getDistance(centerX, centerY, centerZ) <= creature.getDistance(poolX, poolY, poolZ) || poolY <= 0)
             {
                 poolX = (float) Math.floor(centerX);
@@ -151,7 +151,7 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
             }
         }
     }
-
+    
     public void updateTask()
     {
         if (foundPool)
@@ -165,12 +165,12 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
             lastTimeExecuted = world.getWorldTime();
         }
     }
-
+    
     public boolean isInterruptible()
     {
         return true;
     }
-
+    
     private boolean isNextTo(Vec3 a, Vec3 b)
     {
         double dx = a.xCoord - b.xCoord;
@@ -178,7 +178,7 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
         double dz = a.zCoord - b.zCoord;
         return (dx + dy + dz) == 1f;
     }
-
+    
     @Override
     public void resetTask()
     {
@@ -189,11 +189,11 @@ public class JurassiCraftAIGoNearWater extends EntityAIBase
         this.poolZ = 0;
         lastTimeExecuted = world.getWorldTime();
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
         return world.getWorldTime() - lastTimeExecuted >= maxTime && Math.random() < 0.10;
     }
-
+    
 }

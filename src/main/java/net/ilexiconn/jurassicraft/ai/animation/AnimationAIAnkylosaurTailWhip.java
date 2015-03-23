@@ -8,38 +8,38 @@ import net.minecraft.util.DamageSource;
 
 public class AnimationAIAnkylosaurTailWhip extends AIAnimation
 {
-
+    
     private EntityAnkylosaurus entityAnkylosaur;
     private EntityLiving attackTarget;
-
+    
     public AnimationAIAnkylosaurTailWhip(EntityAnkylosaurus ankylosaur)
     {
         super(ankylosaur);
         entityAnkylosaur = ankylosaur;
         attackTarget = null;
     }
-
+    
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.TAIL_WHIP.animID();
     }
-
+    
     public boolean isAutomatic()
     {
         return true;
     }
-
+    
     public int getDuration()
     {
         return 30;
     }
-
+    
     public void startExecuting()
     {
         super.startExecuting();
         attackTarget = (EntityLiving) entityAnkylosaur.getAttackTarget();
     }
-
+    
     public void updateTask()
     {
         if (entityAnkylosaur.getAnimationTick() < 14)

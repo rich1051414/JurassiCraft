@@ -17,7 +17,7 @@ public class RenderParaceratherium extends RenderMammal
     {
         super(new ModelParaceratherium(), mammal, 1.6F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

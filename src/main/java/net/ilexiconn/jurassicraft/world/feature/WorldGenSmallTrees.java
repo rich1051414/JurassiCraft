@@ -9,12 +9,14 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
-public class WorldGenSmallTrees extends WorldGenAbstractTree {
-  
-	public WorldGenSmallTrees(boolean par1) {
+public class WorldGenSmallTrees extends WorldGenAbstractTree
+{
+    
+    public WorldGenSmallTrees(boolean par1)
+    {
         super(par1);
     }
-
+    
     public boolean generate(World world, Random random, int i, int j, int k)
     {
         int l;
@@ -22,7 +24,9 @@ public class WorldGenSmallTrees extends WorldGenAbstractTree {
         label0:
         {
             l = random.nextInt(3) + 4;
-            for (; world.getBlock(i, j - 1, k).getMaterial() == Material.water; j--) { }
+            for (; world.getBlock(i, j - 1, k).getMaterial() == Material.water; j--)
+            {
+            }
             flag = true;
             if (j >= 1)
             {
@@ -79,7 +83,7 @@ public class WorldGenSmallTrees extends WorldGenAbstractTree {
                     }
                 }
             }
-
+            
             if (!flag)
             {
                 return false;
@@ -113,7 +117,7 @@ public class WorldGenSmallTrees extends WorldGenAbstractTree {
                 }
             }
         }
-
+        
         for (int l1 = 0; l1 < l; l1++)
         {
             Block j2 = world.getBlock(i, j + l1, k);
@@ -122,7 +126,7 @@ public class WorldGenSmallTrees extends WorldGenAbstractTree {
                 world.setBlock(i, j + l1, k, ModBlocks.logs_1);
             }
         }
-
+        
         return true;
     }
 }

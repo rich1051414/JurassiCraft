@@ -18,35 +18,35 @@ public class ItemSkin extends ItemGenericDNASource
 {
     @SideOnly(Side.CLIENT)
     public IIcon maleIcon;
-
+    
     @SideOnly(Side.CLIENT)
     public IIcon femaleIcon;
-
+    
     public ItemSkin(String name)
     {
         super(name, "Skin");
         this.setCreativeTab(ModCreativeTabs.items);
         this.setHasSubtypes(true);
     }
-
+    
     public ItemDNA getCorrespondingDNA()
     {
         return this.getCorrespondingDNA("Skin");
     }
-
+    
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         return StatCollector.translateToLocal(itemStack.getUnlocalizedName() + (itemStack.getItemDamage() == 0 ? "_Male.name" : "_Female.name")).trim();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int i)
     {
         return i == 0 ? this.maleIcon : this.femaleIcon;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list)
@@ -54,7 +54,7 @@ public class ItemSkin extends ItemGenericDNASource
         list.add(new ItemStack(item, 1, 0));
         //list.add(new ItemStack(item, 1, 1));
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iIconRegister)

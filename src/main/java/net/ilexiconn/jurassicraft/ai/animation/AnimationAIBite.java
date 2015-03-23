@@ -15,7 +15,7 @@ public class AnimationAIBite extends AIAnimation
     private EntityLivingBase entityTarget;
     private int duration;
     private boolean eat;
-
+    
     public AnimationAIBite(EntityJurassiCraftCreature dino, int duration)
     {
         super(dino);
@@ -24,35 +24,35 @@ public class AnimationAIBite extends AIAnimation
         this.duration = duration;
         eat = false;
     }
-
+    
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.BITE.animID();
     }
-
+    
     public boolean isAutomatic()
     {
         return true;
     }
-
+    
     public int getDuration()
     {
         return this.duration;
     }
-
+    
     public void startExecuting()
     {
         super.startExecuting();
         this.entityTarget = this.entityBiting.getAttackTarget();
     }
-
+    
     public void updateTask()
     {
         if (this.entityTarget != null)
         {
             if (this.entityBiting.getAnimationTick() < ((this.duration / 2) - 2))
                 this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
-
+            
             if (this.entityBiting.getAnimationTick() == ((this.duration / 2) - 2))
             {
                 float damage = (float) this.entityBiting.getCreatureAttack();
@@ -68,7 +68,7 @@ public class AnimationAIBite extends AIAnimation
             }
         }
     }
-
+    
     @Override
     public void resetTask()
     {

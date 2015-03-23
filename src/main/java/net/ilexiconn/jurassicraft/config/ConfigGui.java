@@ -15,7 +15,7 @@ public class ConfigGui extends GuiConfig
     {
         super(parentScreen, getElements(), "jurassicraft", false, false, "JurassiCraft Config");
     }
-
+    
     private static List<IConfigElement> getElements()
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();

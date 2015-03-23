@@ -5,13 +5,15 @@ import net.ilexiconn.jurassicraft.world.biome.BiomeDecoratorCarboniferous;
 import net.ilexiconn.jurassicraft.world.feature.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class DimensionProperties {
-
+public class DimensionProperties
+{
+    
     /*
      * Made just to clean up classes
      */
-
-    public static void decoratorProperties(BiomeDecoratorCarboniferous decorator) {
+    
+    public static void decoratorProperties(BiomeDecoratorCarboniferous decorator)
+    {
         decorator.dirtGen = new WorldGenMinable(ModBlocks.dirt, 32, ModBlocks.multiBlock1);
         decorator.limestoneGen = new WorldGenLimestone(ModBlocks.multiBlock1, 3, 32, ModBlocks.multiBlock1);
         decorator.sedimentGen = new WorldGenSediment(6);

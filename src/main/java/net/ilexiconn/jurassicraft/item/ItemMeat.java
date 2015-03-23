@@ -27,7 +27,7 @@ public class ItemMeat extends ItemFood implements IDNASource
         setTextureName(JurassiCraft.getModId() + "creature/" + name + "_Meat");
         setCreativeTab(ModCreativeTabs.itemsFood);
     }
-
+    
     public ItemDNA getCorrespondingDNA()
     {
         Creature creature = CreatureManager.getCreatureFromName(this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length() - 5));
@@ -40,7 +40,7 @@ public class ItemMeat extends ItemFood implements IDNASource
             return null;
         }
     }
-
+    
     public String getDNASequence(ItemStack meat)
     {
         if (meat.hasTagCompound())
@@ -52,7 +52,7 @@ public class ItemMeat extends ItemFood implements IDNASource
         }
         return StatCollector.translateToLocal("item.meat.info.errorCode");
     }
-
+    
     public int getQuality(ItemStack meat)
     {
         if (meat.hasTagCompound())
@@ -64,7 +64,7 @@ public class ItemMeat extends ItemFood implements IDNASource
         }
         return 0;
     }
-
+    
     @Override
     public void addInformation(ItemStack meat, EntityPlayer player, List list, boolean flag)
     {
@@ -80,7 +80,7 @@ public class ItemMeat extends ItemFood implements IDNASource
             }
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack meat, World world, EntityPlayer player)
     {

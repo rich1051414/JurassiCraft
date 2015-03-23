@@ -23,7 +23,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
     public IntermittentAnimation trunkSwing = new IntermittentAnimation(20, 50, 10, 1);
     public IntermittentAnimation earFlap = new IntermittentAnimation(20, 20, 10, 1);
     public IntermittentAnimation tailSwing = new IntermittentAnimation(20, 30, 10, 1);
-
+    
     public EntityMammoth(World world)
     {
         super(world);
@@ -48,25 +48,25 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(3500);
     }
-
+    
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox() + 0.5;
     }
-
+    
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 400;
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -81,48 +81,51 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
             this.dropItem(this.getCreature().getSteak(), count);
         }
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        if(trunkSwing.getTimer() == 0) trunkLift.runAnimation();
-        if(trunkLift.getTimer() == 0) trunkSwing.runAnimation();
+        if (trunkSwing.getTimer() == 0)
+            trunkLift.runAnimation();
+        if (trunkLift.getTimer() == 0)
+            trunkSwing.runAnimation();
         earFlap.runAnimation();
         tailSwing.runAnimation();
     }
-
+    
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-/*    	float attackDamage = (float) this.getCreatureAttack();
-        int i = 0;
-        if (entity instanceof EntityLivingBase)
-        {
-            attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
-            i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
-        }
-        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
-        if (flag)
-        {
-            if (i > 0)
-            {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
-            int j = EnchantmentHelper.getFireAspectModifier(this);
-            if (j > 0)
-            {
-                entity.setFire(j * 4);
-            }
-            if (entity instanceof EntityLivingBase)
-            {
-                EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
-            }
-            EnchantmentHelper.func_151385_b(this, entity);
-        }*/
-        if (this.animID == 0) AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
+        /*    	float attackDamage = (float) this.getCreatureAttack();
+                int i = 0;
+                if (entity instanceof EntityLivingBase)
+                {
+                    attackDamage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
+                    i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
+                }
+                boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
+                if (flag)
+                {
+                    if (i > 0)
+                    {
+                        entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
+                        this.motionX *= 0.6D;
+                        this.motionZ *= 0.6D;
+                    }
+                    int j = EnchantmentHelper.getFireAspectModifier(this);
+                    if (j > 0)
+                    {
+                        entity.setFire(j * 4);
+                    }
+                    if (entity instanceof EntityLivingBase)
+                    {
+                        EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
+                    }
+                    EnchantmentHelper.func_151385_b(this, entity);
+                }*/
+        if (this.animID == 0)
+            AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
         return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
 }

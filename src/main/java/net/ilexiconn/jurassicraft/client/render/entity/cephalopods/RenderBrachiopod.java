@@ -17,7 +17,7 @@ public class RenderBrachiopod extends RenderCephalopod
     {
         super(new ModelBrachiopod(), cephalopod, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

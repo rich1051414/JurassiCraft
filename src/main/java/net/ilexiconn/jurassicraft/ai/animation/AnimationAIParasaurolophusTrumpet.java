@@ -10,36 +10,36 @@ import java.util.List;
 
 public class AnimationAIParasaurolophusTrumpet extends AIAnimation
 {
-
+    
     private EntityParasaurolophus parasaurolophus;
-
+    
     public AnimationAIParasaurolophusTrumpet(IAnimatedEntity entity)
     {
         super(entity);
         this.parasaurolophus = (EntityParasaurolophus) entity;
     }
-
+    
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.TRUMPET.animID();
     }
-
+    
     public boolean isAutomatic()
     {
         return true;
     }
-
+    
     public int getDuration()
     {
         return 60;
     }
-
+    
     public void resetTask()
     {
         super.resetTask();
         this.parasaurolophus.timeUntilCanCall = 300;
     }
-
+    
     public void updateTask()
     {
         if (this.parasaurolophus.getAnimationTick() == 3)

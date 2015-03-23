@@ -22,13 +22,13 @@ public class ControlledAnimation
      * represents the duration of the animation
      */
     private double duration;
-
+    
     public ControlledAnimation(int duration)
     {
         this.timer = 0;
         this.duration = (double) duration;
     }
-
+    
     /**
      * Sets the duration of the animation in ticks. Try values around 50.
      *
@@ -40,35 +40,35 @@ public class ControlledAnimation
         this.timer = 0;
         this.duration = (double) duration;
     }
-
-	/**
-	 * Returns the timer of this animation. Useful to save the progress of the animation.
-	 */
+    
+    /**
+     * Returns the timer of this animation. Useful to save the progress of the animation.
+     */
     public void getTimer()
     {
         this.timer = 0;
     }
-
+    
     /**
      * Sets the timer to a specific value.
      *
      * @param time is the number of ticks to be set.
      */
     
-	public void setTimer(int time)
+    public void setTimer(int time)
     {
-		this.timer = (double) time;
-
-		if (this.timer > this.duration)
-		{
-			this.timer = this.duration;
-		}
-		else if (this.timer < 0)
-		{
-			this.timer = 0;
-		}
-	}
-
+        this.timer = (double) time;
+        
+        if (this.timer > this.duration)
+        {
+            this.timer = this.duration;
+        }
+        else if (this.timer < 0)
+        {
+            this.timer = 0;
+        }
+    }
+    
     /**
      * Sets the timer to 0.
      */
@@ -77,16 +77,17 @@ public class ControlledAnimation
     {
         this.timer = 0;
     }
-
+    
     /**
      * Increases the timer by 1.
      */
     
     public void increaseTimer()
     {
-        if (this.timer < this.duration) this.timer++;
+        if (this.timer < this.duration)
+            this.timer++;
     }
-
+    
     /**
      * Increases the timer by a specific value.
      *
@@ -104,16 +105,17 @@ public class ControlledAnimation
             this.timer = this.duration;
         }
     }
-
+    
     /**
      * Decreases the timer by 1.
      */
     
     public void decreaseTimer()
     {
-        if (this.timer > 0.0D) this.timer--;
+        if (this.timer > 0.0D)
+            this.timer--;
     }
-
+    
     /**
      * Decreases the timer by a specific value.
      *
@@ -131,16 +133,16 @@ public class ControlledAnimation
             this.timer = 0.0D;
         }
     }
-
-	/**
-	 * Returns a float that represents a fraction of the animation, a value between 0.0F and 1.0F.
-	 */
-	
-	public float getAnimationFraction()
+    
+    /**
+     * Returns a float that represents a fraction of the animation, a value between 0.0F and 1.0F.
+     */
+    
+    public float getAnimationFraction()
     {
         return (float) (this.timer / this.duration);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 1/(1 + e^(4-8*x)). It
@@ -162,7 +164,7 @@ public class ControlledAnimation
         }
         return 0.0F;
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 1/(1 + e^(6-12*x)). It
@@ -173,7 +175,7 @@ public class ControlledAnimation
     {
         return (float) (1.0D / (1.0D + Math.exp(6.0D - 12.0D * (this.timer / this.duration))));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function. It is
@@ -184,7 +186,7 @@ public class ControlledAnimation
     {
         return MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function
@@ -196,7 +198,7 @@ public class ControlledAnimation
         float result = MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration));
         return result * result;
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function to the
@@ -207,7 +209,7 @@ public class ControlledAnimation
     {
         return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration)), 10);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function to a
@@ -220,7 +222,7 @@ public class ControlledAnimation
     {
         return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration)), i);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
@@ -233,7 +235,7 @@ public class ControlledAnimation
         float x2 = x * x;
         return x2 / (x2 + (1 - x) * (1 - x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
@@ -246,7 +248,7 @@ public class ControlledAnimation
         float x3 = x * x * x;
         return x3 / (x3 + (1 - x) * (1 - x) * (1 - x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^n / (x^n + (1-x)^n).
@@ -261,7 +263,7 @@ public class ControlledAnimation
         double xi = Math.pow(x, (double) n);
         return (float) (xi / (xi + Math.pow((1.0D - x), (double) n)));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 0.5 + arctan(PI * (x -
@@ -272,7 +274,7 @@ public class ControlledAnimation
     {
         return (float) (0.5F + 0.49806510671F * Math.atan(3.14159265359D * ((double) (this.timer / this.duration) - 0.5D)));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation. 
      * This value starts at 1.0F and ends at 1.0F.
@@ -284,7 +286,7 @@ public class ControlledAnimation
         float x = 6.28318530718F * (float) (this.timer / this.duration);
         return 0.5F - 0.5F * MathHelper.cos(x + MathHelper.sin(x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. This value starts at 0.0F and ends at 0.0F.
@@ -296,7 +298,7 @@ public class ControlledAnimation
         float x = 3.14159265359F * (float) (this.timer / this.duration);
         return MathHelper.sin(x + MathHelper.sin(x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation. 
      * This value starts at 1.0F and ends at 1.0F.
@@ -307,5 +309,5 @@ public class ControlledAnimation
     {
         float x = 6.28318530718F * (float) (this.timer / this.duration);
         return 0.5F + 0.5F * MathHelper.cos(x + MathHelper.sin(x));
-	}
+    }
 }

@@ -28,7 +28,7 @@ public class GuiDinoPad extends GuiContainer
     private float renderRotation;
     private int pageNumber;
     private HashMap<Integer, String[]> dinoInfo = new HashMap<Integer, String[]>();
-
+    
     public GuiDinoPad(ContainerDinoPad container)
     {
         super(container);
@@ -42,13 +42,13 @@ public class GuiDinoPad extends GuiContainer
         {
             this.mc.thePlayer.closeScreen();
         }
-
+        
         if (this.creature == null)
         {
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void initGui()
     {
@@ -60,7 +60,7 @@ public class GuiDinoPad extends GuiContainer
             {
                 this.dinoInfo.put(numberOfPages, this.getCreatureInformation(numberOfPages));
             }
-
+            
             this.renderRotation = 0.0F;
             this.pageNumber = 0;
             this.guiLeft = (int) ((this.width - this.xSize) / 2);
@@ -70,20 +70,20 @@ public class GuiDinoPad extends GuiContainer
             this.buttonList.add(new GuiButtonDinopad(2, this.guiLeft + (this.xSize - 18) / 2 + 20, this.guiTop + 146, 60, 210, 12, 18));
         }
     }
-
+    
     @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
-
+    
     @Override
     public void onGuiClosed()
     {
         this.creature = null;
         super.onGuiClosed();
     }
-
+    
     @Override
     protected void keyTyped(char keyChar, int key)
     {
@@ -92,7 +92,7 @@ public class GuiDinoPad extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void updateScreen()
     {
@@ -106,7 +106,7 @@ public class GuiDinoPad extends GuiContainer
         }
         this.renderRotation++;
     }
-
+    
     @Override
     public void actionPerformed(GuiButton button)
     {
@@ -140,7 +140,7 @@ public class GuiDinoPad extends GuiContainer
             }
         }
     }
-
+    
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
@@ -153,7 +153,7 @@ public class GuiDinoPad extends GuiContainer
                 case 0:
                     this.renderEmptyBars();
                     this.renderStatusBars();
-
+                    
                     if (this.creature.getCreature().getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight())
                     {
                         this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength()))));
@@ -173,21 +173,21 @@ public class GuiDinoPad extends GuiContainer
             }
         }
     }
-
+    
     private void renderEmptyBars()
     {
         this.drawTexturedModalRect(this.guiLeft + 140, this.guiTop + 55, 0, 202, 98, 8);
         this.drawTexturedModalRect(this.guiLeft + 140, this.guiTop + 80, 0, 202, 98, 8);
         this.drawTexturedModalRect(this.guiLeft + 140, this.guiTop + 105, 0, 202, 98, 8);
     }
-
+    
     private void renderStatusBars()
     {
         this.drawTexturedModalRect(this.guiLeft + 141, this.guiTop + 56, 1, 177, this.creature.getCreatureHealthScaled(95), 5);
         this.drawTexturedModalRect(this.guiLeft + 141, this.guiTop + 81, 1, 182, this.creature.getCreatureAttackScaled(95), 5);
         this.drawTexturedModalRect(this.guiLeft + 141, this.guiTop + 106, 1, 187, this.creature.getCreatureSpeedScaled(95), 5);
     }
-
+    
     private void renderNameGenderStrings()
     {
         if (this.creature.hasCustomNameTag())
@@ -200,7 +200,7 @@ public class GuiDinoPad extends GuiContainer
         }
         this.fontRendererObj.drawString(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString()) / 2, this.guiTop + 19, 14737632);
     }
-
+    
     private void renderStatusStrings()
     {
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.health") + ": " + String.valueOf(this.creature.getCreatureCurrentHealth() + "/" + this.creature.getCreatureHealth()), this.guiLeft + 192 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.health") + String.valueOf(this.creature.getCreatureCurrentHealth() + "/" + this.creature.getCreatureHealth())) / 2, this.guiTop + 45, 14737632);
@@ -209,7 +209,7 @@ public class GuiDinoPad extends GuiContainer
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.height") + ": " + String.valueOf(this.creature.getCreatureHeight()), this.guiLeft + 192 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.height") + String.valueOf(this.creature.getCreatureHeight())) / 2, this.guiTop + 116, 14737632);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.length") + ": " + String.valueOf(this.creature.getCreatureLength()), this.guiLeft + 192 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.length") + String.valueOf(this.creature.getCreatureLength())) / 2, this.guiTop + 126, 14737632);
     }
-
+    
     private void renderTamedStrings()
     {
         if (this.creature.isTamed())
@@ -229,7 +229,7 @@ public class GuiDinoPad extends GuiContainer
             this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + StatCollector.translateToLocal("container.pad.none"), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + StatCollector.translateToLocal("container.pad.none")) / 2, this.guiTop + 122, 14737632);
         }
     }
-
+    
     private String[] getCreatureInformation(int page)
     {
         String info = StatCollector.translateToLocal("container.pad.info." + this.creature.getCreature().getCreatureName() + ".page" + page);
@@ -238,27 +238,27 @@ public class GuiDinoPad extends GuiContainer
         {
             int line = 0;
             int index = 0;
-
+            
             for (int infoSize = info.length(); infoSize >= 43; line++)
             {
                 index = 43;
-
+                
                 while (!String.valueOf(info.substring(0, index).charAt(index - 1)).equals(" "))
                 {
                     index--;
                 }
-
+                
                 pageInfo[line] = info.substring(0, index - 1);
                 info = info.substring(index, infoSize);
                 infoSize = info.length();
             }
-
+            
             pageInfo[line] = info;
         }
-
+        
         return pageInfo;
     }
-
+    
     private void renderCreatureInformation(int page)
     {
         if (this.dinoInfo.containsKey(page))
@@ -273,7 +273,7 @@ public class GuiDinoPad extends GuiContainer
             this.fontRendererObj.drawString("Page missing! This is a bug!", this.guiLeft + 128 - this.fontRendererObj.getStringWidth("Page missing! This is a bug!") / 2, this.guiTop + 45, 14737632);
         }
     }
-
+    
     private void renderCreature(float posX, float posY, float scale)
     {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);

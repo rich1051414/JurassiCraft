@@ -14,14 +14,14 @@ public class GuiButtonDinopad extends GuiButton
 {
     private int xguiPos;
     private int yguiPos;
-
+    
     public GuiButtonDinopad(int id, int xPos, int yPos, int xguiPosition, int yguiPosition, int width, int height)
     {
         super(id, xPos, yPos, width, height, "");
         this.xguiPos = xguiPosition;
         this.yguiPos = yguiPosition;
     }
-
+    
     @Override
     public void drawButton(Minecraft mc, int x, int y)
     {

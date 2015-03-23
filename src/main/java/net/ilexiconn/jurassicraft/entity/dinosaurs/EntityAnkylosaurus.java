@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-
+    
     public EntityAnkylosaurus(World world)
     {
         super(world);
@@ -36,25 +36,25 @@ public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements 
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(3500);
     }
-
+    
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-
+    
     @Override
     public double getMountedYOffset()
     {
         return 1.05D * (double) this.getYBouningBox();
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -73,12 +73,12 @@ public class EntityAnkylosaurus extends EntityJurassiCraftProtective implements 
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
         }
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 4.0F, this);
     }
 }

@@ -6,20 +6,20 @@ import net.minecraft.util.Vec3;
 
 public class HerdAIFollowHerd extends EntityAIHerd
 {
-
+    
     private double speed;
-
+    
     public HerdAIFollowHerd(EntityJurassiCraftCreature creature, boolean groupAttack, double speed)
     {
         super(creature, groupAttack);
         this.speed = speed;
     }
-
+    
     public void startExecuting()
     {
         super.startExecuting();
     }
-
+    
     public void updateTask()
     {
         if (getHerd() != null)
@@ -32,12 +32,12 @@ public class HerdAIFollowHerd extends EntityAIHerd
             }
         }
     }
-
+    
     public boolean continueExecuting()
     {
         return getHerd() != null && getHerd().getDistanceFrom(getCreature()) >= 10 && getCreature().getAttackTarget() == null;
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
@@ -48,5 +48,5 @@ public class HerdAIFollowHerd extends EntityAIHerd
         }
         return Math.random() < 0.25 && herdIsFar && getCreature().getAttackTarget() == null;
     }
-
+    
 }

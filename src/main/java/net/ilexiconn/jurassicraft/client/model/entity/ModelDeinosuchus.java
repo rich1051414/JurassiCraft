@@ -42,12 +42,12 @@ public class ModelDeinosuchus extends MowzieModelBase
     public MowzieModelRenderer spikes5;
     private MowzieModelRenderer[] bodyParts;
     private MowzieModelRenderer[] tailParts;
-
+    
     public ModelDeinosuchus()
     {
         this.textureWidth = 256;
         this.textureHeight = 128;
-
+        
         this.rightFootFront = new MowzieModelRenderer(this, 123, 0);
         this.rightFootFront.setRotationPoint(0.0F, 0.0F, -6.0F);
         this.rightFootFront.addBox(-2.75F, -1.25F, -7.0F, 5, 2, 9);
@@ -166,34 +166,34 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.tail2.setRotationPoint(0.0F, 0.0F, 14.0F);
         this.tail2.addBox(-5.0F, -5.0F, -1.0F, 10, 9, 14);
         this.setRotateAngle(tail2, 0.08726646259971647F, -0.0F, 0.0F);
-
+        
         this.head1.addChild(this.mouth1);
         this.mouth1.addChild(this.mouth2);
         this.mouth2.addChild(this.mouth3);
-
+        
         this.head1.addChild(this.head2);
         this.head2.addChild(this.teeth2);
         this.head2.addChild(this.head3);
         this.head3.addChild(this.teeth3);
-
+        
         this.neck.addChild(this.body1);
         this.body1.addChild(this.body2);
         this.body1.addChild(this.leftArmFront1);
         this.leftArmFront1.addChild(this.leftArmFront2);
         this.leftArmFront2.addChild(this.leftFootFront);
-
+        
         this.body1.addChild(this.rightArmFront1);
         this.rightArmFront1.addChild(this.rightArmFront2);
         this.rightArmFront2.addChild(this.rightFootFront);
-
+        
         this.body2.addChild(this.leftArmBack1);
         this.leftArmBack1.addChild(this.leftArmBack2);
         this.leftArmBack2.addChild(this.leftFootBack);
-
+        
         this.body2.addChild(this.rightArmBack1);
         this.rightArmBack1.addChild(this.rightArmBack2);
         this.rightArmBack2.addChild(this.rightFootBack);
-
+        
         this.body2.addChild(this.tail1);
         this.tail1.addChild(this.tail2);
         this.tail1.addChild(this.spikes1);
@@ -204,7 +204,7 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.tail4.addChild(this.spikes4);
         this.tail4.addChild(this.tail5);
         this.tail5.addChild(this.spikes5);
-
+        
         this.head1.setInitValuesToCurrentPose();
         this.mouth1.setInitValuesToCurrentPose();
         this.head2.setInitValuesToCurrentPose();
@@ -238,11 +238,11 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.spikes4.setInitValuesToCurrentPose();
         this.tail5.setInitValuesToCurrentPose();
         this.spikes5.setInitValuesToCurrentPose();
-
-        this.bodyParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1, this.body2, this.body1};
-        this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+        
+        this.bodyParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1, this.body2, this.body1 };
+        this.tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
     }
-
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -251,26 +251,26 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.head1.render(f5);
         this.neck.render(f5);
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityDeinosuchus deinosuchus)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, deinosuchus);
         this.resetPose();
-
+        
         this.faceTarget(this.head1, 1, f3, f4);
-
+        
         this.chainSwing(this.tailParts, 0.1F, -0.02F, 2.0, deinosuchus.frame, 1F);
-
+        
         deinosuchus.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-
+    
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-
+    
     private void resetPose()
     {
         this.head1.setCurrentPoseToInitValues();

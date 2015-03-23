@@ -5,13 +5,12 @@ import net.minecraft.block.BlockDoublePlant;
 
 public class HeliconiaPlant extends BlockDoublePlant
 {
-	//TODO Fix this thing!
-	
+    //TODO Fix this thing!
+    
     public HeliconiaPlant(String name)
     {
         setBlockName(name);
         setBlockTextureName(JurassiCraft.getModId() + "heliconia-2");
     }
-
+    
 }
-

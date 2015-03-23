@@ -34,14 +34,14 @@ public class ModelHypsilophodon extends MowzieModelBase
     MowzieModelRenderer tail3;
     MowzieModelRenderer HeadJoint;
     MowzieModelRenderer[] tailParts;
-
+    
     public ModelHypsilophodon()
     {
         textureWidth = 128;
         textureHeight = 64;
-
+        
         animator = new Animator(this);
-
+        
         body1 = new MowzieModelRenderer(this, 0, 32);
         body1.addBox(-2.5F, -2.5F, -5F, 5, 5, 5);
         body1.setRotationPoint(0F, 13.7F, -1F);
@@ -168,20 +168,20 @@ public class ModelHypsilophodon extends MowzieModelBase
         HeadJoint.setTextureSize(256, 256);
         HeadJoint.mirror = true;
         setRotation(HeadJoint, 0F, 0F, 0F);
-
+        
         addChildTo(feetleft, lowerlegleft);
         addChildTo(lowerlegleft, midlegleft);
         addChildTo(midlegleft, upperlegleft);
-
+        
         addChildTo(feetright, lowerlegright);
         addChildTo(lowerlegright, midlegright);
         addChildTo(midlegright, upperlegright);
-
+        
         addChildTo(mouthtop, head);
         addChildTo(head, HeadJoint);
         addChildTo(HeadJoint, neck);
         addChildTo(neck, body1);
-
+        
         addChildTo(armleft, shoulderleft);
         addChildTo(armright, shoulderright);
         addChildTo(shoulderleft, body1);
@@ -190,7 +190,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         addChildTo(tail3, tail2);
         addChildTo(tail2, tail1);
         addChildTo(tail1, body2);
-
+        
         //Corrections
         neck.setRotationPoint(0, -2, -5F);
         HeadJoint.rotationPointZ -= 7.5;
@@ -199,9 +199,9 @@ public class ModelHypsilophodon extends MowzieModelBase
         body1.rotationPointZ += 0.3;
         tail1.rotationPointZ += 5.5;
         tail1.rotationPointY -= 4;
-
-        tailParts = new MowzieModelRenderer[]{this.tail3, this.tail2, this.tail1};
-
+        
+        tailParts = new MowzieModelRenderer[] { this.tail3, this.tail2, this.tail1 };
+        
         body1.setInitValuesToCurrentPose();
         neck.setInitValuesToCurrentPose();
         head.setInitValuesToCurrentPose();
@@ -224,7 +224,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         tail3.setInitValuesToCurrentPose();
         HeadJoint.setInitValuesToCurrentPose();
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -250,7 +250,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         //    tail1.render(f5);
         //    tail3.render(f5);
     }
-
+    
     private void resetPose()
     {
         body1.setCurrentPoseToInitValues();
@@ -275,31 +275,31 @@ public class ModelHypsilophodon extends MowzieModelBase
         tail3.setCurrentPoseToInitValues();
         HeadJoint.setCurrentPoseToInitValues();
     }
-
+    
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHypsilophodon hypster)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         
         /*
-		 * f = hypster.frame;
-		 * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
-		 */
+         * f = hypster.frame;
+         * f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
+         */
         
         resetPose();
         float scaleFactor = 0.6F;
         float height = 12F * f1;
-
+        
         bob(body2, 0.5F * scaleFactor, height, true, f, f1);
         bob(upperlegright, 0.5F * scaleFactor, height, true, f, f1);
         bob(upperlegleft, 0.5F * scaleFactor, height, true, f, f1);
-
+        
         walk(upperlegleft, 1F * scaleFactor, 0.75F, true, 1F, 0.25F, f, f1);
         walk(upperlegright, 1F * scaleFactor, 0.75F, true, 0.5F, 0.25F, f, f1);
         walk(midlegleft, 1F * scaleFactor, 0.75F, false, 1.5F, 0F, f, f1);
@@ -308,25 +308,24 @@ public class ModelHypsilophodon extends MowzieModelBase
         walk(lowerlegleft, 1F * scaleFactor, 0.75F, true, 1F, 0F, f, f1);
         walk(feetleft, 1F * scaleFactor, 0.5F, true, 1F, 0.75F, f, f1);
         walk(feetright, 1F * scaleFactor, 0.5F, true, 0.5F, 0.75F, f, f1);
-
+        
         walk(body2, 1F * scaleFactor, 0.3F, false, 0.5F, 0F, f, f1);
         walk(body1, 1F * scaleFactor, 0.5F, true, 1.0F, 0F, f, f1);
         walk(neck, 1F * scaleFactor, 0.3F, true, 0.25F, 0.3F, f, f1);
         walk(head, 1F * scaleFactor, 0.3F, false, 0.25F, -0.3F, f, f1);
-
+        
         walk(shoulderright, 1 * scaleFactor, 0.3F, true, 1, 0.2F, f, f1);
         walk(shoulderleft, 1 * scaleFactor, 0.3F, true, 1, 0.2F, f, f1);
         walk(armright, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
         walk(armleft, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
-
-
+        
         float sittingProgress = hypster.sittingProgress.getAnimationProgressSin();
-
+        
         if (sittingProgress > 0.001F)
         {
             //Sitting Pose
             float sittingProgressTemporary = hypster.sittingProgress.getAnimationProgressTemporaryFS();
-
+            
             faceTarget(head, 5, f3, f4);
             faceTarget(neck, 4, f3, f4);
             
@@ -361,22 +360,22 @@ public class ModelHypsilophodon extends MowzieModelBase
                     this.tail3.rotateAngleX -= 0.2F * sittingProgressTemporary;
                 }
             }
-
+            
             this.body2.rotateAngleX -= 0.075F * sittingProgress;
             
             this.upperlegright.rotateAngleX -= 1.1F * sittingProgress;
             this.upperlegleft.rotateAngleX -= 1.1F * sittingProgress;
-
+            
             this.midlegright.rotationPointZ += 0.5F * sittingProgress;
             this.midlegleft.rotationPointZ += 0.5F * sittingProgress;
             this.midlegright.rotationPointY -= 0.1F * sittingProgress;
             this.midlegleft.rotationPointY -= 0.1F * sittingProgress;
             this.midlegright.rotateAngleX += 0.8F * sittingProgress;
             this.midlegleft.rotateAngleX += 0.8F * sittingProgress;
-
+            
             this.lowerlegright.rotateAngleX -= 0.75F * sittingProgress;
             this.lowerlegleft.rotateAngleX -= 0.75F * sittingProgress;
-
+            
             this.feetright.rotationPointZ -= 0.5F * sittingProgress;
             this.feetleft.rotationPointZ -= 0.5F * sittingProgress;
             this.feetright.rotateAngleX += 1.0F * sittingProgress;
@@ -396,7 +395,7 @@ public class ModelHypsilophodon extends MowzieModelBase
         else
         {
             faceTarget(head, 1, f3, f4);
-
+            
             //Idling
             chainWave(tailParts, 0.2F, -0.05F, 2, hypster.frame, 1F);
             walk(neck, 0.2F, 0.1F, false, -1F, 0F, hypster.frame, 1F);
@@ -408,18 +407,18 @@ public class ModelHypsilophodon extends MowzieModelBase
             walk(armright, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
             walk(armleft, 0.2F, 0.1F, false, 0F, 0F, hypster.frame, 1F);
         }
-
+        
         chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
-
+        
         hypster.tailBuffer.applyChainSwingBuffer(tailParts);
     }
-
+    
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHypsilophodon) entity);
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
-
+        
         if (hysilophodon.getAnimationId() == JurassiCraftAnimationIDs.SCRATCH.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.SCRATCH.animID());
@@ -491,7 +490,7 @@ public class ModelHypsilophodon extends MowzieModelBase
             this.animator.endPhase();
             this.animator.resetPhase(5);
         }
-
+        
         if (hysilophodon.getAnimationId() == JurassiCraftAnimationIDs.PLAYING.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.PLAYING.animID());

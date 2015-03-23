@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class BlockDNAExtractor extends BlockContainer
 {
-
+    
     public BlockDNAExtractor()
     {
         super(Material.iron);
@@ -27,25 +27,25 @@ public class BlockDNAExtractor extends BlockContainer
         this.setCreativeTab(ModCreativeTabs.blocks);
         this.setBlockTextureName(JurassiCraft.getModId() + "dnaExtractorBreakingParticles");
     }
-
+    
     @Override
     public int getRenderType()
     {
         return -1;
     }
-
+    
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-
+    
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-
+    
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
@@ -60,7 +60,7 @@ public class BlockDNAExtractor extends BlockContainer
         }
         return false;
     }
-
+    
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
@@ -82,7 +82,7 @@ public class BlockDNAExtractor extends BlockContainer
             world.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
     }
-
+    
     @Override
     public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldMetadata)
     {
@@ -122,7 +122,7 @@ public class BlockDNAExtractor extends BlockContainer
         }
         super.breakBlock(world, x, y, z, oldblock, oldMetadata);
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

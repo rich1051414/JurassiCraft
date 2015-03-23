@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JurassiCraftAIHerdBehavior extends EntityAIBase
 {
-
+    
     private EntityJurassiCraftSmart lostCreature;
     private EntityJurassiCraftSmart herdCreature;
     private double lostCreatureOldFollowRange;
@@ -20,7 +20,7 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
     private double movementSpeed;
     private int timeTryingToMove;
     private int maxTimeTryingToMove;
-
+    
     /**
      * @author RafaMv
      */
@@ -34,13 +34,13 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
         this.timeTryingToMove = 0;
         this.setMutexBits(3);
     }
-
+    
     @Override
     public boolean isInterruptible()
     {
         return this.timeTryingToMove > this.maxTimeTryingToMove / 2.0D;
     }
-
+    
     @Override
     public boolean shouldExecute()
     {
@@ -106,7 +106,7 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
         }
         return false;
     }
-
+    
     @Override
     public void startExecuting()
     {
@@ -115,7 +115,7 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
         this.lostCreature.getNavigator().tryMoveToEntityLiving(this.herdCreature, this.movementSpeed);
         super.startExecuting();
     }
-
+    
     @Override
     public void updateTask()
     {
@@ -126,13 +126,13 @@ public class JurassiCraftAIHerdBehavior extends EntityAIBase
         this.lostCreature.getDistanceSqToEntity(herdCreature);
         this.timeTryingToMove++;
     }
-
+    
     @Override
     public boolean continueExecuting()
     {
         return (!this.lostCreature.getNavigator().noPath() && this.timeTryingToMove < this.maxTimeTryingToMove && this.distanceToHerd > this.maxDistanceToHerd / 2.0D && this.lostCreature.isEntityAlive() && this.herdCreature.isEntityAlive());
     }
-
+    
     @Override
     public void resetTask()
     {

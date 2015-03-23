@@ -25,8 +25,8 @@ import java.util.Random;
 
 public class BlockFossilClayOre extends Block
 {
-    public static final String[] colors = {"", "brown", "orange", "red", "silver", "white", "yellow"};
-
+    public static final String[] colors = { "", "brown", "orange", "red", "silver", "white", "yellow" };
+    
     @SideOnly(Side.CLIENT)
     public IIcon[] icon_0;
     @SideOnly(Side.CLIENT)
@@ -39,7 +39,7 @@ public class BlockFossilClayOre extends Block
     public IIcon[] icon_4;
     @SideOnly(Side.CLIENT)
     public IIcon[] icon_5;
-
+    
     public BlockFossilClayOre()
     {
         super(Material.clay);
@@ -50,7 +50,7 @@ public class BlockFossilClayOre extends Block
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }
-
+    
     @Override
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float f, int side)
     {
@@ -93,7 +93,7 @@ public class BlockFossilClayOre extends Block
             }
         }
     }
-
+    
     public Item getItemDropped(int metadata, Random random, int thing)
     {
         float rand = random.nextFloat();
@@ -110,7 +110,7 @@ public class BlockFossilClayOre extends Block
             return ModItems.fossil;
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
@@ -133,7 +133,7 @@ public class BlockFossilClayOre extends Block
                 return icon_0[metadata];
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
@@ -145,7 +145,7 @@ public class BlockFossilClayOre extends Block
         list.add(new ItemStack(item, 1, 4));
         list.add(new ItemStack(item, 1, 5));
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register)
@@ -156,7 +156,7 @@ public class BlockFossilClayOre extends Block
         this.icon_3 = new IIcon[colors.length];
         this.icon_4 = new IIcon[colors.length];
         this.icon_5 = new IIcon[colors.length];
-
+        
         for (int i = 0; i < this.icon_0.length; ++i)
         {
             if (!(colors[i].equals("")))

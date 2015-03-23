@@ -38,13 +38,13 @@ public class EntityOviraptor extends EntityJurassiCraftGroupAggressive implement
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 70, 0.5F));
         this.setCreatureExperiencePoints(1200);
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

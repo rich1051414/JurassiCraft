@@ -23,16 +23,16 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     protected float geneticQuality;
     protected boolean gender;
     protected byte texture;
-
+    
     private float heightParameter, lengthParameter;
     private float bBoxXZ, bBoxY;
     protected final HashSet<Integer> growthStageList = new HashSet<Integer>();
-
+    
     protected int animID;
     protected int animTick;
     public int frame;
     public int expParameter;
-
+    
     public EntityJurassiCraftCreature(World world)
     {
         super(world);
@@ -48,7 +48,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.animTick = 0;
         this.animID = 0;
     }
-
+    
     @Override
     protected void entityInit()
     {
@@ -57,19 +57,19 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.dataWatcher.addObject(13, Byte.valueOf((byte) (0)));
         this.dataWatcher.addObject(14, String.valueOf(""));
     }
-
+    
     @Override
     public boolean isAIEnabled()
     {
         return true;
     }
-
+    
     @Override
     protected boolean canDespawn()
     {
         return false;
     }
-
+    
     /**
      * Sets the creature.
      */
@@ -77,7 +77,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.creature = creature;
     }
-
+    
     /**
      * Returns the creature.
      */
@@ -85,7 +85,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.creature;
     }
-
+    
     /**
      * Sets the creature genetic quality. Genetic quality is how much the
      * creature varies in status. 1.0F is the base value.
@@ -94,7 +94,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.geneticQuality = quality;
     }
-
+    
     /**
      * Returns the creature genetic quality.
      */
@@ -102,7 +102,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.geneticQuality;
     }
-
+    
     /**
      * Sets the creature DNA sequence.
      */
@@ -110,7 +110,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.dataWatcher.updateObject(14, String.valueOf(dna));
     }
-
+    
     /**
      * Returns the creature DNA sequence.
      */
@@ -118,22 +118,23 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.dataWatcher.getWatchableObjectString(14);
     }
-
+    
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        if (this.animID != 0) this.animTick++;
+        if (this.animID != 0)
+            this.animTick++;
         this.frame++;
     }
-
+    
     @Override
     public void onLivingUpdate()
     {
@@ -143,19 +144,21 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             {
                 this.setGrowthStage((byte) (this.getGrowthStage() + 1));
             }
-            if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
+            if (this.getCreature() != null)
+                this.updateCreatureData(this.getTotalTicksLived());
         }
-
-        if (getAttackTarget() != null && getAttackTarget().ridingEntity != null) setAttackTarget(null);
+        
+        if (getAttackTarget() != null && getAttackTarget().ridingEntity != null)
+            setAttackTarget(null);
         super.onLivingUpdate();
     }
-
+    
     @Override
     public boolean interact(EntityPlayer player)
     {
         /** DEBUG INFO */
         //this.showDebugInfo(player);
-
+        
         if (player != null && player.getHeldItem() != (ItemStack) null)
         {
             if (player.getHeldItem().getItem() instanceof ItemGrowthSerum)
@@ -168,7 +171,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
         return super.interact(player);
     }
-
+    
     public void showDebugInfo(EntityPlayer player)
     {
         System.out.println("");
@@ -215,7 +218,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             System.out.println("");
         }
     }
-
+    
     /**
      * Updates the creature status.
      */
@@ -240,7 +243,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.heal((float) (this.getCreatureHealth() - this.prevHealth));
         }
     }
-
+    
     /**
      * Resets the growthStageList. This is a list of values (number of ticks)
      * that represent when the creature updates its status.
@@ -255,8 +258,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
         this.growthStageList.add(ticks);
     }
-
-
+    
     /**
      * Returns the current growth stage of the creature. In order words, how
      * many times this creature has updated.
@@ -265,7 +267,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (byte) this.dataWatcher.getWatchableObjectByte(13);
     }
-
+    
     /**
      * Sets what is the growth stage of the creature.
      */
@@ -273,7 +275,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.dataWatcher.updateObject(13, Byte.valueOf((byte) (stage)));
     }
-
+    
     /**
      * Sets the creature xz and y hit box using genetic quality and growth stage.
      */
@@ -282,7 +284,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.bBoxXZ = xz;
         this.bBoxY = y;
     }
-
+    
     /**
      * Sets a new bounding box for the creature depending on its status.
      */
@@ -290,7 +292,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         super.setSize(xzBoundingBox, yBouningBox);
     }
-
+    
     /**
      * Returns the scale of the this.creature.
      */
@@ -298,7 +300,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) this.dataWatcher.getWatchableObjectFloat(12) * this.getCreature().getScaleAdjustment();
     }
-
+    
     /**
      * Sets the scale of the this.creature depending on the age and genetic quality.
      */
@@ -317,7 +319,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.dataWatcher.updateObject(12, Float.valueOf((float) this.getGeneticQuality()));
         }
     }
-
+    
     /**
      * Sets the scale of the this.creature depending on the age and genetic quality.
      */
@@ -332,7 +334,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.dataWatcher.updateObject(12, 0.0F);
         }
     }
-
+    
     /**
      * Returns how many ticks this entity has lived.
      */
@@ -340,7 +342,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.ticksExisted;
     }
-
+    
     /**
      * Resets the ticks that this entity has lived (Client only).
      */
@@ -348,7 +350,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.ticksExisted = ticks;
     }
-
+    
     /**
      * Force the creature to grow a specific value if it is possible.
      */
@@ -358,7 +360,8 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             this.setGrowthStage((byte) (this.getGrowthStage() + growthIncrease));
             this.setTicksExisted((int) (this.getCreature().getTicksToAdulthood() * this.getGrowthStage() / 120));
-            if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
+            if (this.getCreature() != null)
+                this.updateCreatureData(this.getTotalTicksLived());
             return true;
         }
         else
@@ -377,7 +380,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             return false;
         }
     }
-
+    
     /**
      * Force the creature to grow to its maximum size.
      */
@@ -387,10 +390,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             this.setGrowthStage((byte) (120));
             this.setTicksExisted((int) (this.getCreature().getTicksToAdulthood() * this.getGrowthStage() / 120));
-            if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
+            if (this.getCreature() != null)
+                this.updateCreatureData(this.getTotalTicksLived());
         }
     }
-
+    
     /**
      * Force the creature to grow to its minimum size.
      */
@@ -400,10 +404,11 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         {
             this.setGrowthStage((byte) (0));
             this.setTicksExisted(0);
-            if (this.getCreature() != null) this.updateCreatureData(this.getTotalTicksLived());
+            if (this.getCreature() != null)
+                this.updateCreatureData(this.getTotalTicksLived());
         }
     }
-
+    
     /**
      * Returns the creature Name.
      */
@@ -411,7 +416,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getCreature().getCreatureName();
     }
-
+    
     /**
      * Checks if the creature has a genetic code.
      */
@@ -419,7 +424,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return !(this.getDNASequence() == null || this.getDNASequence() == "");
     }
-
+    
     /**
      * Sets the creature genetic data depending on the dna quality and code.
      */
@@ -428,7 +433,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.setDNASequence(JurassiCraftDNAHandler.reviseDNA(dna, dnaQuality));
         this.setGeneticQuality(JurassiCraftDNAHandler.getDefaultGeneticDNAQuality(dna));
     }
-
+    
     /**
      * Sets the creature genetic data randomly.
      */
@@ -438,7 +443,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.setGeneticQuality(JurassiCraftDNAHandler.getDefaultGeneticDNAQuality(dna));
         this.setDNASequence(dna);
     }
-
+    
     /**
      * Returns how many ticks this creature requires to reach adulthood.
      */
@@ -446,7 +451,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) this.getCreature().getTicksToAdulthood();
     }
-
+    
     /**
      * Returns true if the creature is considered an adult.
      */
@@ -454,7 +459,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getTotalTicksLived() >= this.getCreature().getAdultAge() * this.getAdultAge();
     }
-
+    
     /**
      * Returns true if the creature is older than a certain percentage of the
      * ticks for adulthood.
@@ -463,7 +468,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getTotalTicksLived() >= percentage * this.getCreature().getTicksToAdulthood();
     }
-
+    
     /**
      * Returns the creature hit box.
      */
@@ -471,7 +476,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) this.bBoxXZ;
     }
-
+    
     /**
      * Returns the creature hit box.
      */
@@ -479,7 +484,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) this.bBoxY;
     }
-
+    
     /**
      * Returns the current health of the creature. This is just a information
      * for the user.
@@ -488,7 +493,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (double) ((int) (100 * this.getHealth())) / 100;
     }
-
+    
     /**
      * Returns the health of the creature. This is just a information for the
      * user.
@@ -497,12 +502,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (double) ((int) (100 * this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue())) / 100;
     }
-
+    
     public int getCreatureHealthScaled(int i)
     {
         return (int) ((this.getCreatureHealth() * i) / (1.2F * this.getCreature().getMaxHealth()));
     }
-
+    
     /**
      * Returns the speed of the creature. This is just a information for the
      * user.
@@ -511,12 +516,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (double) ((int) (100 * this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue())) / 100;
     }
-
+    
     public int getCreatureAttackScaled(int i)
     {
         return (int) ((this.getCreatureAttack() * i) / (1.2F * this.getCreature().getMaxStrength()));
     }
-
+    
     /**
      * Returns the speed of the creature. This is just a information for the user.
      */
@@ -524,12 +529,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (double) ((int) (100 * this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue())) / 100;
     }
-
+    
     public int getCreatureSpeedScaled(int i)
     {
         return (int) ((this.getCreatureSpeed() * i) / (1.2F * this.getCreature().getMaxSpeed()));
     }
-
+    
     /**
      * Returns the speed of the creature. This is just a information for the user.
      */
@@ -537,7 +542,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (double) ((int) (100 * this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue())) / 100;
     }
-
+    
     /**
      * Returns the knock back of the creature. This is just a information for the user.
      */
@@ -545,7 +550,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (int) ((this.getCreatureKnockback() * i) / (1.2F * this.getCreature().getMaxKnockback()));
     }
-
+    
     /**
      * Returns the length of the creature. This is just a information for the user.
      */
@@ -553,12 +558,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) ((int) (100 * this.lengthParameter)) / 100;
     }
-
+    
     public int getCreatureLengthScaled(int i)
     {
         return (int) ((this.getCreatureLength() * i) / (1.2F * this.getCreature().getMaxLength()));
     }
-
+    
     /**
      * Returns the height of the creature. This is just a information for the
      * user.
@@ -567,12 +572,12 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return (float) ((int) (100 * this.heightParameter)) / 100;
     }
-
+    
     public int getCreatureHeightScaled(int i)
     {
         return (int) ((this.getCreatureHeight() * i) / (1.2F * this.getCreature().getMaxHeight()));
     }
-
+    
     /**
      * Returns true if the creature is a male.
      */
@@ -587,7 +592,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             return false;
         }
     }
-
+    
     /**
      * Returns the creature gender as String.
      */
@@ -602,7 +607,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             return "Female";
         }
     }
-
+    
     /**
      * Returns the creature gender. False is female and true is male.
      */
@@ -610,7 +615,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.gender;
     }
-
+    
     /**
      * Sets the creature gender. 0 is female and 1 is male.
      */
@@ -618,7 +623,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.gender = sex;
     }
-
+    
     /**
      * Sets the creature texture based on the genetics.
      */
@@ -639,7 +644,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         }
         this.texture = (byte) 0;
     }
-
+    
     /**
      * Sets the creature texture.
      */
@@ -647,7 +652,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         this.texture = texture;
     }
-
+    
     /**
      * Sets the creature texture.
      */
@@ -655,7 +660,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.texture;
     }
-
+    
     /**
      * Sets the length of the creature. This is just a information for the user.
      */
@@ -670,7 +675,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.lengthParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMaxLength()));
         }
     }
-
+    
     /**
      * Sets the height of the creature. This is just a information for the user.
      */
@@ -685,7 +690,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.heightParameter = (float) (this.getGeneticQuality() * (this.getCreature().getMaxHeight()));
         }
     }
-
+    
     /**
      * Returns how many days this entity has lived.
      */
@@ -693,7 +698,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getTotalTicksLived() / 24000;
     }
-
+    
     /**
      * Returns how many months this entity has lived.
      */
@@ -701,7 +706,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getTotalTicksLived() / (720000);
     }
-
+    
     /**
      * Returns how many years this entity has lived.
      */
@@ -709,7 +714,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         return this.getTotalTicksLived() / (8640000);
     }
-
+    
     /**
      * Returns how many days, and/or months, and/or years this entity has lived.
      * Note: returns string value.
@@ -757,111 +762,111 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             }
         }
     }
-
+    
     @Override
     public float getEyeHeight()
     {
         return this.getCreatureHeight() * 0.85F;
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 200;
     }
-
+    
     @Override
     protected float getSoundPitch()
     {
         return Float.valueOf(1.0F + 0.8F * (120 - this.getGrowthStage()) / 120);
     }
-
+    
     @Override
     protected float getSoundVolume()
     {
         return Float.valueOf(0.7F + 0.3F * this.getGrowthStage() / 120);
     }
-
+    
     public void setCreatureExperiencePoints(int points)
     {
         this.expParameter = points;
     }
-
+    
     public int getCreatureExperiencePoints()
     {
         return this.expParameter;
     }
-
+    
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
         return (int) (this.getCreatureExperiencePoints() * this.getGeneticQuality() * this.getGrowthStage() / 120);
     }
-
+    
     public boolean isWaterCreature()
     {
         return this.getCreature().isWaterCreature();
     }
-
+    
     public boolean isFlyingCreature()
     {
         return this.getCreature().isFlyingCreature();
     }
-
+    
     @Override
     public void setAnimationId(int id)
     {
         this.animID = id;
     }
-
+    
     @Override
     public void setAnimationTick(int tick)
     {
         this.animTick = tick;
     }
-
+    
     @Override
     public int getAnimationId()
     {
         return this.animID;
     }
-
+    
     @Override
     public int getAnimationTick()
     {
         return this.animTick;
     }
-
+    
     @Override
     public String getLivingSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":living", this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + creatureName + ":living", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
-
+    
     @Override
     public String getHurtSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":hurt", this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + creatureName + ":hurt", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
-
+    
     @Override
     public String getDeathSound()
     {
         String creatureName = this.getCreatureName().toLowerCase();
-		this.playSound("jurassicraft:" + creatureName + ":death", this.getSoundVolume(), this.getSoundPitch());
+        this.playSound("jurassicraft:" + creatureName + ":death", this.getSoundVolume(), this.getSoundPitch());
         return null;
     }
-
+    
     protected EntityItem dropItemStackWithGenetics(ItemStack itemStack)
     {
         if (itemStack.getItem() != null)
         {
             NBTTagCompound compound = new NBTTagCompound();
-        
+            
             if (this.hasDNASequence())
             {
                 compound.setString("DNA", this.getDNASequence());
@@ -877,7 +882,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         
         return this.entityDropItem(itemStack, 0.0F);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -890,7 +895,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
             this.dropItem(this.getCreature().getSteak(), 1);
         }
     }
-
+    
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
@@ -903,7 +908,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         compound.setBoolean("Gender", this.getCreatureGender());
         compound.setByte("Texture", this.getCreatureTexture());
     }
-
+    
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
@@ -918,7 +923,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.resetGrowthStageList();
         this.updateCreatureData(this.getTotalTicksLived());
     }
-
+    
     @Override
     public void writeSpawnData(ByteBuf buf)
     {
@@ -929,7 +934,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         buf.writeBoolean(this.getCreatureGender());
         buf.writeByte(this.getCreatureTexture());
     }
-
+    
     @Override
     public void readSpawnData(ByteBuf buf)
     {

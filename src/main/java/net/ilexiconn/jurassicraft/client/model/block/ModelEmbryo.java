@@ -8,12 +8,12 @@ import net.minecraft.util.MathHelper;
 public class ModelEmbryo extends MowzieModelBase
 {
     public MowzieModelRenderer[] shapes = new MowzieModelRenderer[9];
-
+    
     public ModelEmbryo()
     {
         textureWidth = 128;
         textureHeight = 128;
-
+        
         shapes[0] = new MowzieModelRenderer(this, 30, 0); //Body
         shapes[0].addBox(-1f, 0f, -1f, 2, 5, 3);
         shapes[0].setRotationPoint(0f, 0f, 0f);
@@ -50,7 +50,7 @@ public class ModelEmbryo extends MowzieModelBase
         shapes[8].addBox(0f, 0f, 0f, 1, 3, 1);
         shapes[8].setRotationPoint(-2f, 3f, 0.5f);
         shapes[8].setRotationAngles(-0.4363323f, 0f, 0f);
-
+        
         addChildTo(shapes[2], shapes[1]);
         addChildTo(shapes[1], shapes[0]);
         addChildTo(shapes[5], shapes[0]);
@@ -59,38 +59,38 @@ public class ModelEmbryo extends MowzieModelBase
         addChildTo(shapes[8], shapes[0]);
         addChildTo(shapes[3], shapes[4]);
         addChildTo(shapes[4], shapes[0]);
-
+        
         //Corrections
         shapes[1].rotationPointZ -= 3.5;
         shapes[1].rotationPointY -= 1.9;
         shapes[2].rotationPointZ += 4.2;
         shapes[2].rotationPointY -= 1;
-
+        
         for (MowzieModelRenderer shape : shapes)
         {
             shape.setTextureSize(128, 128);
             shape.setInitValuesToCurrentPose();
         }
     }
-
+    
     public void render(TileCultivate tile)
     {
         shapes[0].render(0.0625f);
-/*        shapes[1].render(0.0625f);
-        shapes[2].render(0.0625f);
-        shapes[3].render(0.0625f);
-        shapes[4].render(0.0625f);
-        shapes[5].render(0.0625f);
-        shapes[6].render(0.0625f);
-        shapes[7].render(0.0625f);
-        shapes[8].render(0.0625f);*/
-
+        /*        shapes[1].render(0.0625f);
+                shapes[2].render(0.0625f);
+                shapes[3].render(0.0625f);
+                shapes[4].render(0.0625f);
+                shapes[5].render(0.0625f);
+                shapes[6].render(0.0625f);
+                shapes[7].render(0.0625f);
+                shapes[8].render(0.0625f);*/
+        
         for (MowzieModelRenderer shape : shapes)
         {
             shape.setCurrentPoseToInitValues();
         }
-
-        MowzieModelRenderer[] BodyParts = {shapes[2], shapes[1], shapes[0], shapes[3], shapes[4]};
+        
+        MowzieModelRenderer[] BodyParts = { shapes[2], shapes[1], shapes[0], shapes[3], shapes[4] };
         shapes[0].rotationPointY -= (float) (MathHelper.cos(tile.animationTick * 0.05f) * 1);
         chainWave(BodyParts, 0.05f, 0.1f, 1, tile.animationTick, 1f);
         shapes[5].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;

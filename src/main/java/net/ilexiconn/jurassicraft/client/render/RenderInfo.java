@@ -23,25 +23,25 @@ public class RenderInfo
     public boolean[] renderSide = new boolean[6];
     public float light = -1f;
     public int brightness = -1;
-
+    
     public RenderInfo()
     {
         setRenderAllSides();
     }
-
+    
     public RenderInfo(Block template, IIcon[] texture)
     {
         this();
         baseBlock = template;
         textureArray = texture;
     }
-
+    
     public RenderInfo(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
         this();
         setBounds(minX, minY, minZ, maxX, maxY, maxZ);
     }
-
+    
     public final void setBounds(double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
     {
         this.minX = minX;
@@ -51,20 +51,23 @@ public class RenderInfo
         this.maxY = maxY;
         this.maxZ = maxZ;
     }
-
+    
     public final void setRenderAllSides()
     {
         Arrays.fill(renderSide, true);
     }
-
+    
     public IIcon getBlockTextureFromSide(int i)
     {
-        if (texture != null) return texture;
-
+        if (texture != null)
+            return texture;
+        
         int index = i;
-
-        if (textureArray == null || textureArray.length == 0) return baseBlock.getBlockTextureFromSide(index);
-        else if (index >= textureArray.length) index = 0;
+        
+        if (textureArray == null || textureArray.length == 0)
+            return baseBlock.getBlockTextureFromSide(index);
+        else if (index >= textureArray.length)
+            index = 0;
         return textureArray[index];
     }
 }

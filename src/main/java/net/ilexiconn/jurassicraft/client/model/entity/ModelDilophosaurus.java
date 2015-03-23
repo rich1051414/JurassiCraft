@@ -57,10 +57,11 @@ public class ModelDilophosaurus extends MowzieModelBase
     public MowzieModelRenderer[] tailParts;
     public MowzieModelRenderer[] rightArmParts;
     public MowzieModelRenderer[] leftArmParts;
-
-    public ModelDilophosaurus() {
+    
+    public ModelDilophosaurus()
+    {
         this.animator = new Animator(this);
-
+        
         this.textureWidth = 128;
         this.textureHeight = 64;
         this.crest2 = new MowzieModelRenderer(this, 41, -6);
@@ -272,36 +273,37 @@ public class ModelDilophosaurus extends MowzieModelBase
         this.hand2.addChild(this.claw6);
         this.body3.addChild(this.body2);
         
-        parts = new MowzieModelRenderer[] {body3, thigh2, thigh1, body2, tail1, body1, arm2, arm1, neck1, neck2, neck3, neck4, frill1, frill2, frill3, frill4, head, crest1, crest2, upperjaw, down_jaw, Teeth, forearm2, hand2, claw6, claw5, claw4, forearm1, hand1, claw3, claw2, claw1, tail2, tail3, tail4, tail5, leg2, upperfoot2, foot2, leg1, upperfoot1, foot1};
+        parts = new MowzieModelRenderer[] { body3, thigh2, thigh1, body2, tail1, body1, arm2, arm1, neck1, neck2, neck3, neck4, frill1, frill2, frill3, frill4, head, crest1, crest2, upperjaw, down_jaw, Teeth, forearm2, hand2, claw6, claw5, claw4, forearm1, hand1, claw3, claw2, claw1, tail2, tail3, tail4, tail5, leg2, upperfoot2, foot2, leg1, upperfoot1, foot1 };
         setInitPose();
-
-        bodyParts = new MowzieModelRenderer[] {head, neck4, neck3, neck2, neck1, body1, body2, body3};
-        rightArmParts = new MowzieModelRenderer[] {hand1, forearm1, arm1};
-        leftArmParts = new MowzieModelRenderer[] {hand2, forearm2, arm2};
-        tailParts = new MowzieModelRenderer[] {tail5, tail4, tail3, tail2, tail1};
+        
+        bodyParts = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, body1, body2, body3 };
+        rightArmParts = new MowzieModelRenderer[] { hand1, forearm1, arm1 };
+        leftArmParts = new MowzieModelRenderer[] { hand2, forearm2, arm2 };
+        tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
     }
-
+    
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.thigh2.render(f5);
         this.thigh1.render(f5);
         this.body3.render(f5);
     }
-
+    
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(EntityDilophosaurus dilo, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, dilo);
         setToInitPose();
-
+        
         frill1.rotateAngleY += 1.55;
         frill2.rotateAngleY -= 1.55;
         frill3.rotateAngleY += 1.55;
@@ -310,52 +312,52 @@ public class ModelDilophosaurus extends MowzieModelBase
         frill2.isHidden = true;
         frill3.isHidden = true;
         frill4.isHidden = true;
-
-//		f = dilo.frame;
-//		f1 = 1F;
-
+        
+        //		f = dilo.frame;
+        //		f1 = 1F;
+        
         float globalSpeed = 0.77F;
         float globalDegree = 0.77F;
         float height = 2F;
-
+        
         faceTarget(head, 5, f3, f4);
         faceTarget(neck1, 5, f3, f4);
         faceTarget(neck2, 5, f3, f4);
         faceTarget(neck3, 5, f3, f4);
         faceTarget(neck4, 5, f3, f4);
-
-        neck4.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
-        neck3.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
-        head.rotateAngleZ += (f3 / (180f / (float) Math.PI))/5;
-
+        
+        neck4.rotateAngleZ += (f3 / (180f / (float) Math.PI)) / 5;
+        neck3.rotateAngleZ += (f3 / (180f / (float) Math.PI)) / 5;
+        head.rotateAngleZ += (f3 / (180f / (float) Math.PI)) / 5;
+        
         bob(body3, 1F * globalSpeed, height * 0.7F, false, f, f1);
         bob(thigh2, 1F * globalSpeed, height * 0.7F, false, f, f1);
         bob(thigh1, 1F * globalSpeed, height * 0.7F, false, f, f1);
         walk(body3, 1F * globalSpeed, height * 0.05F, true, 0.1F, 0F, f, f1);
         chainWave(bodyParts, 1F * globalSpeed, -0.03F * height, 3.5F, f, f1);
-
+        
         walk(thigh2, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
         walk(leg2, 0.5F * globalSpeed, 0.8F * globalDegree, true, 1F, 0F, f, f1);
         walk(upperfoot2, 0.5F * globalSpeed, 0.5F * globalDegree, false, 0F, 0F, f, f1);
         walk(foot2, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, 0.7F, f, f1);
-
+        
         walk(thigh1, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
         walk(leg1, 0.5F * globalSpeed, 0.8F * globalDegree, false, 1F, 0F, f, f1);
         walk(upperfoot1, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
         walk(foot1, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.7F, f, f1);
-
+        
         chainSwing(tailParts, 0.5F * globalSpeed, -0.1F, 2, f, f1);
         chainWave(tailParts, 1F * globalSpeed, -0.05F, 2, f, f1);
         chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 3, f, f1);
         chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 3, f, f1);
-
+        
         float sittingProgress = dilo.sittingProgress.getAnimationProgressSin();
-
+        
         if (sittingProgress > 0.001F)
         {
             //Sitting Pose
             float sittingProgressTemporary = dilo.sittingProgress.getAnimationProgressTemporaryFS();
-
+            
             this.body3.rotationPointY += 10F * sittingProgress;
             this.thigh1.rotationPointY += 10F * sittingProgress;
             this.thigh2.rotationPointY += 10F * sittingProgress;
@@ -366,7 +368,7 @@ public class ModelDilophosaurus extends MowzieModelBase
             this.body3.rotationPointZ += 3F * sittingProgress;
             this.thigh1.rotationPointZ += 3F * sittingProgress;
             this.thigh2.rotationPointZ += 3F * sittingProgress;
-
+            
             if (sittingProgressTemporary > 0.001F)
             {
                 this.body3.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -374,7 +376,7 @@ public class ModelDilophosaurus extends MowzieModelBase
                 this.head.rotateAngleX += 0.1F * sittingProgressTemporary;
                 this.arm1.rotateAngleX += 0.5F * sittingProgressTemporary;
                 this.arm2.rotateAngleX += 0.5F * sittingProgressTemporary;
-
+                
                 if (dilo.isSitting())
                 {
                     this.tail1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -392,43 +394,43 @@ public class ModelDilophosaurus extends MowzieModelBase
                     this.tail5.rotateAngleX -= 0.1F * sittingProgressTemporary;
                 }
             }
-
+            
             this.body3.rotateAngleX -= 0.075F * sittingProgress;
-
+            
             this.neck1.rotateAngleX -= 0.3F * sittingProgress;
             this.head.rotateAngleX += 0.3F * sittingProgress;
-
+            
             this.tail1.rotateAngleX += 0.1F * sittingProgress;
-
+            
             this.arm1.rotationPointY -= 0.8F * sittingProgress;
             this.arm2.rotationPointY -= 0.8F * sittingProgress;
             this.arm1.rotateAngleX -= 0.5F * sittingProgress;
             this.arm2.rotateAngleX -= 0.5F * sittingProgress;
-
+            
             this.thigh1.rotateAngleX -= 1.0F * sittingProgress;
             this.thigh2.rotateAngleX -= 1.0F * sittingProgress;
-
-//            this.leg1.rotationPointZ += 0.5F * sittingProgress;
-//            this.leg2.rotationPointZ += 0.5F * sittingProgress;
-//            this.leg1.rotationPointY += 1.5F * sittingProgress;
-//            this.leg2.rotationPointY += 1.5F * sittingProgress;
+            
+            //            this.leg1.rotationPointZ += 0.5F * sittingProgress;
+            //            this.leg2.rotationPointZ += 0.5F * sittingProgress;
+            //            this.leg1.rotationPointY += 1.5F * sittingProgress;
+            //            this.leg2.rotationPointY += 1.5F * sittingProgress;
             this.leg1.rotateAngleX += 1.1F * sittingProgress;
             this.leg2.rotateAngleX += 1.1F * sittingProgress;
-
+            
             this.upperfoot1.rotationPointY += 1.75F * sittingProgress;
             this.upperfoot2.rotationPointY += 1.75F * sittingProgress;
             this.upperfoot1.rotationPointZ -= 1.25F * sittingProgress;
             this.upperfoot2.rotationPointZ -= 1.25F * sittingProgress;
             this.upperfoot1.rotateAngleX -= 1.1F * sittingProgress;
             this.upperfoot2.rotateAngleX -= 1.1F * sittingProgress;
-
+            
             this.foot1.rotationPointY += 0.5F * sittingProgress;
             this.foot2.rotationPointY += 0.5F * sittingProgress;
             this.foot1.rotationPointZ -= 1.0F * sittingProgress;
             this.foot2.rotationPointZ -= 1.0F * sittingProgress;
             this.foot1.rotateAngleX += 1.0F * sittingProgress;
             this.foot2.rotateAngleX += 1.0F * sittingProgress;
-
+            
             //Idling
             chainWave(tailParts, 0.1F, -0.05F, 2, dilo.frame, 1.0F - 0.6F * sittingProgress);
             chainWave(bodyParts, 0.15F, 0.03F, 3.5F, dilo.frame, 1.0F - 0.6F * sittingProgress);
@@ -449,11 +451,12 @@ public class ModelDilophosaurus extends MowzieModelBase
         }
         dilo.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-
-    private void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    
+    private void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         this.animator.update(entity);
         this.setRotationAngles((EntityDilophosaurus) entity, f, f1, f2, f3, f4, f5);
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());
@@ -475,10 +478,11 @@ public class ModelDilophosaurus extends MowzieModelBase
             this.animator.setStationaryPhase(1);
             this.animator.resetPhase(4);
         }
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.SPITTING.animID())
         {
-            if (entity.getAnimationTick() <= 18) {
+            if (entity.getAnimationTick() <= 18)
+            {
                 frill1.isHidden = false;
                 frill2.isHidden = false;
                 frill3.isHidden = false;

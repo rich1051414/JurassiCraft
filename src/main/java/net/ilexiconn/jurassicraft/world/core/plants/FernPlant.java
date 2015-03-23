@@ -5,10 +5,10 @@ import net.minecraft.block.BlockFlower;
 
 public class FernPlant extends BlockFlower
 {
-	public FernPlant(String name)
-	{
-		super(1);
-		setBlockName(name);
-		setBlockTextureName(JurassiCraft.getModId() + "Fern_2");
-	}
+    public FernPlant(String name)
+    {
+        super(1);
+        setBlockName(name);
+        setBlockTextureName(JurassiCraft.getModId() + "Fern_2");
+    }
 }

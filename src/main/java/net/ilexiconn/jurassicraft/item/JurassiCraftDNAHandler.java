@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class JurassiCraftDNAHandler
 {
-
+    
     private static Random random = new Random();
-
+    
     /**
      * Returns a new DNA code (String) with size 15.
      */
@@ -39,7 +39,7 @@ public class JurassiCraftDNAHandler
         }
         return newDNA;
     }
-
+    
     /**
      * Returns a new DNA code with a certain size.
      */
@@ -72,7 +72,7 @@ public class JurassiCraftDNAHandler
         }
         return newDNA;
     }
-
+    
     /**
      * Returns a modified DNA code depending on the quality.
      */
@@ -165,7 +165,7 @@ public class JurassiCraftDNAHandler
         }
         return dna;
     }
-
+    
     /**
      * Returns a mixture of two DNA codes.
      */
@@ -193,7 +193,7 @@ public class JurassiCraftDNAHandler
         }
         return newDNA;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string from char at i = 0 to
      * char at i = 3.
@@ -229,7 +229,7 @@ public class JurassiCraftDNAHandler
         }
         return quality;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string.
      */
@@ -264,7 +264,7 @@ public class JurassiCraftDNAHandler
         }
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string from char at i = 3 to
      * char at i = 6.
@@ -300,7 +300,7 @@ public class JurassiCraftDNAHandler
         }
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string.
      */
@@ -335,7 +335,7 @@ public class JurassiCraftDNAHandler
         }
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string from char at i = 7 to
      * char at i = 14.
@@ -371,7 +371,7 @@ public class JurassiCraftDNAHandler
         }
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
-
+    
     /**
      * Returns a float value depending on the DNA string.
      */

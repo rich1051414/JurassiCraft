@@ -7,7 +7,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 
 public class HerdAIVelociraptorFollowHerd extends HerdAIFollowHerd
 {
-
+    
     public HerdAIVelociraptorFollowHerd(EntityJurassiCraftCreature creature, double speed)
     {
         super(creature, true, speed);
@@ -17,6 +17,5 @@ public class HerdAIVelociraptorFollowHerd extends HerdAIFollowHerd
     {
         return new VelociraptorHerd();
     }
-
-
+    
 }

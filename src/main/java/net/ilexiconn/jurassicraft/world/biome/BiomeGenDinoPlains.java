@@ -7,9 +7,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BiomeGenDinoPlains extends BiomeGenBaseCarboniferous {
-
-    public BiomeGenDinoPlains(int par1) {
+public class BiomeGenDinoPlains extends BiomeGenBaseCarboniferous
+{
+    
+    public BiomeGenDinoPlains(int par1)
+    {
         super(par1);
         this.theBiomeDecorator = new BiomeDecoratorCarboniferous();
         this.topBlock = ModBlocks.grass;
@@ -20,22 +22,24 @@ public class BiomeGenDinoPlains extends BiomeGenBaseCarboniferous {
         this.setColor(0xfa9325);
         this.setBiomeName("Dino Plains");
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
-    public int getBiomeGrassColor(int x, int y, int z) {
+    public int getBiomeGrassColor(int x, int y, int z)
+    {
         return 3887907;
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
-    public int getBiomeFoliageColor(int x, int y, int z) {
+    public int getBiomeFoliageColor(int x, int y, int z)
+    {
         return 13056;
     }
-
-
+    
     @Override
-    public void decorate(World par1World, Random par2Random, int par3, int par4) {
+    public void decorate(World par1World, Random par2Random, int par3, int par4)
+    {
         super.decorate(par1World, par2Random, par3, par4);
     }
 }

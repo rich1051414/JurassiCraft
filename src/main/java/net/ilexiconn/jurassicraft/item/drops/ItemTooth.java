@@ -10,7 +10,7 @@ public class ItemTooth extends ItemGenericDNASource
         super(name, "Tooth");
         this.setCreativeTab(ModCreativeTabs.items);
     }
-
+    
     public ItemDNA getCorrespondingDNA()
     {
         return this.getCorrespondingDNA("Tooth");

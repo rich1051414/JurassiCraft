@@ -37,7 +37,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(4);
     public float swallowScale = 1;
-
+    
     public EntityGallimimus(World world)
     {
         super(world);
@@ -65,34 +65,34 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(1000);
     }
-
+    
     @Override
-	public void updateRiderPosition()
+    public void updateRiderPosition()
     {
-    	float creatureSizeParam = 0.25F * this.getCreatureLength();
-		float extraX = creatureSizeParam * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw);
-		float extraZ = creatureSizeParam * MathHelper.cos(0.01745329251F * this.rotationYaw);
-		float extraY = 1.2F * this.getYBouningBox() + 0.16F * (this.limbSwingAmount - this.limbSwingAmount * MathHelper.sin(this.limbSwing));
-		this.riddenByEntity.setPosition(this.posX - (double) extraX, this.posY + (double) extraY, this.posZ - (double) extraZ);
-	}
-
+        float creatureSizeParam = 0.25F * this.getCreatureLength();
+        float extraX = creatureSizeParam * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw);
+        float extraZ = creatureSizeParam * MathHelper.cos(0.01745329251F * this.rotationYaw);
+        float extraY = 1.2F * this.getYBouningBox() + 0.16F * (this.limbSwingAmount - this.limbSwingAmount * MathHelper.sin(this.limbSwing));
+        this.riddenByEntity.setPosition(this.posX - (double) extraX, this.posY + (double) extraY, this.posZ - (double) extraZ);
+    }
+    
     @Override
     public int getNumberOfAllies()
     {
         return 2;
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -105,18 +105,20 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
                 this.sittingProgress.decreaseTimer();
             }
         }
-
+        
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
-
-        if (getAnimationId() == JurassiCraftAnimationIDs.BEING_EATEN.animID() && getAnimationTick() >= 35 && swallowScale > 0) swallowScale -= 0.1;
+        
+        if (getAnimationId() == JurassiCraftAnimationIDs.BEING_EATEN.animID() && getAnimationTick() >= 35 && swallowScale > 0)
+            swallowScale -= 0.1;
     }
-
+    
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
         if (this.ridingEntity instanceof EntityTyrannosaurus)
         {
-            if (this.getAttackTarget() == this.ridingEntity) this.setAttackTarget((EntityLivingBase) null);
+            if (this.getAttackTarget() == this.ridingEntity)
+                this.setAttackTarget((EntityLivingBase) null);
             return false;
         }
         else
@@ -124,7 +126,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
             return super.attackEntityAsMob(entity);
         }
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

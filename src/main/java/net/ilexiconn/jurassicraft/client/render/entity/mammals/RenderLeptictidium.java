@@ -17,7 +17,7 @@ public class RenderLeptictidium extends RenderMammal
     {
         super(new ModelLeptictidium(), mammal, 0.5F);
     }
-
+    
     @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {

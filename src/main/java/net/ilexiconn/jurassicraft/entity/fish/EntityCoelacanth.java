@@ -14,7 +14,7 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
 {
     public ChainBuffer tailBuffer = new ChainBuffer(4);
     public ControlledAnimation droppingTimer = new ControlledAnimation(35);
-
+    
     public EntityCoelacanth(World world)
     {
         super(world);
@@ -24,13 +24,13 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
         this.jumpOnLand = false;
         this.setCreatureExperiencePoints(50);
     }
-
+    
     @Override
     protected Entity findEntityToAttack()
     {
         return null;
     }
-
+    
     @Override
     public void onUpdate()
     {
@@ -45,7 +45,7 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
         }
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 3, 4.0F, this);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -58,7 +58,7 @@ public class EntityCoelacanth extends EntitySwimming implements IFish, IPiscivor
             this.dropItem(this.getCreature().getSteak(), 1);
         }
     }
-
+    
     @Override
     public boolean canDespawn()
     {

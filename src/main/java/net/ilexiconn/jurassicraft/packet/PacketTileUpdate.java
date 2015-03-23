@@ -10,21 +10,25 @@ import net.ilexiconn.jurassicraft.network.IPacket;
 /**
  * @author ProPercivalalb
  **/
-public class PacketTileUpdate extends IPacket {
-
-	@Override
-	public void read(DataInputStream data) throws IOException {
-		
-	}
-
-	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-	}
-
-	@Override
-	public void execute(EntityPlayer player) {
-		
-	}
-
+public class PacketTileUpdate extends IPacket
+{
+    
+    @Override
+    public void read(DataInputStream data) throws IOException
+    {
+        
+    }
+    
+    @Override
+    public void write(DataOutputStream data) throws IOException
+    {
+        
+    }
+    
+    @Override
+    public void execute(EntityPlayer player)
+    {
+        
+    }
+    
 }

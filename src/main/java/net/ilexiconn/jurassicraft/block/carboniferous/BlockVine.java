@@ -24,14 +24,14 @@ import java.util.Random;
 public class BlockVine extends Block implements IShearable
 {
     private static final String __OBFID = "CL_00000330";
-
+    
     public BlockVine()
     {
         super(Material.vine);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
-
+    
     /**
      * Sets the block's bounds for rendering it as an item
      */
@@ -39,7 +39,7 @@ public class BlockVine extends Block implements IShearable
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
-
+    
     /**
      * The type of render function that is called for this block
      */
@@ -47,7 +47,7 @@ public class BlockVine extends Block implements IShearable
     {
         return 20;
     }
-
+    
     /**
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
@@ -56,7 +56,7 @@ public class BlockVine extends Block implements IShearable
     {
         return false;
     }
-
+    
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
@@ -64,7 +64,7 @@ public class BlockVine extends Block implements IShearable
     {
         return false;
     }
-
+    
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
@@ -79,7 +79,7 @@ public class BlockVine extends Block implements IShearable
         float f5 = 0.0F;
         float f6 = 0.0F;
         boolean flag = l > 0;
-
+        
         if ((l & 2) != 0)
         {
             f4 = Math.max(f4, 0.0625F);
@@ -90,7 +90,7 @@ public class BlockVine extends Block implements IShearable
             f6 = 1.0F;
             flag = true;
         }
-
+        
         if ((l & 8) != 0)
         {
             f1 = Math.min(f1, 0.9375F);
@@ -101,7 +101,7 @@ public class BlockVine extends Block implements IShearable
             f6 = 1.0F;
             flag = true;
         }
-
+        
         if ((l & 4) != 0)
         {
             f6 = Math.max(f6, 0.0625F);
@@ -112,7 +112,7 @@ public class BlockVine extends Block implements IShearable
             f5 = 1.0F;
             flag = true;
         }
-
+        
         if ((l & 1) != 0)
         {
             f3 = Math.min(f3, 0.9375F);
@@ -123,7 +123,7 @@ public class BlockVine extends Block implements IShearable
             f5 = 1.0F;
             flag = true;
         }
-
+        
         if (!flag && this.func_150093_a(p_149719_1_.getBlock(p_149719_2_, p_149719_3_ + 1, p_149719_4_)))
         {
             f2 = Math.min(f2, 0.9375F);
@@ -133,10 +133,10 @@ public class BlockVine extends Block implements IShearable
             f3 = 0.0F;
             f6 = 1.0F;
         }
-
+        
         this.setBlockBounds(f1, f2, f3, f4, f5, f6);
     }
-
+    
     /**
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
@@ -145,7 +145,7 @@ public class BlockVine extends Block implements IShearable
     {
         return null;
     }
-
+    
     /**
      * checks to see if you can place this block can be placed on that side of a block: BlockLever overrides
      */
@@ -167,30 +167,30 @@ public class BlockVine extends Block implements IShearable
                 return false;
         }
     }
-
+    
     private boolean func_150093_a(Block p_150093_1_)
     {
         return p_150093_1_.renderAsNormalBlock() && p_150093_1_.getMaterial().blocksMovement();
     }
-
+    
     private boolean func_150094_e(World p_150094_1_, int p_150094_2_, int p_150094_3_, int p_150094_4_)
     {
         int l = p_150094_1_.getBlockMetadata(p_150094_2_, p_150094_3_, p_150094_4_);
         int i1 = l;
-
+        
         if (l > 0)
         {
             for (int j1 = 0; j1 <= 3; ++j1)
             {
                 int k1 = 1 << j1;
-
+                
                 if ((l & k1) != 0 && !this.func_150093_a(p_150094_1_.getBlock(p_150094_2_ + Direction.offsetX[j1], p_150094_3_, p_150094_4_ + Direction.offsetZ[j1])) && (p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_) != this || (p_150094_1_.getBlockMetadata(p_150094_2_, p_150094_3_ + 1, p_150094_4_) & k1) == 0))
                 {
                     i1 &= ~k1;
                 }
             }
         }
-
+        
         if (i1 == 0 && !this.func_150093_a(p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_)))
         {
             return false;
@@ -201,17 +201,17 @@ public class BlockVine extends Block implements IShearable
             {
                 p_150094_1_.setBlockMetadataWithNotify(p_150094_2_, p_150094_3_, p_150094_4_, i1, 2);
             }
-
+            
             return true;
         }
     }
-
+    
     @SideOnly(Side.CLIENT)
     public int getBlockColor()
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
-
+    
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
@@ -220,7 +220,7 @@ public class BlockVine extends Block implements IShearable
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
-
+    
     /**
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
@@ -230,7 +230,7 @@ public class BlockVine extends Block implements IShearable
     {
         return p_149720_1_.getBiomeGenForCoords(p_149720_2_, p_149720_4_).getBiomeFoliageColor(p_149720_2_, p_149720_3_, p_149720_4_);
     }
-
+    
     /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor Block
@@ -243,7 +243,7 @@ public class BlockVine extends Block implements IShearable
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
-
+    
     /**
      * Ticks the block if it's been scheduled
      */
@@ -258,7 +258,7 @@ public class BlockVine extends Block implements IShearable
             int j1;
             int k1;
             label134:
-
+            
             for (i1 = p_149674_2_ - b0; i1 <= p_149674_2_ + b0; ++i1)
             {
                 for (j1 = p_149674_4_ - b0; j1 <= p_149674_4_ + b0; ++j1)
@@ -268,7 +268,7 @@ public class BlockVine extends Block implements IShearable
                         if (p_149674_1_.getBlock(i1, k1, j1) == this)
                         {
                             --l;
-
+                            
                             if (l <= 0)
                             {
                                 flag = true;
@@ -278,21 +278,21 @@ public class BlockVine extends Block implements IShearable
                     }
                 }
             }
-
+            
             i1 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
             j1 = p_149674_1_.rand.nextInt(6);
             k1 = Direction.facingToDirection[j1];
             int l1;
-
+            
             if (j1 == 1 && p_149674_3_ < 255 && p_149674_1_.isAirBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_))
             {
                 if (flag)
                 {
                     return;
                 }
-
+                
                 int j2 = p_149674_1_.rand.nextInt(16) & i1;
-
+                
                 if (j2 > 0)
                 {
                     for (l1 = 0; l1 <= 3; ++l1)
@@ -302,7 +302,7 @@ public class BlockVine extends Block implements IShearable
                             j2 &= ~(1 << l1);
                         }
                     }
-
+                    
                     if (j2 > 0)
                     {
                         p_149674_1_.setBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_, this, j2, 2);
@@ -313,21 +313,21 @@ public class BlockVine extends Block implements IShearable
             {
                 Block block;
                 int i2;
-
+                
                 if (j1 >= 2 && j1 <= 5 && (i1 & 1 << k1) == 0)
                 {
                     if (flag)
                     {
                         return;
                     }
-
+                    
                     block = p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[k1], p_149674_3_, p_149674_4_ + Direction.offsetZ[k1]);
-
+                    
                     if (block.getMaterial() == Material.air)
                     {
                         l1 = k1 + 1 & 3;
                         i2 = k1 + 3 & 3;
-
+                        
                         if ((i1 & 1 << l1) != 0 && this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[k1] + Direction.offsetX[l1], p_149674_3_, p_149674_4_ + Direction.offsetZ[k1] + Direction.offsetZ[l1])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[k1], p_149674_3_, p_149674_4_ + Direction.offsetZ[k1], this, 1 << l1, 2);
@@ -357,11 +357,11 @@ public class BlockVine extends Block implements IShearable
                 else if (p_149674_3_ > 1)
                 {
                     block = p_149674_1_.getBlock(p_149674_2_, p_149674_3_ - 1, p_149674_4_);
-
+                    
                     if (block.getMaterial() == Material.air)
                     {
                         l1 = p_149674_1_.rand.nextInt(16) & i1;
-
+                        
                         if (l1 > 0)
                         {
                             p_149674_1_.setBlock(p_149674_2_, p_149674_3_ - 1, p_149674_4_, this, l1, 2);
@@ -371,7 +371,7 @@ public class BlockVine extends Block implements IShearable
                     {
                         l1 = p_149674_1_.rand.nextInt(16) & i1;
                         i2 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_ - 1, p_149674_4_);
-
+                        
                         if (i2 != (i2 | l1))
                         {
                             p_149674_1_.setBlockMetadataWithNotify(p_149674_2_, p_149674_3_ - 1, p_149674_4_, i2 | l1, 2);
@@ -381,14 +381,14 @@ public class BlockVine extends Block implements IShearable
             }
         }
     }
-
+    
     /**
      * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
     public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
         byte b0 = 0;
-
+        
         switch (p_149660_5_)
         {
             case 2:
@@ -403,15 +403,15 @@ public class BlockVine extends Block implements IShearable
             case 5:
                 b0 = 2;
         }
-
+        
         return b0 != 0 ? b0 : p_149660_9_;
     }
-
+    
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return null;
     }
-
+    
     /**
      * Returns the quantity of items to drop on block destruction.
      */
@@ -419,13 +419,13 @@ public class BlockVine extends Block implements IShearable
     {
         return 0;
     }
-
+    
     @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
-
+    
     @Override
     public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
     {
@@ -433,7 +433,7 @@ public class BlockVine extends Block implements IShearable
         ret.add(new ItemStack(this, 1));
         return ret;
     }
-
+    
     @Override
     public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity)
     {
@@ -441,7 +441,8 @@ public class BlockVine extends Block implements IShearable
     }
     
     @Override
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    public void registerBlockIcons(IIconRegister par1IconRegister)
+    {
         this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "vine");
     }
 }

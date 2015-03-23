@@ -28,7 +28,7 @@ public class ItemMammalSyringe extends Item
     public static final HashSet<String> creaturesFromPig = new HashSet<String>(Arrays.asList("Mammoth", "Arsinoitherium", "Basilosaurus", "Uintatherium", "Paraceratherium", "Deinotherium", "Leptictidium"));
     public static final HashSet<String> creaturesFromHorse = new HashSet<String>(Arrays.asList("Mammoth", "Arsinoitherium", "Basilosaurus", "Uintatherium", "Paraceratherium", "Deinotherium", "Leptictidium"));
     public static final HashSet<String> creaturesFromSheep = new HashSet<String>(Arrays.asList("Mammoth", "Arsinoitherium", "Basilosaurus", "Uintatherium", "Paraceratherium", "Deinotherium", "Leptictidium"));
-
+    
     public ItemMammalSyringe(String mammal)
     {
         super();
@@ -37,7 +37,7 @@ public class ItemMammalSyringe extends Item
         this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.mammalName = mammal;
     }
-
+    
     public String getSyringeDNASequence(ItemStack syringe)
     {
         if (syringe.hasTagCompound())
@@ -49,7 +49,7 @@ public class ItemMammalSyringe extends Item
         }
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
-
+    
     public int getSyringeQuality(ItemStack syringe)
     {
         if (syringe.hasTagCompound())
@@ -61,7 +61,7 @@ public class ItemMammalSyringe extends Item
         }
         return 75;
     }
-
+    
     @Override
     public void addInformation(ItemStack syringe, EntityPlayer player, List list, boolean flag)
     {
@@ -77,7 +77,7 @@ public class ItemMammalSyringe extends Item
             }
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack syringe, World world, EntityPlayer player)
     {
@@ -135,11 +135,11 @@ public class ItemMammalSyringe extends Item
         }
         return syringe;
     }
-
+    
     @Override
     public boolean itemInteractionForEntity(ItemStack syringe, EntityPlayer player, EntityLivingBase creature)
     {
-
+        
         if (!player.capabilities.isCreativeMode)
         {
             if (creature instanceof EntityAnimal && ((EntityAnimal) creature).getGrowingAge() == 0)
@@ -180,7 +180,7 @@ public class ItemMammalSyringe extends Item
         }
         return false;
     }
-
+    
     private boolean setBaby(World world, EntityPlayer player, EntityLivingBase creature, ItemStack syringe)
     {
         if (syringe.hasTagCompound() && syringe.getTagCompound().hasKey("SyringeQuality") && syringe.getTagCompound().getInteger("SyringeQuality") >= 50)

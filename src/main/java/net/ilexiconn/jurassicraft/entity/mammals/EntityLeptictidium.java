@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMammal, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-
+    
     public EntityLeptictidium(World world)
     {
         super(world);
@@ -38,20 +38,20 @@ public class EntityLeptictidium extends EntityJurassiCraftCoward implements IMam
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(800);
     }
-
+    
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-
+    
     @Override
     public void onUpdate()
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(60.0F, 3, 4.0F, this);
     }
-
+    
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -22,7 +22,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
     public ModelEmbryo embryo = new ModelEmbryo();
     public ResourceLocation[] cultivateTextures;
     public ResourceLocation embryoTextures;
-
+    
     public TileCultivateRenderer()
     {
         this.embryoTextures = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/embryo.png");
@@ -30,7 +30,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         for (int i = 0; i < BlockCultivateBottom.iconVariationsNames.length; i++)
             this.cultivateTextures[i] = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/cultivate_" + ItemDye.field_150921_b[i] + ".png");
     }
-
+    
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float meta)
     {
         GL11.glEnable(GL11.GL_BLEND);
@@ -40,7 +40,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         {
             metadata = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         }
-
+        
         if (tile.isHatching())
         {
             GL11.glPushMatrix();
@@ -54,7 +54,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
             this.embryo.render(tile);
             GL11.glPopMatrix();
         }
-
+        
         GL11.glPushMatrix();
         GL11.glColor4f(1f, 1f, 1f, 1f);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -63,7 +63,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         Minecraft.getMinecraft().renderEngine.bindTexture(this.cultivateTextures[metadata]);
         this.cultivate.render(false);
         GL11.glPopMatrix();
-
+        
         int[] displayList = RenderHelper.getFluidDisplayLists(tile.getWorldObj(), ModBlocks.cultivateFluid, ModBlocks.cultivateLiquid);
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
@@ -77,7 +77,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         GL11.glCallList(displayList[7]);
         GL11.glPopAttrib();
         GL11.glPopMatrix();
-
+        
         GL11.glPushMatrix();
         GL11.glColor4f(1f, 1f, 1f, 0.7f);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

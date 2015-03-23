@@ -45,13 +45,13 @@ public class ModelTitanis extends MowzieModelBase
     MowzieModelRenderer Lower_Right_leg;
     MowzieModelRenderer Right_foot;
     MowzieModelRenderer HeadJoint;
-
+    
     public ModelTitanis()
     {
         this.animator = new Animator(this);
         textureWidth = 128;
         textureHeight = 64;
-
+        
         Beak_1 = new MowzieModelRenderer(this, 115, 0);
         Beak_1.addBox(-0.7F, -3F, -4F, 2, 3, 4);
         Beak_1.setRotationPoint(0F, -2F, -16F);
@@ -250,7 +250,7 @@ public class ModelTitanis extends MowzieModelBase
         HeadJoint.setTextureSize(128, 64);
         HeadJoint.mirror = true;
         setRotation(HeadJoint, 0F, 0F, 0F);
-
+        
         addChildTo(Beak_1, Head);
         addChildTo(Beak_2, Head);
         addChildTo(Front_Beak_Ridge, Head);
@@ -260,33 +260,33 @@ public class ModelTitanis extends MowzieModelBase
         addChildTo(Feather2, Head);
         addChildTo(Feather3, Head);
         addChildTo(Feather_4, Head);
-
+        
         addChildTo(Head, HeadJoint);
         addChildTo(HeadJoint, Neck);
         addChildTo(Neck, Neck_2);
         addChildTo(Neck_2, Chest);
-
+        
         addChildTo(Right_Wing2, Right_Wing1);
         addChildTo(Left_Wing_2, Left_Wing_1);
         addChildTo(Right_Wing1, Chest);
         addChildTo(Left_Wing_1, Chest);
-
+        
         addChildTo(Chest, Rear);
-
+        
         addChildTo(Tailfeather2, Tail3);
         addChildTo(Tailfeather3, Tail3);
         addChildTo(Tailfeather1, Tail3);
         addChildTo(Tail3, Tail2);
         addChildTo(Tail2, Tail1);
         addChildTo(Tail1, Rear);
-
+        
         addChildTo(Left_Foot, Lower_Left_Leg);
         addChildTo(Lower_Left_Leg, Upper_Left_Leg);
         addChildTo(Upper_Left_Leg, Left_Thigh);
         addChildTo(Right_foot, Lower_Right_leg);
         addChildTo(Lower_Right_leg, Upper_right_leg);
         addChildTo(Upper_right_leg, Right_Thigh);
-
+        
         //Corrections
         Chest.setRotationPoint(0, -6, -7);
         Neck.setRotationPoint(0, -4, -0.5F);
@@ -304,7 +304,7 @@ public class ModelTitanis extends MowzieModelBase
         Feather2.rotationPointY -= 6;
         Feather3.rotationPointY -= 6;
         Feather_4.rotationPointY -= 6;
-
+        
         Beak_1.setInitValuesToCurrentPose();
         Front_Beak_Ridge.setInitValuesToCurrentPose();
         Jaw.setInitValuesToCurrentPose();
@@ -339,52 +339,52 @@ public class ModelTitanis extends MowzieModelBase
         Right_foot.setInitValuesToCurrentPose();
         HeadJoint.setInitValuesToCurrentPose();
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
-/*    Beak_1.render(f5);
-    Front_Beak_Ridge.render(f5);
-    Jaw.render(f5);
-    Beak_2.render(f5);
-    Head.render(f5);
-    Feather1.render(f5);
-    Feather2.render(f5);
-    Feather3.render(f5);
-    Neck.render(f5);
-    Neck_2.render(f5);
-    Chest.render(f5);
-    Beak_Ridge_Main.render(f5);
-    Feather_4.render(f5);
-    Left_Wing_1.render(f5);
-    Left_Wing_2.render(f5);*/
+        /*    Beak_1.render(f5);
+            Front_Beak_Ridge.render(f5);
+            Jaw.render(f5);
+            Beak_2.render(f5);
+            Head.render(f5);
+            Feather1.render(f5);
+            Feather2.render(f5);
+            Feather3.render(f5);
+            Neck.render(f5);
+            Neck_2.render(f5);
+            Chest.render(f5);
+            Beak_Ridge_Main.render(f5);
+            Feather_4.render(f5);
+            Left_Wing_1.render(f5);
+            Left_Wing_2.render(f5);*/
         Rear.render(f5);
-/*    Tail1.render(f5);
-    Tail2.render(f5);
-    Tail3.render(f5);
-    Right_Wing1.render(f5);
-    Right_Wing2.render(f5);
-    Tailfeather1.render(f5);
-    Tailfeather2.render(f5);
-    Tailfeather3.render(f5);*/
+        /*    Tail1.render(f5);
+            Tail2.render(f5);
+            Tail3.render(f5);
+            Right_Wing1.render(f5);
+            Right_Wing2.render(f5);
+            Tailfeather1.render(f5);
+            Tailfeather2.render(f5);
+            Tailfeather3.render(f5);*/
         Left_Thigh.render(f5);
- /*   Upper_Left_Leg.render(f5);
-    Lower_Left_Leg.render(f5);
-    Left_Foot.render(f5);*/
+        /*   Upper_Left_Leg.render(f5);
+           Lower_Left_Leg.render(f5);
+           Left_Foot.render(f5);*/
         Right_Thigh.render(f5);
- /*   Upper_right_leg.render(f5);
-    Lower_Right_leg.render(f5);
-    Right_foot.render(f5);*/
+        /*   Upper_right_leg.render(f5);
+           Lower_Right_leg.render(f5);
+           Right_foot.render(f5);*/
     }
-
+    
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     private void resetPose()
     {
         Beak_1.setCurrentPoseToInitValues();
@@ -421,53 +421,53 @@ public class ModelTitanis extends MowzieModelBase
         Right_foot.setCurrentPoseToInitValues();
         HeadJoint.setCurrentPoseToInitValues();
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         resetPose();
         EntityTitanis titanis = (EntityTitanis) entity;
- /*   f = titanis.frame;
-    f1 = 1F;*/
+        /*   f = titanis.frame;
+           f1 = 1F;*/
         float scaleFactor = 0.9F;
         float height = 2F * f1;
         float legDelay = -0.1F;
-
+        
         bob(Rear, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
         Rear.rotationPointY += f1;
         Left_Thigh.rotationPointY += 2 * f1;
         Right_Thigh.rotationPointY += 2 * f1;
-
+        
         walk(Rear, 1F * scaleFactor, 0.1F, true, 0F, 0.07F, f, f1);
         walk(Neck_2, 1F * scaleFactor, 0.15F, false, 1F, 0.4F, f, f1);
         walk(Neck, 1F * scaleFactor, 0.15F, false, 1F, 0.3F, f, f1);
         walk(Head, 1F * scaleFactor, 0.3F, true, 1F, -0.7F, f, f1);
-
+        
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.5F, f, f1);
         walk(Lower_Left_Leg, 0.5F * scaleFactor, 0.5F, false, 0F, -0.5F, f, f1);
         walk(Left_Foot, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, f, f1);
-
+        
         walk(Right_Thigh, 0.5F * scaleFactor, 0.8F, true, 0F, 0.5F, f, f1);
         walk(Lower_Right_leg, 0.5F * scaleFactor, 0.5F, true, 0F, -0.5F, f, f1);
         walk(Right_foot, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
-
+        
         Right_Wing1.rotateAngleY -= 0.7 * f1;
         Left_Wing_1.rotateAngleY += 0.7 * f1;
-
+        
         //Idling
         walk(Neck, 0.1F, 0.03F, false, -0.5F, 0F, titanis.frame, 1F);
         walk(Neck_2, 0.1F, 0.03F, false, -0.5F, 0F, titanis.frame, 1F);
         walk(Head, 0.1F, 0.06F, true, 0F, 0F, titanis.frame, 1F);
         walk(Rear, 0.1F, 0.05F, false, 0F, 0F, titanis.frame, 1F);
     }
-
+    
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTitanis) entity);
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());

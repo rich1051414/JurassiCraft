@@ -24,7 +24,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Random;
 
-
 public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 {
     public Creature creature;
@@ -34,21 +33,21 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     public int rockAmount;
     public boolean froze;
     public boolean dried;
-
+    
     public EntityDinoEgg(World world)
     {
         super(world);
         this.setSize(0.5F, 0.5F);
         this.stepHeight = 1F;
     }
-
+    
     public EntityDinoEgg(World world, Creature creature, int spawnTime)
     {
         this(world);
         this.creature = creature;
         this.spawnTime = spawnTime;
     }
-
+    
     public EntityDinoEgg(World world, Creature creature, int quality, String dna, int spawnTime, double x, double y, double z)
     {
         this(world, creature, spawnTime);
@@ -56,12 +55,12 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.quality = quality;
         this.setDNASequence(dna);
     }
-
+    
     public void setCreature(Creature creature)
     {
         this.creature = creature;
     }
-
+    
     /**
      * Sets the creature DNA quality.
      */
@@ -69,7 +68,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         this.quality = quality;
     }
-
+    
     /**
      * Returns the creature DNA quality.
      */
@@ -77,7 +76,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         return this.quality;
     }
-
+    
     /**
      * Sets the creature DNA sequence.
      */
@@ -85,7 +84,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         this.dataWatcher.updateObject(24, String.valueOf(dna));
     }
-
+    
     /**
      * Returns the creature DNA sequence.
      */
@@ -93,17 +92,17 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         return this.dataWatcher.getWatchableObjectString(24);
     }
-
+    
     public void setCurrentSpawnTime(int currentSpawnTime)
     {
         this.currentSpawnTime = currentSpawnTime;
     }
-
+    
     public void setSpawnTime(int spawnTime)
     {
         this.spawnTime = spawnTime;
     }
-
+    
     public boolean attackEntityFrom(DamageSource damage, float amount)
     {
         if (!this.isEntityInvulnerable())
@@ -113,9 +112,9 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 if (amount > 0)
                 {
                     Minecraft mc = Minecraft.getMinecraft();
-
+                    
                     Random random = new Random();
-
+                    
                     for (int currentParticle = 0; currentParticle < 50; ++currentParticle)
                     {
                         float f3 = MathHelper.randomFloatClamp(random, 0.0F, ((float) Math.PI * 2F));
@@ -131,7 +130,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         }
         return super.attackEntityFrom(damage, amount);
     }
-
+    
     /**
      * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
      * pushable on contact, like boats or minecarts.
@@ -140,7 +139,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         return entity.boundingBox;
     }
-
+    
     /**
      * returns the bounding box for this entity
      */
@@ -148,26 +147,26 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
     {
         return null;
     }
-
+    
     public boolean canBePushed()
     {
         return true;
     }
-
+    
     public boolean canBeCollidedWith()
     {
         return !this.isDead;
     }
-
+    
     protected boolean canTriggerWalking()
     {
         return false;
     }
-
+    
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         if (!this.isDead)
         {
             if (this.worldObj.isRemote)
@@ -180,7 +179,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 {
                     this.froze = true;
                 }
-
+                
                 if (this.dataWatcher.getWatchableObjectInt(26) == 0)
                 {
                     this.dried = false;
@@ -189,20 +188,20 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 {
                     this.dried = true;
                 }
-
+                
                 this.currentSpawnTime = this.dataWatcher.getWatchableObjectInt(27);
             }
-
+            
             if (!this.onGround)
             {
                 this.motionY -= 0.05F;
             }
-
+            
             if (this.motionY < -0.8F)
             {
                 this.motionY = -0.8F;
             }
-
+            
             if (this.onGround)
             {
                 this.motionX *= 0.5F;
@@ -213,21 +212,21 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                 this.motionX *= 0.7F;
                 this.motionZ *= 0.7F;
             }
-
+            
             if (!this.worldObj.isRemote)
             {
                 int amountToIncrease = 0;
-
+                
                 List<EggEnviroment> enviroments = EggEnviroment.getEnviroments(this);
-
+                
                 boolean wet = enviroments.contains(EggEnviroment.WET);
-
+                
                 boolean warm = enviroments.contains(EggEnviroment.WARM);
-
+                
                 boolean overheat = enviroments.contains(EggEnviroment.OVERHEAT);
-
+                
                 boolean cold = enviroments.contains(EggEnviroment.COLD);
-
+                
                 if (this.creature.isWaterCreature())
                 {
                     if (!wet)
@@ -264,9 +263,9 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         }
                     }
                 }
-
+                
                 this.currentSpawnTime += amountToIncrease;
-
+                
                 if (this.currentSpawnTime < -500)
                 {
                     if (this.creature.isWaterCreature())
@@ -278,11 +277,11 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         this.froze = true;
                     }
                 }
-
+                
                 if (this.currentSpawnTime >= this.spawnTime)
                 {
                     Class dinoToSpawnClass = this.creature.getCreatureClass();
-
+                    
                     try
                     {
                         Entity dinoToSpawn = (Entity) dinoToSpawnClass.getConstructor(World.class).newInstance(this.worldObj);
@@ -290,7 +289,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         {
                             EntityJurassiCraftCreature baby = (EntityJurassiCraftCreature) dinoToSpawn;
                             baby.setGenetics(this.quality, this.getDNASequence());
-
+                            
                             if (dinoToSpawn instanceof EntityJurassiCraftSmart && ((EntityJurassiCraftSmart) baby).canBeTamedUponSpawning())
                             {
                                 EntityPlayer owner = this.worldObj.getClosestPlayerToEntity(this, 6.0F);
@@ -301,7 +300,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                                     this.worldObj.setEntityState((EntityJurassiCraftSmart) baby, (byte) 7);
                                 }
                             }
-
+                            
                             baby.setPosition(this.posX, this.posY, this.posZ);
                             this.worldObj.spawnEntityInWorld(baby);
                             this.currentSpawnTime = 0;
@@ -334,7 +333,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                     }
                 }
             }
-
+            
             if (this.currentSpawnTime < (this.spawnTime - 100))
             {
                 if (!this.dried && !this.froze)
@@ -347,32 +346,32 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                     {
                         this.rockAmount = 1;
                     }
-
+                    
                     this.rotationPitch += (this.rockAmount / 2.0F);
                 }
             }
-
+            
             if (!this.worldObj.isRemote)
             {
                 this.dataWatcher.updateObject(25, this.froze ? 1 : 0);
                 this.dataWatcher.updateObject(26, this.dried ? 1 : 0);
                 this.dataWatcher.updateObject(27, this.currentSpawnTime);
             }
-
+            
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
         }
     }
-
+    
     public void fall(float fallDistance)
     {
         super.fall(fallDistance);
-
+        
         if (fallDistance > 10 && this.onGround)
         {
             attackEntityFrom(DamageSource.fall, 1F);
         }
     }
-
+    
     @Override
     protected void entityInit()
     {
@@ -381,12 +380,12 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.dataWatcher.addObject(26, 0);
         this.dataWatcher.addObject(27, this.rockAmount);
     }
-
+    
     public ResourceLocation getTexture()
     {
         return new ResourceLocation(JurassiCraft.getModId() + "textures/eggs/egg" + this.creature.getCreatureName() + ".png");
     }
-
+    
     public int getHatchingProgressScaled(int i)
     {
         if (this.spawnTime > 0)
@@ -395,7 +394,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         }
         return 0;
     }
-
+    
     @Override
     public boolean interactFirst(EntityPlayer player)
     {
@@ -417,7 +416,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         }
         return true;
     }
-
+    
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
@@ -429,7 +428,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         nbt.setBoolean("Froze", this.froze);
         nbt.setBoolean("Dried", this.dried);
     }
-
+    
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
@@ -441,7 +440,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         this.froze = nbt.getBoolean("Froze");
         this.dried = nbt.getBoolean("Dried");
     }
-
+    
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
@@ -449,7 +448,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
         buffer.writeInt(this.quality);
         buffer.writeInt(this.spawnTime);
     }
-
+    
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {

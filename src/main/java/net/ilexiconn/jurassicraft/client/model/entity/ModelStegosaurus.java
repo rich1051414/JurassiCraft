@@ -54,13 +54,13 @@ public class ModelStegosaurus extends MowzieModelBase
     MowzieModelRenderer armleftfoot;
     MowzieModelRenderer armrightfoot;
     MowzieModelRenderer[] tailParts;
-
+    
     public ModelStegosaurus()
     {
         animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 128;
-
+        
         this.tail3 = new MowzieModelRenderer(this, 211, 80);
         this.tail3.setRotationPoint(0.0F, 8.7F, 23.4F);
         this.tail3.addBox(-3.0F, -1.3F, 0.0F, 6, 5, 7);
@@ -215,7 +215,7 @@ public class ModelStegosaurus extends MowzieModelBase
         this.armrightcalf.setRotationPoint(-5.5F, 18.0F, -4.0F);
         this.armrightcalf.addBox(-1.5F, -1.0F, -2.0F, 3, 5, 4);
         this.setRotateAngle(armrightcalf, -0.3665191429188092F, -0.0F, 0.0F);
-
+        
         addChildTo(upperjaw, head);
         addChildTo(upperjaw2, head);
         addChildTo(lowerjaw, head);
@@ -224,7 +224,7 @@ public class ModelStegosaurus extends MowzieModelBase
         addChildTo(headback, neck);
         addChildTo(plate9neck, neck);
         addChildTo(neck, chest);
-
+        
         addChildTo(plate8chest, chest);
         addChildTo(plate4chest, chest);
         addChildTo(armleftfoot, armleftcalf);
@@ -233,18 +233,18 @@ public class ModelStegosaurus extends MowzieModelBase
         addChildTo(armrightfoot, armrightcalf);
         addChildTo(armrightcalf, armrightthigh);
         addChildTo(armrightthigh, chest);
-
+        
         addChildTo(chest, waist);
-
+        
         addChildTo(plate3waist, waist);
         addChildTo(plate1waist, waist);
         addChildTo(plate2waist, waist);
-
+        
         addChildTo(legleftfoot, legleftcalf);
         addChildTo(legleftcalf, legleftthigh);
         addChildTo(legrightfoot, legrightcalf);
         addChildTo(legrightcalf, legrightthigh);
-
+        
         addChildTo(tailspike4tail5, tail5);
         addChildTo(tailspike3tail5, tail5);
         addChildTo(tail5, tail4);
@@ -258,7 +258,7 @@ public class ModelStegosaurus extends MowzieModelBase
         addChildTo(tail2, tail1);
         addChildTo(plate6tail1, tail1);
         addChildTo(tail1, waist);
-
+        
         //Corrections
         upperjaw.setRotationPoint(0.02F, 0, 0);
         upperjaw2.setRotationPoint(-0.02F, 0, 0);
@@ -281,13 +281,13 @@ public class ModelStegosaurus extends MowzieModelBase
         head.rotationPointY -= 0.9;
         tail2.rotationPointZ += 12;
         tail2.rotationPointY -= 0.7;
-
-        this.parts = new MowzieModelRenderer[]{waist, legleftthigh, legrightthigh, neck, tail1, tail2, tail3, tail4, legleftcalf, legrightcalf, legrightfoot, legleftfoot, chest, armrightcalf, armleftcalf, armleftthigh, armrightthigh, headback, upperjaw, head, tail5, lowerjaw, plate1waist, plate2waist, plate3waist, plate4chest, plate5headback, plate6tail1, plate7tail2, tailspike2tail4, tailspike1tail4, tailspike4tail5, tailspike3tail5, plate8chest, plate9neck, plate10tail3, plate11tail2, armleftfoot, armrightfoot};
-
-        tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
+        
+        this.parts = new MowzieModelRenderer[] { waist, legleftthigh, legrightthigh, neck, tail1, tail2, tail3, tail4, legleftcalf, legrightcalf, legrightfoot, legleftfoot, chest, armrightcalf, armleftcalf, armleftthigh, armrightthigh, headback, upperjaw, head, tail5, lowerjaw, plate1waist, plate2waist, plate3waist, plate4chest, plate5headback, plate6tail1, plate7tail2, tailspike2tail4, tailspike1tail4, tailspike4tail5, tailspike3tail5, plate8chest, plate9neck, plate10tail3, plate11tail2, armleftfoot, armrightfoot };
+        
+        tailParts = new MowzieModelRenderer[] { this.tail5, this.tail4, this.tail3, this.tail2, this.tail1 };
         this.setInitPose();
     }
-
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -297,32 +297,32 @@ public class ModelStegosaurus extends MowzieModelBase
         this.legleftthigh.render(f5);
         this.legrightthigh.render(f5);
     }
-
+    
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityStegosaurus stegosaurus)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, stegosaurus);
         this.setToInitPose();
-
-		/*
+        
+        /*
         f = stegosaurus.frame;
-		f1 = (float) Math.cos(f/50)*0.5F + 1F;
-		*/
-
+        f1 = (float) Math.cos(f/50)*0.5F + 1F;
+        */
+        
         float scaleFactor = 0.5F;
         float height = 0.8F;
         float frontOffset = -2F;
-
+        
         this.faceTarget(this.head, 3, f3, f4);
         this.faceTarget(this.headback, 3, f3, f4);
         this.faceTarget(this.neck, 3, f3, f4);
-
+        
         this.bob(this.waist, 2 * scaleFactor, height, false, f, f1);
         this.bob(this.legleftthigh, 2 * scaleFactor, height, false, f, f1);
         this.bob(this.legrightthigh, 2 * scaleFactor, height, false, f, f1);
@@ -330,29 +330,29 @@ public class ModelStegosaurus extends MowzieModelBase
         this.walk(this.neck, 2 * scaleFactor, 0.07F * height, false, -0.5F, 0F, f, f1);
         this.walk(this.headback, 2 * scaleFactor, 0.07F * height, false, 0.5F, 0F, f, f1);
         this.walk(this.head, 2 * scaleFactor, 0.07F * height, true, 1.5F, 0F, f, f1);
-
+        
         this.walk(this.legleftthigh, 1F * scaleFactor, 0.8F, false, 0F, 0F, f, f1);
         this.walk(this.legleftcalf, 1F * scaleFactor, 0.8F, true, 1F, 0F, f, f1);
         this.walk(this.legleftfoot, 1F * scaleFactor, 0.8F, false, 1.5F, 0F, f, f1);
-
+        
         this.walk(this.legrightthigh, 1F * scaleFactor, 0.8F, true, 0F, 0F, f, f1);
         this.walk(this.legrightcalf, 1F * scaleFactor, 0.8F, false, 1F, 0F, f, f1);
         this.walk(this.legrightfoot, 1F * scaleFactor, 0.8F, true, 1.5F, 0F, f, f1);
-
+        
         this.walk(this.armrightthigh, 1F * scaleFactor, 0.8F, true, frontOffset + 0F, -0.1F, f, f1);
         this.walk(this.armrightcalf, 1F * scaleFactor, 0.6F, true, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.armrightfoot, 1F * scaleFactor, 0.8F, false, frontOffset + 1.5F, 0F, f, f1);
-
+        
         this.walk(this.armleftthigh, 1F * scaleFactor, 0.8F, false, frontOffset + 0F, -0.1F, f, f1);
         this.walk(this.armleftcalf, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.armleftfoot, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
-
+        
         //Idling
         this.walk(this.neck, 0.1F, 0.04F, false, -1F, 0F, stegosaurus.frame, 1F);
         this.walk(this.head, 0.1F, 0.07F, true, 0F, 0F, stegosaurus.frame, 1F);
         this.walk(this.headback, 0.1F, 0.03F, false, 0F, 0F, stegosaurus.frame, 1F);
         this.walk(this.waist, 0.1F, 0.025F, false, 0F, 0F, stegosaurus.frame, 1F);
-
+        
         float inverseKinematicsConstant = 0.6F;
         this.walk(this.armrightthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
         this.walk(this.armrightcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, stegosaurus.frame, 1F);
@@ -362,19 +362,19 @@ public class ModelStegosaurus extends MowzieModelBase
         this.walk(this.armleftfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, stegosaurus.frame, 1F);
         this.armleftthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
         this.armrightthigh.rotationPointZ -= 0.5 * Math.cos(stegosaurus.frame * 0.1F);
-
+        
         float whipPosProgress = stegosaurus.tailWhipPosition.getAnimationProgressSinSqrt();
         
-        if (whipPosProgress > 0) 
+        if (whipPosProgress > 0)
         {
             //Whip Position
-        	if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
+            if (stegosaurus.getAnimationTick() != JurassiCraftAnimationIDs.TAIL_WHIP.animID())
             {
                 this.chainSwing(this.tailParts, 0.3F, 0.4F, 3.0F, stegosaurus.frame, whipPosProgress);
                 this.chainWave(this.tailParts, 0.075F, -0.3F, 1.5F, stegosaurus.frame, whipPosProgress);
             }
             this.chainWave(this.tailParts, 2 * scaleFactor, 0.05F, 3, f, f1);
-
+            
             this.legrightthigh.rotateAngleZ += 0.25F * whipPosProgress;
             this.legleftthigh.rotateAngleZ -= 0.25F * whipPosProgress;
             this.legrightcalf.rotateAngleZ -= 0.05F * whipPosProgress;
@@ -402,17 +402,17 @@ public class ModelStegosaurus extends MowzieModelBase
         {
             stegosaurus.tailBuffer.applyChainSwingBuffer(this.tailParts);
         }
-
+        
         this.chainSwing(this.tailParts, 0.1F, 0.2F, 3, stegosaurus.frame, 1.0F - whipPosProgress);
         this.chainWave(this.tailParts, 0.1F, -0.05F, 1, stegosaurus.frame, 1.0F - whipPosProgress);
     }
-
+    
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityStegosaurus) entity);
         EntityStegosaurus stegosaurus = (EntityStegosaurus) entity;
-
+        
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.TAIL_WHIP.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.TAIL_WHIP.animID());

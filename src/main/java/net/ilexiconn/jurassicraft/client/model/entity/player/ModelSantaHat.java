@@ -11,7 +11,7 @@ public class ModelSantaHat extends ModelBase
     public ModelRenderer shape2;
     public ModelRenderer shape5;
     public ModelRenderer shape4;
-
+    
     public ModelSantaHat()
     {
         this.textureWidth = 64;
@@ -36,7 +36,7 @@ public class ModelSantaHat extends ModelBase
         this.shape1.setRotationPoint(-5.5F, 19.9F, -5.2F);
         this.shape1.addBox(0.0F, 0.0F, 0.0F, 11, 4, 11);
     }
-
+    
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.shape3.render(f5);
@@ -45,7 +45,7 @@ public class ModelSantaHat extends ModelBase
         this.shape5.render(f5);
         this.shape1.render(f5);
     }
-
+    
     public void renderAll()
     {
         this.shape3.render(0.0625f);
@@ -54,7 +54,7 @@ public class ModelSantaHat extends ModelBase
         this.shape5.render(0.0625f);
         this.shape1.render(0.0625f);
     }
-
+    
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;

@@ -23,32 +23,32 @@ import net.minecraftforge.common.MinecraftForge;
 public class ClientProxy extends CommonProxy
 {
     private Timer mcTimer;
-
+    
     public float getPartialTick()
     {
         return mcTimer.renderPartialTicks;
     }
-
+    
     public World getWorldClient()
     {
         return FMLClientHandler.instance().getWorldClient();
     }
-
+    
     public void renderEntity(Class<? extends EntityLiving> entity, RenderLiving renderLiving)
     {
         RenderingRegistry.registerEntityRenderingHandler(entity, renderLiving);
     }
-
+    
     public void renderTileEntity(Class<? extends TileEntity> tileEntity, TileEntitySpecialRenderer renderer)
     {
         ClientRegistry.bindTileEntitySpecialRenderer(tileEntity, renderer);
     }
-
+    
     public void renderItem(Item item, IItemRenderer render)
     {
         MinecraftForgeClient.registerItemRenderer(item, render);
     }
-
+    
     public void init()
     {
         MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());

@@ -14,18 +14,19 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author RafaMv
  */
 @SideOnly(Side.CLIENT)
-public class IntermittentAnimation {
+public class IntermittentAnimation
+{
     /**
      * It is the timer used to animate.
      */
     private double timer;
-
+    
     /**
      * It is the limit time, the maximum value that the timer can be. I
      * represents the duration of the animation.
      */
     private double duration;
-
+    
     /**
      * It is a boolean that shows if the animation is already in the new pose.
      */
@@ -34,33 +35,34 @@ public class IntermittentAnimation {
      * It is an inverter for the timer.
      */
     private int inverter;
-
+    
     /**
      * It is the timer used for the interval.
      */
     private double timerInterval;
-
+    
     /**
      * It is the interval to return to the first animation.
      */
     private double intervalDuration;
-
+    
     /**
      * It is the chance to go to the new animation.
      */
     private int goChance;
-
+    
     /**
      * It is the chance to return to the original animation.
      */
     private int returnChance;
-
+    
     /**
      * It is the random used to randomize the movement.
      */
     Random rand = new Random();
-
-    public IntermittentAnimation(int duration, int intervalDuration, int goChance, int returnChance) {
+    
+    public IntermittentAnimation(int duration, int intervalDuration, int goChance, int returnChance)
+    {
         this.timer = 0;
         this.duration = (double) duration;
         this.intervalDuration = (double) intervalDuration;
@@ -69,110 +71,119 @@ public class IntermittentAnimation {
         this.returnChance = returnChance;
         this.inverter = -1;
     }
-
+    
     /**
      * Sets the duration of the animation in ticks. Try values around 50.
      *
      * @param duration is the maximum number of ticks that the timer can reach.
      */
     @SideOnly(Side.CLIENT)
-    public void setDuration(int duration) {
+    public void setDuration(int duration)
+    {
         this.timer = 0;
         this.duration = (double) duration;
     }
-
+    
     /**
      * Returns the timer of this animation. Useful to save the progress of the animation.
      */
-    public double getTimer() {
+    public double getTimer()
+    {
         return this.timer;
     }
-
+    
     /**
      * Sets the timer to a specific value.
      *
      * @param time is the number of ticks to be set.
      */
     @SideOnly(Side.CLIENT)
-    public void setTimer(int time) {
+    public void setTimer(int time)
+    {
         this.timer = (double) time;
-
-        if (this.timer > this.duration) {
+        
+        if (this.timer > this.duration)
+        {
             this.timer = this.duration;
-        } else if (this.timer < 0) {
+        }
+        else if (this.timer < 0)
+        {
             this.timer = 0;
         }
     }
-
+    
     /**
      * Sets the timer to 0.
      */
     @SideOnly(Side.CLIENT)
-    public void resetTimer() {
+    public void resetTimer()
+    {
         this.timer = 0;
     }
-
+    
     /**
      * Increases the timer by 1.
      */
     @SideOnly(Side.CLIENT)
     public void runAnimation()
     {
-    	if (!this.runInterval)
-    	{
+        if (!this.runInterval)
+        {
             if (this.timer < this.duration && this.timer > 0.0D)
             {
-        		this.timer += this.inverter;
+                this.timer += this.inverter;
             }
-        	else
-        	{
+            else
+            {
                 if (this.timer >= this.duration)
                 {
-            		this.timer = this.duration;
+                    this.timer = this.duration;
                 }
                 else if (this.timer <= 0.0D)
                 {
-            		this.timer = 0.0D;
+                    this.timer = 0.0D;
                 }
-        		this.timerInterval = 0.0D;
-        		this.runInterval = true;
-        	}
-    	}
-    	else
-    	{
-    		if (this.timerInterval < this.intervalDuration)
-    		{
-        		this.timerInterval++;
-    		}
-    		else
-    		{
-    			if (this.inverter > 0 && this.rand.nextInt(this.returnChance) == 0) this.inverter = -1;
-            	if (this.inverter < 0 && this.rand.nextInt(this.goChance) == 0) this.inverter = 1;
-            	this.timer += this.inverter;
-            	this.runInterval = false;
-    		}
-    	}
+                this.timerInterval = 0.0D;
+                this.runInterval = true;
+            }
+        }
+        else
+        {
+            if (this.timerInterval < this.intervalDuration)
+            {
+                this.timerInterval++;
+            }
+            else
+            {
+                if (this.inverter > 0 && this.rand.nextInt(this.returnChance) == 0)
+                    this.inverter = -1;
+                if (this.inverter < 0 && this.rand.nextInt(this.goChance) == 0)
+                    this.inverter = 1;
+                this.timer += this.inverter;
+                this.runInterval = false;
+            }
+        }
     }
-
+    
     /**
      * Decreases the timer by 1.
      */
     @SideOnly(Side.CLIENT)
     public void stopAnimation()
     {
-		if (this.timer > 0.0D)
-		{
-			this.timer--;
-		}
-		else
-		{
-			this.timer = 0.0D;
-			this.runInterval = true;
-			this.timerInterval = 0.0D;
-			this.inverter = 1;
-		}
+        if (this.timer > 0.0D)
+        {
+            this.timer--;
+        }
+        else
+        {
+            this.timer = 0.0D;
+            this.runInterval = true;
+            this.timerInterval = 0.0D;
+            this.inverter = 1;
+        }
     }
-
+    
     /**
      * Decreases the timer by a specific value.
      *
@@ -181,28 +192,28 @@ public class IntermittentAnimation {
     @SideOnly(Side.CLIENT)
     public void stopAnimation(int time)
     {
-		if (this.timer - time > 0.0D)
-		{
-			this.timer -= time;
-		}
-		else
-		{
-			this.timer = 0.0D;
-			this.runInterval = false;
-			this.timerInterval = 0.0D;
-			this.inverter = 1;
-		}
+        if (this.timer - time > 0.0D)
+        {
+            this.timer -= time;
+        }
+        else
+        {
+            this.timer = 0.0D;
+            this.runInterval = false;
+            this.timerInterval = 0.0D;
+            this.inverter = 1;
+        }
     }
-
-	/**
-	 * Returns a float that represents a fraction of the animation, a value between 0.0F and 1.0F.
-	 */
-	@SideOnly(Side.CLIENT)
-	public float getAnimationFraction()
+    
+    /**
+     * Returns a float that represents a fraction of the animation, a value between 0.0F and 1.0F.
+     */
+    @SideOnly(Side.CLIENT)
+    public float getAnimationFraction()
     {
         return (float) (this.timer / this.duration);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 1/(1 + e^(4-8*x)). It
@@ -224,7 +235,7 @@ public class IntermittentAnimation {
         }
         return 0.0F;
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 1/(1 + e^(6-12*x)). It
@@ -235,7 +246,7 @@ public class IntermittentAnimation {
     {
         return (float) (1.0D / (1.0D + Math.exp(6.0D - 12.0D * (this.timer / this.duration))));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function. It is
@@ -246,7 +257,7 @@ public class IntermittentAnimation {
     {
         return MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function
@@ -258,7 +269,7 @@ public class IntermittentAnimation {
         float result = MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration));
         return result * result;
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function to the
@@ -269,7 +280,7 @@ public class IntermittentAnimation {
     {
         return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration)), 10);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using a sine function to a
@@ -282,7 +293,7 @@ public class IntermittentAnimation {
     {
         return (float) Math.pow((double) MathHelper.sin(1.57079632679F * (float) (this.timer / this.duration)), i);
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^2 / (x^2 + (1-x)^2).
@@ -295,7 +306,7 @@ public class IntermittentAnimation {
         float x2 = x * x;
         return x2 / (x2 + (1 - x) * (1 - x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^3 / (x^3 + (1-x)^3).
@@ -308,7 +319,7 @@ public class IntermittentAnimation {
         float x3 = x * x * x;
         return x3 / (x3 + (1 - x) * (1 - x) * (1 - x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using x^n / (x^n + (1-x)^n).
@@ -323,7 +334,7 @@ public class IntermittentAnimation {
         double xi = Math.pow(x, (double) n);
         return (float) (xi / (xi + Math.pow((1.0D - x), (double) n)));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. It reaches 1.0F using 0.5 + arctan(PI * (x -
@@ -334,7 +345,7 @@ public class IntermittentAnimation {
     {
         return (float) (0.5F + 0.49806510671F * Math.atan(3.14159265359D * ((double) (this.timer / this.duration) - 0.5D)));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation. 
      * This value starts at 1.0F and ends at 1.0F.
@@ -346,7 +357,7 @@ public class IntermittentAnimation {
         float x = 6.28318530718F * (float) (this.timer / this.duration);
         return 0.5F - 0.5F * MathHelper.cos(x + MathHelper.sin(x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration
      * of the animation. This value starts at 0.0F and ends at 0.0F.
@@ -358,7 +369,7 @@ public class IntermittentAnimation {
         float x = 3.14159265359F * (float) (this.timer / this.duration);
         return MathHelper.sin(x + MathHelper.sin(x));
     }
-
+    
     /**
      * Returns a value between 0.0F and 1.0F depending on the timer and duration of the animation. 
      * This value starts at 1.0F and ends at 1.0F.

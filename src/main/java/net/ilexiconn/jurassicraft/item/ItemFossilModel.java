@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ItemFossilModel extends Item
 {
-
+    
     public ItemFossilModel(String fossilName)
     {
         super();
@@ -21,7 +21,7 @@ public class ItemFossilModel extends Item
         this.setTextureName(JurassiCraft.getModId() + fossilName + "_Fossil");
         this.setCreativeTab(ModCreativeTabs.blocks);
     }
-
+    
     public int getFossil(ItemStack fossil)
     {
         if (fossil.hasTagCompound())
@@ -33,7 +33,7 @@ public class ItemFossilModel extends Item
         }
         return 0;
     }
-
+    
     @Override
     public void addInformation(ItemStack fossil, EntityPlayer player, List list, boolean flag)
     {
@@ -45,7 +45,7 @@ public class ItemFossilModel extends Item
             }
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack fossil, World world, EntityPlayer player)
     {

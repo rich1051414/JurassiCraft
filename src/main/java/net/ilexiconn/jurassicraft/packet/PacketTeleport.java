@@ -11,24 +11,28 @@ import net.ilexiconn.jurassicraft.network.IPacket;
 /**
  * @author ProPercivalalb
  **/
-public class PacketTeleport extends IPacket {
-
-	@Override
-	public void read(DataInputStream data) throws IOException {
-		
-	}
-
-	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-	}
-
-	@Override
-	public void execute(EntityPlayer player) {
-		TeleportClient.timeInPortal = 0;
-		TeleportClient.prevTimeInPortal = 0;
-		TeleportClient.inPortal = false;
-		TeleportClient.timeUntilPortal = 20;
-	}
-
+public class PacketTeleport extends IPacket
+{
+    
+    @Override
+    public void read(DataInputStream data) throws IOException
+    {
+        
+    }
+    
+    @Override
+    public void write(DataOutputStream data) throws IOException
+    {
+        
+    }
+    
+    @Override
+    public void execute(EntityPlayer player)
+    {
+        TeleportClient.timeInPortal = 0;
+        TeleportClient.prevTimeInPortal = 0;
+        TeleportClient.inPortal = false;
+        TeleportClient.timeUntilPortal = 20;
+    }
+    
 }

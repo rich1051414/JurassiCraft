@@ -21,7 +21,7 @@ public class GuiSecurityFenceLow extends GuiContainer
     private TileSecurityFenceLowCorner fence;
     private int missingMaterials;
     private String errorMessage;
-
+    
     public GuiSecurityFenceLow(InventoryPlayer inventoryPlayer, TileSecurityFenceLowCorner entity)
     {
         super(new ContainerSecurityFenceLow(inventoryPlayer, entity));
@@ -36,35 +36,35 @@ public class GuiSecurityFenceLow extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-
+    
     @Override
     public void initGui()
     {
         super.initGui();
         this.buttonList.clear();
-
+        
         //Direction Buttons.
         this.buttonList.add(new GuiButtonFenceGeneric(0, this.guiLeft + 54, this.guiTop + 126, 15, 45, 15, 10));
         this.buttonList.add(new GuiButtonFenceGeneric(1, this.guiLeft + 10, this.guiTop + 78, 15, 0, 10, 15));
         this.buttonList.add(new GuiButtonFenceGeneric(2, this.guiLeft + 54, this.guiTop + 34, 0, 45, 15, 10));
         this.buttonList.add(new GuiButtonFenceGeneric(3, this.guiLeft + 102, this.guiTop + 78, 25, 0, 10, 15));
-
+        
         //Update Map Button.
         this.buttonList.add(new GuiButtonFenceGeneric(4, this.guiLeft + 23, this.guiTop + 142, 35, 0, 15, 15));
-
+        
         //Build Fence Button.
         this.buttonList.add(new GuiButton(5, this.guiLeft + 141, this.guiTop + 63, 80, 20, StatCollector.translateToLocal("container.fence.buildFence")));
-
+        
         //Turn On Off Button.
         this.buttonList.add(new GuiButtonFenceSwitch(6, this.guiLeft + 141, this.guiTop + 86, 89, 0, 80, 54, this.fence.isFenceOn(this.fence.getPlannedSide())));
-
+        
         //Fixing Button.
         this.buttonList.add(new GuiButton(7, this.guiLeft + 141, this.guiTop + 63, 80, 20, StatCollector.translateToLocal("container.fence.fixFence")));
-
+        
         this.fenceMap = this.fence.getAllFenceBlocks();
         this.refreshGUI();
     }
-
+    
     @Override
     public void onGuiClosed()
     {
@@ -75,13 +75,13 @@ public class GuiSecurityFenceLow extends GuiContainer
         }
         super.onGuiClosed();
     }
-
+    
     @Override
     public void updateScreen()
     {
         this.refreshGUI();
     }
-
+    
     @Override
     public void actionPerformed(GuiButton button)
     {
@@ -131,12 +131,12 @@ public class GuiSecurityFenceLow extends GuiContainer
         }
         this.fenceMap = this.fence.getAllFenceBlocks();
     }
-
+    
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         int direction = this.fence.getPlannedSide();
-
+        
         switch (direction)
         {
             case 0:
@@ -154,7 +154,7 @@ public class GuiSecurityFenceLow extends GuiContainer
             default:
                 this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.noDirection"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.noDirection")) / 2, 146, 4210752);
         }
-
+        
         if (this.fence.hasFenceAt(direction))
         {
             this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.security.low"), 128 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.security.low")) / 2, 15, 4210752);
@@ -176,7 +176,7 @@ public class GuiSecurityFenceLow extends GuiContainer
             }
         }
     }
-
+    
     @Override
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
     {
@@ -206,12 +206,12 @@ public class GuiSecurityFenceLow extends GuiContainer
             }
         }
     }
-
+    
     private void refreshSwitchButton()
     {
         ((GuiButtonFenceSwitch) this.buttonList.get(6)).setState(this.fence.isFenceOn(this.fence.getPlannedSide()));
     }
-
+    
     private void refreshGUI()
     {
         switch (this.fence.getPlannedSide())
@@ -246,27 +246,27 @@ public class GuiSecurityFenceLow extends GuiContainer
             ((GuiButton) this.buttonList.get(5)).visible = false;
             ((GuiButton) this.buttonList.get(6)).enabled = true;
             ((GuiButton) this.buttonList.get(7)).visible = true;
-
+            
             if (!this.fence.isFenceOn(this.fence.getPlannedSide()))
             {
                 int length = this.fence.getFenceBaseLength(this.fence, this.fence.getPlannedSide());
-
+                
                 if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
                 {
                     TileSecurityFenceLowCorner otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
-
+                    
                     int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
-
+                    
                     int numberOfGridsToFix = this.fence.getNumberOfGridsToFix(this.fence, this.fence.getPlannedSide(), length, height);
-
+                    
                     if (numberOfGridsToFix > 0)
                     {
                         int ironRequiredToFix = this.fence.getIronRequiredForGrid(numberOfGridsToFix);
-
+                        
                         if (this.fence.hasNumberOfIronStored(ironRequiredToFix))
                         {
                             int redstoneRequiredToFix = this.fence.getRedstoneRequiredForGrid(numberOfGridsToFix);
-
+                            
                             if (this.fence.hasNumberOfRedstoneStored(redstoneRequiredToFix))
                             {
                                 ((GuiButton) this.buttonList.get(5)).enabled = false;
@@ -314,23 +314,23 @@ public class GuiSecurityFenceLow extends GuiContainer
             ((GuiButton) this.buttonList.get(5)).visible = true;
             ((GuiButton) this.buttonList.get(6)).enabled = false;
             ((GuiButton) this.buttonList.get(7)).visible = false;
-
+            
             int length = this.fence.getFenceBaseLength(this.fence, this.fence.getPlannedSide());
-
+            
             if (this.fence.isBaseAtSideValid(this.fence, this.fence.getPlannedSide(), length))
             {
                 TileSecurityFenceLowCorner otherFence = this.fence.getNextLowSecurityMainFenceBlockDirectly(this.fence, this.fence.getPlannedSide(), length + 1);
-
+                
                 int height = this.fence.getSmallerFencePoleHeight(this.fence, otherFence);
-
+                
                 int numberOfGridsToBuild = this.fence.getNumberOfGridsToBuild(length, height);
-
+                
                 int ironRequiredToBuild = this.fence.getIronRequiredForGrid(numberOfGridsToBuild);
-
+                
                 if (this.fence.hasNumberOfIronStored(ironRequiredToBuild))
                 {
                     int redstoneRequiredToBuild = this.fence.getRedstoneRequiredForGrid(numberOfGridsToBuild);
-
+                    
                     if (this.fence.hasNumberOfRedstoneStored(redstoneRequiredToBuild))
                     {
                         if (this.fence.hasEmptySpaceAt(this.fence, this.fence.getPlannedSide(), length, height))

@@ -31,7 +31,7 @@ public class ItemSpawnEggJurassiCraft extends Item
         this.setCreativeTab(ModCreativeTabs.spawnEggs);
         this.setHasSubtypes(true);
     }
-
+    
     @Override
     public void addInformation(ItemStack egg, EntityPlayer player, List list, boolean flag)
     {
@@ -57,7 +57,7 @@ public class ItemSpawnEggJurassiCraft extends Item
             list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToBaby"));
         }
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack egg, World world, EntityPlayer player)
     {
@@ -68,7 +68,7 @@ public class ItemSpawnEggJurassiCraft extends Item
                 boolean flag = egg.getTagCompound().getBoolean("SpawnBaby");
                 egg.getTagCompound().removeTag("SpawnBaby");
                 egg.getTagCompound().setBoolean("SpawnBaby", !flag);
-
+                
                 if (egg.getTagCompound().getBoolean("SpawnBaby"))
                 {
                     if (!world.isRemote)
@@ -87,7 +87,7 @@ public class ItemSpawnEggJurassiCraft extends Item
             else
             {
                 egg.getTagCompound().setBoolean("SpawnBaby", true);
-
+                
                 if (!world.isRemote)
                 {
                     player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.egg.info.spawnSetToBaby")));
@@ -99,7 +99,7 @@ public class ItemSpawnEggJurassiCraft extends Item
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean("SpawnBaby", true);
             egg.setTagCompound(compound);
-
+            
             if (egg.getTagCompound().getBoolean("SpawnBaby"))
             {
                 if (!world.isRemote)
@@ -115,23 +115,23 @@ public class ItemSpawnEggJurassiCraft extends Item
                 }
             }
         }
-
+        
         return egg;
     }
-
+    
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         return StatCollector.translateToLocal("item." + CreatureManager.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + "_SpawnEgg.name").trim();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack itemStack, int metadata)
     {
         return 0;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list)
@@ -144,7 +144,7 @@ public class ItemSpawnEggJurassiCraft extends Item
             }
         }
     }
-
+    
     @Override
     public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int hitX, float hitY, float hitZ, float metadata)
     {
@@ -158,23 +158,23 @@ public class ItemSpawnEggJurassiCraft extends Item
             x += Facing.offsetsXForSide[hitX];
             y += Facing.offsetsYForSide[hitX];
             z += Facing.offsetsZForSide[hitX];
-
+            
             double yTranslation = 0.0D;
-
+            
             if (hitX == 1 && block.getRenderType() == 11)
             {
                 yTranslation = 0.5D;
             }
-
+            
             EntityJurassiCraftCreature creature = (EntityJurassiCraftCreature) spawnCreature(world, player, itemStack, (double) x + 0.5D, (double) y + yTranslation, (double) z + 0.5D);
-
+            
             if (creature != null)
             {
                 if (creature instanceof EntityLivingBase && itemStack.hasDisplayName())
                 {
                     ((EntityLiving) creature).setCustomNameTag(itemStack.getDisplayName());
                 }
-
+                
                 if (!player.capabilities.isCreativeMode)
                 {
                     itemStack.stackSize--;
@@ -183,23 +183,23 @@ public class ItemSpawnEggJurassiCraft extends Item
                         itemStack = (ItemStack) null;
                     }
                 }
-
+                
                 world.spawnEntityInWorld(creature);
                 creature.playLivingSound();
             }
-
+            
             return true;
         }
     }
-
+    
     public static EntityJurassiCraftCreature spawnCreature(World world, EntityPlayer player, ItemStack egg, double x, double y, double z)
     {
         Class creatureClass = CreatureManager.getCreatureFromId(egg.getItemDamage()).getCreatureClass();
-
+        
         try
         {
             Entity creatureToSpawn = (Entity) creatureClass.getConstructor(World.class).newInstance(player.worldObj);
-
+            
             if (creatureToSpawn instanceof EntityJurassiCraftCreature)
             {
                 EntityJurassiCraftCreature creature = (EntityJurassiCraftCreature) creatureToSpawn;
@@ -208,7 +208,7 @@ public class ItemSpawnEggJurassiCraft extends Item
                 creature.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 creature.rotationYawHead = creature.rotationYaw;
                 creature.renderYawOffset = creature.rotationYaw;
-
+                
                 if (egg.hasTagCompound())
                 {
                     if (egg.getTagCompound().hasKey("SpawnBaby"))
@@ -227,7 +227,7 @@ public class ItemSpawnEggJurassiCraft extends Item
                 {
                     creature.setFullGrowth();
                 }
-
+                
                 return creature;
             }
         }
@@ -255,7 +255,7 @@ public class ItemSpawnEggJurassiCraft extends Item
         {
             e.printStackTrace();
         }
-
+        
         return (EntityJurassiCraftCreature) null;
     }
 }
