@@ -58,9 +58,6 @@
         "sounds": [
             "dinosaurs/ankylosaurus/ankylosaurusHurt01",
             "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02",
-            "dinosaurs/ankylosaurus/ankylosaurusHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
             "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
         ]
     },
@@ -73,12 +70,6 @@
     "ankylosaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving01",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving02",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving03",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving04",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02",
             "dinosaurs/ankylosaurus/ankylosaurusLiving01",
             "dinosaurs/ankylosaurus/ankylosaurusLiving02",
             "dinosaurs/ankylosaurus/ankylosaurusLiving03",
@@ -150,7 +141,6 @@
     "brachiosaurus:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusDeath01",
             "dinosaurs/brachiosaurus/brachiosaurusDeath01"
         ]
     },
@@ -163,7 +153,6 @@
     "brachiosaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusHurt01",
             "dinosaurs/brachiosaurus/brachiosaurusHurt01"
         ]
     },
@@ -176,10 +165,6 @@
     "brachiosaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving01",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving02",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving03",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving04",
             "dinosaurs/brachiosaurus/brachiosaurusLiving01",
             "dinosaurs/brachiosaurus/brachiosaurusLiving02",
             "dinosaurs/brachiosaurus/brachiosaurusLiving03",
@@ -219,7 +204,6 @@
     "carnotaurus:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusDeath01",
             "dinosaurs/carnotaurus/carnotaurusDeath01"
         ]
     },
@@ -232,7 +216,6 @@
     "carnotaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusHurt01",
             "dinosaurs/carnotaurus/carnotaurusHurt01"
         ]
     },
@@ -245,8 +228,6 @@
     "carnotaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusLiving01",
-            "dinosaurs/carnotaurus/carnotaurusLiving02",
             "dinosaurs/carnotaurus/carnotaurusLiving01",
             "dinosaurs/carnotaurus/carnotaurusLiving02"
         ]
@@ -266,7 +247,6 @@
     "dilophosaurus:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusDeath01",
             "dinosaurs/dilophosaurus/dilophosaurusDeath01"
         ]
     },
@@ -280,8 +260,6 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/dilophosaurus/dilophosaurusHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusHurt01",
             "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
         ]
     },
@@ -294,10 +272,6 @@
     "dilophosaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLiving01",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving02",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving03",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01",
             "dinosaurs/dilophosaurus/dilophosaurusLiving01",
             "dinosaurs/dilophosaurus/dilophosaurusLiving02",
             "dinosaurs/dilophosaurus/dilophosaurusLiving03",
@@ -356,8 +330,6 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/gallimimus/gallimimusDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01",
-            "dinosaurs/gallimimus/gallimimusDeath01",
             "dinosaurs/gallimimus/gallimimusLivingDeath01"
         ]
     },
@@ -373,10 +345,6 @@
             "dinosaurs/gallimimus/gallimimusHurt01",
             "dinosaurs/gallimimus/gallimimusLivingHurt01",
             "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03",
-            "dinosaurs/gallimimus/gallimimusHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
             "dinosaurs/gallimimus/gallimimusLivingHurt03"
         ]
     },
@@ -389,12 +357,6 @@
     "gallimimus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/gallimimus/gallimimusLiving01",
-            "dinosaurs/gallimimus/gallimimusLiving02",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03",
             "dinosaurs/gallimimus/gallimimusLiving01",
             "dinosaurs/gallimimus/gallimimusLiving02",
             "dinosaurs/gallimimus/gallimimusLivingDeath01",
@@ -442,7 +404,6 @@
     "herrerasaurus:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusDeath01",
             "dinosaurs/herrerasaurus/herrerasaurusDeath01"
         ]
     },
@@ -455,14 +416,12 @@
     "herrerasaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01",
             "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
         ]
     },
     "herrerasaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01",
             "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
         ]
     },
@@ -507,9 +466,6 @@
         "sounds": [
             "dinosaurs/hypsilophodon/hypsilophodonDeath01",
             "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
             "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
         ]
     },
@@ -522,11 +478,6 @@
     "hypsilophodon:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03",
             "dinosaurs/hypsilophodon/hypsilophodonHurt01",
             "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
             "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
@@ -549,14 +500,6 @@
     "hypsilophodon:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving01",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving02",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving03",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving04",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03",
             "dinosaurs/hypsilophodon/hypsilophodonLiving01",
             "dinosaurs/hypsilophodon/hypsilophodonLiving02",
             "dinosaurs/hypsilophodon/hypsilophodonLiving03",
@@ -648,7 +591,6 @@
     "leaellynasaura:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraDeath01",
             "dinosaurs/leaellynasaura/leaellynasauraDeath01"
         ]
     },
@@ -661,7 +603,6 @@
     "leaellynasaura:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraHurt01",
             "dinosaurs/leaellynasaura/leaellynasauraHurt01"
         ]
     },
@@ -674,8 +615,6 @@
     "leaellynasaura:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraLiving01",
-            "dinosaurs/leaellynasaura/leaellynasauraLiving02",
             "dinosaurs/leaellynasaura/leaellynasauraLiving01",
             "dinosaurs/leaellynasaura/leaellynasauraLiving02"
         ]
@@ -713,7 +652,6 @@
     "oviraptor:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/oviraptor/oviraptorDeath01",
             "dinosaurs/oviraptor/oviraptorDeath01"
         ]
     },
@@ -726,7 +664,6 @@
     "oviraptor:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/oviraptor/oviraptorHurt01",
             "dinosaurs/oviraptor/oviraptorHurt01"
         ]
     },
@@ -739,9 +676,6 @@
     "oviraptor:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/oviraptor/oviraptorLiving01",
-            "dinosaurs/oviraptor/oviraptorLiving02",
-            "dinosaurs/oviraptor/oviraptorLiving03",
             "dinosaurs/oviraptor/oviraptorLiving01",
             "dinosaurs/oviraptor/oviraptorLiving02",
             "dinosaurs/oviraptor/oviraptorLiving03"
@@ -769,8 +703,6 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/stegosaurus/stegosaurusDeath02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01",
-            "dinosaurs/stegosaurus/stegosaurusDeath02",
             "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
         ]
     },
@@ -783,9 +715,6 @@
     "stegosaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusHurt01",
-            "dinosaurs/stegosaurus/stegosaurusHurt02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01",
             "dinosaurs/stegosaurus/stegosaurusHurt01",
             "dinosaurs/stegosaurus/stegosaurusHurt02",
             "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
@@ -813,8 +742,6 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/stegosaurus/stegosaurusLiving01",
-            "dinosaurs/stegosaurus/stegosaurusLiving02",
-            "dinosaurs/stegosaurus/stegosaurusLiving01",
             "dinosaurs/stegosaurus/stegosaurusLiving02"
         ]
     },
@@ -835,19 +762,12 @@
         "sounds": [
             "dinosaurs/triceratops/triceratopsHurtDeath01",
             "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
             "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
         ]
     },
     "triceratops:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
             "dinosaurs/triceratops/triceratopsHurtDeath01",
             "dinosaurs/triceratops/triceratopsHurtDeath02",
             "dinosaurs/triceratops/triceratopslivingDeath02",
@@ -869,11 +789,6 @@
     "triceratops:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/triceratops/triceratopsLiving02",
-            "dinosaurs/triceratops/triceratopsLiving03",
-            "dinosaurs/triceratops/triceratopsLiving05",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
             "dinosaurs/triceratops/triceratopsLiving02",
             "dinosaurs/triceratops/triceratopsLiving03",
             "dinosaurs/triceratops/triceratopsLiving05",
@@ -926,7 +841,6 @@
     "tyrannosaurus:death": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01",
             "dinosaurs/tyrannosaurus/tyrannosaurusDeath01"
         ]
     },
@@ -939,8 +853,6 @@
     "tyrannosaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02",
             "dinosaurs/tyrannosaurus/tyrannosaurusHurt01",
             "dinosaurs/tyrannosaurus/tyrannosaurusHurt02"
         ]
@@ -960,12 +872,6 @@
     "tyrannosaurus:living": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06",
             "dinosaurs/tyrannosaurus/tyrannosaurusLiving01",
             "dinosaurs/tyrannosaurus/tyrannosaurusLiving02",
             "dinosaurs/tyrannosaurus/tyrannosaurusLiving03",
@@ -1013,7 +919,6 @@
     "lepticdictium:death": {
         "category": "hostile",
         "sounds": [
-            "mammals/lepticdictium/leptictidiumDeath",
             "mammals/lepticdictium/leptictidiumDeath"
         ]
     },
@@ -1026,7 +931,6 @@
     "lepticdictium:hurt": {
         "category": "hostile",
         "sounds": [
-            "mammals/lepticdictium/leptictidiumHurt02",
             "mammals/lepticdictium/leptictidiumHurt02"
         ]
     },
@@ -1039,9 +943,6 @@
     "lepticdictium:living": {
         "category": "hostile",
         "sounds": [
-            "mammals/lepticdictium/leptictidiumLiving01",
-            "mammals/lepticdictium/leptictidiumLiving02",
-            "mammals/lepticdictium/leptictidiumLiving03",
             "mammals/lepticdictium/leptictidiumLiving01",
             "mammals/lepticdictium/leptictidiumLiving02",
             "mammals/lepticdictium/leptictidiumLiving03"
@@ -1068,7 +969,6 @@
     "mammoth:death": {
         "category": "hostile",
         "sounds": [
-            "mammals/mammoth/mammothDeath",
             "mammals/mammoth/mammothDeath"
         ]
     },
@@ -1081,7 +981,6 @@
     "mammoth:hurt": {
         "category": "hostile",
         "sounds": [
-            "mammals/mammoth/mammothHurt01",
             "mammals/mammoth/mammothHurt01"
         ]
     },
@@ -1094,9 +993,6 @@
     "mammoth:living": {
         "category": "hostile",
         "sounds": [
-            "mammals/mammoth/mammothLiving01",
-            "mammals/mammoth/mammothLiving02",
-            "mammals/mammoth/mammothLiving03",
             "mammals/mammoth/mammothLiving01",
             "mammals/mammoth/mammothLiving02",
             "mammals/mammoth/mammothLiving03"
@@ -1123,1424 +1019,135 @@
     "cearadactylus:living": {
         "category": "hostile",
         "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+            "reptiles/cearadactylus/cearadactylusLivingHurtDeath01"
         ]
     },
     "cearadactylus:hurt": {
         "category": "hostile",
         "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+            "reptiles/cearadactylus/cearadactylusLivingHurtDeath01"
         ]
     },
     "cearadactylus:death": {
         "category": "hostile",
         "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+            "reptiles/cearadactylus/cearadactylusLivingHurtDeath01"
         ]
     },
-    "CearadactylusLivingHurtDeath01": {
+    "cearadactylusLivingHurtDeath01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
+            "reptiles/cearadactylus/cearadactylusLivingHurtDeath01"
         ]
     },
     "deinosuchus:hurt": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+            "reptiles/deinosuchus/deinosuchusHurtDeath01",
+            "reptiles/deinosuchus/deinosuchusHurtDeath02",
+            "reptiles/deinosuchus/deinosuchusHurtDeath03"
         ]
     },
     "deinosuchus:death": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+            "reptiles/deinosuchus/deinosuchusHurtDeath01",
+            "reptiles/deinosuchus/deinosuchusHurtDeath02",
+            "reptiles/deinosuchus/deinosuchusHurtDeath03"
         ]
     },
-    "DeinosuchusHurtDeath01": {
+    "deinosuchusHurtDeath01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01"
+            "reptiles/deinosuchus/deinosuchusHurtDeath01"
         ]
     },
-    "DeinosuchusHurtDeath02": {
+    "deinosuchusHurtDeath02": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02"
+            "reptiles/deinosuchus/deinosuchusHurtDeath02"
         ]
     },
-    "DeinosuchusHurtDeath03": {
+    "deinosuchusHurtDeath03": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
+            "reptiles/deinosuchus/deinosuchusHurtDeath03"
         ]
     },
     "deinosuchus:living": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving01",
-            "reptiles/deinosuchus/DeinosuchusLiving02",
-            "reptiles/deinosuchus/DeinosuchusLiving03",
-            "reptiles/deinosuchus/DeinosuchusLiving04",
-            "reptiles/deinosuchus/DeinosuchusLiving01",
-            "reptiles/deinosuchus/DeinosuchusLiving02",
-            "reptiles/deinosuchus/DeinosuchusLiving03",
-            "reptiles/deinosuchus/DeinosuchusLiving04"
+            "reptiles/deinosuchus/deinosuchusLiving01",
+            "reptiles/deinosuchus/deinosuchusLiving02",
+            "reptiles/deinosuchus/deinosuchusLiving03",
+            "reptiles/deinosuchus/deinosuchusLiving04"
         ]
     },
-    "DeinosuchusLiving01": {
+    "deinosuchusLiving01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving01"
+            "reptiles/deinosuchus/deinosuchusLiving01"
         ]
     },
-    "DeinosuchusLiving02": {
+    "deinosuchusLiving02": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving02"
+            "reptiles/deinosuchus/deinosuchusLiving02"
         ]
     },
-    "DeinosuchusLiving03": {
+    "deinosuchusLiving03": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving03"
+            "reptiles/deinosuchus/deinosuchusLiving03"
         ]
     },
-    "DeinosuchusLiving04": {
+    "deinosuchusLiving04": {
         "category": "hostile",
         "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving04"
+            "reptiles/deinosuchus/deinosuchusLiving04"
         ]
     },
     "tylosaurus:death": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusDeath01",
-            "reptiles/tylosaurus/TylosaurusDeath01"
+            "reptiles/tylosaurus/tylosaurusDeath01"
         ]
     },
-    "TylosaurusDeath01": {
+    "tylosaurusDeath01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusDeath01"
+            "reptiles/tylosaurus/tylosaurusDeath01"
         ]
     },
     "tylosaurus:hurt": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusHurt01",
-            "reptiles/tylosaurus/TylosaurusHurt01"
+            "reptiles/tylosaurus/tylosaurusHurt01"
         ]
     },
-    "TylosaurusHurt01": {
+    "tylosaurusHurt01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusHurt01"
+            "reptiles/tylosaurus/tylosaurusHurt01"
         ]
     },
     "tylosaurus:living": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving01",
-            "reptiles/tylosaurus/TylosaurusLiving02",
-            "reptiles/tylosaurus/TylosaurusLiving01",
-            "reptiles/tylosaurus/TylosaurusLiving02"
+            "reptiles/tylosaurus/tylosaurusLiving01",
+            "reptiles/tylosaurus/tylosaurusLiving02"
         ]
     },
-    "TylosaurusLiving01": {
+    "tylosaurusLiving01": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving01"
+            "reptiles/tylosaurus/tylosaurusLiving01"
         ]
     },
-    "TylosaurusLiving02": {
+    "tylosaurusLiving02": {
         "category": "hostile",
         "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving02"
-        ]
-    },
-    "ankylosaurus01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus01"
-        ]
-    },
-    "ankylosaurus02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus02"
-        ]
-    },
-    "ankylosaurus03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus03"
-        ]
-    },
-    "ankylosaurus04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus04"
-        ]
-    },
-    "ankylosaurus05": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus05"
-        ]
-    },
-    "ankylosaurus06": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus06"
-        ]
-    },
-    "ankylosaurus07": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus07"
-        ]
-    },
-    "ankylosaurus08": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus08"
-        ]
-    },
-    "ankylosaurus09": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurus09"
-        ]
-    },
-    "ankylosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02",
-            "dinosaurs/ankylosaurus/ankylosaurusHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
-        ]
-    },
-    "ankylosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusHurt01"
-        ]
-    },
-    "ankylosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving01",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving02",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving03",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving04",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving01",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving02",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving03",
-            "dinosaurs/ankylosaurus/ankylosaurusLiving04",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01",
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
-        ]
-    },
-    "ankylosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving01"
-        ]
-    },
-    "ankylosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving02"
-        ]
-    },
-    "ankylosaurusLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving03"
-        ]
-    },
-    "ankylosaurusLiving04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLiving04"
-        ]
-    },
-    "ankylosaurusLivingHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt01"
-        ]
-    },
-    "ankylosaurusLivingHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/ankylosaurus/ankylosaurusLivingHurt02"
-        ]
-    },
-    "brachiosaurus01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurus01"
-        ]
-    },
-    "brachiosaurus02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurus02"
-        ]
-    },
-    "brachiosaurus03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurus03"
-        ]
-    },
-    "brachiosaurus04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurus04"
-        ]
-    },
-    "brachiosaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusDeath01",
-            "dinosaurs/brachiosaurus/brachiosaurusDeath01"
-        ]
-    },
-    "brachiosaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusDeath01"
-        ]
-    },
-    "brachiosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusHurt01",
-            "dinosaurs/brachiosaurus/brachiosaurusHurt01"
-        ]
-    },
-    "brachiosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusHurt01"
-        ]
-    },
-    "brachiosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving01",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving02",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving03",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving04",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving01",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving02",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving03",
-            "dinosaurs/brachiosaurus/brachiosaurusLiving04"
-        ]
-    },
-    "brachiosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving01"
-        ]
-    },
-    "brachiosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving02"
-        ]
-    },
-    "brachiosaurusLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving03"
-        ]
-    },
-    "brachiosaurusLiving04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/brachiosaurus/brachiosaurusLiving04"
-        ]
-    },
-    "carnotaurus01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurus01"
-        ]
-    },
-    "carnotaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusDeath01",
-            "dinosaurs/carnotaurus/carnotaurusDeath01"
-        ]
-    },
-    "carnotaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusDeath01"
-        ]
-    },
-    "carnotaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusHurt01",
-            "dinosaurs/carnotaurus/carnotaurusHurt01"
-        ]
-    },
-    "carnotaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusHurt01"
-        ]
-    },
-    "carnotaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusLiving01",
-            "dinosaurs/carnotaurus/carnotaurusLiving02",
-            "dinosaurs/carnotaurus/carnotaurusLiving01",
-            "dinosaurs/carnotaurus/carnotaurusLiving02"
-        ]
-    },
-    "carnotaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusLiving01"
-        ]
-    },
-    "carnotaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/carnotaurus/carnotaurusLiving02"
-        ]
-    },
-    "dilophosaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusDeath01",
-            "dinosaurs/dilophosaurus/dilophosaurusDeath01"
-        ]
-    },
-    "dilophosaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusDeath01"
-        ]
-    },
-    "dilophosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
-        ]
-    },
-    "dilophosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusHurt01"
-        ]
-    },
-    "dilophosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLiving01",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving02",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving03",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving01",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving02",
-            "dinosaurs/dilophosaurus/dilophosaurusLiving03",
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
-        ]
-    },
-    "dilophosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLiving01"
-        ]
-    },
-    "dilophosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLiving02"
-        ]
-    },
-    "dilophosaurusLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLiving03"
-        ]
-    },
-    "dilophosaurusLivingHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/dilophosaurus/dilophosaurusLivingHurt01"
-        ]
-    },
-    "gallimimus01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimus01"
-        ]
-    },
-    "gallimimus02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimus02"
-        ]
-    },
-    "gallimimus03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimus03"
-        ]
-    },
-    "gallimimus04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimus04"
-        ]
-    },
-    "gallimimus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01",
-            "dinosaurs/gallimimus/gallimimusDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01"
-        ]
-    },
-    "gallimimusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusDeath01"
-        ]
-    },
-    "gallimimus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03",
-            "dinosaurs/gallimimus/gallimimusHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03"
-        ]
-    },
-    "gallimimusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusHurt01"
-        ]
-    },
-    "gallimimus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLiving01",
-            "dinosaurs/gallimimus/gallimimusLiving02",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03",
-            "dinosaurs/gallimimus/gallimimusLiving01",
-            "dinosaurs/gallimimus/gallimimusLiving02",
-            "dinosaurs/gallimimus/gallimimusLivingDeath01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt01",
-            "dinosaurs/gallimimus/gallimimusLivingHurt02",
-            "dinosaurs/gallimimus/gallimimusLivingHurt03"
-        ]
-    },
-    "gallimimusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLiving01"
-        ]
-    },
-    "gallimimusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLiving02"
-        ]
-    },
-    "gallimimusLivingDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLivingDeath01"
-        ]
-    },
-    "gallimimusLivingHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLivingHurt01"
-        ]
-    },
-    "gallimimusLivingHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLivingHurt02"
-        ]
-    },
-    "gallimimusLivingHurt03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/gallimimus/gallimimusLivingHurt03"
-        ]
-    },
-    "herrerasaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusDeath01",
-            "dinosaurs/herrerasaurus/herrerasaurusDeath01"
-        ]
-    },
-    "herrerasaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusDeath01"
-        ]
-    },
-    "herrerasaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01",
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
-        ]
-    },
-    "herrerasaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01",
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
-        ]
-    },
-    "herrerasaurusLivingHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/herrerasaurus/herrerasaurusLivingHurt01"
-        ]
-    },
-    "hypsilophodon01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodon01"
-        ]
-    },
-    "hypsilophodon02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodon02"
-        ]
-    },
-    "hypsilophodon03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodon03"
-        ]
-    },
-    "hypsilophodon04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodon04"
-        ]
-    },
-    "hypsilophodon05": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodon05"
-        ]
-    },
-    "hypsilophodon:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
-        ]
-    },
-    "hypsilophodonDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonDeath01"
-        ]
-    },
-    "hypsilophodon:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03",
-            "dinosaurs/hypsilophodon/hypsilophodonHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03"
-        ]
-    },
-    "hypsilophodonHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonHurt01"
-        ]
-    },
-    "hypsilophodonHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonHurtDeath01"
-        ]
-    },
-    "hypsilophodon:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving01",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving02",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving03",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving04",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving01",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving02",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving03",
-            "dinosaurs/hypsilophodon/hypsilophodonLiving04",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02",
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03"
-        ]
-    },
-    "hypsilophodonLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving01"
-        ]
-    },
-    "hypsilophodonLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving02"
-        ]
-    },
-    "hypsilophodonLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving03"
-        ]
-    },
-    "hypsilophodonLiving04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLiving04"
-        ]
-    },
-    "hypsilophodonLivingDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLivingDeath01"
-        ]
-    },
-    "hypsilophodonLivingHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt01"
-        ]
-    },
-    "hypsilophodonLivingHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt02"
-        ]
-    },
-    "hypsilophodonLivingHurt03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/hypsilophodonLivingHurt03"
-        ]
-    },
-    "leaellynasaura01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasaura01"
-        ]
-    },
-    "leaellynasaura02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasaura02"
-        ]
-    },
-    "leaellynasaura03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasaura03"
-        ]
-    },
-    "leaellynasaura04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasaura04"
-        ]
-    },
-    "leaellynasaura05": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasaura05"
-        ]
-    },
-    "leaellynasaura:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraDeath01",
-            "dinosaurs/leaellynasaura/leaellynasauraDeath01"
-        ]
-    },
-    "leaellynasauraDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraDeath01"
-        ]
-    },
-    "leaellynasaura:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraHurt01",
-            "dinosaurs/leaellynasaura/leaellynasauraHurt01"
-        ]
-    },
-    "leaellynasauraHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraHurt01"
-        ]
-    },
-    "leaellynasaura:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraLiving01",
-            "dinosaurs/leaellynasaura/leaellynasauraLiving02",
-            "dinosaurs/leaellynasaura/leaellynasauraLiving01",
-            "dinosaurs/leaellynasaura/leaellynasauraLiving02"
-        ]
-    },
-    "leaellynasauraLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraLiving01"
-        ]
-    },
-    "leaellynasauraLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/leaellynasaura/leaellynasauraLiving02"
-        ]
-    },
-    "oviraptor01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptor01"
-        ]
-    },
-    "oviraptor02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptor02"
-        ]
-    },
-    "oviraptor03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptor03"
-        ]
-    },
-    "oviraptor:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorDeath01",
-            "dinosaurs/oviraptor/oviraptorDeath01"
-        ]
-    },
-    "oviraptorDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorDeath01"
-        ]
-    },
-    "oviraptor:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorHurt01",
-            "dinosaurs/oviraptor/oviraptorHurt01"
-        ]
-    },
-    "oviraptorHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorHurt01"
-        ]
-    },
-    "oviraptor:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorLiving01",
-            "dinosaurs/oviraptor/oviraptorLiving02",
-            "dinosaurs/oviraptor/oviraptorLiving03",
-            "dinosaurs/oviraptor/oviraptorLiving01",
-            "dinosaurs/oviraptor/oviraptorLiving02",
-            "dinosaurs/oviraptor/oviraptorLiving03"
-        ]
-    },
-    "oviraptorLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorLiving01"
-        ]
-    },
-    "oviraptorLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorLiving02"
-        ]
-    },
-    "oviraptorLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/oviraptor/oviraptorLiving03"
-        ]
-    },
-    "stegosaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusDeath02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01",
-            "dinosaurs/stegosaurus/stegosaurusDeath02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
-        ]
-    },
-    "stegosaurusDeath02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusDeath02"
-        ]
-    },
-    "stegosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusHurt01",
-            "dinosaurs/stegosaurus/stegosaurusHurt02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01",
-            "dinosaurs/stegosaurus/stegosaurusHurt01",
-            "dinosaurs/stegosaurus/stegosaurusHurt02",
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
-        ]
-    },
-    "stegosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusHurt01"
-        ]
-    },
-    "stegosaurusHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusHurt02"
-        ]
-    },
-    "stegosaurusHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusHurtDeath01"
-        ]
-    },
-    "stegosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusLiving01",
-            "dinosaurs/stegosaurus/stegosaurusLiving02",
-            "dinosaurs/stegosaurus/stegosaurusLiving01",
-            "dinosaurs/stegosaurus/stegosaurusLiving02"
-        ]
-    },
-    "stegosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusLiving01"
-        ]
-    },
-    "stegosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/stegosaurus/stegosaurusLiving02"
-        ]
-    },
-    "triceratops:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
-        ]
-    },
-    "triceratops:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath01",
-            "dinosaurs/triceratops/triceratopsHurtDeath02",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
-        ]
-    },
-    "triceratopsHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsHurtDeath01"
-        ]
-    },
-    "triceratopsHurtDeath02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsHurtDeath02"
-        ]
-    },
-    "triceratops:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsLiving02",
-            "dinosaurs/triceratops/triceratopsLiving03",
-            "dinosaurs/triceratops/triceratopsLiving05",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01",
-            "dinosaurs/triceratops/triceratopsLiving02",
-            "dinosaurs/triceratops/triceratopsLiving03",
-            "dinosaurs/triceratops/triceratopsLiving05",
-            "dinosaurs/triceratops/triceratopslivingDeath02",
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
-        ]
-    },
-    "triceratopsLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsLiving02"
-        ]
-    },
-    "triceratopsLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsLiving03"
-        ]
-    },
-    "triceratopsLiving05": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsLiving05"
-        ]
-    },
-    "triceratopslivingDeath02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopslivingDeath02"
-        ]
-    },
-    "triceratopsLivingHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratopsLivingHurtDeath01"
-        ]
-    },
-    "tyrannosaurus01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurus01"
-        ]
-    },
-    "tyrannosaurusbreath": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusbreath"
-        ]
-    },
-    "tyrannosaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01"
-        ]
-    },
-    "tyrannosaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusDeath01"
-        ]
-    },
-    "tyrannosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02",
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02"
-        ]
-    },
-    "tyrannosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt01"
-        ]
-    },
-    "tyrannosaurusHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusHurt02"
-        ]
-    },
-    "tyrannosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05",
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06"
-        ]
-    },
-    "tyrannosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving01"
-        ]
-    },
-    "tyrannosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving02"
-        ]
-    },
-    "tyrannosaurusLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving03"
-        ]
-    },
-    "tyrannosaurusLiving04": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving04"
-        ]
-    },
-    "tyrannosaurusLiving05": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving05"
-        ]
-    },
-    "tyrannosaurusLiving06": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus/tyrannosaurusLiving06"
-        ]
-    },
-    "lepticdictium:death": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumDeath",
-            "mammals/lepticdictium/leptictidiumDeath"
-        ]
-    },
-    "leptictidiumDeath": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumDeath"
-        ]
-    },
-    "lepticdictium:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumHurt02",
-            "mammals/lepticdictium/leptictidiumHurt02"
-        ]
-    },
-    "leptictidiumHurt02": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumHurt02"
-        ]
-    },
-    "lepticdictium:living": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumLiving01",
-            "mammals/lepticdictium/leptictidiumLiving02",
-            "mammals/lepticdictium/leptictidiumLiving03",
-            "mammals/lepticdictium/leptictidiumLiving01",
-            "mammals/lepticdictium/leptictidiumLiving02",
-            "mammals/lepticdictium/leptictidiumLiving03"
-        ]
-    },
-    "leptictidiumLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumLiving01"
-        ]
-    },
-    "leptictidiumLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumLiving02"
-        ]
-    },
-    "leptictidiumLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/lepticdictium/leptictidiumLiving03"
-        ]
-    },
-    "mammoth:death": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothDeath",
-            "mammals/mammoth/mammothDeath"
-        ]
-    },
-    "mammothDeath": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothDeath"
-        ]
-    },
-    "mammoth:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothHurt01",
-            "mammals/mammoth/mammothHurt01"
-        ]
-    },
-    "mammothHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothHurt01"
-        ]
-    },
-    "mammoth:living": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothLiving01",
-            "mammals/mammoth/mammothLiving02",
-            "mammals/mammoth/mammothLiving03",
-            "mammals/mammoth/mammothLiving01",
-            "mammals/mammoth/mammothLiving02",
-            "mammals/mammoth/mammothLiving03"
-        ]
-    },
-    "mammothLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothLiving01"
-        ]
-    },
-    "mammothLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothLiving02"
-        ]
-    },
-    "mammothLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "mammals/mammoth/mammothLiving03"
-        ]
-    },
-    "cearadactylus:living": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
-        ]
-    },
-    "cearadactylus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
-        ]
-    },
-    "cearadactylus:death": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01",
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
-        ]
-    },
-    "CearadactylusLivingHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/cearadactylus/CearadactylusLivingHurtDeath01"
-        ]
-    },
-    "deinosuchus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
-        ]
-    },
-    "deinosuchus:death": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02",
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
-        ]
-    },
-    "DeinosuchusHurtDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath01"
-        ]
-    },
-    "DeinosuchusHurtDeath02": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath02"
-        ]
-    },
-    "DeinosuchusHurtDeath03": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusHurtDeath03"
-        ]
-    },
-    "deinosuchus:living": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving01",
-            "reptiles/deinosuchus/DeinosuchusLiving02",
-            "reptiles/deinosuchus/DeinosuchusLiving03",
-            "reptiles/deinosuchus/DeinosuchusLiving04",
-            "reptiles/deinosuchus/DeinosuchusLiving01",
-            "reptiles/deinosuchus/DeinosuchusLiving02",
-            "reptiles/deinosuchus/DeinosuchusLiving03",
-            "reptiles/deinosuchus/DeinosuchusLiving04"
-        ]
-    },
-    "DeinosuchusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving01"
-        ]
-    },
-    "DeinosuchusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving02"
-        ]
-    },
-    "DeinosuchusLiving03": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving03"
-        ]
-    },
-    "DeinosuchusLiving04": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/deinosuchus/DeinosuchusLiving04"
-        ]
-    },
-    "tylosaurus:death": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusDeath01",
-            "reptiles/tylosaurus/TylosaurusDeath01"
-        ]
-    },
-    "TylosaurusDeath01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusDeath01"
-        ]
-    },
-    "tylosaurus:hurt": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusHurt01",
-            "reptiles/tylosaurus/TylosaurusHurt01"
-        ]
-    },
-    "TylosaurusHurt01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusHurt01"
-        ]
-    },
-    "tylosaurus:living": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving01",
-            "reptiles/tylosaurus/TylosaurusLiving02",
-            "reptiles/tylosaurus/TylosaurusLiving01",
-            "reptiles/tylosaurus/TylosaurusLiving02"
-        ]
-    },
-    "TylosaurusLiving01": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving01"
-        ]
-    },
-    "TylosaurusLiving02": {
-        "category": "hostile",
-        "sounds": [
-            "reptiles/tylosaurus/TylosaurusLiving02"
+            "reptiles/tylosaurus/tylosaurusLiving02"
         ]
     }
 }
