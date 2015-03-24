@@ -26,6 +26,7 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
         else
         {
             EntityLivingBase owner = this.creature.getOwner();
+           
             if (owner == null)
             {
                 return false;
@@ -42,6 +43,7 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
     public void startExecuting()
     {
         this.creature.setFleeing(true);
+        
         super.startExecuting();
     }
     
@@ -49,6 +51,7 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
     public boolean continueExecuting()
     {
         this.attacker = null;
+        
         return this.creature.isFleeing();
     }
 }

@@ -62,8 +62,6 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        System.out.println("GO!");
-        
         if (this.creature.isTakingOff())
             this.creature.setTakingOff(false);
         if (this.creature.isFlying())
