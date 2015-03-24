@@ -32,6 +32,7 @@ public class GuiDinoPad extends GuiContainer
     public GuiDinoPad(ContainerDinoPad container)
     {
         super(container);
+        
         if (container.creatureToAnalyze instanceof EntityJurassiCraftSmart)
         {
             this.creature = (EntityJurassiCraftSmart) container.creatureToAnalyze;
@@ -54,6 +55,7 @@ public class GuiDinoPad extends GuiContainer
     {
         this.buttonList.clear();
         this.dinoInfo.clear();
+        
         if (this.creature != null)
         {
             for (int numberOfPages = 1; numberOfPages <= this.creature.getCreature().getInfoPageCount(); numberOfPages++)
@@ -81,6 +83,7 @@ public class GuiDinoPad extends GuiContainer
     public void onGuiClosed()
     {
         this.creature = null;
+        
         super.onGuiClosed();
     }
     
@@ -104,6 +107,7 @@ public class GuiDinoPad extends GuiContainer
         {
             this.mc.thePlayer.closeScreen();
         }
+        
         this.renderRotation++;
     }
     
@@ -116,7 +120,7 @@ public class GuiDinoPad extends GuiContainer
             {
                 this.pageNumber = 0;
             }
-            if (button.id == 1)
+            else if (button.id == 1)
             {
                 if (this.pageNumber > 0)
                 {
@@ -127,7 +131,7 @@ public class GuiDinoPad extends GuiContainer
                     this.pageNumber = this.creature.getCreature().getInfoPageCount();
                 }
             }
-            if (button.id == 2)
+            else if (button.id == 2)
             {
                 if (this.pageNumber < this.creature.getCreature().getInfoPageCount())
                 {
@@ -148,6 +152,7 @@ public class GuiDinoPad extends GuiContainer
         {
             this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPad.png"));
             this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+            
             switch (this.pageNumber)
             {
                 case 0:
@@ -162,13 +167,16 @@ public class GuiDinoPad extends GuiContainer
                     {
                         this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight())));
                     }
+                    
                     this.renderNameGenderStrings();
                     this.renderStatusStrings();
                     this.renderTamedStrings();
+                    
                     break;
                 default:
                     this.renderNameGenderStrings();
                     this.renderCreatureInformation(this.pageNumber);
+                    
                     break;
             }
         }
@@ -198,6 +206,7 @@ public class GuiDinoPad extends GuiContainer
         {
             this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.creature") + ": " + this.creature.getCreatureName()) / 2, this.guiTop + 11, 14737632);
         }
+        
         this.fontRendererObj.drawString(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString(), this.guiLeft + 127 - this.fontRendererObj.getStringWidth(this.creature.getCreatureAgeString() + ", " + this.creature.getCreatureGenderString()) / 2, this.guiTop + 19, 14737632);
     }
     
@@ -234,6 +243,7 @@ public class GuiDinoPad extends GuiContainer
     {
         String info = StatCollector.translateToLocal("container.pad.info." + this.creature.getCreature().getCreatureName() + ".page" + page);
         String[] pageInfo = new String[8];
+     
         if (info != null && info != "")
         {
             int line = 0;

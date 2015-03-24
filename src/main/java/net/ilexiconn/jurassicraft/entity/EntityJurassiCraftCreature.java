@@ -570,7 +570,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
      */
     public float getCreatureHeight()
     {
-        return (float) ((int) (100 * this.heightParameter)) / 100;
+        return ((float) ((int) (this.heightParameter * 100) / 100)) - 0.25F;
     }
     
     public int getCreatureHeightScaled(int i)
