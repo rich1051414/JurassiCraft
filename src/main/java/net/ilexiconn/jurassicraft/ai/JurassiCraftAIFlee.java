@@ -70,9 +70,11 @@ public class JurassiCraftAIFlee extends EntityAIBase
     public void updateTask()
     {
         this.creature.setFleeingTick(this.creature.getFleeingTick() - 1);
+      
         if (this.creature.getNavigator().noPath())
         {
             Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.creature, 5, 4);
+          
             if (vec3 != null)
             {
                 this.randPosX = vec3.xCoord;
@@ -94,7 +96,10 @@ public class JurassiCraftAIFlee extends EntityAIBase
     {
         this.creature.setFleeingTick(0);
         this.creature.setFleeing(false);
+      
         if (this.creature.getAttackTarget() != null)
+        {
             this.creature.setAttackTarget((EntityLivingBase) null);
+        }
     }
 }
