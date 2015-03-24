@@ -45,6 +45,7 @@ public class Creature
     private float xzBoxDelta;
     private float yBoxDelta;
     private float scaleAdjustment;
+    private float shadowSize;
     
     private int ticksToAdulthood;
     private int cultivateSpeed;
@@ -108,6 +109,7 @@ public class Creature
         this.ridingSpeed = def.ridingSpeed;
         this.ridingStyle = def.ridingStyle;
         this.scaleAdjustment = def.scaleAdjustment;
+        this.shadowSize = def.shadowSize;
         this.ticksToAdulthood = def.ticksToAdulthood;
         this.waterCreature = def.waterCreature;
         this.flyingCreature = def.flyingCreature;
@@ -467,6 +469,11 @@ public class Creature
     public float getScaleAdjustment()
     {
         return this.scaleAdjustment;
+    }
+
+    public float getShadowSize()
+    {
+        return this.shadowSize;
     }
     
     public float getMinHeight()

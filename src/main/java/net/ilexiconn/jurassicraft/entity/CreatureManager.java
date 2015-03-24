@@ -120,7 +120,7 @@ public class CreatureManager
             else
             {
                 System.out.println("auto render class for: " + dino.creatureName);
-                JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino.creatureName, category, 1.0F));
+                JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino.creatureName, category, dino.shadowSize));
             }
         }
         catch (Exception e)

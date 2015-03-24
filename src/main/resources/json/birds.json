@@ -14,6 +14,7 @@
         "minHeight":1.0,
         "maxHeight":2.5,
         "scaleAdjustment":1.3,
+        "shadowSize": 0.5,
         "minProximate":750,
         "minMinerals":1500,
         "minVitamins":1200,

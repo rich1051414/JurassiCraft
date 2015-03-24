@@ -13,6 +13,7 @@
         "maxLength":1.0,
         "minHeight":0.2,
         "maxHeight":1.0,
+        "shadowSize":0.25,
         "scaleAdjustment":1.0,
         "minProximate":500,
         "minMinerals":400,

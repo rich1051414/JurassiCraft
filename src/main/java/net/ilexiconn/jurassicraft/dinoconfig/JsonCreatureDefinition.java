@@ -37,7 +37,8 @@ public class JsonCreatureDefinition
     public float xzBoxDelta;
     public float yBoxDelta;
     public float scaleAdjustment;
-    
+    public float shadowSize;
+
     public int ticksToAdulthood;
     public int cultivateSpeed;
     public int numberOfTextures;
