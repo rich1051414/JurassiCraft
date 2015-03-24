@@ -13,8 +13,13 @@ public class HerdAIGroupAttack extends EntityAIHerd
     public void startExecuting()
     {
         super.startExecuting();
-        if (getHerd() != null)
-            getHerd().attack(getCreature().getAttackTarget());
+        
+        CreatureHerd herd = getHerd();
+        
+        if (herd != null)
+        {
+            herd.attack(getCreature().getAttackTarget());
+        }
     }
     
     @Override
@@ -28,5 +33,4 @@ public class HerdAIGroupAttack extends EntityAIHerd
     {
         return getCreature().getAttackTarget() != null && getCreature().getAttackTarget().isEntityAlive();
     }
-    
 }

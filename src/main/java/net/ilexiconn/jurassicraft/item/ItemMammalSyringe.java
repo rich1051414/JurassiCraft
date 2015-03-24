@@ -37,7 +37,7 @@ public class ItemMammalSyringe extends Item
         mammal = mammal.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(mammal);
         this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + mammal + "/" + mammal + "_DNA");
-        this.setCreativeTab(ModCreativeTabs.syringesEggs);
+        this.setCreativeTab(ModCreativeTabs.jcSyringesEggs);
         this.mammalName = mammal;
     }
     

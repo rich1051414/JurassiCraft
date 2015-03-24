@@ -19,7 +19,7 @@ public class BlockSecurityFenceLowCorner extends BlockSecurityFence implements I
     public BlockSecurityFenceLowCorner()
     {
         super(10.0F, 150.0F, 2, "low_Security_Fence_Main");
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(ModCreativeTabs.jcBlocks);
     }
     
     @Override

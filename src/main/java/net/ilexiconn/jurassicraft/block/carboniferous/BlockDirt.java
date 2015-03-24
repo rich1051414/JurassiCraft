@@ -25,13 +25,13 @@ public class BlockDirt extends Block
     public BlockDirt()
     {
         super(Material.ground);
-        this.setCreativeTab(ModCreativeTabs.Carboniferous);
+        this.setCreativeTab(ModCreativeTabs.carboniferous);
     }
     
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        IconReference.dirt = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "dirt");
-        IconReference.dirtBrick = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "dirtBrick");
+        IconReference.dirt = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "dirt");
+        IconReference.dirtBrick = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "dirtBrick");
     }
     
     @Override

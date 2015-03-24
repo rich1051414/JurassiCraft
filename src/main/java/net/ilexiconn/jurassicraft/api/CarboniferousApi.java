@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class CarboniferousApi
 {
-    
     //Damage Sources
     public static DamageSource brachiopodDamage;
     
@@ -41,8 +40,10 @@ public class CarboniferousApi
         try
         {
             Class cls = Class.forName("net.ilexiconn.jurassicraft.recipe.GrinderManager");
-            Method meth = cls.getMethod("addGrinderRecipe", ItemStack.class, Object[].class);
-            meth.invoke(null, output, new Object[] { input1, input2 });
+            
+            Method method = cls.getMethod("addGrinderRecipe", ItemStack.class, Object[].class);
+            method.invoke(null, output, new Object[] { input1, input2 });
+            
             return true;
         }
         catch (Exception e)
@@ -95,9 +96,9 @@ public class CarboniferousApi
     {
         try
         {
-            Class cls = Class.forName("net.ilexiconn.jurassicraft.world.core.GenLayerBiomesDino");
-            Method meth = cls.getMethod("registerBiome", BiomeGenBase.class);
-            meth.invoke(null, biome);
+            Class clazz = Class.forName("net.ilexiconn.jurassicraft.world.core.GenLayerBiomesDino");
+            Method method = clazz.getMethod("registerBiome", BiomeGenBase.class);
+            method.invoke(null, biome);
         }
         catch (Exception e)
         {
@@ -109,6 +110,7 @@ public class CarboniferousApi
     {
         assert item != null : "Item cannot be equal to null";
         assert item instanceof ILargeItem : "Item must be an instanceof ILargeItem";
+        
         try
         {
             MinecraftForgeClient.registerItemRenderer(item, (IItemRenderer) Class.forName("carboniferous.client.renderer.item.ItemLargeRenderer").newInstance());
@@ -124,8 +126,10 @@ public class CarboniferousApi
         return (new EntityDamageSourceIndirect("spear", spear, par1Entity)).setProjectile();
     }
     
-    //Private Functions (NOT TO BE USED BY OTHER MODDERS)
-    private static void setUp()
+    /**
+     * Private Functions (NOT TO BE USED BY OTHER MODDERS)
+     */
+    private static void setup()
     {
         try
         {
@@ -139,6 +143,6 @@ public class CarboniferousApi
     
     static
     {
-        setUp();
+        setup();
     }
 }

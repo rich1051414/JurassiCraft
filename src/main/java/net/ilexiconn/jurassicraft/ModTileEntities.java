@@ -7,36 +7,42 @@ import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
+import net.minecraft.tileentity.TileEntity;
 
 public class ModTileEntities implements IContentHandler
 {
     public void init()
     {
-        GameRegistry.registerTileEntity(TileDNACombinator.class, "jurassicraft:dna_combinator");
-        GameRegistry.registerTileEntity(TileDNAExtractor.class, "jurassicraft:dna_extractor");
-        GameRegistry.registerTileEntity(TileCultivate.class, "jurassicraft:cultivator");
-        GameRegistry.registerTileEntity(TileEgg.class, "jurassicraft:tile_egg");
-        GameRegistry.registerTileEntity(TileDinoPad.class, "jurassicraft:dino_pad");
-        GameRegistry.registerTileEntity(TileSecurityFenceLowCorner.class, "jurassicraft:BlockSecurityFenceLowCorner");
-        GameRegistry.registerTileEntity(TileSecurityFenceLowBase.class, "jurassicraft:BlockSecurityFenceLowBase");
-        GameRegistry.registerTileEntity(TileSecurityFenceLowGrid.class, "jurassicraft:BlockSecurityFenceLowGrid");
-        GameRegistry.registerTileEntity(TileSecurityFenceLowPole.class, "jurassicraft:BlockSecurityFenceLowPole");
+        registerTileEntity(TileDNACombinator.class, "dna_combinator");
+        registerTileEntity(TileDNAExtractor.class, "dna_extractor");
+        registerTileEntity(TileCultivate.class, "cultivator");
+        registerTileEntity(TileEgg.class, "tile_egg");
+        registerTileEntity(TileDinoPad.class, "dino_pad");
+        registerTileEntity(TileSecurityFenceLowCorner.class, "BlockSecurityFenceLowCorner");
+        registerTileEntity(TileSecurityFenceLowBase.class, "BlockSecurityFenceLowBase");
+        registerTileEntity(TileSecurityFenceLowGrid.class, "BlockSecurityFenceLowGrid");
+        registerTileEntity(TileSecurityFenceLowPole.class, "BlockSecurityFenceLowPole");
         
-        GameRegistry.registerTileEntity(TileEntityCompressor.class, "jurassicraft:Compressor");
-        GameRegistry.registerTileEntity(TileEntityGrinder.class, "jurassicraft:Grinder");
-        GameRegistry.registerTileEntity(TileEntityTimeBox.class, "jurassicraft:Timebox");
-        GameRegistry.registerTileEntity(TileEntityWallShell.class, "jurassicraft:Wallshell");
+        registerTileEntity(TileEntityCompressor.class, "Compressor");
+        registerTileEntity(TileEntityGrinder.class, "Grinder");
+        registerTileEntity(TileEntityTimeBox.class, "Timebox");
+        registerTileEntity(TileEntityWallShell.class, "Wallshell");
         
         /*
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumCorner.class, "jurassicraft:BlockSecurityFenceMediumCorner");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumBase.class, "jurassicraft:BlockSecurityFenceMediumBase");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumGrid.class, "jurassicraft:BlockSecurityFenceMediumGrid");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumPole.class, "jurassicraft:BlockSecurityFenceMediumPole");
+        registerTileEntity(TileSecurityFenceMediumCorner.class, "BlockSecurityFenceMediumCorner");
+        registerTileEntity(TileSecurityFenceMediumBase.class, "BlockSecurityFenceMediumBase");
+        registerTileEntity(TileSecurityFenceMediumGrid.class, "BlockSecurityFenceMediumGrid");
+        registerTileEntity(TileSecurityFenceMediumPole.class, "BlockSecurityFenceMediumPole");
         
-        GameRegistry.registerTileEntity(TileSecurityFenceHighCorner.class, "jurassicraft:BlockSecurityFenceHighCorner");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighBase.class, "jurassicraft:BlockSecurityFenceHighBase");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighGrid.class, "jurassicraft:BlockSecurityFenceHighGrid");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighPole.class, "jurassicraft:BlockSecurityFenceHighPole");
-        */
+        registerTileEntity(TileSecurityFenceHighCorner.class, "BlockSecurityFenceHighCorner");
+        registerTileEntity(TileSecurityFenceHighBase.class, "BlockSecurityFenceHighBase");
+        registerTileEntity(TileSecurityFenceHighGrid.class, "BlockSecurityFenceHighGrid");
+        registerTileEntity(TileSecurityFenceHighPole.class, "BlockSecurityFenceHighPole");
+         */
+    }
+    
+    private void registerTileEntity(Class<? extends TileEntity> te, String name)
+    {
+        GameRegistry.registerTileEntity(te, "jurassicraft:" + name);
     }
 }

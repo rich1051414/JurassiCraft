@@ -8,7 +8,7 @@ public class ItemSkull extends ItemGenericDNASource
     public ItemSkull(String name)
     {
         super(name, "Skull");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.jcItems);
     }
     
     public ItemDNA getCorrespondingDNA()

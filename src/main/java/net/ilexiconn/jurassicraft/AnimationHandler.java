@@ -20,8 +20,12 @@ public class AnimationHandler
     public static void sendAnimationPacket(IAnimatedEntity entity, int animationId)
     {
         if (isEffectiveClient())
+        {
             return;
+        }
+        
         entity.setAnimationId(animationId);
-        JurassiCraft.network.sendToAll(new MessageAnimation((byte) animationId, ((Entity) entity).getEntityId()));
+       
+        JurassiCraft.networkWrapper.sendToAll(new MessageAnimation((byte) animationId, ((Entity) entity).getEntityId()));
     }
 }

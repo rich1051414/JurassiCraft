@@ -49,11 +49,11 @@ public class BlockCoral extends BlockFlower
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        IconReference.coralTabulate = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "coral1");
-        IconReference.coralBrain = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "coral2");
-        IconReference.coralRed = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "coral3");
-        IconReference.coralRock = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "coral4");
-        IconReference.coralGlowing = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "coral5");
+        IconReference.coralTabulate = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "coral1");
+        IconReference.coralBrain = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "coral2");
+        IconReference.coralRed = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "coral3");
+        IconReference.coralRock = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "coral4");
+        IconReference.coralGlowing = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "coral5");
     }
     
     @Override

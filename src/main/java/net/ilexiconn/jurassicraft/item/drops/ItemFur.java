@@ -8,7 +8,7 @@ public class ItemFur extends ItemGenericDNASource
     public ItemFur(String name)
     {
         super(name, "Fur");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.jcItems);
     }
     
     public ItemDNA getCorrespondingDNA()

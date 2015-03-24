@@ -7,14 +7,13 @@ import net.minecraft.item.ItemStack;
 
 public class SlotGrinder extends Slot
 {
-    
     /** The player that is using the GUI where this slot resides. */
     private EntityPlayer thePlayer;
     
-    public SlotGrinder(EntityPlayer par1EntityPlayer, IInventory par2IInventory, int par3, int par4, int par5)
+    public SlotGrinder(EntityPlayer player, IInventory inventory, int par3, int par4, int par5)
     {
-        super(par2IInventory, par3, par4, par5);
-        this.thePlayer = par1EntityPlayer;
+        super(inventory, par3, par4, par5);
+        this.thePlayer = player;
     }
     
     @Override
@@ -24,15 +23,16 @@ public class SlotGrinder extends Slot
     }
     
     @Override
-    public ItemStack decrStackSize(int par1)
+    public ItemStack decrStackSize(int slot)
     {
-        return super.decrStackSize(par1);
+        return super.decrStackSize(slot);
     }
     
     @Override
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer player, ItemStack stack)
     {
-        this.onCrafting(par2ItemStack);
-        super.onPickupFromSlot(par1EntityPlayer, par2ItemStack);
+        this.onCrafting(stack);
+        
+        super.onPickupFromSlot(player, stack);
     }
 }

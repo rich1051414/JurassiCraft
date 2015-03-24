@@ -11,7 +11,6 @@ import net.minecraft.pathfinding.PathEntity;
 
 public class HerdAISurprise extends EntityAIHerd
 {
-    
     private EntityLivingBase theChosenOne;
     private VelociraptorHerd velociraptorHerd;
     
@@ -24,18 +23,24 @@ public class HerdAISurprise extends EntityAIHerd
     public void startExecuting()
     {
         super.startExecuting();
+        
         CreatureHerd herd = getHerd();
+        
         if (herd != null)
         {
             velociraptorHerd = (VelociraptorHerd) getHerd();
-            if (getCreature().worldObj != null)
+          
+            EntityJurassiCraftCreature creature = getCreature();
+            if (creature.worldObj != null)
             {
-                if (getCreature().boundingBox != null)
+                if (creature.boundingBox != null)
                 {
                     if (!velociraptorHerd.isSneakingUp())
                     {
-                        List<EntityLivingBase> entities = getCreature().worldObj.getEntitiesWithinAABB(EntityLivingBase.class, getCreature().boundingBox.expand(32, 32, 32));
+                        List<EntityLivingBase> entities = creature.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, creature.boundingBox.expand(32, 32, 32));
+                        
                         int i = 0;
+                       
                         while (theChosenOne == null || theChosenOne instanceof EntityVelociraptor)
                         {
                             theChosenOne = entities.get((int) (entities.size() * Math.random()));
@@ -47,6 +52,7 @@ public class HerdAISurprise extends EntityAIHerd
                                 break;
                             }
                         }
+                       
                         if (theChosenOne != null)
                             velociraptorHerd.attack(theChosenOne);
                     }
@@ -61,23 +67,31 @@ public class HerdAISurprise extends EntityAIHerd
     {
         if (theChosenOne == null)
             return false;
+        
         if (theChosenOne.isDead) // So sad i crai evrytim
         {
             return false;
         }
-        int index = getHerd().indexOf(getCreature());
+        
+        EntityJurassiCraftCreature creature = getCreature();
+        int index = getHerd().indexOf(creature);
+       
         float targetAngle = (float) Math.toRadians((360f / getHerd().size()) * index);
+       
         Vector3d chosenPos = new Vector3d(theChosenOne.posX, theChosenOne.posY, theChosenOne.posZ);
-        Vector3d creaturePos = new Vector3d(getCreature().posX, getCreature().posY, getCreature().posZ);
+        Vector3d creaturePos = new Vector3d(creature.posX, creature.posY, creature.posZ);
+       
         float angle = (float) Math.acos(chosenPos.angle(creaturePos));
         float delta = Math.abs(targetAngle - angle);
+       
         if (delta < Math.PI / 8f) // We are close enough
         {
-            getCreature().setSneaking(true);
-            PathEntity path = getCreature().getNavigator().getPathToXYZ(theChosenOne.posX, theChosenOne.posY, theChosenOne.posZ);
+            creature.setSneaking(true);
+            PathEntity path = creature.getNavigator().getPathToXYZ(theChosenOne.posX, theChosenOne.posY, theChosenOne.posZ);
+          
             if (path != null)
             {
-                getCreature().getNavigator().setPath(path, getCreature().getCreatureSpeed() * 4);
+                creature.getNavigator().setPath(path, creature.getCreatureSpeed() * 4);
             }
         }
         else
@@ -87,17 +101,18 @@ public class HerdAISurprise extends EntityAIHerd
             float dist = 20f;
             float xPos = (float) (Math.cos(angleToGo) * dist - 5 + theChosenOne.posX);
             float zPos = (float) (dist * Math.sin(angleToGo) - 5 + theChosenOne.posZ);
-            PathEntity path = getCreature().getNavigator().getPathToXYZ(xPos, theChosenOne.posY, zPos);
+            PathEntity path = creature.getNavigator().getPathToXYZ(xPos, theChosenOne.posY, zPos);
+           
             if (path != null)
             {
-                System.out.println("going to " + xPos + " " + zPos + " => " + theChosenOne);
-                getCreature().getNavigator().setPath(path, getCreature().getCreatureSpeed() * 4);
+                creature.getNavigator().setPath(path, creature.getCreatureSpeed() * 4);
             }
             else
             {
                 return false;
             }
         }
+        
         return true;
     }
     

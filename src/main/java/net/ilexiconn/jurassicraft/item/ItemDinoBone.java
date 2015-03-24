@@ -11,6 +11,6 @@ public class ItemDinoBone extends Item
         super();
         setUnlocalizedName("dinoBone");
         setTextureName(JurassiCraft.getModId() + "dinoBone");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(ModCreativeTabs.jcItems);
     }
 }

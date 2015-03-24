@@ -11,7 +11,7 @@ public class ItemOnAStick extends Item
         super();
         this.setUnlocalizedName(foodOnAStick + "OnAStick");
         this.setTextureName(JurassiCraft.getModId() + "ridingItems/" + foodOnAStick + "OnAStick");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.jcItems);
         this.setMaxStackSize(1);
         this.setMaxDamage(8000);
     }

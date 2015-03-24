@@ -9,7 +9,6 @@ import net.minecraft.world.World;
  */
 public class GeneratorHelper
 {
-    
     protected static boolean putBlock(World world, int dx, int dy, int dz, Block block, boolean priority)
     {
         return putBlockAndMetadata(world, dx, dy, dz, block, 0, priority);
@@ -33,6 +32,7 @@ public class GeneratorHelper
                 return false;
             }
         }
+        
         return true;
     }
     
@@ -54,10 +54,12 @@ public class GeneratorHelper
             for (byte dz = 0; dz <= rad; dz = (byte) (dz + 1))
             {
                 int dist = Math.max(dx, dz) + (Math.min(dx, dz) >> 1);
+               
                 if ((dx == 3) && (dz == 3))
                 {
                     dist = 6;
                 }
+                
                 if (dist <= rad)
                 {
                     putBlockAndMetadata(world, sx + dx, sy, sz + dz, block, metaValue, priority);

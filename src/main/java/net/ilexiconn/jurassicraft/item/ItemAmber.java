@@ -12,6 +12,6 @@ public class ItemAmber extends Item implements IDNASource
         super();
         setUnlocalizedName("amber");
         setTextureName(JurassiCraft.getModId() + "amber");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(ModCreativeTabs.jcItems);
     }
 }

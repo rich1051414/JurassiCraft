@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.ai;
 
 public class States
 {
-    
     /**
      * TAMED represents whether the creature is tamed or not.
      */

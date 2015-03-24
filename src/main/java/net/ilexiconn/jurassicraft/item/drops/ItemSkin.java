@@ -26,7 +26,7 @@ public class ItemSkin extends ItemGenericDNASource
     public ItemSkin(String name)
     {
         super(name, "Skin");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.jcItems);
         this.setHasSubtypes(true);
     }
     

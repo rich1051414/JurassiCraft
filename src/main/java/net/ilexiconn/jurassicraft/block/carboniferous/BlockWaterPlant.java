@@ -64,10 +64,10 @@ public class BlockWaterPlant extends BlockFlower
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.plantTop = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "WaterplantsStemTop");
-        this.plantMiddle = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "WaterplantsStemMiddle");
-        this.plantBottom = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "WaterplantsStemBottom");
-        this.plantAll = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "WaterplantsStemWhole");
+        this.plantTop = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "WaterplantsStemTop");
+        this.plantMiddle = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "WaterplantsStemMiddle");
+        this.plantBottom = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "WaterplantsStemBottom");
+        this.plantAll = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "WaterplantsStemWhole");
     }
     
     @Override

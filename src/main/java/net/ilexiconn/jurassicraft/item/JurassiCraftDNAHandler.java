@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class JurassiCraftDNAHandler
 {
-    
     private static Random random = new Random();
     
     /**
@@ -13,6 +12,7 @@ public class JurassiCraftDNAHandler
     public static String createDefaultDNA()
     {
         String newDNA = "";
+        
         for (int i = 0; i < 15; i++)
         {
             switch (random.nextInt(4))
@@ -33,10 +33,12 @@ public class JurassiCraftDNAHandler
                     newDNA = newDNA + "_FAIL_";
             }
         }
+        
         if (newDNA.length() != 15)
         {
             newDNA = "FAIL";
         }
+        
         return newDNA;
     }
     
@@ -46,6 +48,7 @@ public class JurassiCraftDNAHandler
     public static String createDNA(int size)
     {
         String newDNA = "";
+        
         for (int i = 0; i < size; i++)
         {
             switch (random.nextInt(4))
@@ -66,10 +69,12 @@ public class JurassiCraftDNAHandler
                     newDNA = newDNA + "_FAIL_";
             }
         }
+        
         if (newDNA.length() != size)
         {
             newDNA = "FAIL";
         }
+        
         return newDNA;
     }
     
@@ -81,12 +86,14 @@ public class JurassiCraftDNAHandler
         if (dna != null && dna.length() > 0)
         {
             int changes = (int) (dna.length() * (100 - quality) / 100);
+          
             for (int i = 0; i < changes; i++)
             {
                 int charAt = random.nextInt(dna.length());
                 String dna1 = dna.substring(0, charAt);
                 String dna2 = dna.substring(charAt + 1, dna.length());
                 String charChanged = String.valueOf(dna.charAt(charAt));
+             
                 if (charChanged.equals("A"))
                 {
                     switch (random.nextInt(3))
@@ -155,6 +162,7 @@ public class JurassiCraftDNAHandler
                             charChanged = "T";
                     }
                 }
+                
                 dna = dna1 + charChanged + dna2;
             }
         }
@@ -163,6 +171,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return dna;
     }
     
@@ -172,6 +181,7 @@ public class JurassiCraftDNAHandler
     public static String mixTwoDNAs(String dna1, String dna2)
     {
         String newDNA = "";
+        
         if (dna1.length() > 0 && dna2.length() > 0 && dna1.length() == dna2.length())
         {
             for (int i = 0; i < dna1.length(); i++)
@@ -189,8 +199,10 @@ public class JurassiCraftDNAHandler
         else
         {
             System.out.println("Invalid DNA mixture!");
+            
             newDNA = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return newDNA;
     }
     
@@ -201,6 +213,7 @@ public class JurassiCraftDNAHandler
     public static float getDefaultGenderDNAQuality(String dna)
     {
         float quality = 0.5F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = 0; i < 3; i++)
@@ -227,6 +240,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return quality;
     }
     
@@ -236,6 +250,7 @@ public class JurassiCraftDNAHandler
     public static float getGenderDNAQuality(String dna, int fromChar, int toChar)
     {
         float quality = 0.5F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = fromChar; i < toChar + 1; i++)
@@ -262,6 +277,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
     
@@ -272,6 +288,7 @@ public class JurassiCraftDNAHandler
     public static float getDefaultTextureDNAQuality(String dna)
     {
         float quality = 0.5F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = 3; i < 7; i++)
@@ -298,6 +315,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
     
@@ -307,6 +325,7 @@ public class JurassiCraftDNAHandler
     public static float getTextureDNAQuality(String dna, int fromChar, int toChar)
     {
         float quality = 0.5F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = fromChar; i < toChar + 1; i++)
@@ -333,6 +352,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
     
@@ -343,6 +363,7 @@ public class JurassiCraftDNAHandler
     public static float getDefaultGeneticDNAQuality(String dna)
     {
         float quality = 1.0F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = 7; i < 15; i++)
@@ -369,6 +390,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
     
@@ -378,6 +400,7 @@ public class JurassiCraftDNAHandler
     public static float getGeneticDNAQuality(String dna, int fromChar, int toChar)
     {
         float quality = 1.0F;
+        
         if (dna != null && dna.length() > 0)
         {
             for (int i = fromChar; i < toChar + 1; i++)
@@ -404,6 +427,7 @@ public class JurassiCraftDNAHandler
             System.out.println("Invalid DNA!");
             dna = JurassiCraftDNAHandler.createDefaultDNA();
         }
+        
         return (Float.valueOf((int) (100000 * quality))) / 100000.0F;
     }
 }

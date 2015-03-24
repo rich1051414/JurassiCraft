@@ -144,8 +144,8 @@ public class BlockLog extends Block
         
         for (int i = 0; i < this.iconList.length; ++i)
         {
-            this.iconList[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + iconPaths[i]);
-            this.iconTreeTop[i] = par1IconRegister.registerIcon((treeTopPaths[i].equals("log_oak_top") ? "" : Properties.TEX_PACkAGE) + treeTopPaths[i]);
+            this.iconList[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + iconPaths[i]);
+            this.iconTreeTop[i] = par1IconRegister.registerIcon((treeTopPaths[i].equals("log_oak_top") ? "" : Properties.TEX_PACKAGE) + treeTopPaths[i]);
         }
     }
     

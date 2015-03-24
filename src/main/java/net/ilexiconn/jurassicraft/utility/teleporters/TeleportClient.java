@@ -12,7 +12,6 @@ import java.util.Random;
  **/
 public class TeleportClient
 {
-    
     public static float prevTimeInPortal;
     public static float timeInPortal;
     public static boolean inPortal = false;
@@ -30,11 +29,14 @@ public class TeleportClient
             {
                 mc.displayGuiScreen((GuiScreen) null);
             }
+            
             timeInPortal += 0.0125F;
+            
             if (timeInPortal >= 1.0F)
             {
                 timeInPortal = 1.0F;
             }
+            
             inPortal = false;
         }
         else
@@ -49,6 +51,7 @@ public class TeleportClient
                 timeInPortal = 0.0F;
             }
         }
+        
         if (timeUntilPortal > 0)
         {
             --timeUntilPortal;

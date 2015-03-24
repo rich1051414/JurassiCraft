@@ -50,7 +50,7 @@ public class BlockPlanks extends Block
         
         for (int i = 0; i < this.iconArray.length; ++i)
         {
-            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + woodTextureTypes[i]);
+            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + woodTextureTypes[i]);
         }
     }
 }

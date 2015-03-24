@@ -12,32 +12,39 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
  */
 public class BonemealUseHandler
 {
-    
     @SubscribeEvent
-    public void action(BonemealEvent par1)
+    public void action(BonemealEvent event)
     {
-        if (par1.block == ModBlocks.saplings_1)
+        if (event.block == ModBlocks.saplings_1)
         {
-            if (applyBonemealSapling(par1.world, par1.x, par1.y, par1.z))
+            World world = event.world;
+            
+            int x = event.x;
+            int y = event.y;
+            int z = event.z;
+            
+            if (applyBonemealSapling(world, x, y, z))
             {
-                if (!par1.world.isRemote)
+                if (!world.isRemote)
                 {
-                    par1.world.playAuxSFX(2005, par1.x, par1.y, par1.z, 0);
+                    world.playAuxSFX(2005, x, y, z, 0);
                 }
-                par1.setResult(Result.ALLOW);
+                
+                event.setResult(Result.ALLOW);
             }
         }
     }
     
-    public static boolean applyBonemealSapling(World par1World, int par2, int par3, int par4)
+    public static boolean applyBonemealSapling(World world, int x, int y, int z)
     {
-        if (!par1World.isRemote)
+        if (!world.isRemote)
         {
-            if ((double) par1World.rand.nextFloat() < 0.45D)
+            if ((double) world.rand.nextFloat() < 0.45D)
             {
-                ((BlockSapling) ModBlocks.saplings_1).func_96477_c(par1World, par2, par3, par4, par1World.rand);
+                ((BlockSapling) ModBlocks.saplings_1).func_96477_c(world, x, y, z, world.rand);
             }
         }
+        
         return true;
     }
 }

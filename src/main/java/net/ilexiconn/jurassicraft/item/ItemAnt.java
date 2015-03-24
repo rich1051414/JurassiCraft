@@ -10,7 +10,6 @@ import net.minecraft.util.IIcon;
 
 public class ItemAnt extends ItemFood
 {
-    
     public ItemAnt(int par2, float par3)
     {
         super(par2, par3, false);
@@ -23,11 +22,11 @@ public class ItemAnt extends ItemFood
     {
         if (this == ModItems.cookedAnt)
         {
-            this.itemIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "cookedAnt");
+            this.itemIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "cookedAnt");
         }
         else
         {
-            this.itemIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "ant");
+            this.itemIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "ant");
         }
     }
     

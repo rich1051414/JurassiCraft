@@ -19,7 +19,7 @@ public class ItemFossilModel extends Item
         this.setMaxStackSize(8);
         this.setUnlocalizedName(fossilName + "_Fossil");
         this.setTextureName(JurassiCraft.getModId() + fossilName + "_Fossil");
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(ModCreativeTabs.jcBlocks);
     }
     
     public int getFossil(ItemStack fossil)

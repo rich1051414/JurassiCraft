@@ -9,15 +9,14 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
  */
 public class ArrowEventHandler
 {
-    
     @SubscribeEvent
-    public void action(ArrowNockEvent par1)
+    public void arrowNock(ArrowNockEvent event)
     {
         
     }
     
     @SubscribeEvent
-    public void action(ArrowLooseEvent event)
+    public void arrowLoose(ArrowLooseEvent event)
     {
         
     }

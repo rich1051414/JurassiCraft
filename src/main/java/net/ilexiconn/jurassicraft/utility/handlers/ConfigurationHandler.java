@@ -8,7 +8,6 @@ import net.ilexiconn.jurassicraft.api.Properties;
  */
 public class ConfigurationHandler
 {
-    
     public static void loadConfig(Configuration config)
     {
         config.load();

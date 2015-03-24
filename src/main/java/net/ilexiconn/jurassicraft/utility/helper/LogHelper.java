@@ -10,7 +10,6 @@ import java.util.logging.Logger;
  */
 public class LogHelper
 {
-    
     private static Logger carboniferousLogger = Logger.getLogger(Reference.MOD_ID);
     
     public static void init()

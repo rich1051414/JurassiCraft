@@ -39,6 +39,51 @@ public class ModItems implements IContentHandler
     
     public void init()
     {
+        initJurassicraftItems();
+        initCarboniferousItems();
+        
+        registerCreatureItems();
+        
+        gameRegistry();
+    }
+
+    private boolean isEven(int i)
+    {
+        return ((int) i / 2) == ((float) i / 2);
+    }
+    
+    private void registerCreatureItems()
+    {
+        for (Creature creature : CreatureManager.getCreatures())
+        {
+            int itemTypes = creature.getAddedItemTypes();
+            
+            if(itemTypes > 0)
+            {
+                creature.addDNA();
+                
+                if(isEven(itemTypes))
+                    creature.addSyringe();
+                else
+                    creature.addEgg();
+                
+                if(itemTypes >= 3)
+                    creature.addMeat();
+                
+                if(itemTypes == 5 || itemTypes == 6 || itemTypes == 9)
+                    creature.addSkull();
+                
+                if(itemTypes == 7 || itemTypes == 9 || itemTypes == 10)
+                    creature.addSkin();
+                
+                if(itemTypes == 8)
+                    creature.addFur();
+            }
+        }
+    }
+
+    private void initJurassicraftItems()
+    {
         amber = new ItemAmber();
         fossil = new ItemFossil();
         dinoBone = new ItemDinoBone();
@@ -53,9 +98,10 @@ public class ModItems implements IContentHandler
         wheatOnAStick = new ItemOnAStick("Wheat");
         spawnEgg = new ItemSpawnEggJurassiCraft();
         net = new ItemNet();
-        
-        // Carboniferous Items
-        
+    }
+
+    private void initCarboniferousItems()
+    {
         multiItems = new ItemMultipleItems().setUnlocalizedName("carbon.multipleItems");
         grindingStones = new ItemGrindingStones().setUnlocalizedName("carbon.grindingStones");
         rawAnt = new ItemAnt(1, 0.3F).setUnlocalizedName("carbon.rawAnt");
@@ -64,83 +110,6 @@ public class ModItems implements IContentHandler
         cookedDragonfly = new ItemCustomFood(4, 0.2F, false).setUnlocalizedName("carbon.cookedDragonfly");
         rawAmphibian = new ItemCustomFood(4, 0.7F, true).setUnlocalizedName("carbon.rawAmphibian");
         cookedAmphibian = new ItemCustomFood(6, 1.1F, true).setUnlocalizedName("carbon.cookedAmphibian");
-        
-        for (Creature creature : CreatureManager.getCreatures())
-        {
-            switch (creature.getAddedItemTypes())
-            {
-                case 0:
-                    /** Creature not implemented yet  */
-                    break;
-                case 1:
-                    /** DNA + Egg */
-                    creature.addDNA();
-                    creature.addEgg();
-                    break;
-                case 2:
-                    /** DNA + Syringe */
-                    creature.addDNA();
-                    creature.addSyringe();
-                    break;
-                case 3:
-                    /** DNA + Egg + Meat */
-                    creature.addDNA();
-                    creature.addEgg();
-                    creature.addMeat();
-                    break;
-                case 4:
-                    /** DNA + Syringe + Meat */
-                    creature.addDNA();
-                    creature.addSyringe();
-                    creature.addMeat();
-                    break;
-                case 5:
-                    /** DNA + Egg + Meat + Skull */
-                    creature.addDNA();
-                    creature.addEgg();
-                    creature.addMeat();
-                    creature.addSkull();
-                    break;
-                case 6:
-                    /** DNA + Syringe + Meat + Skull */
-                    creature.addDNA();
-                    creature.addSyringe();
-                    creature.addMeat();
-                    creature.addSkull();
-                    break;
-                case 7:
-                    /** DNA + Egg + Meat + Skin */
-                    creature.addDNA();
-                    creature.addEgg();
-                    creature.addMeat();
-                    creature.addSkin();
-                    break;
-                case 8:
-                    /** DNA + Syringe + Meat + Fur */
-                    creature.addDNA();
-                    creature.addSyringe();
-                    creature.addMeat();
-                    creature.addFur();
-                    break;
-                case 9:
-                    /** DNA + Egg + Meat + Skull + Skin */
-                    creature.addDNA();
-                    creature.addEgg();
-                    creature.addMeat();
-                    creature.addSkull();
-                    creature.addSkin();
-                    break;
-                case 10:
-                    /** DNA + Syringe + Meat + Skin */
-                    creature.addDNA();
-                    creature.addSyringe();
-                    creature.addMeat();
-                    creature.addSkin();
-                    break;
-            }
-        }
-        
-        gameRegistry();
     }
     
     public void gameRegistry()
@@ -150,8 +119,11 @@ public class ModItems implements IContentHandler
             try
             {
                 Item item = (Item) field.get(this);
+                
                 if (field.getAnnotations().length == 0)
+                {
                     GameRegistry.registerItem(item, item.getUnlocalizedName());
+                }
             }
             catch (IllegalAccessException e)
             {

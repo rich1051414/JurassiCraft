@@ -315,6 +315,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 }
             }
         }
+        
         return false;
     }
     
@@ -332,11 +333,14 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             else
             {
                 this.slots[0].stackSize--;
+               
                 if (this.slots[0].stackSize <= 0)
                 {
                     this.slots[0] = (ItemStack) null;
                 }
+                
                 this.setWaterStored((byte) (this.getWaterStored() + 1));
+              
                 if (this.slots[1] == (ItemStack) null)
                 {
                     ItemStack waterBucket = new ItemStack(Items.bucket);
@@ -368,6 +372,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                     return true;
                 }
             }
+           
             return false;
         }
     }
@@ -380,6 +385,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         if (!worldObj.isRemote)
         {
             int id = JurassiCraftFoodNutrients.FOODLIST.get(this.slots[3].getItem());
+        
             if (this.slots[3].getItem() instanceof ItemBucketMilk)
             {
                 this.slots[3] = (ItemStack) null;
@@ -388,38 +394,47 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             else
             {
                 this.slots[3].stackSize--;
+               
                 if (this.slots[3].stackSize <= 0)
                 {
                     this.slots[3] = (ItemStack) null;
                 }
             }
+            
             if (proximateValue < this.getMaximumValueOfNutrients())
             {
                 proximateValue = (short) (proximateValue + (800 + random.nextInt(201)) * (JurassiCraftFoodNutrients.values()[id].getProximate()));
+               
                 if (proximateValue > this.getMaximumValueOfNutrients())
                 {
                     proximateValue = (short) this.getMaximumValueOfNutrients();
                 }
             }
+         
             if (mineralValue < this.getMaximumValueOfNutrients())
             {
                 mineralValue = (short) (mineralValue + (900 + random.nextInt(101)) * (JurassiCraftFoodNutrients.values()[id].getMinerals()));
+               
                 if (mineralValue > this.getMaximumValueOfNutrients())
                 {
                     mineralValue = (short) this.getMaximumValueOfNutrients();
                 }
             }
+            
             if (vitaminValue < this.getMaximumValueOfNutrients())
             {
                 vitaminValue = (short) (vitaminValue + (900 + random.nextInt(101)) * (JurassiCraftFoodNutrients.values()[id].getVitamins()));
+               
                 if (vitaminValue > this.getMaximumValueOfNutrients())
                 {
                     vitaminValue = (short) this.getMaximumValueOfNutrients();
                 }
             }
+            
             if (lipidValue < this.getMaximumValueOfNutrients())
             {
                 lipidValue = (short) (lipidValue + (980 + random.nextInt(101)) * (JurassiCraftFoodNutrients.values()[id].getLipids()));
+               
                 if (lipidValue > this.getMaximumValueOfNutrients())
                 {
                     lipidValue = (short) this.getMaximumValueOfNutrients();
@@ -457,6 +472,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 }
             }
         }
+     
         return false;
     }
     
@@ -508,6 +524,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         if (creature != null)
         {
             int speed = creature.getCultivateSpeed();
+           
             for (Byte i = 0; i <= 10 - 1; i++)
             {
                 if (i > 0)
@@ -561,6 +578,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     public void updateEntity()
     {
         animationTick++;
+       
         if (animationTick == Integer.MAX_VALUE)
             animationTick = 0;
         
@@ -572,10 +590,12 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 {
                     this.consumeWaterBucket();
                 }
+                
                 if (canCansumeFood())
                 {
                     this.consumeFood();
                 }
+                
                 if (this.getWaterStored() >= 3)
                 {
                     if ((this.getProximateValue() > 0) && (this.getMineralValue() > 0) && (this.getVitaminValue() > 0) && (this.getLipidValue() > 0))
@@ -594,6 +614,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
             else
             {
                 this.cultivateTime++;
+               
                 if (this.growthRateList.containsKey(cultivateTime))
                 {
                     this.setCreatureSize(this.cultivateTime, this.cultivateSpeed);
@@ -605,6 +626,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                     this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                     this.shouldUpdate = false;
                 }
+               
                 if (this.cultivateTime >= this.cultivateSpeed)
                 {
                     this.cultivateCreature();
@@ -665,23 +687,26 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     }
     
     @Override
-    public ItemStack decrStackSize(int i, int stackSize)
+    public ItemStack decrStackSize(int slot, int stackSize)
     {
-        if (this.slots[i] != null)
+        if (this.slots[slot] != null)
         {
             ItemStack splitedStack;
-            if (this.slots[i].stackSize <= stackSize)
+          
+            if (this.slots[slot].stackSize <= stackSize)
             {
-                splitedStack = this.slots[i];
-                this.slots[i] = null;
+                splitedStack = this.slots[slot];
+                
+                this.slots[slot] = null;
+                
                 return splitedStack;
             }
             else
             {
-                splitedStack = this.slots[i].splitStack(stackSize);
-                if (this.slots[i].stackSize == 0)
+                splitedStack = this.slots[slot].splitStack(stackSize);
+                if (this.slots[slot].stackSize == 0)
                 {
-                    this.slots[i] = null;
+                    this.slots[slot] = null;
                 }
                 return splitedStack;
             }
@@ -698,7 +723,9 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         if (this.slots[i] != null)
         {
             ItemStack itemStack = this.slots[i];
+         
             this.slots[i] = null;
+            
             return itemStack;
         }
         else
@@ -708,12 +735,13 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     }
     
     @Override
-    public void setInventorySlotContents(int i, ItemStack itemStack)
+    public void setInventorySlotContents(int slot, ItemStack stack)
     {
-        this.slots[i] = itemStack;
-        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
+        this.slots[slot] = stack;
+        
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
         {
-            itemStack.stackSize = this.getInventoryStackLimit();
+            stack.stackSize = this.getInventoryStackLimit();
         }
     }
     
@@ -744,13 +772,11 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     @Override
     public void openInventory()
     {
-        
     }
     
     @Override
     public void closeInventory()
     {
-        
     }
     
     @Override
@@ -800,17 +826,20 @@ public class TileCultivate extends TileEntity implements ISidedInventory
         nbt.setShort("Lipid", lipidValue);
         nbt.setShort("cultivateTime", cultivateTime);
         nbt.setFloat("CreatureSize", creatureSize);
+     
         NBTTagList list = new NBTTagList();
-        for (int i = 0; i < this.slots.length; i++)
+     
+        for (int slot = 0; slot < this.slots.length; slot++)
         {
-            if (this.slots[i] != null)
+            if (this.slots[slot] != null)
             {
                 NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte) i);
-                this.slots[i].writeToNBT(compound);
+                compound.setByte("Slot", (byte) slot);
+                this.slots[slot].writeToNBT(compound);
                 list.appendTag(compound);
             }
         }
+        
         nbt.setInteger("rotation", rotation);
         nbt.setTag("Items", list);
     }
@@ -820,18 +849,20 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     {
         super.readFromNBT(nbt);
         this.shouldUpdate = true;
-        NBTTagList list = nbt.getTagList("Items", 10);
+        NBTTagList items = nbt.getTagList("Items", 10);
         this.slots = new ItemStack[this.getSizeInventory()];
-        for (int i = 0; i < list.tagCount(); i++)
+       
+        for (int item = 0; item < items.tagCount(); item++)
         {
-            NBTTagCompound compound = (NBTTagCompound) list.getCompoundTagAt(i);
-            byte k = compound.getByte("Slot");
+            NBTTagCompound compound = (NBTTagCompound) items.getCompoundTagAt(item);
+            byte slot = compound.getByte("Slot");
             
-            if (k >= 0 && k < this.slots.length)
+            if (slot >= 0 && slot < this.slots.length)
             {
-                this.slots[k] = ItemStack.loadItemStackFromNBT(compound);
+                this.slots[slot] = ItemStack.loadItemStackFromNBT(compound);
             }
         }
+        
         this.creature = CreatureManager.getCreatureFromId(nbt.getByte("CreatureID"));
         this.creatureSize = nbt.getShort("CreatureSize");
         this.waterStored = nbt.getByte("Water");
@@ -854,6 +885,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
     {
         NBTTagCompound compound = new NBTTagCompound();
         this.writeToNBT(compound);
+ 
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, compound);
     }
     

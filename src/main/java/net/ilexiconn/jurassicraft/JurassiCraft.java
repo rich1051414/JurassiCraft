@@ -43,6 +43,7 @@ public class JurassiCraft
 {
     @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy")
     public static CommonProxy proxy;
+ 
     @Mod.Instance("jurassicraft")
     public static JurassiCraft instance;
     
@@ -54,7 +55,7 @@ public class JurassiCraft
     
     public static JsonEntityParser entityParser;
     public static ContentLoader contentLoader;
-    public static SimpleNetworkWrapper network;
+    public static SimpleNetworkWrapper networkWrapper;
     
     public static final String[] fTimer = new String[] { "field_71428_T", "S", "timer" };
     
@@ -90,9 +91,10 @@ public class JurassiCraft
         
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("jcWrapper");
-        network.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
-        network.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
+        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
+      
+        networkWrapper.registerMessage(MessageAnimation.Handler.class, MessageAnimation.class, 0, Side.CLIENT);
+        networkWrapper.registerMessage(MessageFence.Handler.class, MessageFence.class, 1, Side.SERVER);
         
         GameRegistry.registerWorldGenerator(new WorldGenAmberOre(), 1);
         GameRegistry.registerWorldGenerator(new WorldGenFossilOre(), 1);

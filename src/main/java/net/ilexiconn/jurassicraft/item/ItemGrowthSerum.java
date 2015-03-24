@@ -17,7 +17,7 @@ public class ItemGrowthSerum extends Item
         super();
         setUnlocalizedName("growthSerum");
         setTextureName(JurassiCraft.getModId() + "growth_Serum");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(ModCreativeTabs.jcItems);
     }
     
     @Override

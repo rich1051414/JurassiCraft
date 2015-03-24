@@ -42,7 +42,7 @@ public class BlockCultivateBottom extends BlockContainer
         super(Material.cactus); // Yes..., Cactus xD But I hate cacti :(
         this.setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
         this.setBlockTextureName(JurassiCraft.getModId() + "cultivate");
-        this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);
+        this.setCreativeTab(lit ? null : ModCreativeTabs.jcBlocks);
         this.setHardness(2.0F);
         this.setBlockBounds(0.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         if (lit)
@@ -108,9 +108,11 @@ public class BlockCultivateBottom extends BlockContainer
         else if (!player.isSneaking())
         {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
+           
             if (tileEntity instanceof TileCultivate)
             {
                 TileCultivate tileCultivate = (TileCultivate) tileEntity;
+              
                 if (tileCultivate.isUseableByPlayer(player) && !tileCultivate.isHatching())
                 {
                     player.openGui(JurassiCraft.instance, 0, world, x, y, z);
@@ -123,6 +125,7 @@ public class BlockCultivateBottom extends BlockContainer
                 }
             }
         }
+        
         return false;
     }
     
@@ -136,39 +139,49 @@ public class BlockCultivateBottom extends BlockContainer
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
+      
         if (tileEntity instanceof TileCultivate)
         {
             TileCultivate tileCultivate = (TileCultivate) tileEntity;
+            
             if (tileCultivate.hasItems())
             {
                 for (int i = 0; i < tileCultivate.getSizeInventory(); i++)
                 {
                     ItemStack itemstack = tileCultivate.getStackInSlot(i);
+                   
                     if (itemstack != null)
                     {
                         float f = world.rand.nextFloat() * 0.8F + 0.1F;
                         float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
                         float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
+                       
                         while (itemstack.stackSize > 0)
                         {
                             int j = world.rand.nextInt(21) + 10;
+                           
                             if (j > itemstack.stackSize)
                             {
                                 j = itemstack.stackSize;
                             }
+                           
                             itemstack.stackSize -= j;
                             EntityItem item = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+                          
                             if (itemstack.hasTagCompound())
                             {
                                 item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
+                           
                             world.spawnEntityInWorld(item);
                         }
                     }
                 }
+                
                 world.func_147453_f(x, y, z, block);
             }
         }
+        
         super.breakBlock(world, x, y, z, block, metadata);
     }
     
@@ -196,11 +209,15 @@ public class BlockCultivateBottom extends BlockContainer
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB box, List list, Entity entity)
     {
         AxisAlignedBB[] aabbs = BlockCultivate.boxes[1];
+        
         for (AxisAlignedBB aabb : aabbs)
         {
             AxisAlignedBB aabbTmp = aabb.getOffsetBoundingBox(x, y, z);
+         
             if (box.intersectsWith(aabbTmp))
+            {
                 list.add(aabbTmp);
+            }
         }
     }
     
@@ -209,9 +226,11 @@ public class BlockCultivateBottom extends BlockContainer
     {
         AxisAlignedBB[] aabbs = BlockCultivate.boxes[1];
         MovingObjectPosition closest = null;
+   
         for (AxisAlignedBB aabb : aabbs)
         {
             MovingObjectPosition mop = aabb.getOffsetBoundingBox(x, y, z).calculateIntercept(origin, direction);
+          
             if (mop != null)
             {
                 if (closest != null && mop.hitVec.distanceTo(origin) < closest.hitVec.distanceTo(origin))
@@ -220,12 +239,14 @@ public class BlockCultivateBottom extends BlockContainer
                     closest = mop;
             }
         }
+        
         if (closest != null)
         {
             closest.blockX = x;
             closest.blockY = y;
             closest.blockZ = z;
         }
+        
         return closest;
     }
 }

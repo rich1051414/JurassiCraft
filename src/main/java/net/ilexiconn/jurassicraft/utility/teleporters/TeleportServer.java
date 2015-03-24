@@ -49,8 +49,8 @@ public class TeleportServer
                 }
                 
                 JurassiCraft.NETWORK_MANAGER.sendPacketToPlayer(new PacketTeleport(), player);
+               
                 player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dimension, new TeleporterDino(player.mcServer.worldServerForDimension(dimension)));
-                
             }
             
             this.inPortal = false;
@@ -61,11 +61,13 @@ public class TeleportServer
             {
                 this.timeInPortal -= 0.05F;
             }
+            
             if (this.timeInPortal < 0.0F)
             {
                 this.timeInPortal = 0.0F;
             }
         }
+        
         if (this.timeUntilPortal > 0)
         {
             --this.timeUntilPortal;

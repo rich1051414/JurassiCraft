@@ -28,7 +28,7 @@ public class ItemSpawnEggJurassiCraft extends Item
     {
         this.setUnlocalizedName("spawnEgg");
         this.setTextureName(JurassiCraft.getModId() + "egg_Generic");
-        this.setCreativeTab(ModCreativeTabs.spawnEggs);
+        this.setCreativeTab(ModCreativeTabs.jcSpawnEggs);
         this.setHasSubtypes(true);
     }
     

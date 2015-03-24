@@ -8,7 +8,7 @@ public class ItemBristles extends ItemGenericDNASource
     public ItemBristles(String name)
     {
         super(name, "Bristles");
-        this.setCreativeTab(ModCreativeTabs.items);
+        this.setCreativeTab(ModCreativeTabs.jcItems);
     }
     
     public ItemDNA getCorrespondingDNA()

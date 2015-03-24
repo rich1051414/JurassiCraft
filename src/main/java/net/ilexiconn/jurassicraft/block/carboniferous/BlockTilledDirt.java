@@ -164,8 +164,8 @@ public class BlockTilledDirt extends Block
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.field_94441_a = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "tilledDirt_wet");
-        this.field_94440_b = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "tilledDirt_dry");
+        this.field_94441_a = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "tilledDirt_wet");
+        this.field_94440_b = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "tilledDirt_dry");
     }
     
     @Override

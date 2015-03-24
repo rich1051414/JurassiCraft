@@ -29,6 +29,6 @@ public class BlockCarboniferousSand extends BlockSand
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACkAGE + "sand");
+        this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACKAGE + "sand");
     }
 }

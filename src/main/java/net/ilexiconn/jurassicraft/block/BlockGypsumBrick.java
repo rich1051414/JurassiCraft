@@ -16,7 +16,7 @@ public class BlockGypsumBrick extends Block
         setBlockName("block_Gypsum_Brick");
         this.setStepSound(soundTypeStone);
         this.setHarvestLevel("pickaxe", 1);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(ModCreativeTabs.jcBlocks);
         setBlockTextureName(JurassiCraft.getModId() + "block_Gypsum_Brick");
     }
 }

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.ai;
+package net.ilexiconn.jurassicraft.ai.animation;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
@@ -35,6 +35,7 @@ public abstract class AIAnimation extends EntityAIBase
     {
         if (isAutomatic())
             return this.animatedEntity.getAnimationId() == getAnimationId();
+       
         return shouldAnimate();
     }
     
@@ -42,6 +43,7 @@ public abstract class AIAnimation extends EntityAIBase
     {
         if (!isAutomatic())
             AnimationHandler.sendAnimationPacket(this.animatedEntity, getAnimationId());
+       
         this.animatedEntity.setAnimationTick(0);
     }
     

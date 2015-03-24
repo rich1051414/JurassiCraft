@@ -10,7 +10,6 @@ import net.ilexiconn.jurassicraft.packet.PacketWallShell;
  */
 public enum PacketType
 {
-    
     GRID_SOUND(PacketGrindSound.class), TELEPORT(PacketTeleport.class), TILE_UPDATE(PacketTileUpdate.class), WALL_SHELL(PacketWallShell.class);
     
     public Class<? extends IPacket> packetClass;
@@ -30,6 +29,7 @@ public enum PacketType
         for (PacketType type : values())
             if (type.packetClass == packetClass)
                 return (byte) type.ordinal();
+        
         return -1;
     }
 }

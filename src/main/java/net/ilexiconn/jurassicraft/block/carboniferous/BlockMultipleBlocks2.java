@@ -44,7 +44,7 @@ public class BlockMultipleBlocks2 extends Block
     public BlockMultipleBlocks2()
     {
         super(Material.rock);
-        this.setCreativeTab(ModCreativeTabs.Carboniferous);
+        this.setCreativeTab(ModCreativeTabs.carboniferous);
     }
     
     @Override
@@ -120,21 +120,21 @@ public class BlockMultipleBlocks2 extends Block
     
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.graniteSunstone_off = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "graniteSunstone_off"); //0
-        this.graniteSunstone_on = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "graniteSunstone_on"); //1
-        this.chiseledGraniteBricks = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "ChiseledGraniteBricks"); //2
-        this.graniteTiles = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "GraniteTiles"); //3
-        this.limestoneTiles = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "LimestoneTiles"); //4
-        this.checkeredTiles = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "CheckeredTiles"); //5
-        this.oreCarbon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreCarbon"); //6
-        this.chiseledLimestone = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "chiseledLimestone"); //7
-        this.pyriteBricks = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "bricksPyrite"); //8
-        this.blockHematite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreStorage_Hematite"); //9
-        this.decorativeLimestone = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "decoBricksLimestone"); //10
-        this.basalt = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "basalt"); //11
-        this.basaltBrick = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "basaltBrick"); //12
-        this.cobbedGranite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "webbedGranite"); //13
-        this.chiseledBasalt = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "chiseledBasalt"); //14
+        this.graniteSunstone_off = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "graniteSunstone_off"); //0
+        this.graniteSunstone_on = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "graniteSunstone_on"); //1
+        this.chiseledGraniteBricks = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "ChiseledGraniteBricks"); //2
+        this.graniteTiles = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "GraniteTiles"); //3
+        this.limestoneTiles = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "LimestoneTiles"); //4
+        this.checkeredTiles = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "CheckeredTiles"); //5
+        this.oreCarbon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreCarbon"); //6
+        this.chiseledLimestone = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "chiseledLimestone"); //7
+        this.pyriteBricks = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "bricksPyrite"); //8
+        this.blockHematite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreStorage_Hematite"); //9
+        this.decorativeLimestone = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "decoBricksLimestone"); //10
+        this.basalt = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "basalt"); //11
+        this.basaltBrick = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "basaltBrick"); //12
+        this.cobbedGranite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "webbedGranite"); //13
+        this.chiseledBasalt = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "chiseledBasalt"); //14
     }
     
     @Override
@@ -244,6 +244,6 @@ public class BlockMultipleBlocks2 extends Block
     @Override
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(ModCreativeTabs.jcBlocks);
     }
 }

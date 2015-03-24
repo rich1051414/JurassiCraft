@@ -163,8 +163,8 @@ public class BlockPortal extends BlockBreakable
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "portal");
-        this.portalStillIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "portal_still");
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "portal");
+        this.portalStillIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "portal_still");
     }
     
     @Override

@@ -9,17 +9,17 @@ import net.minecraft.item.Item;
 
 public class ModCreativeTabs implements IContentHandler
 {
-    public static CreativeTabs items;
-    public static CreativeTabs blocks;
-    public static CreativeTabs dnas;
-    public static CreativeTabs syringesEggs;
-    public static CreativeTabs spawnEggs;
-    public static CreativeTabs itemsFood;
-    public static CreativeTabs Carboniferous;
+    public static CreativeTabs jcItems;
+    public static CreativeTabs jcBlocks;
+    public static CreativeTabs jcDNAs;
+    public static CreativeTabs jcSyringesEggs;
+    public static CreativeTabs jcSpawnEggs;
+    public static CreativeTabs jcItemsFood;
+    public static CreativeTabs carboniferous;
     
     public void init()
     {
-        this.items = new CreativeTabs("jurassicraft.items")
+        this.jcItems = new CreativeTabs("jurassicraft.items")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -28,7 +28,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.Carboniferous = new CreativeTabs("jurassicraft.carboniferous")
+        this.carboniferous = new CreativeTabs("jurassicraft.carboniferous")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -37,7 +37,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.blocks = new CreativeTabs("jurassicraft.blocks")
+        this.jcBlocks = new CreativeTabs("jurassicraft.blocks")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -46,7 +46,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.dnas = new CreativeTabs("jurassicraft.dnas")
+        this.jcDNAs = new CreativeTabs("jurassicraft.dnas")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -55,7 +55,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.syringesEggs = new CreativeTabs("jurassicraft.syringesEggs")
+        this.jcSyringesEggs = new CreativeTabs("jurassicraft.syringesEggs")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -64,7 +64,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.spawnEggs = new CreativeTabs("jurassicraft.spawnEggs")
+        this.jcSpawnEggs = new CreativeTabs("jurassicraft.spawnEggs")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
@@ -73,7 +73,7 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.itemsFood = new CreativeTabs("jurassicraft.itemsFood")
+        this.jcItemsFood = new CreativeTabs("jurassicraft.itemsFood")
         {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()

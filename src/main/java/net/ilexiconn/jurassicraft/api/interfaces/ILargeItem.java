@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
  */
 public interface ILargeItem
 {
-    
     /**
      * 
      * @return The png file name. Example - "largeItem". The texture should be placed in the 
@@ -24,5 +23,4 @@ public interface ILargeItem
      * 		   the damage or NBT tag is valid.
      */
     public boolean canBeLargeItem(ItemStack stack);
-    
 }

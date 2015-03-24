@@ -71,7 +71,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
         
         for (int i = 0; i < this.iconArray.length; ++i)
         {
-            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + grassTypes[i]);
+            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + grassTypes[i]);
         }
     }
     

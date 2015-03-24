@@ -24,7 +24,7 @@ public class BlockTimeBox extends Block
     public BlockTimeBox()
     {
         super(Material.iron);
-        this.setCreativeTab(ModCreativeTabs.Carboniferous);
+        this.setCreativeTab(ModCreativeTabs.carboniferous);
     }
     
     public IIcon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
@@ -62,7 +62,7 @@ public class BlockTimeBox extends Block
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "timebox0");
-        this.activeIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "timebox1");
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "timebox0");
+        this.activeIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "timebox1");
     }
 }

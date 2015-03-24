@@ -8,13 +8,12 @@ import cpw.mods.fml.relauncher.Side;
  */
 public class SideHelper
 {
-    
     /**
      * @return True if is Server.
      */
     public static boolean isServer()
     {
-        return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER;
+        return getSide().isServer();
     }
     
     /**
@@ -22,7 +21,7 @@ public class SideHelper
      */
     public static boolean isClient()
     {
-        return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
+        return getSide().isClient();
     }
     
     /**

@@ -10,17 +10,17 @@ import net.minecraft.item.ItemStack;
  **/
 public class FuelHandler implements IFuelHandler
 {
-    
     @Override
     public int getBurnTime(ItemStack fuel)
     {
         Item item = fuel.getItem();
         int meta = fuel.getItemDamage();
+       
         if (item == Item.getItemFromBlock(ModBlocks.saplings_1))
         {
             return 100;
         }
+       
         return 0;
     }
-    
 }

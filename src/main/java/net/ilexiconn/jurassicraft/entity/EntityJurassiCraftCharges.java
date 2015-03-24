@@ -41,6 +41,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
         {
             this.distanceFromTarget = -1.0F;
         }
+        
         if (timeSinceCharge != 0)
             timeSinceCharge--;
     }
@@ -49,11 +50,13 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
     public void onUpdate()
     {
         super.onUpdate();
+        
         if (this.stepCount <= 0 && this.charging)
         {
             this.playSound("jurassicraft:gallop", 3.0F, this.getSoundPitch() - 0.5F);
             this.stepCount = 10;
         }
+        
         this.stepCount -= 1;
     }
     
@@ -61,6 +64,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
     public void collideWithEntity(Entity victim)
     {
         super.collideWithEntity(victim);
+     
         if (this.charging && (isTamed() || !getClass().equals(victim.getClass())))
         {
             victim.attackEntityFrom(DamageSource.causeMobDamage(this), 20);

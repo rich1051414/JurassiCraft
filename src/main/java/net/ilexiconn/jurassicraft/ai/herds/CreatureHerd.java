@@ -14,9 +14,10 @@ import java.util.List;
 
 public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
 {
-    
     private ArrayList<EntityJurassiCraftCreature> creatures;
+    
     private Class<? extends EntityJurassiCraftCreature> herdType;
+    
     private boolean groupAttack;
     
     private static List<CreatureHerd> herds = Lists.newArrayList();
@@ -46,17 +47,19 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
      * Adds the entity only if the herd "accepts" it<br/>
      * Acceptance is based on the creatures' types (T-rex herds will only accept T-rexs' friend dinosaurs)
      *
-     * @param e The entity to add to the herd
+     * @param creature The entity to add to the herd
      * @return <code>true</code> if the creature was accepted and added to this herd. <code>false</code> is returned otherwise
      */
     @Override
-    public boolean add(EntityJurassiCraftCreature e)
+    public boolean add(EntityJurassiCraftCreature creature)
     {
-        if (isAcceptable(e))
+        if (isAcceptable(creature))
         {
-            creatures.add(e);
+            creatures.add(creature);
+            
             return true;
         }
+        
         return false;
     }
     
@@ -65,30 +68,34 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         if (herdType == null)
         {
             herdType = e.getClass();
+          
             return true;
         }
-        if (herdType == e.getClass()) // FIXME: We will need something else than per-class herds
+        else if (herdType == e.getClass()) // FIXME: We will need something else than per-class herds
         {
             return creatures.size() < 7 && !contains(e);
         }
+        
         return false;
     }
     
     /**
      * Adds a collection of entities into this herd if possible
      *
-     * @param c The collection of creatures to add to this herd
+     * @param creatures The collection of creatures to add to this herd
      * @return <code>true</code> if all creatures were added to this herd
      */
     @Override
-    public boolean addAll(Collection<? extends EntityJurassiCraftCreature> c)
+    public boolean addAll(Collection<? extends EntityJurassiCraftCreature> creatures)
     {
-        boolean flag = true;
-        for (EntityJurassiCraftCreature creature : c)
+        boolean added = true;
+        
+        for (EntityJurassiCraftCreature creature : creatures)
         {
-            flag = flag && add(creature);
+            added = added && add(creature);
         }
-        return flag;
+        
+        return added;
     }
     
     @Override
@@ -129,6 +136,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         {
             herds.remove(this);
         }
+        
         return creatures.remove(o);
     }
     
@@ -140,6 +148,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         {
             herds.remove(this);
         }
+        
         return creatures.removeAll(c);
     }
     
@@ -173,6 +182,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         double x = 0f;
         double y = 0f;
         double z = 0f;
+        
         for (EntityJurassiCraftCreature creature : creatures)
         {
             x += creature.posX;
@@ -183,6 +193,7 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         x /= creatures.size();
         y /= creatures.size();
         z /= creatures.size();
+        
         return Vec3.createVectorHelper(x, y, z);
     }
     
@@ -194,10 +205,11 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
         }
         else
         {
-            double d0 = creature.prevPosX + (creature.posX - creature.prevPosX) * (double) p_70666_1_;
-            double d1 = creature.prevPosY + (creature.posY - creature.prevPosY) * (double) p_70666_1_;
-            double d2 = creature.prevPosZ + (creature.posZ - creature.prevPosZ) * (double) p_70666_1_;
-            return Vec3.createVectorHelper(d0, d1, d2);
+            double posX = creature.prevPosX + (creature.posX - creature.prevPosX) * (double) p_70666_1_;
+            double posY = creature.prevPosY + (creature.posY - creature.prevPosY) * (double) p_70666_1_;
+            double posZ = creature.prevPosZ + (creature.posZ - creature.prevPosZ) * (double) p_70666_1_;
+        
+            return Vec3.createVectorHelper(posX, posY, posZ);
         }
     }
     
@@ -221,18 +233,23 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
     public void attack(EntityLivingBase target)
     {
         if (!groupAttack)
+        {
             return;
+        }
+        
         for (EntityJurassiCraftCreature creature : creatures) // Check if an owner is target
         {
             if (creature instanceof IEntityOwnable)
             {
                 IEntityOwnable ownable = (IEntityOwnable) creature;
+         
                 if (ownable.getOwner() == target)
                 {
-                    return; // We're attacking the owner, abord!
+                    return; // We're attacking the owner, abort!
                 }
             }
         }
+        
         for (EntityJurassiCraftCreature creature : creatures)
         {
             creature.setAttackTarget(target);
@@ -243,5 +260,4 @@ public class CreatureHerd implements Collection<EntityJurassiCraftCreature>
     {
         return creatures.indexOf(creature);
     }
-    
 }

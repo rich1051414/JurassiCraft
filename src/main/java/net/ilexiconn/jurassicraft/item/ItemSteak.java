@@ -19,7 +19,7 @@ public class ItemSteak extends ItemFood
         name = name.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(name);
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Steak");
-        setCreativeTab(ModCreativeTabs.itemsFood);
+        setCreativeTab(ModCreativeTabs.jcItemsFood);
     }
     
     public void addInformation(ItemStack meat, EntityPlayer player, List list, boolean flag)

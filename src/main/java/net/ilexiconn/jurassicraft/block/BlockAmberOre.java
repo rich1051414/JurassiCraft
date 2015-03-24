@@ -24,7 +24,7 @@ public class BlockAmberOre extends Block
         setResistance(5.0F);
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(ModCreativeTabs.jcBlocks);
     }
     
     public Item getItemDropped(int value, Random random, int thing)
