@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.item.ItemDNA;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,7 +60,7 @@ public class ItemSkin extends ItemGenericDNASource
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iIconRegister)
     {
-        this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
+        this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creatures/" + CreatureManager.getCategoryFromCreatureName(this.getUnlocalizedName()) + "/" + this.getUnlocalizedName() + "/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
         //this.femaleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
     }
 }

@@ -17,15 +17,17 @@ import java.util.List;
 
 public class ItemEgg extends Item
 {
-    public String dinoName;
+    public String name;
     
-    public ItemEgg(String dinoName)
+    public ItemEgg(String name)
     {
         super();
-        this.setUnlocalizedName(dinoName + "_Egg");
-        this.setTextureName(JurassiCraft.getModId() + "creature/" + dinoName + "_Egg");
+        this.name = name;
+        this.setUnlocalizedName(name + "_Egg");
+        name = name.toLowerCase();
+        String cat = CreatureManager.getCategoryFromCreatureName(name);
+        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Egg");
         this.setCreativeTab(ModCreativeTabs.syringesEggs);
-        this.dinoName = dinoName;
     }
     
     public String getEggDNASequence(ItemStack egg)
@@ -133,11 +135,11 @@ public class ItemEgg extends Item
         {
             if (!world.isRemote && !player.capabilities.isCreativeMode)
             {
-                world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+                world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(name), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
             }
             else if (!world.isRemote && !player.isSneaking())
             {
-                world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(dinoName), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
+                world.spawnEntityInWorld(new EntityDinoEgg(world, CreatureManager.getCreatureFromName(name), this.getEggQuality(egg), this.getEggDNASequence(egg), 2048, x, y + 1, z));
             }
             else
             {

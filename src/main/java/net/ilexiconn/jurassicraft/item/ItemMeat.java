@@ -24,7 +24,9 @@ public class ItemMeat extends ItemFood implements IDNASource
         super(4, 0.1f, true);
         setPotionEffect(Potion.hunger.id, 30, 0, 0.8F);
         setUnlocalizedName(name + "_Meat");
-        setTextureName(JurassiCraft.getModId() + "creature/" + name + "_Meat");
+        name = name.toLowerCase();
+        String cat = CreatureManager.getCategoryFromCreatureName(name);
+        setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Meat");
         setCreativeTab(ModCreativeTabs.itemsFood);
     }
     

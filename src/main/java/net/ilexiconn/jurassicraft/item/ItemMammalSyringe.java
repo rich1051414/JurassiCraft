@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
@@ -33,7 +34,9 @@ public class ItemMammalSyringe extends Item
     {
         super();
         this.setUnlocalizedName(mammal + "_Syringe");
-        this.setTextureName(JurassiCraft.getModId() + "creature/" + mammal + "_Syringe");
+        mammal = mammal.toLowerCase();
+        String cat = CreatureManager.getCategoryFromCreatureName(mammal);
+        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + mammal + "/" + mammal + "_DNA");
         this.setCreativeTab(ModCreativeTabs.syringesEggs);
         this.mammalName = mammal;
     }

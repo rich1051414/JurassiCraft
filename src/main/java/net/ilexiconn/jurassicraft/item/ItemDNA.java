@@ -22,8 +22,10 @@ public class ItemDNA extends Item implements IDNASample
     public ItemDNA(String name)
     {
         super();
+        name = name.toLowerCase();
+        String cat = CreatureManager.getCategoryFromCreatureName(name);
         setUnlocalizedName(name + "_DNA");
-        setTextureName(JurassiCraft.getModId() + "creature/" + name + "_DNA");
+        setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_DNA");
         setCreativeTab(ModCreativeTabs.dnas);
     }
     

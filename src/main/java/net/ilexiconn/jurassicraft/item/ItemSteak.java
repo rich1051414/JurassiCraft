@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,9 @@ public class ItemSteak extends ItemFood
     {
         super(8, 0.2f, true);
         setUnlocalizedName(name + "_Steak");
-        setTextureName(JurassiCraft.getModId() + "creature/" + name + "_Steak");
+        name = name.toLowerCase();
+        String cat = CreatureManager.getCategoryFromCreatureName(name);
+        setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Steak");
         setCreativeTab(ModCreativeTabs.itemsFood);
     }
     

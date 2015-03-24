@@ -42,6 +42,16 @@ public class CreatureManager
         
         return null;
     }
+
+    public static String getCategoryFromCreatureName(String name)
+    {
+        for (Creature creature : creatures)
+        {
+            if (creature.getCreatureName().toLowerCase().equals(name))
+                return creature.getCreatureCategory();
+        }
+        return null;
+    }
     
     public static Creature classToCreature(Class clazz)
     {
