@@ -47,7 +47,7 @@ public class CreatureManager
     {
         for (Creature creature : creatures)
         {
-            if (creature.getCreatureName().toLowerCase().equals(name))
+            if (creature.getCreatureName().toLowerCase().equals(name.toLowerCase()))
                 return creature.getCreatureCategory();
         }
         return null;

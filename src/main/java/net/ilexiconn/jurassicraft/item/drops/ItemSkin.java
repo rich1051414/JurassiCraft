@@ -60,7 +60,7 @@ public class ItemSkin extends ItemGenericDNASource
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iIconRegister)
     {
-        this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creatures/" + CreatureManager.getCategoryFromCreatureName(this.getUnlocalizedName()) + "/" + this.getUnlocalizedName() + "/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
+        this.maleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creatures/" + CreatureManager.getCategoryFromCreatureName(this.getUnlocalizedName().substring(5, this.getUnlocalizedName().indexOf("_"))) + "/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().indexOf("_")) + "/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Male");
         //this.femaleIcon = iIconRegister.registerIcon(JurassiCraft.getModId() + "creature/" + this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length()) + "_Female");
     }
 }
