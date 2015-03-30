@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,7 +38,6 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
         {
             EntityPlayer playerFlying = (EntityPlayer) this.riddenByEntity;
-            
             if (this.isFlying() || (playerFlying.getHeldItem() != (ItemStack) null && this.checkRidingItem(playerFlying.getHeldItem())))
             {
                 /** There is a valid rider. */
@@ -172,25 +170,18 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             adjustYaw -= 0.1;
         if (adjustYaw < 0)
             adjustYaw += 0.1;
-        
-        GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
-        
-        if (gameSettings.keyBindRight.getIsKeyPressed() && adjustYaw < 2.4F)
+        if (Minecraft.getMinecraft().gameSettings.keyBindRight.getIsKeyPressed() && adjustYaw < 2.4F)
         {
             adjustYaw += 0.2F;
         }
-        if (gameSettings.keyBindLeft.getIsKeyPressed() && adjustYaw > -2.4F)
+        if (Minecraft.getMinecraft().gameSettings.keyBindLeft.getIsKeyPressed() && adjustYaw > -2.4F)
         {
             adjustYaw -= 0.2F;
-            
         }
-        
         this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw + adjustYaw);
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
-        
         this.setRotation(this.rotationYaw, this.rotationPitch);
-        
         this.handleLimbMovement();
     }
     
@@ -234,7 +225,6 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         {
             this.motionY -= 0.02D;
         }
-        
         this.motionX = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
         this.motionZ = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.cos(0.01745329251F * this.rotationYaw));
         this.moveEntity(this.motionX, this.motionY + 0.05D, this.motionZ);
@@ -327,7 +317,6 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
     public void collideWithEntity(Entity target)
     {
         super.collideWithEntity(target);
-       
         if (this.isFlying())
         {
             double deltaX = target.posX - target.posX;

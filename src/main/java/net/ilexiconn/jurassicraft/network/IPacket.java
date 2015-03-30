@@ -17,6 +17,7 @@ import java.io.IOException;
  */
 public abstract class IPacket
 {
+    
     public abstract void read(DataInputStream data) throws IOException;
     
     public abstract void write(DataOutputStream data) throws IOException;

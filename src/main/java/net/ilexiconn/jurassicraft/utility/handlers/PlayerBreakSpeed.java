@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.utility.handlers;
 
 import net.ilexiconn.jurassicraft.block.carboniferous.BlockLeaves;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
@@ -12,18 +11,16 @@ import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
  **/
 public class PlayerBreakSpeed
 {
+    
     @SubscribeEvent
-    public void breakSpeed(BreakSpeed event)
+    public void breakSpeed(BreakSpeed par1)
     {
-        Block block = event.block;
-        
-        if (block != null && block instanceof BlockLeaves)
+        if (par1.block != null && par1.block instanceof BlockLeaves)
         {
-            ItemStack item = event.entityPlayer.getCurrentEquippedItem();
-           
+            ItemStack item = par1.entityPlayer.getCurrentEquippedItem();
             if (item != null && item.getItem() instanceof ItemShears)
             {
-                event.newSpeed = 15.0F;
+                par1.newSpeed = 15.0F;
             }
         }
     }

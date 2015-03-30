@@ -17,7 +17,7 @@ public class BlockCustomGlass extends BlockBreakable
     
     public BlockCustomGlass()
     {
-        super(Properties.TEX_PACKAGE + "clearGlass", Material.glass, false);
+        super(Properties.TEX_PACkAGE + "clearGlass", Material.glass, false);
     }
     
     @Override

@@ -24,7 +24,7 @@ public class BlockDNAExtractor extends BlockContainer
         this.setBlockName("dnaExtractor");
         this.setHardness(3.0f);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.9375F, 0.9375F);
-        this.setCreativeTab(ModCreativeTabs.jcBlocks);
+        this.setCreativeTab(ModCreativeTabs.blocks);
         this.setBlockTextureName(JurassiCraft.getModId() + "dnaExtractorBreakingParticles");
     }
     

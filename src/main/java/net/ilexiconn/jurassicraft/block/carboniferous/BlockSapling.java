@@ -147,7 +147,7 @@ public class BlockSapling extends BlockFlower
         
         for (int i = 0; i < this.saplingIcon.length; ++i)
         {
-            this.saplingIcon[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + saplingPaths[i]);
+            this.saplingIcon[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + saplingPaths[i]);
         }
     }
 }

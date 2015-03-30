@@ -27,7 +27,7 @@ public class ItemEgg extends Item
         name = name.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(name);
         this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Egg");
-        this.setCreativeTab(ModCreativeTabs.jcSyringesEggs);
+        this.setCreativeTab(ModCreativeTabs.syringesEggs);
     }
     
     public String getEggDNASequence(ItemStack egg)
@@ -39,7 +39,6 @@ public class ItemEgg extends Item
                 return egg.getTagCompound().getString("EggDNA");
             }
         }
-        
         return JurassiCraftDNAHandler.createDefaultDNA();
     }
     
@@ -52,7 +51,6 @@ public class ItemEgg extends Item
                 return egg.getTagCompound().getInteger("EggQuality");
             }
         }
-        
         return 75;
     }
     
@@ -65,7 +63,6 @@ public class ItemEgg extends Item
             {
                 list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dinoEgg.info.dna") + ": " + egg.getTagCompound().getString("EggDNA"));
             }
-            
             if (egg.getTagCompound().hasKey("EggQuality"))
             {
                 list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dinoEgg.info.quality") + ": " + egg.getTagCompound().getInteger("EggQuality") + "%");
@@ -79,33 +76,37 @@ public class ItemEgg extends Item
         if (player.capabilities.isCreativeMode && player.isSneaking())
         {
             NBTTagCompound compound = new NBTTagCompound();
-            
-            NBTTagCompound oldCompound = egg.getTagCompound();
-           
             if (egg.hasTagCompound())
             {
-                if (oldCompound.hasKey("EggQuality"))
+                if (egg.getTagCompound().hasKey("EggQuality"))
                 {
-                    int oldQuality = oldCompound.getInteger("EggQuality");
-                    oldCompound.removeTag("EggQuality");
-                    
-                    int newQuality = oldQuality + 25;
-                    
-                    if(newQuality >= 100)
+                    int oldQuality = egg.getTagCompound().getInteger("EggQuality");
+                    egg.getTagCompound().removeTag("EggQuality");
+                    switch (oldQuality)
                     {
-                        newQuality = 0;
+                        case 25:
+                            compound.setInteger("EggQuality", 50);
+                            break;
+                        case 50:
+                            compound.setInteger("EggQuality", 75);
+                            break;
+                        case 75:
+                            compound.setInteger("EggQuality", 100);
+                            break;
+                        case 100:
+                            compound.setInteger("EggQuality", 25);
+                            break;
+                        default:
+                            break;
                     }
-                    
-                    compound.setInteger("Quality", newQuality);
                 }
                 else
                 {
                     compound.setInteger("EggQuality", 25);
                 }
-                
-                if (oldCompound.hasKey("EggDNA"))
+                if (egg.getTagCompound().hasKey("EggDNA"))
                 {
-                    oldCompound.removeTag("EggDNA");
+                    egg.getTagCompound().removeTag("EggDNA");
                     compound.setString("EggDNA", JurassiCraftDNAHandler.createDefaultDNA());
                 }
                 else
@@ -118,15 +119,12 @@ public class ItemEgg extends Item
                 compound.setInteger("EggQuality", 25);
                 compound.setString("EggDNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
-            
             egg.setTagCompound(compound);
-           
             if (!world.isRemote)
             {
-                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.qualityChanged") + " " + oldCompound.getInteger("EggQuality") + "%"));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.qualityChanged") + " " + egg.getTagCompound().getInteger("EggQuality") + "%"));
             }
         }
-        
         return egg;
     }
     
@@ -147,12 +145,9 @@ public class ItemEgg extends Item
             {
                 this.onItemRightClick(egg, world, player);
             }
-            
             egg.stackSize--;
-            
             if (egg.stackSize <= 0)
                 egg = (ItemStack) null;
-            
             return true;
         }
         else
@@ -162,7 +157,6 @@ public class ItemEgg extends Item
                 player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dinoEgg.info.errorQuality")));
             }
         }
-        
         return false;
     }
 }

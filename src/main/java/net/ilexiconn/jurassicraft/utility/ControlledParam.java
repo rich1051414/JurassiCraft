@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.utility;
 
 public class ControlledParam
 {
+    
     public float value;
     public float change;
     public float max;
@@ -42,7 +43,6 @@ public class ControlledParam
         {
             value += change;
         }
-        
         if (value < min)
             value = min;
         if (value > max)

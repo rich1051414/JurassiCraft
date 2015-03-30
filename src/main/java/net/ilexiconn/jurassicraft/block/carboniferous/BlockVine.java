@@ -443,6 +443,6 @@ public class BlockVine extends Block implements IShearable
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "vine");
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "vine");
     }
 }

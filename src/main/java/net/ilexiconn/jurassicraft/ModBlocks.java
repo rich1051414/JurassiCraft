@@ -25,22 +25,17 @@ public class ModBlocks implements IContentHandler
 {
     @IgnoreRegistration
     public static Block clayFossilOre;
-    
     @IgnoreRegistration
     public static Fluid cultivateFluid;
-    
     @IgnoreRegistration
     public static Block cultivateLiquid;
-    
     @IgnoreRegistration
     public static Block cultivateBottomOff;
-    
     @IgnoreRegistration
     public static Block cultivateBottomOn;
     
     public static Block cultivateTopOff;
     public static Block cultivateTopOn;
-    
     public static Block dnaExtractor;
     public static Block dnaCombinator;
     public static Block gypsumBlock;
@@ -51,7 +46,6 @@ public class ModBlocks implements IContentHandler
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
     
-    // Security Fences
     public static Block securityFenceLowCorner;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
@@ -60,7 +54,7 @@ public class ModBlocks implements IContentHandler
     // Dimension Plants
     public static Block fernPlant;
     public static Block orontium;
-    public static Block heliconia;
+    public static Block Heliconia;
     
     // Carboniferous Blocks WIP
     public static Block grass;
@@ -115,51 +109,7 @@ public class ModBlocks implements IContentHandler
     
     public void init()
     {
-        initCarboniferousBlocks();
-        initJurassiCraftBlocks();
-     
-        /*
-        securityFenceMediumCorner = new BlockSecurityFenceMediumCorner();
-        securityFenceMediumPole = new BlockSecurityFenceMediumPole();
-        securityFenceMediumBase = new BlockSecurityFenceMediumBase();
-        securityFenceMediumGrid = new BlockSecurityFenceMediumGrid();
-
-        securityFenceHighCorner = new BlockSecurityFenceHighCorner();
-        securityFenceHighPole = new BlockSecurityFenceHighPole();
-        securityFenceHighBase = new BlockSecurityFenceHighBase();
-        securityFenceHighGrid = new BlockSecurityFenceHighGrid();
-        */
-        
-        gameRegistry();
-    }
-
-    private void initJurassiCraftBlocks()
-    {
-        heliconia = new HeliconiaPlant("heliconiaplant");
-        fernPlant = new FernPlant("fernplant");
-        orontium = new OrontiumPlant("orontiumplant");
-        cultivateBottomOff = new BlockCultivateBottom(false);
-        cultivateTopOff = new BlockCultivateTop(false);
-        cultivateBottomOn = new BlockCultivateBottom(true);
-        cultivateTopOn = new BlockCultivateTop(true);
-        dnaExtractor = new BlockDNAExtractor();
-        dnaCombinator = new BlockDNACombinator();
-        gypsumBlock = new BlockGypsumBlock();
-        gypsumBrick = new BlockGypsumBrick();
-        gypsumCobblestone = new BlockGypsumCobblestone();
-        amberOre = new BlockAmberOre();
-        fossilOre = new BlockFossilOre();
-        sandstoneFossilOre = new BlockFossilSandstoneOre();
-        clayFossilOre = new BlockFossilClayOre();
-        dinoPad = new BlockDinoPad();
-        securityFenceLowCorner = new BlockSecurityFenceLowCorner();
-        securityFenceLowPole = new BlockSecurityFenceLowPole();
-        securityFenceLowBase = new BlockSecurityFenceLowBase();
-        securityFenceLowGrid = new BlockSecurityFenceLowGrid();
-    }
-
-    private void initCarboniferousBlocks()
-    {
+        // Carboniferous Blocks
         woodSingleSlab = (BlockPlanksSlab) (new BlockPlanksSlab(false)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("carbon.woodSingleSlab");
         grass = new BlockGrass().setHardness(0.6F).setStepSound(Block.soundTypeGrass).setBlockName("carbon.grass");
         dirt = new BlockDirt().setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.dirt");
@@ -197,6 +147,42 @@ public class ModBlocks implements IContentHandler
         coral = new BlockCoral().setHardness(0.0F).setBlockName("carbon.coral");
         compressor = new BlockCompressor().setBlockName("carbon.compressor");
         tilledEarth = new BlockTilledDirt().setHardness(0.6F).setStepSound(Block.soundTypeGravel).setBlockName("carbon.tilledDirt");
+        
+        // JurassiCraft Blocks
+        Heliconia = new HeliconiaPlant("heliconiaplant");
+        fernPlant = new FernPlant("fernplant");
+        orontium = new OrontiumPlant("orontiumplant");
+        cultivateBottomOff = new BlockCultivateBottom(false);
+        cultivateTopOff = new BlockCultivateTop(false);
+        cultivateBottomOn = new BlockCultivateBottom(true);
+        cultivateTopOn = new BlockCultivateTop(true);
+        dnaExtractor = new BlockDNAExtractor();
+        dnaCombinator = new BlockDNACombinator();
+        gypsumBlock = new BlockGypsumBlock();
+        gypsumBrick = new BlockGypsumBrick();
+        gypsumCobblestone = new BlockGypsumCobblestone();
+        amberOre = new BlockAmberOre();
+        fossilOre = new BlockFossilOre();
+        sandstoneFossilOre = new BlockFossilSandstoneOre();
+        clayFossilOre = new BlockFossilClayOre();
+        dinoPad = new BlockDinoPad();
+        securityFenceLowCorner = new BlockSecurityFenceLowCorner();
+        securityFenceLowPole = new BlockSecurityFenceLowPole();
+        securityFenceLowBase = new BlockSecurityFenceLowBase();
+        securityFenceLowGrid = new BlockSecurityFenceLowGrid();
+        /*
+        securityFenceMediumCorner = new BlockSecurityFenceMediumCorner();
+        securityFenceMediumPole = new BlockSecurityFenceMediumPole();
+        securityFenceMediumBase = new BlockSecurityFenceMediumBase();
+        securityFenceMediumGrid = new BlockSecurityFenceMediumGrid();
+
+        securityFenceHighCorner = new BlockSecurityFenceHighCorner();
+        securityFenceHighPole = new BlockSecurityFenceHighPole();
+        securityFenceHighBase = new BlockSecurityFenceHighBase();
+        securityFenceHighGrid = new BlockSecurityFenceHighGrid();
+        */
+        
+        gameRegistry();
     }
     
     public void gameRegistry()

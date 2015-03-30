@@ -301,7 +301,7 @@ public class BlockLeaves extends BlockLeavesBase implements IShearable
             
             for (int j = 0; j < texPath[i].length; ++j)
             {
-                this.leafIcons[i][j] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + texPath[i][j]);
+                this.leafIcons[i][j] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + texPath[i][j]);
             }
         }
     }

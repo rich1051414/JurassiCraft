@@ -16,7 +16,7 @@ public class ItemDinoPad extends Item
         super();
         setUnlocalizedName("dinopad");
         setTextureName(JurassiCraft.getModId() + "dinopad");
-        setCreativeTab(ModCreativeTabs.jcItems);
+        setCreativeTab(ModCreativeTabs.items);
     }
     
     @Override

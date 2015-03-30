@@ -116,8 +116,8 @@ public class BlockCustomDoor extends Block
         
         for (int i = 0; i < doorBottomIconNames.length; ++i)
         {
-            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + doorBottomIconNames[i]);
-            this.iconArray[i + doorBottomIconNames.length] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + doorBottomIconNames[i]);
+            this.iconArray[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + doorBottomIconNames[i]);
+            this.iconArray[i + doorBottomIconNames.length] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + doorBottomIconNames[i]);
         }
     }
     

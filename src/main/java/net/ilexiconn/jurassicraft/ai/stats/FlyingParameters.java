@@ -26,23 +26,12 @@ public class FlyingParameters
         this.flightTimeMin = flightTimeMin;
         this.flightTimeMax = flightTimeMax;
         this.flapRate = flapRate / 4;
-        
-        landingMaterial = landingMaterial.toLowerCase();
-        
-        Material grass = null;
-        Material leaves = null;
-        
-        if(landingMaterial.contains("grass"))
-        {
-            grass = Material.grass;
-        }
-        
-        if(landingMaterial.contains("leaves"))
-        {
-            leaves = Material.leaves;
-        }
-        
-        this.landingMaterial = new Material[]{grass, leaves};
+        if (landingMaterial.equalsIgnoreCase("grassandleaves"))
+            this.landingMaterial = new Material[] { Material.leaves, Material.grass };
+        else if (landingMaterial.equalsIgnoreCase("leaves"))
+            this.landingMaterial = new Material[] { Material.leaves };
+        else
+            this.landingMaterial = null;
     }
     
     public boolean willLandInMaterial(Material m)
@@ -52,9 +41,7 @@ public class FlyingParameters
             for (Material mat : landingMaterial)
             {
                 if (m == mat)
-                {
                     return true;
-                }
             }
         }
         

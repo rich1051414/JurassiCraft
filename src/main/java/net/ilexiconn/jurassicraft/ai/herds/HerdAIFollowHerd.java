@@ -6,6 +6,7 @@ import net.minecraft.util.Vec3;
 
 public class HerdAIFollowHerd extends EntityAIHerd
 {
+    
     private double speed;
     
     public HerdAIFollowHerd(EntityJurassiCraftCreature creature, boolean groupAttack, double speed)
@@ -25,7 +26,6 @@ public class HerdAIFollowHerd extends EntityAIHerd
         {
             Vec3 center = getHerd().computeCenter();
             PathEntity path = getCreature().getNavigator().getPathToXYZ(center.xCoord, center.yCoord, center.zCoord);
-         
             if (path != null)
             {
                 getCreature().getNavigator().setPath(path, speed);
@@ -42,12 +42,10 @@ public class HerdAIFollowHerd extends EntityAIHerd
     public boolean shouldExecute()
     {
         boolean herdIsFar = true;
-       
         if (getHerd() != null)
         {
             herdIsFar = getHerd().getDistanceFrom(getCreature()) > 15;
         }
-        
         return Math.random() < 0.25 && herdIsFar && getCreature().getAttackTarget() == null;
     }
     

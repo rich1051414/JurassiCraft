@@ -12,6 +12,6 @@ public class ItemFossil extends Item implements IDNASource
         super();
         setUnlocalizedName("fossil");
         setTextureName(JurassiCraft.getModId() + "fossil");
-        setCreativeTab(ModCreativeTabs.jcItems);
+        setCreativeTab(ModCreativeTabs.items);
     }
 }

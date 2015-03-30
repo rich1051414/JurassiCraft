@@ -118,8 +118,8 @@ public class BlockPillar extends Block
         
         for (int i = 0; i < this.iconList.length; ++i)
         {
-            this.iconList[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + iconPaths[i]);
-            this.iconPillarTop[i] = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + pillarTopPaths[i]);
+            this.iconList[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + iconPaths[i]);
+            this.iconPillarTop[i] = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + pillarTopPaths[i]);
         }
     }
 }

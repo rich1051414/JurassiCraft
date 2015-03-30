@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAICearadactylus extends EntityAIBase
 {
+    
     private EntityCearadactylus theCearadactylus;
     private boolean isFlying;
     
@@ -34,4 +35,5 @@ public class EntityAICearadactylus extends EntityAIBase
     {
         this.isFlying = flying;
     }
+    
 }

@@ -69,8 +69,8 @@ public class BlockGrinder extends BlockTileEntity
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "topGrinder");
-        this.iconSideGrinder = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "sideGrinder");
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "topGrinder");
+        this.iconSideGrinder = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "sideGrinder");
     }
     
     @Override

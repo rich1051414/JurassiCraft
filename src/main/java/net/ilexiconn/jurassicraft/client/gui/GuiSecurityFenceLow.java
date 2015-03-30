@@ -120,13 +120,13 @@ public class GuiSecurityFenceLow extends GuiContainer
                 this.refreshGUI();
                 break;
             case 5:
-                JurassiCraft.networkWrapper.sendToServer(new MessageFence(0, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
+                JurassiCraft.network.sendToServer(new MessageFence(0, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
                 break;
             case 6:
-                JurassiCraft.networkWrapper.sendToServer(new MessageFence(1, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
+                JurassiCraft.network.sendToServer(new MessageFence(1, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
                 break;
             case 7:
-                JurassiCraft.networkWrapper.sendToServer(new MessageFence(2, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
+                JurassiCraft.network.sendToServer(new MessageFence(2, this.fence.xCoord, this.fence.yCoord, this.fence.zCoord, this.fence.getPlannedSide()));
                 break;
         }
         this.fenceMap = this.fence.getAllFenceBlocks();

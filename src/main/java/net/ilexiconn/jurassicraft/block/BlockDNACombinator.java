@@ -18,13 +18,14 @@ import net.minecraft.world.World;
 
 public class BlockDNACombinator extends BlockContainer
 {
+    
     public BlockDNACombinator()
     {
         super(Material.iron);
         this.setBlockName("dnaCombinator");
         this.setHardness(3.0f);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        this.setCreativeTab(ModCreativeTabs.jcBlocks);
+        this.setCreativeTab(ModCreativeTabs.blocks);
         this.setBlockTextureName(JurassiCraft.getModId() + "dnaCombinatorBreakingParticles");
     }
     
@@ -87,17 +88,14 @@ public class BlockDNACombinator extends BlockContainer
     public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldMetadata)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-      
         if (tileEntity instanceof TileDNAExtractor)
         {
             TileDNAExtractor tileEntityDNAExtractor = (TileDNAExtractor) tileEntity;
-            
             if (tileEntityDNAExtractor.hasItems())
             {
                 for (int i = 0; i < tileEntityDNAExtractor.getSizeInventory(); i++)
                 {
                     ItemStack itemstack = tileEntityDNAExtractor.getStackInSlot(i);
-                    
                     if (itemstack != null)
                     {
                         float f = world.rand.nextFloat() * 0.8F + 0.1F;
@@ -106,20 +104,16 @@ public class BlockDNACombinator extends BlockContainer
                         while (itemstack.stackSize > 0)
                         {
                             int j = world.rand.nextInt(21) + 10;
-                           
                             if (j > itemstack.stackSize)
                             {
                                 j = itemstack.stackSize;
                             }
-                            
                             itemstack.stackSize -= j;
                             EntityItem item = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
-                           
                             if (itemstack.hasTagCompound())
                             {
                                 item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
-                            
                             world.spawnEntityInWorld(item);
                         }
                     }

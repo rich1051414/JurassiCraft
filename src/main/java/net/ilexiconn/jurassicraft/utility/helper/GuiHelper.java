@@ -12,7 +12,10 @@ import net.minecraft.util.ResourceLocation;
  */
 public class GuiHelper
 {
+    
+    //Reference to the static #Minecraft instance
     public static Minecraft mc = Minecraft.getMinecraft();
+    //Reference to the static #Tessellator instance
     public static Tessellator tessellator = Tessellator.instance;
     
     public static void bindTexture(ResourceLocation resource)

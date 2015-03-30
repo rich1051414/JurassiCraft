@@ -20,6 +20,7 @@ import net.minecraft.world.World;
  **/
 public class BlockCompressor extends BlockTileEntity
 {
+    
     public static IIcon iconSideGrinder;
     
     public BlockCompressor()
@@ -35,19 +36,19 @@ public class BlockCompressor extends BlockTileEntity
     }
     
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-        if (world.isRemote)
+        if (par1World.isRemote)
         {
             return true;
         }
         else
         {
-            TileEntityCompressor tileentitygrinder = (TileEntityCompressor) world.getTileEntity(x, y, z);
+            TileEntityCompressor tileentitygrinder = (TileEntityCompressor) par1World.getTileEntity(par2, par3, par4);
             
             if (tileentitygrinder != null)
             {
-                player.openGui(JurassiCraft.instance, Properties.GUI_ID_COMPRESSER, world, x, y, z);
+                par5EntityPlayer.openGui(JurassiCraft.instance, Properties.GUI_ID_COMPRESSER, par1World, par2, par3, par4);
             }
             
             return true;
@@ -62,7 +63,6 @@ public class BlockCompressor extends BlockTileEntity
         {
             return this.blockIcon;
         }
-        
         return this.iconSideGrinder;
     }
     
@@ -70,8 +70,8 @@ public class BlockCompressor extends BlockTileEntity
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "topGrinder");
-        this.iconSideGrinder = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "sideGrinder");
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "topGrinder");
+        this.iconSideGrinder = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "sideGrinder");
     }
     
     @Override
@@ -92,30 +92,29 @@ public class BlockCompressor extends BlockTileEntity
         return false;
     }
     
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving player, ItemStack stack)
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
-        super.onBlockPlacedBy(world, x, y, z, player, stack);
-       
-        int side = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        super.onBlockPlacedBy(par1World, par2, par3, par4, par5EntityLiving, par6ItemStack);
+        int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         
-        if (side == 0)
+        if (l == 0)
         {
-            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
         }
         
-        if (side == 1)
+        if (l == 1)
         {
-            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
         }
         
-        if (side == 2)
+        if (l == 2)
         {
-            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
         }
         
-        if (side == 3)
+        if (l == 3)
         {
-            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
         }
     }
 }

@@ -8,7 +8,7 @@ public class ItemFeather extends ItemGenericDNASource
     public ItemFeather(String name)
     {
         super(name, "Feather");
-        this.setCreativeTab(ModCreativeTabs.jcItems);
+        this.setCreativeTab(ModCreativeTabs.items);
     }
     
     public ItemDNA getCorrespondingDNA()

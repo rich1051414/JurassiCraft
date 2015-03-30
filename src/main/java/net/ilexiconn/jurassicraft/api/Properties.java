@@ -9,9 +9,10 @@ import java.lang.reflect.Field;
  **/
 public class Properties
 {
+    
     //Texture Path
     public static final String PACKAGE = "net.ilexiconn.jurassicraft";
-    public static final String TEX_PACKAGE = JurassiCraft.getModId();
+    public static final String TEX_PACkAGE = JurassiCraft.getModId();
     public static final String TEX_LOGO = "textures/logo.png";
     public static final String TEX_BLOCK = "textures/item/";
     public static final String TEX_BLOCK_GRINDER = TEX_BLOCK + "grinder.png";
@@ -63,12 +64,10 @@ public class Properties
     public static String[] getPackets()
     {
         String[] packets = new String[0];
-        
         try
         {
             Field[] fields = Properties.class.getFields();
             int count = 0;
-           
             for (Field field : fields)
             {
                 if (field.getName().startsWith("PACKET_"))
@@ -76,10 +75,8 @@ public class Properties
                     count += 1;
                 }
             }
-          
             int newCount = 0;
             packets = new String[count];
-          
             for (Field field : fields)
             {
                 if (field.getName().startsWith("PACKET_"))
@@ -93,7 +90,6 @@ public class Properties
         {
             e.printStackTrace();
         }
-      
         return packets;
     }
     

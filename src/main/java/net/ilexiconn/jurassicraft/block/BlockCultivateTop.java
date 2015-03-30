@@ -57,7 +57,6 @@ public class BlockCultivateTop extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         iconVariations = new IIcon[iconVariationsNames.length];
-      
         for (int i = 0; i < this.iconVariations.length; i++)
             this.iconVariations[i] = iconRegister.registerIcon(this.getTextureName() + "_" + iconVariationsNames[i]);
     }
@@ -91,49 +90,39 @@ public class BlockCultivateTop extends Block
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        
         if (tileEntity instanceof TileCultivate)
         {
             TileCultivate tileCultivate = (TileCultivate) tileEntity;
-            
             if (tileCultivate.hasItems())
             {
                 for (int i = 0; i < tileCultivate.getSizeInventory(); i++)
                 {
                     ItemStack itemstack = tileCultivate.getStackInSlot(i);
-                   
                     if (itemstack != null)
                     {
                         float f = world.rand.nextFloat() * 0.8F + 0.1F;
                         float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
                         float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
-                        
                         while (itemstack.stackSize > 0)
                         {
                             int j = world.rand.nextInt(21) + 10;
-                           
                             if (j > itemstack.stackSize)
                             {
                                 j = itemstack.stackSize;
                             }
-                           
                             itemstack.stackSize -= j;
                             EntityItem item = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
-                            
                             if (itemstack.hasTagCompound())
                             {
                                 item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
-                            
                             world.spawnEntityInWorld(item);
                         }
                     }
                 }
-              
                 world.func_147453_f(x, y, z, block);
             }
         }
-      
         super.breakBlock(world, x, y, z, block, metadata);
     }
     

@@ -17,7 +17,7 @@ public class ItemNet extends Item
         this.setMaxDamage(60);
         setUnlocalizedName("net");
         setTextureName(net.ilexiconn.jurassicraft.JurassiCraft.getModId() + "net");
-        setCreativeTab(ModCreativeTabs.jcItems);
+        setCreativeTab(ModCreativeTabs.items);
     }
     
     @SideOnly(Side.CLIENT)

@@ -36,7 +36,7 @@ public abstract class WorldGeneratorCarboniferous extends WorldGenerator
         //}
     }
     
-    public void setBlockAndMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata, int updateFlag)
+    public void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block blockId, int metadata, int updateFlag)
     {
         //if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
         try
@@ -73,7 +73,6 @@ public abstract class WorldGeneratorCarboniferous extends WorldGenerator
     public Material getBlockMaterialIfChunkExists(World world, int x, int y, int z)
     {
         Block block = this.getBlockIfChunkExists(world, x, y, z);
-        
         return block.getMaterial();
     }
     
@@ -90,7 +89,6 @@ public abstract class WorldGeneratorCarboniferous extends WorldGenerator
                 //Work around to stop crash
             }
         }
-        
         return null;
     }
 }

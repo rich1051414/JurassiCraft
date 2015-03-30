@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
  **/
 public class ClientTickHandler
 {
+    
     public static Minecraft mc = Minecraft.getMinecraft();
     public static boolean checkedVersion = false;
     

@@ -15,30 +15,23 @@ public class JurassiCraftCraftingHandler
     public void onCrafting(ItemCraftedEvent event)
     {
         final IInventory craftMatrix = null;
-        
-        IInventory matrix = event.craftMatrix;
-      
-        for (int slot = 0; slot < matrix.getSizeInventory(); slot++)
+        for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
         {
-            if (matrix.getStackInSlot(slot) != null)
+            if (event.craftMatrix.getStackInSlot(i) != null)
             {
-                ItemStack stack = matrix.getStackInSlot(slot);
-              
-                if (stack != (ItemStack) null && stack.getItem() == Items.iron_pickaxe)
+                ItemStack item0 = event.craftMatrix.getStackInSlot(i);
+                if (item0 != (ItemStack) null && item0.getItem() == Items.iron_pickaxe)
                 {
-                    ItemStack pickaxe = new ItemStack(Items.iron_pickaxe, 1, (stack.getItemDamage() + 1));
-                  
+                    ItemStack pickaxe = new ItemStack(Items.iron_pickaxe, 1, (item0.getItemDamage() + 1));
                     if (pickaxe.getItemDamage() >= pickaxe.getMaxDamage())
                     {
                         pickaxe.stackSize--;
-                     
                         if (pickaxe.stackSize <= 0)
                         {
                             pickaxe = (ItemStack) null;
                         }
                     }
-                    
-                    matrix.setInventorySlotContents(slot, pickaxe);
+                    event.craftMatrix.setInventorySlotContents(i, pickaxe);
                 }
             }
         }

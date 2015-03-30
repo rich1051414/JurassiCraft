@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class VelociraptorHerd extends CreatureHerd
 {
+    
     private EntityLivingBase target;
     
     public VelociraptorHerd()
@@ -30,7 +31,6 @@ public class VelociraptorHerd extends CreatureHerd
             target = null;
             return false;
         }
-        
         return target != null;
     }
     
@@ -38,4 +38,5 @@ public class VelociraptorHerd extends CreatureHerd
     {
         return target;
     }
+    
 }

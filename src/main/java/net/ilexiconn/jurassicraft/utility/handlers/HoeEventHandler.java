@@ -4,8 +4,6 @@ import net.ilexiconn.jurassicraft.ModBlocks;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
-import net.minecraft.block.Block.SoundType;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 /**
@@ -13,29 +11,20 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
  */
 public class HoeEventHandler
 {
+    
     @SubscribeEvent
-    public void hoeUse(UseHoeEvent event)
+    public void hoeUse(UseHoeEvent par1)
     {
-        World world = event.world;
-        
-        int x = event.x;
-        int y = event.y;
-        int z = event.z;
-        
-        if ((world.getBlock(x, y, z) == ModBlocks.dirt && world.getBlockMetadata(x, y, z) == 0) || (world.getBlock(x, y, z) == ModBlocks.grass && world.getBlockMetadata(x, y, z) == 0))
+        if ((par1.world.getBlock(par1.x, par1.y, par1.z) == ModBlocks.dirt && par1.world.getBlockMetadata(par1.x, par1.y, par1.z) == 0) || (par1.world.getBlock(par1.x, par1.y, par1.z) == ModBlocks.grass && par1.world.getBlockMetadata(par1.x, par1.y, par1.z) == 0))
         {
             Block block = ModBlocks.tilledEarth;
+            par1.world.playSoundEffect((double) ((float) par1.x + 0.5F), (double) ((float) par1.y + 0.5F), (double) ((float) par1.z + 0.5F), block.stepSound.getStepResourcePath(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
             
-            SoundType stepSound = block.stepSound;
-           
-            world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), stepSound.getStepResourcePath(), (stepSound.getVolume() + 1.0F) / 2.0F, stepSound.getPitch() * 0.8F);
-            
-            if (!world.isRemote)
+            if (!par1.world.isRemote)
             {
-                world.setBlock(x, y, z, block);
+                par1.world.setBlock(par1.x, par1.y, par1.z, block);
             }
-           
-            event.setResult(Result.ALLOW);
+            par1.setResult(Result.ALLOW);
         }
     }
 }

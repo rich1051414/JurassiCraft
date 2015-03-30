@@ -31,7 +31,7 @@ public class BlockFossilSandstoneOre extends Block
         setBlockTextureName(JurassiCraft.getModId() + "fossil_sandstone_ore");
         setHardness(3.0F);
         setResistance(5.0F);
-        setCreativeTab(ModCreativeTabs.jcBlocks);
+        setCreativeTab(ModCreativeTabs.blocks);
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }

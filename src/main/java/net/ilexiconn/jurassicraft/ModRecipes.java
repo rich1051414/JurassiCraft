@@ -19,25 +19,17 @@ public class ModRecipes implements IContentHandler
 {
     public void init()
     {
-        registerJurassicraftRecipes();
-        registerCarboniferousRecipes();
-    }
-
-    private void registerJurassicraftRecipes()
-    {
         GameRegistry.addSmelting(ModBlocks.gypsumCobblestone, new ItemStack(ModBlocks.gypsumBlock, 1), 5);
         
         for (int i = 0; i < BlockCultivateBottom.iconVariationsNames.length; i++)
         {
             int correction = BlockCultivateBottom.iconVariationsNames.length - i - 1;
-          
             GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.cultivateBottomOff, 1, i), "GIG", "G G", "III", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, correction));
         }
         
         for (Creature creature : CreatureManager.getCreatures())
         {
             ItemMeat meat = creature.getMeat();
-          
             if (meat != null)
             {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(meat, 1));
@@ -73,10 +65,11 @@ public class ModRecipes implements IContentHandler
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_fished, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_chicken, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_porkchop, 1));
-    }
-
-    private void registerCarboniferousRecipes()
-    {
+        
+        /*
+         * Carboniferous Recipes
+         */
+        
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.planks_1, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("slabWood", new ItemStack(ModBlocks.woodSingleSlab, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.logs_1, 1, OreDictionary.WILDCARD_VALUE));
@@ -160,14 +153,13 @@ public class ModRecipes implements IContentHandler
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.wallsRock, 6, 5), new Object[] { "BBB", "BBB", 'B', new ItemStack(ModBlocks.dirt, 1, 0) }); //Walls -
         
         int[] doors = new int[] { 0, 14, 15, 16 };
-        int index = 0;
-
+        int var1 = 0;
+        ;
         for (int item : doors)
         {
-            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] { "BBS", "BBS", "BBS", 'B', new ItemStack(ModBlocks.planks_1, 1, index), 'S', Items.stick }); //Doors
-            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] { "SBB", "SBB", "SBB", 'B', new ItemStack(ModBlocks.planks_1, 1, index), 'S', Items.stick });
-          
-            ++index;
+            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] { "BBS", "BBS", "BBS", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick }); //Doors
+            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] { "SBB", "SBB", "SBB", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick }); //Doors
+            ++var1;
         }
         
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.multiItems, 1, 17), new Object[] { "WW", "BB", "BB", 'B', new ItemStack(ModItems.multiItems, 1, 10), 'W', "plankWood" }));

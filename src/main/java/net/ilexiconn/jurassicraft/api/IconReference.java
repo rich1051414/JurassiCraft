@@ -10,6 +10,7 @@ import net.minecraft.util.IIcon;
  */
 public class IconReference
 {
+    
     //Blocks
     public static IIcon dirt;
     public static IIcon dirtBrick;

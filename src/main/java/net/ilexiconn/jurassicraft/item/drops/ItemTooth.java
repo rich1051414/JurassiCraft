@@ -8,7 +8,7 @@ public class ItemTooth extends ItemGenericDNASource
     public ItemTooth(String name)
     {
         super(name, "Tooth");
-        this.setCreativeTab(ModCreativeTabs.jcItems);
+        this.setCreativeTab(ModCreativeTabs.items);
     }
     
     public ItemDNA getCorrespondingDNA()

@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.ai.animation;
 
 import java.util.List;
 
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.Entity;

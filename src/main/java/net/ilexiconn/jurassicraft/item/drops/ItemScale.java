@@ -8,7 +8,7 @@ public class ItemScale extends ItemGenericDNASource
     public ItemScale(String name)
     {
         super(name, "Scale");
-        this.setCreativeTab(ModCreativeTabs.jcItems);
+        this.setCreativeTab(ModCreativeTabs.items);
     }
     
     public ItemDNA getCorrespondingDNA()

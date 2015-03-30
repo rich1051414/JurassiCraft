@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.ai.animation;
 
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 

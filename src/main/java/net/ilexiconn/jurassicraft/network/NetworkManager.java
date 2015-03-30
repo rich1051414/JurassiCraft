@@ -16,6 +16,7 @@ import java.util.EnumMap;
  */
 public class NetworkManager
 {
+    
     public final ChannelHandler channelHandler;
     private final FMLEmbeddedChannel clientOutboundChannel;
     private final FMLEmbeddedChannel serverOutboundChannel;

@@ -8,8 +8,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  */
 public class ActionHandler
 {
+    
     @SubscribeEvent
-    public void action(PlayerInteractEvent event)
+    public void action(PlayerInteractEvent par1)
     {
         
     }

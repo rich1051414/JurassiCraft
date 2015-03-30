@@ -33,10 +33,10 @@ public class ItemCustomFood extends ItemFood
     @Override
     public void registerIcons(IIconRegister par1IconRegister)
     {
-        this.iconDragonflyRaw = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "dragonflyRaw");
-        this.iconDragonflyCooked = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "dragonflyCooked");
-        this.iconMeatAmphibianRaw = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "meatAmphibianRaw");
-        this.iconMeatAmphibianCooked = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "meatAmphibianCooked");
+        this.iconDragonflyRaw = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "dragonflyRaw");
+        this.iconDragonflyCooked = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "dragonflyCooked");
+        this.iconMeatAmphibianRaw = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meatAmphibianRaw");
+        this.iconMeatAmphibianCooked = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meatAmphibianCooked");
     }
     
     public IIcon getIconFromDamage(int par1)

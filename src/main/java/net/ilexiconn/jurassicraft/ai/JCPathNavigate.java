@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class JCPathNavigate extends PathNavigate
 {
+    
     /**
      * If this search range is <code>> 0</code>, then {@link JCPathNavigate#getPathSearchRange()} returns it. Otherwise, the value from {@link PathNavigate} is used.
      */
@@ -22,7 +23,6 @@ public class JCPathNavigate extends PathNavigate
     public JCPathNavigate(EntityLiving entity, World world)
     {
         super(entity, world);
-  
         masterSearchRange = -1f;
         validators = Lists.newArrayList();
     }
@@ -45,7 +45,6 @@ public class JCPathNavigate extends PathNavigate
         {
             return super.getPathSearchRange();
         }
-     
         return masterSearchRange;
     }
     
@@ -59,7 +58,6 @@ public class JCPathNavigate extends PathNavigate
         {
             return super.setPath(path, speed);
         }
-       
         return false;
     }
     
@@ -106,14 +104,12 @@ public class JCPathNavigate extends PathNavigate
      */
     public boolean isValid(PathEntity path, double speed)
     {
-        boolean valid = true;
-      
+        boolean flag = true;
         for (IPathValidator validator : validators)
         {
-            valid = valid && validator.validatePath(this, path, speed);
+            flag = flag && validator.validatePath(this, path, speed);
         }
-       
-        return valid;
+        return flag;
     }
     
 }

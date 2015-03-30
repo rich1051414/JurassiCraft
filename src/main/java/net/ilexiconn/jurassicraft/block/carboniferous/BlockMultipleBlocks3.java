@@ -72,10 +72,10 @@ public class BlockMultipleBlocks3 extends Block
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         //Granite
-        this.meteoriteBlock = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "meteoriteBlock"); //0
-        this.meteoriteLightOre = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "meteoriteLightOre"); //1
-        this.meteoriteRedOre = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "meteoriteRedOre"); //2
-        this.basaltEncrustedDiamond = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "basaltEncrustedDiamond"); //3
+        this.meteoriteBlock = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meteoriteBlock"); //0
+        this.meteoriteLightOre = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meteoriteLightOre"); //1
+        this.meteoriteRedOre = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "meteoriteRedOre"); //2
+        this.basaltEncrustedDiamond = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "basaltEncrustedDiamond"); //3
     }
     
     @Override

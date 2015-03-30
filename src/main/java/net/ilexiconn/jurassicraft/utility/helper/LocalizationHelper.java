@@ -5,6 +5,7 @@ package net.ilexiconn.jurassicraft.utility.helper;
  */
 public class LocalizationHelper
 {
+    
     /***
      * A simple test to determine if a specified file name represents a XML file
      * or not

@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.ai.animation;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
+import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityParasaurolophus;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;

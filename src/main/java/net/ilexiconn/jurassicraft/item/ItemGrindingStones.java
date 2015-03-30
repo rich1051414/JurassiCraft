@@ -13,6 +13,7 @@ import net.minecraft.util.IIcon;
  **/
 public class ItemGrindingStones extends Item
 {
+    
     public static IIcon grindingStone;
     public static IIcon ironGrindingBall;
     
@@ -26,15 +27,15 @@ public class ItemGrindingStones extends Item
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
-        this.grindingStone = iconRegister.registerIcon(Properties.TEX_PACKAGE + "GrindingStone");
-        this.ironGrindingBall = iconRegister.registerIcon(Properties.TEX_PACKAGE + "IronGrindingBall");
+        this.grindingStone = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "GrindingStone");
+        this.ironGrindingBall = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "IronGrindingBall");
     }
     
-    public IIcon getIconFromDamage(int damage)
+    public IIcon getIconFromDamage(int par1)
     {
-        switch (damage)
+        switch (par1)
         {
             case 0:
                 return this.grindingStone;
@@ -46,8 +47,9 @@ public class ItemGrindingStones extends Item
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getUnlocalizedName(ItemStack par1ItemStack)
     {
-        return super.getUnlocalizedName() + "." + stack.getItemDamage();
+        int i = par1ItemStack.getItemDamage();
+        return super.getUnlocalizedName() + "." + i;
     }
 }

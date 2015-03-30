@@ -8,6 +8,7 @@ import net.minecraft.pathfinding.PathNavigate;
  */
 public interface IPathValidator
 {
+    
     /**
      * Validates a path.
      *

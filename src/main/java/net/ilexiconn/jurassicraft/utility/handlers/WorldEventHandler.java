@@ -8,23 +8,28 @@ import net.minecraftforge.event.world.WorldEvent;
  **/
 public class WorldEventHandler
 {
+    
     @SubscribeEvent
-    public void worldLoad(WorldEvent.Load event)
+    public void worldLoad(WorldEvent.Load par1)
     {
+        
     }
     
     @SubscribeEvent
-    public void worldSave(WorldEvent.Save event)
+    public void worldSave(WorldEvent.Save par1)
     {
+        
     }
     
     @SubscribeEvent
-    public void worldPotentialSpawns(WorldEvent.PotentialSpawns event)
+    public void worldPotentialSpawns(WorldEvent.PotentialSpawns par1)
     {
+        
     }
     
     @SubscribeEvent
-    public void worldUnload(WorldEvent.Unload event)
+    public void worldUnload(WorldEvent.Unload par1)
     {
+        
     }
 }

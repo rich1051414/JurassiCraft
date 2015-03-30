@@ -33,7 +33,7 @@ public class BlockGrass extends Block
     {
         super(Material.grass);
         this.setTickRandomly(true);
-        this.setCreativeTab(ModCreativeTabs.carboniferous);
+        this.setCreativeTab(ModCreativeTabs.Carboniferous);
     }
     
     @Override
@@ -95,9 +95,9 @@ public class BlockGrass extends Block
     @Override
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACKAGE + "grassside");
-        this.iconGrassTop = iconRegister.registerIcon(Properties.TEX_PACKAGE + "grasstop");
-        this.iconSnowSide = iconRegister.registerIcon(Properties.TEX_PACKAGE + "grasssnowside");
+        this.blockIcon = iconRegister.registerIcon(Properties.TEX_PACkAGE + "grassside");
+        this.iconGrassTop = iconRegister.registerIcon(Properties.TEX_PACkAGE + "grasstop");
+        this.iconSnowSide = iconRegister.registerIcon(Properties.TEX_PACkAGE + "grasssnowside");
     }
     
     @Override

@@ -47,25 +47,25 @@ public class ItemMultipleItems extends Item
     @Override
     public void registerIcons(IIconRegister par1IconRegister)
     {
-        this.iconIronClump = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "ironClump");
-        this.iconIronOreClumps = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "ironOreClumps");
-        this.iconPyriteCrystal = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "pyriteCrystal");
-        this.iconHematite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "hematite");
-        this.iconTimerod = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "timerod");
-        this.iconShellAmmonite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "shellAmmonite");
-        this.iconShellBrachiopod = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "shellBrachiopod");
-        this.iconPearl = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "pearl");
-        this.graniteGear = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "graniteGear");
-        this.amphibianSkin = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "amphibianSkin");
-        this.sharkTooth = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "sharkTooth");
-        this.dragonflyWings = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "dragonflyWings");
-        this.carbonDust = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "carbonDust");
+        this.iconIronClump = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "ironClump");
+        this.iconIronOreClumps = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "ironOreClumps");
+        this.iconPyriteCrystal = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "pyriteCrystal");
+        this.iconHematite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "hematite");
+        this.iconTimerod = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "timerod");
+        this.iconShellAmmonite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "shellAmmonite");
+        this.iconShellBrachiopod = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "shellBrachiopod");
+        this.iconPearl = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "pearl");
+        this.graniteGear = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "graniteGear");
+        this.amphibianSkin = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "amphibianSkin");
+        this.sharkTooth = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "sharkTooth");
+        this.dragonflyWings = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "dragonflyWings");
+        this.carbonDust = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "carbonDust");
         
-        this.doorLepidodendron = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "item_doorLepido");
-        this.doorCalamites = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "item_doorCalamites");
-        this.doorCordaites = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "item_doorCordaites");
-        this.doorSigillaria = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "item_doorSigilaria");
-        this.doorAmphibian = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "item_doorAmphibian");
+        this.doorLepidodendron = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "item_doorLepido");
+        this.doorCalamites = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "item_doorCalamites");
+        this.doorCordaites = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "item_doorCordaites");
+        this.doorSigillaria = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "item_doorSigilaria");
+        this.doorAmphibian = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "item_doorAmphibian");
     }
     
     public IIcon getIconFromDamage(int par1)

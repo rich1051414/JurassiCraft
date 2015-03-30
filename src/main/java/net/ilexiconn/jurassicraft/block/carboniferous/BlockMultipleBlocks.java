@@ -108,25 +108,25 @@ public class BlockMultipleBlocks extends Block
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         //Granite
-        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "granite"); //0
-        this.cobbleGranite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "cobbleGranite"); //1
-        this.brickGranite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "bricksGranite"); //2
+        this.blockIcon = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "granite"); //0
+        this.cobbleGranite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "cobbleGranite"); //1
+        this.brickGranite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "bricksGranite"); //2
         //Limestone
-        this.limestone = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "limestone"); //3
-        this.limestoneBrick = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "bricksLimestone"); //4
+        this.limestone = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "limestone"); //3
+        this.limestoneBrick = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "bricksLimestone"); //4
         //Sediment
-        this.sediment = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "sediment"); //5
-        this.sedimentFish = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreFishSedi"); //6
-        this.sedimentGold = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreGoldSediment"); //7
-        this.sedimentHematite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreHematiteSediment"); //8
-        this.sedimentPyrite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "orePyriteSediment"); //9
+        this.sediment = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "sediment"); //5
+        this.sedimentFish = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreFishSedi"); //6
+        this.sedimentGold = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreGoldSediment"); //7
+        this.sedimentHematite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreHematiteSediment"); //8
+        this.sedimentPyrite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "orePyriteSediment"); //9
         //Granite Ore
-        this.graniteDiamond = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreDiamondGranite"); //10
-        this.graniteGold = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreGoldGranite"); //11
-        this.graniteHematite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreHematiteGranite"); //12
-        this.granitePyrite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "orePyriteGranite"); //13
+        this.graniteDiamond = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreDiamondGranite"); //10
+        this.graniteGold = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreGoldGranite"); //11
+        this.graniteHematite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreHematiteGranite"); //12
+        this.granitePyrite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "orePyriteGranite"); //13
         //Ore Storage
-        this.oreStoragePyrite = par1IconRegister.registerIcon(Properties.TEX_PACKAGE + "oreStorage_Pyrite"); //14
+        this.oreStoragePyrite = par1IconRegister.registerIcon(Properties.TEX_PACkAGE + "oreStorage_Pyrite"); //14
         
     }
     

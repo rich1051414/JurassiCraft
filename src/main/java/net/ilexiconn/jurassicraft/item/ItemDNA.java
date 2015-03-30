@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ItemDNA extends Item implements IDNASample
 {
+    
     public ItemDNA(String name)
     {
         super();
@@ -25,13 +26,12 @@ public class ItemDNA extends Item implements IDNASample
         String cat = CreatureManager.getCategoryFromCreatureName(name);
         setUnlocalizedName(name + "_DNA");
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_DNA");
-        setCreativeTab(ModCreativeTabs.jcDNAs);
+        setCreativeTab(ModCreativeTabs.dnas);
     }
     
     public Item getCorrespondingEggOrSyringe()
     {
         Creature creature = CreatureManager.getCreatureFromDNA(this);
-        
         if (creature.getEgg() != null)
         {
             return creature.getEgg();
@@ -56,7 +56,6 @@ public class ItemDNA extends Item implements IDNASample
                 return dnaSample.getTagCompound().getString("DNA");
             }
         }
-        
         return StatCollector.translateToLocal("item.dna.info.errorCode");
     }
     
@@ -70,7 +69,6 @@ public class ItemDNA extends Item implements IDNASample
                 return dnaSample.getTagCompound().getInteger("Quality");
             }
         }
-        
         return 0;
     }
     
@@ -79,53 +77,54 @@ public class ItemDNA extends Item implements IDNASample
     {
         if (dnaSample.hasTagCompound())
         {
-            NBTTagCompound tagCompound = dnaSample.getTagCompound();
-            
-            if (tagCompound.hasKey("DNA"))
+            if (dnaSample.getTagCompound().hasKey("DNA"))
             {
-                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.dna") + ": " + tagCompound.getString("DNA"));
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.dna") + ": " + dnaSample.getTagCompound().getString("DNA"));
             }
-            
-            if (tagCompound.hasKey("Quality"))
+            if (dnaSample.getTagCompound().hasKey("Quality"))
             {
-                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.quality") + ": " + tagCompound.getInteger("Quality") + "%");
+                list.add(EnumChatFormatting.GREEN + StatCollector.translateToLocal("item.dna.info.quality") + ": " + dnaSample.getTagCompound().getInteger("Quality") + "%");
             }
         }
     }
     
     @Override
-    public ItemStack onItemRightClick(ItemStack dna, World world, EntityPlayer player)
+    public ItemStack onItemRightClick(ItemStack dnaSample, World world, EntityPlayer player)
     {
         if (player.capabilities.isCreativeMode && player.isSneaking())
         {
             NBTTagCompound compound = new NBTTagCompound();
-          
-            NBTTagCompound oldCompound = dna.getTagCompound();
-            
-            if (dna.hasTagCompound())
+            if (dnaSample.hasTagCompound())
             {
-                if (oldCompound.hasKey("Quality"))
+                if (dnaSample.getTagCompound().hasKey("Quality"))
                 {
-                    int oldQuality = oldCompound.getInteger("Quality");
-                    oldCompound.removeTag("Quality");
-                    
-                    int newQuality = oldQuality + 25;
-                    
-                    if(newQuality >= 100)
+                    int oldQuality = dnaSample.getTagCompound().getInteger("Quality");
+                    dnaSample.getTagCompound().removeTag("Quality");
+                    switch (oldQuality)
                     {
-                        newQuality = 0;
+                        case 25:
+                            compound.setInteger("Quality", 50);
+                            break;
+                        case 50:
+                            compound.setInteger("Quality", 75);
+                            break;
+                        case 75:
+                            compound.setInteger("Quality", 100);
+                            break;
+                        case 100:
+                            compound.setInteger("Quality", 25);
+                            break;
+                        default:
+                            break;
                     }
-                    
-                    compound.setInteger("Quality", newQuality);
                 }
                 else
                 {
                     compound.setInteger("Quality", 25);
                 }
-                
-                if (oldCompound.hasKey("DNA"))
+                if (dnaSample.getTagCompound().hasKey("DNA"))
                 {
-                    oldCompound.removeTag("DNA");
+                    dnaSample.getTagCompound().removeTag("DNA");
                     compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
                 }
                 else
@@ -138,16 +137,13 @@ public class ItemDNA extends Item implements IDNASample
                 compound.setInteger("Quality", 25);
                 compound.setString("DNA", JurassiCraftDNAHandler.createDefaultDNA());
             }
-            
-            dna.setTagCompound(compound);
-            
+            dnaSample.setTagCompound(compound);
             if (world.isRemote)
             {
-                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.qualityChanged") + " " + oldCompound.getInteger("Quality") + "%"));
-                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.geneticCodeIs") + ": " + oldCompound.getString("DNA")));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.qualityChanged") + " " + dnaSample.getTagCompound().getInteger("Quality") + "%"));
+                player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("item.dna.info.geneticCodeIs") + ": " + dnaSample.getTagCompound().getString("DNA")));
             }
         }
-        
-        return dna;
+        return dnaSample;
     }
 }

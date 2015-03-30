@@ -27,7 +27,7 @@ public class ItemMeat extends ItemFood implements IDNASource
         name = name.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(name);
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Meat");
-        setCreativeTab(ModCreativeTabs.jcItemsFood);
+        setCreativeTab(ModCreativeTabs.itemsFood);
     }
     
     public ItemDNA getCorrespondingDNA()

@@ -9,6 +9,7 @@ import net.minecraftforge.common.DimensionManager;
 
 public class ModBiomes implements IContentHandler
 {
+    
     @Override
     public void init()
     {

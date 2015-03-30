@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class ItemStackHelper
 {
+    
     /**
      * Converts an object to and ItemStack. Check to see whether it is 
      * not null before using the returned object.
@@ -41,10 +42,8 @@ public class ItemStackHelper
         if (!item.hasTagCompound())
         {
             item.setTagCompound(new NBTTagCompound());
-            
             return true;
         }
-        
         return false;
     }
     
@@ -52,7 +51,6 @@ public class ItemStackHelper
     {
         if (item == null || itemClass == null)
             return false;
-        
         return item.getItem() == itemClass;
     }
     
@@ -65,7 +63,6 @@ public class ItemStackHelper
     {
         if (itemStack.stackTagCompound != null)
             return itemStack.stackTagCompound.hasKey(keyName);
-        
         return false;
     }
     
@@ -77,15 +74,14 @@ public class ItemStackHelper
         }
     }
     
+    //String
     public static String getString(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-        
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setString(itemStack, keyName, "");
         }
-        
         return itemStack.stackTagCompound.getString(keyName);
     }
     
@@ -95,15 +91,14 @@ public class ItemStackHelper
         itemStack.stackTagCompound.setString(keyName, keyValue);
     }
     
+    //Boolean
     public static boolean getBoolean(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-      
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setBoolean(itemStack, keyName, false);
         }
-        
         return itemStack.stackTagCompound.getBoolean(keyName);
     }
     
@@ -113,15 +108,14 @@ public class ItemStackHelper
         itemStack.stackTagCompound.setBoolean(keyName, keyValue);
     }
     
+    //Byte
     public static byte getByte(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-       
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setByte(itemStack, keyName, (byte) 0);
         }
-       
         return itemStack.stackTagCompound.getByte(keyName);
     }
     
@@ -131,15 +125,14 @@ public class ItemStackHelper
         itemStack.stackTagCompound.setByte(keyName, keyValue);
     }
     
+    //Short
     public static short getShort(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-       
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setShort(itemStack, keyName, (short) 0);
         }
-        
         return itemStack.stackTagCompound.getShort(keyName);
     }
     
@@ -153,12 +146,10 @@ public class ItemStackHelper
     public static int getInt(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-     
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setInteger(itemStack, keyName, 0);
         }
-      
         return itemStack.stackTagCompound.getInteger(keyName);
     }
     
@@ -172,12 +163,10 @@ public class ItemStackHelper
     public static long getLong(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-       
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setLong(itemStack, keyName, 0);
         }
-       
         return itemStack.stackTagCompound.getLong(keyName);
     }
     
@@ -187,15 +176,14 @@ public class ItemStackHelper
         itemStack.stackTagCompound.setLong(keyName, keyValue);
     }
     
+    //Float
     public static float getFloat(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-       
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setFloat(itemStack, keyName, 0);
         }
-        
         return itemStack.stackTagCompound.getFloat(keyName);
     }
     
@@ -205,15 +193,14 @@ public class ItemStackHelper
         itemStack.stackTagCompound.setFloat(keyName, keyValue);
     }
     
+    //Double
     public static double getDouble(ItemStack itemStack, String keyName)
     {
         makeSureItemHasTagCompound(itemStack);
-      
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             setDouble(itemStack, keyName, 0);
         }
-      
         return itemStack.stackTagCompound.getDouble(keyName);
     }
     
@@ -222,14 +209,14 @@ public class ItemStackHelper
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setDouble(keyName, keyValue);
     }
-
+    
+    //Tag
     public static NBTBase getTag(ItemStack itemStack, String keyName)
     {
         if (!itemStack.stackTagCompound.hasKey(keyName))
         {
             return null;
         }
-        
         return itemStack.stackTagCompound.getTag(keyName);
     }
     
