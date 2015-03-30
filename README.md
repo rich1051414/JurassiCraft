@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/ilexiconn/jurassicraft.png?label=ready&title=Ready)](https://waffle.io/jurassicraft/jurassicraft)
+[![Stories in Ready](https://badge.waffle.io/ilexiconn/jurassicraft.png?label=ready&title=Ready)](https://waffle.io/ilexiconn/jurassicraft)
 <a href="http://imgur.com/JhHVzeU"><img src="http://i.imgur.com/JhHVzeU.jpg" title="source: imgur.com" /></a>
 =======
 JurassiCraft
