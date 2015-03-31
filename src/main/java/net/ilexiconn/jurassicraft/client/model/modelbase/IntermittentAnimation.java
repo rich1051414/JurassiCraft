@@ -13,7 +13,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author RafaMv
  */
-@SideOnly(Side.CLIENT)
 public class IntermittentAnimation
 {
     /**
