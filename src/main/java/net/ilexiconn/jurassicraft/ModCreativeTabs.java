@@ -28,15 +28,6 @@ public class ModCreativeTabs implements IContentHandler
             }
         };
         
-        this.Carboniferous = new CreativeTabs("jurassicraft.carboniferous")
-        {
-            @SideOnly(Side.CLIENT)
-            public Item getTabIconItem()
-            {
-                return ModItems.rawAmphibian;
-            }
-        };
-        
         this.blocks = new CreativeTabs("jurassicraft.blocks")
         {
             @SideOnly(Side.CLIENT)
