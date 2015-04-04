@@ -85,7 +85,6 @@ public class ReflectionHelper
      * @param class1 The class the field is in
      * @param fieldType The object the field contains
      * @param instance The instance
-     * @param fieldName The field name
      * @return The object that the class contains
      */
     public static <T> T getField(Class<?> class1, Class<T> fieldType, Object instance, int fieldIndex)

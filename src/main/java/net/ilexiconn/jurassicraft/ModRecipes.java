@@ -61,8 +61,6 @@ public class ModRecipes implements IContentHandler
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_fished, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_chicken, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_porkchop, 1));
-        
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.multiItems, 1, 17), new Object[] { "WW", "BB", "BB", 'B', new ItemStack(ModItems.multiItems, 1, 10), 'W', "plankWood" }));
 
     }
 }

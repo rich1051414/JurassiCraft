@@ -55,7 +55,6 @@ public class GuiHelper
     
     /**
      * Draws a progress bar
-     * @param gui Drawing class
      * @param x X position on screen
      * @param y Y position on screen
      * @param tx Texture X position

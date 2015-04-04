@@ -26,17 +26,6 @@ public class ModItems implements IContentHandler
     public static Item net;
     public static Item spawnEgg;
     
-    // Carboniferous Items
-    
-    public static Item multiItems;
-    public static Item grindingStones;
-    public static Item rawAnt;
-    public static Item cookedAnt;
-    public static Item rawDragonfly;
-    public static Item cookedDragonfly;
-    public static Item rawAmphibian;
-    public static Item cookedAmphibian;
-    
     public void init()
     {
         amber = new ItemAmber();
@@ -135,7 +124,6 @@ public class ModItems implements IContentHandler
     
     public void gameRegistry()
     {
-        // TODO: FIX
         for (Field field : getClass().getFields())
         {
             try

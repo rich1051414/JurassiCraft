@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 
 public class ModBlocks implements IContentHandler
 {
+
     @IgnoreRegistration
     public static Block clayFossilOre;
     @IgnoreRegistration
@@ -46,11 +47,7 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
     public static Block securityFenceLowGrid;
-    
-    // Dimension Plants
-    public static Block fernPlant;
-    public static Block orontium;
-    public static Block Heliconia;
+
     
     /*
     public static Block securityFenceMediumCorner;
@@ -99,9 +96,8 @@ public class ModBlocks implements IContentHandler
         
         gameRegistry();
     }
-    
-    public void gameRegistry()
-    {
+
+    public void gameRegistry() {
         GameRegistry.registerBlock(cultivateBottomOff, ItemBlockCultivate.class, "cultivateOff");
         GameRegistry.registerBlock(cultivateBottomOn, ItemBlockCultivate.class, "cultivateOn");
         GameRegistry.registerBlock(clayFossilOre, ItemBlockFossilClayOre.class, "clayFossilOre");
@@ -113,7 +109,6 @@ public class ModBlocks implements IContentHandler
         GameRegistry.registerBlock(cultivateLiquid, "culivateFluid");
 
 
-        // TODO: FIX
         for (Field field : getClass().getFields())
         {
             try
@@ -121,6 +116,7 @@ public class ModBlocks implements IContentHandler
                 if (!field.isAnnotationPresent(IgnoreRegistration.class))
                 {
                     Block block = (Block) field.get(this);
+
                     GameRegistry.registerBlock(block, block.getUnlocalizedName());
                 }
             }
