@@ -480,7 +480,7 @@
         "minLength":1.8,
         "maxLength":9.8,
         "minHeight":0.72,
-        "maxHeight":0.85,
+        "maxHeight":0.84,
         "scaleAdjustment":2.0,
         "shadowSize":0.8,
         "minProximate":1600,
