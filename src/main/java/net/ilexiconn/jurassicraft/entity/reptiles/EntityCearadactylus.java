@@ -174,7 +174,7 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
     }
     
     /*
-     * Base of the flying
+     * base of the flying
      */
 
     public void flyAround()
