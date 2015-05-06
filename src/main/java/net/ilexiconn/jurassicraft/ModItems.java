@@ -128,9 +128,16 @@ public class ModItems implements IContentHandler
         {
             try
             {
-                Item item = (Item) field.get(this);
-                if (field.getAnnotations().length == 0)
-                    GameRegistry.registerItem(item, item.getUnlocalizedName());
+        	Object obj = null;
+        	try{
+        	    obj = field.get(this);
+        	}catch(Throwable ex){}
+        	if(obj != null && obj instanceof Item){
+        	    Item item = (Item) field.get(this);
+                    if (field.getAnnotations().length == 0)
+                        GameRegistry.registerItem(item, item.getUnlocalizedName());
+        	}
+                
             }
             catch (IllegalAccessException e)
             {

@@ -122,7 +122,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
                         double velY = 0.20000000298023224D + 1 / 100.0D;
                         double velX = (double) (MathHelper.cos(f3) * 0.2F) * d5 * d5 * (1 + 0.2D);
                         double velZ = (double) (MathHelper.sin(f3) * 0.2F) * d5 * d5 * (1 + 0.2D);
-                        mc.theWorld.spawnParticle("blockdust_" + Block.getIdFromBlock(Blocks.sandstone) + "_0", (double) ((float) this.posX), (double) ((float) this.posY), (double) ((float) this.posZ), velX, velY, velZ);
+                        //mc.theWorld.spawnParticle("blockdust_" + Block.getIdFromBlock(Blocks.sandstone) + "_0", (double) ((float) this.posX), (double) ((float) this.posY), (double) ((float) this.posZ), velX, velY, velZ);
                     }
                 }
             }

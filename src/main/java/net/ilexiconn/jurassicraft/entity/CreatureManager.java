@@ -96,7 +96,7 @@ public class CreatureManager
         
         return null;
     }
-    
+
     public static void addCreature(JsonCreatureDefinition creature, String category)
     {
         try
@@ -105,9 +105,8 @@ public class CreatureManager
             
             Class entity = Class.forName("net.ilexiconn.jurassicraft.entity." + category + ".Entity" + creatureName);
             creatures.add(new Creature(category, creature, entity));
-            int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            EntityRegistry.registerGlobalEntityID(entity, creatureName, entityId);
-            EntityRegistry.registerModEntity(entity, creatureName, entityId, JurassiCraft.instance, 64, 1, true);
+            
+            EntityRegistry.registerModEntity(entity, creatureName, JurassiCraft.entityIndex++, JurassiCraft.instance, 64, 1, true);
         }
         catch (Exception e)
         {

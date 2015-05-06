@@ -25,7 +25,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
         this.setUnlocalizedName(name + "_" + type);
         name = name.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(name);
-        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_" + type);
+        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat.toLowerCase() + "/" + name.toLowerCase()  + "/" + name.toLowerCase()  + "_" + type);
     }
     
     public ItemDNA getCorrespondingDNA(String type)
