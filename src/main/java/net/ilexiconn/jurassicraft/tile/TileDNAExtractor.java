@@ -22,15 +22,15 @@ import java.util.ArrayList;
 
 public class TileDNAExtractor extends TileEntity implements ISidedInventory
 {
-    private ItemStack[] slots = new ItemStack[8];
     private static final short extractionSpeed = 100;
+    private ItemStack[] slots = new ItemStack[8];
     private short extractionTime;
     private ArrayList<ItemDNA> allDNAs = new ArrayList<ItemDNA>();
-    
+
     public TileDNAExtractor()
     {
         this.extractionTime = 0;
-        
+
         for (Creature creature : CreatureManager.getCreatures())
         {
             ItemDNA dna = creature.getDNA();
@@ -40,32 +40,32 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             }
         }
     }
-    
+
     public short getExtractionTime()
     {
         return extractionTime;
     }
-    
+
     public void setExtractionTime(short time)
     {
         this.extractionTime = time;
     }
-    
+
     public short getExtractionSpeed()
     {
         return this.extractionSpeed;
     }
-    
+
     public int getExtractionProgressScaled(int i)
     {
         return (this.getExtractionTime() * i) / this.getExtractionSpeed();
     }
-    
+
     public boolean isExtracting()
     {
         return (this.getExtractionTime() > 0);
     }
-    
+
     private boolean canExtract()
     {
         if (this.slots[0] == (ItemStack) null && this.slots[1] == (ItemStack) null && this.slots[2] == (ItemStack) null && this.slots[3] == (ItemStack) null)
@@ -81,7 +81,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             return true;
         }
     }
-    
+
     private void extractItem()
     {
         for (int i = 0; i < 4; i++)
@@ -89,7 +89,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             if (slots[i] != (ItemStack) null && slots[i].getItem() instanceof IDNASource)
             {
                 ItemStack newItem = (ItemStack) null;
-                
+
                 if (slots[i].getItem() instanceof ItemFossil)
                 {
                     newItem = this.getDNASampleFromFossil();
@@ -122,7 +122,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
                         newItem = new ItemStack(Items.bone, 1 + this.worldObj.rand.nextInt(3));
                     }
                 }
-                
+
                 if (newItem != (ItemStack) null)
                 {
                     for (int j = 4; j < 8; j++)
@@ -157,7 +157,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             }
         }
     }
-    
+
     private ItemStack getDNASampleFromFossil()
     {
         if (this.worldObj.rand.nextFloat() >= 0.70F)
@@ -233,7 +233,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         }
         return null;
     }
-    
+
     private ItemStack getDNASampleFromAmber()
     {
         ItemStack dna = new ItemStack(this.getRandomDNA());
@@ -258,7 +258,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             return dna;
         }
     }
-    
+
     private ItemStack getDNASampleFromMeat(ItemStack meat)
     {
         ItemStack dna = new ItemStack(this.getDNAFromMeat((ItemMeat) meat.getItem()));
@@ -299,7 +299,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             }
         }
     }
-    
+
     private ItemStack getDNASampleFromDrop(ItemStack itemStack)
     {
         ItemStack dna = (ItemStack) null;
@@ -335,7 +335,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         {
             dna = new ItemStack(this.getRandomDNA());
         }
-        
+
         if (itemStack.hasTagCompound())
         {
             dna.setTagCompound(itemStack.getTagCompound());
@@ -373,18 +373,18 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             }
         }
     }
-    
+
     private Item getDNAFromMeat(ItemMeat meat)
     {
         ItemDNA dna = meat.getCorrespondingDNA();
         return dna;
     }
-    
+
     private Item getRandomDNA()
     {
         return allDNAs.get(this.worldObj.rand.nextInt(allDNAs.size()));
     }
-    
+
     @Override
     public void updateEntity()
     {
@@ -405,24 +405,24 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             }
         }
     }
-    
+
     public boolean hasItems()
     {
         return (this.slots[0] != null || this.slots[1] != null || this.slots[2] != null || this.slots[3] != null || this.slots[4] != null || this.slots[5] != null || this.slots[6] != null || this.slots[7] != null) ? true : false;
     }
-    
+
     @Override
     public int getSizeInventory()
     {
         return slots.length;
     }
-    
+
     @Override
     public ItemStack getStackInSlot(int i)
     {
         return slots[i];
     }
-    
+
     @Override
     public ItemStack decrStackSize(int i, int stackSize)
     {
@@ -450,7 +450,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             return null;
         }
     }
-    
+
     @Override
     public ItemStack getStackInSlotOnClosing(int i)
     {
@@ -465,7 +465,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             return null;
         }
     }
-    
+
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack)
     {
@@ -475,67 +475,67 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
             itemStack.stackSize = this.getInventoryStackLimit();
         }
     }
-    
+
     @Override
     public String getInventoryName()
     {
         return "DNA Extractor";
     }
-    
+
     @Override
     public boolean hasCustomInventoryName()
     {
         return true;
     }
-    
+
     @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
-    
+
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
-    
+
     @Override
     public void openInventory()
     {
-        
+
     }
-    
+
     @Override
     public void closeInventory()
     {
-        
+
     }
-    
+
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
         return false;
     }
-    
+
     @Override
     public int[] getAccessibleSlotsFromSide(int i)
     {
-        return new int[] { 0 };
+        return new int[]{0};
     }
-    
+
     @Override
     public boolean canInsertItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-    
+
     @Override
     public boolean canExtractItem(int i, ItemStack itemStack, int j)
     {
         return false;
     }
-    
+
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
@@ -546,7 +546,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         {
             NBTTagCompound compound = (NBTTagCompound) list.getCompoundTagAt(i);
             byte k = compound.getByte("Slot");
-            
+
             if (k >= 0 && k < this.slots.length)
             {
                 this.slots[k] = ItemStack.loadItemStackFromNBT(compound);
@@ -554,7 +554,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         }
         this.setExtractionTime(nbt.getShort("ExtractionTime"));
     }
-    
+
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
@@ -573,7 +573,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         }
         nbt.setTag("Items", list);
     }
-    
+
     @Override
     public Packet getDescriptionPacket()
     {
@@ -581,7 +581,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
         this.writeToNBT(compound);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, compound);
     }
-    
+
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
     {

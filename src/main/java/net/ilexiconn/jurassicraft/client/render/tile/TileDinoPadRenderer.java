@@ -12,15 +12,15 @@ import org.lwjgl.opengl.GL11;
 
 public class TileDinoPadRenderer extends TileEntitySpecialRenderer
 {
-    
+
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/dinoPad.png");
     private ModelDinoPad model = new ModelDinoPad();
-    
+
     public TileDinoPadRenderer()
     {
-        
+
     }
-    
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {

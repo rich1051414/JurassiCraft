@@ -7,14 +7,14 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class JurassiCraftAISitNatural extends EntityAIBase
 {
-    
+
     private EntityJurassiCraftSmart creature;
     private int nonTamedStartingTime;
     private int nonTamedTimer;
     private int nonTamedChance;
     private int nonTamedMinDuration;
     private int nonTamedDurationVariation;
-    
+
     /**
      * This AI handles the sitting state of the creature. It can be set to sit by its owner, or can
      * naturally sit if it does not have a owner.
@@ -58,13 +58,13 @@ public class JurassiCraftAISitNatural extends EntityAIBase
             this.nonTamedMinDuration = 300 + this.nonTamedDurationVariation;
         }
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
         if (this.creature.isInWater() || !this.creature.onGround || this.creature.isTakingOff() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isEating() || this.creature.isDrinking() || this.creature.isPlaying() || this.creature.isAttacking() || this.creature.isDefending() || this.creature.isBreeding())
             return false;
-        
+
         if (!this.creature.isTamed())
         {
             this.nonTamedTimer++;
@@ -83,7 +83,7 @@ public class JurassiCraftAISitNatural extends EntityAIBase
             return this.creature.isSitting() ? (entitylivingbase == null ? false : (this.creature.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getAITarget() == null)) : false;
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -98,20 +98,20 @@ public class JurassiCraftAISitNatural extends EntityAIBase
         this.creature.setSitting(true, null);
         this.nonTamedTimer = 0;
     }
-    
+
     @Override
     public void updateTask()
     {
         if (!this.creature.isTamed())
             this.nonTamedTimer++;
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return this.creature.isSitting() && this.nonTamedTimer < this.nonTamedMinDuration && !this.creature.hasBeenHurt() && this.creature.getAttackTarget() == null;
     }
-    
+
     @Override
     public void resetTask()
     {

@@ -14,25 +14,25 @@ public class BlockSecurityFenceLowBase extends BlockSecurityFence implements IFe
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         this.setCreativeTab(ModCreativeTabs.blocks);
     }
-    
+
     @Override
     public int getRenderType()
     {
         return -1;
     }
-    
+
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

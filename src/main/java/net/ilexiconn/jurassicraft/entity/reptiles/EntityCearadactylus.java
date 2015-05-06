@@ -20,11 +20,11 @@ import net.minecraft.world.World;
 
 public class EntityCearadactylus extends EntityJurassiCraftRidableFlying implements IReptile, IPiscivore
 {
-    
-    private boolean isFlying;
+
     public ChunkCoordinates currentTarget;
     public int maxHeight = 130;
-    
+    private boolean isFlying;
+
     public EntityCearadactylus(World world)
     {
         super(world);
@@ -39,40 +39,40 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.setCreatureExperiencePoints(1500);
     }
-    
+
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        
+
         this.dataWatcher.addObject(17, new Byte((byte) 0));
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox() * 0.6D;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttag)
     {
         super.readEntityFromNBT(nbttag);
         this.dataWatcher.updateObject(17, Byte.valueOf(nbttag.getByte("Flying")));
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttag)
     {
         super.writeEntityToNBT(nbttag);
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -91,27 +91,27 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkull()));
         }
     }
-    
+
     public void setFlying(boolean state)
     {
         isFlying = state;
-        
+
     }
     
     /*
      * Makes it fly... Pretty neet :)
      * Thanks Alexthe666 for the majority of the code ;)
      */
-    
+
     // TODO: Fix the wondering on the ground :P
     
     /*
      * Updates the creature every tick to decide what its going to do :)
      */
-    
+
     public void onLivingUpdate()
     {
-        
+
         if (motionY < 0.0D)
         {
             motionY *= 0.6D;
@@ -127,16 +127,16 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
                             setFlying(true);
                         else
                             setFlying(false);
-                    
+
                     if (isFlying)
                     {
                         flyAround();
                     }
                     else
                     {
-                        
+
                     }
-                    
+
                     if (getEntityToAttack() != null)
                     {
                         currentTarget = new ChunkCoordinates((int) getEntityToAttack().posX, (int) ((int) getEntityToAttack().posY + getEntityToAttack().getEyeHeight()), (int) getEntityToAttack().posZ);
@@ -152,7 +152,7 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
     /*
      * Makes the animals fly towards its location
      */
-    
+
     public void flyTowardsTarget()
     {
         if (currentTarget != null)
@@ -176,23 +176,23 @@ public class EntityCearadactylus extends EntityJurassiCraftRidableFlying impleme
     /*
      * Base of the flying
      */
-    
+
     public void flyAround()
     {
         if (currentTarget != null)
             if (!worldObj.isAirBlock(currentTarget.posX, currentTarget.posY, currentTarget.posZ) || currentTarget.posY < 1)
                 currentTarget = null;
-        
+
         if (currentTarget == null || rand.nextInt(30) == 0 || currentTarget.getDistanceSquared((int) posX, (int) posY, (int) posZ) < 10F)
             currentTarget = new ChunkCoordinates((int) posX + rand.nextInt(90) - rand.nextInt(60), (int) posY + rand.nextInt(60) - 2, (int) posZ + rand.nextInt(90) - rand.nextInt(60));
-        
+
         flyTowardsTarget();
     }
     
     /*
      * Checks if the animal is on ground (Not perfect, but it works)
      */
-    
+
     public boolean checkGround(EntityCearadactylus reptile)
     {
         reptile = this;

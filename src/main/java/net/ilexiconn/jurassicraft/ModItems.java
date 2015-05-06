@@ -25,7 +25,7 @@ public class ModItems implements IContentHandler
     public static Item wheatOnAStick;
     public static Item net;
     public static Item spawnEgg;
-    
+
     public void init()
     {
         amber = new ItemAmber();
@@ -43,7 +43,7 @@ public class ModItems implements IContentHandler
         spawnEgg = new ItemSpawnEggJurassiCraft();
         net = new ItemNet();
 
-        
+
         for (Creature creature : CreatureManager.getCreatures())
         {
             switch (creature.getAddedItemTypes())
@@ -118,26 +118,31 @@ public class ModItems implements IContentHandler
                     break;
             }
         }
-        
+
         gameRegistry();
     }
-    
+
     public void gameRegistry()
     {
         for (Field field : getClass().getFields())
         {
             try
             {
-        	Object obj = null;
-        	try{
-        	    obj = field.get(this);
-        	}catch(Throwable ex){}
-        	if(obj != null && obj instanceof Item){
-        	    Item item = (Item) field.get(this);
+                Object obj = null;
+                try
+                {
+                    obj = field.get(this);
+                }
+                catch (Throwable ex)
+                {
+                }
+                if (obj != null && obj instanceof Item)
+                {
+                    Item item = (Item) field.get(this);
                     if (field.getAnnotations().length == 0)
                         GameRegistry.registerItem(item, item.getUnlocalizedName());
-        	}
-                
+                }
+
             }
             catch (IllegalAccessException e)
             {

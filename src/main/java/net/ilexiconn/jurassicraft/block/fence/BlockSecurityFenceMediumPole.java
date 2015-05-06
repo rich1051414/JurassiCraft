@@ -13,32 +13,32 @@ import net.minecraft.world.World;
 
 public class BlockSecurityFenceMediumPole extends BlockSecurityFence implements IFencePole
 {
-    
+
     public BlockSecurityFenceMediumPole()
     {
         super(7.5F, 112.5F, 2, "low_Security_Fence_Pole");
         this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.0F, 0.7F);
         this.setCreativeTab(ModCreativeTabs.blocks);
     }
-    
+
     @Override
     public int getRenderType()
     {
         return -1;
     }
-    
+
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
+
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
@@ -75,7 +75,7 @@ public class BlockSecurityFenceMediumPole extends BlockSecurityFence implements 
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-    
+
     public void dropPole(World world, int x, int y, int z)
     {
         float xRand = world.rand.nextFloat() * 0.8F + 0.1F;
@@ -83,7 +83,7 @@ public class BlockSecurityFenceMediumPole extends BlockSecurityFence implements 
         float zRand = world.rand.nextFloat() * 0.8F + 0.1F;
         world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(ModBlocks.securityFenceLowPole, 1, 0)));
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

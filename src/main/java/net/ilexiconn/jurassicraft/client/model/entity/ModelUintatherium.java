@@ -10,17 +10,17 @@ import net.minecraft.util.MathHelper;
 
 public class ModelUintatherium extends ModelBase
 {
-    
-    private Animator animator;
+
     public static final float PI = (float) Math.PI;
     ResettableModelRenderer leftbackleg1, leftbackleg2, leftbackleg3, leftbackleg4, rightbackleg1, rightbackleg2, rightbackleg3, rightbackleg4, leftfrontleg1, leftfrontleg2, leftfrontleg3, leftfrontleg4, rightfrontleg1, rightfrontleg2, rightfrontleg3, rightfrontleg4, upperfrontbody, bottomfrontbody, middlebody, upperbackbody, bottombackbody, neck, head, snout, mouth, rightupperhorn, leftupperhorn, rightmiddlehorn, leftmiddlehorn, rightbottomhorn, leftbottomhorn, lefttooth, righttooth, tail1, tail2, tail3, leftear, rightear;
-    
+    private Animator animator;
+
     public ModelUintatherium()
     {
         textureWidth = 128;
         textureHeight = 128;
         animator = new Animator(this);
-        
+
         leftbackleg1 = new ResettableModelRenderer(this, 28, 65);
         leftbackleg1.addBox(-5F, -5.5F, -4F, 8, 11, 10);
         leftbackleg1.setRotationPoint(7F, 7F, 11F);
@@ -249,7 +249,7 @@ public class ModelUintatherium extends ModelBase
         rightear.setTextureSize(128, 128);
         rightear.mirror = true;
         setRotation(rightear, -0.17453292519F, 0.17453292519F, -0.17453292519F);
-        
+
         leftbackleg1.savefirstParameters();
         leftbackleg2.savefirstParameters();
         leftbackleg3.savefirstParameters();
@@ -289,12 +289,12 @@ public class ModelUintatherium extends ModelBase
         leftear.savefirstParameters();
         rightear.savefirstParameters();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         animate(entity, f, f1, f2, f3, f4, f5);
-        
+
         leftbackleg1.render(f5);
         leftbackleg2.render(f5);
         leftbackleg3.render(f5);
@@ -334,21 +334,21 @@ public class ModelUintatherium extends ModelBase
         leftear.render(f5);
         rightear.render(f5);
     }
-    
+
     private void setRotation(ResettableModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         upperbackbody.rotateAngleX = upperbackbody.firstRotateAngleX;
         upperbackbody.rotateAngleY = upperbackbody.firstRotateAngleY;
         upperbackbody.rotateAngleZ = upperbackbody.firstRotateAngleZ;
-        
+
         head.rotateAngleX = f4 / (225F / PI) + head.firstRotateAngleX;
         snout.rotateAngleX = f4 / (225F / PI) + snout.firstRotateAngleX;
         mouth.rotateAngleX = f4 / (225F / PI) + mouth.firstRotateAngleX;
@@ -362,7 +362,7 @@ public class ModelUintatherium extends ModelBase
         leftmiddlehorn.rotateAngleX = f4 / (225F / PI) + leftmiddlehorn.firstRotateAngleX;
         rightbottomhorn.rotateAngleX = f4 / (225F / PI) + rightbottomhorn.firstRotateAngleX;
         leftbottomhorn.rotateAngleX = f4 / (225F / PI) + leftbottomhorn.firstRotateAngleX;
-        
+
         head.rotateAngleY = f3 / (225F / PI) + head.firstRotateAngleY;
         snout.rotateAngleY = f3 / (225F / PI) + snout.firstRotateAngleY;
         mouth.rotateAngleY = f3 / (225F / PI) + mouth.firstRotateAngleY;
@@ -376,34 +376,34 @@ public class ModelUintatherium extends ModelBase
         leftmiddlehorn.rotateAngleY = f3 / (225F / PI) + leftmiddlehorn.firstRotateAngleY;
         rightbottomhorn.rotateAngleY = f3 / (225F / PI) + rightbottomhorn.firstRotateAngleY;
         leftbottomhorn.rotateAngleY = f3 / (225F / PI) + leftbottomhorn.firstRotateAngleY;
-        
+
         rightupperhorn.rotateAngleZ = rightupperhorn.firstRotateAngleZ / 8;
         leftupperhorn.rotateAngleZ = leftupperhorn.firstRotateAngleZ / 8;
         rightmiddlehorn.rotateAngleZ = rightmiddlehorn.firstRotateAngleZ / 8;
         leftmiddlehorn.rotateAngleZ = leftmiddlehorn.firstRotateAngleZ / 8;
         rightbottomhorn.rotateAngleZ = rightbottomhorn.firstRotateAngleZ / 8;
         leftbottomhorn.rotateAngleZ = leftbottomhorn.firstRotateAngleZ / 8;
-        
+
         leftbackleg1.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + leftbackleg1.firstRotateAngleX;
         leftbackleg2.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + leftbackleg2.firstRotateAngleX;
         leftbackleg3.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + leftbackleg3.firstRotateAngleX;
         leftbackleg4.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + leftbackleg4.firstRotateAngleX;
-        
+
         rightbackleg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + rightbackleg1.firstRotateAngleX;
         rightbackleg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + rightbackleg2.firstRotateAngleX;
         rightbackleg3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + rightbackleg3.firstRotateAngleX;
         rightbackleg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + rightbackleg4.firstRotateAngleX;
-        
+
         leftfrontleg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + leftfrontleg1.firstRotateAngleX;
         leftfrontleg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + leftfrontleg2.firstRotateAngleX;
         leftfrontleg3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + leftfrontleg3.firstRotateAngleX;
         leftfrontleg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1 + leftfrontleg4.firstRotateAngleX;
-        
+
         rightfrontleg1.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + rightfrontleg1.firstRotateAngleX;
         rightfrontleg2.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + rightfrontleg2.firstRotateAngleX;
         rightfrontleg3.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + rightfrontleg3.firstRotateAngleX;
         rightfrontleg4.rotateAngleX = MathHelper.cos(f * 0.6662F + PI) * 1.0F * f1 + rightfrontleg4.firstRotateAngleX;
-        
+
         tail1.rotateAngleX = 0.05F * MathHelper.sin(0.10F * f2 + f1) + tail1.firstRotateAngleX;
         tail2.rotateAngleX = 0.05F * MathHelper.sin(0.10F * f2 + f1) + tail2.firstRotateAngleX;
         tail3.rotateAngleX = 0.05F * MathHelper.sin(0.10F * f2 + f1) + tail3.firstRotateAngleX;
@@ -414,12 +414,12 @@ public class ModelUintatherium extends ModelBase
         tail2.rotateAngleZ = 0.05F * MathHelper.cos(0.10F * f2 + f1) + tail2.firstRotateAngleZ;
         tail3.rotateAngleZ = 0.05F * MathHelper.cos(0.10F * f2 + f1) + tail3.firstRotateAngleZ;
     }
-    
+
     public void animate(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update((IAnimatedEntity) entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        
+
         animator.setAnimation(JurassiCraftAnimationIDs.HEADBUTT.animID());
         animator.startPhase(7);
         animator.rotate(head, PI / 3F, 0F, 0F);
@@ -454,5 +454,5 @@ public class ModelUintatherium extends ModelBase
         animator.endPhase();
         animator.resetPhase(2);
     }
-    
+
 }

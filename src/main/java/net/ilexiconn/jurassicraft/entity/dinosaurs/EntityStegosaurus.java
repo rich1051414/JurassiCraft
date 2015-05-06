@@ -1,17 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIDefensiveReaction;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISit;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITailWhip;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -22,12 +12,7 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -36,7 +21,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
 {
     public ControlledAnimation tailWhipPosition = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-    
+
     public EntityStegosaurus(World world)
     {
         super(world);
@@ -62,24 +47,24 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(4000);
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         if (this.isDefending() && this.creatureToAttack != null)
         {
             this.tailWhipPosition.increaseTimer();
@@ -107,7 +92,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
         }
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 5, 3.0F, this);
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
@@ -122,7 +107,7 @@ public class EntityStegosaurus extends EntityJurassiCraftProtective implements I
             return super.attackEntityAsMob(entity);
         }
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

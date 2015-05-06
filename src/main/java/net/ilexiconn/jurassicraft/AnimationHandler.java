@@ -11,12 +11,12 @@ public class AnimationHandler
     {
         return FMLCommonHandler.instance().getSide().isClient();
     }
-    
+
     public static boolean isEffectiveClient()
     {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
-    
+
     public static void sendAnimationPacket(IAnimatedEntity entity, int animationId)
     {
         if (isEffectiveClient())

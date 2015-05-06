@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.entity.mammals;
 
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
@@ -35,25 +34,25 @@ public class EntityMoeritherium extends EntityJurassiCraftProtective implements 
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(800);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox() * 1.0D;
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 3;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 400;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.entity.dinosaurs;
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
@@ -36,13 +35,13 @@ public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements ID
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(800);
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

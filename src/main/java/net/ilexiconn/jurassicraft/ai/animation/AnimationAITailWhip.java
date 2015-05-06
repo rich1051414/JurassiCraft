@@ -1,7 +1,5 @@
 package net.ilexiconn.jurassicraft.ai.animation;
 
-import java.util.List;
-
 import net.ilexiconn.jurassicraft.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
@@ -9,13 +7,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 
+import java.util.List;
+
 public class AnimationAITailWhip extends AIAnimation
 {
     private EntityJurassiCraftSmart creature;
     private double maximumDistance;
     private double searchDistance;
     private int duration;
-    
+
     public AnimationAITailWhip(EntityJurassiCraftSmart creature, int duration, double searchDistance, double maximumDistance)
     {
         super(creature);
@@ -24,25 +24,25 @@ public class AnimationAITailWhip extends AIAnimation
         this.searchDistance = searchDistance;
         this.maximumDistance = maximumDistance;
     }
-    
+
     @Override
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.TAIL_WHIP.animID();
     }
-    
+
     @Override
     public boolean isAutomatic()
     {
         return true;
     }
-    
+
     @Override
     public int getDuration()
     {
         return this.duration;
     }
-    
+
     @Override
     public void updateTask()
     {

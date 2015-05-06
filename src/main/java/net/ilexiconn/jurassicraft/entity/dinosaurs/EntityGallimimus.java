@@ -1,16 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIAngry;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatLeaves;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFlee;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIHerdBehavior;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIGallimimusBeingEaten;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -21,12 +11,7 @@ import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -37,14 +22,14 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(4);
     public float swallowScale = 1;
-    
+
     public EntityGallimimus(World world)
     {
         super(world);
         this.getNavigator().setAvoidsWater(true);
-        
+
         this.tasks.addTask(10, new JurassiCraftAIEatLeaves(this, getCreatureSpeed()));
-        
+
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new JurassiCraftAIAngry(this, 150));
         this.tasks.addTask(1, new JurassiCraftAIFlee(this, 80, 1.1D * this.getCreatureSpeed()));
@@ -65,7 +50,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(1000);
     }
-    
+
     @Override
     public void updateRiderPosition()
     {
@@ -75,24 +60,24 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
         float extraY = 1.2F * this.getYBouningBox() + 0.16F * (this.limbSwingAmount - this.limbSwingAmount * MathHelper.sin(this.limbSwing));
         this.riddenByEntity.setPosition(this.posX - (double) extraX, this.posY + (double) extraY, this.posZ - (double) extraZ);
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 2;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -105,13 +90,13 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
                 this.sittingProgress.decreaseTimer();
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(45.0F, 3, 3.8F, this);
-        
+
         if (getAnimationId() == JurassiCraftAnimationIDs.BEING_EATEN.animID() && getAnimationTick() >= 35 && swallowScale > 0)
             swallowScale -= 0.1;
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
@@ -126,7 +111,7 @@ public class EntityGallimimus extends EntityJurassiCraftProtective implements ID
             return super.attackEntityAsMob(entity);
         }
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

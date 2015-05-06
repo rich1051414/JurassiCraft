@@ -21,12 +21,12 @@ public class ModelCoelacanth extends MowzieModelBase
     public MowzieModelRenderer tail2;
     public MowzieModelRenderer tailFin;
     private MowzieModelRenderer[] bodyParts;
-    
+
     public ModelCoelacanth()
     {
         this.textureWidth = 64;
         this.textureHeight = 64;
-        
+
         this.headBottom = new MowzieModelRenderer(this, 45, 23);
         this.headBottom.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.headBottom.addBox(-1.5F, 3.0F, -6.75F, 3, 2, 7);
@@ -75,7 +75,7 @@ public class ModelCoelacanth extends MowzieModelBase
         this.bottomFin3.setRotationPoint(0.0F, 4.0F, 0.0F);
         this.bottomFin3.addBox(0.0F, 0.0F, -1.5F, 0, 3, 3);
         this.setRotateAngle(bottomFin3, 0.47123889803846897F, 0.0F, 0.0F);
-        
+
         this.headTop.addChild(this.headBottom);
         this.headTop.addChild(this.body);
         this.body.addChild(this.sideFinLeft);
@@ -88,9 +88,9 @@ public class ModelCoelacanth extends MowzieModelBase
         this.tail1.addChild(this.topFin2);
         this.tail1.addChild(this.tail2);
         this.tail2.addChild(this.tailFin);
-        
-        this.bodyParts = new MowzieModelRenderer[] { this.tail2, this.tail1, this.body, this.headTop };
-        
+
+        this.bodyParts = new MowzieModelRenderer[]{this.tail2, this.tail1, this.body, this.headTop};
+
         this.headTop.setInitValuesToCurrentPose();
         this.headBottom.setInitValuesToCurrentPose();
         this.body.setInitValuesToCurrentPose();
@@ -105,7 +105,7 @@ public class ModelCoelacanth extends MowzieModelBase
         this.tail2.setInitValuesToCurrentPose();
         this.tailFin.setInitValuesToCurrentPose();
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -113,7 +113,7 @@ public class ModelCoelacanth extends MowzieModelBase
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityCoelacanth) entity);
         this.headTop.render(f5);
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityCoelacanth coelacanth)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, coelacanth);
@@ -121,53 +121,53 @@ public class ModelCoelacanth extends MowzieModelBase
         if (coelacanth.isAirBorne || coelacanth.isInWater())
         {
             this.headTop.rotateAngleZ = 1.57079633F * coelacanth.droppingTimer.getAnimationProgressSinSqrt();
-            
+
             this.walk(this.sideFinLeft, 0.6F, 0.6F, true, 0.0F, 0.8F, f, f1);
             this.walk(this.sideFinRight, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
-            
+
             this.flap(this.sideFinLeft, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
             this.flap(this.sideFinRight, 0.6F, 0.6F, true, 0.0F, -0.8F, f, f1);
-            
+
             this.chainSwing(this.bodyParts, 0.6F, 0.75F, 3.0D, f, f1);
             headTop.rotationPointX -= -4 * f1 * Math.sin((f + 1) * 0.6);
-            
+
             //Idle
             this.bob(this.headTop, 0.04F, 2.0F, false, coelacanth.frame, 1.0F);
-            
+
             this.flap(this.sideFinLeft, 0.2F, 0.25F, false, 1.0F, 0.0F, coelacanth.frame, 1.0F);
             this.flap(this.bottomFinLeft, 0.1F, 0.075F, false, 1.0F, 0.0F, coelacanth.frame, 1.0F);
-            
+
             this.flap(this.sideFinRight, 0.2F, 0.25F, true, 1.0F, 0.0F, coelacanth.frame, 1.0F);
             this.flap(this.bottomFinRight, 0.1F, 0.075F, true, 1.0F, 0.0F, coelacanth.frame, 1.0F);
-            
+
             this.chainSwing(this.bodyParts, 0.05F, -0.075F, 1.5D, coelacanth.frame, 1.0F);
             coelacanth.tailBuffer.applyChainSwingBuffer(this.bodyParts);
         }
         else
         {
             float droppingProgress = coelacanth.droppingTimer.getAnimationProgressSinSqrt();
-            
+
             this.headTop.rotateAngleZ = 1.57079633F * droppingProgress;
             this.headTop.rotationPointY += 4.0F * droppingProgress;
-            
+
             this.bob(this.headTop, 0.3F, 4.0F, true, coelacanth.frame, 1.0F);
             headTop.rotateAngleY += 0.3 * Math.cos((coelacanth.frame + 1) * 0.6F);
             body.rotateAngleY -= 0.3 * Math.cos((coelacanth.frame + 1) * 0.6F);
-            
+
             this.flap(this.sideFinLeft, 1.2F, 0.25F, false, 1.0F, 1.0F, coelacanth.frame, 1.0F);
             this.flap(this.sideFinRight, 1.2F, 0.25F, true, 1.0F, -1.0F, coelacanth.frame, 1.0F);
-            
+
             this.chainSwing(this.bodyParts, 0.6F, 0.16F, 3.0D, coelacanth.frame, 1.0F);
         }
     }
-    
+
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     public void resetPose()
     {
         this.headTop.setCurrentPoseToInitValues();

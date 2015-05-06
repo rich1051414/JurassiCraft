@@ -9,37 +9,37 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class RenderArthropod extends RenderLiving
 {
-    
+
     private Creature arthropod;
     private float resizableShadow;
-    
+
     public RenderArthropod(ModelBase model, Creature arthropod, float shadow)
     {
         super(model, 1.0F);
         this.setArthropod(arthropod);
         this.setShadow(shadow);
     }
-    
-    private void setShadow(float shadow)
-    {
-        this.resizableShadow = shadow;
-    }
-    
+
     public float getShadow()
     {
         return this.resizableShadow;
     }
-    
-    private void setArthropod(Creature arthropod)
+
+    private void setShadow(float shadow)
     {
-        this.arthropod = arthropod;
+        this.resizableShadow = shadow;
     }
-    
+
     public Creature getArthropod()
     {
         return this.arthropod;
     }
-    
+
+    private void setArthropod(Creature arthropod)
+    {
+        this.arthropod = arthropod;
+    }
+
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

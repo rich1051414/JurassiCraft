@@ -13,20 +13,20 @@ import java.util.List;
  */
 public class JCPathNavigate extends PathNavigate
 {
-    
+
     /**
      * If this search range is <code>> 0</code>, then {@link JCPathNavigate#getPathSearchRange()} returns it. Otherwise, the value from {@link PathNavigate} is used.
      */
     private float masterSearchRange;
     private List<IPathValidator> validators;
-    
+
     public JCPathNavigate(EntityLiving entity, World world)
     {
         super(entity, world);
         masterSearchRange = -1f;
         validators = Lists.newArrayList();
     }
-    
+
     /**
      * Sets the master search range.
      * If the given range is <code><= 0</code>, then the value of {@link PathNavigate#getPathSearchRange()} is used.
@@ -38,7 +38,7 @@ public class JCPathNavigate extends PathNavigate
     {
         this.masterSearchRange = range;
     }
-    
+
     public float getPathSearchRange()
     {
         if (masterSearchRange <= 0f)
@@ -47,7 +47,7 @@ public class JCPathNavigate extends PathNavigate
         }
         return masterSearchRange;
     }
-    
+
     /**
      * The change from {@link PathNavigate#setPath(PathEntity, double)} is that this Navigator checks if the path is valid (aka. the Entity is able to perform it)
      */
@@ -60,7 +60,7 @@ public class JCPathNavigate extends PathNavigate
         }
         return false;
     }
-    
+
     /**
      * The list of validators
      *
@@ -71,7 +71,7 @@ public class JCPathNavigate extends PathNavigate
     {
         return validators;
     }
-    
+
     /**
      * Adds a new validator used to check the validity of a path
      *
@@ -82,7 +82,7 @@ public class JCPathNavigate extends PathNavigate
     {
         this.validators.add(validator);
     }
-    
+
     /**
      * Removes the given validator from {@link JCPathNavigate#getValidators()}
      *
@@ -93,7 +93,7 @@ public class JCPathNavigate extends PathNavigate
     {
         this.validators.remove(validator);
     }
-    
+
     /**
      * Checks if the given path is valid for this given Navigator
      *
@@ -111,5 +111,5 @@ public class JCPathNavigate extends PathNavigate
         }
         return flag;
     }
-    
+
 }

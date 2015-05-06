@@ -16,13 +16,13 @@ import net.minecraft.world.World;
 public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
 {
     public float distanceFromTarget;
-    
+
     public EntityJurassiCraftAggressive(World world)
     {
         super(world);
         this.tasks.addTask(2, new AnimationAIBite(this, this.getBiteAnimationDuration()));
     }
-    
+
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
@@ -36,17 +36,17 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
             if (entity != (Entity) null && entity instanceof EntityLivingBase)
             {
                 EntityLivingBase attacker = (EntityLivingBase) entity;
-                
+
                 if (this.checkTargetBeforeAttacking(attacker))
                 {
                     this.setCreatureAngry(this, attacker);
                 }
             }
-            
+
             return super.attackEntityFrom(damageSource, damage);
         }
     }
-    
+
     @Override
     public void onUpdate()
     {
@@ -58,7 +58,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
         else
             distanceFromTarget = -1;
     }
-    
+
     protected int getBiteAnimationDuration()
     {
         if (this instanceof EntityTyrannosaurus)
@@ -74,7 +74,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
         else
             return 10;
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
@@ -111,7 +111,7 @@ public class EntityJurassiCraftAggressive extends EntityJurassiCraftRidable
             AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.BITE.animID());
         return true;//this.animID != JurassiCraftAnimationIDs.BITE.animID() && flag;
     }
-    
+
     @Override
     protected void attackEntity(Entity entity, float par2)
     {

@@ -22,14 +22,14 @@ public class BlockSecurityFence extends Block implements ITileEntityProvider
         this.setBlockName(unlocalizedName);
         this.setBlockTextureName(JurassiCraft.getModId() + "block_Security_Fence_Breaking_Particles");
     }
-    
+
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
         int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         switch (direction)
         {
-        /** South */
+            /** South */
             case 0:
                 world.setBlockMetadataWithNotify(x, y, z, 0, 2);
                 break;
@@ -47,7 +47,7 @@ public class BlockSecurityFence extends Block implements ITileEntityProvider
                 break;
         }
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

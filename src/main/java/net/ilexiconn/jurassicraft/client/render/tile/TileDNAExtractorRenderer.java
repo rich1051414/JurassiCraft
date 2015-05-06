@@ -18,17 +18,17 @@ import org.lwjgl.opengl.GL11;
 
 public class TileDNAExtractorRenderer extends TileEntitySpecialRenderer
 {
-    
+
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/dnaExtractor.png");
     private ModelDNAExtractorBase modelBase = new ModelDNAExtractorBase();
     private ModelDNAExtractorGlass modelGlass = new ModelDNAExtractorGlass();
     private float animationAngle;
-    
+
     public TileDNAExtractorRenderer()
     {
         this.animationAngle = 0.001F;
     }
-    
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {
@@ -65,7 +65,7 @@ public class TileDNAExtractorRenderer extends TileEntitySpecialRenderer
             GL11.glRotatef(angle + 180, 0.0F, 1.0F, 0F);
             Minecraft.getMinecraft().renderEngine.bindTexture(texture);
             this.modelBase.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-            
+
             if (tileEntityModel.hasItems())
             {
                 this.animationAngle += 0.1F;
@@ -88,7 +88,7 @@ public class TileDNAExtractorRenderer extends TileEntitySpecialRenderer
                     }
                 }
             }
-            
+
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.55F);

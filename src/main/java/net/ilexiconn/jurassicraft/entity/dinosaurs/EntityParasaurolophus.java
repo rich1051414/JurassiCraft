@@ -5,7 +5,6 @@ import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIParasaurolophusTrumpet;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
@@ -25,7 +24,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
     public ChainBuffer tailBuffer = new ChainBuffer(6);
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);
     public int timeUntilCanCall = 0;
-    
+
     public EntityParasaurolophus(World world)
     {
         super(world);
@@ -50,25 +49,25 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(1800);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return 1.1D * (double) this.getYBouningBox();
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     public void onUpdate()
     {
@@ -80,15 +79,15 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         this.walkLean.update();
         if (timeUntilCanCall > 0)
             timeUntilCanCall--;
-        
+
         this.tailBuffer.calculateChainSwingBuffer(48.0F, 3, 5.0F, this);
     }
-    
+
     @Override
     public String getLivingSound()
     {
         int I = this.rand.nextInt(3);
-        
+
         if (I <= 1)
         {
             this.playSound("jurassicraft:" + this.getCreatureName().toLowerCase(), this.getSoundVolume(), this.getSoundPitch());
@@ -101,7 +100,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
             return null;
         }
     }
-    
+
     public List<EntityParasaurolophus> getParasaurolophusNearby(double distanceX, double distanceY, double distanceZ)
     {
         List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(distanceX, distanceY, distanceZ));
@@ -113,7 +112,7 @@ public class EntityParasaurolophus extends EntityJurassiCraftProtective implemen
         }
         return listParasaurolophus;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -129,12 +129,12 @@ public class ModelSanta extends MowzieModelBase
     MowzieModelRenderer Left_Thigh;
     MowzieModelRenderer Right_ThighR;
     MowzieModelRenderer Right_Thigh;
-    
+
     public ModelSanta()
     {
         textureWidth = 256;
         textureHeight = 256;
-        
+
         Left_Upper_FootR = new MowzieModelRenderer(this, 81, 0);
         Left_Upper_FootR.addBox(-1F, 0F, 0F, 2, 7, 2);
         Left_Upper_FootR.setRotationPoint(-6F, 17.2F, 9F);
@@ -825,33 +825,33 @@ public class ModelSanta extends MowzieModelBase
         Right_Thigh.setTextureSize(256, 256);
         Right_Thigh.mirror = true;
         setRotation(Right_Thigh, -0.6252118F, 0F, 0F);
-        
+
         addChildTo(Left_Claw_2, Left_Thigh);
         addChildTo(Left_Claw_1, Left_Thigh);
         addChildTo(Foot_Left, Left_Thigh);
         addChildTo(Left_Upper_Foot, Left_Thigh);
         addChildTo(Left_Calf_1, Left_Thigh);
-        
+
         addChildTo(Right_Claw_2, Right_Thigh);
         addChildTo(Right_Claw_1, Right_Thigh);
         addChildTo(Foot_Right, Right_Thigh);
         addChildTo(Right_Upper_Foot, Right_Thigh);
         addChildTo(Right_Calf_1, Right_Thigh);
-        
+
         addChildTo(Left_Claw_2R, Left_ThighR);
         addChildTo(Left_Claw_1R, Left_ThighR);
         addChildTo(Foot_LeftR, Left_ThighR);
         addChildTo(Left_Upper_FootR, Left_ThighR);
         addChildTo(Left_Calf_1R, Left_ThighR);
-        
+
         addChildTo(Right_Claw_2R, Right_ThighR);
         addChildTo(Right_Claw_1R, Right_ThighR);
         addChildTo(Foot_RightR, Right_ThighR);
         addChildTo(Right_Upper_FootR, Right_ThighR);
         addChildTo(Right_Calf_1R, Right_ThighR);
-        
+
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -972,14 +972,14 @@ public class ModelSanta extends MowzieModelBase
         Right_ThighR.render(f5);
         Right_Thigh.render(f5);
     }
-    
+
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -989,18 +989,18 @@ public class ModelSanta extends MowzieModelBase
         this.Tail_4.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
         this.Tail_5.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.9F * f1;
         this.Tail_6.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.0F * f1;
-        
+
         this.Tail_1R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.5F * f1;
         this.Tail_2R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.6F * f1;
         this.Tail_3R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.7F * f1;
         this.Tail_4R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.8F * f1;
         this.Tail_5R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 0.9F * f1;
         this.Tail_6R.rotateAngleY = MathHelper.cos(f * 0.3332F) * 1.0F * f1;
-        
+
         this.Left_Thigh.rotateAngleX = MathHelper.cos(f * 0.3332F) * 1.0F * f1;
         this.Right_Thigh.rotateAngleX = MathHelper.cos(f * 0.3332F + (float) Math.PI) * 1.0F * f1;
         this.Right_ThighR.rotateAngleX = MathHelper.cos(f * 0.3332F) * 1.0F * f1;
         this.Left_ThighR.rotateAngleX = MathHelper.cos(f * 0.3332F + (float) Math.PI) * 1.0F * f1;
     }
-    
+
 }

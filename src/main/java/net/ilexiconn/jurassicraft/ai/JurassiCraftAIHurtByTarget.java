@@ -6,7 +6,7 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 public class JurassiCraftAIHurtByTarget extends EntityAIHurtByTarget
 {
     private EntityJurassiCraftSmart creature;
-    
+
     public JurassiCraftAIHurtByTarget(EntityJurassiCraftSmart entity, boolean friendsShouldHelp)
     {
         super(entity, friendsShouldHelp);
@@ -14,7 +14,7 @@ public class JurassiCraftAIHurtByTarget extends EntityAIHurtByTarget
         this.shouldCheckSight = true;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -27,7 +27,7 @@ public class JurassiCraftAIHurtByTarget extends EntityAIHurtByTarget
             return super.shouldExecute();
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -43,7 +43,7 @@ public class JurassiCraftAIHurtByTarget extends EntityAIHurtByTarget
         this.creature.setAttacking(true);
         super.startExecuting();
     }
-    
+
     @Override
     public void resetTask()
     {

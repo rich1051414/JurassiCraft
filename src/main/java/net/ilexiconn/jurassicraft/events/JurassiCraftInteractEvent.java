@@ -34,7 +34,7 @@ public class JurassiCraftInteractEvent
             }
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void showStatus(EntityPlayer player, EntityInteractEvent event)
     {

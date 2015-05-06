@@ -60,12 +60,12 @@ public class ModelTylosaurus extends MowzieModelBase
     public MowzieModelRenderer Lower_Knob_9_Fluke_6_Bottom;
     public MowzieModelRenderer Teeth;
     public MowzieModelRenderer[] bodyParts;
-    
+
     public ModelTylosaurus()
     {
         textureWidth = 256;
         textureHeight = 128;
-        
+
         Head = new MowzieModelRenderer(this, 0, 0);
         Head.addBox(-4F, -4F, -8F, 8, 8, 8);
         Head.setRotationPoint(0F, 17F, -25F);
@@ -342,18 +342,18 @@ public class ModelTylosaurus extends MowzieModelBase
         Teeth.setTextureSize(256, 128);
         Teeth.mirror = true;
         setRotation(Teeth, 0F, 0F, 0F);
-        
+
         addChildTo(Upper_Knob_19_Fluke_4_Top, Fluke_Section_4);
         addChildTo(Upper_Knob_20_Fluke_4_Top, Fluke_Section_4);
-        
+
         addChildTo(Fluke_Section_4, Fluke_Section_6);
         addChildTo(Fluke_Section_5, Fluke_Section_6);
-        
+
         addChildTo(Lower_Knob_8_Fluke_6_Bottom, Fluke_Section_6);
         addChildTo(Lower_Knob_9_Fluke_6_Bottom, Fluke_Section_6);
-        
+
         addChildTo(Fluke_Section_6, Fluke_Section_3);
-        
+
         addChildTo(Upper_Knob_10_Fluke_3_Top, Fluke_Section_3);
         addChildTo(Upper_Knob_11_Fluke_3_Top, Fluke_Section_3);
         addChildTo(Upper_Knob_12_Fluke_3_Top, Fluke_Section_3);
@@ -363,48 +363,48 @@ public class ModelTylosaurus extends MowzieModelBase
         addChildTo(Lower_Knob_5_Fluke_3_Bottom, Fluke_Section_3);
         addChildTo(Lower_Knob_6_Fluke_3_Bottom, Fluke_Section_3);
         addChildTo(Lower_Knob_7_Fluke_3_Bottom, Fluke_Section_3);
-        
+
         addChildTo(Fluke_Section_3, Fluke_Section_1);
-        
+
         addChildTo(Lower_Knob_1_Fluke_2_Bottom, Fluke_Section_2);
         addChildTo(Lower_Knob_2_Fluke_2_Bottom, Fluke_Section_2);
-        
+
         addChildTo(Fluke_Section_2, Fluke_Section_1);
-        
+
         addChildTo(Upper_Knob_8_Fluke_1_Top, Fluke_Section_1);
         addChildTo(Upper_Knob_9_Fluke_1_Top, Fluke_Section_1);
-        
+
         addChildTo(Fluke_Section_1, Tail_Section_4);
         addChildTo(Tail_Section_4, Tail_Section_3);
         addChildTo(Tail_Section_3, Tail_Section_2);
         addChildTo(Tail_Section_2, Tail_Section_1);
         addChildTo(Tail_Section_1, Body_Section_3);
-        
+
         addChildTo(Right_Back_Flipper, Body_Section_3);
         addChildTo(Left_Back_Flipper, Body_Section_3);
-        
+
         addChildTo(Body_Section_3, Body_Section_2);
         addChildTo(Body_Section_2, Body_Section_1);
-        
+
         addChildTo(Right_Front_Flipper, Body_Section_1);
         addChildTo(Left_Front_Flipper, Body_Section_1);
-        
+
         addChildTo(Body_Section_1, Neck_);
-        
+
         addChildTo(Upper_Knob_1_Neck, Neck_);
         addChildTo(Upper_Knob_2_Neck, Neck_);
         addChildTo(Upper_Knob_3_Neck, Neck_);
         addChildTo(Upper_Knob_4_Neck, Neck_);
-        
+
         addChildTo(Neck_, Head);
         addChildTo(Lower_Jaw, Head);
         addChildTo(Teeth, Upper_Jaw);
         addChildTo(Upper_Jaw, Head);
-        
+
         addChildTo(Upper_Knob_5_Body_1, Body_Section_1);
         addChildTo(Upper_Knob_6_Body_1, Body_Section_1);
         addChildTo(Upper_Knob_7_Body_1, Body_Section_1);
-        
+
         //Corrections
         Fluke_Section_4.setRotationPoint(0, 0, 0);
         Fluke_Section_5.setRotationPoint(0, 0, 0);
@@ -433,7 +433,7 @@ public class ModelTylosaurus extends MowzieModelBase
         Upper_Knob_5_Body_1.setRotationPoint(0, 0, 0);
         Upper_Knob_6_Body_1.setRotationPoint(0, 0, 0);
         Upper_Knob_7_Body_1.setRotationPoint(0, 0, 0);
-        
+
         Fluke_Section_6.rotationPointZ += 21.5;
         Fluke_Section_6.rotationPointY -= 0.25;
         Body_Section_3.rotationPointZ += 17;
@@ -443,9 +443,9 @@ public class ModelTylosaurus extends MowzieModelBase
         Neck_.rotationPointZ -= 3;
         Upper_Jaw.rotationPointY -= 5;
         Upper_Jaw.rotationPointZ -= 14;
-        
-        this.bodyParts = new MowzieModelRenderer[] { this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6 };
-        
+
+        this.bodyParts = new MowzieModelRenderer[]{this.Head, this.Neck_, this.Body_Section_1, this.Body_Section_2, this.Body_Section_3, this.Tail_Section_1, this.Tail_Section_2, this.Tail_Section_3, this.Tail_Section_4, this.Fluke_Section_1, this.Fluke_Section_3, this.Fluke_Section_6};
+
         Head.setInitValuesToCurrentPose();
         Upper_Jaw.setInitValuesToCurrentPose();
         Lower_Jaw.setInitValuesToCurrentPose();
@@ -493,7 +493,7 @@ public class ModelTylosaurus extends MowzieModelBase
         Lower_Knob_9_Fluke_6_Bottom.setInitValuesToCurrentPose();
         Teeth.setInitValuesToCurrentPose();
     }
-    
+
     private void resetPose()
     {
         Head.setCurrentPoseToInitValues();
@@ -543,35 +543,35 @@ public class ModelTylosaurus extends MowzieModelBase
         Lower_Knob_9_Fluke_6_Bottom.setCurrentPoseToInitValues();
         Teeth.setCurrentPoseToInitValues();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTylosaurus) entity);
         Head.render(f5);
     }
-    
+
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTylosaurus tylo)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, tylo);
         this.resetPose();
-        
+
         float scaleFactor = 0.3F;
-        
+
         chainSwing(this.bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
         Head.rotationPointX -= 6 * f1 * Math.sin(f * scaleFactor);
         walk(Right_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Front_Flipper, 1 * scaleFactor, 0.6F, false, 0F, 0F, f, f1);
         walk(Left_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
         walk(Right_Back_Flipper, 1 * scaleFactor, 0.6F, false, -1F, 0F, f, f1);
-        
+
         tylo.tailBuffer.applyChainSwingBuffer(this.bodyParts);
     }
 }

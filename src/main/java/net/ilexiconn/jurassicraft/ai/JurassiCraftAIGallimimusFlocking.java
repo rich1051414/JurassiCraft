@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
 {
-    
+
     private EntityJurassiCraftSmart herdCreature;
     private ArrayList<EntityJurassiCraftSmart> herd = new ArrayList<EntityJurassiCraftSmart>();
     private ArrayList<Double> followingDistanceOfTheHerd = new ArrayList<Double>();
@@ -21,7 +21,7 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
     private int maxTimeTryingToMove;
     private int numberOfGallimimus;
     private int timeTryingToMove;
-    
+
     /**
      * @author RafaMv
      */
@@ -36,13 +36,13 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
         this.timeTryingToMove = 0;
         this.setMutexBits(3);
     }
-    
+
     @Override
     public boolean isInterruptible()
     {
         return this.timeTryingToMove > 3.0D * this.maxTimeTryingToMove / 4.0D;
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -68,7 +68,7 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
         }
         return false;
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -93,19 +93,19 @@ public class JurassiCraftAIGallimimusFlocking extends EntityAIBase
         this.maxTimeTryingToMove = (int) (10.0D * this.herdCreature.getDistance(this.herdCreature.posX + xDistance, this.herdCreature.worldObj.getHeightValue((int) (this.herdCreature.posX + xDistance), (int) (this.herdCreature.posZ + zDistance)), this.herdCreature.posZ + zDistance));
         super.startExecuting();
     }
-    
+
     @Override
     public void updateTask()
     {
         this.timeTryingToMove++;
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return (!this.herdCreature.getNavigator().noPath() || this.timeTryingToMove < this.maxTimeTryingToMove);
     }
-    
+
     @Override
     public void resetTask()
     {

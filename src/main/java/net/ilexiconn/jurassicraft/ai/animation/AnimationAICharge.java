@@ -17,7 +17,7 @@ public class AnimationAICharge extends AIAnimation
     private float startZ;
     private float distanceTravelled;
     private float distanceOfTargetFromStart;
-    
+
     public AnimationAICharge(EntityJurassiCraftCharges charging)
     {
         super(charging);
@@ -31,22 +31,22 @@ public class AnimationAICharge extends AIAnimation
         this.distanceTravelled = 0.0F;
         this.distanceOfTargetFromStart = 0.0F;
     }
-    
+
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.CHARGE.animID();
     }
-    
+
     public boolean isAutomatic()
     {
         return true;
     }
-    
+
     public int getDuration()
     {
         return 100;
     }
-    
+
     public void startExecuting()
     {
         super.startExecuting();
@@ -56,7 +56,7 @@ public class AnimationAICharge extends AIAnimation
         if (this.attackTarget != null)
             this.distanceOfTargetFromStart = (float) Math.sqrt((this.startX - this.attackTarget.posX) * (this.startX - this.attackTarget.posX) + (this.startZ - this.attackTarget.posZ) * (this.startZ - this.attackTarget.posZ));
     }
-    
+
     public void resetTask()
     {
         super.resetTask();
@@ -64,23 +64,23 @@ public class AnimationAICharge extends AIAnimation
         this.entityCharging.charging = false;
         this.entityCharging.setAttackTarget(null);
     }
-    
+
     public void updateTask()
     {
         if (this.attackTarget != null)
             this.entityCharging.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
-        
+
         this.distanceTravelled = (float) Math.sqrt((this.startX - this.entityCharging.posX) * (this.startX - this.entityCharging.posX) + (this.startZ - this.entityCharging.posZ) * (this.startZ - this.entityCharging.posZ));
         if (this.entityCharging.getAnimationTick() == 1)
             this.entityCharging.playSound("jurassicraft:TriceratopsCharge", 1.0F, 1.0F);
-        
+
         if (this.entityCharging.getAnimationTick() >= 35 && this.entityCharging.getAnimationTick() <= 40 && this.attackTarget != null)
         {
             double deltaX = this.attackTarget.posX - this.entityCharging.posX;
             double deltaZ = this.attackTarget.posZ - this.entityCharging.posZ;
             this.angleYaw = (float) Math.atan2(deltaZ, deltaX);
         }
-        
+
         if (this.entityCharging.getAnimationTick() > 40)
         {
             if (this.attackTarget != null || this.entityCharging.riddenByEntity != null)

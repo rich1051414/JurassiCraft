@@ -8,7 +8,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 public class EntityPregnantSheep implements IExtendedEntityProperties
 {
-    
+
     public final static String PREGNANT_SHEEP_PROPERTY = "EntityPregnantSheepJC";
     private final EntitySheep sheep;
     private String dnaSequence;
@@ -16,7 +16,7 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
     private int pregnancyProgress;
     private int pregnancySpeed;
     private int dnaQuality;
-    
+
     public EntityPregnantSheep(EntitySheep sheep)
     {
         this.sheep = sheep;
@@ -25,78 +25,78 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
         this.dnaSequence = "";
         this.pregnancySpeed = 0;
     }
-    
-    @Override
-    public void init(Entity entity, World world)
-    {
-        
-    }
-    
+
     public static final void register(EntitySheep entity)
     {
         entity.registerExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY, new EntityPregnantSheep(entity));
     }
-    
+
     public static final EntityPregnantSheep get(EntitySheep entity)
     {
         return (EntityPregnantSheep) entity.getExtendedProperties(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY);
     }
-    
+
+    @Override
+    public void init(Entity entity, World world)
+    {
+
+    }
+
     public String getDNASequence()
     {
         return dnaSequence;
     }
-    
+
     public void setDNASequence(String dna)
     {
         this.dnaSequence = dna;
     }
-    
+
     public String getMammalName()
     {
         return mammalName;
     }
-    
+
     public void setMammalName(String mammal)
     {
         this.mammalName = mammal;
     }
-    
+
     public int getPregnancyProgress()
     {
         return pregnancyProgress;
     }
-    
-    public void increasePregnancyProgress()
-    {
-        this.pregnancyProgress = this.getPregnancyProgress() + 1;
-    }
-    
+
     public void setPregnancyProgress(int progress)
     {
         this.pregnancyProgress = progress;
     }
-    
+
+    public void increasePregnancyProgress()
+    {
+        this.pregnancyProgress = this.getPregnancyProgress() + 1;
+    }
+
     public int getPregnancySpeed()
     {
         return pregnancySpeed;
     }
-    
+
     public void setPregnancySpeed(int speed)
     {
         this.pregnancySpeed = speed;
     }
-    
+
     public int getDNAQuality()
     {
         return dnaQuality;
     }
-    
+
     public void setDNAQuality(int quality)
     {
         this.dnaQuality = quality;
     }
-    
+
     public int getPregnancyProgressScaled(int barSize)
     {
         if (this.getPregnancySpeed() <= 0)
@@ -105,7 +105,7 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
         }
         return (this.getPregnancyProgress() * barSize) / this.getPregnancySpeed();
     }
-    
+
     @Override
     public void saveNBTData(NBTTagCompound compound)
     {
@@ -117,7 +117,7 @@ public class EntityPregnantSheep implements IExtendedEntityProperties
         properties.setInteger("DNAQuality", this.dnaQuality);
         compound.setTag(EntityPregnantSheep.PREGNANT_SHEEP_PROPERTY, properties);
     }
-    
+
     @Override
     public void loadNBTData(NBTTagCompound compound)
     {

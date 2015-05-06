@@ -13,7 +13,7 @@ public class MowzieModelBase extends ModelBase
      * Store every MowzieModelRenderer in this array
      */
     protected MowzieModelRenderer[] parts;
-    
+
     /**
      * Saves the initial rotate angles and initial rotation points.
      * Note: Call this at the end of the constructor.
@@ -23,7 +23,7 @@ public class MowzieModelBase extends ModelBase
         for (int i = 0; i < this.parts.length; i++)
             this.parts[i].setInitValuesToCurrentPose();
     }
-    
+
     /**
      * Resets the rotate angles and rotation points to its original value if they were saved before.
      * Note: Call this at the beginning of setRotationAngles.
@@ -35,7 +35,7 @@ public class MowzieModelBase extends ModelBase
         for (int i = 0; i < this.parts.length; i++)
             this.parts[i].setCurrentPoseToInitValues();
     }
-    
+
     /**
      * Calculates the relative positions and rotations easily.
      * <p/>
@@ -64,7 +64,7 @@ public class MowzieModelBase extends ModelBase
         child.rotateAngleY -= parent.rotateAngleY;
         child.rotateAngleZ -= parent.rotateAngleZ;
     }
-    
+
     /**
      * Don't use this yet. I'm trying to refine the parenting method, but it's not ready yet.
      */
@@ -79,7 +79,7 @@ public class MowzieModelBase extends ModelBase
         child.rotateAngleY -= parent.rotateAngleY;
         child.rotateAngleZ -= parent.rotateAngleZ;
     }
-    
+
     /**
      * Rotates a box to face where the entity is looking.
      * <p/>
@@ -95,7 +95,7 @@ public class MowzieModelBase extends ModelBase
         box.rotateAngleY += (f3 / (180f / (float) Math.PI)) / f;
         box.rotateAngleX += (f4 / (180f / (float) Math.PI)) / f;
     }
-    
+
     /**
      * Returns a float that can be used to rotate boxes.
      * <p/>
@@ -118,7 +118,7 @@ public class MowzieModelBase extends ModelBase
         else
             return MathHelper.cos(f * speed + offset) * degree * f1 + weight * f1;
     }
-    
+
     /**
      * Returns a float that can be used to move boxes.
      * <p/>
@@ -138,7 +138,7 @@ public class MowzieModelBase extends ModelBase
         else
             return MathHelper.sin(f * speed) * f1 * degree - f1 * degree;
     }
-    
+
     /**
      * Rotates a box back and forth (rotateAngleX). Useful for arms and legs.
      * <p/>
@@ -161,7 +161,7 @@ public class MowzieModelBase extends ModelBase
             inverted = -1;
         box.rotateAngleX += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
-    
+
     /**
      * Rotates a box up and down (rotateAngleZ). Useful for wings and ears.
      * <p/>
@@ -184,7 +184,7 @@ public class MowzieModelBase extends ModelBase
             inverted = -1;
         box.rotateAngleZ += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
-    
+
     /**
      * Moves a box up and down (rotationPointY). Useful for bodies.
      * <p/>
@@ -204,7 +204,7 @@ public class MowzieModelBase extends ModelBase
             bob = (float) -Math.abs((Math.sin(f * speed) * f1 * degree));
         box.rotationPointY += bob;
     }
-    
+
     /**
      * Swings a chain of parented boxes back and forth (rotateAngleY). Useful for tails.
      * <p/>
@@ -225,7 +225,7 @@ public class MowzieModelBase extends ModelBase
         for (int i = 0; i < numberOfSegments; i++)
             boxes[i].rotateAngleY += MathHelper.cos(f * speed + offset * i) * f1 * degree;
     }
-    
+
     /**
      * Swings a chain of parented boxes up and down (rotateAngleX). Useful for tails.
      * <p/>

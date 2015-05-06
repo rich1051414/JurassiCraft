@@ -30,7 +30,7 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);
     int timeUntilSpit = 0;
     float spitLocationRadius = 2.2F;
-    
+
     public EntityDilophosaurus(World world)
     {
         super(world);
@@ -68,13 +68,13 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 50, 0.5F));
         this.setCreatureExperiencePoints(1800);
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -97,12 +97,12 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
             this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getSkin()));
         }
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -115,19 +115,19 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
                 this.sittingProgress.decreaseTimer();
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 3, 4.0F, this);
-        
+
         if (getAttackTarget() != null)
         {
             if (timeUntilSpit == 0 && getDistanceToEntity(getAttackTarget()) <= 15 && (getAttackTarget().getActivePotionEffect(Potion.blindness) == null || getAttackTarget().getActivePotionEffect(Potion.poison) == null))
                 AnimationHandler.sendAnimationPacket(this, JurassiCraftAnimationIDs.SPITTING.animID());
-            
+
         }
         if (timeUntilSpit > 0)
             timeUntilSpit--;
     }
-    
+
     //Copied from snowman
     public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
     {

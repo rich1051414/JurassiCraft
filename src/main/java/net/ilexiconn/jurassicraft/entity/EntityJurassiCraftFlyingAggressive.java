@@ -8,7 +8,7 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
 {
     public FlyingParameters flyingParameters;
     private String landingMaterial;
-    
+
     public EntityJurassiCraftFlyingAggressive(World world, String landingMaterial)
     {
         super(world);
@@ -16,7 +16,7 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
         this.setFlyingParameters(new FlyingParameters(63, 80, 10, 10, 10, 10, 10, 10, 10, this.landingMaterial));
         this.setFlying(false);
     }
-    
+
     @Override
     public void onLivingUpdate()
     {
@@ -27,40 +27,40 @@ public class EntityJurassiCraftFlyingAggressive extends EntityJurassiCraftAggres
                 this.motionY += 0.04F + 0.06F * this.flyingParameters.flySpeedModifier / 500.0F;
                 this.setFlying(true);
             }
-            
+
             if (this.onGround && this.isFlying())
                 this.setFlying(false);
         }
         super.onLivingUpdate();
     }
-    
+
     public FlyingParameters getFlyingParameters()
     {
         return flyingParameters;
     }
-    
+
     public void setFlyingParameters(FlyingParameters flyingParameters)
     {
         this.flyingParameters = flyingParameters;
     }
-    
+
     public String getLandingMaterial()
     {
         return landingMaterial;
     }
-    
+
     public void setLandingMaterial(String landingMaterial)
     {
         this.landingMaterial = landingMaterial;
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
         compound.setString("LandingMaterial", this.landingMaterial);
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {

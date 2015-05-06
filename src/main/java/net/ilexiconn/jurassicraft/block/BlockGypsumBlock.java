@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class BlockGypsumBlock extends Block
 {
-    
+
     public BlockGypsumBlock()
     {
         super(Material.rock);
@@ -23,7 +23,7 @@ public class BlockGypsumBlock extends Block
         setCreativeTab(ModCreativeTabs.blocks);
         setBlockTextureName(JurassiCraft.getModId() + "block_Gypsum_Block");
     }
-    
+
     @Override
     public Item getItemDropped(int id, Random random, int metadata)
     {

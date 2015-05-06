@@ -7,38 +7,38 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 public class AnimationAIHypsilophodonSocializing extends AIAnimation
 {
     private EntityHypsilophodon hypsilophodon;
-    
+
     public AnimationAIHypsilophodonSocializing(EntityHypsilophodon hypsilophodon)
     {
         super(hypsilophodon);
         this.hypsilophodon = hypsilophodon;
     }
-    
+
     @Override
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.SOCIALIZING.animID();
     }
-    
+
     @Override
     public boolean isAutomatic()
     {
         return true;
     }
-    
+
     @Override
     public int getDuration()
     {
         return 70;
     }
-    
+
     @Override
     public void startExecuting()
     {
         super.startExecuting();
         this.hypsilophodon.setSitting(false, null);
     }
-    
+
     @Override
     public void updateTask()
     {
@@ -52,7 +52,7 @@ public class AnimationAIHypsilophodonSocializing extends AIAnimation
             //Do stuff
         }
     }
-    
+
     @Override
     public void resetTask()
     {

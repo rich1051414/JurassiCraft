@@ -9,37 +9,37 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class RenderFish extends RenderLiving
 {
-    
+
     private Creature fish;
     private float resizableShadow;
-    
+
     public RenderFish(ModelBase model, Creature fish, float shadow)
     {
         super(model, 1.0F);
         this.setFish(fish);
         this.setShadow(shadow);
     }
-    
-    private void setShadow(float shadow)
-    {
-        this.resizableShadow = shadow;
-    }
-    
+
     public float getShadow()
     {
         return this.resizableShadow;
     }
-    
-    private void setFish(Creature fish)
+
+    private void setShadow(float shadow)
     {
-        this.fish = fish;
+        this.resizableShadow = shadow;
     }
-    
+
     public Creature getFish()
     {
         return this.fish;
     }
-    
+
+    private void setFish(Creature fish)
+    {
+        this.fish = fish;
+    }
+
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

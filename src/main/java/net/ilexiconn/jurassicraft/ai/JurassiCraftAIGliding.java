@@ -21,11 +21,18 @@ public class JurassiCraftAIGliding extends EntityAIBase
     private final long SITTINGSPOT_REACHTIME = 3000L;
     private final double OWNER_DISTANCE_TO_TAKEOFF = 100D;
     private final EntityJurassiCraftFlyingCreature creature;
+    boolean lastChangeDirection;
+    int flightTicks = 0;
+    double takeOffSpeed = 0;
+    int targetHeight = 0;
     private ChunkCoordinates currentFlightTarget;
     private Random rand;
     private long nextOwnerCheckTime;
     private long sittingSpotAbortTime;
-    
+    private boolean takingOff = false;
+    private int nextWingBeat = 10;
+    private int wingBeatTick = 0;
+
     public JurassiCraftAIGliding(EntityJurassiCraftFlyingCreature entity)
     {
         creature = entity;
@@ -34,7 +41,7 @@ public class JurassiCraftAIGliding extends EntityAIBase
         sittingSpotAbortTime = -1L;
         setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -42,27 +49,25 @@ public class JurassiCraftAIGliding extends EntityAIBase
             return false;
         return checkTakeOffConditions();
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return !creature.onGround;
     }
-    
+
     @Override
     public void startExecuting()
     {
         takeOff();
     }
-    
+
     @Override
     public void resetTask()
     {
         super.resetTask();
     }
-    
-    private boolean takingOff = false;
-    
+
     @Override
     public void updateTask()
     {
@@ -81,7 +86,7 @@ public class JurassiCraftAIGliding extends EntityAIBase
         MovingObjectPosition mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.minY, creature.posZ), Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.minY, creature.posZ + creature.motionZ * 100));
         if (mop == null)
             mop = creature.worldObj.rayTraceBlocks(Vec3.createVectorHelper(creature.posX, creature.boundingBox.maxY, creature.posZ), Vec3.createVectorHelper(creature.posX + creature.motionX * 100, creature.boundingBox.maxY, creature.posZ + creature.motionZ * 100));
-        
+
         if (hasLandingSpot())
         {
             if (mop == null)
@@ -105,36 +110,33 @@ public class JurassiCraftAIGliding extends EntityAIBase
         {
             maintainFlight(mop != null);
         }
-        
+
         super.updateTask();
     }
-    
+
     private void checkForLandingSpot()
     {
         if (this.currentFlightTarget != null && (!creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1))
         {
             this.currentFlightTarget = null;
         }
-        
+
         if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0)
         {
             this.currentFlightTarget = new ChunkCoordinates((int) (creature.posX + creature.motionX * 200 + this.rand.nextInt(10) - 5), 0, (int) (creature.posZ + creature.motionZ * 200 + this.rand.nextInt(10) - 5));
-            
+
             currentFlightTarget.posY = creature.worldObj.getTopSolidOrLiquidBlock(currentFlightTarget.posX, currentFlightTarget.posZ) + 1;
             Material m = creature.worldObj.getBlock(currentFlightTarget.posX, currentFlightTarget.posY - 1, currentFlightTarget.posZ).getMaterial();
             if (creature.flyingParameters != null && !creature.flyingParameters.willLandInMaterial(m) || !creature.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ))
                 this.currentFlightTarget = null;
         }
     }
-    
+
     private boolean hasLandingSpot()
     {
         return currentFlightTarget != null;
     }
-    
-    private int nextWingBeat = 10;
-    private int wingBeatTick = 0;
-    
+
     private void maintainFlight(boolean hasObstacle)
     {
         wingBeatTick++;
@@ -147,9 +149,7 @@ public class JurassiCraftAIGliding extends EntityAIBase
             wingBeatTick = 0;
         }
     }
-    
-    boolean lastChangeDirection;
-    
+
     public void pickDirection(boolean useLastChangeDirection)
     {
         double rotAmt;
@@ -169,9 +169,9 @@ public class JurassiCraftAIGliding extends EntityAIBase
                 lastChangeDirection = false;
         }
         creature.rotationYaw += rotAmt;
-        
+
     }
-    
+
     private void lookForOwnerEntity()
     {
         if (System.currentTimeMillis() > nextOwnerCheckTime)
@@ -179,7 +179,7 @@ public class JurassiCraftAIGliding extends EntityAIBase
             nextOwnerCheckTime = System.currentTimeMillis() + OWNER_FIND_INTERVAL;
         }
     }
-    
+
     private boolean checkTakeOffConditions()
     {
         EntityPlayer nearest = creature.worldObj.getClosestPlayerToEntity(creature, 6.0D);
@@ -191,17 +191,13 @@ public class JurassiCraftAIGliding extends EntityAIBase
             return true;
         return false;
     }
-    
+
     private void land()
     {
         sittingSpotAbortTime = -1L;
         creature.setPosition(currentFlightTarget.posX + 0.5D, currentFlightTarget.posY + 0.5D, currentFlightTarget.posZ + 0.5D);
     }
-    
-    int flightTicks = 0;
-    double takeOffSpeed = 0;
-    int targetHeight = 0;
-    
+
     private void takeOff()
     {
         creature.setFlying(true);

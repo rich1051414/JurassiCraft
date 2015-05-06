@@ -30,7 +30,7 @@ public class ModBlocks implements IContentHandler
     public static Block cultivateBottomOff;
     @IgnoreRegistration
     public static Block cultivateBottomOn;
-    
+
     public static Block cultivateTopOff;
     public static Block cultivateTopOn;
     public static Block dnaExtractor;
@@ -42,7 +42,7 @@ public class ModBlocks implements IContentHandler
     public static Block fossilOre;
     public static Block sandstoneFossilOre;
     public static Block dinoPad;
-    
+
     public static Block securityFenceLowCorner;
     public static Block securityFenceLowPole;
     public static Block securityFenceLowBase;
@@ -60,7 +60,7 @@ public class ModBlocks implements IContentHandler
     public static Block securityFenceHighBase;
     public static Block securityFenceHighGrid;
     */
-    
+
     public void init()
     {
 
@@ -93,11 +93,12 @@ public class ModBlocks implements IContentHandler
         securityFenceHighBase = new BlockSecurityFenceHighBase();
         securityFenceHighGrid = new BlockSecurityFenceHighGrid();
         */
-        
+
         gameRegistry();
     }
 
-    public void gameRegistry() {
+    public void gameRegistry()
+    {
         GameRegistry.registerBlock(cultivateBottomOff, ItemBlockCultivate.class, "cultivateOff");
         GameRegistry.registerBlock(cultivateBottomOn, ItemBlockCultivate.class, "cultivateOn");
         GameRegistry.registerBlock(clayFossilOre, ItemBlockFossilClayOre.class, "clayFossilOre");

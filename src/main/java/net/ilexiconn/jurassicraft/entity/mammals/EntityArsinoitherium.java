@@ -36,25 +36,25 @@ public class EntityArsinoitherium extends EntityJurassiCraftCharges implements I
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(1500);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return 0.86D * (double) this.getYBouningBox();
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 400;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

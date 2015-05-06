@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class ToolFossilBreaker extends ItemPickaxe
 {
-    
+
     public ToolFossilBreaker(ToolMaterial material, String toolName, int durability)
     {
         super(material);
@@ -21,7 +21,7 @@ public class ToolFossilBreaker extends ItemPickaxe
         setTextureName(JurassiCraft.getModId() + toolName);
         setCreativeTab(ModCreativeTabs.items);
     }
-    
+
     @Override
     public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entity)
     {

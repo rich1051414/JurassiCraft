@@ -13,14 +13,13 @@ import net.minecraft.world.World;
  */
 public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
 {
-    
+
     public byte creatureID;
-    
-    private double swimTargetX;
-    private double swimTargetY;
-    private double swimTargetZ;
-    private Entity targetEntity;
-    private boolean isAttacking;
+    public int frame = 0;
+    public float angle = 0;
+    public float deltaAngle = 4;
+    public float currentSpeed = 0.2F;
+    public float distanceFromTarget = 100;
     protected float swimRadius = 4.0F;
     protected float swimRadiusHeight = 4.0F;
     protected boolean isAgressive = false;
@@ -28,60 +27,59 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
     protected float attackSpeed = 1.2F;
     protected float swimSpeed = 0.5F;
     protected boolean jumpOnLand = true;
-    
-    public int frame = 0;
-    public float angle = 0;
-    public float deltaAngle = 4;
-    public float currentSpeed = 0.2F;
+    private double swimTargetX;
+    private double swimTargetY;
+    private double swimTargetZ;
+    private Entity targetEntity;
+    private boolean isAttacking;
     private int timeUntilDeltaAngleChange = 0;
-    public float distanceFromTarget = 100;
-    
+
     public NewEntitySwimming(World world)
     {
         super(world);
     }
-    
+
     @Override
     protected boolean canDespawn()
     {
         return false;
     }
-    
+
     @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
-    
+
     @Override
     public boolean isInWater()
     {
         return this.worldObj.handleMaterialAcceleration(this.boundingBox, Material.water, this);
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         if (this.isInWater())
             //           this.motionY *= 0.1D; //THIS IS CAUSING PROBLEMS, BUT SEEMS TO BE NECESSARY
             this.motionY += 0.02D; //This will negate gravity instead
         frame++;
     }
-    
+
     @Override
     protected void updateAITasks()
     {
         super.updateAITasks();
-        
+
         if (this.isInWater())
         {
             double dx = this.swimTargetX - this.posX;
             double dy = this.swimTargetY - this.posY;
             double dz = this.swimTargetZ - this.posZ;
             double dist = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
-            
+
             if (dist < 1.0D || dist > 1000.0D)
             {
                 this.swimTargetX = this.posX + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * this.swimRadius);
@@ -89,7 +87,7 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
                 this.swimTargetZ = this.posZ + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * this.swimRadius);
                 this.isAttacking = false;
             }
-            
+
             if (this.worldObj.getBlock(MathHelper.floor_double(this.swimTargetX), MathHelper.floor_double(this.swimTargetY + this.height), MathHelper.floor_double(this.swimTargetZ)).getMaterial() == Material.water)
             {
                 //                this.motionX += dx / dist * 0.05D * (double) this.swimSpeed;
@@ -102,7 +100,7 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
                 this.swimTargetY = this.posY + 0.1D;
                 this.swimTargetZ = this.posZ;
             }
-            
+
             if (this.isAttacking)
             {
                 this.motionX *= this.attackSpeed;
@@ -130,7 +128,7 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
                 this.distanceFromTarget = 100;
                 this.isAttacking = false;
             }
-            
+
             this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.5F;
             this.rotationYaw = this.renderYawOffset;
             this.rotationYaw += MathHelper.wrapAngleTo180_float(this.angle - this.rotationYaw - 90.0F);
@@ -165,48 +163,48 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
             timeUntilDeltaAngleChange -= 1;
         }
     }
-    
+
     protected Entity findEntityToAttack()
     {
         EntityPlayer player = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
         return player != null && this.canEntityBeSeen(player) ? player : null;
     }
-    
+
     @Override
     public void applyEntityCollision(Entity entity)
     {
         super.applyEntityCollision(entity);
-        
+
         if (this.isAgressive && this.targetEntity == entity)
         {
             this.attackEntityAsMob(entity);
         }
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
         float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         return entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
     }
-    
+
     @Override
     public boolean canBreatheUnderwater()
     {
         return true;
     }
-    
+
     @Override
     public void onEntityUpdate()
     {
         int air = this.getAir();
         super.onEntityUpdate();
-        
+
         if (this.isEntityAlive() && !this.isInWater())
         {
             --air;
             this.setAir(air);
-            
+
             if (this.getAir() == -20)
             {
                 this.setAir(0);
@@ -216,11 +214,11 @@ public abstract class NewEntitySwimming extends EntityJurassiCraftRidable
         else
             this.setAir(300);
     }
-    
+
     @Override
     public boolean getCanSpawnHere()
     {
         return this.worldObj.checkNoEntityCollision(this.boundingBox);
     }
-    
+
 }

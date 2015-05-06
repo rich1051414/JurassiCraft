@@ -1,25 +1,24 @@
 package net.ilexiconn.jurassicraft.ai.herds;
 
-import java.util.List;
-
-import javax.vecmath.Vector3d;
-
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityVelociraptor;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.pathfinding.PathEntity;
 
+import javax.vecmath.Vector3d;
+import java.util.List;
+
 public class HerdAISurprise extends EntityAIHerd
 {
-    
+
     private EntityLivingBase theChosenOne;
     private VelociraptorHerd velociraptorHerd;
-    
+
     public HerdAISurprise(EntityJurassiCraftCreature creature)
     {
         super(creature, false); // false, because we don't need (and don't want) the attack targets to be overwritten
     }
-    
+
     @SuppressWarnings("unchecked")
     public void startExecuting()
     {
@@ -40,7 +39,7 @@ public class HerdAISurprise extends EntityAIHerd
                         {
                             theChosenOne = entities.get((int) (entities.size() * Math.random()));
                             i++;
-                            
+
                             if (i >= 100)
                             {
                                 theChosenOne = null;
@@ -56,7 +55,7 @@ public class HerdAISurprise extends EntityAIHerd
             }
         }
     }
-    
+
     public boolean continueExecuting()
     {
         if (theChosenOne == null)
@@ -100,13 +99,13 @@ public class HerdAISurprise extends EntityAIHerd
         }
         return true;
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
         return (getCreature().getAttackTarget() == null && Math.random() < 1.10) || velociraptorHerd.isSneakingUp(); // TODO: change proba
     }
-    
+
     protected CreatureHerd createHerd()
     {
         return new VelociraptorHerd();

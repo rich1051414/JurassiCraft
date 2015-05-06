@@ -1,23 +1,23 @@
 package net.ilexiconn.jurassicraft.ai;
 
-import java.util.ArrayList;
-
 import net.ilexiconn.jurassicraft.AnimationHandler;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.ai.EntityAIBase;
 
+import java.util.ArrayList;
+
 public class JurassiCraftAIPlayfulBaby extends EntityAIBase
 {
-    
+
     private EntityJurassiCraftSmart creature;
     private EntityJurassiCraftSmart otherCreature;
     private double minimumDistance;
     private double maximumDistance;
     private int chance;
     private float maxAge;
-    
+
     public JurassiCraftAIPlayfulBaby(EntityJurassiCraftSmart creature, int chance, double minimumDistance, double maximumDistance, float maxAge)
     {
         this.creature = creature;
@@ -27,7 +27,7 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
         this.maxAge = maxAge;
         this.otherCreature = null;
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -58,7 +58,7 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
         }
         return false;
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -82,7 +82,7 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
             this.creature.setBreeding(false);
         if (this.creature.isSitting())
             this.creature.setSitting(false, null);
-        
+
         if (this.otherCreature.isTakingOff())
             this.otherCreature.setTakingOff(false);
         if (this.otherCreature.isFlying())
@@ -103,37 +103,37 @@ public class JurassiCraftAIPlayfulBaby extends EntityAIBase
             this.otherCreature.setBreeding(false);
         if (this.otherCreature.isSitting())
             this.otherCreature.setSitting(false, null);
-        
+
         this.otherCreature.setSocializing(true);
         this.creature.setPlaying(true);
     }
-    
+
     @Override
     public void updateTask()
     {
         if (!this.creature.hasPath())
             this.creature.getNavigator().tryMoveToEntityLiving(this.otherCreature, this.creature.getCreatureSpeed());
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return this.creature.getRNG().nextBoolean() ? true : this.creature.getDistanceSqToEntity(this.otherCreature) > this.minimumDistance;
     }
-    
+
     @Override
     public void resetTask()
     {
         if (this.creature.getAnimationId() == 0)
             AnimationHandler.sendAnimationPacket(this.creature, JurassiCraftAnimationIDs.PLAYING.animID());
-        
+
         this.creature.getNavigator().clearPathEntity();
         this.creature.setCreatureToAttack(this.otherCreature);
         this.creature.setPlaying(false);
-        
+
         if (this.otherCreature.getAnimationId() == 0)
             AnimationHandler.sendAnimationPacket(this.otherCreature, JurassiCraftAnimationIDs.SOCIALIZING.animID());
-        
+
         this.otherCreature.getNavigator().clearPathEntity();
         this.otherCreature.setCreatureToAttack(this.creature);
         this.otherCreature.setSocializing(false);

@@ -11,9 +11,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelVelociraptor extends MowzieModelBase
 {
-    private Animator animator;
-    private float TwitchAngle = 0.5F;
-    
     MowzieModelRenderer Left_Upper_Foot;
     MowzieModelRenderer Right_Upper_Foot;
     MowzieModelRenderer Left_Calf_1;
@@ -61,14 +58,16 @@ public class ModelVelociraptor extends MowzieModelBase
     MowzieModelRenderer[] rightArmParts;
     MowzieModelRenderer[] leftArmParts;
     MowzieModelRenderer[] tailParts;
-    
+    private Animator animator;
+    private float TwitchAngle = 0.5F;
+
     public ModelVelociraptor()
     {
         textureWidth = 256;
         textureHeight = 256;
-        
+
         animator = new Animator(this);
-        
+
         Left_Upper_Foot = new MowzieModelRenderer(this, 81, 0);
         Left_Upper_Foot.addBox(-1F, 0F, 0F, 2, 7, 2);
         Left_Upper_Foot.setRotationPoint(6F, 17.2F, 9F);
@@ -333,19 +332,19 @@ public class ModelVelociraptor extends MowzieModelBase
         HeadJoint.setTextureSize(256, 256);
         HeadJoint.mirror = true;
         setRotation(HeadJoint, 0F, 0F, 0F);
-        
+
         addChildTo(Left_Claw_2, Left_Claw_1);
         addChildTo(Left_Claw_1, Foot_Left);
         addChildTo(Foot_Left, Left_Upper_Foot);
         addChildTo(Left_Upper_Foot, Left_Calf_1);
         addChildTo(Left_Calf_1, Left_Thigh);
-        
+
         addChildTo(Right_Claw_2, Right_Claw_1);
         addChildTo(Right_Claw_1, Foot_Right);
         addChildTo(Foot_Right, Right_Upper_Foot);
         addChildTo(Right_Upper_Foot, Right_Calf_1);
         addChildTo(Right_Calf_1, Right_Thigh);
-        
+
         addChildTo(Lower_Jaw, Head);
         addChildTo(Upper_Jaw, Head);
         addChildTo(Quill_1, Head);
@@ -361,41 +360,41 @@ public class ModelVelociraptor extends MowzieModelBase
         */
         addChildTo(Neck, Body_2);
         addChildTo(Body_2, Body_1);
-        
+
         addChildTo(Hand_Left_Claw_Left, Hand_Left);
         addChildTo(Hand_Left_Claw_Middle, Hand_Left);
         addChildTo(Hand_Left_Claw_Right, Hand_Left);
         addChildTo(Hand_Left, Lower_Arm_Left);
         addChildTo(Lower_Arm_Left, Upper_Arm_Left);
         addChildTo(Upper_Arm_Left, Body_1);
-        
+
         addChildTo(Hand_Right_Claw_Left, Hand_Right);
         addChildTo(Hand_Right_Claw_Middle, Hand_Right);
         addChildTo(Hand_Right_Claw_Right, Hand_Right);
         addChildTo(Hand_Right, Lower_Arm_Right);
         addChildTo(Lower_Arm_Right, Upper_Arm_Right);
         addChildTo(Upper_Arm_Right, Body_1);
-        
+
         addChildTo(Tail_6, Tail_5);
         addChildTo(Tail_5, Tail_4);
         addChildTo(Tail_4, Tail_3);
         addChildTo(Tail_3, Tail_2);
         addChildTo(Tail_2, Tail_1);
         addChildTo(Tail_1, Body_1);
-        
+
         //Corrections
         Left_Claw_2.setRotationPoint(0, -3, 1);
         Right_Claw_2.setRotationPoint(0, -3, 1);
         HeadJoint.setRotationPoint(0, 0, -13);
         Tail_6.setRotationPoint(0, 1, 11);
-        
+
         Tail_1.rotateAngleX = 0.3F;
         Tail_2.rotateAngleX = 0F;
         Tail_3.rotateAngleX = -0.03F;
         Tail_4.rotateAngleX = -0.06F;
         Tail_5.rotateAngleX = -0.09F;
         Tail_6.rotateAngleX = -0.12F;
-        
+
         Head.setRotationPoint(0, 0, 0);
         Body_2.setRotationPoint(0, -1, -20);
         Hand_Left_Claw_Left.setRotationPoint(0.2F, -0.2F, -0.1F);
@@ -404,11 +403,11 @@ public class ModelVelociraptor extends MowzieModelBase
         Hand_Right_Claw_Left.setRotationPoint(0.2F, -0.2F, -0.1F);
         Hand_Right_Claw_Middle.setRotationPoint(0F, -0.2F, -0.1F);
         Hand_Right_Claw_Right.setRotationPoint(-0.2F, -0.2F, -0.1F);
-        
-        rightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
-        leftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
-        tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
-        
+
+        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
+
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
         Left_Calf_1.setInitValuesToCurrentPose();
@@ -454,7 +453,7 @@ public class ModelVelociraptor extends MowzieModelBase
         Quill_7.setInitValuesToCurrentPose();
         HeadJoint.setInitValuesToCurrentPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -503,14 +502,14 @@ public class ModelVelociraptor extends MowzieModelBase
             Quill_6.render(f5);
             Quill_7.render(f5);*/
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     private void resetPose()
     {
         Left_Upper_Foot.setCurrentPoseToInitValues();
@@ -558,7 +557,7 @@ public class ModelVelociraptor extends MowzieModelBase
         Quill_7.setCurrentPoseToInitValues();
         HeadJoint.setCurrentPoseToInitValues();
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityVelociraptor raptor)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
@@ -572,46 +571,46 @@ public class ModelVelociraptor extends MowzieModelBase
             f1 = 0;
         float scaleFactor = 0.75F;
         float height = 2F * f1;
-        
+
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Neck, 1F * scaleFactor, height / 2, false, f, f1);
-        
+
         walk(Neck, 1F * scaleFactor, 0.25F, false, 1F, 0.4F, f, f1);
         walk(Head, 1F * scaleFactor, 0.25F, true, 1F, -0.4F, f, f1);
-        
+
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
         walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, f, f1);
         walk(Foot_Left, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, f, f1);
-        
+
         walk(Right_Thigh, 0.5F * scaleFactor, 0.8F, true, 0F, 0.4F, f, f1);
         walk(Right_Calf_1, 0.5F * scaleFactor, 0.5F, false, 1F, 0F, f, f1);
         walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, f, f1);
         walk(Foot_Right, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
-        
+
         chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
         chainWave(tailParts, 1F * scaleFactor, -0.05F, 2, f, f1);
         chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-        
+
         float sittingProgress = raptor.sittingProgress.getAnimationProgressSin();
-        
+
         if (sittingProgress > 0.001F)
         {
             //Sitting Pose
             float sittingProgressTemporary = raptor.sittingProgress.getAnimationProgressTemporaryFS();
-            
+
             this.faceTarget(Head, 5, f3, f4);
             this.faceTarget(Neck, 4, f3, f4);
-            
+
             this.Body_1.rotationPointY += 13.25F * sittingProgress;
             this.Right_Thigh.rotationPointY += 14.25F * sittingProgress;
             this.Left_Thigh.rotationPointY += 14.25F * sittingProgress;
             this.Right_Thigh.rotationPointZ += 0.5F * sittingProgress;
             this.Left_Thigh.rotationPointZ += 0.5F * sittingProgress;
-            
+
             if (sittingProgressTemporary > 0.001F)
             {
                 this.Body_1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -619,7 +618,7 @@ public class ModelVelociraptor extends MowzieModelBase
                 this.Head.rotateAngleX += 0.2F * sittingProgressTemporary;
                 this.Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
                 this.Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
-                
+
                 if (raptor.isSitting())
                 {
                     this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -637,35 +636,35 @@ public class ModelVelociraptor extends MowzieModelBase
                     this.Tail_5.rotateAngleX -= 0.1F * sittingProgressTemporary;
                 }
             }
-            
+
             this.Body_1.rotateAngleX -= 0.075F * sittingProgress;
-            
+
             this.Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
             this.Upper_Arm_Left.rotateAngleX -= 0.8F * sittingProgress;
-            
+
             this.Right_Thigh.rotateAngleX -= 0.75F * sittingProgress;
             this.Left_Thigh.rotateAngleX -= 0.75F * sittingProgress;
-            
+
             this.Right_Calf_1.rotationPointZ += 0.5F * sittingProgress;
             this.Left_Calf_1.rotationPointZ += 0.5F * sittingProgress;
             this.Right_Calf_1.rotationPointY += 1.5F * sittingProgress;
             this.Left_Calf_1.rotationPointY += 1.5F * sittingProgress;
             this.Right_Calf_1.rotateAngleX += 1.2F * sittingProgress;
             this.Left_Calf_1.rotateAngleX += 1.2F * sittingProgress;
-            
+
             this.Right_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
             this.Left_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
             this.Right_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
             this.Left_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
-            
+
             this.Foot_Right.rotationPointZ -= 0.5F * sittingProgress;
             this.Foot_Left.rotationPointZ -= 0.5F * sittingProgress;
             this.Foot_Right.rotateAngleX += 1.0F * sittingProgress;
             this.Foot_Left.rotateAngleX += 1.0F * sittingProgress;
-            
+
             this.Right_Claw_1.rotateAngleX += 0.7F * sittingProgress;
             this.Left_Claw_1.rotateAngleX += 0.7F * sittingProgress;
-            
+
             //Idling
             this.chainWave(this.tailParts, 0.1F, -0.05F, 2, raptor.frame, 1.0F - 0.5F * sittingProgress);
             this.walk(this.Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F - 0.3F * sittingProgress);
@@ -678,7 +677,7 @@ public class ModelVelociraptor extends MowzieModelBase
         {
             this.faceTarget(this.Head, 2, f3, f4);
             this.faceTarget(this.Neck, 2, f3, f4);
-            
+
             //Idling
             this.chainWave(this.tailParts, 0.1F, -0.05F, 2, raptor.frame, 1F);
             this.walk(this.Neck, 0.1F, 0.07F, false, -1F, 0F, raptor.frame, 1F);
@@ -687,12 +686,12 @@ public class ModelVelociraptor extends MowzieModelBase
             this.chainWave(this.rightArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
             this.chainWave(this.leftArmParts, 0.1F, -0.1F, 4, raptor.frame, 1F);
         }
-        
+
         raptor.tailBuffer.applyChainSwingBuffer(this.tailParts);
-        
+
         if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID())
             raptor.setLeaping(true);
-        
+
         if (raptor.leaping == true)
         {
             Body_1.rotateAngleX -= 0.8;
@@ -703,7 +702,7 @@ public class ModelVelociraptor extends MowzieModelBase
             Lower_Jaw.rotateAngleX += 0.7;
             Tail_1.rotationPointZ -= 2;
             Tail_1.rotateAngleX += 0.7F;
-            
+
             Right_Thigh.rotateAngleX -= 1.2;
             Left_Thigh.rotateAngleX -= 1.2;
             Right_Calf_1.rotateAngleX -= 0.3;
@@ -712,7 +711,7 @@ public class ModelVelociraptor extends MowzieModelBase
             Left_Upper_Foot.rotateAngleX += 0.3;
             Foot_Right.rotateAngleX -= 0.3;
             Foot_Left.rotateAngleX -= 0.3;
-            
+
             Upper_Arm_Right.rotateAngleX -= 0.5F;
             Upper_Arm_Right.rotateAngleZ += 1F;
             Upper_Arm_Left.rotateAngleX -= 0.5F;
@@ -725,13 +724,13 @@ public class ModelVelociraptor extends MowzieModelBase
             Hand_Left.rotateAngleX -= 1;
         }
     }
-    
+
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityVelociraptor) entity);
         EntityVelociraptor raptor = (EntityVelociraptor) entity;
-        
+
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID())
         {
             if (raptor.getAnimationTick() == 1 && raptor.getAnimationId() == JurassiCraftAnimationIDs.TWITCH_HEAD.animID())
@@ -743,7 +742,7 @@ public class ModelVelociraptor extends MowzieModelBase
             this.animator.setStationaryPhase(24);
             this.animator.resetPhase(3);
         }
-        
+
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.ROAR.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.ROAR.animID());
@@ -759,7 +758,7 @@ public class ModelVelociraptor extends MowzieModelBase
             this.animator.setStationaryPhase(9);
             this.animator.resetPhase(5);
         }
-        
+
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.LEAP.animID());
@@ -822,7 +821,7 @@ public class ModelVelociraptor extends MowzieModelBase
             this.animator.setStationaryPhase(4);
             this.animator.resetPhase(0);
         }
-        
+
         if (raptor.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());

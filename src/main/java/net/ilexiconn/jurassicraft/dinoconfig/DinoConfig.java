@@ -22,7 +22,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadReptileConfig(JsonEntityParser parser)
     {
         try
@@ -36,7 +36,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadMammalConfig(JsonEntityParser parser)
     {
         try
@@ -50,7 +50,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadBirdConfig(JsonEntityParser parser)
     {
         try
@@ -64,7 +64,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadFishConfig(JsonEntityParser parser)
     {
         try
@@ -78,7 +78,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadCephalopodConfig(JsonEntityParser parser)
     {
         try
@@ -92,7 +92,7 @@ public class DinoConfig
             e.printStackTrace();
         }
     }
-    
+
     public static void loadArthropodConfig(JsonEntityParser parser)
     {
         try

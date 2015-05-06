@@ -5,11 +5,7 @@ import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -26,7 +22,7 @@ public class BlockAmberOre extends Block
         setHarvestLevel("pickaxe", 2);
         setCreativeTab(ModCreativeTabs.blocks);
     }
-    
+
     public Item getItemDropped(int value, Random random, int thing)
     {
         return ModItems.amber;

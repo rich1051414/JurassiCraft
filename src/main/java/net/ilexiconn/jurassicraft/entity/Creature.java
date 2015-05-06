@@ -13,14 +13,14 @@ import java.util.ArrayList;
 public class Creature
 {
     private Class clazz;
-    
+
     private String creatureCategory;
-    
+
     private byte creatureID;
     private byte addItemTypes;
-    
+
     private String creatureName;
-    
+
     private double minHealth;
     private double minStrength;
     private double minSpeed;
@@ -34,7 +34,7 @@ public class Creature
     private double maxSpeed;
     private double maxKnockback;
     private double ridingSpeed;
-    
+
     private float adultAge;
     private float minLength;
     private float minHeight;
@@ -46,21 +46,21 @@ public class Creature
     private float yBoxDelta;
     private float scaleAdjustment;
     private float shadowSize;
-    
+
     private int ticksToAdulthood;
     private int cultivateSpeed;
     private int textureCount;
     private int ridingStyle;
     private int numberOfInfoPages;
-    
+
     private ArrayList favoriteFoodList;
     private ArrayList ridingItemList;
-    
+
     private boolean isRidable;
     private boolean canBeTamedUponSpawning;
     private boolean waterCreature;
     private boolean flyingCreature;
-    
+
     private ItemDNA dna;
     private ItemEgg egg;
     private ItemMammalSyringe syringe;
@@ -73,13 +73,13 @@ public class Creature
     private ItemBristles bristles;
     private ItemSkull skull;
     private ItemTooth tooth;
-    
+
     public Creature(String creatureCategory, JsonCreatureDefinition def, Class clazz)
     {
         this.clazz = clazz;
-        
+
         this.creatureCategory = creatureCategory;
-        
+
         this.adultAge = def.adultAge;
         this.canBeTamedUponSpawning = def.canBeTamedUponSpawning;
         this.creatureID = def.creatureID;
@@ -118,7 +118,7 @@ public class Creature
         this.yBoxDelta = def.yBoxDelta;
         this.yBoxMin = def.yBoxMin;
         this.addItemTypes = def.addItemTypes;
-        
+
         //        switch (def.addItemTypes)
         //		{
         //			case 0:
@@ -191,30 +191,30 @@ public class Creature
         //				break;
         //        }
     }
-    
+
     public void addDNA()
     {
         this.dna = new ItemDNA(this.creatureName);
         GameRegistry.registerItem(this.dna, this.dna.getUnlocalizedName());
     }
-    
+
     public Class getCreatureClass()
     {
         return clazz;
     }
-    
+
     public void addEgg()
     {
         this.egg = new ItemEgg(this.creatureName);
         GameRegistry.registerItem(this.egg, this.egg.getUnlocalizedName());
     }
-    
+
     public void addSyringe()
     {
         this.syringe = new ItemMammalSyringe(this.creatureName);
         GameRegistry.registerItem(this.syringe, this.syringe.getUnlocalizedName());
     }
-    
+
     public void addMeat()
     {
         this.meat = new ItemMeat(this.creatureName);
@@ -223,7 +223,7 @@ public class Creature
         GameRegistry.registerItem(this.steak, this.steak.getUnlocalizedName());
         GameRegistry.addSmelting(new ItemStack(this.meat), new ItemStack(this.steak), 0.0F);
     }
-    
+
     public void addFur()
     {
         this.fur = new ItemFur(this.creatureName);
@@ -236,118 +236,118 @@ public class Creature
             GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots, 1), "F F", "F F", 'F', new ItemStack(this.fur));
         }
     }
-    
+
     public void addSkin()
     {
         this.skin = new ItemSkin(this.creatureName);
         GameRegistry.registerItem(this.skin, this.skin.getUnlocalizedName());
     }
-    
+
     public void addScale()
     {
         this.scale = new ItemScale(this.creatureName);
         GameRegistry.registerItem(this.scale, this.scale.getUnlocalizedName());
     }
-    
+
     public void addFeather()
     {
         this.feather = new ItemFeather(this.creatureName);
         GameRegistry.registerItem(this.feather, this.feather.getUnlocalizedName());
     }
-    
+
     public void addBristles()
     {
         this.bristles = new ItemBristles(this.creatureName);
         GameRegistry.registerItem(this.bristles, this.bristles.getUnlocalizedName());
     }
-    
+
     public void addSkull()
     {
         this.skull = new ItemSkull(this.creatureName);
         GameRegistry.registerItem(this.skull, this.skull.getUnlocalizedName());
     }
-    
+
     public void addTooth()
     {
         this.tooth = new ItemTooth(this.creatureName);
         GameRegistry.registerItem(this.tooth, this.tooth.getUnlocalizedName());
     }
-    
+
     public String getCreatureName()
     {
         return this.creatureName;
     }
-    
+
     public String getCreatureCategory()
     {
         return this.creatureCategory;
     }
-    
+
     public byte getCreatureID()
     {
         return this.creatureID;
     }
-    
+
     public boolean isWaterCreature()
     {
         return this.waterCreature;
     }
-    
+
     public boolean isFlyingCreature()
     {
         return this.flyingCreature;
     }
-    
+
     public ItemDNA getDNA()
     {
         return this.dna;
     }
-    
+
     public ItemMeat getMeat()
     {
         return this.meat;
     }
-    
+
     public ItemSteak getSteak()
     {
         return this.steak;
     }
-    
+
     public ItemFur getFur()
     {
         return this.fur;
     }
-    
+
     public ItemSkin getSkin()
     {
         return this.skin;
     }
-    
+
     public ItemScale getScale()
     {
         return this.scale;
     }
-    
+
     public ItemFeather getFeather()
     {
         return this.feather;
     }
-    
+
     public ItemBristles getBristles()
     {
         return this.bristles;
     }
-    
+
     public ItemSkull getSkull()
     {
         return this.skull;
     }
-    
+
     public ItemTooth getTooth()
     {
         return this.tooth;
     }
-    
+
     public boolean isRidingItem(Item item)
     {
         if (this.ridingItemList != null && item != null)
@@ -356,22 +356,22 @@ public class Creature
         }
         return false;
     }
-    
+
     public boolean isRidable()
     {
         return this.isRidable;
     }
-    
+
     public int getRidingStyle()
     {
         return this.ridingStyle;
     }
-    
+
     public double getRidingSpeed()
     {
         return this.ridingSpeed;
     }
-    
+
     public boolean isFavoriteFood(Item item)
     {
         if (this.favoriteFoodList != null && item != null)
@@ -380,92 +380,92 @@ public class Creature
         }
         return false;
     }
-    
+
     public boolean canBeTamedUponSpawning()
     {
         return this.canBeTamedUponSpawning;
     }
-    
+
     public int getInfoPageCount()
     {
         return this.numberOfInfoPages;
     }
-    
+
     public float getMaxLength()
     {
         return this.maxLength;
     }
-    
+
     public float getMaxHeight()
     {
         return this.maxHeight;
     }
-    
+
     public double getMaxHealth()
     {
         return this.maxHealth;
     }
-    
+
     public double getMinHealth()
     {
         return this.minHealth;
     }
-    
+
     public double getTicksToAdulthood()
     {
         return this.ticksToAdulthood;
     }
-    
+
     public double getMaxStrength()
     {
         return this.maxStrength;
     }
-    
+
     public double getMinStrength()
     {
         return this.minStrength;
     }
-    
+
     public double getMaxSpeed()
     {
         return this.maxSpeed;
     }
-    
+
     public double getMinSpeed()
     {
         return this.minSpeed;
     }
-    
+
     public double getMaxKnockback()
     {
         return this.maxKnockback;
     }
-    
+
     public double getMinKnockback()
     {
         return this.minKnockback;
     }
-    
+
     public double getYBoxMin()
     {
         return this.yBoxMin;
     }
-    
+
     public double getYBoxDelta()
     {
         return this.yBoxDelta;
     }
-    
+
     public double getXzBoxMin()
     {
         return this.xzBoxMin;
     }
-    
+
     public double getXzBoxDelta()
     {
         return this.xzBoxDelta;
     }
-    
+
     public float getScaleAdjustment()
     {
         return this.scaleAdjustment;
@@ -475,62 +475,62 @@ public class Creature
     {
         return this.shadowSize;
     }
-    
+
     public float getMinHeight()
     {
         return this.minHeight;
     }
-    
+
     public float getMinLength()
     {
         return this.minLength;
     }
-    
+
     public float getAdultAge()
     {
         return this.adultAge;
     }
-    
+
     public int getTextureCount()
     {
         return this.textureCount;
     }
-    
+
     public ItemEgg getEgg()
     {
         return this.egg;
     }
-    
+
     public ItemMammalSyringe getMammalSyringe()
     {
         return this.syringe;
     }
-    
+
     public double getMinProximate()
     {
         return this.minProximate;
     }
-    
+
     public double getMinVitamins()
     {
         return this.minVitamins;
     }
-    
+
     public double getMinLipids()
     {
         return this.minLipids;
     }
-    
+
     public double getMinMinerals()
     {
         return this.minMinerals;
     }
-    
+
     public int getCultivateSpeed()
     {
         return this.cultivateSpeed;
     }
-    
+
     public byte getAddedItemTypes()
     {
         return this.addItemTypes;

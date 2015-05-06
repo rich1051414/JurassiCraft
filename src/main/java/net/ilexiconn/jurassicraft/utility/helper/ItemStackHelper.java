@@ -12,10 +12,11 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class ItemStackHelper
 {
-    
+
     /**
-     * Converts an object to and ItemStack. Check to see whether it is 
+     * Converts an object to and ItemStack. Check to see whether it is
      * not null before using the returned object.
+     *
      * @param obj A data type that can be converted to and ItemStack
      * @return An ItemStack created from the given object.
      */
@@ -30,10 +31,11 @@ public class ItemStackHelper
         else
             return null;
     }
-    
+
     /**
-     * Checks whether the item has and tag compound if not it creates a new 
+     * Checks whether the item has and tag compound if not it creates a new
      * one for that itemstack.
+     *
      * @param item The item needed to be checked for a #NBTTagCompound
      * @return Returns whether it has created a new #NBTTagCompound
      */
@@ -46,26 +48,26 @@ public class ItemStackHelper
         }
         return false;
     }
-    
+
     public static boolean isItem(ItemStack item, Item itemClass)
     {
         if (item == null || itemClass == null)
             return false;
         return item.getItem() == itemClass;
     }
-    
+
     public static void setDamage(ItemStack item, int damage)
     {
         item.setItemDamage(damage);
     }
-    
+
     public static boolean hasTag(ItemStack itemStack, String keyName)
     {
         if (itemStack.stackTagCompound != null)
             return itemStack.stackTagCompound.hasKey(keyName);
         return false;
     }
-    
+
     public static void removeTag(ItemStack itemStack, String keyName)
     {
         if (itemStack.stackTagCompound != null)
@@ -73,7 +75,7 @@ public class ItemStackHelper
             itemStack.stackTagCompound.removeTag(keyName);
         }
     }
-    
+
     //String
     public static String getString(ItemStack itemStack, String keyName)
     {
@@ -84,13 +86,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getString(keyName);
     }
-    
+
     public static void setString(ItemStack itemStack, String keyName, String keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setString(keyName, keyValue);
     }
-    
+
     //Boolean
     public static boolean getBoolean(ItemStack itemStack, String keyName)
     {
@@ -101,13 +103,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getBoolean(keyName);
     }
-    
+
     public static void setBoolean(ItemStack itemStack, String keyName, boolean keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setBoolean(keyName, keyValue);
     }
-    
+
     //Byte
     public static byte getByte(ItemStack itemStack, String keyName)
     {
@@ -118,13 +120,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getByte(keyName);
     }
-    
+
     public static void setByte(ItemStack itemStack, String keyName, byte keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setByte(keyName, keyValue);
     }
-    
+
     //Short
     public static short getShort(ItemStack itemStack, String keyName)
     {
@@ -135,13 +137,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getShort(keyName);
     }
-    
+
     public static void setShort(ItemStack itemStack, String keyName, short keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setShort(keyName, keyValue);
     }
-    
+
     //Integer
     public static int getInt(ItemStack itemStack, String keyName)
     {
@@ -152,13 +154,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getInteger(keyName);
     }
-    
+
     public static void setInteger(ItemStack itemStack, String keyName, int keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setInteger(keyName, keyValue);
     }
-    
+
     //Long
     public static long getLong(ItemStack itemStack, String keyName)
     {
@@ -169,13 +171,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getLong(keyName);
     }
-    
+
     public static void setLong(ItemStack itemStack, String keyName, long keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setLong(keyName, keyValue);
     }
-    
+
     //Float
     public static float getFloat(ItemStack itemStack, String keyName)
     {
@@ -186,13 +188,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getFloat(keyName);
     }
-    
+
     public static void setFloat(ItemStack itemStack, String keyName, float keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setFloat(keyName, keyValue);
     }
-    
+
     //Double
     public static double getDouble(ItemStack itemStack, String keyName)
     {
@@ -203,13 +205,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getDouble(keyName);
     }
-    
+
     public static void setDouble(ItemStack itemStack, String keyName, double keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setDouble(keyName, keyValue);
     }
-    
+
     //Tag
     public static NBTBase getTag(ItemStack itemStack, String keyName)
     {
@@ -219,13 +221,13 @@ public class ItemStackHelper
         }
         return itemStack.stackTagCompound.getTag(keyName);
     }
-    
+
     public static void setTag(ItemStack itemStack, String keyName, NBTBase keyValue)
     {
         makeSureItemHasTagCompound(itemStack);
         itemStack.stackTagCompound.setTag(keyName, keyValue);
     }
-    
+
     public static void addEnchantment(ItemStack itemStack, Enchantment ench, int lvl)
     {
         makeSureItemHasTagCompound(itemStack);

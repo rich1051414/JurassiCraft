@@ -8,7 +8,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 public class EntityPregnantPig implements IExtendedEntityProperties
 {
-    
+
     public final static String PREGNANT_PIG_PROPERTY = "EntityPregnantPigJC";
     private final EntityPig pig;
     private String dnaSequence;
@@ -16,7 +16,7 @@ public class EntityPregnantPig implements IExtendedEntityProperties
     private int pregnancyProgress;
     private int pregnancySpeed;
     private int dnaQuality;
-    
+
     public EntityPregnantPig(EntityPig pig)
     {
         this.pig = pig;
@@ -25,78 +25,78 @@ public class EntityPregnantPig implements IExtendedEntityProperties
         this.dnaSequence = "";
         this.pregnancySpeed = 0;
     }
-    
-    @Override
-    public void init(Entity entity, World world)
-    {
-        
-    }
-    
+
     public static final void register(EntityPig entity)
     {
         entity.registerExtendedProperties(EntityPregnantPig.PREGNANT_PIG_PROPERTY, new EntityPregnantPig(entity));
     }
-    
+
     public static final EntityPregnantPig get(EntityPig entity)
     {
         return (EntityPregnantPig) entity.getExtendedProperties(EntityPregnantPig.PREGNANT_PIG_PROPERTY);
     }
-    
+
+    @Override
+    public void init(Entity entity, World world)
+    {
+
+    }
+
     public String getDNASequence()
     {
         return dnaSequence;
     }
-    
+
     public void setDNASequence(String dna)
     {
         this.dnaSequence = dna;
     }
-    
+
     public String getMammalName()
     {
         return mammalName;
     }
-    
+
     public void setMammalName(String mammal)
     {
         this.mammalName = mammal;
     }
-    
+
     public int getPregnancyProgress()
     {
         return pregnancyProgress;
     }
-    
-    public void increasePregnancyProgress()
-    {
-        this.pregnancyProgress = this.getPregnancyProgress() + 1;
-    }
-    
+
     public void setPregnancyProgress(int progress)
     {
         this.pregnancyProgress = progress;
     }
-    
+
+    public void increasePregnancyProgress()
+    {
+        this.pregnancyProgress = this.getPregnancyProgress() + 1;
+    }
+
     public int getPregnancySpeed()
     {
         return pregnancySpeed;
     }
-    
+
     public void setPregnancySpeed(int speed)
     {
         this.pregnancySpeed = speed;
     }
-    
+
     public int getDNAQuality()
     {
         return dnaQuality;
     }
-    
+
     public void setDNAQuality(int quality)
     {
         this.dnaQuality = quality;
     }
-    
+
     public int getPregnancyProgressScaled(int barSize)
     {
         if (this.getPregnancySpeed() <= 0)
@@ -105,7 +105,7 @@ public class EntityPregnantPig implements IExtendedEntityProperties
         }
         return (this.getPregnancyProgress() * barSize) / this.getPregnancySpeed();
     }
-    
+
     @Override
     public void saveNBTData(NBTTagCompound compound)
     {
@@ -117,7 +117,7 @@ public class EntityPregnantPig implements IExtendedEntityProperties
         properties.setInteger("DNAQuality", this.dnaQuality);
         compound.setTag(EntityPregnantPig.PREGNANT_PIG_PROPERTY, properties);
     }
-    
+
     @Override
     public void loadNBTData(NBTTagCompound compound)
     {

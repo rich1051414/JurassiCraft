@@ -47,13 +47,13 @@ public class ModelHerrerasaurus extends MowzieModelBase
     MowzieModelRenderer[] rightArmParts;
     MowzieModelRenderer[] leftArmParts;
     MowzieModelRenderer[] tailParts;
-    
+
     public ModelHerrerasaurus()
     {
         this.animator = new Animator(this);
         textureWidth = 256;
         textureHeight = 256;
-        
+
         Left_Upper_Foot = new MowzieModelRenderer(this, 68, 0);
         Left_Upper_Foot.addBox(-1F, 0F, -2F, 2, 7, 2);
         Left_Upper_Foot.setRotationPoint(6F, 18F, 4F);
@@ -246,62 +246,62 @@ public class ModelHerrerasaurus extends MowzieModelBase
         Foot_Right.setTextureSize(256, 256);
         Foot_Right.mirror = true;
         setRotation(Foot_Right, 0F, 0F, 0F);
-        
+
         addChildTo(Upper_Jaw, Head);
         addChildTo(Lower_Jaw, Head);
         addChildTo(Head, Neck);
         addChildTo(Head, Neck);
         addChildTo(Neck, Body_2);
         addChildTo(Body_2, Body_1);
-        
+
         addChildTo(Hand_Left_Claw_Left, Hand_Left);
         addChildTo(Hand_Left_Claw_Middle, Hand_Left);
         addChildTo(Hand_Left_Claw_Right, Hand_Left);
         addChildTo(Hand_Left, Lower_Arm_Left);
         addChildTo(Lower_Arm_Left, Upper_Arm_Left);
         addChildTo(Upper_Arm_Left, Body_1);
-        
+
         addChildTo(Hand_Right_Claw_Left, Hand_Right);
         addChildTo(Hand_Right_Claw_Middle, Hand_Right);
         addChildTo(Hand_Right_Claw_Right, Hand_Right);
         addChildTo(Hand_Right, Lower_Arm_Right);
         addChildTo(Lower_Arm_Right, Upper_Arm_Right);
         addChildTo(Upper_Arm_Right, Body_1);
-        
+
         addChildTo(Tail_6, Tail_5);
         addChildTo(Tail_5, Tail_4);
         addChildTo(Tail_4, Tail_3);
         addChildTo(Tail_3, Tail_2);
         addChildTo(Tail_2, Tail_1);
         addChildTo(Tail_1, Body_1);
-        
+
         addChildTo(Foot_Left, Left_Upper_Foot);
         addChildTo(Left_Upper_Foot, Left_Calf_1);
         addChildTo(Left_Calf_1, Left_Thigh);
         addChildTo(Foot_Right, Right_Upper_Foot);
         addChildTo(Right_Upper_Foot, Right_Calf_1);
         addChildTo(Right_Calf_1, Right_Thigh);
-        
+
         //Corrections
         Head.rotationPointZ -= 12;
         Head.rotationPointY -= 1.2;
         Head.rotateAngleX += 0.1;
         Body_2.setRotationPoint(0, -4.8F, -13);
-        
+
         Hand_Left_Claw_Left.setRotationPoint(0, 0, 0);
         Hand_Left_Claw_Middle.setRotationPoint(0, 0, 0);
         Hand_Left_Claw_Right.setRotationPoint(0, 0, 0);
-        
+
         Hand_Right_Claw_Left.setRotationPoint(0, 0, 0);
         Hand_Right_Claw_Middle.setRotationPoint(0, 0, 0);
         Hand_Right_Claw_Right.setRotationPoint(0, 0, 0);
-        
+
         Tail_1.setRotationPoint(0, -4.7F, 7);
-        
-        rightArmParts = new MowzieModelRenderer[] { this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right };
-        leftArmParts = new MowzieModelRenderer[] { this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left };
-        tailParts = new MowzieModelRenderer[] { this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1 };
-        
+
+        rightArmParts = new MowzieModelRenderer[]{this.Hand_Right, this.Lower_Arm_Right, this.Upper_Arm_Right};
+        leftArmParts = new MowzieModelRenderer[]{this.Hand_Left, this.Lower_Arm_Left, this.Upper_Arm_Left};
+        tailParts = new MowzieModelRenderer[]{this.Tail_6, this.Tail_5, this.Tail_4, this.Tail_3, this.Tail_2, this.Tail_1};
+
         Left_Upper_Foot.setInitValuesToCurrentPose();
         Right_Upper_Foot.setInitValuesToCurrentPose();
         Left_Calf_1.setInitValuesToCurrentPose();
@@ -335,7 +335,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
         Foot_Left.setInitValuesToCurrentPose();
         Foot_Right.setInitValuesToCurrentPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -344,14 +344,14 @@ public class ModelHerrerasaurus extends MowzieModelBase
         Right_Thigh.render(f5);
         Body_1.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void resetPose()
     {
         Left_Upper_Foot.setCurrentPoseToInitValues();
@@ -387,7 +387,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
         Foot_Left.setCurrentPoseToInitValues();
         Foot_Right.setCurrentPoseToInitValues();
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityHerrerasaurus herrera)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, herrera);
@@ -397,51 +397,51 @@ public class ModelHerrerasaurus extends MowzieModelBase
         f = herrera.frame; 
         f1 = 1F;
         */
-        
+
         float scaleFactor = 0.77F;
         float height = 2F * f1;
-        
+
         bob(Body_1, 1F * scaleFactor, height, false, f, f1);
         bob(Left_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Right_Thigh, 1F * scaleFactor, height, false, f, f1);
         bob(Neck, 1F * scaleFactor, height / 2, false, f, f1);
-        
+
         walk(Neck, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
         walk(Head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
         walk(Body_1, 1F * scaleFactor, 0.1F, true, 0F, 0.05F, f, f1);
-        
+
         walk(Left_Thigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
         walk(Left_Calf_1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
         walk(Left_Upper_Foot, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, f, f1);
         walk(Foot_Left, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, f, f1);
-        
+
         walk(Right_Thigh, 0.5F * scaleFactor, 0.8F, true, 0F, 0.4F, f, f1);
         walk(Right_Calf_1, 0.5F * scaleFactor, 0.5F, false, 1F, 0F, f, f1);
         walk(Right_Upper_Foot, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, f, f1);
         walk(Foot_Right, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
-        
+
         chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
         chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
         chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-        
+
         float sittingProgress = herrera.sittingProgress.getAnimationProgressSin();
-        
+
         if (sittingProgress > 0.001F)
         {
             //Sitting Pose
             float sittingProgressTemporary = herrera.sittingProgress.getAnimationProgressTemporaryFS();
-            
+
             faceTarget(Head, 2, f3, f4);
             faceTarget(Neck, 2, f3, f4);
-            
+
             this.Body_1.rotationPointY += 11F * sittingProgress;
             this.Right_Thigh.rotationPointY += 12.5F * sittingProgress;
             this.Left_Thigh.rotationPointY += 12.5F * sittingProgress;
             this.Neck.rotationPointY -= 1.0F * sittingProgress;
             this.Right_Thigh.rotationPointZ += 0.5F * sittingProgress;
             this.Left_Thigh.rotationPointZ += 0.5F * sittingProgress;
-            
+
             if (sittingProgressTemporary > 0.001F)
             {
                 this.Body_1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -449,7 +449,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
                 this.Head.rotateAngleX += 0.1F * sittingProgressTemporary;
                 this.Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
                 this.Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
-                
+
                 if (herrera.isSitting())
                 {
                     this.Tail_1.rotateAngleX += 0.1F * sittingProgressTemporary;
@@ -467,43 +467,43 @@ public class ModelHerrerasaurus extends MowzieModelBase
                     this.Tail_5.rotateAngleX -= 0.1F * sittingProgressTemporary;
                 }
             }
-            
+
             this.Body_1.rotateAngleX -= 0.075F * sittingProgress;
-            
+
             this.Neck.rotateAngleX -= 0.3F * sittingProgress;
             this.Head.rotateAngleX += 0.3F * sittingProgress;
-            
+
             this.Tail_1.rotateAngleX += 0.1F * sittingProgress;
-            
+
             this.Upper_Arm_Right.rotationPointY -= 0.8F * sittingProgress;
             this.Upper_Arm_Left.rotationPointY -= 0.8F * sittingProgress;
             this.Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
             this.Upper_Arm_Left.rotateAngleX -= 0.8F * sittingProgress;
-            
+
             this.Right_Thigh.rotateAngleX -= 1.0F * sittingProgress;
             this.Left_Thigh.rotateAngleX -= 1.0F * sittingProgress;
-            
+
             this.Right_Calf_1.rotationPointZ += 0.5F * sittingProgress;
             this.Left_Calf_1.rotationPointZ += 0.5F * sittingProgress;
             this.Right_Calf_1.rotationPointY += 1.5F * sittingProgress;
             this.Left_Calf_1.rotationPointY += 1.5F * sittingProgress;
             this.Right_Calf_1.rotateAngleX += 1.0F * sittingProgress;
             this.Left_Calf_1.rotateAngleX += 1.0F * sittingProgress;
-            
+
             this.Right_Upper_Foot.rotationPointY += 1.75F * sittingProgress;
             this.Left_Upper_Foot.rotationPointY += 1.75F * sittingProgress;
             this.Right_Upper_Foot.rotationPointZ -= 1.25F * sittingProgress;
             this.Left_Upper_Foot.rotationPointZ -= 1.25F * sittingProgress;
             this.Right_Upper_Foot.rotateAngleX -= 0.925F * sittingProgress;
             this.Left_Upper_Foot.rotateAngleX -= 0.925F * sittingProgress;
-            
+
             this.Foot_Right.rotationPointY += 0.5F * sittingProgress;
             this.Foot_Left.rotationPointY += 0.5F * sittingProgress;
             this.Foot_Right.rotationPointZ -= 1.0F * sittingProgress;
             this.Foot_Left.rotationPointZ -= 1.0F * sittingProgress;
             this.Foot_Right.rotateAngleX += 1.0F * sittingProgress;
             this.Foot_Left.rotateAngleX += 1.0F * sittingProgress;
-            
+
             //Idling
             chainWave(tailParts, 0.1F, -0.05F, 2, herrera.frame, 1.0F - 0.6F * sittingProgress);
             walk(Neck, 0.1F, 0.07F, false, -1F, 0F, herrera.frame, 1.0F - 0.5F * sittingProgress);
@@ -517,7 +517,7 @@ public class ModelHerrerasaurus extends MowzieModelBase
         {
             faceTarget(Head, 2, f3, f4);
             faceTarget(Neck, 2, f3, f4);
-            
+
             //Idling
             chainWave(tailParts, 0.1F, -0.05F, 2, herrera.frame, 1.0F);
             walk(Neck, 0.1F, 0.07F, false, -1F, 0F, herrera.frame, 1.0F);
@@ -527,15 +527,15 @@ public class ModelHerrerasaurus extends MowzieModelBase
             chainWave(leftArmParts, 0.1F, -0.1F, 4, herrera.frame, 1.0F);
             chainSwing(tailParts, 0.1F, -0.1F, 3, herrera.frame, 1.0F);
         }
-        
+
         herrera.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-    
+
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityHerrerasaurus) entity);
-        
+
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());

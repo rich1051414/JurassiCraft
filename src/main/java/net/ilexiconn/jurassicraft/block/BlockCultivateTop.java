@@ -26,12 +26,11 @@ import java.util.Random;
 
 public class BlockCultivateTop extends Block
 {
-    public static final String[] iconVariationsNames = new String[] { "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white" };
-    
+    public static final String[] iconVariationsNames = new String[]{"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
+    public boolean isLit;
     @SideOnly(Side.CLIENT)
     private IIcon[] iconVariations;
-    public boolean isLit;
-    
+
     public BlockCultivateTop(boolean lit)
     {
         super(Material.cactus);
@@ -44,14 +43,14 @@ public class BlockCultivateTop extends Block
             setLightLevel(1.0F);
         this.isLit = lit;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
         return this.iconVariations[metadata];
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
@@ -60,32 +59,32 @@ public class BlockCultivateTop extends Block
         for (int i = 0; i < this.iconVariations.length; i++)
             this.iconVariations[i] = iconRegister.registerIcon(this.getTextureName() + "_" + iconVariationsNames[i]);
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
+
     @Override
     public int getRenderType()
     {
         return -1;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public int getRenderBlockPass()
     {
         return 1;
     }
-    
+
     @Override
     public Item getItemDropped(int metadata, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
     }
-    
+
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
@@ -125,33 +124,33 @@ public class BlockCultivateTop extends Block
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-    
+
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta)
     {
         world.setBlockToAir(x, y - 1, z);
         world.removeTileEntity(x, y - 1, z);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z)
     {
         return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
     }
-    
+
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     @Override
     public int damageDropped(int i)
     {
         return i;
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float t, float h, float k)
     {
@@ -179,7 +178,7 @@ public class BlockCultivateTop extends Block
         }
         return false;
     }
-    
+
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB box, List list, Entity entity)
     {
@@ -191,7 +190,7 @@ public class BlockCultivateTop extends Block
                 list.add(aabbTmp);
         }
     }
-    
+
     @Override
     public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 origin, Vec3 direction)
     {

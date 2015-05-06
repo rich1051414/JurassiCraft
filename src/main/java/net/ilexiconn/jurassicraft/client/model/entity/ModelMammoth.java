@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelMammoth extends MowzieModelBase
 {
-    private Animator animator;
     public MowzieModelRenderer LeftBackThigh;
     public MowzieModelRenderer RightBackThigh;
     public MowzieModelRenderer Waist;
@@ -64,13 +63,14 @@ public class ModelMammoth extends MowzieModelBase
     public MowzieModelRenderer[] lefttuskparts;
     public MowzieModelRenderer[] righttuskparts;
     public MowzieModelRenderer[] trunkParts;
-    
+    private Animator animator;
+
     public ModelMammoth()
     {
         this.animator = new Animator(this);
         this.textureWidth = 128;
         this.textureHeight = 128;
-        
+
         this.RightBackFoot = new MowzieModelRenderer(this, 0, 59);
         this.RightBackFoot.setRotationPoint(0.0F, 8.0F, 2.0F);
         this.RightBackFoot.addBox(-2.0F, 0.0F, -2.0F, 4, 5, 6, 0.0F);
@@ -266,7 +266,7 @@ public class ModelMammoth extends MowzieModelBase
         this.FurFrontRightNeck = new MowzieModelRenderer(this, 86, 73);
         this.FurFrontRightNeck.setRotationPoint(6.0F, 6.3F, 4.0F);
         this.FurFrontRightNeck.addBox(0.0F, 0.0F, -8.0F, 0, 9, 17, 0.0F);
-        
+
         this.RightBackCalf.addChild(this.RightBackFoot);
         this.RightFrontThigh2.addChild(this.RightFrontCalf);
         this.Waist.addChild(this.Chest);
@@ -314,14 +314,14 @@ public class ModelMammoth extends MowzieModelBase
         this.LowerHead.addChild(this.LeftTusk1);
         this.FurJointNeck.addChild(this.FurFrontMiddleNeck);
         this.Neck.addChild(this.FurFrontRightNeck);
-        
-        trunkParts = new MowzieModelRenderer[] { Trunk7, Trunk6, Trunk5, Trunk4, Trunk3, Trunk2, Trunk1 };
-        lefttuskparts = new MowzieModelRenderer[] { LeftTusk5, LeftTusk4, LeftTusk3, LeftTusk2, LeftTusk1 };
-        righttuskparts = new MowzieModelRenderer[] { RightTusk5, RightTusk4, RightTusk3, RightTusk2, RightTusk1 };
-        parts = new MowzieModelRenderer[] { LeftBackThigh, RightBackThigh, Waist, LeftBackCalf, LeftBackFoot, RightBackCalf, RightBackFoot, Tail, Chest, FurBackRightWaist, FurBackLeftWaist, Neck, RightFrontThigh1, LeftFrontThigh1, FurFrontLeftChest, FurFrontRightChest, FurJointChest, LowerHead, FurFrontRightNeck, FurFrontLeftNeck, FurJointNeck, Mouth, LeftEar, RightEar, Trunk1, UpperHead, LeftTusk1, RightTusk1, Trunk2, Trunk3, Trunk4, Trunk5, Trunk6, Trunk7, LeftTusk2, LeftTusk3, LeftTusk4, LeftTusk5, RightTusk2, RightTusk3, RightTusk4, RightTusk5, FurFrontMiddleNeck, RightFrontThigh2, RightFrontCalf, RightFrontFoot, LeftFrontThigh2, LeftFrontCalf, LeftFrontFoot, FurFrontMiddleChest };
+
+        trunkParts = new MowzieModelRenderer[]{Trunk7, Trunk6, Trunk5, Trunk4, Trunk3, Trunk2, Trunk1};
+        lefttuskparts = new MowzieModelRenderer[]{LeftTusk5, LeftTusk4, LeftTusk3, LeftTusk2, LeftTusk1};
+        righttuskparts = new MowzieModelRenderer[]{RightTusk5, RightTusk4, RightTusk3, RightTusk2, RightTusk1};
+        parts = new MowzieModelRenderer[]{LeftBackThigh, RightBackThigh, Waist, LeftBackCalf, LeftBackFoot, RightBackCalf, RightBackFoot, Tail, Chest, FurBackRightWaist, FurBackLeftWaist, Neck, RightFrontThigh1, LeftFrontThigh1, FurFrontLeftChest, FurFrontRightChest, FurJointChest, LowerHead, FurFrontRightNeck, FurFrontLeftNeck, FurJointNeck, Mouth, LeftEar, RightEar, Trunk1, UpperHead, LeftTusk1, RightTusk1, Trunk2, Trunk3, Trunk4, Trunk5, Trunk6, Trunk7, LeftTusk2, LeftTusk3, LeftTusk4, LeftTusk5, RightTusk2, RightTusk3, RightTusk4, RightTusk5, FurFrontMiddleNeck, RightFrontThigh2, RightFrontCalf, RightFrontFoot, LeftFrontThigh2, LeftFrontCalf, LeftFrontFoot, FurFrontMiddleChest};
         this.setInitPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -330,22 +330,22 @@ public class ModelMammoth extends MowzieModelBase
         this.RightBackThigh.render(f5);
         this.Waist.render(f5);
     }
-    
+
     private void setRotateAngle(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityMammoth mammoth)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, mammoth);
         setToInitPose();
-        
+
         //        f = mammoth.frame;
         //		f1 = 0.5F;
-        
+
         if (mammoth.getCreatureGender() == false)
         {
             LeftTusk3.isHidden = true;
@@ -356,15 +356,15 @@ public class ModelMammoth extends MowzieModelBase
             LeftTusk3.isHidden = false;
             RightTusk3.isHidden = false;
         }
-        
+
         float globalSpeed = 0.5F;
         float globalDegree = 1F;
         float height = 1.3F;
         float frontOffset = -2.3F;
-        
+
         LowerHead.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 2;
         Neck.rotateAngleY += (f3 / (180f / (float) Math.PI)) / 2;
-        
+
         this.bob(this.Waist, 2 * globalSpeed, height, false, f, f1);
         this.bob(this.LeftBackThigh, 2 * globalSpeed, height, false, f, f1);
         this.bob(this.RightBackThigh, 2 * globalSpeed, height, false, f, f1);
@@ -375,7 +375,7 @@ public class ModelMammoth extends MowzieModelBase
         this.flap(LowerHead, 1 * globalSpeed, 0.2F * height, false, 3F, 0, f, f1);
         this.walk(this.RightEar, 2 * globalSpeed, 0.2F * height, false, 2F, 0F, f, f1);
         this.walk(this.LeftEar, 2 * globalSpeed, 0.2F * height, false, 2F, 0F, f, f1);
-        
+
         this.walk(this.FurBackRightWaist, 2 * globalSpeed, 0.2F * height, false, -0.3F, 0F, f, f1);
         this.walk(this.FurBackLeftWaist, 2 * globalSpeed, 0.2F * height, false, -0.3F, 0F, f, f1);
         this.walk(this.FurFrontLeftChest, 2 * globalSpeed, 0.2F * height, false, -0.3F, 0F, f, f1);
@@ -385,33 +385,33 @@ public class ModelMammoth extends MowzieModelBase
         this.walk(this.FurFrontLeftNeck, 2 * globalSpeed, 0.2F * height, false, -0.3F, 0F, f, f1);
         this.walk(this.FurFrontRightNeck, 2 * globalSpeed, 0.2F * height, false, -0.3F, 0F, f, f1);
         this.walk(this.FurJointNeck, 2 * globalSpeed, 0.1F * height, false, -0.3F, 0F, f, f1);
-        
+
         this.walk(this.LeftBackThigh, 1F * globalSpeed, 0.6F * globalDegree, false, 0F, 0F, f, f1);
         this.walk(this.LeftBackCalf, 1F * globalSpeed, 0.6F * globalDegree, true, 1F, 0F, f, f1);
         this.walk(this.LeftBackFoot, 1F * globalSpeed, 0.6F * globalDegree, false, -1.5F, 1F, f, f1);
-        
+
         this.walk(this.RightBackThigh, 1F * globalSpeed, 0.6F * globalDegree, true, 0F, 0F, f, f1);
         this.walk(this.RightBackCalf, 1F * globalSpeed, 0.6F * globalDegree, false, 1F, 0F, f, f1);
         this.walk(this.RightBackFoot, 1F * globalSpeed, 0.6F * globalDegree, true, -1.5F, 1F, f, f1);
-        
+
         this.walk(this.RightFrontThigh1, 1F * globalSpeed, 0.4F * globalDegree, true, frontOffset + 0F, -0.15F, f, f1);
         this.walk(this.RightFrontCalf, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.RightFrontFoot, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 2F, 0.8F, f, f1);
-        
+
         this.walk(this.LeftFrontThigh1, 1F * globalSpeed, 0.4F * globalDegree, false, frontOffset + 0F, -0.15F, f, f1);
         this.walk(this.LeftFrontCalf, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.LeftFrontFoot, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
-        
+
         chainWave(trunkParts, 2F * globalSpeed, -0.07F, 2, f, f1);
         chainSwing(trunkParts, 1F * globalSpeed, 0.08F, 2, f, f1);
         //        chainWave(lefttuskparts, 2F * globalSpeed, -0.3F, 2, f, f1);
         //        chainWave(righttuskparts, 2F * globalSpeed, -0.3F, 2, f, f1);
-        
+
         //Idling
         this.walk(this.Neck, 0.1F, 0.04F, false, -1F, 0F, mammoth.frame, 1F);
         this.walk(this.LowerHead, 0.1F, 0.07F, true, 0F, 0F, mammoth.frame, 1F);
         this.walk(this.Waist, 0.1F, 0.025F, false, 0F, 0F, mammoth.frame, 1F);
-        
+
         float inverseKinematicsConstant = 0.32F;
         this.walk(this.RightFrontThigh1, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, mammoth.frame, 1F);
         this.walk(this.RightFrontCalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, mammoth.frame, 1F);
@@ -433,33 +433,33 @@ public class ModelMammoth extends MowzieModelBase
         this.walk(this.FurJointNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
         this.walk(this.FurFrontLeftNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
         this.walk(this.FurFrontRightNeck, 0.1F, 0.1F, false, -1.2F, 0F, mammoth.frame, 1F);
-        
+
         //Trunk lifting animation
         float liftTrunkProgress = mammoth.trunkLift.getAnimationProgressSinSqrt();
         Trunk4.rotateAngleX -= 0.3 * liftTrunkProgress;
         Trunk5.rotateAngleX -= 0.7 * liftTrunkProgress;
         Trunk6.rotateAngleX -= 1.5 * liftTrunkProgress;
         Trunk7.rotateAngleX += 0.3 * liftTrunkProgress;
-        
+
         //Trunk swinging animation
         float swingTrunkProgress = mammoth.trunkSwing.getAnimationProgressSinSqrt();
         chainWave(trunkParts, 0.2F, 0.1F * swingTrunkProgress, 0, mammoth.frame, 1F);
-        
+
         //Ear flapping
         float earFlapProgress = mammoth.earFlap.getAnimationProgressSinSqrt();
         RightEar.rotateAngleY += 0.5F * earFlapProgress * Math.cos(mammoth.frame * 0.4F) - earFlapProgress * 0.5;
         LeftEar.rotateAngleY -= 0.5F * earFlapProgress * Math.cos(mammoth.frame * 0.4F) - earFlapProgress * 0.5;
-        
+
         //Tail Swinging
         float tailSwingProgress = mammoth.tailSwing.getAnimationProgressSinSqrt();
         flap(Tail, 0.3F, 0.4F * tailSwingProgress, false, 0, 0, mammoth.frame, 1F);
     }
-    
+
     public void animate(float f, float f1, float f2, float f3, float f4, float f5, EntityMammoth mammoth)
     {
         this.animator.update(mammoth);
         setRotationAngles(f, f1, f2, f3, f4, f5, mammoth);
-        
+
         if (mammoth.getAnimationId() == JurassiCraftAnimationIDs.BITE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.BITE.animID());

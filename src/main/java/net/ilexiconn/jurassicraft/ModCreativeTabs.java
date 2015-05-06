@@ -16,7 +16,7 @@ public class ModCreativeTabs implements IContentHandler
     public static CreativeTabs spawnEggs;
     public static CreativeTabs itemsFood;
     public static CreativeTabs Carboniferous;
-    
+
     public void init()
     {
         this.items = new CreativeTabs("jurassicraft.items")
@@ -27,7 +27,7 @@ public class ModCreativeTabs implements IContentHandler
                 return ModItems.amber;
             }
         };
-        
+
         this.blocks = new CreativeTabs("jurassicraft.blocks")
         {
             @SideOnly(Side.CLIENT)
@@ -36,7 +36,7 @@ public class ModCreativeTabs implements IContentHandler
                 return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
             }
         };
-        
+
         this.dnas = new CreativeTabs("jurassicraft.dnas")
         {
             @SideOnly(Side.CLIENT)
@@ -45,7 +45,7 @@ public class ModCreativeTabs implements IContentHandler
                 return CreatureManager.getCreatureFromName("Tyrannosaurus").getDNA();
             }
         };
-        
+
         this.syringesEggs = new CreativeTabs("jurassicraft.syringesEggs")
         {
             @SideOnly(Side.CLIENT)
@@ -54,7 +54,7 @@ public class ModCreativeTabs implements IContentHandler
                 return CreatureManager.getCreatureFromName("Tyrannosaurus").getEgg();
             }
         };
-        
+
         this.spawnEggs = new CreativeTabs("jurassicraft.spawnEggs")
         {
             @SideOnly(Side.CLIENT)
@@ -63,7 +63,7 @@ public class ModCreativeTabs implements IContentHandler
                 return ModItems.spawnEgg;
             }
         };
-        
+
         this.itemsFood = new CreativeTabs("jurassicraft.itemsFood")
         {
             @SideOnly(Side.CLIENT)

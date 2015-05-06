@@ -1,30 +1,28 @@
 package net.ilexiconn.jurassicraft.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import org.lwjgl.opengl.GL11;
 
 /**
  * @author ProPercivalalb
- **/
+ */
 public class RenderUtils
 {
-    
+
     private static RenderUtils instance = new RenderUtils();
-    
+
     public static RenderUtils instance()
     {
         return instance;
     }
-    
+
     //Both Render
-    
+
     public void setRenderBounds(RenderBlocks renderer, double par1, double par3, double par5, double par7, double par9, double par11)
     {
         if (!renderer.lockBlockBounds)
@@ -38,7 +36,7 @@ public class RenderUtils
             renderer.partialRenderBounds = renderer.minecraftRB.gameSettings.ambientOcclusion >= 2 && (renderer.renderMinX > 0.0D || renderer.renderMaxX < 1.0D || renderer.renderMinY > 0.0D || renderer.renderMaxY < 1.0D || renderer.renderMinZ > 0.0D || renderer.renderMaxZ < 1.0D);
         }
     }
-    
+
     public void renderBlock(Type type, RenderBlocks renderer, RenderData data)
     {
         if (type == Type.WORLD && data.x != -300000000)
@@ -50,9 +48,9 @@ public class RenderUtils
             this.renderInvBlock(renderer, data.block, data.metadata);
         }
     }
-    
+
     //Inventory Render
-    
+
     public void renderInvBlock(RenderBlocks renderer, Block block, int metadata)
     {
         Tessellator tessellator = Tessellator.instance;
@@ -83,14 +81,14 @@ public class RenderUtils
         tessellator.draw();
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
-    
+
     //World Render
-    
+
     public boolean renderWorldBlock(RenderBlocks renderer, Block par1Block, int par2, int par3, int par4)
     {
         return renderer.renderStandardBlock(par1Block, par2, par3, par4);
     }
-    
+
     public boolean renderWorldCrossedSquares(RenderBlocks renderer, IBlockAccess world, Block par1Block, int x, int y, int z)
     {
         Tessellator tessellator = Tessellator.instance;
@@ -116,7 +114,7 @@ public class RenderUtils
         this.drawCrossedSquares(renderer, world, par1Block, x, y, z, d0, d1, d2, 1.0F);
         return true;
     }
-    
+
     private void drawCrossedSquares(RenderBlocks renderer, IBlockAccess world, Block par1Block, int x, int y, int z, double par3, double par5, double par7, float par9)
     {
         Tessellator tessellator = Tessellator.instance;
@@ -134,7 +132,7 @@ public class RenderUtils
         double d9 = par3 + 0.5D + d7;
         double d10 = par7 + 0.5D - d7;
         double d11 = par7 + 0.5D + d7;
-        
+
         tessellator.addVertexWithUV(d8, par5 + (double) par9, d10, d3, d4);
         tessellator.addVertexWithUV(d8, par5 + 0.0D, d10, d3, d6);
         tessellator.addVertexWithUV(d9, par5 + 0.0D, d11, d5, d6);
@@ -152,19 +150,19 @@ public class RenderUtils
         tessellator.addVertexWithUV(d8, par5 + 0.0D, d11, d5, d6);
         tessellator.addVertexWithUV(d8, par5 + (double) par9, d11, d5, d4);
     }
-    
+
     public static enum Type
     {
         WORLD, INVENTORY;
     }
-    
+
     public static class RenderData
     {
-        
+
         int x, y, z = -300000000;
         int metadata = 0;
         Block block;
-        
+
         public RenderData(IBlockAccess world, Block block, int x, int y, int z)
         {
             this(block, world.getBlockMetadata(x, y, z));
@@ -172,7 +170,7 @@ public class RenderUtils
             this.y = y;
             this.z = z;
         }
-        
+
         public RenderData(Block block, int metadata)
         {
             this.metadata = metadata;

@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.cephalopods;
 
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.NewEntitySwimming;
 import net.minecraft.world.World;
 

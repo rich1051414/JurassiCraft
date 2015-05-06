@@ -13,9 +13,9 @@ import net.minecraft.util.StatCollector;
 @SideOnly(Side.CLIENT)
 public class GuiCultivate extends GuiContainer
 {
-    
+
     private TileCultivate cultivator;
-    
+
     public GuiCultivate(InventoryPlayer inventoryPlayer, TileCultivate entity)
     {
         super(new ContainerCultivate(inventoryPlayer, entity));
@@ -23,7 +23,7 @@ public class GuiCultivate extends GuiContainer
         this.xSize = 352;
         this.ySize = 188;
     }
-    
+
     @Override
     public void updateScreen()
     {
@@ -32,13 +32,13 @@ public class GuiCultivate extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-    
+
     @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
-    
+
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
@@ -48,7 +48,7 @@ public class GuiCultivate extends GuiContainer
         this.fontRendererObj.drawString(StatCollector.translateToLocal("Vitamins"), 200, 100, 4210752);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("Lipids"), 200, 126, 4210752);
     }
-    
+
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
     {
         mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiCultivateLeft.png"));

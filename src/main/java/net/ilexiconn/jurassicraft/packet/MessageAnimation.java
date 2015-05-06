@@ -12,30 +12,30 @@ public class MessageAnimation implements IMessage
 {
     private byte animationId;
     private int entityId;
-    
+
     public MessageAnimation()
     {
         this((byte) 0, 0);
     }
-    
+
     public MessageAnimation(byte animation, int entity)
     {
         animationId = animation;
         entityId = entity;
     }
-    
+
     public void toBytes(ByteBuf buffer)
     {
         buffer.writeByte(animationId);
         buffer.writeInt(entityId);
     }
-    
+
     public void fromBytes(ByteBuf buffer)
     {
         animationId = buffer.readByte();
         entityId = buffer.readInt();
     }
-    
+
     public static class Handler implements IMessageHandler<MessageAnimation, IMessage>
     {
         public IMessage onMessage(MessageAnimation packet, MessageContext ctx)

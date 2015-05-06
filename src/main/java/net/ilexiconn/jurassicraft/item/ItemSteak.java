@@ -21,7 +21,7 @@ public class ItemSteak extends ItemFood
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Steak");
         setCreativeTab(ModCreativeTabs.itemsFood);
     }
-    
+
     public void addInformation(ItemStack meat, EntityPlayer player, List list, boolean flag)
     {
         list.add(StatCollector.translateToLocal("item.meat.info.dna.none"));

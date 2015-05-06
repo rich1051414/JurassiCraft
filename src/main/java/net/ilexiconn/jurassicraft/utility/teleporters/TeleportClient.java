@@ -9,21 +9,21 @@ import java.util.Random;
 
 /**
  * @author ProPercivalalb
- **/
+ */
 public class TeleportClient
 {
-    
+
     public static float prevTimeInPortal;
     public static float timeInPortal;
     public static boolean inPortal = false;
     public static Random random = new Random();
     public static Minecraft mc = FMLClientHandler.instance().getClient();
     public static int timeUntilPortal = 20;
-    
+
     public static void onTick(EntityPlayer player)
     {
         prevTimeInPortal = timeInPortal;
-        
+
         if (inPortal)
         {
             if (mc.currentScreen != null)
@@ -43,7 +43,7 @@ public class TeleportClient
             {
                 timeInPortal -= 0.05F;
             }
-            
+
             if (timeInPortal < 0.0F)
             {
                 timeInPortal = 0.0F;
@@ -54,7 +54,7 @@ public class TeleportClient
             --timeUntilPortal;
         }
     }
-    
+
     public static void setInPortal()
     {
         if (timeUntilPortal > 0)

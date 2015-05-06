@@ -15,18 +15,18 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
     public float distanceFromTarget;
     public int timeSinceCharge = 0;
     public int stepCount = 0;
-    
+
     public EntityJurassiCraftCharges(World world)
     {
         super(world);
         this.tasks.addTask(2, new AnimationAICharge(this));
     }
-    
+
     @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        
+
         if (getAttackTarget() != null)
         {
             //Charge AI
@@ -44,7 +44,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
         if (timeSinceCharge != 0)
             timeSinceCharge--;
     }
-    
+
     @Override
     public void onUpdate()
     {
@@ -56,7 +56,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
         }
         this.stepCount -= 1;
     }
-    
+
     @Override
     public void collideWithEntity(Entity victim)
     {
@@ -72,7 +72,7 @@ public class EntityJurassiCraftCharges extends EntityJurassiCraftProtective
             victim.motionY += 0.3;
         }
     }
-    
+
     @Override
     public void ridingPlayerRightClick()
     {

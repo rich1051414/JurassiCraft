@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.mammals;
 
 import net.ilexiconn.jurassicraft.ai.*;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.ilexiconn.jurassicraft.interfaces.IMammal;
@@ -33,25 +32,25 @@ public class EntityParaceratherium extends EntityJurassiCraftProtective implemen
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(4000);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox();
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 400;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -22,12 +22,12 @@ public class JurassiCraftAIWander extends EntityAIBase
     private int maxHeight;
     private int chanceToWalk;
     private int timer;
-    
+
     public JurassiCraftAIWander(EntityJurassiCraftSmart entity, int chanceToWalk, double velocity)
     {
         this(entity, chanceToWalk, 16, 6, velocity);
     }
-    
+
     public JurassiCraftAIWander(EntityJurassiCraftSmart entity, int chanceToWalk, int distance, int height, double velocity)
     {
         this.creature = entity;
@@ -37,7 +37,7 @@ public class JurassiCraftAIWander extends EntityAIBase
         this.maxHeight = height;
         this.setMutexBits(1);
     }
-    
+
     public boolean shouldExecute()
     {
         if (this.creature.isSitting() || this.creature.isFlying() || this.creature.riddenByEntity != null || this.creature.isSleeping() || this.creature.isAngry() || this.creature.isFleeing())
@@ -70,7 +70,7 @@ public class JurassiCraftAIWander extends EntityAIBase
             }
         }
     }
-    
+
     public void startExecuting()
     {
         this.creature.setSitting(false, null);
@@ -78,12 +78,12 @@ public class JurassiCraftAIWander extends EntityAIBase
         this.creature.setFlying(false);
         this.creature.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
     }
-    
+
     public boolean continueExecuting()
     {
         return !this.creature.getNavigator().noPath() && !this.creature.isSitting() && this.creature.riddenByEntity == null && this.creature.getAttackTarget() == null;
     }
-    
+
     @Override
     public void resetTask()
     {

@@ -15,39 +15,39 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
     private double targetSpeedZ;
     private double targetPrevPosX;
     private double targetPrevPosZ;
-    
+
     public AnimationAIVelociraptorLeap(EntityVelociraptor raptor)
     {
         super(raptor);
         this.entityRaptor = raptor;
     }
-    
+
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.LEAP.animID();
     }
-    
+
     public boolean isAutomatic()
     {
         return true;
     }
-    
+
     public int getDuration()
     {
         return 20;
     }
-    
+
     public void startExecuting()
     {
         super.startExecuting();
         this.attackTarget = entityRaptor.getAttackTarget();
     }
-    
+
     public void resetTask()
     {
         super.resetTask();
     }
-    
+
     public void updateTask()
     {
         if (this.entityRaptor.getAnimationTick() < 10)
@@ -57,7 +57,7 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
                 this.entityRaptor.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30F, 30F);
             }
         }
-        
+
         if (this.entityRaptor.getAnimationTick() == 9)
         {
             if (this.attackTarget != null)
@@ -66,7 +66,7 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
                 this.targetPrevPosZ = attackTarget.posZ;
             }
         }
-        
+
         if (entityRaptor.getAnimationTick() == 10)
         {
             if (this.attackTarget != null)
@@ -78,14 +78,14 @@ public class AnimationAIVelociraptorLeap extends AIAnimation
                 this.destZ = attackTarget.posZ + targetSpeedZ * leapDuration * 2;
                 double d = Math.sqrt((destX - entityRaptor.posX) * (destX - entityRaptor.posX) + (destZ - entityRaptor.posZ) * (destZ - entityRaptor.posZ));
                 double a = Math.atan2((destZ - entityRaptor.posZ), (destX - entityRaptor.posX));
-                
+
                 this.entityRaptor.motionX = (d / leapDuration) * Math.cos(a);
                 this.entityRaptor.motionZ = (d / leapDuration) * Math.sin(a);
                 this.entityRaptor.motionY = 0.6D;
                 this.entityRaptor.timeSinceLeap = 150;
-                
+
                 double I = Math.random();
-                
+
                 if (I >= 0.5D)
                 {
                     entityRaptor.playSound("jurassicraft:velociraptorCall01", 1.0F, 1.0F);

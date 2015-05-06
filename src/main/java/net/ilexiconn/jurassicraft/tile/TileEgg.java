@@ -17,16 +17,21 @@ public class TileEgg extends TileEntity
     private int dinoID;
     private int hatchTime;
     private int totalHatchTime;
-    
+
     private Creature creature;
-    
+
     public TileEgg(int dinoID)
     {
         setDinoID(dinoID);
         setHatchTime(0);
         totalHatchTime = 1024;
     }
-    
+
+    public int getDinoID()
+    {
+        return dinoID;
+    }
+
     public void setDinoID(int dinoID)
     {
         if (this.dinoID != dinoID)
@@ -35,52 +40,47 @@ public class TileEgg extends TileEntity
         }
         this.dinoID = dinoID;
     }
-    
-    public int getDinoID()
-    {
-        return dinoID;
-    }
-    
-    public void setHatchTime(int hatchTime)
-    {
-        this.hatchTime = hatchTime;
-    }
-    
+
     public int getHatchTime()
     {
         return hatchTime;
     }
-    
+
+    public void setHatchTime(int hatchTime)
+    {
+        this.hatchTime = hatchTime;
+    }
+
     public Packet getDescriptionPacket()
     {
         NBTTagCompound tag = new NBTTagCompound();
         writeToNBT(tag);
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
-    
+
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
     {
         readFromNBT(packet.func_148857_g());
     }
-    
+
     public void writeToNBT(NBTTagCompound tag)
     {
         super.writeToNBT(tag);
         tag.setInteger("id", dinoID);
         tag.setInteger("hatchTime", hatchTime);
     }
-    
+
     public void readFromNBT(NBTTagCompound tag)
     {
         super.readFromNBT(tag);
         setDinoID(tag.getInteger("id"));
         hatchTime = tag.getInteger("hatchTime");
     }
-    
+
     public void updateEntity()
     {
         hatchTime++;
-        
+
         if (!worldObj.isRemote)
         {
             if (hatchTime >= totalHatchTime)
@@ -120,7 +120,7 @@ public class TileEgg extends TileEntity
             }
         }
     }
-    
+
     public Creature getCreature()
     {
         return creature;

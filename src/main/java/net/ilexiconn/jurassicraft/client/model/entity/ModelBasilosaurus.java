@@ -9,18 +9,18 @@ import net.minecraft.util.MathHelper;
 
 public class ModelBasilosaurus extends ModelBase
 {
-    
-    private Animator animator;
+
     public static final float PI = (float) Math.PI;
     boolean hasBeenInWater = false;
     ResettableModelRenderer body12, body11, body10, body9, body8, body7, body6, body5, body4, body3, body2, body1, neck, head, snout1, mouth1, snout2, mouth2, flipperleftfront, flipperrightfront, flipperleftback, flipperrightback, bigflippersbase, bigflippersleft, bigflippersright, teethlowerjaw1, Teethupperjaw1, Teethupperjaw2, teethlowerjaw2;
-    
+    private Animator animator;
+
     public ModelBasilosaurus()
     {
         animator = new Animator(this);
         textureWidth = 512;
         textureHeight = 256;
-        
+
         body12 = new ResettableModelRenderer(this, 340, 95);
         body12.addBox(-8F, 142F, -6F, 16, 26, 12);
         body12.setRotationPoint(0F, 8F, 0F);
@@ -195,7 +195,7 @@ public class ModelBasilosaurus extends ModelBase
         teethlowerjaw2.setTextureSize(512, 256);
         teethlowerjaw2.mirror = true;
         setRotation(teethlowerjaw2, 1.745329F, 0F, 0F);
-        
+
         body12.savefirstParameters();
         body11.savefirstParameters();
         body10.savefirstParameters();
@@ -226,7 +226,7 @@ public class ModelBasilosaurus extends ModelBase
         Teethupperjaw2.savefirstParameters();
         teethlowerjaw2.savefirstParameters();
     }
-    
+
     public void resetOffsetY()
     {
         body12.resetYOffsets();
@@ -259,12 +259,12 @@ public class ModelBasilosaurus extends ModelBase
         Teethupperjaw1.resetZOffsets();
         Teethupperjaw2.resetYOffsets();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        
+
         body12.render(f5);
         body11.render(f5);
         body10.render(f5);
@@ -295,18 +295,18 @@ public class ModelBasilosaurus extends ModelBase
         Teethupperjaw2.render(f5);
         teethlowerjaw2.render(f5);
     }
-    
+
     private void setRotation(ResettableModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        
+
         if (entity.isInWater())
         {
             if (hasBeenInWater)
@@ -407,11 +407,11 @@ public class ModelBasilosaurus extends ModelBase
             hasBeenInWater = true;
         }
     }
-    
+
     public void animate(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update((IAnimatedEntity) entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
-    
+
 }

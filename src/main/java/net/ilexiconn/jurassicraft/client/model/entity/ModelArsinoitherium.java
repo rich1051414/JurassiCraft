@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelArsinoitherium extends MowzieModelBase
 {
-    private Animator animator;
     public MowzieModelRenderer upperbackbody;
     public MowzieModelRenderer middlebody;
     public MowzieModelRenderer upperfrontbody;
@@ -50,13 +49,14 @@ public class ModelArsinoitherium extends MowzieModelBase
     public MowzieModelRenderer tail2;
     public MowzieModelRenderer headShakeController;
     public MowzieModelRenderer[] neckParts;
-    
+    private Animator animator;
+
     public ModelArsinoitherium()
     {
         this.animator = new Animator(this);
         this.textureWidth = 128;
         this.textureHeight = 128;
-        
+
         this.snout = new MowzieModelRenderer(this, 34, 54);
         this.snout.setRotationPoint(0.0F, -0.5F, -8.0F);
         this.snout.addBox(-4.0F, -2.5F, -6.0F, 8, 5, 6);
@@ -198,33 +198,33 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.headShakeController = new MowzieModelRenderer(this, 0, 0);
         this.headShakeController.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.headShakeController.addBox(0, 0, 0, 0, 0, 0);
-        
+
         this.upperbackbody.addChild(this.tail1);
         this.tail1.addChild(this.tail2);
-        
+
         this.upperbackbody.addChild(this.rightbackleg1);
         this.rightbackleg1.addChild(this.rightbackleg2);
         this.rightbackleg2.addChild(this.rightbackleg3);
         this.rightbackleg3.addChild(this.rightbackleg4);
-        
+
         this.upperbackbody.addChild(this.leftbackleg1);
         this.leftbackleg1.addChild(this.leftbackleg2);
         this.leftbackleg2.addChild(this.leftbackleg3);
         this.leftbackleg3.addChild(this.leftbackleg4);
-        
+
         this.upperbackbody.addChild(this.middlebody);
         this.middlebody.addChild(this.upperfrontbody);
-        
+
         this.upperfrontbody.addChild(this.leftfrontleg1);
         this.leftfrontleg1.addChild(this.leftfrontleg2);
         this.leftfrontleg2.addChild(this.leftfrontleg3);
         this.leftfrontleg3.addChild(this.leftfrontleg4);
-        
+
         this.upperfrontbody.addChild(this.rightfrontleg1);
         this.rightfrontleg1.addChild(this.rightfrontleg2);
         this.rightfrontleg2.addChild(this.rightfrontleg3);
         this.rightfrontleg3.addChild(this.rightfrontleg4);
-        
+
         this.upperfrontbody.addChild(this.chest);
         this.upperfrontbody.addChild(this.bottomfrontbody);
         this.upperfrontbody.addChild(this.neck);
@@ -235,17 +235,17 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.head.addChild(this.rightupperhorn);
         this.head.addChild(this.mouth);
         this.head.addChild(this.snout);
-        
+
         this.snout.addChild(this.leftbottomhorn1);
         this.leftbottomhorn1.addChild(this.leftbottomhorn2);
         this.leftbottomhorn2.addChild(this.leftbottomhorn3);
-        
+
         this.snout.addChild(this.rightbottomhorn1);
         this.rightbottomhorn1.addChild(this.rightbottomhorn2);
         this.rightbottomhorn2.addChild(this.rightbottomhorn3);
-        
-        neckParts = new MowzieModelRenderer[] { head, neck };
-        
+
+        neckParts = new MowzieModelRenderer[]{head, neck};
+
         this.upperbackbody.setInitValuesToCurrentPose();
         this.tail1.setInitValuesToCurrentPose();
         this.leftbackleg1.setInitValuesToCurrentPose();
@@ -285,7 +285,7 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.rightbottomhorn3.setInitValuesToCurrentPose();
         headShakeController.setInitValuesToCurrentPose();
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -293,64 +293,64 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.upperbackbody.render(f5);
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityArsinoitherium arsinoitherium)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, arsinoitherium);
         this.resetPose();
-        
+
         //         f = arsinoitherium.frame;
         //		 f1 = (float) Math.cos(f/50)*0.5F + 1F;
         //		 f1 = 0.5F;
-        
+
         //Sprinting functionality parameters
         float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.92))));
         float legOffsetModifier = 2.5F;
         float bobBase = 2F;
         if (sprintModifier >= 0.9)
             bobBase = 1F;
-        
+
         float globalSpeed = 0.6F;
         float globalDegree = 1.7F;
         float height = 0.7F;
         float frontOffset = -2.3F;
         float animationDegree = 2 - sprintModifier * 0.2F;
-        
+
         faceTarget(head, 2, f3, f4);
         faceTarget(neck, 2, f3, f4);
         faceTarget(chest, 2, f3, f4);
-        
+
         bob(upperbackbody, bobBase * globalSpeed, height, false, f, f1);
         walk(upperbackbody, bobBase * globalSpeed, 0.1F * height, true, -1.5F, 0.03F, f, f1);
         walk(head, bobBase * globalSpeed, 0.1F * height, false, -0.5F, 0F, f, f1);
         upperbackbody.rotateAngleX += 0.1 * sprintModifier;
         head.rotateAngleX += 0.6 * sprintModifier;
-        
+
         walk(leftbackleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, false, 0F + sprintModifier * legOffsetModifier, 0.1F + sprintModifier * -0.1F, f, f1);
         walk(leftbackleg3, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, 1F + sprintModifier * legOffsetModifier, 0F, f, f1);
         walk(leftbackleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, -1.5F + sprintModifier * legOffsetModifier, 0.5F, f, f1);
-        
+
         walk(rightbackleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, true, 0F, 0.1F + sprintModifier * -0.1F, f, f1);
         walk(rightbackleg3, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, 1F, 0F, f, f1);
         walk(rightbackleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, -1.5F, 0.5F, f, f1);
-        
+
         walk(leftfrontleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, true, frontOffset + 0F, -0.1F + sprintModifier * 0F, f, f1);
         walk(leftfrontleg3, 1F * globalSpeed, 0.1F * globalDegree * animationDegree, true, frontOffset + 1F, -0.2F, f, f1);
         walk(leftfrontleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, false, frontOffset + 2F, 0.8F, f, f1);
-        
+
         walk(rightfrontleg1, 1F * globalSpeed, 0.2F * globalDegree * animationDegree, false, frontOffset + 0F + sprintModifier * legOffsetModifier, -0.1F + sprintModifier * 0F, f, f1);
         walk(rightfrontleg3, 1F * globalSpeed, 0.1F * globalDegree * animationDegree, false, frontOffset + 1F + sprintModifier * legOffsetModifier, -0.2F, f, f1);
         walk(rightfrontleg4, 1F * globalSpeed, 0.2F * globalDegree * animationDegree - sprintModifier * 0.1F, true, frontOffset + 2F + sprintModifier * legOffsetModifier, 0.8F, f, f1);
-        
+
         walk(tail1, bobBase * globalSpeed, 0.4F * height, false, 0F, 0F, f, f1);
-        
+
         //Idling
         walk(neck, 0.1F, 0.05F, false, -1F, 0F, arsinoitherium.frame, 1F);
         walk(head, 0.1F, 0.05F, true, 0F, 0F, arsinoitherium.frame, 1F);
         walk(upperbackbody, 0.1F, 0.025F, false, 0F, 0F, arsinoitherium.frame, 1F);
         walk(rightbackleg1, 0.1F, 0.025F, true, 0F, 0F, arsinoitherium.frame, 1F);
         walk(leftbackleg1, 0.1F, 0.025F, true, 0F, 0F, arsinoitherium.frame, 1F);
-        
+
         float inverseKinematicsConstant = 0.6F;
         walk(rightfrontleg1, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, arsinoitherium.frame, 1F);
         walk(rightfrontleg3, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, arsinoitherium.frame, 1F);
@@ -366,14 +366,14 @@ public class ModelArsinoitherium extends MowzieModelBase
         //
         //        triceratops.tailBuffer.applyChainSwingBuffer(this.tailParts);
     }
-    
+
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     private void resetPose()
     {
         this.upperbackbody.setCurrentPoseToInitValues();
@@ -415,12 +415,12 @@ public class ModelArsinoitherium extends MowzieModelBase
         this.rightbottomhorn3.setCurrentPoseToInitValues();
         headShakeController.setCurrentPoseToInitValues();
     }
-    
+
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityArsinoitherium) entity);
-        
+
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.CHARGE.animID());

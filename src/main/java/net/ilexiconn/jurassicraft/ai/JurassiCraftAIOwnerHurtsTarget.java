@@ -8,14 +8,14 @@ public class JurassiCraftAIOwnerHurtsTarget extends EntityAITarget
 {
     EntityJurassiCraftSmart creature;
     EntityLivingBase target;
-    
+
     public JurassiCraftAIOwnerHurtsTarget(EntityJurassiCraftSmart entity)
     {
         super(entity, false);
         this.creature = entity;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -44,7 +44,7 @@ public class JurassiCraftAIOwnerHurtsTarget extends EntityAITarget
             }
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -61,13 +61,13 @@ public class JurassiCraftAIOwnerHurtsTarget extends EntityAITarget
         this.creature.setAttacking(true);
         super.startExecuting();
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return !this.creature.isSitting() && this.creature.riddenByEntity == null && super.continueExecuting();
     }
-    
+
     @Override
     public void resetTask()
     {

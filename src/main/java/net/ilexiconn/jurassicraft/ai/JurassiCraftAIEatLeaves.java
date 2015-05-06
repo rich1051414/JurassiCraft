@@ -1,9 +1,7 @@
 package net.ilexiconn.jurassicraft.ai;
 
 import com.google.common.collect.Lists;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ai.herds.CreatureHerd;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
 import net.minecraft.block.Block;
@@ -19,7 +17,7 @@ import java.util.List;
 
 public class JurassiCraftAIEatLeaves extends EntityAIBase
 {
-    
+
     private EntityJurassiCraftCreature creature;
     private double speed;
     private int maxDist;
@@ -32,17 +30,17 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
     private long maxTime;
     private double damage;
     private Vec3 directionVector;
-    
+
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed)
     {
         this(creature, speed, 32);
     }
-    
+
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed, int maxDist)
     {
         this(creature, speed, maxDist, 0); // 2 (minute) times 60 (seconds) times 20 (ticks per second)
     }
-    
+
     public JurassiCraftAIEatLeaves(EntityJurassiCraftCreature creature, double speed, int maxDist, long maxTime)
     {
         if (!(creature instanceof IHerbivore))
@@ -53,7 +51,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         this.world = creature.worldObj;
         this.maxTime = maxTime;
     }
-    
+
     public void startExecuting()
     {
         ArrayList<Vec3> leavesBlocks = Lists.newArrayList();
@@ -74,7 +72,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             }
         }
         // Now that we have all the blocks of leaves around the creature, we sort them to get blobs of leaves and then get their center
-        
+
         List<List<Vec3>> blobsList = Lists.newArrayList();
         blocksList:
         for (Vec3 leavesPos : leavesBlocks)
@@ -91,14 +89,14 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
                 }
             }
             // If we are here, that means no blocks where found near this block
-            
+
             List<Vec3> blob = Lists.newArrayList();
             blob.add(leavesPos);
             blobsList.add(blob);
         }
-        
+
         // Then we merge blobs that are next to each other because the previous algorithm might separate some
-        
+
         List<List<Vec3>> finalList = Lists.newArrayList();
         finalList.addAll(blobsList);
         blobList:
@@ -131,18 +129,18 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             double centerX = 0;
             double centerY = 0;
             double centerZ = 0;
-            
+
             for (Vec3 pos : blob)
             {
                 centerX += pos.xCoord;
                 centerY += pos.yCoord;
                 centerZ += pos.zCoord;
             }
-            
+
             centerX /= blob.size();
             centerY /= blob.size();
             centerZ /= blob.size();
-            
+
             if (creature.getDistance(centerX, centerY, centerZ) <= creature.getDistance(leavesX, leavesY, leavesZ) || leavesY <= 0)
             {
                 nearestBlob = blob;
@@ -156,11 +154,11 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
             leavesX = (int) Math.floor(leavesLoc.xCoord);
             leavesY = (int) Math.floor(leavesLoc.yCoord);
             leavesZ = (int) Math.floor(leavesLoc.zCoord);
-            
+
             directionVector = Vec3.createVectorHelper(leavesX, leavesY, leavesZ).subtract(Vec3.createVectorHelper(creature.posX, creature.posY, creature.posZ));
         }
     }
-    
+
     private boolean isEdible(Block block)
     {
         if (this.creature.boundingBox.maxY - this.creature.boundingBox.minY < 5f) // you're not high enough to reach for the stars, son
@@ -169,17 +167,17 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         }
         return block == Blocks.leaves || block == Blocks.leaves2;
     }
-    
+
     /**
      * Returns a Vec3 instance representing the vector from the entity to the block
-     * @return
-     *        The vector from the entity to the block
+     *
+     * @return The vector from the entity to the block
      */
     public Vec3 getVectorToBlock()
     {
         return directionVector;
     }
-    
+
     public boolean continueExecuting()
     {
         if (!foundLeaves || leavesY < 0)
@@ -194,15 +192,15 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         {
             damage += 0.025;
             world.destroyBlockInWorldPartially(creature.getEntityId(), leavesX, leavesY, leavesZ, (int) (damage * 10));
-            
+
             creature.getLookHelper().setLookPosition(leavesX, leavesY, leavesZ, 10f, creature.getVerticalFaceSpeed());
-            
+
             if (damage >= 1.0)
             {
                 damage = 0.0;
                 world.setBlockToAir(leavesX, leavesY, leavesZ);
                 world.playSoundEffect(leavesX, leavesY, leavesZ, Blocks.leaves.stepSound.getBreakSound(), 1.0f, 1.0f);
-                
+
                 return false; // We finished eating the leaves block
             }
         }
@@ -224,17 +222,14 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         }
         return true;
     }
-    
+
     /**
      * Look for the block at which to positionate the creature. The creature shouldn't stand on the tree. <br/>Brachiosuruses are way too heavy to stand on trees, ofc
-     * @param x  
-     *         The X coordinate of the block
-     * @param y
-     *         The Y coordinate of the block
-     * @param z
-     *         The Z coordinate of the block
-     * @return
-     *        The Y coordinate of the first solid block under block at (x,y,z)
+     *
+     * @param x The X coordinate of the block
+     * @param y The Y coordinate of the block
+     * @param z The Z coordinate of the block
+     * @return The Y coordinate of the first solid block under block at (x,y,z)
      */
     private int getFirstSolidUnder(int x, int y, int z)
     {
@@ -243,12 +238,12 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
                 return y;
         return -1;
     }
-    
+
     public boolean isInterruptible()
     {
         return true;
     }
-    
+
     private boolean isNextTo(Vec3 a, Vec3 b)
     {
         double dx = a.xCoord - b.xCoord;
@@ -256,7 +251,7 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         double dz = a.zCoord - b.zCoord;
         return (dx + dy + dz) == 1f;
     }
-    
+
     @Override
     public void resetTask()
     {
@@ -268,11 +263,11 @@ public class JurassiCraftAIEatLeaves extends EntityAIBase
         damage = 0.0;
         lastTimeExecuted = world.getWorldTime();
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
         return world.getWorldTime() - lastTimeExecuted >= maxTime && Math.random() < 0.10;
     }
-    
+
 }

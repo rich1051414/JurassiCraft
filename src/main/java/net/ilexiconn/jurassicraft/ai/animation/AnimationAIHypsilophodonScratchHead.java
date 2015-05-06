@@ -7,27 +7,27 @@ import net.minecraft.entity.EntityLiving;
 
 public class AnimationAIHypsilophodonScratchHead extends AIAnimation
 {
-    
+
     public AnimationAIHypsilophodonScratchHead(IAnimatedEntity entity)
     {
         super(entity);
     }
-    
+
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.SCRATCH.animID();
     }
-    
+
     public boolean isAutomatic()
     {
         return false;
     }
-    
+
     public int getDuration()
     {
         return 35;
     }
-    
+
     public boolean shouldAnimate()
     {
         EntityLiving living = getEntity();

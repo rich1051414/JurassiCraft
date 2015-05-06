@@ -8,12 +8,12 @@ import java.util.List;
 
 public class EntityJurassiCraftGroupAggressive extends EntityJurassiCraftAggressive
 {
-    
+
     public EntityJurassiCraftGroupAggressive(World world)
     {
         super(world);
     }
-    
+
     @Override
     protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity entity)
     {

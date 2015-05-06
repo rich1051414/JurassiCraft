@@ -11,27 +11,27 @@ import net.minecraft.world.World;
 public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
 {
     private static int MAX_TAKEOFF_TIME = 60;
+    public float adjustYaw = 0;
     private int takeOffTimer;
     private int flapDelay;
-    public float adjustYaw = 0;
-    
+
     public EntityJurassiCraftRidableFlying(World world)
     {
         super(world);
     }
-    
+
     @Override
     protected void entityInit()
     {
         super.entityInit();
     }
-    
+
     @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
     }
-    
+
     @Override
     public void moveEntityWithHeading(float movementStrafing, float movementForward)
     {
@@ -41,7 +41,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             if (this.isFlying() || (playerFlying.getHeldItem() != (ItemStack) null && this.checkRidingItem(playerFlying.getHeldItem())))
             {
                 /** There is a valid rider. */
-                
+
                 /** This starts the taking off. Player should jump and move forward. After some ticks, the state will change from taking off to flying */
                 if (!this.worldObj.isRemote)
                 {
@@ -61,7 +61,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
                         }
                     }
                 }
-                
+
                 /** If creature collided with a wall, it should stop flying and taking off. */
                 if (this.isCollidedHorizontally)
                 {
@@ -69,7 +69,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
                     this.setFlying(false);
                     this.resetTakeOffTimer();
                 }
-                
+
                 /** SET MOVEMENTS AND ROTATIONS DEPENDING ON THE CREATURE STATE (TAKING OFF/FLYING). */
                 if (this.isTakingOff())
                 {
@@ -81,7 +81,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
                     /** END METHOD HERE IF TAKING OFF. */
                     return;
                 }
-                
+
                 if (this.isFlying())
                 {
                     /**
@@ -96,7 +96,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
                         this.setFlying(false);
                         this.resetTakeOffTimer();
                     }
-                    
+
                     this.stepHeight = 1.25F;
                     this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
                     //SERVER AND CLIENT CHECK LATER
@@ -134,7 +134,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         /** No rider normal moveEntityWithHeading(). */
         super.moveEntityWithHeading(movementStrafing, movementForward);
     }
-    
+
     private void onUpdateTakingOffClient()
     {
         this.rotationYaw = this.prevRotationYaw;
@@ -143,17 +143,17 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
         this.handleLimbMovement();
     }
-    
+
     private void onUpdateTakingOffServer()
     {
         float newAngleYaw = 0.01745329251F * this.rotationYaw + 1.57079632679F;
-        
+
         this.motionY += 0.025D * (double) this.getTakingOffMotionY();
         this.motionX += 0.01D * Math.cos(newAngleYaw);
         this.motionZ += 0.01D * Math.sin(newAngleYaw);
-        
+
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
-        
+
         if (this.getTakeOffProgress() >= 1.0F)
         {
             this.setFlying(true);
@@ -162,7 +162,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             this.motionY = -0.1F;
         }
     }
-    
+
     private void onUpdateFlyingClient()
     {
         this.stepHeight = 0.0F;
@@ -184,12 +184,12 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         this.setRotation(this.rotationYaw, this.rotationPitch);
         this.handleLimbMovement();
     }
-    
+
     private void onUpdateFlyingServerGlide()
     {
         this.motionX = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.sin(3.14159265359F + 0.01745329251F * this.rotationYaw));
         this.motionZ = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.cos(0.01745329251F * this.rotationYaw));
-        
+
         /** Flap wings and go up if delay is negative */
         if (this.getFlapDelay() < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed())
         {
@@ -202,7 +202,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             /** Decrease motion Y if delay is positive. Decrease more first. */
             this.motionY *= 0.7D + 0.15D * Math.sin(1.57079632679D * (double) this.getFlapDelay() / 20.0D);
         }
-        
+
         /** Go down if delay is negative, creature should keep flapping its wings */
         if (this.getFlapDelay() < 0)
         {
@@ -214,7 +214,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
         }
     }
-    
+
     private void onUpdateFlyingServerFreeMovement()
     {
         if (this.motionY <= 2.0F * this.getMountingSpeed() && Minecraft.getMinecraft().gameSettings.keyBindForward.getIsKeyPressed())
@@ -229,7 +229,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
         this.motionZ = (double) (2.0F * this.getMountingSpeed() * MathHelper.cos(0.01745329251F * this.rotationPitch) * MathHelper.cos(0.01745329251F * this.rotationYaw));
         this.moveEntity(this.motionX, this.motionY + 0.05D, this.motionZ);
     }
-    
+
     /**
      * Returns if the creature is flyable or not. Value can be set using the creature's json file.
      */
@@ -237,15 +237,7 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
     {
         return this.getCreature().isFlyingCreature();
     }
-    
-    /**
-     * Sets the number of required ticks to start flying.
-     */
-    public void setMaximumTakeOffTime(int maxTime)
-    {
-        this.MAX_TAKEOFF_TIME = maxTime;
-    }
-    
+
     /**
      * Returns the number of required ticks to start flying. Override this to set a new value different from default.
      */
@@ -253,66 +245,74 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
     {
         return MAX_TAKEOFF_TIME;
     }
-    
-    private void setTakeOffTimer(int time)
+
+    /**
+     * Sets the number of required ticks to start flying.
+     */
+    public void setMaximumTakeOffTime(int maxTime)
     {
-        this.takeOffTimer = time;
+        this.MAX_TAKEOFF_TIME = maxTime;
     }
-    
+
     private void increaseTakeOffTimer()
     {
         if (this.getTakeOffTimer() <= this.getMaximumTakeOffTime())
             this.takeOffTimer++;
     }
-    
+
     private void decreaseTakeOffTimer()
     {
         if (this.getTakeOffTimer() >= 0)
             this.takeOffTimer--;
     }
-    
+
     private void decreaseTakeOffTimer(int value)
     {
         if (this.getTakeOffTimer() - value >= 0)
             this.takeOffTimer -= value;
     }
-    
+
     private void resetTakeOffTimer()
     {
         this.takeOffTimer = 0;
     }
-    
+
     public int getTakeOffTimer()
     {
         return this.takeOffTimer;
     }
-    
+
+    private void setTakeOffTimer(int time)
+    {
+        this.takeOffTimer = time;
+    }
+
     public float getTakeOffProgress()
     {
         return (float) (this.getTakeOffTimer() / this.getMaximumTakeOffTime());
     }
-    
+
     public float getTakingOffMotionY()
     {
         float result = MathHelper.sin(1.57079632679F * this.getTakeOffTimer() / this.getMaximumTakeOffTime());
         return result * result;
     }
-    
-    private void setFlapDelay(int time)
-    {
-        this.flapDelay = time;
-    }
-    
+
     private void decreaseFlapDelay()
     {
         this.flapDelay--;
     }
-    
+
     public int getFlapDelay()
     {
         return this.flapDelay;
     }
-    
+
+    private void setFlapDelay(int time)
+    {
+        this.flapDelay = time;
+    }
+
     @Override
     public void collideWithEntity(Entity target)
     {
@@ -327,32 +327,32 @@ public class EntityJurassiCraftRidableFlying extends EntityJurassiCraftRidable
             target.motionY += 0.2;
         }
     }
-    
+
     @Override
     public boolean isOnLadder()
     {
         return false;
     }
-    
+
     @Override
     protected void fall(float f)
     {
-        
+
     }
-    
+
     @Override
     protected void updateFallState(double distanceFallen, boolean onGround)
     {
-        
+
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("TakeOffTimer", this.getTakeOffTimer());
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {

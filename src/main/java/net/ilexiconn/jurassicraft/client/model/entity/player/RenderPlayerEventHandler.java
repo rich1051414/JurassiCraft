@@ -16,7 +16,7 @@ import java.util.UUID;
 @SideOnly(Side.CLIENT)
 public class RenderPlayerEventHandler
 {
-    public UUID[] uuid = new UUID[] {
+    public UUID[] uuid = new UUID[]{
             // iLexiconn
             UUID.fromString("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"),
             // Ry_dog101
@@ -34,12 +34,12 @@ public class RenderPlayerEventHandler
             // JTGhawk137
             UUID.fromString("54201149-1f1f-498b-98ca-50f66951a68f"),
             // Cryrano
-            UUID.fromString("4e88e24d-f77e-436a-ac80-457365c8deaa") };
-    
-    public UUID[] donators = new UUID[] {};
-    
+            UUID.fromString("4e88e24d-f77e-436a-ac80-457365c8deaa")};
+
+    public UUID[] donators = new UUID[]{};
+
     public ModelSantaHat santaHat = new ModelSantaHat();
-    
+
     @SubscribeEvent
     public void playerRender(RenderPlayerEvent.Pre event)
     {
@@ -58,18 +58,18 @@ public class RenderPlayerEventHandler
             santaHat.renderAll();
             GL11.glPopMatrix();
         }
-        
+
         if (event.entityPlayer instanceof AbstractClientPlayer && isDev(event.entityPlayer.getUniqueID()))
         {
             ((AbstractClientPlayer) event.entityPlayer).func_152121_a(MinecraftProfileTexture.Type.CAPE, new ResourceLocation("jurassicraft", "textures/cape/awesomeCape.png"));
         }
-        
+
         else if (event.entityPlayer instanceof AbstractClientPlayer && isDonator(event.entityPlayer.getUniqueID()))
         {
             ((AbstractClientPlayer) event.entityPlayer).func_152121_a(MinecraftProfileTexture.Type.CAPE, new ResourceLocation("jurassicraft", "textures/cape/donatorCape.png"));
         }
     }
-    
+
     public boolean isDev(UUID id)
     {
         for (UUID uuid1 : uuid)
@@ -77,7 +77,7 @@ public class RenderPlayerEventHandler
                 return true;
         return false;
     }
-    
+
     public boolean isDonator(UUID id)
     {
         for (UUID uuid1 : donators)

@@ -154,7 +154,7 @@ public class ModelAnkylosaurus extends MowzieModelBase
     public MowzieModelRenderer legleftcalf;
     public MowzieModelRenderer legleftfoot;
     public MowzieModelRenderer[] tailParts;
-    
+
     public ModelAnkylosaurus()
     {
         this.textureWidth = 256;
@@ -858,15 +858,15 @@ public class ModelAnkylosaurus extends MowzieModelBase
         this.Waist.addChild(this.horn5);
         this.tail2.addChild(this.horn12);
         this.Chest.addChild(this.Spike11);
-        
+
         headhorn3.rotationPointZ -= 0.5;
-        
-        tailParts = new MowzieModelRenderer[] { tailclub, tail4, tail3, tail2, tail1 };
-        
-        parts = new MowzieModelRenderer[] { Waist, bodyarmor1, Chest, tail1, legrightthigh, legleftthigh, Spike20, Spike21, Spike22, Spike23, Spike19, Spike24, Spike25, Spike26, Spike27, Spike28, Spike29, Spike30, Spike35, Spike36, Spike43, Spike50, Spike49, Spike37, horn4, horn5, horn6, horn7, horn8, Horn4R, Horn5R, Horn6R, Horn7R, Horn8R, bodyarmor2, neck1, armleftthigh, armrightthigh, horn11, Horn11R, Spike13, Spike18, Spike11, Spike12, Spike14, Spike15, Spike16, Spike17, Spike31, Spike32, Spike33, Spike34, horn1, horn2, horn3, Horn1R, Horn2R, Horn3R, neckarmor1, headback, Spike7, Spike6, Spike8, Spike10, Spike9, headarmorback, head, Spike5, Spike4, Spike2, Spike1, Spike3, headarmor1, upperjaw, lowerjaw, headarmor2, headhorn1, headhorn4, headhorn2, headhorn3, armleftcalf, armleftfoot, armrightcalf, armrightfoot, tailarmor1, tail2, Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8, Spike38, Spike39, Spike44, Spike45, horn9, horn10, Horn9R, Horn10R, tailarmor2, tail3, Shape12, Shape11, Shape10, Shape9, Shape16, Shape15, Shape14, Shape13, Spike40, Spike41, Spike47, Spike46, horn12, Horn12R, tailarmor3, tail4, Shape18, Shape19, Shape17, Shape22, Shape21, Shape20, Spike48, Spike42, tailarmor4, tailend, Shape23, Shape24, Shape25, Shape26, tailarmorend, tailclub, Shape27, Shape28, legrightcalf, legrightfoot, legleftcalf, legleftfoot };
+
+        tailParts = new MowzieModelRenderer[]{tailclub, tail4, tail3, tail2, tail1};
+
+        parts = new MowzieModelRenderer[]{Waist, bodyarmor1, Chest, tail1, legrightthigh, legleftthigh, Spike20, Spike21, Spike22, Spike23, Spike19, Spike24, Spike25, Spike26, Spike27, Spike28, Spike29, Spike30, Spike35, Spike36, Spike43, Spike50, Spike49, Spike37, horn4, horn5, horn6, horn7, horn8, Horn4R, Horn5R, Horn6R, Horn7R, Horn8R, bodyarmor2, neck1, armleftthigh, armrightthigh, horn11, Horn11R, Spike13, Spike18, Spike11, Spike12, Spike14, Spike15, Spike16, Spike17, Spike31, Spike32, Spike33, Spike34, horn1, horn2, horn3, Horn1R, Horn2R, Horn3R, neckarmor1, headback, Spike7, Spike6, Spike8, Spike10, Spike9, headarmorback, head, Spike5, Spike4, Spike2, Spike1, Spike3, headarmor1, upperjaw, lowerjaw, headarmor2, headhorn1, headhorn4, headhorn2, headhorn3, armleftcalf, armleftfoot, armrightcalf, armrightfoot, tailarmor1, tail2, Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8, Spike38, Spike39, Spike44, Spike45, horn9, horn10, Horn9R, Horn10R, tailarmor2, tail3, Shape12, Shape11, Shape10, Shape9, Shape16, Shape15, Shape14, Shape13, Spike40, Spike41, Spike47, Spike46, horn12, Horn12R, tailarmor3, tail4, Shape18, Shape19, Shape17, Shape22, Shape21, Shape20, Spike48, Spike42, tailarmor4, tailend, Shape23, Shape24, Shape25, Shape26, tailarmorend, tailclub, Shape27, Shape28, legrightcalf, legrightfoot, legleftcalf, legleftfoot};
         setInitPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -880,31 +880,31 @@ public class ModelAnkylosaurus extends MowzieModelBase
         	setAngles();
             setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
     	}*/
-    
+
     public void setRotateAngle(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityAnkylosaurus anky)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, anky);
         setToInitPose();
-        
+
         //        f = anky.frame;
         //        f1 = 0.3F;
-        
+
         float globalSpeed = 0.5F;
         float globalDegree = 0.8F;
         float height = 1.2F;
         float frontOffset = 0.84F;
-        
+
         faceTarget(head, 3, f3, f4);
         faceTarget(headback, 3, f3, f4);
         faceTarget(neck1, 3, f3, f4);
-        
+
         this.bob(this.Waist, 2 * globalSpeed, height, false, f, f1);
         //        this.bob(this.legleftthigh, 2 * globalSpeed, height, false, f, f1);
         //        this.bob(this.legrightthigh, 2 * globalSpeed, height, false, f, f1);
@@ -914,35 +914,35 @@ public class ModelAnkylosaurus extends MowzieModelBase
         this.walk(this.neck1, 2 * globalSpeed, 0.03F * height, false, 0.5F, -0.1F, f, f1);
         this.walk(this.headback, 2 * globalSpeed, 0.03F * height, true, 1F, 0F, f, f1);
         this.walk(this.head, 2 * globalSpeed, 0.15F * height, true, 1.5F, 0F, f, f1);
-        
+
         this.walk(this.legleftthigh, 1F * globalSpeed, 0.7F * globalDegree, false, 0F, -0.4F, f, f1);
         this.walk(this.legleftcalf, 1F * globalSpeed, 0.6F * globalDegree, true, 1F, 0.5F, f, f1);
         this.walk(this.legleftfoot, 1F * globalSpeed, 0.6F * globalDegree, false, -1.5F, 0.85F, f, f1);
-        
+
         this.walk(this.legrightthigh, 1F * globalSpeed, 0.7F * globalDegree, true, 0F, -0.4F, f, f1);
         this.walk(this.legrightcalf, 1F * globalSpeed, 0.6F * globalDegree, false, 1F, 0.5F, f, f1);
         this.walk(this.legrightfoot, 1F * globalSpeed, 0.6F * globalDegree, true, -1.5F, 0.85F, f, f1);
-        
+
         this.walk(this.armleftthigh, 1F * globalSpeed, 0.7F * globalDegree, true, frontOffset + 0F, -0.2F, f, f1);
         this.walk(this.armleftcalf, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.armleftfoot, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 2F, 0.8F, f, f1);
-        
+
         this.walk(this.armrightthigh, 1F * globalSpeed, 0.7F * globalDegree, false, frontOffset + 0F, -0.2F, f, f1);
         this.walk(this.armrightcalf, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
         this.walk(this.armrightfoot, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
-        
+
         chainWave(tailParts, 2 * globalSpeed, -0.12F, 2, f, f1);
         chainSwing(tailParts, 1 * globalSpeed, 0.3F, 3, f, f1);
-        
+
         anky.tailBuffer.applyChainSwingBuffer(tailParts);
-        
+
         //Idle
         walk(neck1, 0.1F, 0.05F, false, -1F, 0F, anky.frame, 1F);
         walk(headback, 0.1F, 0.05F, true, 0F, 0F, anky.frame, 1F);
         walk(Waist, 0.1F, 0.025F, false, 0F, 0F, anky.frame, 1F);
         walk(legleftthigh, 0.1F, 0.025F, true, 0F, 0F, anky.frame, 1F);
         walk(legrightthigh, 0.1F, 0.025F, true, 0F, 0F, anky.frame, 1F);
-        
+
         float inverseKinematicsConstant = 0.4F;
         walk(armleftthigh, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, anky.frame, 1F);
         walk(armleftcalf, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, anky.frame, 1F);
@@ -952,7 +952,7 @@ public class ModelAnkylosaurus extends MowzieModelBase
         walk(armrightfoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, anky.frame, 1F);
         armleftthigh.rotationPointZ -= 0.5 * inverseKinematicsConstant * Math.cos(anky.frame * 0.1F);
         armrightthigh.rotationPointZ -= 0.5 * inverseKinematicsConstant * Math.cos(anky.frame * 0.1F);
-        
+
         chainSwing(tailParts, 0.1F, 0.05F, 2, anky.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, anky.frame, 1F);
     }

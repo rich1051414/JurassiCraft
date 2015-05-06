@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.ai;
 
 public class States
 {
-    
+
     /**
      * TAMED represents whether the creature is tamed or not.
      */
@@ -79,5 +79,5 @@ public class States
      * ANGRY represents whether the creature is angry.
      */
     public static final int ANGRY = 1 << 18;
-    
+
 }

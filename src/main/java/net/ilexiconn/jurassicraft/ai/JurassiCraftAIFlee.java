@@ -14,7 +14,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
     private double randPosY;
     private double randPosZ;
     private double speed;
-    
+
     public JurassiCraftAIFlee(EntityJurassiCraftSmart entity, int duration, double velocity)
     {
         this.creature = entity;
@@ -22,7 +22,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
         this.fleeingTime = duration;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -50,7 +50,7 @@ public class JurassiCraftAIFlee extends EntityAIBase
             return false;
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -65,16 +65,16 @@ public class JurassiCraftAIFlee extends EntityAIBase
         this.creature.setSitting(false, null);
         this.creature.setFleeingTick(this.fleeingTime + (int) (this.fleeingTime * 0.6F * this.creature.getRNG().nextFloat()));
     }
-    
+
     @Override
     public void updateTask()
     {
         this.creature.setFleeingTick(this.creature.getFleeingTick() - 1);
-      
+
         if (this.creature.getNavigator().noPath())
         {
             Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.creature, 5, 4);
-          
+
             if (vec3 != null)
             {
                 this.randPosX = vec3.xCoord;
@@ -84,19 +84,19 @@ public class JurassiCraftAIFlee extends EntityAIBase
             }
         }
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         return this.creature.getFleeingTick() > 0 && !this.creature.isSitting() && !this.creature.isSleeping() && this.creature.riddenByEntity == null;
     }
-    
+
     @Override
     public void resetTask()
     {
         this.creature.setFleeingTick(0);
         this.creature.setFleeing(false);
-      
+
         if (this.creature.getAttackTarget() != null)
         {
             this.creature.setAttackTarget((EntityLivingBase) null);

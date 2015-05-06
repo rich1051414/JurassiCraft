@@ -12,18 +12,18 @@ import net.minecraft.world.World;
 public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
 {
     private float mountingSpeed;
-    
+
     public EntityJurassiCraftRidable(World world)
     {
         super(world);
         this.setMountingSpeed((float) (this.getCreature().getRidingSpeed()));
     }
-    
+
     public boolean isCreatureRidable()
     {
         return this.getCreature().isRidable();
     }
-    
+
     @Override
     public void onLivingUpdate()
     {
@@ -33,14 +33,14 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             this.ridingPlayerRightClick();
         }
     }
-    
+
     /**
      * Called in the onLivingUpdate() when this entity is being ridden by a player that is right clicking;
      */
     public void ridingPlayerRightClick()
     {
     }
-    
+
     @Override
     public boolean interact(EntityPlayer player)
     {
@@ -106,29 +106,29 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         }
         return super.interact(player);
     }
-    
+
     protected boolean checkRidingItem(ItemStack ridingItem)
     {
         return ridingItem != null && this.getCreature().isRidingItem(ridingItem.getItem());
     }
-    
+
     public float getMountingSpeed()
     {
         return this.mountingSpeed;
     }
-    
+
     public void setMountingSpeed(float speed)
     {
         this.mountingSpeed = speed;
     }
-    
+
     public void setRidingPlayer(EntityPlayer player)
     {
         player.rotationYaw = this.rotationYaw;
         player.rotationPitch = this.rotationPitch;
         player.mountEntity(this);
     }
-    
+
     /**
      * Sets the mob rotation depending on where the player is looking (Horse Style). ID: 0.
      */
@@ -140,7 +140,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
         this.setRotation(this.rotationYaw, this.rotationPitch);
     }
-    
+
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 1.
      */
@@ -159,7 +159,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw + adjust);
         this.setRotation(this.rotationYaw, this.rotationPitch);
     }
-    
+
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 2.
      */
@@ -178,7 +178,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw + adjust);
         this.setRotation(this.rotationYaw, this.rotationPitch);
     }
-    
+
     /**
      * Sets the mob rotation depending on the item position (Pig Style). ID: 3.
      */
@@ -197,7 +197,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw + adjust);
         this.setRotation(this.rotationYaw, this.rotationPitch);
     }
-    
+
     /**
      * Sets the mob rotation depending on A and D keys. NOT WORKING!
      */
@@ -219,7 +219,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.prevRotationPitch = this.rotationPitch;
         this.setRotation(this.rotationYaw, this.rotationPitch);
     }
-    
+
     @Override
     public void moveEntityWithHeading(float movementStrafing, float movementForward)
     {
@@ -275,7 +275,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             super.moveEntityWithHeading(movementStrafing, movementForward);
         }
     }
-    
+
     /**
      * Makes corrections to the limbSwing.
      */
@@ -292,7 +292,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
         this.limbSwingAmount += (distance - this.limbSwingAmount) * 0.4F;
         this.limbSwing += this.limbSwingAmount;
     }
-    
+
     /**
      * Decreases the held item durability and destroys the item if stack size is 0 or less.
      */
@@ -311,7 +311,7 @@ public class EntityJurassiCraftRidable extends EntityJurassiCraftSmart
             ((EntityPlayer) this.riddenByEntity).getHeldItem().setItemDamage(((EntityPlayer) this.riddenByEntity).getHeldItem().getItemDamage() + damage);
         }
     }
-    
+
     @Override
     public boolean isOnLadder()
     {

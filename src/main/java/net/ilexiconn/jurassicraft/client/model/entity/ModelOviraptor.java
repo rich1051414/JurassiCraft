@@ -45,12 +45,12 @@ public class ModelOviraptor extends MowzieModelBase
     MowzieModelRenderer Finger2;
     MowzieModelRenderer Finger3;
     MowzieModelRenderer Finger4;
-    
+
     public ModelOviraptor()
     {
         textureWidth = 128;
         textureHeight = 128;
-        
+
         Head = new MowzieModelRenderer(this, 0, 33);
         Head.addBox(0F, 0F, 0F, 5, 5, 7);
         Head.setRotationPoint(-2.5F, -3F, -9F);
@@ -267,13 +267,13 @@ public class ModelOviraptor extends MowzieModelBase
         Finger4.setTextureSize(textureWidth, textureHeight);
         Finger4.mirror = true;
         setRotation(Finger4, 0F, -0.5235988F, 0.8726646F);
-        
+
         addChildTo(Beak, Head);
         addChildTo(Crest, Head);
         addChildTo(Jaw, Head);
         addChildTo(Head, Neck);
         addChildTo(Neck, UpperBody);
-        
+
         addChildTo(FeatherArm1, forearmLeft);
         addChildTo(Finger3, forearmLeft);
         addChildTo(Finger4, forearmLeft);
@@ -284,9 +284,9 @@ public class ModelOviraptor extends MowzieModelBase
         addChildTo(forearmRight, shoulderRight);
         addChildTo(shoulderRight, LowerBody);
         addChildTo(shoulderLeft, LowerBody);
-        
+
         addChildTo(UpperBody, LowerBody);
-        
+
         addChildTo(TailFeather1, Tail4);
         addChildTo(TailFeather2, Tail4);
         addChildTo(TailFeather3, Tail4);
@@ -298,14 +298,14 @@ public class ModelOviraptor extends MowzieModelBase
         addChildTo(Tail3, Tail2);
         addChildTo(Tail2, Tail1);
         addChildTo(Tail1, LowerBody);
-        
+
         addChildTo(Foot1, Ankle1);
         addChildTo(Ankle1, Calves1);
         addChildTo(Calves1, Thigh1);
         addChildTo(Foot2, Ankle2);
         addChildTo(Ankle2, Calves2);
         addChildTo(Calves2, Thigh2);
-        
+
         //Corrections
         Crest.rotationPointZ -= 3;
         Crest.rotationPointY -= 3;
@@ -325,12 +325,12 @@ public class ModelOviraptor extends MowzieModelBase
         Finger4.rotateAngleZ -= 0.5;
         Finger3.rotationPointY += 0.5;
         Finger4.rotationPointY += 0.5;
-        
-        this.parts = new MowzieModelRenderer[] { Head, Beak, Crest, Jaw, Neck, UpperBody, LowerBody, Tail1, Tail2, Tail3, Tail4, Thigh1, Thigh2, Calves1, Calves2, Foot1, Foot2, shoulderLeft, shoulderRight, forearmLeft, forearmRight, FeatherArm1, FeatherArm2, TailFeather1, TailFeather2, TailFeather3, TailFeather4, TailFeather5, TailFeather6, TailFeather7, Ankle1, Ankle2, Finger1, Finger2, Finger3, Finger4 };
-        
+
+        this.parts = new MowzieModelRenderer[]{Head, Beak, Crest, Jaw, Neck, UpperBody, LowerBody, Tail1, Tail2, Tail3, Tail4, Thigh1, Thigh2, Calves1, Calves2, Foot1, Foot2, shoulderLeft, shoulderRight, forearmLeft, forearmRight, FeatherArm1, FeatherArm2, TailFeather1, TailFeather2, TailFeather3, TailFeather4, TailFeather5, TailFeather6, TailFeather7, Ankle1, Ankle2, Finger1, Finger2, Finger3, Finger4};
+
         this.setInitPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -372,18 +372,18 @@ public class ModelOviraptor extends MowzieModelBase
         //        Finger3.render(f5);
         //        Finger4.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityOviraptor ovi)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-        
+
         this.setToInitPose();
         f = ovi.frame;
         f1 = 0.5F;
@@ -399,7 +399,7 @@ public class ModelOviraptor extends MowzieModelBase
         this.walk(Ankle2, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
         this.walk(Foot1, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
         this.walk(Foot2, 0.5F * globalSpeed, 0.5F * globalDegree, false, 0F, 0F, f, f1);
-        
+
         this.walk(Neck, 1F * globalSpeed, 0.25F * globalDegree, false, 1F, 0.4F, f, f1);
     }
 }

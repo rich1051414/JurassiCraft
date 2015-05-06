@@ -28,7 +28,7 @@ public class ModelMeganeura extends MowzieModelBase
     MowzieModelRenderer LegRightFront;
     MowzieModelRenderer LegRightMid;
     MowzieModelRenderer LegRightBack;
-    
+
     MowzieModelRenderer babyBody;
     MowzieModelRenderer babyTail;
     MowzieModelRenderer babyHead;
@@ -38,14 +38,14 @@ public class ModelMeganeura extends MowzieModelBase
     MowzieModelRenderer babyLegRightFront;
     MowzieModelRenderer babyLegRightMid;
     MowzieModelRenderer babyLegRightBack;
-    
+
     int frame = 0;
-    
+
     public ModelMeganeura()
     {
         textureWidth = 64;
         textureHeight = 32;
-        
+
         Body = new MowzieModelRenderer(this, 0, 8);
         Body.addBox(-1F, 0F, 0F, 2, 3, 8);
         Body.setRotationPoint(3F, 0F, 2F);
@@ -124,7 +124,7 @@ public class ModelMeganeura extends MowzieModelBase
         LegRightBack.setTextureSize(64, 32);
         LegRightBack.mirror = true;
         setRotation(LegRightBack, 0F, 0F, -0.1979029F);
-        
+
         babyBody = new MowzieModelRenderer(this, 0, 7);
         babyBody.addBox(-0.5F, 0F, 0F, 1, 1, 4);
         babyBody.setRotationPoint(1.5F, 0F, 0F);
@@ -180,13 +180,13 @@ public class ModelMeganeura extends MowzieModelBase
         babyLegRightBack.mirror = true;
         setRotation(LegRightBack, 0F, 0F, -0.1919862F);
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         EntityMeganeura meg = (EntityMeganeura) entity;
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        
+
         if (!meg.isChild())
         {
             Body.render(f5);
@@ -202,7 +202,7 @@ public class ModelMeganeura extends MowzieModelBase
             LegRightFront.render(f5);
             LegRightMid.render(f5);
             LegRightBack.render(f5);
-            
+
         }
         else
         {
@@ -217,14 +217,14 @@ public class ModelMeganeura extends MowzieModelBase
             babyLegRightBack.render(f5);
         }
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -232,7 +232,7 @@ public class ModelMeganeura extends MowzieModelBase
         flap(WingLeftFront, 1F, 0.5F, true, 0F, 0F, frame, 1);
         flap(WingRightBack, 1F, 0.5F, false, 0F, 0F, frame, 1);
         flap(WingLeftBack, 1F, 0.5F, true, 0F, 0F, frame, 1);
-        
+
         frame += 1;
     }
 }

@@ -25,9 +25,9 @@ public class ItemGenericDNASource extends Item implements IDNASource
         this.setUnlocalizedName(name + "_" + type);
         name = name.toLowerCase();
         String cat = CreatureManager.getCategoryFromCreatureName(name);
-        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat.toLowerCase() + "/" + name.toLowerCase()  + "/" + name.toLowerCase()  + "_" + type);
+        this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat.toLowerCase() + "/" + name.toLowerCase() + "/" + name.toLowerCase() + "_" + type);
     }
-    
+
     public ItemDNA getCorrespondingDNA(String type)
     {
         Creature creature = CreatureManager.getCreatureFromName(this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length() - (1 + type.length())));
@@ -40,7 +40,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
             return null;
         }
     }
-    
+
     public String getDNASequence(ItemStack drop)
     {
         if (drop.hasTagCompound())
@@ -52,7 +52,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
         }
         return StatCollector.translateToLocal("item.drop.info.errorCode");
     }
-    
+
     public int getQuality(ItemStack drop)
     {
         if (drop.hasTagCompound())
@@ -64,7 +64,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
         }
         return 0;
     }
-    
+
     @Override
     public void addInformation(ItemStack drop, EntityPlayer player, List list, boolean flag)
     {
@@ -88,7 +88,7 @@ public class ItemGenericDNASource extends Item implements IDNASource
             list.add(StatCollector.translateToLocal("item.drop.info.dna.none"));
         }
     }
-    
+
     @Override
     public ItemStack onItemRightClick(ItemStack drop, World world, EntityPlayer player)
     {

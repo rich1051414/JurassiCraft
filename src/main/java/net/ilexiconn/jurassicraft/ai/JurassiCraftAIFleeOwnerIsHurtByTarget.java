@@ -8,14 +8,14 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
 {
     private EntityJurassiCraftSmart creature;
     private EntityLivingBase attacker;
-    
+
     public JurassiCraftAIFleeOwnerIsHurtByTarget(EntityJurassiCraftSmart entity)
     {
         super(entity, true);
         this.creature = entity;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -26,7 +26,7 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
         else
         {
             EntityLivingBase owner = this.creature.getOwner();
-           
+
             if (owner == null)
             {
                 return false;
@@ -38,20 +38,20 @@ public class JurassiCraftAIFleeOwnerIsHurtByTarget extends EntityAITarget
             }
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
         this.creature.setFleeing(true);
-        
+
         super.startExecuting();
     }
-    
+
     @Override
     public boolean continueExecuting()
     {
         this.attacker = null;
-        
+
         return this.creature.isFleeing();
     }
 }

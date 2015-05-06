@@ -42,7 +42,7 @@ public class JurassiCraftLivingEvent
             EntityPregnantSheep.register((EntitySheep) event.entity);
         }
     }
-    
+
     @SubscribeEvent
     public void onEntityLiving(LivingUpdateEvent event)
     {
@@ -131,11 +131,11 @@ public class JurassiCraftLivingEvent
             }
         }
     }
-    
+
     public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event)
     {
         Class mammalToSpawnClass = CreatureManager.getCreatureFromName(mammalName).getCreatureClass();
-        
+
         if (mammalToSpawnClass != null)
         {
             try

@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.client.model.block;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelCompressor extends ModelBase
 {
@@ -18,12 +17,12 @@ public class ModelCompressor extends ModelBase
     ModelRenderer CompressorTopSlab1;
     ModelRenderer CompressorTobSlab2;
     ModelRenderer OpenStuff;
-    
+
     public ModelCompressor()
     {
         textureWidth = 128;
         textureHeight = 64;
-        
+
         CompressorBase = new ModelRenderer(this, 0, 0);
         CompressorBase.addBox(0F, 0F, 0F, 12, 13, 12);
         CompressorBase.setRotationPoint(-6F, 10F, -6F);
@@ -91,7 +90,7 @@ public class ModelCompressor extends ModelBase
         OpenStuff.mirror = true;
         setRotation(OpenStuff, 0F, 0F, 0F);
     }
-    
+
     public void render()
     {
         CompressorBase.render(0.0625F);
@@ -106,12 +105,12 @@ public class ModelCompressor extends ModelBase
         CompressorTobSlab2.render(0.0625F);
         OpenStuff.render(0.0625F);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
 }

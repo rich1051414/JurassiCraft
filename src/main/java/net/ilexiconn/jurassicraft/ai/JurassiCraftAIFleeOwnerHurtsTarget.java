@@ -8,14 +8,14 @@ public class JurassiCraftAIFleeOwnerHurtsTarget extends EntityAITarget
 {
     EntityJurassiCraftSmart creature;
     EntityLivingBase target;
-    
+
     public JurassiCraftAIFleeOwnerHurtsTarget(EntityJurassiCraftSmart entity)
     {
         super(entity, false);
         this.creature = entity;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
@@ -37,14 +37,14 @@ public class JurassiCraftAIFleeOwnerHurtsTarget extends EntityAITarget
             }
         }
     }
-    
+
     @Override
     public void startExecuting()
     {
         this.creature.setFleeing(true);
         super.startExecuting();
     }
-    
+
     @Override
     public boolean continueExecuting()
     {

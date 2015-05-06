@@ -1,13 +1,6 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.client.model.modelbase.ChainBuffer;
@@ -17,12 +10,7 @@ import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
@@ -39,7 +27,7 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private boolean restingHead = false;
     private int restHeadSwitchTimer = 300;
-    
+
     public EntityCarnotaurus(World world)
     {
         super(world);
@@ -72,18 +60,18 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntitySheep.class, 0, 0.9F));
         this.setCreatureExperiencePoints(4000);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return 0.95D * (double) (this.getYBouningBox() + 0.175F * (this.limbSwingAmount - this.limbSwingAmount * MathHelper.sin(0.55F * this.limbSwing)));
     }
-    
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -98,10 +86,10 @@ public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive impleme
                 this.restingHeadProgress.stopAnimation();
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(65.0F, 5, 4.0F, this);
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -7,7 +7,7 @@ public class JurassiCraftAIAvoidEntityIfHasntAgeAndNotTamed extends EntityAIAvoi
 {
     private EntityJurassiCraftSmart creature;
     private float age;
-    
+
     public JurassiCraftAIAvoidEntityIfHasntAgeAndNotTamed(EntityJurassiCraftSmart entity, Class avoidClass, float minAgeToAvoid, float distanceFromEntity, double farSpeed, double nearSpeed)
     {
         super(entity, avoidClass, distanceFromEntity, farSpeed, nearSpeed);
@@ -15,7 +15,7 @@ public class JurassiCraftAIAvoidEntityIfHasntAgeAndNotTamed extends EntityAIAvoi
         this.age = minAgeToAvoid;
         this.setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute()
     {

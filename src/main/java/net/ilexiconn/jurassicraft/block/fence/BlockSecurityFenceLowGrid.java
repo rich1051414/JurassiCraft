@@ -15,36 +15,36 @@ import java.util.Random;
 
 public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFenceGrid
 {
-    
+
     public BlockSecurityFenceLowGrid()
     {
         super(5.0F, 75.0F, 2, "low_Security_Fence_Grid");
     }
-    
+
     @Override
     public int getRenderType()
     {
         return -1;
     }
-    
+
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
+
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         switch (metadata)
         {
-        /** South and North (On/Off) */
+            /** South and North (On/Off) */
             case 0:
             case 2:
             case 4:
@@ -83,7 +83,7 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
-    
+
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
     {
@@ -91,13 +91,13 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
         int metadata = world.getBlockMetadata(x, y, z);
         switch (metadata)
         {
-        /** South and North (On/Off) */
+            /** South and North (On/Off) */
             case 0:
             case 2:
             case 4:
             case 6:
                 return AxisAlignedBB.getBoundingBox((double) x, (double) y, (double) (z + 0.5D - widthInPixels), (double) (x + 1.0D), (double) (y + 1.0D), (double) (z + 0.5D + widthInPixels));
-                /** West and East (On/Off) */
+            /** West and East (On/Off) */
             case 1:
             case 3:
             case 5:
@@ -107,7 +107,7 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
                 return AxisAlignedBB.getBoundingBox((double) x, (double) y, (double) z, (double) (x + 1.0D), (double) (y + 1.0D), (double) (z + 1.0D));
         }
     }
-    
+
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
     {
@@ -115,13 +115,13 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
         int metadata = world.getBlockMetadata(x, y, z);
         switch (metadata)
         {
-        /** South and North (On/Off) */
+            /** South and North (On/Off) */
             case 0:
             case 2:
             case 4:
             case 6:
                 return AxisAlignedBB.getBoundingBox((double) x, (double) y, (double) (z + 0.5D - widthInPixels), (double) (x + 1.0D), (double) (y + 1.0D), (double) (z + 0.5D + widthInPixels));
-                /** West and East (On/Off) */
+            /** West and East (On/Off) */
             case 1:
             case 3:
             case 5:
@@ -131,7 +131,7 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
                 return AxisAlignedBB.getBoundingBox((double) x, (double) y, (double) z, (double) (x + 1.0D), (double) (y + 1.0D), (double) (z + 1.0D));
         }
     }
-    
+
     @Override
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {
@@ -139,19 +139,19 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
         if (metadata == 4 || metadata == 5 || metadata == 6 || metadata == 7)
             entity.attackEntityFrom(DamageSource.generic, 4.0F);
     }
-    
+
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
     {
         return null;
     }
-    
+
     @Override
     public int quantityDropped(Random rand)
     {
         return 0;
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

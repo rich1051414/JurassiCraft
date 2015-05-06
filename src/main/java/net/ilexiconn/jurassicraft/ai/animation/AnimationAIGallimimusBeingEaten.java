@@ -9,28 +9,28 @@ public class AnimationAIGallimimusBeingEaten extends AIAnimation
 {
     private EntityTyrannosaurus tyrannosaurus;
     private EntityGallimimus gallimimus;
-    
+
     public AnimationAIGallimimusBeingEaten(EntityGallimimus gallimimus)
     {
         super(gallimimus);
         this.gallimimus = gallimimus;
     }
-    
+
     public int getAnimationId()
     {
         return JurassiCraftAnimationIDs.BEING_EATEN.animID();
     }
-    
+
     public int getDuration()
     {
         return 45;
     }
-    
+
     public boolean isAutomatic()
     {
         return true;
     }
-    
+
     public void resetTask()
     {
         super.resetTask();

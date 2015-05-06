@@ -11,34 +11,34 @@ public abstract class RenderMammal extends RenderLiving
 {
     private Creature mammal;
     private float resizableShadow;
-    
+
     public RenderMammal(ModelBase model, Creature mammal, float shadow)
     {
         super(model, 1.0F);
         this.setMammal(mammal);
         this.setShadow(shadow);
     }
-    
-    private void setShadow(float shadow)
-    {
-        this.resizableShadow = shadow;
-    }
-    
+
     public float getShadow()
     {
         return this.resizableShadow;
     }
-    
-    private void setMammal(Creature mammal)
+
+    private void setShadow(float shadow)
     {
-        this.mammal = mammal;
+        this.resizableShadow = shadow;
     }
-    
+
     public Creature getMammal()
     {
         return this.mammal;
     }
-    
+
+    private void setMammal(Creature mammal)
+    {
+        this.mammal = mammal;
+    }
+
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

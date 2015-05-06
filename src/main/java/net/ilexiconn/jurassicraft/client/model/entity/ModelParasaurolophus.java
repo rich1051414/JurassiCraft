@@ -13,9 +13,7 @@ import org.lwjgl.opengl.GL11;
 public class ModelParasaurolophus extends MowzieModelBase
 {
     public boolean isAlarmed;
-    private Animator animator;
-
-    public double[] modelScale = new double[] { 0.7D, 0.7D, 0.7D };
+    public double[] modelScale = new double[]{0.7D, 0.7D, 0.7D};
     public MowzieModelRenderer LeftThigh;
     public MowzieModelRenderer RightThigh;
     public MowzieModelRenderer Body3;
@@ -57,12 +55,13 @@ public class ModelParasaurolophus extends MowzieModelBase
     public MowzieModelRenderer LowerArmRight;
     public MowzieModelRenderer RightHand;
     public MowzieModelRenderer RightFingers;
-    
+    private Animator animator;
+
     public ModelParasaurolophus()
     {
         textureWidth = 256;
         textureHeight = 256;
-        
+
         animator = new Animator(this);
 
         this.Tail1 = new MowzieModelRenderer(this, 0, 92);
@@ -266,16 +265,16 @@ public class ModelParasaurolophus extends MowzieModelBase
         this.Crest3.addChild(this.Crest4);
         this.Tail3.addChild(this.Tail4);
         this.RightThigh.addChild(this.RightCalf1);
-        
-        parts = new MowzieModelRenderer[] {LeftThigh, RightThigh, Body3, LeftCalf1, LeftUpperFoot, FootLeft, RightCalf1, RightUpperFoot, FootRight, Tail1, Body1, Tail2, Tail3, Tail4, Tail5, Tail6, Body2, UpperArmLeft, UpperArmRight, Neck, Neck2, NeckMerge, Neck3, Neck6, Neck8, Head, Snout1, Jaw, Crest1, Crestmembrane, Neck7Chin, Snout2, Crest2, Crest3, Crest4, LowerArmLeft, LeftHand, LeftFingers, LowerArmRight, RightHand, RightFingers};
+
+        parts = new MowzieModelRenderer[]{LeftThigh, RightThigh, Body3, LeftCalf1, LeftUpperFoot, FootLeft, RightCalf1, RightUpperFoot, FootRight, Tail1, Body1, Tail2, Tail3, Tail4, Tail5, Tail6, Body2, UpperArmLeft, UpperArmRight, Neck, Neck2, NeckMerge, Neck3, Neck6, Neck8, Head, Snout1, Jaw, Crest1, Crestmembrane, Neck7Chin, Snout2, Crest2, Crest3, Crest4, LowerArmLeft, LeftHand, LeftFingers, LowerArmRight, RightHand, RightFingers};
         setInitPose();
     }
-    
+
     public boolean setAlarmed(boolean setAlarm)
     {
         return this.isAlarmed = setAlarm;
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -287,14 +286,14 @@ public class ModelParasaurolophus extends MowzieModelBase
         this.Body3.render(f5);
         GL11.glPopMatrix();
     }
-    
+
     private void setRotateAngle(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityParasaurolophus para)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, para);
@@ -305,13 +304,13 @@ public class ModelParasaurolophus extends MowzieModelBase
          */
 
     }
-    
+
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         animator.update(entity);
         setRotationAngles(f, f1, f2, f3, f4, f5, (EntityParasaurolophus) entity);
         EntityParasaurolophus para = (EntityParasaurolophus) entity;
-        
+
         animator.setAnimation(JurassiCraftAnimationIDs.TRUMPET.animID());
         /*animator.startPhase(15);
         animator.rotate(Body_3, 0.3F, 0, 0);

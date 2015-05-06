@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  */
 public class ReflectionHelper
 {
-    
+
     public static Class getClassForName(String name)
     {
         try
@@ -21,7 +21,7 @@ public class ReflectionHelper
         }
         return null;
     }
-    
+
     public static void invokeMethod(Class class1, Object instance, String name, Class[] params, Object[] params1)
     {
         Method mtd = getMethod(class1, name, params);
@@ -34,7 +34,7 @@ public class ReflectionHelper
             e.printStackTrace();
         }
     }
-    
+
     public static Method getMethod(Class class1, String name, Class... params)
     {
         Method mtd = null;
@@ -49,7 +49,7 @@ public class ReflectionHelper
         }
         return mtd;
     }
-    
+
     public static Field getField(Class<?> class1, Object instance, int fieldIndex)
     {
         try
@@ -64,7 +64,7 @@ public class ReflectionHelper
             return null;
         }
     }
-    
+
     public static Field getField(Class<?> class1, Object instance, String fieldIndex)
     {
         try
@@ -79,12 +79,13 @@ public class ReflectionHelper
             return null;
         }
     }
-    
+
     /**
      * Gets the object a field holds
-     * @param class1 The class the field is in
+     *
+     * @param class1    The class the field is in
      * @param fieldType The object the field contains
-     * @param instance The instance
+     * @param instance  The instance
      * @return The object that the class contains
      */
     public static <T> T getField(Class<?> class1, Class<T> fieldType, Object instance, int fieldIndex)
@@ -100,12 +101,13 @@ public class ReflectionHelper
             return null;
         }
     }
-    
+
     /**
      * Gets the object a field holds
-     * @param class1 The class the field is in
+     *
+     * @param class1    The class the field is in
      * @param fieldType The object the field contains
-     * @param instance The instance
+     * @param instance  The instance
      * @param fieldName The field name
      * @return The object that the class contains
      */
@@ -122,12 +124,13 @@ public class ReflectionHelper
             return null;
         }
     }
-    
+
     /**
      * Sets a field to the giving values.
-     * @param field The target field
+     *
+     * @param field    The target field
      * @param instance The instance
-     * @param value The value to set the field to
+     * @param value    The value to set the field to
      */
     public static void setField(Field field, Object instance, Object value)
     {
@@ -140,7 +143,7 @@ public class ReflectionHelper
             throw new RuntimeException(e);
         }
     }
-    
+
     public static void setField(Class<?> class1, Object instance, int fieldIndex, Object value)
     {
         try
@@ -153,7 +156,7 @@ public class ReflectionHelper
             e.printStackTrace();
         }
     }
-    
+
     public static void setField(Class<?> class1, Object instance, String fieldName, Object value)
     {
         try

@@ -9,37 +9,37 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class RenderBird extends RenderLiving
 {
-    
+
     private Creature bird;
     private float resizableShadow;
-    
+
     public RenderBird(ModelBase model, Creature bird, float shadow)
     {
         super(model, 1.0F);
         this.setBird(bird);
         this.setShadow(shadow);
     }
-    
-    private void setShadow(float shadow)
-    {
-        this.resizableShadow = shadow;
-    }
-    
+
     public float getShadow()
     {
         return this.resizableShadow;
     }
-    
-    private void setBird(Creature bird)
+
+    private void setShadow(float shadow)
     {
-        this.bird = bird;
+        this.resizableShadow = shadow;
     }
-    
+
     public Creature getBird()
     {
         return this.bird;
     }
-    
+
+    private void setBird(Creature bird)
+    {
+        this.bird = bird;
+    }
+
     @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {

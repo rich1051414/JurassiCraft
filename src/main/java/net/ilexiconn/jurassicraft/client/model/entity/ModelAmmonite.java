@@ -14,7 +14,7 @@ public class ModelAmmonite extends ModelBase
     ModelRenderer Tentacle2;
     ModelRenderer Tentacle3;
     ModelRenderer Tentacle4;
-    
+
     public ModelAmmonite()
     {
         super();
@@ -61,7 +61,7 @@ public class ModelAmmonite extends ModelBase
         this.Tentacle4.mirror = true;
         this.setRotation(this.Tentacle4, 0.0f, 0.0f, 0.0f);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -75,14 +75,14 @@ public class ModelAmmonite extends ModelBase
         this.Tentacle3.render(f5);
         this.Tentacle4.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);

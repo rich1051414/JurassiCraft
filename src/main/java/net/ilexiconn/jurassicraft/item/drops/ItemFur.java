@@ -10,7 +10,7 @@ public class ItemFur extends ItemGenericDNASource
         super(name, "Fur");
         this.setCreativeTab(ModCreativeTabs.items);
     }
-    
+
     public ItemDNA getCorrespondingDNA()
     {
         return this.getCorrespondingDNA("Fur");

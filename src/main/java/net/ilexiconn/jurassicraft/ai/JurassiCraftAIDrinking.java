@@ -8,7 +8,7 @@ public class JurassiCraftAIDrinking extends EntityAIBase
     private EntityJurassiCraftSmart creature;
     private int duration;
     private int timer;
-    
+
     public JurassiCraftAIDrinking(EntityJurassiCraftSmart creature, int duration)
     {
         this.creature = creature;
@@ -22,13 +22,13 @@ public class JurassiCraftAIDrinking extends EntityAIBase
         }
         this.timer = 0;
     }
-    
+
     @Override
     public boolean shouldExecute()
     {
         return this.creature.isDrinking();
     }
-    
+
     @Override
     public void startExecuting()
     {
@@ -36,17 +36,17 @@ public class JurassiCraftAIDrinking extends EntityAIBase
             this.creature.setEating(false);
         this.timer = this.duration;
     }
-    
+
     public void updateTask()
     {
         this.timer--;
     }
-    
+
     public boolean continueExecuting()
     {
         return this.timer >= 0 && !this.creature.isSitting() && !this.creature.isSleeping() && !this.creature.hasBeenHurt() && this.creature.riddenByEntity == null;
     }
-    
+
     @Override
     public void resetTask()
     {

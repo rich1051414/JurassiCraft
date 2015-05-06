@@ -23,7 +23,7 @@ public class GuiDinoPadEgg extends GuiContainer
     private int ySize;
     private int guiLeft;
     private int guiTop;
-    
+
     public GuiDinoPadEgg(ContainerDinoPadEgg container)
     {
         super(container);
@@ -35,13 +35,13 @@ public class GuiDinoPadEgg extends GuiContainer
         {
             this.mc.thePlayer.closeScreen();
         }
-        
+
         if (this.egg == null)
         {
             this.mc.thePlayer.closeScreen();
         }
     }
-    
+
     @Override
     public void initGui()
     {
@@ -52,20 +52,20 @@ public class GuiDinoPadEgg extends GuiContainer
         this.guiTop = (int) ((this.height - this.ySize) / 2);
         this.renderRotation = 0.0F;
     }
-    
+
     @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
-    
+
     @Override
     public void onGuiClosed()
     {
         this.egg = null;
         super.onGuiClosed();
     }
-    
+
     @Override
     protected void keyTyped(char keyChar, int key)
     {
@@ -74,7 +74,7 @@ public class GuiDinoPadEgg extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-    
+
     @Override
     public void updateScreen()
     {
@@ -91,7 +91,7 @@ public class GuiDinoPadEgg extends GuiContainer
             this.mc.thePlayer.closeScreen();
         }
     }
-    
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
@@ -135,7 +135,7 @@ public class GuiDinoPadEgg extends GuiContainer
             }
         }
     }
-    
+
     private void renderEgg(float x, float y, float scale)
     {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);

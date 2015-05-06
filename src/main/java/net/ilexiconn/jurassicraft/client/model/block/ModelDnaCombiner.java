@@ -23,12 +23,12 @@ public class ModelDnaCombiner extends ModelBase
     ModelRenderer fras2;
     ModelRenderer tap2;
     ModelRenderer tub1;
-    
+
     public ModelDnaCombiner()
     {
         this(0.0f);
     }
-    
+
     public ModelDnaCombiner(float par1)
     {
         General = new ModelRenderer(this, 28, 6);
@@ -100,89 +100,89 @@ public class ModelDnaCombiner extends ModelBase
         tub1.addBox(-1.5F, -0.5F, -0.5F, 3, 1, 1);
         tub1.setRotationPoint(13F, 17.5F, -5F);
     }
-    
+
     public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7)
     {
         General.rotateAngleX = 0F;
         General.rotateAngleY = 0F;
         General.rotateAngleZ = 0F;
         General.renderWithRotation(par7);
-        
+
         General1.rotateAngleX = 0.4363323F;
         General1.rotateAngleY = 0F;
         General1.rotateAngleZ = 0F;
         General1.renderWithRotation(par7);
-        
+
         General2.rotateAngleX = 0F;
         General2.rotateAngleY = 0F;
         General2.rotateAngleZ = 0F;
         General2.renderWithRotation(par7);
-        
+
         pantalla.rotateAngleX = -0.1745329F;
         pantalla.rotateAngleY = 0F;
         pantalla.rotateAngleZ = 0F;
         pantalla.renderWithRotation(par7);
-        
+
         tapa.rotateAngleX = -0.1561269F;
         tapa.rotateAngleY = 0F;
         tapa.rotateAngleZ = 0F;
         tapa.renderWithRotation(par7);
-        
+
         deco.rotateAngleX = 0.4363323F;
         deco.rotateAngleY = 0F;
         deco.rotateAngleZ = 0F;
         deco.renderWithRotation(par7);
-        
+
         cil1.rotateAngleX = 0.4363323F;
         cil1.rotateAngleY = 0F;
         cil1.rotateAngleZ = 0F;
         cil1.renderWithRotation(par7);
-        
+
         cil2.rotateAngleX = 0.4363323F;
         cil2.rotateAngleY = 0F;
         cil2.rotateAngleZ = 0F;
         cil2.renderWithRotation(par7);
-        
+
         cil3.rotateAngleX = 0.4363323F;
         cil3.rotateAngleY = 0F;
         cil3.rotateAngleZ = 0F;
         cil3.renderWithRotation(par7);
-        
+
         cil4.rotateAngleX = 0.4363323F;
         cil4.rotateAngleY = 0F;
         cil4.rotateAngleZ = 0F;
         cil4.renderWithRotation(par7);
-        
+
         fras1.rotateAngleX = 0F;
         fras1.rotateAngleY = 0F;
         fras1.rotateAngleZ = 0F;
         fras1.renderWithRotation(par7);
-        
+
         tap1.rotateAngleX = 0F;
         tap1.rotateAngleY = 0F;
         tap1.rotateAngleZ = 0F;
         tap1.renderWithRotation(par7);
-        
+
         tub2.rotateAngleX = 0F;
         tub2.rotateAngleY = 0F;
         tub2.rotateAngleZ = 0.7540493F;
         tub2.renderWithRotation(par7);
-        
+
         base.rotateAngleX = 0F;
         base.rotateAngleY = 0F;
         base.rotateAngleZ = 0F;
         base.renderWithRotation(par7);
-        
+
         fras2.rotateAngleX = 0F;
         fras2.rotateAngleY = 0F;
         fras2.rotateAngleZ = 0F;
         fras2.renderWithRotation(par7);
-        
+
         tap2.rotateAngleX = 0F;
         tap2.rotateAngleY = 0F;
         tap2.rotateAngleZ = 0F;
         tap2.renderWithRotation(par7);
-        
+
         tub1.rotateAngleX = 0F;
         tub1.rotateAngleY = 0F;
         tub1.rotateAngleZ = 0.7540493F;

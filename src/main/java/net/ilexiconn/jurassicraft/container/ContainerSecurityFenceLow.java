@@ -12,18 +12,18 @@ import net.minecraft.item.ItemStack;
 public class ContainerSecurityFenceLow extends Container
 {
     private TileSecurityFenceLowCorner fence;
-    
+
     public ContainerSecurityFenceLow(InventoryPlayer playerInventory, TileSecurityFenceLowCorner tileEntity)
     {
         this.fence = tileEntity;
-        
+
         this.addSlotToContainer(new SlotFence(this.fence, 0, 128, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 1, 146, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 2, 164, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 3, 182, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 4, 200, 43));
         this.addSlotToContainer(new SlotFence(this.fence, 5, 218, 43));
-        
+
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
@@ -31,13 +31,13 @@ public class ContainerSecurityFenceLow extends Container
                 this.addSlotToContainer(new Slot(playerInventory, k + i * 9 + 9, 48 + k * 18, 174 + i * 18));
             }
         }
-        
+
         for (int i = 0; i < 9; i++)
         {
             this.addSlotToContainer(new Slot(playerInventory, i, 48 + i * 18, 232));
         }
     }
-    
+
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
@@ -47,13 +47,13 @@ public class ContainerSecurityFenceLow extends Container
             this.fence.closeInventory();
         }
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
         return this.fence.isUseableByPlayer(player);
     }
-    
+
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i)
     {

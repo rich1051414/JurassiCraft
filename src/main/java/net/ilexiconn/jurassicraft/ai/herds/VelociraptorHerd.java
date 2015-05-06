@@ -6,24 +6,24 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class VelociraptorHerd extends CreatureHerd
 {
-    
+
     private EntityLivingBase target;
-    
+
     public VelociraptorHerd()
     {
         super(true);
     }
-    
+
     public boolean isAcceptable(EntityJurassiCraftCreature creature)
     {
         return creature instanceof EntityVelociraptor && super.isAcceptable(creature);
     }
-    
+
     public void attack(EntityLivingBase target)
     {
         this.target = target;
     }
-    
+
     public boolean isSneakingUp()
     {
         if (target != null && target.isDead)
@@ -33,10 +33,10 @@ public class VelociraptorHerd extends CreatureHerd
         }
         return target != null;
     }
-    
+
     public EntityLivingBase getCurrentTarget()
     {
         return target;
     }
-    
+
 }

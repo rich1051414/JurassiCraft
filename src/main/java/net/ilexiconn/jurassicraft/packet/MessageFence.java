@@ -16,12 +16,12 @@ public class MessageFence implements IMessage
     private int yCoord;
     private int zCoord;
     private int side;
-    
+
     public MessageFence()
     {
-        
+
     }
-    
+
     public MessageFence(int id, int xCoord, int yCoord, int zCoord, int side)
     {
         this.id = id;
@@ -30,7 +30,7 @@ public class MessageFence implements IMessage
         this.zCoord = zCoord;
         this.side = side;
     }
-    
+
     @Override
     public void fromBytes(ByteBuf buf)
     {
@@ -40,7 +40,7 @@ public class MessageFence implements IMessage
         zCoord = ByteBufUtils.readVarInt(buf, 5);
         side = ByteBufUtils.readVarInt(buf, 5);
     }
-    
+
     @Override
     public void toBytes(ByteBuf buf)
     {
@@ -50,7 +50,7 @@ public class MessageFence implements IMessage
         ByteBufUtils.writeVarInt(buf, zCoord, 5);
         ByteBufUtils.writeVarInt(buf, side, 5);
     }
-    
+
     public static class Handler implements IMessageHandler<MessageFence, IMessage>
     {
         @Override
@@ -65,7 +65,7 @@ public class MessageFence implements IMessage
                         TileEntity tileEntity = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
                         switch (message.id)
                         {
-                        /** Build Low Security */
+                            /** Build Low Security */
                             case 0:
                                 if (tileEntity instanceof TileSecurityFenceLowCorner)
                                 {

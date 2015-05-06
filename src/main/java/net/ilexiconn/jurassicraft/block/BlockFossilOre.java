@@ -9,11 +9,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -34,7 +32,7 @@ public class BlockFossilOre extends Block
     public IIcon icon_4;
     @SideOnly(Side.CLIENT)
     public IIcon icon_5;
-    
+
     public BlockFossilOre()
     {
         super(Material.rock);
@@ -46,7 +44,7 @@ public class BlockFossilOre extends Block
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }
-    
+
     public Item getItemDropped(int value, Random random, int thing)
     {
         float rand = random.nextFloat();
@@ -67,12 +65,12 @@ public class BlockFossilOre extends Block
             return ModItems.fossil;
         }
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
         world.setBlockMetadataWithNotify(x, y, z, new Random().nextInt(6), 2);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
@@ -83,7 +81,7 @@ public class BlockFossilOre extends Block
         icon_4 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_4");
         icon_5 = iconRegister.registerIcon(JurassiCraft.getModId() + "fossil_side_5");
     }
-    
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {

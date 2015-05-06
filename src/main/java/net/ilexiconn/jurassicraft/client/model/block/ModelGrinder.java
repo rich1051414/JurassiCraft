@@ -19,12 +19,12 @@ public class ModelGrinder extends ModelBase
     ModelRenderer cog3;
     ModelRenderer cog4;
     ModelRenderer cog5;
-    
+
     public ModelGrinder()
     {
         textureWidth = 128;
         textureHeight = 64;
-        
+
         base = new ModelRenderer(this, 0, 0);
         base.addBox(0F, 0F, 0F, 14, 4, 14);
         base.setRotationPoint(-7F, 20F, -7F);
@@ -104,7 +104,7 @@ public class ModelGrinder extends ModelBase
         cog5.mirror = true;
         setRotation(cog5, 0F, 0F, 0F);
     }
-    
+
     public void render()
     {
         base.render(0.0625F);
@@ -121,7 +121,7 @@ public class ModelGrinder extends ModelBase
         cog4.render(0.0625F);
         cog5.render(0.0625F);
     }
-    
+
     public void rotateCog(float plus)
     {
         centreCog.rotateAngleY = plus;
@@ -132,7 +132,7 @@ public class ModelGrinder extends ModelBase
         cog4.rotateAngleY = plus + 2.513274F;
         cog5.rotateAngleY = plus;
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;

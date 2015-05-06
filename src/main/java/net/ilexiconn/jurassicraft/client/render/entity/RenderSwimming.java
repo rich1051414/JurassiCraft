@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public abstract class RenderSwimming extends RenderDinosaur
 {
-    
+
     /**
      * Inherithed from Animals+ by Click_Me
      */
@@ -18,7 +18,7 @@ public abstract class RenderSwimming extends RenderDinosaur
     {
         super(modelbase, creature, shadow);
     }
-    
+
     @Override
     protected void rotateCorpse(EntityLivingBase entitylivingbase, float f, float f1, float f2)
     {

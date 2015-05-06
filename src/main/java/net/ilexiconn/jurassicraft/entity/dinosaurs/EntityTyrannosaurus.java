@@ -1,14 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.AnimationHandler;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEatDroppedFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIEating;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIFollowFood;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerHurtsTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIOwnerIsHurtByTarget;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAISitNatural;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAITargetIfHasAgeAndNonTamed;
-import net.ilexiconn.jurassicraft.ai.JurassiCraftAIWander;
+import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAITyrannosaurusEatingGallimimus;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIWalkRoar;
@@ -24,17 +17,8 @@ import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.ICarnivore;
 import net.ilexiconn.jurassicraft.interfaces.IDinosaur;
 import net.ilexiconn.jurassicraft.utility.ControlledParam;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -50,7 +34,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     private float shakeCount = 0;
     private int stepCount = 0;
-    
+
     public EntityTyrannosaurus(World world)
     {
         super(world);
@@ -91,7 +75,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 40, 0.3F));
         this.setCreatureExperiencePoints(5500);
     }
-    
+
     @Override
     public void updateRiderPosition()
     {
@@ -123,7 +107,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             }
         }
     }
-    
+
     @Override
     public String getLivingSound()
     {
@@ -155,13 +139,13 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
             return null;
         }
     }
-    
+
     public void onUpdate()
     {
         super.onUpdate();
         this.roarCount.update();
         this.roarTiltDegree.update();
-        
+
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0 && this.getCreatureAgeInDays() >= 25)
         {
@@ -170,16 +154,16 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         }
         if (animID == JurassiCraftAnimationIDs.ROAR.animID() && animTick == 22)
             this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        
+
         if (animID == JurassiCraftAnimationIDs.WALK_ROAR.animID() && animTick == 22)
             this.roarTiltDegree.thereAndBack(0F, 0.1F, 1F, 20);
-        
+
         this.stepCount -= this.moveForward * 9.5;
-        
+
         /** Breathing Sound MISSING SOUND */
         if (this.frame % 62 == 28)
             this.playSound("jurassicraft:tyrannosaurusbreath", 1.0F, this.getSoundPitch());
-        
+
         /** Sitting Animation */
         if (this.worldObj.isRemote)
         {
@@ -194,9 +178,9 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
                 this.restingHeadProgress.stopAnimation();
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(55.0F, 5, 3.0F, this);
-        
+
         if (this.getAttackTarget() == this.riddenByEntity)
             setAttackTarget(null);
         if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() <= 20)
@@ -204,7 +188,7 @@ public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements
         if (getAnimationId() == JurassiCraftAnimationIDs.EATING.animID() && getAnimationTick() > 20)
             shakePrey.decreaseTimer();
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

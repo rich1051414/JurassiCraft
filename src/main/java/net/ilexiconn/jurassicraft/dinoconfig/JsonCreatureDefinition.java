@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class JsonCreatureDefinition
 {
     private static byte currentCreatureID = 0;
-    
+
     public byte creatureID = currentCreatureID++;
-    
+
     public String creatureName;
     public ArrayList<String> livingSounds; //todo: can we remove these vars?
     public String hurtSound;
     public String deathSound;
-    
+
     public double minHealth;
     public double minStrength;
     public double minSpeed;
@@ -26,7 +26,7 @@ public class JsonCreatureDefinition
     public double maxSpeed;
     public double maxKnockback;
     public double ridingSpeed;
-    
+
     public float adultAge;
     public float minLength;
     public float minHeight;
@@ -44,14 +44,14 @@ public class JsonCreatureDefinition
     public int numberOfTextures;
     public int ridingStyle;
     public int numberOfInfoPages;
-    
+
     public ArrayList favoriteFoodList;
     public ArrayList ridingItemList;
-    
+
     public boolean isRidable;
     public boolean canBeTamedUponSpawning;
     public boolean waterCreature;
     public boolean flyingCreature;
-    
+
     public byte addItemTypes;
 }

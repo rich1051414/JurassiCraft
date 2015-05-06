@@ -23,9 +23,22 @@ public enum JurassiCraftFossilInformation
     DILOPHOSAURUS("Dilophosaurus wetherilli",		10, 	"Carnivore",	196, 	191,	500.0,		6.5,	1.9,	"SmallCarnivore");
     ARCHAEOPTERYX("Archaeopteryx lithographica",	11, 	"Carnivore",	152, 	145,	1.0,		0.5,	0.3,	"SmallCarnivore");
     */
-    
+
     EXAMPLE("Species", (byte) 0, "family", (short) 199, (short) 191, "Diet", 1.00000D, 0.50D, 0.50D, (byte) 1, (byte) 1, "Dinosaur");
-    
+
+    private final String typeOfCreature;
+    private final String fossilName;
+    private final String family;
+    private final String diet;
+    private final byte fossilID;
+    private final byte boundX;
+    private final byte boundZ;
+    private final short beginOfExistence;
+    private final short endOfExistence;
+    private final double weight;
+    private final double length;
+    private final double height;
+
     private JurassiCraftFossilInformation(String name, byte id, String dinoFamily, short maxYear, short minYear, String dinoDiet, double dinoWeight, double dinoLength, double dinoHeight, byte xB, byte zB, String creature)
     {
         this.fossilName = name;
@@ -41,7 +54,7 @@ public enum JurassiCraftFossilInformation
         this.boundZ = zB;
         this.typeOfCreature = creature;
     }
-    
+
     /**
      * Returns the era and period of the fossil based on its year of existence
      */
@@ -172,7 +185,7 @@ public enum JurassiCraftFossilInformation
             return "Not Defined";
         }
     }
-    
+
     /**
      * Returns the right EnumChatFormatting color depending on the diet
      */
@@ -195,7 +208,7 @@ public enum JurassiCraftFossilInformation
             return EnumChatFormatting.GRAY;
         }
     }
-    
+
     /**
      * Returns the name of the fossil.
      */
@@ -203,7 +216,7 @@ public enum JurassiCraftFossilInformation
     {
         return fossilName;
     }
-    
+
     /**
      * Returns the id of the fossil.
      */
@@ -211,7 +224,7 @@ public enum JurassiCraftFossilInformation
     {
         return fossilID;
     }
-    
+
     /**
      * Returns the diet of the fossil.
      */
@@ -219,7 +232,7 @@ public enum JurassiCraftFossilInformation
     {
         return diet;
     }
-    
+
     /**
      * Returns the family of the fossil
      */
@@ -227,7 +240,7 @@ public enum JurassiCraftFossilInformation
     {
         return family;
     }
-    
+
     /**
      * Returns the initial year of existence.
      */
@@ -235,7 +248,7 @@ public enum JurassiCraftFossilInformation
     {
         return beginOfExistence;
     }
-    
+
     /**
      * Returns the final year of existence.
      */
@@ -243,7 +256,7 @@ public enum JurassiCraftFossilInformation
     {
         return endOfExistence;
     }
-    
+
     /**
      * Returns the length of the fossil.
      */
@@ -251,7 +264,7 @@ public enum JurassiCraftFossilInformation
     {
         return length;
     }
-    
+
     /**
      * Returns the length of the fossil.
      */
@@ -259,7 +272,7 @@ public enum JurassiCraftFossilInformation
     {
         return height;
     }
-    
+
     /**
      * Returns the length of the fossil.
      */
@@ -267,7 +280,7 @@ public enum JurassiCraftFossilInformation
     {
         return weight;
     }
-    
+
     /**
      * Returns the x bound of the fossil.
      */
@@ -275,7 +288,7 @@ public enum JurassiCraftFossilInformation
     {
         return boundX;
     }
-    
+
     /**
      * Returns the z bound of the fossil.
      */
@@ -283,7 +296,7 @@ public enum JurassiCraftFossilInformation
     {
         return boundZ;
     }
-    
+
     /**
      * Returns the type of creature. Dinosaur, mammal, reptile.
      */
@@ -291,17 +304,4 @@ public enum JurassiCraftFossilInformation
     {
         return typeOfCreature;
     }
-    
-    private final String typeOfCreature;
-    private final String fossilName;
-    private final String family;
-    private final String diet;
-    private final byte fossilID;
-    private final byte boundX;
-    private final byte boundZ;
-    private final short beginOfExistence;
-    private final short endOfExistence;
-    private final double weight;
-    private final double length;
-    private final double height;
 }

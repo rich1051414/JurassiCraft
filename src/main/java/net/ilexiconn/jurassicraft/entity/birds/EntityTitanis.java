@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.entity.birds;
 import net.ilexiconn.jurassicraft.ai.*;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIGroupAttack;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityHypsilophodon;
 import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityLeaellynasaura;
@@ -50,19 +49,19 @@ public class EntityTitanis extends EntityJurassiCraftGroupAggressive implements 
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 60, 0.5F, 1.0F));
         this.setCreatureExperiencePoints(2500);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox();
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelTriceratops extends MowzieModelBase
 {
-    private Animator animator;
     public MowzieModelRenderer BackCalfLeft;
     public MowzieModelRenderer BackCalfRight;
     public MowzieModelRenderer BackThighLeft;
@@ -51,13 +50,14 @@ public class ModelTriceratops extends MowzieModelBase
     public MowzieModelRenderer LeftFrontFoot;
     public MowzieModelRenderer RightFrontFoot;
     public MowzieModelRenderer[] tailParts;
-    
+    private Animator animator;
+
     public ModelTriceratops()
     {
         this.animator = new Animator(this);
         this.textureWidth = 256;
         this.textureHeight = 256;
-        
+
         this.Tail3 = new MowzieModelRenderer(this, 37, 141);
         this.Tail3.setRotationPoint(0.0F, 2.5F, 28.0F);
         this.Tail3.addBox(-4.0F, -3.0F, 0.0F, 8, 9, 7);
@@ -214,7 +214,7 @@ public class ModelTriceratops extends MowzieModelBase
         this.Shieldthingy10.setRotationPoint(0.0F, -2.9000000953674316F, -22.0F);
         this.Shieldthingy10.addBox(-10.0F, 0.0F, 0.5F, 2, 3, 1);
         this.setRotation(Shieldthingy10, -0.3171542286872864F, -0.0F, 0.01745329238474369F);
-        
+
         addChildTo(MiddleHorn, Mouth);
         addChildTo(Mouth, Head);
         addChildTo(Shieldthingy1, Head);
@@ -233,30 +233,30 @@ public class ModelTriceratops extends MowzieModelBase
         addChildTo(Shieldthingy13, Head);
         addChildTo(LeftHorn, Head);
         addChildTo(RightHorn, Head);
-        
+
         addChildTo(LeftFrontFoot, FrontCalfLeft);
         addChildTo(FrontCalfLeft, FrontThighLeft);
         addChildTo(RightFrontFoot, FrontCalfRight);
         addChildTo(FrontCalfRight, FrontThighRight);
         addChildTo(FrontThighRight, Chest);
         addChildTo(FrontThighLeft, Chest);
-        
+
         addChildTo(LeftBackFoot, BackCalfLeft);
         addChildTo(BackCalfLeft, BackThighLeft);
         addChildTo(RightBackFoot, BackCalfRight);
         addChildTo(BackCalfRight, BackThighRight);
-        
+
         addChildTo(Head, Neck);
         addChildTo(Neck, Chest);
         addChildTo(Collar, Chest);
         addChildTo(Chest, Waist);
-        
+
         addChildTo(Tail5, Tail4);
         addChildTo(Tail4, Tail3);
         addChildTo(Tail3, Tail2);
         addChildTo(Tail2, Tail1);
         addChildTo(Tail1, Waist);
-        
+
         //Corrections
         MiddleHorn.setRotationPoint(0, 0, 0);
         Shieldthingy1.setRotationPoint(0, 0, 0);
@@ -286,9 +286,9 @@ public class ModelTriceratops extends MowzieModelBase
         FrontThighLeft.rotateAngleX -= 0.07;
         FrontThighRight.rotateAngleX -= 0.07;
         Neck.rotateAngleX -= 0.07;
-        
-        this.tailParts = new MowzieModelRenderer[] { this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1 };
-        
+
+        this.tailParts = new MowzieModelRenderer[]{this.Tail5, this.Tail4, this.Tail3, this.Tail2, this.Tail1};
+
         BackCalfLeft.setInitValuesToCurrentPose();
         BackCalfRight.setInitValuesToCurrentPose();
         BackThighLeft.setInitValuesToCurrentPose();
@@ -329,7 +329,7 @@ public class ModelTriceratops extends MowzieModelBase
         LeftFrontFoot.setInitValuesToCurrentPose();
         RightFrontFoot.setInitValuesToCurrentPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -338,14 +338,14 @@ public class ModelTriceratops extends MowzieModelBase
         this.BackThighLeft.render(f5);
         this.BackThighRight.render(f5);
     }
-    
+
     private void setRotation(MowzieModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void resetPose()
     {
         BackCalfLeft.setCurrentPoseToInitValues();
@@ -388,7 +388,7 @@ public class ModelTriceratops extends MowzieModelBase
         LeftFrontFoot.setCurrentPoseToInitValues();
         RightFrontFoot.setCurrentPoseToInitValues();
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityTriceratops triceratops)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, triceratops);
@@ -399,24 +399,24 @@ public class ModelTriceratops extends MowzieModelBase
          * f1 = (float) Math.cos(f/50)*0.5F + 1F; 
          * f1 = 1.5F;
          */
-        
+
         //Sprinting functionality parameters
         float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.92))));
         float legOffsetModifier = 2.5F;
         float bobBase = 2F;
         if (sprintModifier >= 0.9)
             bobBase = 1F;
-        
+
         float scaleFactor = 0.5F;
         float height = 0.5F;
         float frontOffset = -2F;
         float animationDegree = 2 - sprintModifier * 0.2F;
-        
+
         float defPosProgress = triceratops.defendingPosition.getAnimationProgressSinSqrt();
-        
+
         faceTarget(Head, 2, f3, f4);
         faceTarget(Neck, 2, f3, f4);
-        
+
         bob(Waist, bobBase * scaleFactor, height, false, f, f1);
         bob(BackThighLeft, bobBase * scaleFactor, height, false, f, f1);
         bob(BackThighRight, bobBase * scaleFactor, height, false, f, f1);
@@ -424,30 +424,30 @@ public class ModelTriceratops extends MowzieModelBase
         walk(Head, bobBase * scaleFactor, 0.1F * height, false, -1.5F, 0F, f, f1);
         Waist.rotateAngleX += 0.1 * sprintModifier;
         Head.rotateAngleX += 0.6 * sprintModifier;
-        
+
         walk(BackThighLeft, 1F * scaleFactor, 0.2F * animationDegree, false, 0F + sprintModifier * legOffsetModifier, 0F + sprintModifier * 0.2F, f, f1);
         walk(BackCalfLeft, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, true, 1F + sprintModifier * legOffsetModifier, 0F, f, f1);
         walk(LeftBackFoot, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, false, 1.5F + sprintModifier * legOffsetModifier, 0F, f, f1);
-        
+
         walk(BackThighRight, 1F * scaleFactor, 0.2F * animationDegree, true, 0F, 0F + sprintModifier * 0.2F, f, f1);
         walk(BackCalfRight, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, false, 1F, 0F, f, f1);
         walk(RightBackFoot, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, true, 1.5F, 0F, f, f1);
-        
+
         walk(FrontThighRight, 1F * scaleFactor, 0.2F * animationDegree, true, frontOffset + 0F, -0.1F + sprintModifier * 0.2F, f, f1);
         walk(FrontCalfRight, 1F * scaleFactor, 0.1F * animationDegree, true, frontOffset + 1F, -0.2F, f, f1);
         walk(RightFrontFoot, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, false, frontOffset + 1.5F, 0F, f, f1);
-        
+
         walk(FrontThighLeft, 1F * scaleFactor, 0.2F * animationDegree, false, frontOffset + 0F + sprintModifier * legOffsetModifier, -0.1F + sprintModifier * 0.2F, f, f1);
         walk(FrontCalfLeft, 1F * scaleFactor, 0.1F * animationDegree, false, frontOffset + 1F + sprintModifier * legOffsetModifier, -0.2F, f, f1);
         walk(LeftFrontFoot, 1F * scaleFactor, 0.2F * animationDegree - sprintModifier * 0.1F, true, frontOffset + 1.5F + sprintModifier * legOffsetModifier, 0F, f, f1);
-        
+
         chainWave(tailParts, bobBase * scaleFactor, 0.03F, 1F, f, f1);
-        
+
         //Idling
         walk(Neck, 0.1F, 0.07F, false, -1F, 0F, triceratops.frame, 1F);
         walk(Head, 0.1F, 0.07F, true, 0F, 0F, triceratops.frame, 1F);
         walk(Waist, 0.1F, 0.025F, false, 0F, 0F, triceratops.frame, 1F);
-        
+
         float inverseKinematicsConstant = 0.3F;
         walk(FrontThighRight, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, triceratops.frame, 1F);
         walk(FrontCalfRight, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, triceratops.frame, 1F);
@@ -457,12 +457,12 @@ public class ModelTriceratops extends MowzieModelBase
         walk(LeftFrontFoot, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, triceratops.frame, 1F);
         FrontThighRight.rotationPointZ -= 0.5 * Math.cos(triceratops.frame * 0.1F);
         FrontThighLeft.rotationPointZ -= 0.5 * Math.cos(triceratops.frame * 0.1F);
-        
+
         chainSwing(tailParts, 0.1F, 0.05F, 2, triceratops.frame, 1F);
         chainWave(tailParts, 0.1F, -0.05F, 1, triceratops.frame, 1F);
-        
+
         triceratops.tailBuffer.applyChainSwingBuffer(this.tailParts);
-        
+
         //Specialized animations
         Head.rotateAngleZ += Math.cos(triceratops.frame) * triceratops.flailDegree.value / 3;
         FrontThighRight.rotateAngleX += Math.cos(triceratops.frame / 3) * triceratops.flailDegree.value * 0.3;
@@ -471,7 +471,7 @@ public class ModelTriceratops extends MowzieModelBase
         FrontThighLeft.rotateAngleX += Math.cos(triceratops.frame / 3) * triceratops.flailDegree.value * -0.3;
         FrontCalfLeft.rotateAngleX += Math.cos((triceratops.frame + 1.5) / 3) * triceratops.flailDegree.value * -0.4;
         LeftFrontFoot.rotateAngleX += Math.cos((triceratops.frame - 3) / 3) * triceratops.flailDegree.value * -0.3;
-        
+
         //Defending Animation
         Waist.rotateAngleX += 0.25F * defPosProgress;
         Neck.rotateAngleX -= 0.1F * defPosProgress;
@@ -489,12 +489,12 @@ public class ModelTriceratops extends MowzieModelBase
         FrontCalfLeft.rotateAngleX -= 0.2 * defPosProgress * (Math.cos(0.3 * triceratops.frame - 1 + Math.sin(0.3 * triceratops.frame - 1)) + 1);
         LeftFrontFoot.rotateAngleX += 0.1 * defPosProgress * (Math.cos(0.3 * triceratops.frame + Math.sin(0.3 * triceratops.frame)) + 1);
     }
-    
+
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.animator.update(entity);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityTriceratops) entity);
-        
+
         if (entity.getAnimationId() == JurassiCraftAnimationIDs.CHARGE.animID())
         {
             this.animator.setAnimation(JurassiCraftAnimationIDs.CHARGE.animID());

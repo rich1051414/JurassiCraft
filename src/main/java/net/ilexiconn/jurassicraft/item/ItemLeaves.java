@@ -9,12 +9,12 @@ import net.minecraft.util.IIcon;
 
 /**
  * @author ProPercivalalb
- **/
+ */
 public class ItemLeaves extends ItemBlock
 {
-    
+
     private Block targetBlock;
-    
+
     public ItemLeaves(Block block)
     {
         super(block);
@@ -22,20 +22,20 @@ public class ItemLeaves extends ItemBlock
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int par1)
     {
         return this.targetBlock.getIcon(2, par1);
     }
-    
+
     @Override
     public int getMetadata(int par1)
     {
         return par1 | 4;
     }
-    
+
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {

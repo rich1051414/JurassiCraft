@@ -21,7 +21,7 @@ public class EntityTriceratops extends EntityJurassiCraftCharges implements IDin
     public ControlledParam flailDegree = new ControlledParam(0.0F, 0.0F, 1.0F, 0.0F);
     public ControlledAnimation defendingPosition = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(5);
-    
+
     public EntityTriceratops(World world)
     {
         super(world);
@@ -46,7 +46,7 @@ public class EntityTriceratops extends EntityJurassiCraftCharges implements IDin
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(3500);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
@@ -70,19 +70,19 @@ public class EntityTriceratops extends EntityJurassiCraftCharges implements IDin
         }
         return 0.91D * (double) this.getYBouningBox();
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 350;
     }
-    
+
     @Override
     public void onUpdate()
     {
@@ -90,7 +90,7 @@ public class EntityTriceratops extends EntityJurassiCraftCharges implements IDin
         this.flailDegree.update();
         if (this.animID == JurassiCraftAnimationIDs.CHARGE.animID() && this.animTick == 1)
             this.flailDegree.thereAndBack(0F, 0.1F, 1F, 5);
-        
+
         if (this.isDefending())
         {
             this.defendingPosition.increaseTimer();
@@ -107,10 +107,10 @@ public class EntityTriceratops extends EntityJurassiCraftCharges implements IDin
                     this.setDefending(((EntityJurassiCraftAggressive) this.creatureToAttack).isCreatureOlderThan(0.5F));
             }
         }
-        
+
         this.tailBuffer.calculateChainSwingBuffer(40.0F, 5, 3.0F, this);
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {

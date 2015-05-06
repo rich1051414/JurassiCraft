@@ -12,15 +12,15 @@ import org.lwjgl.opengl.GL11;
 
 public class TileSecurityFenceLowBaseRenderer extends TileEntitySpecialRenderer
 {
-    
+
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/modelLowSecurityFenceBase.png");
     private static final ModelLowSecurityFenceBase model = new ModelLowSecurityFenceBase();
-    
+
     public TileSecurityFenceLowBaseRenderer()
     {
-        
+
     }
-    
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {

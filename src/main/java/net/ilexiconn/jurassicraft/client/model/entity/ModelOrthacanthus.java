@@ -29,12 +29,12 @@ public class ModelOrthacanthus extends MowzieModelBase
     public MowzieModelRenderer finBack;
     private MowzieModelRenderer[] tailParts;
     private MowzieModelRenderer[] shortTailParts;
-    
+
     public ModelOrthacanthus()
     {
         this.textureWidth = 128;
         this.textureHeight = 128;
-        
+
         this.body3 = new MowzieModelRenderer(this, 28, 22);
         this.body3.setRotationPoint(0.0F, 0.0F, 7.75F);
         this.body3.addBox(-2.0F, -2.0F, 0.0F, 4, 4, 8);
@@ -109,34 +109,34 @@ public class ModelOrthacanthus extends MowzieModelBase
         this.finFront2 = new MowzieModelRenderer(this, 72, 5);
         this.finFront2.setRotationPoint(0.0F, -2.5F, 0.0F);
         this.finFront2.addBox(0.0F, -4.5F, 0.0F, 0, 5, 8);
-        
+
         this.head.addChild(this.mouth);
         this.head.addChild(this.body1);
-        
+
         this.body1.addChild(this.fliperLeft1);
         this.body1.addChild(this.fliperRight1);
         this.body1.addChild(this.hornTop);
         this.body1.addChild(this.finFront1);
         this.body1.addChild(this.body2);
-        
+
         this.body2.addChild(this.fliperLeft2);
         this.body2.addChild(this.fliperRight2);
         this.body2.addChild(this.finFront2);
         this.body2.addChild(this.body3);
-        
+
         this.body3.addChild(this.fliperRight3);
         this.body3.addChild(this.fliperLeft3);
         this.body3.addChild(this.finFront3);
         this.body3.addChild(this.body4);
-        
+
         this.body4.addChild(this.fliperLeft4);
         this.body4.addChild(this.fliperRight4);
         this.body5.addChild(this.finBack);
         this.body4.addChild(this.body5);
-        
-        this.tailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3, this.body2, this.body1, this.head };
-        this.shortTailParts = new MowzieModelRenderer[] { this.body5, this.body4, this.body3, this.body2, this.body1 };
-        
+
+        this.tailParts = new MowzieModelRenderer[]{this.body5, this.body4, this.body3, this.body2, this.body1, this.head};
+        this.shortTailParts = new MowzieModelRenderer[]{this.body5, this.body4, this.body3, this.body2, this.body1};
+
         this.head.setInitValuesToCurrentPose();
         this.mouth.setInitValuesToCurrentPose();
         this.body1.setInitValuesToCurrentPose();
@@ -158,7 +158,7 @@ public class ModelOrthacanthus extends MowzieModelBase
         this.body5.setInitValuesToCurrentPose();
         this.finBack.setInitValuesToCurrentPose();
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -166,7 +166,7 @@ public class ModelOrthacanthus extends MowzieModelBase
         this.setRotationAngles(f, f1, f2, f3, f4, f5, (EntityOrthacanthus) entity);
         this.head.render(f5);
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, EntityOrthacanthus orthacanthus)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, orthacanthus);
@@ -180,31 +180,31 @@ public class ModelOrthacanthus extends MowzieModelBase
             this.flap(this.fliperLeft2, 1.0F * globalSpeed, 0.7F, false, -1F, -0.8F, f, f1);
             this.flap(this.fliperLeft3, 1.0F * globalSpeed, 0.7F, false, -2F, -0.8F, f, f1);
             this.flap(this.fliperLeft4, 1.0F * globalSpeed, 0.7F, false, -3F, -0.8F, f, f1);
-            
+
             this.flap(this.fliperRight1, 1.0F * globalSpeed, 0.7F, true, 0.0F, 0.8F, f, f1);
             this.flap(this.fliperRight2, 1.0F * globalSpeed, 0.7F, true, -1F, 0.8F, f, f1);
             this.flap(this.fliperRight3, 1.0F * globalSpeed, 0.7F, true, -2F, 0.8F, f, f1);
             this.flap(this.fliperRight4, 1.0F * globalSpeed, 0.7F, true, -3F, 0.8F, f, f1);
-            
+
             this.chainSwing(this.tailParts, 1.0F * globalSpeed, 0.5F, 3.0D, f, f1);
             head.rotationPointX -= -5 * f1 * Math.sin((f + 1) * globalSpeed);
-            
+
             //Idle
             this.walk(this.mouth, 0.1F, 0.1F, false, 0.0F, 0.1F, orthacanthus.frame, 1.0F);
-            
+
             this.flap(this.fliperLeft1, 0.2F, 0.25F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft2, 0.2F, 0.2F, false, -1F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft3, 0.2F, 0.15F, false, -2F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft4, 0.2F, 0.15F, false, -3F, 0.0F, orthacanthus.frame, 1.0F);
-            
+
             this.flap(this.fliperRight1, 0.2F, 0.25F, true, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight2, 0.2F, 0.2F, true, -1F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight3, 0.2F, 0.15F, true, -2F, 0.0F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight4, 0.2F, 0.15F, true, -3F, 0.0F, orthacanthus.frame, 1.0F);
-            
+
             this.chainWave(this.tailParts, 0.025F, -0.05F, 3.0D, orthacanthus.frame, 1.0F);
             this.chainSwing(this.tailParts, 0.05F, 0.05F, 1.5D, orthacanthus.frame, 1.0F);
-            
+
             orthacanthus.tailBuffer.applyChainSwingBuffer(this.tailParts);
         }
         else
@@ -212,28 +212,28 @@ public class ModelOrthacanthus extends MowzieModelBase
             this.head.rotationPointY += 4.0F;
             this.bob(this.head, 0.3F, 4.0F, true, orthacanthus.frame, 1.0F);
             this.flap(this.head, 0.3F, 0.5F, false, 0.0F, 0.0F, orthacanthus.frame, 1.0F);
-            
+
             this.flap(this.fliperLeft1, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft2, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft3, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperLeft4, 1.0F, 0.7F, false, 0.0F, -0.8F, orthacanthus.frame, 1.0F);
-            
+
             this.flap(this.fliperRight1, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight2, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight3, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
             this.flap(this.fliperRight4, 1.0F, 0.7F, true, 0.0F, 0.8F, orthacanthus.frame, 1.0F);
-            
+
             this.chainWave(this.shortTailParts, 0.6F, -0.1F, 3.0D, orthacanthus.frame, 1.0F);
         }
     }
-    
+
     public void setRotateAngle(MowzieModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     public void resetPose()
     {
         this.head.setCurrentPoseToInitValues();

@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockDNACombinator extends BlockContainer
 {
-    
+
     public BlockDNACombinator()
     {
         super(Material.iron);
@@ -28,25 +28,25 @@ public class BlockDNACombinator extends BlockContainer
         this.setCreativeTab(ModCreativeTabs.blocks);
         this.setBlockTextureName(JurassiCraft.getModId() + "dnaCombinatorBreakingParticles");
     }
-    
+
     @Override
     public int getRenderType()
     {
         return -1;
     }
-    
+
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
@@ -61,7 +61,7 @@ public class BlockDNACombinator extends BlockContainer
         }
         return false;
     }
-    
+
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
@@ -83,7 +83,7 @@ public class BlockDNACombinator extends BlockContainer
             world.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
     }
-    
+
     @Override
     public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldMetadata)
     {
@@ -123,7 +123,7 @@ public class BlockDNACombinator extends BlockContainer
         }
         super.breakBlock(world, x, y, z, oldblock, oldMetadata);
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {
@@ -136,5 +136,5 @@ public class BlockDNACombinator extends BlockContainer
             throw new RuntimeException(e);
         }
     }
-    
+
 }

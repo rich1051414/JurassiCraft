@@ -11,7 +11,7 @@ public class SlotDNA extends Slot
     {
         super(inventory, x, y, z);
     }
-    
+
     public boolean isItemValid(ItemStack itemStack)
     {
         return itemStack.getItem() instanceof ItemDNA;

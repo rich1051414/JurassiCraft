@@ -18,7 +18,7 @@ public class ItemDinoPad extends Item
         setTextureName(JurassiCraft.getModId() + "dinopad");
         setCreativeTab(ModCreativeTabs.items);
     }
-    
+
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
@@ -26,32 +26,32 @@ public class ItemDinoPad extends Item
         {
             --y;
         }
-        
+
         if (side == 1)
         {
             ++y;
         }
-        
+
         if (side == 2)
         {
             --z;
         }
-        
+
         if (side == 3)
         {
             ++z;
         }
-        
+
         if (side == 4)
         {
             --x;
         }
-        
+
         if (side == 5)
         {
             ++x;
         }
-        
+
         if (!player.canPlayerEdit(x, y, z, side, stack) || !player.isSneaking())
         {
             return false;
@@ -63,18 +63,18 @@ public class ItemDinoPad extends Item
                 if (!player.capabilities.isCreativeMode)
                 {
                     player.getHeldItem().stackSize--;
-                    
+
                     if (player.getHeldItem().stackSize <= 0)
                     {
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
                     }
                 }
-                
+
                 world.setBlock(x, y, z, ModBlocks.dinoPad);
                 world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "step.stone", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                
+
                 int metadata = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-                
+
                 if (metadata == 0)
                 {
                     world.setBlockMetadataWithNotify(x, y, z, 0, 2);
@@ -92,7 +92,7 @@ public class ItemDinoPad extends Item
                     world.setBlockMetadataWithNotify(x, y, z, 3, 2);
                 }
             }
-            
+
             return true;
         }
     }

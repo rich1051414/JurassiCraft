@@ -2,14 +2,14 @@ package net.ilexiconn.jurassicraft.utility;
 
 public class ControlledParam
 {
-    
+
     public float value;
     public float change;
     public float max;
     public float min;
     public int pause;
     public int mode;
-    
+
     public ControlledParam(float value, float change, float max, float min)
     {
         this.value = value;
@@ -17,7 +17,7 @@ public class ControlledParam
         this.max = max;
         this.min = min;
     }
-    
+
     public void thereAndBack(float start, float change, float destination, int pause)
     {
         mode = 1;
@@ -27,7 +27,7 @@ public class ControlledParam
         this.min = start;
         this.pause = pause;
     }
-    
+
     public void update()
     {
         if (mode == 1)

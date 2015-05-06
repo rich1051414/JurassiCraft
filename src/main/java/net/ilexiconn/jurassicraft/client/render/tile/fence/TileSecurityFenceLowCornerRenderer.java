@@ -10,16 +10,16 @@ import org.lwjgl.opengl.GL11;
 
 public class TileSecurityFenceLowCornerRenderer extends TileEntitySpecialRenderer
 {
-    
+
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/modelLowSecurityFenceCorner.png");
-    
+
     //private static final ModelLowSecurityFenceCorner model = new ModelLowSecurityFenceCorner();
-    
+
     public TileSecurityFenceLowCornerRenderer()
     {
-        
+
     }
-    
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {

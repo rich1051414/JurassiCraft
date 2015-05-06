@@ -5,27 +5,27 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public abstract class EntityAIHerd extends EntityAIBase
 {
-    
+
     private CreatureHerd herd;
     private EntityJurassiCraftCreature creature;
     private boolean groupAttack;
-    
+
     public EntityAIHerd(EntityJurassiCraftCreature creature, boolean groupAttack)
     {
         this.creature = creature;
         this.groupAttack = groupAttack;
     }
-    
+
     public EntityJurassiCraftCreature getCreature()
     {
         return creature;
     }
-    
+
     public CreatureHerd getHerd()
     {
         return herd;
     }
-    
+
     public void startExecuting()
     {
         for (CreatureHerd herd : CreatureHerd.getHerds())
@@ -53,10 +53,10 @@ public abstract class EntityAIHerd extends EntityAIBase
             CreatureHerd.registerHerd(herd);
         }
     }
-    
+
     protected CreatureHerd createHerd()
     {
         return new CreatureHerd(groupAttack);
     }
-    
+
 }

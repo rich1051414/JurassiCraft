@@ -6,7 +6,6 @@ import net.ilexiconn.jurassicraft.ai.animation.AnimationAIBite;
 import net.ilexiconn.jurassicraft.ai.animation.AnimationAIRoar;
 import net.ilexiconn.jurassicraft.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.client.model.modelbase.IntermittentAnimation;
-import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.interfaces.IHerbivore;
@@ -23,7 +22,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
     public IntermittentAnimation trunkSwing = new IntermittentAnimation(20, 50, 10, 1);
     public IntermittentAnimation earFlap = new IntermittentAnimation(20, 20, 10, 1);
     public IntermittentAnimation tailSwing = new IntermittentAnimation(20, 30, 10, 1);
-    
+
     public EntityMammoth(World world)
     {
         super(world);
@@ -48,25 +47,25 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setCreatureExperiencePoints(3500);
     }
-    
+
     @Override
     public double getMountedYOffset()
     {
         return (double) this.getYBouningBox() + 0.5;
     }
-    
+
     @Override
     public int getNumberOfAllies()
     {
         return 1;
     }
-    
+
     @Override
     public int getTalkInterval()
     {
         return 400;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyBeenHit, int enchantBonus)
     {
@@ -81,7 +80,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
             this.dropItem(this.getCreature().getSteak(), count);
         }
     }
-    
+
     @Override
     public void onUpdate()
     {
@@ -93,7 +92,7 @@ public class EntityMammoth extends EntityJurassiCraftProtective implements IMamm
         earFlap.runAnimation();
         tailSwing.runAnimation();
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {

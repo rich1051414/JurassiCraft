@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 
 public class BlockGypsumCobblestone extends Block
 {
-    
+
     public BlockGypsumCobblestone()
     {
         super(Material.rock);

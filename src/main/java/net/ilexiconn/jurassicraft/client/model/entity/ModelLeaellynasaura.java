@@ -34,12 +34,12 @@ public class ModelLeaellynasaura extends MowzieModelBase
     MowzieModelRenderer arm1;
     MowzieModelRenderer body1;
     MowzieModelRenderer tailback;
-    
+
     public ModelLeaellynasaura()
     {
         textureWidth = 128;
         textureHeight = 64;
-        
+
         body = new MowzieModelRenderer(this, 0, 32);
         body.addBox(-1.5F, 0F, 0F, 3, 3, 5);
         body.setRotationPoint(0F, 14F, -6F);
@@ -160,15 +160,15 @@ public class ModelLeaellynasaura extends MowzieModelBase
         tailback.setTextureSize(128, 64);
         tailback.mirror = true;
         setRotation(tailback, -0.1115358F, 0F, 0F);
-        
+
         addChildTo(feet1, lowerleg);
         addChildTo(lowerleg, midleg);
         addChildTo(midleg, upperleg);
-        
+
         addChildTo(feet, lowerleg1);
         addChildTo(lowerleg1, midleg1);
         addChildTo(midleg1, upperleg1);
-        
+
         body.setInitValuesToCurrentPose();
         neck.setInitValuesToCurrentPose();
         head.setInitValuesToCurrentPose();
@@ -190,7 +190,7 @@ public class ModelLeaellynasaura extends MowzieModelBase
         body1.setInitValuesToCurrentPose();
         tailback.setInitValuesToCurrentPose();
     }
-    
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
@@ -216,14 +216,14 @@ public class ModelLeaellynasaura extends MowzieModelBase
         body1.render(f5);
         tailback.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void resetPose()
     {
         body.setCurrentPoseToInitValues();
@@ -247,7 +247,7 @@ public class ModelLeaellynasaura extends MowzieModelBase
         body1.setCurrentPoseToInitValues();
         tailback.setCurrentPoseToInitValues();
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
@@ -255,5 +255,5 @@ public class ModelLeaellynasaura extends MowzieModelBase
         walk(upperleg, 0.7F, 0.5F, false, 0F, 0, f, f1);
         walk(upperleg1, 0.7F, 0.5F, true, 0F, 0, f, f1);
     }
-    
+
 }

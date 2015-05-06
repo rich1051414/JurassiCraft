@@ -11,10 +11,10 @@ public class HerdAIVelociraptorFollowHerd extends HerdAIFollowHerd
     {
         super(creature, true, speed);
     }
-    
+
     protected CreatureHerd createHerd()
     {
         return new VelociraptorHerd();
     }
-    
+
 }
