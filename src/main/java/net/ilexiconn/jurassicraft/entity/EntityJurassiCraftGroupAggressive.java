@@ -8,7 +8,6 @@ import java.util.List;
 
 public class EntityJurassiCraftGroupAggressive extends EntityJurassiCraftAggressive
 {
-
     public EntityJurassiCraftGroupAggressive(World world)
     {
         super(world);
@@ -17,7 +16,7 @@ public class EntityJurassiCraftGroupAggressive extends EntityJurassiCraftAggress
     @Override
     protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity entity)
     {
-        if (entity instanceof EntityLivingBase)
+        if (entity instanceof EntityLivingBase && entity.getClass() != getClass())
         {
             EntityLivingBase attacker = (EntityLivingBase) entity;
             List list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(16.0D, 8.0D, 16.0D));
