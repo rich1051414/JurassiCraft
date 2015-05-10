@@ -1,13 +1,15 @@
 package net.ilexiconn.jurassicraft.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftCreature;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -16,18 +18,25 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Facing;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSpawnEggJurassiCraft extends Item
 {
+    @SideOnly(Side.CLIENT)
+    private IIcon overlay;
+	
     public ItemSpawnEggJurassiCraft()
     {
-        this.setUnlocalizedName("spawnEgg");
-        this.setTextureName(JurassiCraft.getModId() + "egg_Generic");
+        this.setUnlocalizedName("jc_spawn_egg"); //ItemMonsterPlacer
+        this.setTextureName("spawn_egg");
         this.setCreativeTab(ModCreativeTabs.spawnEggs);
         this.setHasSubtypes(true);
     }
@@ -71,27 +80,7 @@ public class ItemSpawnEggJurassiCraft extends Item
                 return creature;
             }
         }
-        catch (InstantiationException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
-        catch (InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e)
-        {
-            e.printStackTrace();
-        }
-        catch (SecurityException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -100,7 +89,7 @@ public class ItemSpawnEggJurassiCraft extends Item
     }
 
     @Override
-    public void addInformation(ItemStack egg, EntityPlayer player, List list, boolean flag)
+    public void addInformation(ItemStack egg, EntityPlayer player, List info, boolean flag)
     {
         if (egg.hasTagCompound())
         {
@@ -108,27 +97,27 @@ public class ItemSpawnEggJurassiCraft extends Item
             {
                 if (egg.getTagCompound().getBoolean("SpawnBaby"))
                 {
-                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnBaby"));
-                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToAdult"));
+                    info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnBaby"));
+                    info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToAdult"));
                 }
                 else
                 {
-                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnAdult"));
-                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToBaby"));
+                    info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnAdult"));
+                    info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToBaby"));
                 }
             }
         }
         else
         {
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnAdult"));
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToBaby"));
+            info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.spawnAdult"));
+            info.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.egg.info.changeToBaby"));
         }
     }
 
     @Override
     public ItemStack onItemRightClick(ItemStack egg, World world, EntityPlayer player)
     {
-        if (egg.hasTagCompound())
+		if (egg.hasTagCompound())
         {
             if (egg.getTagCompound().hasKey("SpawnBaby"))
             {
@@ -192,22 +181,40 @@ public class ItemSpawnEggJurassiCraft extends Item
         return StatCollector.translateToLocal("item." + CreatureManager.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + "_SpawnEgg.name").trim();
     }
 
+
+    @SideOnly(Side.CLIENT)
+    public boolean requiresMultipleRenderPasses()
+    {
+        return true;
+    }
+
+    /**
+     * Gets an icon index based on an item's damage value and the given render pass
+     */
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamageForRenderPass(int p_77618_1_, int p_77618_2_)
+    {
+        return p_77618_2_ > 0 ? this.overlay : super.getIconFromDamageForRenderPass(p_77618_1_, p_77618_2_);
+    }
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack itemStack, int metadata)
+    public int getColorFromItemStack(ItemStack stack, int renderPass)
     {
-        return 0;
+    	Creature creature = CreatureManager.getCreatureFromId(stack.getItemDamage());
+    	
+        return creature != null ? (renderPass == 0 ? creature.getEggPrimaryColor() : creature.getEggSecondaryColor()) : 16777215;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
         for (Creature creature : CreatureManager.getCreatures())
         {
             if (creature.getAddedItemTypes() != 0)
             {
-                list.add(new ItemStack(item, 1, creature.getCreatureID()));
+                subtypes.add(new ItemStack(item, 1, creature.getCreatureID()));
             }
         }
     }
@@ -257,5 +264,12 @@ public class ItemSpawnEggJurassiCraft extends Item
 
             return true;
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        super.registerIcons(iconRegister);
+        this.overlay = iconRegister.registerIcon("spawn_egg_overlay");
     }
 }

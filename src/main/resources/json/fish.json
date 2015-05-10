@@ -36,7 +36,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 3,
+		"eggPrimaryColor": 5856883,
+		"eggSecondaryColor": 13818579
     }, 
     {
         "creatureName":"Orthacanthus",
@@ -75,6 +77,8 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 1
+        "addItemTypes": 1,
+		"eggPrimaryColor": 5729607,
+		"eggSecondaryColor": 2434341
     }
 ]

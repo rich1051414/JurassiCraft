@@ -74,6 +74,9 @@ public class Creature
     private ItemSkull skull;
     private ItemTooth tooth;
 
+	private int eggPrimaryColor;
+	private int eggSecondaryColor;
+
     public Creature(String creatureCategory, JsonCreatureDefinition def, Class clazz)
     {
         this.clazz = clazz;
@@ -118,7 +121,9 @@ public class Creature
         this.yBoxDelta = def.yBoxDelta;
         this.yBoxMin = def.yBoxMin;
         this.addItemTypes = def.addItemTypes;
-
+        this.eggPrimaryColor = def.eggPrimaryColor;
+        this.eggSecondaryColor = def.eggSecondaryColor;
+        
         //        switch (def.addItemTypes)
         //		{
         //			case 0:
@@ -535,4 +540,14 @@ public class Creature
     {
         return this.addItemTypes;
     }
+
+	public int getEggPrimaryColor()
+	{
+		return eggPrimaryColor;
+	}
+    
+	public int getEggSecondaryColor()
+	{
+		return eggSecondaryColor;
+	}
 }

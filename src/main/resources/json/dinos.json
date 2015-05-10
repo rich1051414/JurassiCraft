@@ -36,7 +36,9 @@
         "numberOfInfoPages": 3,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 7
+        "addItemTypes": 7,
+		"eggPrimaryColor":10849367,
+		"eggSecondaryColor":1775635
     },
     {
         "creatureName":"Brachiosaurus",
@@ -75,7 +77,9 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+	    "eggPrimaryColor":7172178,
+		"eggSecondaryColor":8289590
     },
     {
         "creatureName":"Velociraptor",
@@ -114,7 +118,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 7
+        "addItemTypes": 7,
+		"eggPrimaryColor":5722975,
+		"eggSecondaryColor":9715009
     },
     {
         "creatureName":"Stegosaurus",
@@ -153,7 +159,9 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+		"eggPrimaryColor":12038503,
+		"eggSecondaryColor":4607785
     },
     {
         "creatureName":"Triceratops",
@@ -192,7 +200,9 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+		"eggPrimaryColor":1055748,
+		"eggSecondaryColor":3028233
     },
     {
         "creatureName":"Tyrannosaurus",
@@ -231,7 +241,9 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+		"eggPrimaryColor":8226665,
+		"eggSecondaryColor":3816494
     },
     {
         "creatureName":"Gallimimus",
@@ -270,7 +282,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 3
+        "addItemTypes": 3,
+		"eggPrimaryColor":13926495,
+		"eggSecondaryColor":9919828
     },
     {
         "creatureName":"Hypsilophodon",
@@ -309,7 +323,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 7
+        "addItemTypes": 7,
+		"eggPrimaryColor": 8630346,
+		"eggSecondaryColor": 4225595
     },
     {
         "creatureName":"Leaellynasaura",
@@ -348,7 +364,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 0,
+		"eggPrimaryColor": 12758918,
+		"eggSecondaryColor": 95488
     },
     {
         "creatureName":"Herrerasaurus",
@@ -387,7 +405,9 @@
         "numberOfInfoPages": 2,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 7
+        "addItemTypes": 7,
+		"eggPrimaryColor": 9922079,
+		"eggSecondaryColor": 2695447
     },
     {
         "creatureName":"Dilophosaurus",
@@ -426,7 +446,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+		"eggPrimaryColor":855825,
+		"eggSecondaryColor":6758946
     },
     {
         "creatureName":"Oviraptor",
@@ -465,7 +487,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 0,
+		"eggPrimaryColor": 9251910,
+		"eggSecondaryColor": 6300468
     },
     {
         "creatureName":"Parasaurolophus",
@@ -504,7 +528,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 9
+        "addItemTypes": 9,
+		"eggPrimaryColor": 10650937,
+		"eggSecondaryColor": 5123596
     },
     {
         "creatureName":"Carnotaurus",
@@ -543,7 +569,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 5,
+		"eggPrimaryColor": 12632970,
+		"eggSecondaryColor": 6976863
     },
     {
         "creatureName":"Santa",
@@ -582,6 +610,8 @@
         "numberOfInfoPages": 1,
         "waterCreature": false,
         "flyingCreature": false,
-        "addItemTypes": 0
+        "addItemTypes": 0,
+		"eggPrimaryColor": 16711680,
+		"eggSecondaryColor": 16777215
     }
 ]

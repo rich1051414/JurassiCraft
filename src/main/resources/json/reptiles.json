@@ -75,7 +75,9 @@
         "numberOfInfoPages": 1,
         "waterCreature": true,
         "flyingCreature": false,
-        "addItemTypes": 5
+        "addItemTypes": 5,
+		"eggPrimaryColor": 11118513,
+		"eggSecondaryColor": 1577232
     },
     {
         "creatureName":"Deinosuchus",

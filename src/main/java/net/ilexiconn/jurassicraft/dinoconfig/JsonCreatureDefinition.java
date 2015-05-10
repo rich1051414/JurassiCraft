@@ -54,4 +54,7 @@ public class JsonCreatureDefinition
     public boolean flyingCreature;
 
     public byte addItemTypes;
+
+	public int eggPrimaryColor;
+	public int eggSecondaryColor;
 }

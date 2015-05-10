@@ -54,7 +54,9 @@
     "numberOfInfoPages": 1,
     "waterCreature": false,
     "flyingCreature": false,
-    "addItemTypes": 4
+    "addItemTypes": 4,
+	"eggPrimaryColor":10308682,
+	"eggSecondaryColor":1777697
   },
   {
     "creatureName": "Basilosaurus",
@@ -164,7 +166,9 @@
     "numberOfInfoPages": 1,
     "waterCreature": false,
     "flyingCreature": false,
-    "addItemTypes": 4
+    "addItemTypes": 4,
+	"eggPrimaryColor": 8145692,
+	"eggSecondaryColor": 16579836
   },
   {
     "creatureName": "Uintatherium",
@@ -335,7 +339,9 @@
     "numberOfInfoPages": 1,
     "waterCreature": false,
     "flyingCreature": false,
-    "addItemTypes": 4
+    "addItemTypes": 4,
+	"eggPrimaryColor": 374839350,
+	"eggSecondaryColor": 853763
   },
   {
     "creatureName": "Moeritherium",
