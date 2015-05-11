@@ -1,13 +1,13 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.ModBlocks;
-import net.ilexiconn.jurassicraft.block.BlockCultivate;
-import net.ilexiconn.jurassicraft.block.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEmbryo;
 import net.ilexiconn.jurassicraft.client.render.RenderHelper;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivate;
+import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivateBottom;
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

@@ -6,9 +6,9 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.arthropods.EntityMeganeura;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.arthropods.EntityMeganeura;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 

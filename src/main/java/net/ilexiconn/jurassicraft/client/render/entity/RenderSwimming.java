@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
@@ -19,7 +19,6 @@ public abstract class RenderSwimming extends RenderDinosaur
         super(modelbase, creature, shadow);
     }
 
-    @Override
     protected void rotateCorpse(EntityLivingBase entitylivingbase, float f, float f1, float f2)
     {
         super.rotateCorpse(entitylivingbase, f, f1, f2);

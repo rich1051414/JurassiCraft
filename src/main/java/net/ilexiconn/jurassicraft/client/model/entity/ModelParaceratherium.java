@@ -1,15 +1,14 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
-import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.base.ResettableModelRenderer;
+import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelParaceratherium extends ModelBase
 {
-
     public static final float PI = (float) Math.PI;
     ResettableModelRenderer legBackLeft1, legBackLeft2, legBackLeft3, legBackRight1, legBackRight2, legBackRight3, legFrontRight1, legFrontRight2, legFrontRight3, legFrontLeft1, legFrontLeft2, legFrontLeft3, bodyBack, bodyFront, bodyNeck, tail1, tail2, tail3, neck1, neck2, earRight, earLeft, head1, head2, head3, mouth;
     private Animator animator;
@@ -251,7 +250,7 @@ public class ModelParaceratherium extends ModelBase
 
         float tailNaturalMovement = 0.15F * MathHelper.cos(0.05F * f2);
         float legsMovement1 = f1 * MathHelper.cos(f);
-        float legsMovement2 = f1 * MathHelper.cos(f + this.PI);
+        float legsMovement2 = f1 * MathHelper.cos(f + PI);
 
         legFrontLeft1.rotateAngleX = 1.2F * legsMovement1 + legFrontLeft1.firstRotateAngleX;
         legFrontLeft2.pinLegPlaneYZ(legFrontLeft1, 16.881943F, legFrontLeft1.rotateAngleX);

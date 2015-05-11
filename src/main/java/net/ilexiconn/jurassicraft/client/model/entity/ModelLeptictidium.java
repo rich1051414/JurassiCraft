@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityLeptictidium;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.minecraft.entity.Entity;
 
 /**
@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
  */
 public class ModelLeptictidium extends MowzieModelBase
 {
-
     public MowzieModelRenderer body1, body2, neck, head1, earLeft, earRight, head2, snout1, snout2, mouth1, mouth2, mouth3;
     public MowzieModelRenderer leftLeg1, leftLeg2, leftLeg3, leftFoot, rightLeg1, rightLeg2, rightLeg3, rightFoot;
     public MowzieModelRenderer rightHand, rightHand2, leftHand, leftHand2;
@@ -208,7 +207,6 @@ public class ModelLeptictidium extends MowzieModelBase
         this.tail5.setInitValuesToCurrentPose();
     }
 
-    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);

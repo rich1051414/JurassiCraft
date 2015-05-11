@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -23,7 +23,6 @@ public class GuiButtonFenceGeneric extends GuiButton
         this.yguiPos = yguiPosition;
     }
 
-    @Override
     public void drawButton(Minecraft mc, int x, int y)
     {
         if (this.visible)

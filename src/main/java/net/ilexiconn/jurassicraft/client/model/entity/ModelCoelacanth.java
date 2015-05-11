@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.fish.EntityCoelacanth;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.fish.EntityCoelacanth;
 import net.minecraft.entity.Entity;
 
 public class ModelCoelacanth extends MowzieModelBase
@@ -106,7 +106,6 @@ public class ModelCoelacanth extends MowzieModelBase
         this.tailFin.setInitValuesToCurrentPose();
     }
 
-    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);

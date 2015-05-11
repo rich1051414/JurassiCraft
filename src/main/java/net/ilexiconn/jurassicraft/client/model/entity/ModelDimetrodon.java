@@ -6,8 +6,8 @@
 
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 

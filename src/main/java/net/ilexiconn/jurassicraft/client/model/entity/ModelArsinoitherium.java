@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityArsinoitherium;
-import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityArsinoitherium;
+import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 
 public class ModelArsinoitherium extends MowzieModelBase
@@ -286,7 +286,6 @@ public class ModelArsinoitherium extends MowzieModelBase
         headShakeController.setInitValuesToCurrentPose();
     }
 
-    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);

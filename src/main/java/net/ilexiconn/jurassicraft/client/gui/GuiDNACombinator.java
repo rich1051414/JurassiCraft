@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerDNACombinator;
-import net.ilexiconn.jurassicraft.tile.TileDNACombinator;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerDNACombinator;
+import net.ilexiconn.jurassicraft.common.tileentity.TileDNACombinator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -24,13 +24,11 @@ public class GuiDNACombinator extends GuiContainer
         this.ySize = 188;
     }
 
-    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
 
-    @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.dnaCombinator"), this.xSize - this.fontRendererObj.getStringWidth("container.dnaCombinator"), 7, 4210752);

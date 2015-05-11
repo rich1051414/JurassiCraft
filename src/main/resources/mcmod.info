@@ -10,19 +10,16 @@
 		[
 			"iLexiconn",
 			"TheLarsinator",
-			"Ry_dog101",
 			"Click_Me",
 			"Gegy1000",
 			"RafaMv",
-			"Kashmoney",
-			"LieutnantGhost",
 			"JTGhawk137"
 		],
 		"credits": "JurassiCraft Team",
 		"logoFile": "/jurassiCraft.png"
 	},
 	{
-		"modid":"aapijc",
+		"modid":"jcanimation",
 		"name":"JCAnimationAPI",
 		"version":"1.2.4-JC",
 		"parent":"jurassicraft"

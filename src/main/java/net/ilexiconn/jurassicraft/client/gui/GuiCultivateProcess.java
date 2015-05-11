@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.entity.Creature;
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +28,6 @@ public class GuiCultivateProcess extends GuiScreen
         this.ySize = 107;
     }
 
-    @Override
     public void updateScreen()
     {
         if (!this.cultivator.isHatching())
@@ -37,19 +36,16 @@ public class GuiCultivateProcess extends GuiScreen
         }
     }
 
-    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
 
-    @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
 
-    @Override
     protected void keyTyped(char var1, int key)
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
@@ -58,17 +54,15 @@ public class GuiCultivateProcess extends GuiScreen
         }
     }
 
-    @Override
     public void initGui()
     {
         super.initGui();
         this.buttonList.clear();
-        this.guiLeft = (int) ((this.width - this.xSize) / 2);
-        this.guiTop = (int) ((this.height - this.ySize) / 2);
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;
         this.buttonList.add(new GuiButton(0, this.guiLeft + (this.xSize - 100) / 2, this.guiTop + 70, 100, 20, StatCollector.translateToLocal("container.cultivator.stopCultivating")));
     }
 
-    @Override
     public void actionPerformed(GuiButton button)
     {
         if (button.id == 0)
@@ -79,7 +73,6 @@ public class GuiCultivateProcess extends GuiScreen
         }
     }
 
-    @Override
     public void drawScreen(int x, int y, float f)
     {
         this.drawDefaultBackground();

@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelCoelacanthEgg;
 import net.ilexiconn.jurassicraft.client.model.entity.ModelMeganeuraEgg;
-import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -17,7 +17,6 @@ public class RenderDinoEgg extends Render
 
     }
 
-    @Override
     public void doRender(Entity entity, double x, double y, double z, float rotationYaw, float p_76986_9_)
     {
         this.renderEgg((EntityDinoEgg) entity, x, y, z, rotationYaw, p_76986_9_);
@@ -70,7 +69,6 @@ public class RenderDinoEgg extends Render
         }
     }
 
-    @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {
         return ((EntityDinoEgg) entity).getTexture();

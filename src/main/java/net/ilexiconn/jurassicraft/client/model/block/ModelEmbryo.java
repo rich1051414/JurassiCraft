@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.model.block;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.util.MathHelper;
 
 public class ModelEmbryo extends MowzieModelBase
@@ -91,7 +91,7 @@ public class ModelEmbryo extends MowzieModelBase
         }
 
         MowzieModelRenderer[] BodyParts = {shapes[2], shapes[1], shapes[0], shapes[3], shapes[4]};
-        shapes[0].rotationPointY -= (float) (MathHelper.cos(tile.animationTick * 0.05f) * 1);
+        shapes[0].rotationPointY -= MathHelper.cos(tile.animationTick * 0.05f) * 1;
         chainWave(BodyParts, 0.05f, 0.1f, 1, tile.animationTick, 1f);
         shapes[5].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;
         shapes[6].rotateAngleX += MathHelper.cos(tile.animationTick * 0.05f - 5) * 0.2;

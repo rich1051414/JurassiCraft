@@ -3,9 +3,9 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 //import thehippomaster.AnimationAPI.IAnimatedEntity;
 //import thehippomaster.AnimationAPI.client.Animator;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityAnkylosaurus;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityAnkylosaurus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
@@ -874,13 +874,12 @@ public class ModelAnkylosaurus extends MowzieModelBase
         //		animate((IAnimatedEntity)entity, f, f1, f2, f3, f4, f5);
         Waist.render(f5);
     }
-    
+
     /*    private void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
      //   	animator.update(entity);
         	setAngles();
             setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
     	}*/
-
     public void setRotateAngle(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;

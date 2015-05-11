@@ -2,10 +2,10 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerSecurityFenceLow;
-import net.ilexiconn.jurassicraft.packet.MessageFence;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowCorner;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerSecurityFenceLow;
+import net.ilexiconn.jurassicraft.common.packet.MessageFence;
+import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowCorner;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -37,7 +37,6 @@ public class GuiSecurityFenceLow extends GuiContainer
         }
     }
 
-    @Override
     public void initGui()
     {
         super.initGui();
@@ -65,7 +64,6 @@ public class GuiSecurityFenceLow extends GuiContainer
         this.refreshGUI();
     }
 
-    @Override
     public void onGuiClosed()
     {
         if (this.fence != null)
@@ -76,13 +74,11 @@ public class GuiSecurityFenceLow extends GuiContainer
         super.onGuiClosed();
     }
 
-    @Override
     public void updateScreen()
     {
         this.refreshGUI();
     }
 
-    @Override
     public void actionPerformed(GuiButton button)
     {
         switch (button.id)
@@ -132,7 +128,6 @@ public class GuiSecurityFenceLow extends GuiContainer
         this.fenceMap = this.fence.getAllFenceBlocks();
     }
 
-    @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         int direction = this.fence.getPlannedSide();
@@ -140,44 +135,43 @@ public class GuiSecurityFenceLow extends GuiContainer
         switch (direction)
         {
             case 0:
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.south"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.south")) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.south"), 71 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.south")) / 2, 146, 4210752);
                 break;
             case 1:
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.west"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.west")) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.west"), 71 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.west")) / 2, 146, 4210752);
                 break;
             case 2:
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.north"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.north")) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.north"), 71 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.north")) / 2, 146, 4210752);
                 break;
             case 3:
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.east"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.east")) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.east"), 71 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.east")) / 2, 146, 4210752);
                 break;
             default:
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.noDirection"), 71 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.noDirection")) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.noDirection"), 71 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.noDirection")) / 2, 146, 4210752);
         }
 
         if (this.fence.hasFenceAt(direction))
         {
-            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.security.low"), 128 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.security.low")) / 2, 15, 4210752);
+            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.security.low"), 128 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.security.low")) / 2, 15, 4210752);
         }
         else
         {
-            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.security.low"), 128 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.security.none")) / 2, 15, 4210752);
+            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.fence.security.low"), 128 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.fence.security.none")) / 2, 15, 4210752);
         }
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 48, 163, 4210752);
         if (this.errorMessage != null)
         {
             if (this.errorMessage == "container.fence.noIronIngots" || this.errorMessage == "container.fence.noRedstone")
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")", 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")") / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")", 181 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage) + " (" + this.missingMaterials + ")") / 2, 146, 4210752);
             }
             else
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage), 181 - (int) this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage)) / 2, 146, 4210752);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal(this.errorMessage), 181 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal(this.errorMessage)) / 2, 146, 4210752);
             }
         }
     }
 
-    @Override
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
     {
         this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiSecurityFence.png"));

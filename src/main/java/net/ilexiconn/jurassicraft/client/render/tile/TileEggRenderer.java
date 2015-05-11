@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
-import net.ilexiconn.jurassicraft.tile.TileEgg;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.tileentity.TileEgg;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

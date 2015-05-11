@@ -1,19 +1,17 @@
 package net.ilexiconn.jurassicraft.client.render.tile.fence;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.block.ModelLowSecurityFencePole;
-import net.ilexiconn.jurassicraft.tile.fence.TileSecurityFenceLowPole;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class TileSecurityFenceLowPoleRenderer extends TileEntitySpecialRenderer
 {
-
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/modelLowSecurityFencePole.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.getModId() + "textures/blocks/fence/low_security_fence_pole.png");
     private static final ModelLowSecurityFencePole model = new ModelLowSecurityFencePole();
 
     public TileSecurityFenceLowPoleRenderer()
@@ -21,7 +19,6 @@ public class TileSecurityFenceLowPoleRenderer extends TileEntitySpecialRenderer
 
     }
 
-    @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {
         if (tileEntity instanceof TileSecurityFenceLowPole)
@@ -53,7 +50,7 @@ public class TileSecurityFenceLowPoleRenderer extends TileEntitySpecialRenderer
             GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
             GL11.glRotatef(angle, 0.0F, 1.0F, 0F);
             Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-            this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            model.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
             GL11.glPopMatrix();
         }
     }

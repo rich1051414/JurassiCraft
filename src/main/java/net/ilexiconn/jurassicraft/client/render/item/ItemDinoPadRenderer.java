@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.client.render.item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.render.tile.TileDinoPadRenderer;
-import net.ilexiconn.jurassicraft.tile.TileDinoPad;
+import net.ilexiconn.jurassicraft.common.tileentity.TileDinoPad;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -21,19 +21,16 @@ public class ItemDinoPadRenderer implements IItemRenderer
 
     }
 
-    @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
         return true;
     }
 
-    @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
     {
         return true;
     }
 
-    @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
         if (type == IItemRenderer.ItemRenderType.INVENTORY)

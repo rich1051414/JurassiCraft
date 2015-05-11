@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerDNAExtractor;
-import net.ilexiconn.jurassicraft.tile.TileDNAExtractor;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerDNAExtractor;
+import net.ilexiconn.jurassicraft.common.tileentity.TileDNAExtractor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -24,13 +24,11 @@ public class GuiDNAExtractor extends GuiContainer
         this.ySize = 188;
     }
 
-    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
 
-    @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.dnaExtractor"), this.xSize - this.fontRendererObj.getStringWidth("container.dnaExtractor"), 7, 4210752);

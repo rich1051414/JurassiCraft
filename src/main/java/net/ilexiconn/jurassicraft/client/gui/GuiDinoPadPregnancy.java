@@ -2,12 +2,12 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerDinoPadPregnancy;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantCow;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantHorse;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantPig;
-import net.ilexiconn.jurassicraft.entity.mammals.EntityPregnantSheep;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerDinoPadPregnancy;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantCow;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantHorse;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantPig;
+import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantSheep;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -67,52 +67,47 @@ public class GuiDinoPadPregnancy extends GuiContainer
             }
             else
             {
-                this.creature = (EntityAnimal) null;
+                this.creature = null;
                 this.mc.thePlayer.closeScreen();
             }
 
-            if (this.creature == (EntityAnimal) null)
+            if (this.creature == null)
             {
                 this.mc.thePlayer.closeScreen();
             }
         }
     }
 
-    @Override
     public void initGui()
     {
         super.initGui();
         this.xSize = 256;
         this.ySize = 176;
-        this.guiLeft = (int) ((this.width - this.xSize) / 2);
-        this.guiTop = (int) ((this.height - this.ySize) / 2);
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;
         this.renderRotation = 0.0F;
     }
 
-    @Override
     public void onGuiClosed()
     {
-        this.creature = (EntityAnimal) null;
+        this.creature = null;
         super.onGuiClosed();
     }
 
-    @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
 
-    @Override
     protected void keyTyped(char var1, int key)
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
         {
-            this.creature = (EntityAnimal) null;
+            this.creature = null;
             this.mc.thePlayer.closeScreen();
         }
     }
 
-    @Override
     public void updateScreen()
     {
         if (this.creature != null)
@@ -120,18 +115,17 @@ public class GuiDinoPadPregnancy extends GuiContainer
             this.renderRotation++;
             if (!this.creature.isEntityAlive())
             {
-                this.creature = (EntityAnimal) null;
+                this.creature = null;
                 this.mc.thePlayer.closeScreen();
             }
         }
         else
         {
-            this.creature = (EntityAnimal) null;
+            this.creature = null;
             this.mc.thePlayer.closeScreen();
         }
     }
 
-    @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
         this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadPregnancy.png"));

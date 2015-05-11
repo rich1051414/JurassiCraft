@@ -1,16 +1,15 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
-import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
-import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.base.ResettableModelRenderer;
+import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelUintatherium extends ModelBase
 {
-
     public static final float PI = (float) Math.PI;
     ResettableModelRenderer leftbackleg1, leftbackleg2, leftbackleg3, leftbackleg4, rightbackleg1, rightbackleg2, rightbackleg3, rightbackleg4, leftfrontleg1, leftfrontleg2, leftfrontleg3, leftfrontleg4, rightfrontleg1, rightfrontleg2, rightfrontleg3, rightfrontleg4, upperfrontbody, bottomfrontbody, middlebody, upperbackbody, bottombackbody, neck, head, snout, mouth, rightupperhorn, leftupperhorn, rightmiddlehorn, leftmiddlehorn, rightbottomhorn, leftbottomhorn, lefttooth, righttooth, tail1, tail2, tail3, leftear, rightear;
     private Animator animator;

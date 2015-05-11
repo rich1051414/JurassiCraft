@@ -22,7 +22,6 @@ public class RenderUtils
     }
 
     //Both Render
-
     public void setRenderBounds(RenderBlocks renderer, double par1, double par3, double par5, double par7, double par9, double par11)
     {
         if (!renderer.lockBlockBounds)
@@ -50,7 +49,6 @@ public class RenderUtils
     }
 
     //Inventory Render
-
     public void renderInvBlock(RenderBlocks renderer, Block block, int metadata)
     {
         Tessellator tessellator = Tessellator.instance;
@@ -83,7 +81,6 @@ public class RenderUtils
     }
 
     //World Render
-
     public boolean renderWorldBlock(RenderBlocks renderer, Block par1Block, int par2, int par3, int par4)
     {
         return renderer.renderStandardBlock(par1Block, par2, par3, par4);
@@ -151,9 +148,9 @@ public class RenderUtils
         tessellator.addVertexWithUV(d8, par5 + (double) par9, d11, d5, d4);
     }
 
-    public static enum Type
+    public enum Type
     {
-        WORLD, INVENTORY;
+        WORLD, INVENTORY
     }
 
     public static class RenderData

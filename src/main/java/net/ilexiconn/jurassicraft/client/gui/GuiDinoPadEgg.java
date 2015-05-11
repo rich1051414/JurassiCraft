@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerDinoPadEgg;
-import net.ilexiconn.jurassicraft.entity.egg.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerDinoPadEgg;
+import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -42,31 +42,27 @@ public class GuiDinoPadEgg extends GuiContainer
         }
     }
 
-    @Override
     public void initGui()
     {
         this.buttonList.clear();
         this.xSize = 256;
         this.ySize = 176;
-        this.guiLeft = (int) ((this.width - this.xSize) / 2);
-        this.guiTop = (int) ((this.height - this.ySize) / 2);
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;
         this.renderRotation = 0.0F;
     }
 
-    @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
 
-    @Override
     public void onGuiClosed()
     {
         this.egg = null;
         super.onGuiClosed();
     }
 
-    @Override
     protected void keyTyped(char keyChar, int key)
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
@@ -75,7 +71,6 @@ public class GuiDinoPadEgg extends GuiContainer
         }
     }
 
-    @Override
     public void updateScreen()
     {
         if (this.egg != null)
@@ -92,7 +87,6 @@ public class GuiDinoPadEgg extends GuiContainer
         }
     }
 
-    @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
         this.mc.renderEngine.bindTexture(new ResourceLocation(JurassiCraft.getModId() + "textures/gui/guiDinoPadEgg.png"));

@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerCultivate;
-import net.ilexiconn.jurassicraft.tile.TileCultivate;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerCultivate;
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +24,6 @@ public class GuiCultivate extends GuiContainer
         this.ySize = 188;
     }
 
-    @Override
     public void updateScreen()
     {
         if (this.cultivator.isHatching())
@@ -33,13 +32,11 @@ public class GuiCultivate extends GuiContainer
         }
     }
 
-    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
     }
 
-    @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         this.fontRendererObj.drawString(StatCollector.translateToLocal("Cultivate"), this.xSize * 3 / 8 - this.fontRendererObj.getStringWidth("Cultivate") / 2 - 1, 20, 4210752);

@@ -4,7 +4,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -35,9 +35,7 @@ public class RenderPlayerEventHandler
             UUID.fromString("54201149-1f1f-498b-98ca-50f66951a68f"),
             // Cryrano
             UUID.fromString("4e88e24d-f77e-436a-ac80-457365c8deaa")};
-
     public UUID[] donators = new UUID[]{};
-
     public ModelSantaHat santaHat = new ModelSantaHat();
 
     @SubscribeEvent

@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
+import net.ilexiconn.jurassicraft.client.model.base.ResettableModelRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;

@@ -3,11 +3,11 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.dinosaurs.EntityCarnotaurus;
-import net.ilexiconn.jurassicraft.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityCarnotaurus;
+import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
@@ -241,7 +241,6 @@ public class ModelCarnotaurus extends MowzieModelBase
         this.leftHand.setInitValuesToCurrentPose();
     }
 
-    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);

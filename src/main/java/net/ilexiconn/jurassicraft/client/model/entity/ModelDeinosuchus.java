@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.reptiles.EntityDeinosuchus;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.reptiles.EntityDeinosuchus;
 import net.minecraft.entity.Entity;
 
 public class ModelDeinosuchus extends MowzieModelBase
@@ -243,7 +243,6 @@ public class ModelDeinosuchus extends MowzieModelBase
         this.tailParts = new MowzieModelRenderer[]{this.tail5, this.tail4, this.tail3, this.tail2, this.tail1};
     }
 
-    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);

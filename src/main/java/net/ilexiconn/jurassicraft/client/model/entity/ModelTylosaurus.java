@@ -5,14 +5,13 @@
 // - ZeuX
 package net.ilexiconn.jurassicraft.client.model.entity;
 
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelBase;
-import net.ilexiconn.jurassicraft.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.entity.reptiles.EntityTylosaurus;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
+import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
+import net.ilexiconn.jurassicraft.common.entity.reptiles.EntityTylosaurus;
 import net.minecraft.entity.Entity;
 
 public class ModelTylosaurus extends MowzieModelBase
 {
-    //fields
     public MowzieModelRenderer Head;
     public MowzieModelRenderer Upper_Jaw;
     public MowzieModelRenderer Lower_Jaw;

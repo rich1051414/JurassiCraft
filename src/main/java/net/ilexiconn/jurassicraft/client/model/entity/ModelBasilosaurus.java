@@ -1,15 +1,14 @@
 package net.ilexiconn.jurassicraft.client.model.entity;
 
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
-import net.ilexiconn.jurassicraft.client.model.modelbase.ResettableModelRenderer;
-import net.ilexiconn.jurassicraft.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.client.model.base.ResettableModelRenderer;
+import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelBasilosaurus extends ModelBase
 {
-
     public static final float PI = (float) Math.PI;
     boolean hasBeenInWater = false;
     ResettableModelRenderer body12, body11, body10, body9, body8, body7, body6, body5, body4, body3, body2, body1, neck, head, snout1, mouth1, snout2, mouth2, flipperleftfront, flipperrightfront, flipperleftback, flipperrightback, bigflippersbase, bigflippersleft, bigflippersright, teethlowerjaw1, Teethupperjaw1, Teethupperjaw2, teethlowerjaw2;

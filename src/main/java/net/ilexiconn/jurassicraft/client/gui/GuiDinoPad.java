@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.container.ContainerDinoPad;
-import net.ilexiconn.jurassicraft.entity.EntityJurassiCraftSmart;
+import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.container.ContainerDinoPad;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSmart;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -50,7 +50,6 @@ public class GuiDinoPad extends GuiContainer
         }
     }
 
-    @Override
     public void initGui()
     {
         this.buttonList.clear();
@@ -65,21 +64,19 @@ public class GuiDinoPad extends GuiContainer
 
             this.renderRotation = 0.0F;
             this.pageNumber = 0;
-            this.guiLeft = (int) ((this.width - this.xSize) / 2);
-            this.guiTop = (int) ((this.height - this.ySize) / 2);
+            this.guiLeft = (this.width - this.xSize) / 2;
+            this.guiTop = (this.height - this.ySize) / 2;
             this.buttonList.add(new GuiButtonDinopad(0, this.guiLeft + (this.xSize - 18) / 2, this.guiTop + 146, 0, 210, 18, 18));
             this.buttonList.add(new GuiButtonDinopad(1, this.guiLeft + (this.xSize - 18) / 2 - 14, this.guiTop + 146, 36, 210, 12, 18));
             this.buttonList.add(new GuiButtonDinopad(2, this.guiLeft + (this.xSize - 18) / 2 + 20, this.guiTop + 146, 60, 210, 12, 18));
         }
     }
 
-    @Override
     public boolean doesGuiPauseGame()
     {
         return false;
     }
 
-    @Override
     public void onGuiClosed()
     {
         this.creature = null;
@@ -87,7 +84,6 @@ public class GuiDinoPad extends GuiContainer
         super.onGuiClosed();
     }
 
-    @Override
     protected void keyTyped(char keyChar, int key)
     {
         if (key == 1 || key == this.mc.gameSettings.keyBindInventory.getKeyCode())
@@ -96,7 +92,6 @@ public class GuiDinoPad extends GuiContainer
         }
     }
 
-    @Override
     public void updateScreen()
     {
         if (this.creature == null)
@@ -111,7 +106,6 @@ public class GuiDinoPad extends GuiContainer
         this.renderRotation++;
     }
 
-    @Override
     public void actionPerformed(GuiButton button)
     {
         if (this.creature != null)
@@ -145,7 +139,6 @@ public class GuiDinoPad extends GuiContainer
         }
     }
 
-    @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
         if (this.creature != null)
@@ -161,11 +154,11 @@ public class GuiDinoPad extends GuiContainer
 
                     if (this.creature.getCreature().getCreatureID() >= 0 && this.creature.getCreatureLength() > this.creature.getCreatureHeight())
                     {
-                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength()))));
+                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (55.0F / creature.getCreatureLength()) * (0.4F + 0.6F * this.creature.getCreatureLength() / (this.creature.getCreature().getMaxLength())));
                     }
                     else
                     {
-                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (float) ((55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight())));
+                        this.renderCreature((float) (this.guiLeft + 67), (float) (this.guiTop + 108), (55.0F / creature.getCreatureHeight()) * (0.4F + 0.6F * this.creature.getCreatureHeight() / this.creature.getCreature().getMaxHeight()));
                     }
 
                     this.renderNameGenderStrings();
@@ -225,12 +218,12 @@ public class GuiDinoPad extends GuiContainer
         {
             if (this.creature.getCreature().isRidable() && this.creature.isCreatureAdult())
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ((EntityJurassiCraftSmart) this.creature).getOwnerName()) / 2, this.guiTop + 112, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + this.creature.getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + this.creature.getOwnerName()) / 2, this.guiTop + 112, 14737632);
                 this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.ridable"), this.guiLeft + 67 - this.fontRendererObj.getStringWidth("Ridable") / 2, this.guiTop + 122, 14737632);
             }
             else
             {
-                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + ((EntityJurassiCraftSmart) this.creature).getOwnerName()) / 2, this.guiTop + 122, 14737632);
+                this.fontRendererObj.drawString(StatCollector.translateToLocal("container.pad.owner") + ": " + this.creature.getOwnerName(), this.guiLeft + 67 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("container.pad.owner") + ": " + this.creature.getOwnerName()) / 2, this.guiTop + 122, 14737632);
             }
         }
         else
