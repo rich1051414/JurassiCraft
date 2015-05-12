@@ -45,8 +45,6 @@ public class GuiHandler implements IGuiHandler
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileCultivate && ID == 0)
             return new GuiCultivate(player.inventory, (TileCultivate) tileEntity);
-        if (tileEntity instanceof TileCultivate && ID == 1)
-            return new GuiCultivateProcess((TileCultivate) tileEntity);
         if (tileEntity instanceof TileDNAExtractor)
             return new GuiDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
         if (tileEntity instanceof TileDNACombinator)

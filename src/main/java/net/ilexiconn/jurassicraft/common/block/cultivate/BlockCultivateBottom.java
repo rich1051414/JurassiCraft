@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.common.block.cultivate;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.common.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
@@ -9,6 +10,7 @@ import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -91,25 +93,33 @@ public class BlockCultivateBottom extends BlockContainer
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float t, float h, float k)
     {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else if (!player.isSneaking())
+        if (!player.isSneaking())
         {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
             if (tileEntity instanceof TileCultivate)
             {
                 TileCultivate tileCultivate = (TileCultivate) tileEntity;
-                if (tileCultivate.isUseableByPlayer(player) && !tileCultivate.isHatching())
+                
+                if(tileCultivate.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 0, world, x, y, z);
-                    return true;
-                }
-                else
-                {
-                    player.openGui(JurassiCraft.instance, 1, world, x, y, z);
-                    return true;
+                    if (!tileCultivate.isHatching())
+                    {
+                    	if(!world.isRemote)
+                    	{
+                    		player.openGui(JurassiCraft.instance, 0, world, x, y, z);
+                    	}
+                        
+                        return true;
+                    }
+                    else
+                    {
+                    	if(world.isRemote)
+                    	{
+                    		Minecraft.getMinecraft().displayGuiScreen(new GuiCultivateProcess(tileCultivate));
+                    	}
+                    	
+                    	return true;
+                    }
                 }
             }
         }

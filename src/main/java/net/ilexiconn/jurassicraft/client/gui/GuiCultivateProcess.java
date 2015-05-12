@@ -13,7 +13,6 @@ import net.minecraft.util.StatCollector;
 @SideOnly(Side.CLIENT)
 public class GuiCultivateProcess extends GuiScreen
 {
-
     private TileCultivate cultivator;
     private int xSize;
     private int ySize;

@@ -29,6 +29,7 @@ public class GuiCultivate extends GuiContainer
         if (this.cultivator.isHatching())
         {
             this.mc.thePlayer.closeScreen();
+            this.mc.displayGuiScreen(new GuiCultivateProcess(cultivator));
         }
     }
 
