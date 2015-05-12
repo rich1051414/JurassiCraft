@@ -126,7 +126,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
      */
     public boolean isTakingOff()
     {
-        return (this.getStatus() & States.TAKINGOFF) == States.TAKINGOFF;
+        return (this.getStatus() & States.SWIMMING) == States.SWIMMING;
     }
 
     /**
@@ -136,11 +136,11 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
     {
         if (flag && !this.isSitting() && !this.isSleeping() && !this.isEating() && !this.isDrinking() && !this.isPlaying() && !this.isBreeding() && !this.isFlying())
         {
-            this.setStatus(this.getStatus() | States.TAKINGOFF);
+            this.setStatus(this.getStatus() | States.SWIMMING);
         }
         else
         {
-            this.setStatus(this.getStatus() & ~States.TAKINGOFF);
+            this.setStatus(this.getStatus() & ~States.SWIMMING);
         }
     }
 
@@ -156,7 +156,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.PLAYING);
         this.setStatus(this.getStatus() & ~States.BREEDING);
         this.setStatus(this.getStatus() & ~States.FLYING);
-        this.setStatus(this.getStatus() | States.TAKINGOFF);
+        this.setStatus(this.getStatus() | States.SWIMMING);
     }
 
     /**
@@ -193,7 +193,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.DRINKING);
         this.setStatus(this.getStatus() & ~States.PLAYING);
         this.setStatus(this.getStatus() & ~States.BREEDING);
-        this.setStatus(this.getStatus() & ~States.TAKINGOFF);
+        this.setStatus(this.getStatus() & ~States.SWIMMING);
         this.setStatus(this.getStatus() | States.FLYING);
     }
 
@@ -276,7 +276,7 @@ public class EntityJurassiCraftSmart extends EntityJurassiCraftCreature implemen
         this.setStatus(this.getStatus() & ~States.DRINKING);
         this.setStatus(this.getStatus() & ~States.PLAYING);
         this.setStatus(this.getStatus() & ~States.BREEDING);
-        this.setStatus(this.getStatus() & ~States.TAKINGOFF);
+        this.setStatus(this.getStatus() & ~States.SWIMMING);
         this.setStatus(this.getStatus() & ~States.FLYING);
         this.setStatus(this.getStatus() | States.SITTING);
         this.isJumping = false;

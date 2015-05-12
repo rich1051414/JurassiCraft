@@ -14,7 +14,7 @@ public class States
     /**
      * SWIMMING represents whether the creature is swimming.
      */
-    public static final int TAKINGOFF = 1 << 2;
+    public static final int SWIMMING = 1 << 2;
     /**
      * SITTING represents whether the creature is sleeping.
      */
