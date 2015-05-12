@@ -41,7 +41,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Calendar;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", guiFactory = "net.ilexiconn.jurassicraft.common.config.ConfigFactory")
+@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
     public static final String[] fTimer = new String[]{"field_71428_T", "S", "timer"};
