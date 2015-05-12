@@ -1,7 +1,9 @@
 package net.ilexiconn.jurassicraft.common.entity;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+
 import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.common.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
@@ -12,10 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.HashSet;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityJurassiCraftCreature extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -48,6 +50,29 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
         this.animID = 0;
     }
 
+    /**
+     * Checks if this entity is inside of an opaque block
+     */
+    public boolean isEntityInsideOpaqueBlock()
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            float f = ((float)((i >> 0) % 2) - 0.5F) * this.width * 0.8F;
+            float f1 = ((float)((i >> 1) % 2) - 0.5F) * 0.1F;
+            float f2 = ((float)((i >> 2) % 2) - 0.5F) * this.width * 0.8F;
+            int j = MathHelper.floor_double(this.posX + (double)f);
+            int k = MathHelper.floor_double(this.posY + (double)this.height + (double)f1);
+            int l = MathHelper.floor_double(this.posZ + (double)f2);
+
+            if (this.worldObj.getBlock(j, k, l).isNormalCube())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
     protected void entityInit()
     {
         super.entityInit();
