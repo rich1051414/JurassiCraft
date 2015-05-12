@@ -63,7 +63,7 @@ public class JurassiCraft
     }
 
     @Mod.EventHandler
-    public void init(FMLPreInitializationEvent event)
+    public void init(FMLPreInitializationEvent event) throws Exception
     {
         logger = event.getModLog();
 
