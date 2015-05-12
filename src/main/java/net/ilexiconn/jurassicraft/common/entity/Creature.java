@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.common.entity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.common.dinoconfig.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.common.item.*;
 import net.ilexiconn.jurassicraft.common.item.drops.*;
 import net.minecraft.init.Items;
@@ -77,7 +76,7 @@ public class Creature
     private int eggPrimaryColor;
     private int eggSecondaryColor;
 
-    public Creature(String creatureCategory, JsonCreatureDefinition def, Class clazz)
+    public Creature(String creatureCategory, CreatureJsonDef def, Class clazz)
     {
         this.clazz = clazz;
 
@@ -123,78 +122,6 @@ public class Creature
         this.addItemTypes = def.addItemTypes;
         this.eggPrimaryColor = def.eggPrimaryColor;
         this.eggSecondaryColor = def.eggSecondaryColor;
-
-        //        switch (def.addItemTypes)
-        //		{
-        //			case 0:
-        //				/** Creature not implemented yet  */
-        //				break;
-        //			case 1:
-        //				/** DNA + Egg */
-        //				this.addDNA();
-        //				this.addEgg();
-        //				break;
-        //			case 2:
-        //				/** DNA + Syringe */
-        //				this.addDNA();
-        //				this.addSyringe();
-        //				break;
-        //			case 3:
-        //				/** DNA + Egg + Meat */
-        //				this.addDNA();
-        //				this.addEgg();
-        //				this.addMeat();
-        //				break;
-        //			case 4:
-        //				/** DNA + Syringe + Meat */
-        //				this.addDNA();
-        //				this.addSyringe();
-        //				this.addMeat();
-        //				break;
-        //			case 5:
-        //				/** DNA + Egg + Meat + Skull */
-        //				this.addDNA();
-        //				this.addEgg();
-        //				this.addMeat();
-        //				this.addSkull();
-        //				break;
-        //			case 6:
-        //				/** DNA + Syringe + Meat + Skull */
-        //				this.addDNA();
-        //				this.addSyringe();
-        //				this.addMeat();
-        //				this.addSkull();
-        //				break;
-        //			case 7:
-        //				/** DNA + Egg + Meat + Skin */
-        //				this.addDNA();
-        //				this.addEgg();
-        //				this.addMeat();
-        //				this.addSkin();
-        //				break;
-        //			case 8:
-        //				/** DNA + Syringe + Meat + Fur */
-        //				this.addDNA();
-        //				this.addSyringe();
-        //				this.addMeat();
-        //				this.addFur();
-        //				break;
-        //			case 9:
-        //				/** DNA + Egg + Meat + Skull + Skin */
-        //				this.addDNA();
-        //				this.addEgg();
-        //				this.addMeat();
-        //				this.addSkull();
-        //				this.addSkin();
-        //				break;
-        //			case 10:
-        //				/** DNA + Syringe + Meat + Skin */
-        //				this.addDNA();
-        //				this.addSyringe();
-        //				this.addMeat();
-        //				this.addSkin();
-        //				break;
-        //        }
     }
 
     public void addDNA()

@@ -1,8 +1,8 @@
-package net.ilexiconn.jurassicraft.common.dinoconfig;
+package net.ilexiconn.jurassicraft.common.entity;
 
 import java.util.ArrayList;
 
-public class JsonCreatureDefinition
+public class CreatureJsonDef
 {
     private static byte currentCreatureID = 0;
     public byte creatureID = currentCreatureID++;

@@ -6,7 +6,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderJurassicraftCreature;
 import net.ilexiconn.jurassicraft.common.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.api.RandomRyanShit;
-import net.ilexiconn.jurassicraft.common.dinoconfig.JsonCreatureDefinition;
 import net.ilexiconn.jurassicraft.common.item.ItemDNA;
 import net.minecraft.client.renderer.entity.RenderLiving;
 
@@ -97,7 +96,7 @@ public class CreatureManager
         return null;
     }
 
-    public static void addCreature(JsonCreatureDefinition creature, String category)
+    public static void addCreature(CreatureJsonDef creature, String category)
     {
         try
         {
@@ -115,7 +114,7 @@ public class CreatureManager
     }
 
     @SideOnly(Side.CLIENT)
-    public static void addCreatureRenderer(JsonCreatureDefinition dino, String category)
+    public static void addCreatureRenderer(CreatureJsonDef dino, String category)
     {
         try
         {

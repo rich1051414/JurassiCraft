@@ -35,7 +35,7 @@ public class CommonProxy
 
     }
 
-    public void init()
+    public void init() throws Exception
     {
 
     }

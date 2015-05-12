@@ -50,7 +50,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(item, render);
     }
 
-    public void init()
+    public void init() throws Exception
     {
         MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());
         JurassiCraft.entityParser.parseClientEntities();
