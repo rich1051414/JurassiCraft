@@ -4,7 +4,6 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
-import net.ilexiconn.jurassicraft.client.model.entity.player.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderSpit;
 import net.ilexiconn.jurassicraft.common.CommonProxy;
 import net.ilexiconn.jurassicraft.common.JurassiCraft;
@@ -19,7 +18,6 @@ import net.minecraft.util.Timer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy
 {
@@ -52,7 +50,6 @@ public class ClientProxy extends CommonProxy
 
     public void init() throws Exception
     {
-        MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());
         JurassiCraft.entityParser.parseClientEntities();
         mcTimer = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), JurassiCraft.fTimer);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpit.class, new RenderSpit());

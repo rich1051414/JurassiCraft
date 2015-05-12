@@ -38,7 +38,7 @@ public class BlockCultivateBottom extends BlockContainer
 
     public BlockCultivateBottom(boolean lit)
     {
-        super(Material.cactus); // Yes..., Cactus xD But I hate cacti :(
+        super(Material.cactus);
         this.setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
         this.setBlockTextureName(JurassiCraft.getModId() + "cultivate");
         this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);

@@ -20,7 +20,6 @@ import net.ilexiconn.jurassicraft.common.crafting.ModRecipes;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.common.entity.JsonEntityParser;
 import net.ilexiconn.jurassicraft.common.entity.ModEntities;
-import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntitySanta;
 import net.ilexiconn.jurassicraft.common.entity.fish.EntityCoelacanth;
 import net.ilexiconn.jurassicraft.common.events.JurassiCraftInteractEvent;
 import net.ilexiconn.jurassicraft.common.events.JurassiCraftLivingEvent;
@@ -39,8 +38,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Calendar;
-
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
@@ -49,7 +46,6 @@ public class JurassiCraft
     public static CommonProxy proxy;
     @Mod.Instance("jurassicraft")
     public static JurassiCraft instance;
-    public static boolean isChristmas;
     public static boolean enableDebugging;
     public static JsonEntityParser entityParser;
     public static ContentLoader contentLoader;
@@ -101,14 +97,6 @@ public class JurassiCraft
 
         EntityRegistry.addSpawn(EntityCoelacanth.class, 1, 1, 3, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean, BiomeGenBase.ocean);
 
-        Calendar calendar = Calendar.getInstance();
-
-        isChristmas = (calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27);
-
-        if (isChristmas)
-        {
-            EntityRegistry.addSpawn(EntitySanta.class, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.getBiomeGenArray());
-        }
         proxy.init();
         MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
         MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
