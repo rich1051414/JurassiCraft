@@ -4,9 +4,6 @@ import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingBase;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IPiscivore;
-import net.ilexiconn.jurassicraft.common.api.IReptile;
 import net.ilexiconn.jurassicraft.common.item.ItemMeat;
 import net.ilexiconn.jurassicraft.common.item.ItemSteak;
 import net.ilexiconn.jurassicraft.common.item.drops.ItemSkin;
@@ -20,7 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityTylosaurus extends EntitySwimmingBase implements IReptile, ICarnivore, IPiscivore
+public class EntityTylosaurus extends EntitySwimmingBase
 {
     public ChainBuffer tailBuffer = new ChainBuffer(12);
 

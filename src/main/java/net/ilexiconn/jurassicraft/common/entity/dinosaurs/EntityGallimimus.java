@@ -7,7 +7,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIGallimimusBeingEaten;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
@@ -16,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityGallimimus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
+public class EntityGallimimus extends EntityJurassiCraftProtective implements IHerbivore
 {
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);
     public ChainBuffer tailBuffer = new ChainBuffer(4);

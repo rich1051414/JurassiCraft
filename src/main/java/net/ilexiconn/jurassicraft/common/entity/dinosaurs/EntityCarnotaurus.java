@@ -8,8 +8,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -20,7 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
+public class EntityCarnotaurus extends EntityJurassiCraftGroupAggressive
 {
     public IntermittentAnimation restingHeadProgress = new IntermittentAnimation(30, 200, 100, 100);
     public ControlledAnimation sittingProgress = new ControlledAnimation(40);

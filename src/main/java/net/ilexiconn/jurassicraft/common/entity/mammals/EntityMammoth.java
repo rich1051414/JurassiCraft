@@ -9,14 +9,13 @@ import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
-import net.ilexiconn.jurassicraft.common.api.IMammal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityMammoth extends EntityJurassiCraftProtective implements IMammal, IHerbivore
+public class EntityMammoth extends EntityJurassiCraftProtective implements IHerbivore
 {
     public IntermittentAnimation trunkLift = new IntermittentAnimation(20, 30, 10, 1);
     public IntermittentAnimation trunkSwing = new IntermittentAnimation(20, 50, 10, 1);

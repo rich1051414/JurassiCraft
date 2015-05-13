@@ -4,14 +4,13 @@ import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCoward;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements IDinosaur, IHerbivore
+public class EntityLeaellynasaura extends EntityJurassiCraftCoward implements IHerbivore
 {
     public EntityLeaellynasaura(World world)
     {

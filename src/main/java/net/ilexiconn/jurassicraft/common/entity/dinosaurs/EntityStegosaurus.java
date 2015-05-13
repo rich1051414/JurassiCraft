@@ -9,7 +9,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAITailWhip
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
@@ -17,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityStegosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
+public class EntityStegosaurus extends EntityJurassiCraftProtective implements IHerbivore
 {
     public ControlledAnimation tailWhipPosition = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(5);

@@ -2,15 +2,13 @@ package net.ilexiconn.jurassicraft.common.entity.fish;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingBase;
-import net.ilexiconn.jurassicraft.common.api.IFish;
-import net.ilexiconn.jurassicraft.common.api.IPiscivore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityOrthacanthus extends EntitySwimmingBase implements IFish, IPiscivore
+public class EntityOrthacanthus extends EntitySwimmingBase
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

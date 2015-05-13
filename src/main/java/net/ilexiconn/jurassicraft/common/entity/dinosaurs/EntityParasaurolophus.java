@@ -8,7 +8,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIParasaur
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityParasaurolophus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
+public class EntityParasaurolophus extends EntityJurassiCraftProtective implements IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
     public ControlledParam walkLean = new ControlledParam(0, 0, (float) Math.PI / 2, 0);

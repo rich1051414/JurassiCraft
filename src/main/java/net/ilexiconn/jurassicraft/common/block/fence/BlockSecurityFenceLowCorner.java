@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.common.block.fence;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.common.api.IFenceMain;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
 import net.minecraft.block.Block;
@@ -14,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockSecurityFenceLowCorner extends BlockSecurityFence implements IFenceMain
+public class BlockSecurityFenceLowCorner extends BlockSecurityFence
 {
     public BlockSecurityFenceLowCorner()
     {

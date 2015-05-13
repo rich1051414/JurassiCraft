@@ -5,8 +5,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.JurassiCraftAIEatDroppedFood;
 import net.ilexiconn.jurassicraft.common.entity.ai.JurassiCraftAIFollowFood;
 import net.ilexiconn.jurassicraft.common.entity.ai.JurassiCraftAISit;
 import net.ilexiconn.jurassicraft.common.entity.ai.JurassiCraftAIWander;
-import net.ilexiconn.jurassicraft.common.api.IPiscivore;
-import net.ilexiconn.jurassicraft.common.api.IReptile;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -18,7 +16,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityCearadactylus extends EntityJurassiCraftRidableFlying implements IReptile, IPiscivore
+public class EntityCearadactylus extends EntityJurassiCraftRidableFlying
 {
     public ChunkCoordinates currentTarget;
     public int maxHeight = 130;

@@ -12,8 +12,6 @@ import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
@@ -24,7 +22,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore, IRangedAttackMob
+public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive implements IRangedAttackMob
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);

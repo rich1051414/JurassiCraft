@@ -9,15 +9,13 @@ import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
+public class EntityHerrerasaurus extends EntityJurassiCraftGroupAggressive
 {
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);
     public ChainBuffer tailBuffer = new ChainBuffer(6);

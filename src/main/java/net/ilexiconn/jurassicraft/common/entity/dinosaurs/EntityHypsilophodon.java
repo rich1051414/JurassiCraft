@@ -8,7 +8,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilop
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilophodonSocializing;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IDinosaur, IHerbivore
+public class EntityHypsilophodon extends EntityJurassiCraftCoward implements IHerbivore
 {
     public ControlledAnimation sittingProgress = new ControlledAnimation(30);
     public ChainBuffer tailBuffer = new ChainBuffer(3);

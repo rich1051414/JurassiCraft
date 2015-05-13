@@ -2,15 +2,13 @@ package net.ilexiconn.jurassicraft.common.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityOviraptor extends EntityJurassiCraftGroupAggressive implements IDinosaur, ICarnivore
+public class EntityOviraptor extends EntityJurassiCraftGroupAggressive
 {
     public EntityOviraptor(World world)
     {

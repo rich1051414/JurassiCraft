@@ -3,13 +3,12 @@ package net.ilexiconn.jurassicraft.common.entity.mammals;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
-import net.ilexiconn.jurassicraft.common.api.IMammal;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityParaceratherium extends EntityJurassiCraftProtective implements IMammal, IHerbivore
+public class EntityParaceratherium extends EntityJurassiCraftProtective implements IHerbivore
 {
     public EntityParaceratherium(World world)
     {

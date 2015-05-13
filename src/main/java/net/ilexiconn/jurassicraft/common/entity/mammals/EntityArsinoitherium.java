@@ -5,13 +5,12 @@ import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAICharge;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
-import net.ilexiconn.jurassicraft.common.api.IMammal;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityArsinoitherium extends EntityJurassiCraftCharges implements IMammal, IHerbivore
+public class EntityArsinoitherium extends EntityJurassiCraftCharges implements IHerbivore
 {
     public EntityArsinoitherium(World world)
     {

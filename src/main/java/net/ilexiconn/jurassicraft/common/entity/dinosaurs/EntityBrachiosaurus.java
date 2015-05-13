@@ -4,7 +4,6 @@ import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements IDinosaur, IHerbivore
+public class EntityBrachiosaurus extends EntityJurassiCraftProtective implements IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 

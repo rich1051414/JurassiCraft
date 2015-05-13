@@ -8,7 +8,6 @@ import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCharges;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityTriceratops extends EntityJurassiCraftCharges implements IDinosaur, IHerbivore
+public class EntityTriceratops extends EntityJurassiCraftCharges implements IHerbivore
 {
     public ControlledParam flailDegree = new ControlledParam(0.0F, 0.0F, 1.0F, 0.0F);
     public ControlledAnimation defendingPosition = new ControlledAnimation(40);

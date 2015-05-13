@@ -8,15 +8,13 @@ import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityHypsilophodon;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityLeaellynasaura;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
-import net.ilexiconn.jurassicraft.common.api.IBird;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityTitanis extends EntityJurassiCraftGroupAggressive implements IBird, ICarnivore
+public class EntityTitanis extends EntityJurassiCraftGroupAggressive
 {
     public EntityTitanis(World world)
     {

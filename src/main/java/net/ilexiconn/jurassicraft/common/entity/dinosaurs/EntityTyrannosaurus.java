@@ -15,8 +15,6 @@ import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IDinosaur;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityTyrannosaurus extends EntityJurassiCraftAggressive implements IDinosaur, ICarnivore
+public class EntityTyrannosaurus extends EntityJurassiCraftAggressive
 {
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);

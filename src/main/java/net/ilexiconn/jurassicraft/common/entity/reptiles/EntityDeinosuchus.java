@@ -7,16 +7,13 @@ import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityOviraptor;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
-import net.ilexiconn.jurassicraft.common.api.ICarnivore;
-import net.ilexiconn.jurassicraft.common.api.IPiscivore;
-import net.ilexiconn.jurassicraft.common.api.IReptile;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityDeinosuchus extends EntityJurassiCraftAggressive implements IReptile, ICarnivore, IPiscivore
+public class EntityDeinosuchus extends EntityJurassiCraftAggressive
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 
