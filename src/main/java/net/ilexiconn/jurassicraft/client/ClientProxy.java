@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import net.ilexiconn.jurassicraft.client.render.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderSpit;
 import net.ilexiconn.jurassicraft.common.CommonProxy;
 import net.ilexiconn.jurassicraft.common.JurassiCraft;
@@ -18,14 +19,15 @@ import net.minecraft.util.Timer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy
 {
-    private Timer mcTimer;
+    private Timer timer;
 
     public float getPartialTick()
     {
-        return mcTimer.renderPartialTicks;
+        return timer.renderPartialTicks;
     }
 
     public World getWorldClient()
@@ -50,8 +52,9 @@ public class ClientProxy extends CommonProxy
 
     public void init() throws Exception
     {
+        MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());
         JurassiCraft.entityParser.parseClientEntities();
-        mcTimer = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), JurassiCraft.fTimer);
+        timer = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), new String[] {"field_71428_T", "S", "timer"});
         RenderingRegistry.registerEntityRenderingHandler(EntitySpit.class, new RenderSpit());
     }
 }

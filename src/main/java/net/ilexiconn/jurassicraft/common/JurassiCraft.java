@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.common;
 
+import com.google.gson.Gson;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -13,6 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.client.render.ModRenderers;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.cape.CapeContainer;
 import net.ilexiconn.jurassicraft.common.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.common.config.ConfigHandler;
 import net.ilexiconn.jurassicraft.common.content.ContentLoader;
@@ -30,6 +32,7 @@ import net.ilexiconn.jurassicraft.common.item.ModItems;
 import net.ilexiconn.jurassicraft.common.packet.MessageAnimation;
 import net.ilexiconn.jurassicraft.common.packet.MessageFence;
 import net.ilexiconn.jurassicraft.common.tileentity.ModTileEntities;
+import net.ilexiconn.llibrary.common.web.WebHelper;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.EnumCreatureType;
@@ -41,7 +44,6 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
-    public static final String[] fTimer = new String[]{"field_71428_T", "S", "timer"};
     @SidedProxy(clientSide = "net.ilexiconn.jurassicraft.client.ClientProxy", serverSide = "net.ilexiconn.jurassicraft.common.CommonProxy")
     public static CommonProxy proxy;
     @Mod.Instance("jurassicraft")
@@ -52,6 +54,8 @@ public class JurassiCraft
     public static SimpleNetworkWrapper network;
     public static int entityIndex = 0;
     public Logger logger;
+
+    public static CapeContainer capeContainer;
 
     public static String getModId()
     {
@@ -101,7 +105,7 @@ public class JurassiCraft
         MinecraftForge.EVENT_BUS.register(new JurassiCraftLivingEvent());
         MinecraftForge.EVENT_BUS.register(new JurassiCraftInteractEvent());
 
-
+        capeContainer = new Gson().fromJson(WebHelper.readPastebin("PQgLKE5F"), CapeContainer.class);
     }
 
     @Mod.EventHandler
