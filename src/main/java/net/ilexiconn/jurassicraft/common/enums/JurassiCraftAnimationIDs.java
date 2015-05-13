@@ -2,17 +2,17 @@ package net.ilexiconn.jurassicraft.common.enums;
 
 public enum JurassiCraftAnimationIDs
 {
-    BITE((byte) 1), HEADBUTT((byte) 2), PECK((byte) 3), TAIL_SLAM((byte) 4), TAIL_WHIP((byte) 5), SCRATCH((byte) 6), TRUMPET((byte) 7), CHARGE((byte) 8), LEAP((byte) 9), TWITCH_HEAD((byte) 10), WALK_ROAR((byte) 11), ROAR((byte) 12), BEING_EATEN((byte) 13), EATING((byte) 14), PLAYING((byte) 15), SOCIALIZING((byte) 15), SPITTING((byte) 16);
+    BITE(1), HEADBUTT(2), PECK(3), TAIL_SLAM(4), TAIL_WHIP(5), SCRATCH(6), TRUMPET(7), CHARGE(8), LEAP(9), TWITCH_HEAD(10), WALK_ROAR(11), ROAR(12), BEING_EATEN(13), EATING(14), PLAYING(15), SOCIALIZING(15), SPITTING(16);
 
-    private final byte animationID;
+    private int animationID;
 
-    JurassiCraftAnimationIDs(byte id)
+    JurassiCraftAnimationIDs(int id)
     {
         animationID = id;
     }
 
     public int animID()
     {
-        return (int) this.animationID;
+        return animationID;
     }
 }
