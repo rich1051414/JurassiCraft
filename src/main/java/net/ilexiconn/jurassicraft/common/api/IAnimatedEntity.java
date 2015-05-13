@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.common.interfaces;
+package net.ilexiconn.jurassicraft.common.api;
 
 public interface IAnimatedEntity
 {

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.handler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.common.packet.MessageAnimation;
 import net.minecraft.entity.Entity;
 

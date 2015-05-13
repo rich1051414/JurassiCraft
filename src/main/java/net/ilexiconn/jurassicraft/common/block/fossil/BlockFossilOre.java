@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.common.block.fossil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.common.item.ModItems;
 import net.minecraft.block.Block;

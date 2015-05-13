@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.entity.ai;
 
 import com.google.common.collect.Lists;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
-import net.ilexiconn.jurassicraft.common.interfaces.IHerbivore;
+import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;

@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.common.entity.egg;
 
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;

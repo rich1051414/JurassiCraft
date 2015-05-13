@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.common;
+package net.ilexiconn.jurassicraft;
 
 import cpw.mods.fml.common.Mod;
 

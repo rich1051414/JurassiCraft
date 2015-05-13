@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.common.entity.fish;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingBase;
-import net.ilexiconn.jurassicraft.common.interfaces.IFish;
-import net.ilexiconn.jurassicraft.common.interfaces.IPiscivore;
+import net.ilexiconn.jurassicraft.common.api.IFish;
+import net.ilexiconn.jurassicraft.common.api.IPiscivore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;

@@ -7,7 +7,7 @@ import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityCarnotaurus;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 

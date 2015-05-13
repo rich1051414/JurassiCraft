@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.container.ContainerDNACombinator;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNACombinator;
 import net.minecraft.client.gui.inventory.GuiContainer;

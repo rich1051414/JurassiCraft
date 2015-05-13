@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.common.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;

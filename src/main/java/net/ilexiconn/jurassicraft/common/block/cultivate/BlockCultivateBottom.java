@@ -3,9 +3,11 @@ package net.ilexiconn.jurassicraft.common.block.cultivate;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -17,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -29,7 +32,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class BlockCultivateBottom extends BlockContainer
+public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBlock
 {
     public static final String[] iconVariationsNames = new String[]{"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
     public boolean isLit;
@@ -220,5 +223,10 @@ public class BlockCultivateBottom extends BlockContainer
             closest.blockZ = z;
         }
         return closest;
+    }
+
+    public Class<? extends ItemBlock> getItemBlockClass()
+    {
+        return ItemBlockCultivate.class;
     }
 }

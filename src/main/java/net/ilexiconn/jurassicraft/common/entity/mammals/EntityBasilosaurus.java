@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.common.entity.mammals;
 
 import net.ilexiconn.jurassicraft.common.entity.NewEntitySwimming;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
-import net.ilexiconn.jurassicraft.common.interfaces.ICarnivore;
-import net.ilexiconn.jurassicraft.common.interfaces.IMammal;
+import net.ilexiconn.jurassicraft.common.api.ICarnivore;
+import net.ilexiconn.jurassicraft.common.api.IMammal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;

@@ -4,7 +4,7 @@ import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityParasaurolophus;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 
 import java.util.List;
 

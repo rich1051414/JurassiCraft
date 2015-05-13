@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.container.slot;
 
-import net.ilexiconn.jurassicraft.common.interfaces.IDNASample;
+import net.ilexiconn.jurassicraft.common.api.IDNASample;
 import net.ilexiconn.jurassicraft.common.item.ItemEgg;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.common;
+package net.ilexiconn.jurassicraft;
 
 import com.google.gson.Gson;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
 import net.ilexiconn.jurassicraft.client.render.ModRenderers;
+import net.ilexiconn.jurassicraft.common.CommonProxy;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.cape.CapeContainer;
 import net.ilexiconn.jurassicraft.common.command.CommandSpawnDino;

@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.config;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;

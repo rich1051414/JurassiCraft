@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.client.render.tile;
 import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEmbryo;
 import net.ilexiconn.jurassicraft.client.render.RenderHelper;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivate;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivateBottom;

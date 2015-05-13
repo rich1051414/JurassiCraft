@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.entity;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.content.IContentHandler;
 import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
 

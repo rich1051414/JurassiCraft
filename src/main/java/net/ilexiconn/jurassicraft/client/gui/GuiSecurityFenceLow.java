@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.container.ContainerSecurityFenceLow;
 import net.ilexiconn.jurassicraft.common.packet.MessageFence;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowCorner;

@@ -4,7 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.common.item.ItemDinoPad;

@@ -8,8 +8,8 @@ import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilop
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilophodonScratchHead;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIHypsilophodonSocializing;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.interfaces.IDinosaur;
-import net.ilexiconn.jurassicraft.common.interfaces.IHerbivore;
+import net.ilexiconn.jurassicraft.common.api.IDinosaur;
+import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;

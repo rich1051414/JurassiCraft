@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.item.drops;
 
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.common.interfaces.IDNASource;
+import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.ilexiconn.jurassicraft.common.item.ItemDNA;
 import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;

@@ -4,8 +4,8 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.minecraft.world.World;
 
 public class MessageAnimation implements IMessage

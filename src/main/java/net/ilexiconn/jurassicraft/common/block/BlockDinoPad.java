@@ -9,7 +9,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -107,11 +106,6 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
     public boolean canBlockStay(World world, int x, int y, int z)
     {
         return world.getBlock(x, y - 1, z).getMaterial().isSolid();
-    }
-
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
-    {
-        return new ItemStack(ModItems.dinoPad, 1);
     }
 
     public TileEntity createNewTileEntity(World world, int metadata)

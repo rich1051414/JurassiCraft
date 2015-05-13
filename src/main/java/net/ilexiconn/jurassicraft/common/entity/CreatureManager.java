@@ -3,11 +3,9 @@ package net.ilexiconn.jurassicraft.common.entity;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderJurassicraftCreature;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.api.RandomRyanShit;
 import net.ilexiconn.jurassicraft.common.item.ItemDNA;
-import net.minecraft.client.renderer.entity.RenderLiving;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,12 +117,7 @@ public class CreatureManager
         try
         {
             Class entity = Class.forName("net.ilexiconn.jurassicraft.common.entity." + category + ".Entity" + dino.creatureName);
-            if (RandomRyanShit.checkForClass("net.ilexiconn.jurassicraft.client.render.entity." + category + ".Render" + dino.creatureName))
-            {
-                RenderLiving renderer = (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.client.render.entity." + category + ".Render" + dino.creatureName).getDeclaredConstructor(Creature.class).newInstance(getCreatureFromId(dino.creatureID));
-                JurassiCraft.proxy.renderEntity(entity, renderer);
-            }
-            else JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino.creatureName, category, dino.shadowSize));
+            JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino.creatureName, category, dino.shadowSize));
         }
         catch (Exception e)
         {

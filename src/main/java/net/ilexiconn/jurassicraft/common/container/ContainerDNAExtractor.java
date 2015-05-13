@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.common.container;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.common.container.slot.SlotDNASource;
-import net.ilexiconn.jurassicraft.common.interfaces.IDNASource;
+import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNAExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

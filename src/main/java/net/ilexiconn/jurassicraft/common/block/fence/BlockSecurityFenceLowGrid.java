@@ -1,14 +1,12 @@
 package net.ilexiconn.jurassicraft.common.block.fence;
 
-import net.ilexiconn.jurassicraft.common.interfaces.IFenceGrid;
+import net.ilexiconn.jurassicraft.common.api.IFenceGrid;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowGrid;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -130,11 +128,6 @@ public class BlockSecurityFenceLowGrid extends BlockSecurityFence implements IFe
         int metadata = world.getBlockMetadata(x, y, z);
         if (metadata == 4 || metadata == 5 || metadata == 6 || metadata == 7)
             entity.attackEntityFrom(DamageSource.generic, 4.0F);
-    }
-
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
-    {
-        return null;
     }
 
     public int quantityDropped(Random rand)

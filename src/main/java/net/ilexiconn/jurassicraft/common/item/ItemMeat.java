@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.common.item;
 
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.common.interfaces.IDNASource;
+import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;

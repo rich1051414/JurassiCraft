@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.common.block.fence;
 
 import net.ilexiconn.jurassicraft.common.block.ModBlocks;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.common.interfaces.IFenceGrid;
-import net.ilexiconn.jurassicraft.common.interfaces.IFencePole;
+import net.ilexiconn.jurassicraft.common.api.IFenceGrid;
+import net.ilexiconn.jurassicraft.common.api.IFencePole;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceMediumPole;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;

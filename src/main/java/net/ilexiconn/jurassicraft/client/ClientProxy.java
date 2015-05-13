@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.ilexiconn.jurassicraft.client.render.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderSpit;
 import net.ilexiconn.jurassicraft.common.CommonProxy;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.EntitySpit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;

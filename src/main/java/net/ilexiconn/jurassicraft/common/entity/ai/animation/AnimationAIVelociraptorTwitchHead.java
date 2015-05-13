@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.common.entity.ai.animation;
 import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
-import net.ilexiconn.jurassicraft.common.interfaces.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.minecraft.entity.EntityLiving;
 
 public class AnimationAIVelociraptorTwitchHead extends AIAnimation

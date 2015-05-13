@@ -2,8 +2,10 @@ package net.ilexiconn.jurassicraft.common.block.fossil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.item.ItemBlockFossilClayOre;
 import net.ilexiconn.jurassicraft.common.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockFossilClayOre extends Block
+public class BlockFossilClayOre extends Block implements ISubBlocksBlock
 {
     public static final String[] colors = {"", "brown", "orange", "red", "silver", "white", "yellow"};
 
@@ -172,5 +175,10 @@ public class BlockFossilClayOre extends Block
                 this.icon_5[i] = register.registerIcon(JurassiCraft.getModId() + "fossil/fossil_side_5_hardened_clay");
             }
         }
+    }
+
+    public Class<? extends ItemBlock> getItemBlockClass()
+    {
+        return ItemBlockFossilClayOre.class;
     }
 }

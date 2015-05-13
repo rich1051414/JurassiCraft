@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
-import net.ilexiconn.jurassicraft.common.JurassiCraft;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
