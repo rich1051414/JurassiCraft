@@ -1,14 +1,14 @@
 package net.ilexiconn.jurassicraft.common.entity.fish;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
-import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingBase;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSwimmingBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityOrthacanthus extends EntitySwimmingBase
+public class EntityOrthacanthus extends EntityJurassiCraftSwimmingBase
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

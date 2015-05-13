@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.block.fossil.BlockFossilOre;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemPickaxe;
@@ -18,7 +18,7 @@ public class ToolFossilBreaker extends ItemPickaxe
         this.setMaxStackSize(1);
         setUnlocalizedName(toolName);
         setTextureName(JurassiCraft.getModId() + toolName);
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(JCCreativeTabRegistry.items);
     }
 
     public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entity)

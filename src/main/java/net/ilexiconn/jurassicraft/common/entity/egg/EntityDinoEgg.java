@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSmart;
 import net.minecraft.client.Minecraft;
@@ -412,7 +412,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
-        this.creature = CreatureManager.getCreatureFromId(nbt.getInteger("CreatureID"));
+        this.creature = CreatureHandler.getCreatureFromId(nbt.getInteger("CreatureID"));
         this.setDNASequence(nbt.getString("DNASequence"));
         this.setQuality(nbt.getInteger("Quality"));
         this.spawnTime = nbt.getInteger("SpawnTime");
@@ -430,7 +430,7 @@ public class EntityDinoEgg extends Entity implements IEntityAdditionalSpawnData
 
     public void readSpawnData(ByteBuf additionalData)
     {
-        this.creature = CreatureManager.getCreatureFromId(additionalData.readInt());
+        this.creature = CreatureHandler.getCreatureFromId(additionalData.readInt());
         this.quality = additionalData.readInt();
         this.spawnTime = additionalData.readInt();
     }

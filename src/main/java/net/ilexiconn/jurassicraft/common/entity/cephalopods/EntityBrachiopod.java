@@ -1,14 +1,14 @@
 package net.ilexiconn.jurassicraft.common.entity.cephalopods;
 
-import net.ilexiconn.jurassicraft.common.entity.EntityWaterCreature;
-import net.ilexiconn.jurassicraft.common.item.ModItems;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftWaterCreature;
+import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityBrachiopod extends EntityWaterCreature
+public class EntityBrachiopod extends EntityJurassiCraftWaterCreature
 {
     public int openMouthDummyTimer;
 
@@ -105,7 +105,7 @@ public class EntityBrachiopod extends EntityWaterCreature
     public boolean interact(final EntityPlayer player)
     {
         final ItemStack item = player.getCurrentEquippedItem();
-        if (item != null && item.getItem() == ModItems.net && this.hasPearl())
+        if (item != null && item.getItem() == JCItemRegistry.net && this.hasPearl())
         {
             if (this.getOpenMouth() == -65 && this.worldObj.rand.nextInt(3) == 0)
             {
@@ -113,7 +113,7 @@ public class EntityBrachiopod extends EntityWaterCreature
                 this.setHasPearl(false);
                 if (!this.worldObj.isRemote)
                 {
-                    // this.entityDropItem(new ItemStack(ModItems.multiItems, 1, 8), 0.0f);
+                    // this.entityDropItem(new ItemStack(JCItemRegistry.multiItems, 1, 8), 0.0f);
                 }
                 if (!player.capabilities.isCreativeMode)
                 {

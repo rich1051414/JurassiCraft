@@ -2,12 +2,12 @@ package net.ilexiconn.jurassicraft.common.entity.reptiles;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingBase;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSwimmingBase;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.item.ItemMeat;
 import net.ilexiconn.jurassicraft.common.item.ItemSteak;
-import net.ilexiconn.jurassicraft.common.item.drops.ItemSkin;
-import net.ilexiconn.jurassicraft.common.item.drops.ItemSkull;
+import net.ilexiconn.jurassicraft.common.item.ItemSkin;
+import net.ilexiconn.jurassicraft.common.item.ItemSkull;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -17,7 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityTylosaurus extends EntitySwimmingBase
+public class EntityTylosaurus extends EntityJurassiCraftSwimmingBase
 {
     public ChainBuffer tailBuffer = new ChainBuffer(12);
 

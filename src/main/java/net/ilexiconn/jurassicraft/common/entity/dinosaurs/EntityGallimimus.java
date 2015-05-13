@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftProtective;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIGallimimusBeingEaten;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;

@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.tileentity.fence;
 
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.block.fence.BlockSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.common.block.fence.BlockSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.common.block.fence.BlockSecurityFenceLowGrid;
@@ -617,7 +617,7 @@ public class TileSecurityFenceLowCorner extends TileEntity implements ISidedInve
 
     private void buildFenceOff(TileSecurityFenceLowCorner mainFence1, TileSecurityFenceLowCorner mainFence2, int side, int length, int height)
     {
-        Block grid = ModBlocks.securityFenceLowGrid;
+        Block grid = JCBlockRegistry.securityFenceLowGrid;
         switch (side)
         {
             /** South */

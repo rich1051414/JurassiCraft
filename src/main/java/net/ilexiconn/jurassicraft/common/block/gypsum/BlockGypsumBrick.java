@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.block.gypsum;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -15,7 +15,7 @@ public class BlockGypsumBrick extends Block
         setBlockName("block_Gypsum_Brick");
         this.setStepSound(soundTypeStone);
         this.setHarvestLevel("pickaxe", 1);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(JCCreativeTabRegistry.blocks);
         setBlockTextureName(JurassiCraft.getModId() + "gypsum_brick");
     }
 }

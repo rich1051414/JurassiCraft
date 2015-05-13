@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class ItemDinoPad extends Item
         super();
         setUnlocalizedName("dinopad");
         setTextureName(JurassiCraft.getModId() + "dinopad");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(JCCreativeTabRegistry.items);
     }
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
@@ -69,7 +69,7 @@ public class ItemDinoPad extends Item
                     }
                 }
 
-                world.setBlock(x, y, z, ModBlocks.dinoPad);
+                world.setBlock(x, y, z, JCBlockRegistry.dinoPad);
                 world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "step.stone", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 
                 int metadata = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;

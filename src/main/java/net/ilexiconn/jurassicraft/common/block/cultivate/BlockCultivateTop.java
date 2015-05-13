@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.block.Block;
@@ -79,7 +79,7 @@ public class BlockCultivateTop extends Block implements ISubBlocksBlock
 
     public Item getItemDropped(int metadata, Random random, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
+        return Item.getItemFromBlock(JCBlockRegistry.cultivateBottomOff);
     }
 
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
@@ -130,7 +130,7 @@ public class BlockCultivateTop extends Block implements ISubBlocksBlock
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z)
     {
-        return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
+        return Item.getItemFromBlock(JCBlockRegistry.cultivateBottomOff);
     }
 
     public boolean isOpaqueCube()

@@ -5,8 +5,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.item.ItemBlockCultivate;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.block.Block;
@@ -44,7 +44,7 @@ public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBl
         super(Material.cactus);
         this.setBlockName("cultivate_bottom_" + (lit ? "lit" : "idle"));
         this.setBlockTextureName(JurassiCraft.getModId() + "cultivate");
-        this.setCreativeTab(lit ? null : ModCreativeTabs.blocks);
+        this.setCreativeTab(lit ? null : JCCreativeTabRegistry.blocks);
         this.setHardness(2.0F);
         this.setBlockBounds(0.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         if (lit)
@@ -131,7 +131,7 @@ public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBl
 
     public Item getItemDropped(int metadata, Random random, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
+        return Item.getItemFromBlock(JCBlockRegistry.cultivateBottomOff);
     }
 
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
@@ -182,7 +182,7 @@ public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBl
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z)
     {
-        return Item.getItemFromBlock(ModBlocks.cultivateBottomOff);
+        return Item.getItemFromBlock(JCBlockRegistry.cultivateBottomOff);
     }
 
     public TileEntity createNewTileEntity(World world, int meta)

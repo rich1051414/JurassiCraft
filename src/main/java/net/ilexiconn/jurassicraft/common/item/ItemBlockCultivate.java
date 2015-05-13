@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.item;
 
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +39,7 @@ public class ItemBlockCultivate extends ItemBlock
         if (world.getBlock(x, y + 1, z).isReplaceable(world, x, y, z))
         {
             super.placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, metadata);
-            world.setBlock(x, y + 1, z, ModBlocks.cultivateTopOff);
+            world.setBlock(x, y + 1, z, JCBlockRegistry.cultivateTopOff);
             world.setBlockMetadataWithNotify(x, y + 1, z, world.getBlockMetadata(x, y, z), 2);
             BlockCultivate.setRotation(world, x, y, z, MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3);
             return true;

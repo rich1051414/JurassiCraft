@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.common.entity.ai.animation;
 
 import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityTyrannosaurus;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 
 public class AnimationAITyrannosaurusEatingGallimimus extends AIAnimation
 {

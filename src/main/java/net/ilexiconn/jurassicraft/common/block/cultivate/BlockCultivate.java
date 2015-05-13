@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.block.cultivate;
 
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -29,8 +29,8 @@ public class BlockCultivate
         int metadata = world.getBlockMetadata(x, y, z);
         TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-        world.setBlock(x, y, z, lit ? ModBlocks.cultivateBottomOn : ModBlocks.cultivateBottomOff);
-        world.setBlock(x, y + 1, z, lit ? ModBlocks.cultivateTopOn : ModBlocks.cultivateTopOff);
+        world.setBlock(x, y, z, lit ? JCBlockRegistry.cultivateBottomOn : JCBlockRegistry.cultivateBottomOff);
+        world.setBlock(x, y + 1, z, lit ? JCBlockRegistry.cultivateTopOn : JCBlockRegistry.cultivateTopOff);
 
         if (tileEntity != null)
         {

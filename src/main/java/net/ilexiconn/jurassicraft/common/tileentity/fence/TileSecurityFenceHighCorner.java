@@ -615,7 +615,7 @@ public class TileSecurityFenceHighCorner extends TileEntity implements ISidedInv
 
     private void buildFenceOff(TileSecurityFenceHighCorner mainFence1, TileSecurityFenceHighCorner mainFence2, int side, int length, int height)
     {
-        //HERE Block grid = ModBlocks.securityFenceHighGrid;
+        //HERE Block grid = JCBlockRegistry.securityFenceHighGrid;
         switch (side)
         {
             /** South */

@@ -6,7 +6,7 @@ import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityCarnotaurus;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityHerrerasaurus;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityTyrannosaurus;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityVelociraptor;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

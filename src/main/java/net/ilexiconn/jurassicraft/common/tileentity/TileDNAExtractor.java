@@ -1,10 +1,9 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.ilexiconn.jurassicraft.common.item.*;
-import net.ilexiconn.jurassicraft.common.item.drops.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -31,7 +30,7 @@ public class TileDNAExtractor extends TileEntity implements ISidedInventory
     {
         this.extractionTime = 0;
 
-        for (Creature creature : CreatureManager.getCreatures())
+        for (Creature creature : CreatureHandler.getCreatures())
         {
             ItemDNA dna = creature.getDNA();
             if (dna != null)

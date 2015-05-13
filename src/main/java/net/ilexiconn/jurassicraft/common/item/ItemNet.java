@@ -3,7 +3,7 @@ package net.ilexiconn.jurassicraft.common.item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
@@ -18,7 +18,7 @@ public class ItemNet extends Item
         this.setMaxDamage(60);
         setUnlocalizedName("net");
         setTextureName(JurassiCraft.getModId() + "net");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(JCCreativeTabRegistry.items);
     }
 
     @SideOnly(Side.CLIENT)

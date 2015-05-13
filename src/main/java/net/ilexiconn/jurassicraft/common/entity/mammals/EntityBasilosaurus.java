@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.entity.mammals;
 
-import net.ilexiconn.jurassicraft.common.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingNew;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class EntityBasilosaurus extends NewEntitySwimming
+public class EntityBasilosaurus extends EntitySwimmingNew
 {
     public EntityBasilosaurus(World world)
     {

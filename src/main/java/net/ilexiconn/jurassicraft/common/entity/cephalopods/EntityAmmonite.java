@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.entity.cephalopods;
 
-import net.ilexiconn.jurassicraft.common.entity.NewEntitySwimming;
+import net.ilexiconn.jurassicraft.common.entity.EntitySwimmingNew;
 import net.minecraft.world.World;
 
-public class EntityAmmonite extends NewEntitySwimming
+public class EntityAmmonite extends EntitySwimmingNew
 {
     public EntityAmmonite(World world)
     {

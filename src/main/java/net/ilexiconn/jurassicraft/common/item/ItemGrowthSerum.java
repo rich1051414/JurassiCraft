@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ public class ItemGrowthSerum extends Item
         super();
         setUnlocalizedName("growthSerum");
         setTextureName(JurassiCraft.getModId() + "growth_Serum");
-        setCreativeTab(ModCreativeTabs.items);
+        setCreativeTab(JCCreativeTabRegistry.items);
     }
 
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag)

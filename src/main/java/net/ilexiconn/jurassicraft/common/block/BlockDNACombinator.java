@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.block;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNACombinator;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNAExtractor;
 import net.minecraft.block.Block;
@@ -24,7 +24,7 @@ public class BlockDNACombinator extends BlockContainer
         this.setBlockName("dnaCombinator");
         this.setHardness(3.0f);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(JCCreativeTabRegistry.blocks);
         this.setBlockTextureName("iron_block");
     }
 

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantPig;
@@ -39,9 +39,9 @@ public class ItemMammalSyringe extends Item
         super();
         this.setUnlocalizedName(mammal + "_Syringe");
         mammal = mammal.toLowerCase();
-        String cat = CreatureManager.getCategoryFromCreatureName(mammal);
+        String cat = CreatureHandler.getCategoryFromCreatureName(mammal);
         this.setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + mammal + "/" + mammal + "_Syringe");
-        this.setCreativeTab(ModCreativeTabs.syringesEggs);
+        this.setCreativeTab(JCCreativeTabRegistry.syringesEggs);
         this.mammalName = mammal;
     }
 

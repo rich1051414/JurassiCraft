@@ -3,8 +3,8 @@ package net.ilexiconn.jurassicraft.common.block.fossil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.common.item.ModItems;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
+import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -40,7 +40,7 @@ public class BlockFossilOre extends Block
         setBlockTextureName(JurassiCraft.getModId() + "fossil_ore");
         setHardness(3.0F);
         setResistance(5.0F);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(JCCreativeTabRegistry.blocks);
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }
@@ -62,7 +62,7 @@ public class BlockFossilOre extends Block
         }
         else
         {
-            return ModItems.fossil;
+            return JCItemRegistry.fossil;
         }
     }
 

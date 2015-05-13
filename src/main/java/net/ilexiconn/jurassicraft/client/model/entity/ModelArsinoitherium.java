@@ -4,7 +4,7 @@ import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityArsinoitherium;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
 import net.minecraft.entity.Entity;
 

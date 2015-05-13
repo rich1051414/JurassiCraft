@@ -2,12 +2,12 @@ package net.ilexiconn.jurassicraft.common.entity.fish;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.base.ControlledAnimation;
-import net.ilexiconn.jurassicraft.common.entity.EntitySwimming;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSwimming;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityCoelacanth extends EntitySwimming
+public class EntityCoelacanth extends EntityJurassiCraftSwimming
 {
     public ChainBuffer tailBuffer = new ChainBuffer(4);
     public ControlledAnimation droppingTimer = new ControlledAnimation(35);

@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.item.ItemGrowthSerum;
 import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityCreature;
@@ -36,7 +37,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public EntityJurassiCraftCreature(World world)
     {
         super(world);
-        this.setCreature(CreatureManager.classToCreature(getClass()));
+        this.setCreature(CreatureHandler.classToCreature(getClass()));
         if (this.getGeneticQuality() < 0.6F || this.getGeneticQuality() >= 1.4F)
         {
             this.setRandomGenetics();
@@ -929,7 +930,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setCreature(CreatureManager.getCreatureFromId(compound.getByte("ID")));
+        this.setCreature(CreatureHandler.getCreatureFromId(compound.getByte("ID")));
         this.setTicksExisted(compound.getInteger("TicksExisted"));
         this.setGrowthStage(compound.getByte("GrowthStage"));
         this.setDNASequence(compound.getString("DNASequence"));
@@ -954,7 +955,7 @@ public class EntityJurassiCraftCreature extends EntityCreature implements IEntit
     {
         try
         {
-            this.setCreature(CreatureManager.getCreatureFromId(buf.readByte()));
+            this.setCreature(CreatureHandler.getCreatureFromId(buf.readByte()));
             this.setTicksExisted(buf.readInt());
             this.setGrowthStage(buf.readByte());
             this.setGeneticQuality(buf.readFloat());

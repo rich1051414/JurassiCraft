@@ -7,7 +7,7 @@ import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftAggressive;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCharges;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.api.IHerbivore;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.block.gypsum;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -19,12 +19,12 @@ public class BlockGypsumBlock extends Block
         setBlockName("block_Gypsum_Block");
         this.setStepSound(soundTypeStone);
         this.setHarvestLevel("pickaxe", 1);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(JCCreativeTabRegistry.blocks);
         setBlockTextureName(JurassiCraft.getModId() + "gypsum");
     }
 
     public Item getItemDropped(int id, Random random, int metadata)
     {
-        return Item.getItemFromBlock(ModBlocks.gypsumCobblestone);
+        return Item.getItemFromBlock(JCBlockRegistry.gypsumCobblestone);
     }
 }

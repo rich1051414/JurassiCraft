@@ -1152,19 +1152,19 @@ public class TileSecurityFence extends TileEntity implements ISidedInventory
         {
         /*
         case 0:
-            fenceBase = ModBlocks.securityFenceLowBase;
-            fenceGrid = ModBlocks.securityFenceLowFence;
-            fencePole = ModBlocks.securityFenceLowPole;
+            fenceBase = JCBlockRegistry.securityFenceLowBase;
+            fenceGrid = JCBlockRegistry.securityFenceLowFence;
+            fencePole = JCBlockRegistry.securityFenceLowPole;
             break;
         case 1:
-            fenceBase = ModBlocks.securityFenceMediumBase;
-            fenceGrid = ModBlocks.securityFenceMediumFence;
-            fencePole = ModBlocks.securityFenceMediumPole;
+            fenceBase = JCBlockRegistry.securityFenceMediumBase;
+            fenceGrid = JCBlockRegistry.securityFenceMediumFence;
+            fencePole = JCBlockRegistry.securityFenceMediumPole;
             break;
         case 2:
-            fenceBase = ModBlocks.securityFenceHighBase;
-            fenceGrid = ModBlocks.securityFenceHighFence;
-            fencePole = ModBlocks.securityFenceHighPole;
+            fenceBase = JCBlockRegistry.securityFenceHighBase;
+            fenceGrid = JCBlockRegistry.securityFenceHighFence;
+            fencePole = JCBlockRegistry.securityFenceHighPole;
             break;
         */
         }

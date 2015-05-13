@@ -2,9 +2,9 @@ package net.ilexiconn.jurassicraft.common.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -29,13 +29,13 @@ public class ItemSpawnEggJurassiCraft extends Item
     {
         this.setUnlocalizedName("jc_spawn_egg"); //ItemMonsterPlacer
         this.setTextureName("spawn_egg");
-        this.setCreativeTab(ModCreativeTabs.spawnEggs);
+        this.setCreativeTab(JCCreativeTabRegistry.spawnEggs);
         this.setHasSubtypes(true);
     }
 
     public static EntityJurassiCraftCreature spawnCreature(World world, EntityPlayer player, ItemStack egg, double x, double y, double z)
     {
-        Class creatureClass = CreatureManager.getCreatureFromId(egg.getItemDamage()).getCreatureClass();
+        Class creatureClass = CreatureHandler.getCreatureFromId(egg.getItemDamage()).getCreatureClass();
 
         try
         {
@@ -167,7 +167,7 @@ public class ItemSpawnEggJurassiCraft extends Item
 
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return StatCollector.translateToLocal("item." + CreatureManager.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + "_SpawnEgg.name").trim();
+        return StatCollector.translateToLocal("item." + CreatureHandler.getCreatureFromId(itemStack.getItemDamage()).getCreatureName() + "_SpawnEgg.name").trim();
     }
 
 
@@ -189,7 +189,7 @@ public class ItemSpawnEggJurassiCraft extends Item
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int renderPass)
     {
-        Creature creature = CreatureManager.getCreatureFromId(stack.getItemDamage());
+        Creature creature = CreatureHandler.getCreatureFromId(stack.getItemDamage());
 
         return creature != null ? (renderPass == 0 ? creature.getEggPrimaryColor() : creature.getEggSecondaryColor()) : 16777215;
     }
@@ -197,7 +197,7 @@ public class ItemSpawnEggJurassiCraft extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        for (Creature creature : CreatureManager.getCreatures())
+        for (Creature creature : CreatureHandler.getCreatures())
         {
             if (creature.getAddedItemTypes() != 0)
             {

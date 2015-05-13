@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.entity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.ilexiconn.jurassicraft.common.data.CreatureContainer;
 import net.ilexiconn.jurassicraft.common.item.*;
-import net.ilexiconn.jurassicraft.common.item.drops.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -76,7 +76,7 @@ public class Creature
     private int eggPrimaryColor;
     private int eggSecondaryColor;
 
-    public Creature(String creatureCategory, CreatureJsonDef def, Class clazz)
+    public Creature(String creatureCategory, CreatureContainer def, Class clazz)
     {
         this.clazz = clazz;
 

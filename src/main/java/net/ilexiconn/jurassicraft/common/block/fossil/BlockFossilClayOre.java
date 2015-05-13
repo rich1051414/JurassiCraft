@@ -4,9 +4,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.item.ItemBlockFossilClayOre;
-import net.ilexiconn.jurassicraft.common.item.ModItems;
+import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -47,7 +47,7 @@ public class BlockFossilClayOre extends Block implements ISubBlocksBlock
         setBlockName("fossil_clay_ore");
         setHardness(3.0F);
         setResistance(5.0F);
-        setCreativeTab(ModCreativeTabs.blocks);
+        setCreativeTab(JCCreativeTabRegistry.blocks);
         setStepSound(Block.soundTypeStone);
         setHarvestLevel("pickaxe", 2);
     }
@@ -107,7 +107,7 @@ public class BlockFossilClayOre extends Block implements ISubBlocksBlock
         }
         else
         {
-            return ModItems.fossil;
+            return JCItemRegistry.fossil;
         }
     }
 

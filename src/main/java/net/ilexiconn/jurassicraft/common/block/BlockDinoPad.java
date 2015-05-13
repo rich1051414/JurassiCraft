@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.block;
 
-import net.ilexiconn.jurassicraft.common.item.ModItems;
+import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDinoPad;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -61,7 +61,7 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
             float x1 = world.rand.nextFloat() * 0.8F + 0.1F;
             float y1 = world.rand.nextFloat() * 0.8F + 0.1F;
             float z1 = world.rand.nextFloat() * 0.8F + 0.1F;
-            ItemStack itemStack = new ItemStack(ModItems.dinoPad);
+            ItemStack itemStack = new ItemStack(JCItemRegistry.dinoPad);
             EntityItem entityPlanks = new EntityItem(world, (double) ((float) x + x1), (double) ((float) y + y1), (double) ((float) z + z1), itemStack);
             world.spawnEntityInWorld(entityPlanks);
         }
@@ -78,7 +78,7 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
         {
             world.removeTileEntity(x, y, z);
             world.setBlockToAir(x, y, z);
-            player.inventory.addItemStackToInventory(new ItemStack(ModItems.dinoPad, 1));
+            player.inventory.addItemStackToInventory(new ItemStack(JCItemRegistry.dinoPad, 1));
             return true;
         }
     }
@@ -97,7 +97,7 @@ public class BlockDinoPad extends Block implements ITileEntityProvider
     {
         if (!this.canBlockStay(world, x, y, z))
         {
-            world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(ModItems.dinoPad, 1)));
+            world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(JCItemRegistry.dinoPad, 1)));
             world.removeTileEntity(x, y, z);
             world.setBlockToAir(x, y, z);
         }

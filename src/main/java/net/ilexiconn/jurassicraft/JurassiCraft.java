@@ -12,27 +12,27 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.ilexiconn.jurassicraft.client.gui.GuiHandler;
-import net.ilexiconn.jurassicraft.client.render.ModRenderers;
+import net.ilexiconn.jurassicraft.client.render.JCRenderRegistry;
 import net.ilexiconn.jurassicraft.common.CommonProxy;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
-import net.ilexiconn.jurassicraft.common.cape.CapeContainer;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.data.CapeContainer;
 import net.ilexiconn.jurassicraft.common.command.CommandSpawnDino;
 import net.ilexiconn.jurassicraft.common.config.ConfigHandler;
-import net.ilexiconn.jurassicraft.common.content.ContentLoader;
-import net.ilexiconn.jurassicraft.common.crafting.ModRecipes;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
-import net.ilexiconn.jurassicraft.common.entity.JsonEntityParser;
-import net.ilexiconn.jurassicraft.common.entity.ModEntities;
+import net.ilexiconn.jurassicraft.common.data.loader.ContentLoader;
+import net.ilexiconn.jurassicraft.common.crafting.JCRecipeRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
+import net.ilexiconn.jurassicraft.common.handler.JsonEntityHandler;
+import net.ilexiconn.jurassicraft.common.entity.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.common.entity.fish.EntityCoelacanth;
 import net.ilexiconn.jurassicraft.common.events.JurassiCraftInteractEvent;
 import net.ilexiconn.jurassicraft.common.events.JurassiCraftLivingEvent;
-import net.ilexiconn.jurassicraft.common.gen.WorldGenAmberOre;
-import net.ilexiconn.jurassicraft.common.gen.WorldGenFossilOre;
-import net.ilexiconn.jurassicraft.common.gen.WorldGenGypsum;
-import net.ilexiconn.jurassicraft.common.item.ModItems;
-import net.ilexiconn.jurassicraft.common.packet.MessageAnimation;
-import net.ilexiconn.jurassicraft.common.packet.MessageFence;
-import net.ilexiconn.jurassicraft.common.tileentity.ModTileEntities;
+import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
+import net.ilexiconn.jurassicraft.common.world.WorldGenAmberOre;
+import net.ilexiconn.jurassicraft.common.world.WorldGenFossilOre;
+import net.ilexiconn.jurassicraft.common.world.WorldGenGypsum;
+import net.ilexiconn.jurassicraft.common.message.MessageAnimation;
+import net.ilexiconn.jurassicraft.common.message.MessageFence;
+import net.ilexiconn.jurassicraft.common.tileentity.JCTileEntityRegistry;
 import net.ilexiconn.llibrary.common.web.WebHelper;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -50,7 +50,7 @@ public class JurassiCraft
     @Mod.Instance("jurassicraft")
     public static JurassiCraft instance;
     public static boolean enableDebugging;
-    public static JsonEntityParser entityParser;
+    public static JsonEntityHandler entityParser;
     public static ContentLoader contentLoader;
     public static SimpleNetworkWrapper network;
     public static int entityIndex = 0;
@@ -68,24 +68,24 @@ public class JurassiCraft
     {
         logger = event.getModLog();
 
-        entityParser = new JsonEntityParser();
+        entityParser = new JsonEntityHandler();
 
         entityParser.parseServerEntities();
 
         contentLoader = new ContentLoader();
 
-        contentLoader.addContentHandler(new ModCreativeTabs());
-        contentLoader.addContentHandler(new ModEntities());
-        contentLoader.addContentHandler(new ModBlocks());
-        contentLoader.addContentHandler(new ModItems());
-        contentLoader.addContentHandler(new ModRecipes());
+        contentLoader.addContentHandler(new JCCreativeTabRegistry());
+        contentLoader.addContentHandler(new JCEntityRegistry());
+        contentLoader.addContentHandler(new JCBlockRegistry());
+        contentLoader.addContentHandler(new JCItemRegistry());
+        contentLoader.addContentHandler(new JCRecipeRegistry());
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
-            contentLoader.addContentHandler(new ModRenderers());
+            contentLoader.addContentHandler(new JCRenderRegistry());
         }
 
-        contentLoader.addContentHandler(new ModTileEntities());
+        contentLoader.addContentHandler(new JCTileEntityRegistry());
 
         contentLoader.init();
         ConfigHandler.init(event.getSuggestedConfigurationFile());

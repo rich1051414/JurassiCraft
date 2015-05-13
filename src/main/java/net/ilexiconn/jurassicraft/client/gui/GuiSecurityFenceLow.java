@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.container.ContainerSecurityFenceLow;
-import net.ilexiconn.jurassicraft.common.packet.MessageFence;
+import net.ilexiconn.jurassicraft.common.message.MessageFence;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowCorner;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.entity;
 
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAICharge;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

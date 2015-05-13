@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftFoodNutrients;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftFoodNutrients;
 import net.ilexiconn.jurassicraft.common.item.ItemDNA;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -442,7 +442,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 {
                     if (dnaSlot.getTagCompound().getInteger("Quality") >= 50)
                     {
-                        creature = CreatureManager.getCreatureFromDNA((ItemDNA) dnaSlot.getItem());
+                        creature = CreatureHandler.getCreatureFromDNA((ItemDNA) dnaSlot.getItem());
 
                         return !(this.getProximateValue() < creature.getMinProximate() || this.getMineralValue() < creature.getMinMinerals() || this.getVitaminValue() < creature.getMinVitamins() || this.getLipidValue() < creature.getMinLipids());
                     }
@@ -799,7 +799,7 @@ public class TileCultivate extends TileEntity implements ISidedInventory
                 this.slots[k] = ItemStack.loadItemStackFromNBT(compound);
             }
         }
-        this.creature = CreatureManager.getCreatureFromId(nbt.getByte("CreatureID"));
+        this.creature = CreatureHandler.getCreatureFromId(nbt.getByte("CreatureID"));
         this.creatureSize = nbt.getShort("CreatureSize");
         this.waterStored = nbt.getByte("Water");
         this.cultivateTime = nbt.getShort("cultivateTime");

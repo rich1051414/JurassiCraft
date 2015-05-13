@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -36,7 +36,7 @@ public class TileEgg extends TileEntity
     {
         if (this.dinoID != dinoID)
         {
-            creature = CreatureManager.getCreatureFromId(dinoID);
+            creature = CreatureHandler.getCreatureFromId(dinoID);
         }
         this.dinoID = dinoID;
     }

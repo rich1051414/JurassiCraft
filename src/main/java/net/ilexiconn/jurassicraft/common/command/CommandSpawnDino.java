@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.command;
 
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
 import net.minecraft.command.CommandBase;
@@ -61,12 +61,12 @@ public class CommandSpawnDino extends CommandBase
 
     public List addTabCompletionOptions(ICommandSender sender, String[] args)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, CreatureManager.getCreatureNames()) : (args.length == 5 ? getListOfStringsMatchingLastWord(args, "true", "false") : null);
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, CreatureHandler.getCreatureNames()) : (args.length == 5 ? getListOfStringsMatchingLastWord(args, "true", "false") : null);
     }
 
     public void spawnCreature(World world, int x, int y, int z, String name, boolean adult)
     {
-        Class creatureClass = CreatureManager.getCreatureFromName(name).getCreatureClass();
+        Class creatureClass = CreatureHandler.getCreatureFromName(name).getCreatureClass();
         try
         {
             Entity creatureToSpawn = (Entity) creatureClass.getConstructor(World.class).newInstance(world);

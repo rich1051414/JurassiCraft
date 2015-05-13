@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public class ItemFossilModel extends Item
         this.setMaxStackSize(8);
         this.setUnlocalizedName(fossilName + "_Fossil");
         this.setTextureName(JurassiCraft.getModId() + fossilName + "_Fossil");
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(JCCreativeTabRegistry.blocks);
     }
 
     public int getFossil(ItemStack fossil)

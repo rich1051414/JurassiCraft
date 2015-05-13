@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.api.IDNASample;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,15 +22,15 @@ public class ItemDNA extends Item implements IDNASample
     {
         super();
         name = name.toLowerCase();
-        String cat = CreatureManager.getCategoryFromCreatureName(name);
+        String cat = CreatureHandler.getCategoryFromCreatureName(name);
         setUnlocalizedName(name + "_DNA");
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat.toLowerCase() + "/" + name.toLowerCase() + "/" + name.toLowerCase() + "_DNA");
-        setCreativeTab(ModCreativeTabs.dnas);
+        setCreativeTab(JCCreativeTabRegistry.dnas);
     }
 
     public Item getCorrespondingEggOrSyringe()
     {
-        Creature creature = CreatureManager.getCreatureFromDNA(this);
+        Creature creature = CreatureHandler.getCreatureFromDNA(this);
         if (creature.getEgg() != null)
         {
             return creature.getEgg();

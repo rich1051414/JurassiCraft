@@ -4,7 +4,7 @@ import net.ilexiconn.jurassicraft.client.model.block.ModelCultivate;
 import net.ilexiconn.jurassicraft.client.model.block.ModelEmbryo;
 import net.ilexiconn.jurassicraft.client.render.RenderHelper;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivate;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivateBottom;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
@@ -64,7 +64,7 @@ public class TileCultivateRenderer extends TileEntitySpecialRenderer
         this.cultivate.render(false);
         GL11.glPopMatrix();
 
-        int[] displayList = RenderHelper.getFluidDisplayLists(tile.getWorldObj(), ModBlocks.cultivateFluid, ModBlocks.cultivateLiquid);
+        int[] displayList = RenderHelper.getFluidDisplayLists(tile.getWorldObj(), JCBlockRegistry.cultivateFluid, JCBlockRegistry.cultivateLiquid);
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
         GL11.glEnable(GL11.GL_CULL_FACE);

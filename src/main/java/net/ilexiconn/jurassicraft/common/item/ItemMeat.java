@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
@@ -25,14 +25,14 @@ public class ItemMeat extends ItemFood implements IDNASource
         setPotionEffect(Potion.hunger.id, 30, 0, 0.8F);
         setUnlocalizedName(name + "_Meat");
         name = name.toLowerCase();
-        String cat = CreatureManager.getCategoryFromCreatureName(name);
+        String cat = CreatureHandler.getCategoryFromCreatureName(name);
         setTextureName(JurassiCraft.getModId() + "creatures/" + cat + "/" + name + "/" + name + "_Meat");
-        setCreativeTab(ModCreativeTabs.itemsFood);
+        setCreativeTab(JCCreativeTabRegistry.itemsFood);
     }
 
     public ItemDNA getCorrespondingDNA()
     {
-        Creature creature = CreatureManager.getCreatureFromName(this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length() - 5));
+        Creature creature = CreatureHandler.getCreatureFromName(this.getUnlocalizedName().substring(5, this.getUnlocalizedName().length() - 5));
         if (creature != null)
         {
             return creature.getDNA();

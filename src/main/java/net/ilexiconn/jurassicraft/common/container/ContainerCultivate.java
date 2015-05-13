@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.common.container.slot.SlotBucket;
 import net.ilexiconn.jurassicraft.common.container.slot.SlotDNASampleAndEgg;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftFoodNutrients;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftFoodNutrients;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

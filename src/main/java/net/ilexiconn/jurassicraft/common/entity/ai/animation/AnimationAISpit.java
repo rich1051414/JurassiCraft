@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.common.entity.ai.animation;
 
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
-import net.ilexiconn.jurassicraft.common.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 

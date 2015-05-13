@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.block.fence;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.common.block.ModBlocks;
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceMediumCorner;
 import net.minecraft.block.Block;
@@ -18,7 +18,7 @@ public class BlockSecurityFenceHighCorner extends BlockSecurityFence
     public BlockSecurityFenceHighCorner()
     {
         super(10.0F, 150.0F, 2, "low_Security_Fence_Main");
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(JCCreativeTabRegistry.blocks);
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
@@ -121,7 +121,7 @@ public class BlockSecurityFenceHighCorner extends BlockSecurityFence
         float xRand = world.rand.nextFloat() * 0.8F + 0.1F;
         float yRand = world.rand.nextFloat() * 0.8F + 0.1F;
         float zRand = world.rand.nextFloat() * 0.8F + 0.1F;
-        world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(ModBlocks.securityFenceLowPole, 1, 0)));
+        world.spawnEntityInWorld(new EntityItem(world, (double) ((float) x + xRand), (double) ((float) y + yRand), (double) ((float) z + zRand), new ItemStack(JCBlockRegistry.securityFenceLowPole, 1, 0)));
     }
 
     public TileEntity createNewTileEntity(World world, int metadata)

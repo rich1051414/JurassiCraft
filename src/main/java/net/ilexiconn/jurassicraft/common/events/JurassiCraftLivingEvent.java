@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.ilexiconn.jurassicraft.common.entity.CreatureManager;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantCow;
@@ -134,7 +134,7 @@ public class JurassiCraftLivingEvent
 
     public void spawnMammalBaby(String mammalName, int quality, String dnaSequence, LivingUpdateEvent event)
     {
-        Class mammalToSpawnClass = CreatureManager.getCreatureFromName(mammalName).getCreatureClass();
+        Class mammalToSpawnClass = CreatureHandler.getCreatureFromName(mammalName).getCreatureClass();
 
         if (mammalToSpawnClass != null)
         {

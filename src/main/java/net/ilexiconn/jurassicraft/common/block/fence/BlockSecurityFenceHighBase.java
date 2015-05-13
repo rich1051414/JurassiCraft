@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.block.fence;
 
-import net.ilexiconn.jurassicraft.common.creativetab.ModCreativeTabs;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.api.IFenceBase;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceMediumBase;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +12,7 @@ public class BlockSecurityFenceHighBase extends BlockSecurityFence implements IF
     {
         super(10.0F, 150.0F, 2, "low_Security_Fence_Base");
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-        this.setCreativeTab(ModCreativeTabs.blocks);
+        this.setCreativeTab(JCCreativeTabRegistry.blocks);
     }
 
     public int getRenderType()
