@@ -5,7 +5,6 @@ import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.data.CreatureContainer;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -69,26 +68,6 @@ public class RenderJurassicraftCreature extends RenderLiving
         else
         {
             return getTexture(JurassiCraft.getModId() + "textures/entity/" + creatureCat.toLowerCase() + "/" + creatureName.toLowerCase() + "/" + creatureName.toLowerCase() + "Female1.png");
-        }
-    }
-
-    protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
-    {
-        if (p_77032_2_ != 0 ||
-                !creature.hasOverlay)
-        {
-            return -1;
-        }
-        else
-        {
-            this.bindTexture(getTexture(JurassiCraft.getModId() + "textures/entity/" + creatureCat.toLowerCase() + "/" + creatureName.toLowerCase() + "/" + creatureName.toLowerCase() + "Overlay.png"));
-
-            char c0 = 61680;
-            int j = c0 % 65536;
-            int k = c0 / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
-
-            return 1;
         }
     }
 
