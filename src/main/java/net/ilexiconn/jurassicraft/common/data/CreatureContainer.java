@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class CreatureContainer
 {
+    // Just for testing
+    public boolean hasOverlay = false;
+
     private static byte currentCreatureID = 0;
     public byte creatureID = currentCreatureID++;
     public String creatureName;

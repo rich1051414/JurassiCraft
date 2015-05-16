@@ -13,6 +13,9 @@ public class Creature
 {
     private Class clazz;
 
+    // Just for testing
+    private boolean hasOverlay;
+
     private String creatureCategory;
 
     private byte creatureID;
@@ -80,6 +83,8 @@ public class Creature
     {
         this.clazz = clazz;
 
+        this.hasOverlay = def.hasOverlay;
+
         this.creatureCategory = creatureCategory;
 
         this.adultAge = def.adultAge;
@@ -122,6 +127,11 @@ public class Creature
         this.addItemTypes = def.addItemTypes;
         this.eggPrimaryColor = def.eggPrimaryColor;
         this.eggSecondaryColor = def.eggSecondaryColor;
+    }
+
+    public boolean getHasOverlay()
+    {
+        return hasOverlay;
     }
 
     public void addDNA()

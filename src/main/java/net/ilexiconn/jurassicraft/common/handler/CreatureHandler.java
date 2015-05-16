@@ -119,7 +119,7 @@ public class CreatureHandler
         try
         {
             Class entity = Class.forName("net.ilexiconn.jurassicraft.common.entity." + category + ".Entity" + dino.creatureName);
-            JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino.creatureName, category, dino.shadowSize));
+            JurassiCraft.proxy.renderEntity(entity, new RenderJurassicraftCreature(dino, dino.creatureName, category, dino.shadowSize));
         }
         catch (Exception e)
         {

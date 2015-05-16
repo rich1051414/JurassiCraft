@@ -41,6 +41,8 @@
 		"eggSecondaryColor":1775635
     },
     {
+        "hasOverlay": true,
+
         "creatureName":"Brachiosaurus",
         "minHealth":26,
         "maxHealth":110,
