@@ -15,7 +15,7 @@ public class EntityJurassiCraftGroupAggressive extends EntityJurassiCraftAggress
 
     protected void setCreatureAngry(EntityJurassiCraftAggressive creature, Entity entity)
     {
-        if (entity instanceof EntityLivingBase && entity.getClass() != getClass())
+        if (entity instanceof EntityLivingBase && entity.getClass() != creature.getClass())
         {
             EntityLivingBase attacker = (EntityLivingBase) entity;
             List list = creature.worldObj.getEntitiesWithinAABBExcludingEntity(creature, creature.boundingBox.expand(16.0D, 8.0D, 16.0D));
