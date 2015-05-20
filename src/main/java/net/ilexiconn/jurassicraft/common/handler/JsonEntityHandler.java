@@ -48,12 +48,26 @@ public class JsonEntityHandler
 
     public void loadJsons()
     {
-        dinos = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/dinos.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        reptiles = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/reptiles.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        mammals = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/mammals.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        birds = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/birds.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        fish = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/fish.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        cephalopods = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/cephalopods.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
-        arthropods = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/arthropods.json")), new TypeToken<Collection<CreatureContainer>>(){}.getType());
+        dinos = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/dinos.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        reptiles = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/reptiles.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        mammals = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/mammals.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        birds = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/birds.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        fish = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/fish.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        cephalopods = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/cephalopods.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
+        arthropods = new Gson().fromJson(new InputStreamReader(JsonEntityHandler.class.getResourceAsStream("/assets/jurassicraft/json/arthropods.json")), new TypeToken<Collection<CreatureContainer>>()
+        {
+        }.getType());
     }
 }

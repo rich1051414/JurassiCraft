@@ -1,10 +1,9 @@
-package net.ilexiconn.jurassicraft.common.item;
+package net.ilexiconn.jurassicraft.common.handler;
 
 import java.util.Random;
 
 public class JurassiCraftDNAHandler
 {
-
     private static Random random = new Random();
 
     /**

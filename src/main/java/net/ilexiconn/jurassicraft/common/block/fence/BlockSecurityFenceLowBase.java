@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.block.fence;
 
-import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.api.IFenceBase;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

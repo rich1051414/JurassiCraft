@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.command;
 
-import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
-import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
+import net.ilexiconn.jurassicraft.common.handler.JurassiCraftDNAHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;

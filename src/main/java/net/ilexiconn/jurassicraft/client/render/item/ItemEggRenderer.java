@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.client.render.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelEgg;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

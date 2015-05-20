@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.common.item;
+package net.ilexiconn.jurassicraft.common.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;

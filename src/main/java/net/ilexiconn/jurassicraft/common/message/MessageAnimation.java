@@ -1,14 +1,13 @@
 package net.ilexiconn.jurassicraft.common.message;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class MessageAnimation implements IMessage
+public class MessageAnimation extends AbstractMessage<MessageAnimation>
 {
     private byte animationId;
     private int entityId;
@@ -24,6 +23,22 @@ public class MessageAnimation implements IMessage
         entityId = entity;
     }
 
+    public void handleClientMessage(MessageAnimation message, EntityPlayer entityPlayer)
+    {
+        World world = JurassiCraft.proxy.getWorldClient();
+        IAnimatedEntity entity = (IAnimatedEntity) world.getEntityByID(message.entityId);
+        if (entity != null && message.animationId != -1)
+        {
+            entity.setAnimationId(message.animationId);
+            if (message.animationId == 0) entity.setAnimationTick(0);
+        }
+    }
+
+    public void handleServerMessage(MessageAnimation message, EntityPlayer entityPlayer)
+    {
+
+    }
+
     public void toBytes(ByteBuf buffer)
     {
         buffer.writeByte(animationId);
@@ -34,21 +49,5 @@ public class MessageAnimation implements IMessage
     {
         animationId = buffer.readByte();
         entityId = buffer.readInt();
-    }
-
-    public static class Handler implements IMessageHandler<MessageAnimation, IMessage>
-    {
-        public IMessage onMessage(MessageAnimation packet, MessageContext ctx)
-        {
-            World world = JurassiCraft.proxy.getWorldClient();
-            IAnimatedEntity entity = (IAnimatedEntity) world.getEntityByID(packet.entityId);
-            if (entity != null && packet.animationId != -1)
-            {
-                entity.setAnimationId(packet.animationId);
-                if (packet.animationId == 0)
-                    entity.setAnimationTick(0);
-            }
-            return null;
-        }
     }
 }

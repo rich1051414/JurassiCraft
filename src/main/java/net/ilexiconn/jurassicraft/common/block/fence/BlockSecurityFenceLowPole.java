@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.block.fence;
 
-import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
-import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.api.IFenceGrid;
 import net.ilexiconn.jurassicraft.common.api.IFencePole;
+import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;

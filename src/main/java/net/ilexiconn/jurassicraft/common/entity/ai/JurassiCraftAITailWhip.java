@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.common.entity.ai;
 
-import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftSmart;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;

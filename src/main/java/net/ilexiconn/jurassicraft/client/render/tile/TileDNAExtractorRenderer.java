@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.client.model.block.ModelDNAExtractorBase;
 import net.ilexiconn.jurassicraft.client.model.block.ModelDNAExtractorGlass;
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNAExtractor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;

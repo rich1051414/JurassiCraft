@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.common.block.cultivate;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
@@ -102,26 +102,26 @@ public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBl
             if (tileEntity instanceof TileCultivate)
             {
                 TileCultivate tileCultivate = (TileCultivate) tileEntity;
-                
-                if(tileCultivate.isUseableByPlayer(player))
+
+                if (tileCultivate.isUseableByPlayer(player))
                 {
                     if (!tileCultivate.isHatching())
                     {
-                    	if(!world.isRemote)
-                    	{
-                    		player.openGui(JurassiCraft.instance, 0, world, x, y, z);
-                    	}
-                        
+                        if (!world.isRemote)
+                        {
+                            player.openGui(JurassiCraft.instance, 0, world, x, y, z);
+                        }
+
                         return true;
                     }
                     else
                     {
-                    	if(world.isRemote)
-                    	{
-                    		Minecraft.getMinecraft().displayGuiScreen(new GuiCultivateProcess(tileCultivate));
-                    	}
-                    	
-                    	return true;
+                        if (world.isRemote)
+                        {
+                            Minecraft.getMinecraft().displayGuiScreen(new GuiCultivateProcess(tileCultivate));
+                        }
+
+                        return true;
                     }
                 }
             }

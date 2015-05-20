@@ -3,9 +3,9 @@ package net.ilexiconn.jurassicraft.common.creativetab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
 import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -73,5 +73,10 @@ public class JCCreativeTabRegistry implements IContentHandler
                 return CreatureHandler.getCreatureFromName("Tyrannosaurus").getMeat();
             }
         };
+    }
+
+    public void gameRegistry() throws Exception
+    {
+
     }
 }

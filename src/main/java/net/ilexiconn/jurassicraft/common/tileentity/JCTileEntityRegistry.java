@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowCorner;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 
 public class JCTileEntityRegistry implements IContentHandler
 {
@@ -20,17 +20,10 @@ public class JCTileEntityRegistry implements IContentHandler
         GameRegistry.registerTileEntity(TileSecurityFenceLowBase.class, "jurassicraft:BlockSecurityFenceLowBase");
         GameRegistry.registerTileEntity(TileSecurityFenceLowGrid.class, "jurassicraft:BlockSecurityFenceLowGrid");
         GameRegistry.registerTileEntity(TileSecurityFenceLowPole.class, "jurassicraft:BlockSecurityFenceLowPole");
-        
-        /*
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumCorner.class, "jurassicraft:BlockSecurityFenceMediumCorner");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumBase.class, "jurassicraft:BlockSecurityFenceMediumBase");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumGrid.class, "jurassicraft:BlockSecurityFenceMediumGrid");
-        GameRegistry.registerTileEntity(TileSecurityFenceMediumPole.class, "jurassicraft:BlockSecurityFenceMediumPole");
-        
-        GameRegistry.registerTileEntity(TileSecurityFenceHighCorner.class, "jurassicraft:BlockSecurityFenceHighCorner");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighBase.class, "jurassicraft:BlockSecurityFenceHighBase");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighGrid.class, "jurassicraft:BlockSecurityFenceHighGrid");
-        GameRegistry.registerTileEntity(TileSecurityFenceHighPole.class, "jurassicraft:BlockSecurityFenceHighPole");
-        */
+    }
+
+    public void gameRegistry() throws Exception
+    {
+
     }
 }

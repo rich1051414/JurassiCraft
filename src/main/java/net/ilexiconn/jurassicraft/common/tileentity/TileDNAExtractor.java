@@ -1,8 +1,9 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
+import net.ilexiconn.jurassicraft.common.api.IDNASource;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
-import net.ilexiconn.jurassicraft.common.api.IDNASource;
+import net.ilexiconn.jurassicraft.common.handler.JurassiCraftDNAHandler;
 import net.ilexiconn.jurassicraft.common.item.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

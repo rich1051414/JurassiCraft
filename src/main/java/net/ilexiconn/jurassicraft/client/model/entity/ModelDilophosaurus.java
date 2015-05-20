@@ -3,9 +3,9 @@ package net.ilexiconn.jurassicraft.client.model.entity;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityDilophosaurus;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityDilophosaurus;
 import net.minecraft.entity.Entity;
 
 public class ModelDilophosaurus extends MowzieModelBase

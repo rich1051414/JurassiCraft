@@ -5,9 +5,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.model.animation.Animator;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelBase;
 import net.ilexiconn.jurassicraft.client.model.base.MowzieModelRenderer;
-import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityCarnotaurus;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.api.IAnimatedEntity;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
+import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityCarnotaurus;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 

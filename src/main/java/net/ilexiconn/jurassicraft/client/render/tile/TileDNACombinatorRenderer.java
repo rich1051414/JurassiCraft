@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
-import net.ilexiconn.jurassicraft.client.model.block.ModelDnaCombiner;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelDnaCombiner;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNACombinator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

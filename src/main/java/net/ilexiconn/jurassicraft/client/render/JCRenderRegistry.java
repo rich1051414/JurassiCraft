@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinoEgg;
+import net.ilexiconn.jurassicraft.client.render.entity.RenderSpit;
 import net.ilexiconn.jurassicraft.client.render.item.ItemCultivateRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNACombinatorRenderer;
 import net.ilexiconn.jurassicraft.client.render.item.ItemDNAExtractorRenderer;
@@ -17,7 +18,7 @@ import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowB
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowGridRenderer;
 import net.ilexiconn.jurassicraft.client.render.tile.fence.TileSecurityFenceLowPoleRenderer;
 import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
+import net.ilexiconn.jurassicraft.common.entity.EntitySpit;
 import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
 import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
 import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
@@ -27,6 +28,7 @@ import net.ilexiconn.jurassicraft.common.tileentity.TileDinoPad;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowBase;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowGrid;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowPole;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -50,5 +52,11 @@ public class JCRenderRegistry implements IContentHandler
         ClientRegistry.bindTileEntitySpecialRenderer(TileSecurityFenceLowPole.class, new TileSecurityFenceLowPoleRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityDinoEgg.class, new RenderDinoEgg());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpit.class, new RenderSpit());
+    }
+
+    public void gameRegistry() throws Exception
+    {
+
     }
 }

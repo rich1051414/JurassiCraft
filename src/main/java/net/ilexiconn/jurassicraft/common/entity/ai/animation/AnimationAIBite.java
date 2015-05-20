@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.common.entity.ai.animation;
 
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftCreature;
 import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityGallimimus;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityTyrannosaurus;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;

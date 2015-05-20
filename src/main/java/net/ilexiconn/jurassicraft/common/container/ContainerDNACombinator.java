@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.common.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.common.container.slot.SlotDNASample;
 import net.ilexiconn.jurassicraft.common.api.IDNASample;
+import net.ilexiconn.jurassicraft.common.container.slot.SlotDNASample;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDNACombinator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

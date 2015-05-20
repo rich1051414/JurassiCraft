@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.common.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 
 import java.lang.reflect.Field;
@@ -117,8 +117,6 @@ public class JCItemRegistry implements IContentHandler
                     break;
             }
         }
-
-        gameRegistry();
     }
 
     public void gameRegistry()

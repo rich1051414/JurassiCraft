@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.render.tile;
 
-import net.ilexiconn.jurassicraft.client.model.block.ModelDinoPad;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelDinoPad;
 import net.ilexiconn.jurassicraft.common.tileentity.TileDinoPad;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

@@ -17,11 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-project.ext.buildnumber = "undefined"
-
-if (System.getenv().BUILD_NUMBER) project.buildnumber = System.getenv().BUILD_NUMBER
-
-version = "1.4.0-build-" + project.buildnumber
+version = "1.4.0"
 group = "net.ilexiconn.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
@@ -29,6 +25,18 @@ minecraft {
     version = "1.7.10-10.13.3.1401-1710ls"
     runDir = "minecraft"
     replace '${version}', project.version
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "ilexiconn"
+        url = "http://ilexiconn.net/maven"
+    }
+}
+
+dependencies {
+    compile 'net.ilexiconn.llibrary:LLibrary:0.1.0-1.7.10:dev'
 }
 
 processResources {

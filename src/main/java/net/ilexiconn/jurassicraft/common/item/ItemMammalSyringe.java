@@ -2,11 +2,12 @@ package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
-import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantCow;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantHorse;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantPig;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityPregnantSheep;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
+import net.ilexiconn.jurassicraft.common.handler.JurassiCraftDNAHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;

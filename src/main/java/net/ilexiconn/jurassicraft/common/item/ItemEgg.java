@@ -2,8 +2,9 @@ package net.ilexiconn.jurassicraft.common.item;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
-import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.entity.egg.EntityDinoEgg;
+import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
+import net.ilexiconn.jurassicraft.common.handler.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

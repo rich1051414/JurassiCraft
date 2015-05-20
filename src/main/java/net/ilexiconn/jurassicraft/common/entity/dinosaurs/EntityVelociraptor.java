@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.common.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.base.ControlledAnimation;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
 import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIRoar;
@@ -10,7 +11,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.animation.AnimationAIVelocira
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;

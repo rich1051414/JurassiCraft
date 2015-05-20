@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.client.render.tile.fence;
 
-import net.ilexiconn.jurassicraft.client.model.block.ModelLowSecurityFenceGrid;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.model.block.ModelLowSecurityFenceGrid;
 import net.ilexiconn.jurassicraft.common.tileentity.fence.TileSecurityFenceLowGrid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

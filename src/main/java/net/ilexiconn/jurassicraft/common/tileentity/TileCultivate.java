@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftFoodNutrients;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftFoodNutrients;
 import net.ilexiconn.jurassicraft.common.item.ItemDNA;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.common.entity.ai.animation;
 
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.entity.ai.AIAnimation;
 import net.ilexiconn.jurassicraft.common.entity.dinosaurs.EntityHypsilophodon;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 
 public class AnimationAIHypsilophodonPlaying extends AIAnimation
 {

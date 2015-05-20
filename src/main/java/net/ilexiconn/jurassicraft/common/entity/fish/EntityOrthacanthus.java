@@ -34,16 +34,16 @@ public class EntityOrthacanthus extends EntityJurassiCraftSwimmingBase
         this.dropItemStackWithGenetics(new ItemStack(this.getCreature().getMeat(), 1));
     }
 
-    public EntityLivingBase getTargetPriority(EntityLivingBase Target, EntityLivingBase entity1)
+    public EntityLivingBase getTargetPriority(EntityLivingBase target, EntityLivingBase entity1)
     {
-        if (Target != null)
+        if (target != null)
         {
             if (entity1 instanceof EntitySquid) //Goes for squid first
                 return entity1;
             else if (entity1 instanceof EntityPlayer) //Then players
                 return entity1;
-            else
-                return Target; //Then if Orthacanthus is only entity around. Boo cannibalism
+            else if (!(entity1 instanceof EntityCoelacanth))
+                return target;
         }
         else if (entity1 instanceof EntitySquid || entity1 instanceof EntityPlayer || entity1 instanceof EntityOrthacanthus)
             return entity1;

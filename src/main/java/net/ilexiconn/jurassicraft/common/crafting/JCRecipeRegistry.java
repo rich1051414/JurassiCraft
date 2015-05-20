@@ -3,11 +3,11 @@ package net.ilexiconn.jurassicraft.common.crafting;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.block.cultivate.BlockCultivateBottom;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
 import net.ilexiconn.jurassicraft.common.entity.Creature;
 import net.ilexiconn.jurassicraft.common.handler.CreatureHandler;
 import net.ilexiconn.jurassicraft.common.item.ItemMeat;
 import net.ilexiconn.jurassicraft.common.item.JCItemRegistry;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -53,6 +53,11 @@ public class JCRecipeRegistry implements IContentHandler
         GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_fished, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_chicken, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.growthSerum, 1), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.golden_carrot, 1), new ItemStack(Items.water_bucket, 1), new ItemStack(Items.cooked_porkchop, 1));
+
+    }
+
+    public void gameRegistry() throws Exception
+    {
 
     }
 }

@@ -156,7 +156,7 @@ public abstract class EntityJurassiCraftSwimming extends EntityJurassiCraftRidab
             --air;
             this.setAir(air);
 
-            if (this.getAir() == -20)
+            if (this.getAir() == -10)
             {
                 this.setAir(0);
                 this.attackEntityFrom(DamageSource.drown, 2.0F);

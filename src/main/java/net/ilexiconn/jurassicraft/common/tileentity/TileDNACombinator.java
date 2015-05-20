@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.common.tileentity;
 
-import net.ilexiconn.jurassicraft.common.item.JurassiCraftDNAHandler;
+import net.ilexiconn.jurassicraft.common.handler.JurassiCraftDNAHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

@@ -15,7 +15,7 @@ import net.ilexiconn.jurassicraft.common.block.fossil.BlockFossilSandstoneOre;
 import net.ilexiconn.jurassicraft.common.block.gypsum.BlockGypsumBlock;
 import net.ilexiconn.jurassicraft.common.block.gypsum.BlockGypsumBrick;
 import net.ilexiconn.jurassicraft.common.block.gypsum.BlockGypsumCobblestone;
-import net.ilexiconn.jurassicraft.common.data.loader.IContentHandler;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
@@ -69,8 +69,6 @@ public class JCBlockRegistry implements IContentHandler
         cultivateFluid = new Fluid("cultivate").setLuminosity(5).setViscosity(1);
         FluidRegistry.registerFluid(cultivateFluid);
         cultivateLiquid = new BlockCultivateFluid(cultivateFluid, Material.water).setBlockName("culivateFluid").setCreativeTab(null);
-
-        gameRegistry();
     }
 
     public void gameRegistry()
@@ -96,7 +94,7 @@ public class JCBlockRegistry implements IContentHandler
     public void registerBlock(Block block)
     {
         if (block instanceof ISubBlocksBlock)
-            GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(),  block.getUnlocalizedName());
+            GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), block.getUnlocalizedName());
         else
             GameRegistry.registerBlock(block, block.getUnlocalizedName());
     }

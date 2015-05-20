@@ -2,6 +2,7 @@ package net.ilexiconn.jurassicraft.common.entity.dinosaurs;
 
 import net.ilexiconn.jurassicraft.client.model.base.ChainBuffer;
 import net.ilexiconn.jurassicraft.client.model.base.ControlledAnimation;
+import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.entity.EntityJurassiCraftGroupAggressive;
 import net.ilexiconn.jurassicraft.common.entity.EntitySpit;
 import net.ilexiconn.jurassicraft.common.entity.ai.*;
@@ -10,7 +11,6 @@ import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIFollowHerd;
 import net.ilexiconn.jurassicraft.common.entity.ai.herds.HerdAIGroupAttack;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityLeptictidium;
 import net.ilexiconn.jurassicraft.common.entity.mammals.EntityMoeritherium;
-import net.ilexiconn.jurassicraft.common.data.enums.JurassiCraftAnimationIDs;
 import net.ilexiconn.jurassicraft.common.handler.AnimationHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -28,21 +28,6 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
     public ControlledAnimation sittingProgress = new ControlledAnimation(35);
     int timeUntilSpit = 0;
     float spitLocationRadius = 2.2F;
-
-    //Copied from snowman
-    public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
-    {
-        EntitySpit spit = new EntitySpit(this.worldObj, this);
-        spit.setPosition(posX + spitLocationRadius * getCreatureScale() * Math.cos((renderYawOffset + 90) * Math.PI / 180), posY + 1 * getCreatureScale(), posZ + spitLocationRadius * getCreatureScale() * Math.sin((renderYawOffset + 90) * Math.PI / 180));
-        double d0 = p_82196_1_.posX - spit.posX;
-        double d1 = p_82196_1_.posY + (double) p_82196_1_.getEyeHeight() - 1.100000023841858D - spit.posY;
-        double d2 = p_82196_1_.posZ - spit.posZ;
-        float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
-        spit.setThrowableHeading(d0, d1 + (double) f1, d2, 1.5F, 0F);
-        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.worldObj.spawnEntityInWorld(spit);
-        timeUntilSpit = 20;
-    }
 
     public EntityDilophosaurus(World world)
     {
@@ -80,6 +65,21 @@ public class EntityDilophosaurus extends EntityJurassiCraftGroupAggressive imple
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityChicken.class, 10, 0.2F));
         this.targetTasks.addTask(3, new JurassiCraftAITargetIfHasAgeAndNonTamed(this, EntityPlayer.class, 50, 0.5F));
         this.setCreatureExperiencePoints(1800);
+    }
+
+    //Copied from snowman
+    public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
+    {
+        EntitySpit spit = new EntitySpit(this.worldObj, this);
+        spit.setPosition(posX + spitLocationRadius * getCreatureScale() * Math.cos((renderYawOffset + 90) * Math.PI / 180), posY + 1 * getCreatureScale(), posZ + spitLocationRadius * getCreatureScale() * Math.sin((renderYawOffset + 90) * Math.PI / 180));
+        double d0 = p_82196_1_.posX - spit.posX;
+        double d1 = p_82196_1_.posY + (double) p_82196_1_.getEyeHeight() - 1.100000023841858D - spit.posY;
+        double d2 = p_82196_1_.posZ - spit.posZ;
+        float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
+        spit.setThrowableHeading(d0, d1 + (double) f1, d2, 1.5F, 0F);
+        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.worldObj.spawnEntityInWorld(spit);
+        timeUntilSpit = 20;
     }
 
     public int getTalkInterval()
