@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.common;
 
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLiving;
@@ -36,6 +37,11 @@ public class CommonProxy
     }
 
     public void init() throws Exception
+    {
+
+    }
+
+    public void openCultivatorProgress(TileCultivate tile)
     {
 
     }

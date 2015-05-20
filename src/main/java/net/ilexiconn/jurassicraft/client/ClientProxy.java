@@ -5,9 +5,11 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.client.render.JCRenderRegistry;
 import net.ilexiconn.jurassicraft.client.render.RenderPlayerEventHandler;
 import net.ilexiconn.jurassicraft.common.CommonProxy;
+import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.ilexiconn.llibrary.common.content.ContentHandlerList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -56,5 +58,10 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHandler());
         JurassiCraft.entityParser.parseClientEntities();
         timer = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), new String[]{"field_71428_T", "S", "timer"});
+    }
+
+    public void openCultivatorProgress(TileCultivate tile)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiCultivateProcess(tile));
     }
 }

@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.common.block.cultivate;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.client.gui.GuiCultivateProcess;
 import net.ilexiconn.jurassicraft.common.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.common.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.common.creativetab.JCCreativeTabRegistry;
@@ -12,7 +11,6 @@ import net.ilexiconn.jurassicraft.common.tileentity.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -118,7 +116,7 @@ public class BlockCultivateBottom extends BlockContainer implements ISubBlocksBl
                     {
                         if (world.isRemote)
                         {
-                            Minecraft.getMinecraft().displayGuiScreen(new GuiCultivateProcess(tileCultivate));
+                            JurassiCraft.proxy.openCultivatorProgress(tileCultivate);
                         }
 
                         return true;
