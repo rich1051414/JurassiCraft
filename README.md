@@ -39,7 +39,7 @@ You must have [Gradle](http://gradle.org/) installed before you can begin.
 First, clone this repository.
 Run in console or Git Bash:
 ```
-git clone https://github.com/iLexiconn/JurassiCraft2
+git clone https://github.com/iLexiconn/JurassiCraft
 ```
 
 When that's done, go into the directory and run in the console:
